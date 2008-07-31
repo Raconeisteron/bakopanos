@@ -1,4 +1,5 @@
+using System.Web.UI;
 
-public partial class ItemDetail : System.Web.UI.Page
+public partial class ItemDetail : Page
 {
 }

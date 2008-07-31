@@ -7,16 +7,12 @@ using System;
 ///</summary>
 public class Item
 {
-    private string  _id;            
-    private string _title;          
-    private bool    _visible;       
-    private string  _description;   
-    private double  _price;         
-    private bool    _inStock;       
-    private string  _imageUrl;      
-    private string  _imageAltText;
+    private readonly string _id;
+    private string _imageAltText;
+    private string _imageUrl;
+    private string _title;
 
- 
+
     public Item(string id,
                 bool visible,
                 string title)
@@ -24,9 +20,8 @@ public class Item
         if (String.IsNullOrEmpty(id)) throw new ArgumentException(Messages.ItemIdUndefined);
         if (String.IsNullOrEmpty(title)) throw new ArgumentException(Messages.ItemTitleUndefined);
         _id = id;
-        _visible = visible;
+        Visible = visible;
         _title = title;
-
     }
 
     public string Id
@@ -34,39 +29,24 @@ public class Item
         get { return String.IsNullOrEmpty(_id) ? String.Empty : _id; }
     }
 
-    public bool Visible
-    {
-        get { return _visible; }
-        set { _visible = value; }
-    }
+    public bool Visible { get; set; }
 
     public string Title
     {
         get { return String.IsNullOrEmpty(_title) ? String.Empty : _title; }
-        set 
-        {    if (String.IsNullOrEmpty(value))
-            throw new InvalidOperationException(Messages.ItemTitleIsNull);
-            _title = value; 
+        set
+        {
+            if (String.IsNullOrEmpty(value))
+                throw new InvalidOperationException(Messages.ItemTitleIsNull);
+            _title = value;
         }
     }
 
-    public string Description
-    {
-        get { return _description; }
-        set { _description = value; }
-    }
+    public string Description { get; set; }
 
-    public double Price
-    {
-        get { return  _price; }
-        set { _price = value; }
-    }
+    public double Price { get; set; }
 
-    public bool InStock
-    {
-        get { return _inStock; }
-        set { _inStock = value; }
-    }
+    public bool InStock { get; set; }
 
     public string ImageUrl
     {

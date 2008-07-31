@@ -1,5 +1,5 @@
+using System.Web.UI;
 
-
-public partial class Contact: System.Web.UI.Page
+public partial class Contact : Page
 {
 }

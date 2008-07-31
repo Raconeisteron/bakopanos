@@ -1,6 +1,5 @@
-using System.Configuration.Provider;
 using System.Collections.Generic;
-
+using System.Configuration.Provider;
 
 /// <summary>
 /// base data access class
@@ -10,4 +9,3 @@ public abstract class NewsProvider : ProviderBase
     public abstract List<NewsItem> GetAllNews();
     public abstract NewsItem GetNewsItem(string newsItemId);
 }
-

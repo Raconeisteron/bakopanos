@@ -1,63 +1,48 @@
 using System;
-using System.Data;
-using System.Configuration;
-
-
 
 /// <summary>
 /// Represents a one piece of news 
 /// </summary>
 public class NewsItem
 {
-    string      _id;            // unique identifier
-    bool        _visible;       // whether to display
-    string      _title;         // brief descriptive name
-    DateTime    _date;          // date of the news
-    string      _content;       // main content of the news
-    string      _imageUrl;      // image associated with the news item
-    string      _imageAltText;  // in case the image can't be displayed
+    private readonly string _id; // unique identifier
+    private string _content; // main content of the news
+    private string _imageAltText; // in case the image can't be displayed
+    private string _imageUrl; // image associated with the news item
+    private string _title; // brief descriptive name
 
 
     public NewsItem(string id, bool visible, string title)
     {
         if (String.IsNullOrEmpty(id)) throw new ArgumentException(Messages.NewsItemIdUndefined);
         if (String.IsNullOrEmpty(title)) throw new ArgumentException(Messages.NewsItemTitleUndefined);
-        _id             = id;
-        _visible        = visible;
-        _title          = title;   
+        _id = id;
+        Visible = visible;
+        _title = title;
     }
 
     public string Id
     {
-        get { return _id; }        
+        get { return _id; }
     }
 
 
-    public bool Visible
-    {
-        get { return _visible; }
-        set { _visible = value; }
-    }
+    public bool Visible { get; set; }
 
 
     public string Title
     {
         get { return String.IsNullOrEmpty(_title) ? String.Empty : _title; }
-        set 
+        set
         {
             if (String.IsNullOrEmpty(value))
-                throw new InvalidOperationException(Messages.NewsItemTitleUndefined);            
-            _title = value; 
-        
+                throw new InvalidOperationException(Messages.NewsItemTitleUndefined);
+            _title = value;
         }
     }
 
 
-    public DateTime Date
-    {
-        get { return _date; }
-        set { _date = value; }
-    }
+    public DateTime Date { get; set; }
 
     public string Content
     {
@@ -76,5 +61,4 @@ public class NewsItem
         get { return String.IsNullOrEmpty(_imageAltText) ? String.Empty : _imageAltText; }
         set { _imageAltText = value; }
     }
-
 }

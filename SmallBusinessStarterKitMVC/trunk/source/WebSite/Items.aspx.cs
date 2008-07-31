@@ -1,16 +1,10 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
 using System.Collections.Generic;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-
-public partial class Items : System.Web.UI.Page
+public partial class Items : Page
 {
-    
     ///<summary>
     /// Fills the TreeView Control if not a postback
     /// On postbacks: Updates the TreeView to selected category
@@ -21,16 +15,16 @@ public partial class Items : System.Web.UI.Page
     ///</summary>
     protected void Page_Load()
     {
-        if (!IsPostBack )
+        if (!IsPostBack)
         {
             // populate the TreeView from scratch
             TreeViewCategories.Nodes.Clear();
             List<Category> rootCategories = Catalog.GetChildCategories(String.Empty); // get root level ones
             foreach (Category c in rootCategories)
             {
-                TreeNode newNode = new TreeNode(c.Title, c.Id);
+                var newNode = new TreeNode(c.Title, c.Id);
                 newNode.SelectAction = TreeNodeSelectAction.SelectExpand;
-                newNode.NavigateUrl = "Items.aspx?catId=" + c.Id;  
+                newNode.NavigateUrl = "Items.aspx?catId=" + c.Id;
                 TreeViewCategories.Nodes.Add(newNode);
                 populateCategoryNode(newNode);
             }
@@ -39,8 +33,8 @@ public partial class Items : System.Web.UI.Page
             //
             if (Session["treeview"] != null)
             {
-                bool[] nodeExpandedState = (bool[])Session["treeview"];
-                int i=0;
+                var nodeExpandedState = (bool[]) Session["treeview"];
+                int i = 0;
                 foreach (TreeNode n in TreeViewCategories.Nodes)
                 {
                     if (nodeExpandedState[i++])
@@ -48,17 +42,16 @@ public partial class Items : System.Web.UI.Page
                 }
                 Session.Remove("treeview");
             }
-            
         }
-        
-        
+
+
         string categoryId = Request.QueryString["catId"];
 
         // update TreeView by expanding to the selected category node
         if (categoryId == null)
         {
             categoryId = String.Empty;
-        }   
+        }
         else
         {
             TreeNode n = findNode(categoryId, TreeViewCategories.Nodes);
@@ -71,8 +64,8 @@ public partial class Items : System.Web.UI.Page
         }
 
         // now display the correct panel (categories or items)
-        List<Category> categories = Catalog.GetChildCategories(categoryId); 
-        if (categories.Count == 0) 
+        List<Category> categories = Catalog.GetChildCategories(categoryId);
+        if (categories.Count == 0)
         {
             PanelItems.Visible = true;
             PanelCategories.Visible = false;
@@ -87,13 +80,12 @@ public partial class Items : System.Web.UI.Page
     }
 
 
-
     ///<summary>
     /// Saves the expanded state of the TreeView
     ///</summary>
     protected void Page_PreRender()
     {
-        bool[] nodeExpandedState = new bool[TreeViewCategories.Nodes.Count];
+        var nodeExpandedState = new bool[TreeViewCategories.Nodes.Count];
         int i = 0;
         foreach (TreeNode node in TreeViewCategories.Nodes)
         {
@@ -111,7 +103,7 @@ public partial class Items : System.Web.UI.Page
 
         if (e.Row.RowType == DataControlRowType.DataRow && e.Row.DataItem != null)
         {
-            bool visible = (bool)DataBinder.Eval(e.Row.DataItem, "Visible");
+            var visible = (bool) DataBinder.Eval(e.Row.DataItem, "Visible");
             e.Row.Visible = visible;
         }
     }
@@ -120,7 +112,7 @@ public partial class Items : System.Web.UI.Page
     ///<summary>
     /// Using DFS: find node in the collection 'nodes' that matches the 'value'
     ///</summary>
-    private TreeNode findNode(string value, TreeNodeCollection nodes)
+    private static TreeNode findNode(string value, TreeNodeCollection nodes)
     {
         foreach (TreeNode n in nodes)
         {
@@ -143,7 +135,7 @@ public partial class Items : System.Web.UI.Page
     /// Recursively populates the node n with child category nodes.
     /// This function is recursive.
     ///</summary>
-    private void populateCategoryNode(TreeNode n)
+    private static void populateCategoryNode(TreeNode n)
     {
         List<Category> categories = Catalog.GetChildCategories(n.Value);
         if (categories.Count == 0) // base case: leaf category 
@@ -154,9 +146,9 @@ public partial class Items : System.Web.UI.Page
         {
             foreach (Category c in categories)
             {
-                TreeNode newNode = new TreeNode(c.Title, c.Id);
+                var newNode = new TreeNode(c.Title, c.Id);
                 newNode.SelectAction = TreeNodeSelectAction.SelectExpand;
-                newNode.NavigateUrl = "Items.aspx?catId=" + c.Id; 
+                newNode.NavigateUrl = "Items.aspx?catId=" + c.Id;
                 n.ChildNodes.Add(newNode);
                 populateCategoryNode(newNode);
             }

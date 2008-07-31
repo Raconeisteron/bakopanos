@@ -1,4 +1,5 @@
+using System.Web.UI;
 
-public partial class LegalNotice : System.Web.UI.Page
+public partial class LegalNotice : Page
 {
 }

@@ -1,4 +1,5 @@
+using System.Web.UI;
 
-public partial class About : System.Web.UI.Page
+public partial class About : Page
 {
 }

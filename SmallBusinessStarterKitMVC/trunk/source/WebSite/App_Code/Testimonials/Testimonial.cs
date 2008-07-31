@@ -1,7 +1,4 @@
 using System;
-using System.Data;
-using System.Configuration;
-
 
 ///<summary>
 /// class Testimonial
@@ -9,53 +6,47 @@ using System.Configuration;
 ///</summary>
 public class Testimonial
 {
-    string      _id;
-    bool      _visible;
-    string      _title;
-    DateTime    _date;
-    string      _content;
-    string      _testifier;
-    string      _testifierCompany;
-    string      _imageUrl;
-    string      _imageAltText;
+    private readonly string _id;
+    private string _content;
+    private string _imageAltText;
+    private string _imageUrl;
+    private string _testifier;
+    private string _testifierCompany;
+    private string _title;
 
 
-   public Testimonial(
-                string  id,
-                bool visible, 
-                string  title,
-                DateTime  date,
-                string  content,
-                string  testifier                     
-                )
+    public Testimonial(
+        string id,
+        bool visible,
+        string title,
+        DateTime date,
+        string content,
+        string testifier
+        )
     {
-       // exceptions thrown if reqd attributes are missing
-       //
+        // exceptions thrown if reqd attributes are missing
+        //
         if (String.IsNullOrEmpty(id)) throw new ArgumentException(Messages.TestimonialsIdUndefined);
         if (String.IsNullOrEmpty(title)) throw new ArgumentException(Messages.TestimonialsTitleUndefined);
         if (String.IsNullOrEmpty(content)) throw new ArgumentException(Messages.TestimonialsContentUndefined);
         if (String.IsNullOrEmpty(testifier)) throw new ArgumentException(Messages.TestimonialsTestifierUndefined);
         if (date.Equals(null)) throw new ArgumentException(Messages.TestimonialsDateUndefined);
-        
-        _id             = id; 
-        _visible        = visible;
-        _title          = title;
-        _date           = date;
-        _content        = content; 
-        _testifier      = testifier;            
+
+        _id = id;
+        Visible = visible;
+        _title = title;
+        Date = date;
+        _content = content;
+        _testifier = testifier;
     }
 
     public string Id
     {
-        get { return String.IsNullOrEmpty(_id) ? String.Empty : _id; }            
+        get { return String.IsNullOrEmpty(_id) ? String.Empty : _id; }
     }
 
 
-    public bool Visible
-    {
-        get { return  _visible; }
-        set { _visible = value; }
-    }
+    public bool Visible { get; set; }
 
 
     public string Title
@@ -70,20 +61,16 @@ public class Testimonial
     }
 
 
-    public DateTime Date
-    {
-        get { return _date; }
-        set { _date = value; }
-    }
+    public DateTime Date { get; set; }
 
     public string Content
     {
         get { return String.IsNullOrEmpty(_content) ? String.Empty : _content; }
-        set 
-        { 
+        set
+        {
             if (String.IsNullOrEmpty(value))
                 throw new InvalidOperationException(Messages.ContentIsNull);
-            _content = value; 
+            _content = value;
         }
     }
 
@@ -110,7 +97,4 @@ public class Testimonial
         get { return String.IsNullOrEmpty(_imageAltText) ? String.Empty : _imageAltText; }
         set { _imageAltText = value; }
     }
-
-
-
 }

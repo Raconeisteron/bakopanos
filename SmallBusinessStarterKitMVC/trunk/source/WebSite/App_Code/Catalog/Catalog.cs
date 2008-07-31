@@ -11,10 +11,10 @@ using System.Web.Configuration;
 ///</summary>
 public static class Catalog
 {
-    private static bool _isInitialized = false;    
+    private static bool _isInitialized;
     private static CatalogProvider _provider;
     private static SmallBusinessDataProvidersSection _providersSection;
-    
+
     ///<summary>
     /// returns the current items data provider
     ///</summary>    
@@ -26,7 +26,7 @@ public static class Catalog
             return _provider;
         }
     }
-    
+
 
     ///<summary>
     /// Returns item belonging to the category having id: 'parentCategoryId' 
@@ -35,7 +35,6 @@ public static class Catalog
     {
         return Provider.GetChildItems(categoryId);
     }
-
 
 
     ///<summary>
@@ -55,7 +54,6 @@ public static class Catalog
     }
 
 
-   
     /// <summary>
     /// Initilizes a concrete data provider based on setting in web.config
     /// InvalidOperationException may be thrown if an actual provider cannot be instantiated
@@ -64,13 +62,16 @@ public static class Catalog
     {
         if (!_isInitialized)
         {
-            _providersSection = (ConfigurationManager.GetSection("SmallBusinessDataProviders")) as SmallBusinessDataProvidersSection;
+            _providersSection =
+                (ConfigurationManager.GetSection("SmallBusinessDataProviders")) as SmallBusinessDataProvidersSection;
             if (_providersSection == null)
             {
                 throw new InvalidOperationException(Messages.ItemConfigNotFound);
             }
-            _provider = ProvidersHelper.InstantiateProvider(_providersSection.CatalogProviders[_providersSection.CatalogProviderName],
-                typeof(CatalogProvider)) as CatalogProvider;
+            _provider =
+                ProvidersHelper.InstantiateProvider(
+                    _providersSection.CatalogProviders[_providersSection.CatalogProviderName],
+                    typeof (CatalogProvider)) as CatalogProvider;
 
             if (_provider == null)
             {
@@ -80,4 +81,3 @@ public static class Catalog
         }
     }
 }
-

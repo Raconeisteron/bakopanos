@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Web.Configuration;
 
-
 ///<summary>
 /// class News
 /// Provides static functions to access News
@@ -12,12 +11,11 @@ using System.Web.Configuration;
 ///</summary>
 public static class News
 {
-
-    private static bool _isInitialized = false;
+    private static bool _isInitialized;
     private static NewsProvider _provider;
     private static SmallBusinessDataProvidersSection _providersSection;
-    
-    
+
+
     public static NewsProvider Provider
     {
         get
@@ -36,19 +34,21 @@ public static class News
     {
         return Provider.GetNewsItem(newsItemId);
     }
-    
+
     private static void Initialize()
     {
         if (!_isInitialized)
         {
-            _providersSection = (ConfigurationManager.GetSection("SmallBusinessDataProviders")) as SmallBusinessDataProvidersSection;
+            _providersSection =
+                (ConfigurationManager.GetSection("SmallBusinessDataProviders")) as SmallBusinessDataProvidersSection;
             if (_providersSection == null)
             {
                 throw new InvalidOperationException(Messages.NewsConfigSectionNotFound);
             }
 
-            _provider = ProvidersHelper.InstantiateProvider(_providersSection.NewsProviders[_providersSection.NewsProviderName],
-                typeof(NewsProvider)) as NewsProvider;
+            _provider =
+                ProvidersHelper.InstantiateProvider(_providersSection.NewsProviders[_providersSection.NewsProviderName],
+                                                    typeof (NewsProvider)) as NewsProvider;
 
             if (_provider == null)
             {
@@ -58,4 +58,3 @@ public static class News
         }
     }
 } // end class
-

@@ -1,9 +1,8 @@
 using System;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class NewsPage : System.Web.UI.Page
+public partial class NewsPage : Page
 {
     ///<summary>
     /// Shows the Panel dispalaing individual news item 
@@ -40,21 +39,17 @@ public partial class NewsPage : System.Web.UI.Page
         // display if 'Visible' = true
         if (e.Row.RowType == DataControlRowType.DataRow && e.Row.DataItem != null)
         {
-            bool visible = (bool)DataBinder.Eval(e.Row.DataItem, "Visible");
+            var visible = (bool) DataBinder.Eval(e.Row.DataItem, "Visible");
             e.Row.Visible = visible;
         }
 
         // display image if a url is specified
-        string imageUrl = (string)DataBinder.Eval(e.Row.DataItem, "ImageUrl");
+        var imageUrl = (string) DataBinder.Eval(e.Row.DataItem, "ImageUrl");
         if (String.Empty.Equals(imageUrl))
         {
-            Image newsImage = (Image)e.Row.FindControl("Image2");
+            var newsImage = (Image) e.Row.FindControl("Image2");
             if (newsImage != null)
                 newsImage.Visible = false;
         }
     }
-
-
-  
-
 }

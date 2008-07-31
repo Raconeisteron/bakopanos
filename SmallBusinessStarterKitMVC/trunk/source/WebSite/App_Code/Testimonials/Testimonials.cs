@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Web.Configuration;
 
-
 ///<summary>
 /// class Testimonials
 /// Provides static functions to access testimonials
@@ -12,7 +11,7 @@ using System.Web.Configuration;
 ///</summary>
 public static class Testimonials
 {
-    private static bool _isInitialized = false;
+    private static bool _isInitialized;
     private static TestimonialProvider _provider;
     private static SmallBusinessDataProvidersSection _providersSection;
 
@@ -44,14 +43,17 @@ public static class Testimonials
     {
         if (!_isInitialized)
         {
-            _providersSection = (ConfigurationManager.GetSection("SmallBusinessDataProviders")) as SmallBusinessDataProvidersSection;
+            _providersSection =
+                (ConfigurationManager.GetSection("SmallBusinessDataProviders")) as SmallBusinessDataProvidersSection;
             if (_providersSection == null)
             {
                 throw new Exception(Messages.TestimonialsConfigSectionNotFound);
             }
 
-            _provider = ProvidersHelper.InstantiateProvider(_providersSection.TestimonialsProviders[_providersSection.TestimonialsProviderName],
-                typeof(TestimonialProvider)) as TestimonialProvider;
+            _provider =
+                ProvidersHelper.InstantiateProvider(
+                    _providersSection.TestimonialsProviders[_providersSection.TestimonialsProviderName],
+                    typeof (TestimonialProvider)) as TestimonialProvider;
 
             if (_provider == null)
             {
@@ -60,5 +62,4 @@ public static class Testimonials
             _isInitialized = true;
         }
     }
-
 }

@@ -1,20 +1,18 @@
 using System;
+using System.Collections.Generic;
 using System.Configuration;
-using System.Web.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Collections.Generic;
+using System.Web.Configuration;
 
-
- /// <summary>
- ///Provides access to SqlServer data source 
- /// </summary>
+/// <summary>
+///Provides access to SqlServer data source 
+/// </summary>
 public class SqlCatalogProvider : CatalogProvider
 {
-
-    private string connectionString()
+    private static string connectionString()
     {
-        SmallBusinessDataProvidersSection sec = (ConfigurationManager.GetSection("SmallBusinessDataProviders")) as SmallBusinessDataProvidersSection;
+        var sec = (ConfigurationManager.GetSection("SmallBusinessDataProviders")) as SmallBusinessDataProvidersSection;
         string connectionStringName = sec.CatalogProviders[sec.CatalogProviderName].Parameters["connectionStringName"];
         return WebConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
     }
@@ -25,16 +23,16 @@ public class SqlCatalogProvider : CatalogProvider
     /// </summary>
     public override List<Item> GetChildItems(string parentCategoryId)
     {
-        List<Item> list = new List<Item>();
+        var list = new List<Item>();
         if (String.IsNullOrEmpty(parentCategoryId)) return list;
 
         // connect to the database
-        using (SqlConnection con = new SqlConnection(connectionString()))
-        { 
+        using (var con = new SqlConnection(connectionString()))
+        {
             con.Open();
-            SqlCommand cmd = new SqlCommand("GetChildItems", con);
+            var cmd = new SqlCommand("GetChildItems", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@categoryId", SqlDbType.NVarChar);            
+            cmd.Parameters.Add("@categoryId", SqlDbType.NVarChar);
             cmd.Parameters["@categoryId"].Value = parentCategoryId;
 
             SqlDataReader r = cmd.ExecuteReader();
@@ -46,13 +44,13 @@ public class SqlCatalogProvider : CatalogProvider
                     throw new InvalidOperationException(Messages.ItemRequiredAttributesMissing);
 
                 curr = new Item((string) r["id"],
-                                (Boolean)r["visible"],
+                                (Boolean) r["visible"],
                                 (string) r["title"]);
-                curr.Description = (r["description"] is DBNull) ? String.Empty : (string)r["description"];
-                curr.Price = (r["price"] is DBNull) ? Double.MinValue : (double)r["price"];
-                curr.InStock = (r["inStock"] is DBNull) ? true : (Boolean)r["inStock"];
-                curr.ImageUrl = (r["imageUrl"] is DBNull) ? String.Empty : (string)r["imageUrl"];
-                curr.ImageAltText = (r["imageAltText"] is DBNull) ? String.Empty : (string)r["imageAltText"];
+                curr.Description = (r["description"] is DBNull) ? String.Empty : (string) r["description"];
+                curr.Price = (r["price"] is DBNull) ? Double.MinValue : (double) r["price"];
+                curr.InStock = (r["inStock"] is DBNull) ? true : (Boolean) r["inStock"];
+                curr.ImageUrl = (r["imageUrl"] is DBNull) ? String.Empty : (string) r["imageUrl"];
+                curr.ImageAltText = (r["imageAltText"] is DBNull) ? String.Empty : (string) r["imageAltText"];
                 list.Add(curr);
             }
         }
@@ -63,13 +61,13 @@ public class SqlCatalogProvider : CatalogProvider
     /// Returns subcategories under the category having id: 'parentCategoryId'    
     ///</summary>
     public override List<Category> GetChildCategories(string parentCategoryId)
-    {   
-        List<Category> list       = new List<Category>();        
-        using (SqlConnection con = new SqlConnection(connectionString()))
+    {
+        var list = new List<Category>();
+        using (var con = new SqlConnection(connectionString()))
         {
             con.Open();
             SqlCommand cmd;
-            if( String.IsNullOrEmpty(parentCategoryId))
+            if (String.IsNullOrEmpty(parentCategoryId))
             {
                 cmd = new SqlCommand("GetRootCategories", con);
             }
@@ -80,7 +78,7 @@ public class SqlCatalogProvider : CatalogProvider
                 cmd.Parameters.Add("@categoryId", SqlDbType.NVarChar);
                 cmd.Parameters["@categoryId"].Value = parentCategoryId;
             }
-            
+
             SqlDataReader r = cmd.ExecuteReader();
             Category curr;
             while (r.Read())
@@ -88,10 +86,10 @@ public class SqlCatalogProvider : CatalogProvider
                 if (r["id"] is DBNull || r["visible"] is DBNull || r["title"] is DBNull)
                     throw new InvalidOperationException(Messages.CategoryRequiredAttributesMissing);
 
-                curr = new Category((string)r["id"],(Boolean)r["visible"],(string)r["title"]);
-                curr.Description = (r["description"] is DBNull) ? String.Empty : (string)r["description"];
-                curr.ImageUrl = (r["imageUrl"] is DBNull) ? String.Empty : (string)r["imageUrl"];
-                curr.ImageAltText = (r["imageAltText"] is DBNull) ? String.Empty : (string)r["imageAltText"];
+                curr = new Category((string) r["id"], (Boolean) r["visible"], (string) r["title"]);
+                curr.Description = (r["description"] is DBNull) ? String.Empty : (string) r["description"];
+                curr.ImageUrl = (r["imageUrl"] is DBNull) ? String.Empty : (string) r["imageUrl"];
+                curr.ImageAltText = (r["imageAltText"] is DBNull) ? String.Empty : (string) r["imageAltText"];
                 list.Add(curr);
             }
         }
@@ -107,30 +105,29 @@ public class SqlCatalogProvider : CatalogProvider
         if (String.IsNullOrEmpty(itemId)) return null;
         // connect to the database
         Item curr;
-        using (SqlConnection con = new SqlConnection(connectionString()))
+        using (var con = new SqlConnection(connectionString()))
         {
             con.Open();
-            SqlCommand cmd = new SqlCommand("GetItem", con);
+            var cmd = new SqlCommand("GetItem", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@itemId", SqlDbType.NVarChar);
             cmd.Parameters["@itemId"].Value = itemId;
 
             SqlDataReader r = cmd.ExecuteReader();
             r.Read();
-            
+
             if (r["id"] is DBNull || r["visible"] is DBNull || r["title"] is DBNull)
                 throw new InvalidOperationException(Messages.ItemRequiredAttributesMissing);
 
-            curr = new Item((string)r["id"],
-                            (Boolean)r["visible"],
-                            (string)r["title"]);
-            curr.Description = (r["description"] is DBNull) ? String.Empty : (string)r["description"];
-            curr.Price = (r["price"] is DBNull) ? Double.MinValue : (double)r["price"];
-            curr.InStock = (r["inStock"] is DBNull) ? true : (Boolean)r["inStock"];
-            curr.ImageUrl = (r["imageUrl"] is DBNull) ? String.Empty : (string)r["imageUrl"];
-            curr.ImageAltText = (r["imageAltText"] is DBNull) ? String.Empty : (string)r["imageAltText"];
+            curr = new Item((string) r["id"],
+                            (Boolean) r["visible"],
+                            (string) r["title"]);
+            curr.Description = (r["description"] is DBNull) ? String.Empty : (string) r["description"];
+            curr.Price = (r["price"] is DBNull) ? Double.MinValue : (double) r["price"];
+            curr.InStock = (r["inStock"] is DBNull) ? true : (Boolean) r["inStock"];
+            curr.ImageUrl = (r["imageUrl"] is DBNull) ? String.Empty : (string) r["imageUrl"];
+            curr.ImageAltText = (r["imageAltText"] is DBNull) ? String.Empty : (string) r["imageAltText"];
         }
         return curr;
-    
     }
-} 
+}

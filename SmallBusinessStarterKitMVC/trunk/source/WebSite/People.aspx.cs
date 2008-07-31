@@ -1,11 +1,8 @@
 using System;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-
-
-public partial class PeoplePage : System.Web.UI.Page
+public partial class PeoplePage : Page
 {
     ///<summary>
     /// Hides rows that have 'invisible' = false
@@ -17,18 +14,17 @@ public partial class PeoplePage : System.Web.UI.Page
 
         if (e.Row.RowType == DataControlRowType.DataRow && e.Row.DataItem != null)
         {
-            bool visible = (bool)DataBinder.Eval(e.Row.DataItem, "Visible");
+            var visible = (bool) DataBinder.Eval(e.Row.DataItem, "Visible");
             e.Row.Visible = visible;
         }
 
         // display image if a url is specifid
-        string imageUrl = (string)DataBinder.Eval(e.Row.DataItem, "ImageUrl");
+        var imageUrl = (string) DataBinder.Eval(e.Row.DataItem, "ImageUrl");
         if (String.Empty.Equals(imageUrl))
         {
-            Image newsImage = (Image)e.Row.FindControl("Image2");
+            var newsImage = (Image) e.Row.FindControl("Image2");
             if (newsImage != null)
                 newsImage.Visible = false;
         }
     }
-
 }

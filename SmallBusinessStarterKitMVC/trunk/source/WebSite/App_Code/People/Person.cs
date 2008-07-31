@@ -1,59 +1,54 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Web;
 using System.Globalization;
+
 /// <summary>
 /// Represents a person
 /// </summary> 
 public class Person
 {
-    private string  _id;
-    private string  _firstName;
-    private string  _middleName;
-    private string  _lastName;
-    
-    private bool    _visible;
-    private string  _title;
-    private string  _description;
-    
+    private readonly string _id;
+    private string _city;
+    private string _country;
+    private string _description;
+
     // contact info
-    private string  _email;
-    private string  _phone;
-    private string  _fax;
+    private string _email;
+    private string _fax;
+    private string _firstName;
 
-    private string  _streetAddress;
-    private string  _city;
-    private string  _state;
-    private string  _country;
-    private string  _postalCode;
-
-    private string  _imageUrl;
     private string _imageAltText;
-    
+    private string _imageUrl;
+    private string _lastName;
+    private string _middleName;
+    private string _phone;
+    private string _postalCode;
+    private string _state;
+    private string _streetAddress;
+    private string _title;
+
     public Person(string id, bool visible, string firstName, string lastName)
     {
         if (String.IsNullOrEmpty(id)) throw new ArgumentException(Messages.UndefinedId);
         if (String.IsNullOrEmpty(firstName)) throw new ArgumentException(Messages.UndefinedFirstName);
         if (String.IsNullOrEmpty(lastName)) throw new ArgumentException(Messages.UndefinedLastName);
-        
-        _id = id; 
-        _firstName   = firstName;
-        _lastName    = lastName;
-        _visible     = visible; 
+
+        _id = id;
+        _firstName = firstName;
+        _lastName = lastName;
+        Visible = visible;
     }
 
 
     public string Id
     {
-        get { return String.IsNullOrEmpty(_id ) ? String.Empty : _id; }
+        get { return String.IsNullOrEmpty(_id) ? String.Empty : _id; }
     }
 
-    
+
     public string FirstName
     {
         get { return String.IsNullOrEmpty(_firstName) ? String.Empty : _firstName; }
-        set 
+        set
         {
             if (String.IsNullOrEmpty(value))
                 throw new InvalidOperationException(Messages.UndefinedFirstName);
@@ -79,11 +74,7 @@ public class Person
         }
     }
 
-    public bool Visible
-    {
-        get { return _visible; }
-        set { _visible = value; }
-    }
+    public bool Visible { get; set; }
 
     public string Title
     {
@@ -119,7 +110,8 @@ public class Person
                 {
                     try
                     {
-                        string usPhone = "(" + _phone.Substring(0, 3) + ") " + _phone.Substring(3, 3) + "-" + _phone.Substring(6);
+                        string usPhone = "(" + _phone.Substring(0, 3) + ") " + _phone.Substring(3, 3) + "-" +
+                                         _phone.Substring(6);
                         return usPhone;
                     }
                     catch (ArgumentOutOfRangeException)
@@ -150,7 +142,8 @@ public class Person
                 {
                     try
                     {
-                        string usFax = "(" + _fax.Substring(0, 3) + ") " + _fax.Substring(3, 3) + "-" + _fax.Substring(6);
+                        string usFax = "(" + _fax.Substring(0, 3) + ") " + _fax.Substring(3, 3) + "-" +
+                                       _fax.Substring(6);
                         return usFax;
                     }
                     catch (ArgumentOutOfRangeException)
@@ -174,7 +167,7 @@ public class Person
         set { _streetAddress = value; }
     }
 
-    
+
     public string City
     {
         get { return String.IsNullOrEmpty(_city) ? String.Empty : _city; }
@@ -198,7 +191,7 @@ public class Person
     public string Country
     {
         get { return String.IsNullOrEmpty(_country) ? String.Empty : _country; }
-        set { _country= value; }
+        set { _country = value; }
     }
 
 
@@ -213,7 +206,4 @@ public class Person
         get { return String.IsNullOrEmpty(_imageAltText) ? String.Empty : _imageAltText; }
         set { _imageAltText = value; }
     }
-
-
-
 }
