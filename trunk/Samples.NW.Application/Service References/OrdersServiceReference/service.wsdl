@@ -181,9 +181,9 @@
   </wsdl:binding>
   <wsdl:service name="OrdersService">
     <wsdl:port name="WSHttpBinding_IOrdersService" binding="tns:WSHttpBinding_IOrdersService">
-      <soap12:address location="http://localhost:8731/Design_Time_Addresses/Bakopanos.Samples.NW.Service/OrdersService/" />
+      <soap12:address location="http://localhost:8731/Design_Time_Addresses/Bakopanos.NW.Service/OrdersService/" />
       <wsa10:EndpointReference>
-        <wsa10:Address>http://localhost:8731/Design_Time_Addresses/Bakopanos.Samples.NW.Service/OrdersService/</wsa10:Address>
+        <wsa10:Address>http://localhost:8731/Design_Time_Addresses/Bakopanos.NW.Service/OrdersService/</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
           <Dns>localhost</Dns>
         </Identity>

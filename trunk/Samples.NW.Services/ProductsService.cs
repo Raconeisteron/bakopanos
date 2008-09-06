@@ -4,9 +4,9 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using Bakopanos.Samples.NW.Model;
+using Bakopanos.NW.Model;
 
-namespace Bakopanos.Samples.NW.Service
+namespace Bakopanos.NW.Service
 {
     // NOTE: If you change the class name "ProductsService" here, you must also update the reference to "ProductsService" in App.config.
     public class ProductsService : IProductsService

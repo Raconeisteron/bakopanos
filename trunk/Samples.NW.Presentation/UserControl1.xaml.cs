@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Bakopanos.Samples.NW.Presentation
+namespace Bakopanos.NW.Presentation
 {
     /// <summary>
     /// Interaction logic for UserControl1.xaml

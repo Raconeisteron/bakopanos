@@ -6,7 +6,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 
-namespace Bakopanos.Samples.NW.Service
+namespace Bakopanos.NW.Service
 {
     public class Manager
     {

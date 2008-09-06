@@ -16,12 +16,12 @@ namespace Bakopanos.Samples.NW.Application.OrdersServiceReference {
     public interface IOrdersService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/GetOrders", ReplyAction="http://tempuri.org/IOrdersService/GetOrdersResponse")]
-        Bakopanos.Samples.NW.Model.NWDataSet GetOrders();
+        Bakopanos.NW.Model.NWDataSet GetOrders();
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IOrdersService/GetOrders", ReplyAction="http://tempuri.org/IOrdersService/GetOrdersResponse")]
         System.IAsyncResult BeginGetOrders(System.AsyncCallback callback, object asyncState);
         
-        Bakopanos.Samples.NW.Model.NWDataSet EndGetOrders(System.IAsyncResult result);
+        Bakopanos.NW.Model.NWDataSet EndGetOrders(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -39,10 +39,10 @@ namespace Bakopanos.Samples.NW.Application.OrdersServiceReference {
             this.results = results;
         }
         
-        public Bakopanos.Samples.NW.Model.NWDataSet Result {
+        public Bakopanos.NW.Model.NWDataSet Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((Bakopanos.Samples.NW.Model.NWDataSet)(this.results[0]));
+                return ((Bakopanos.NW.Model.NWDataSet)(this.results[0]));
             }
         }
     }
@@ -78,7 +78,7 @@ namespace Bakopanos.Samples.NW.Application.OrdersServiceReference {
         
         public event System.EventHandler<GetOrdersCompletedEventArgs> GetOrdersCompleted;
         
-        public Bakopanos.Samples.NW.Model.NWDataSet GetOrders() {
+        public Bakopanos.NW.Model.NWDataSet GetOrders() {
             return base.Channel.GetOrders();
         }
         
@@ -88,7 +88,7 @@ namespace Bakopanos.Samples.NW.Application.OrdersServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public Bakopanos.Samples.NW.Model.NWDataSet EndGetOrders(System.IAsyncResult result) {
+        public Bakopanos.NW.Model.NWDataSet EndGetOrders(System.IAsyncResult result) {
             return base.Channel.EndGetOrders(result);
         }
         
@@ -97,7 +97,7 @@ namespace Bakopanos.Samples.NW.Application.OrdersServiceReference {
         }
         
         private object[] OnEndGetOrders(System.IAsyncResult result) {
-            Bakopanos.Samples.NW.Model.NWDataSet retVal = this.EndGetOrders(result);
+            Bakopanos.NW.Model.NWDataSet retVal = this.EndGetOrders(result);
             return new object[] {
                     retVal};
         }

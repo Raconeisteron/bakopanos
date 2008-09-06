@@ -16,12 +16,12 @@ namespace Bakopanos.Samples.NW.Application.ProductsServiceReference {
     public interface IProductsService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetProducts", ReplyAction="http://tempuri.org/IProductsService/GetProductsResponse")]
-        Bakopanos.Samples.NW.Model.NWDataSet GetProducts();
+        Bakopanos.NW.Model.NWDataSet GetProducts();
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IProductsService/GetProducts", ReplyAction="http://tempuri.org/IProductsService/GetProductsResponse")]
         System.IAsyncResult BeginGetProducts(System.AsyncCallback callback, object asyncState);
         
-        Bakopanos.Samples.NW.Model.NWDataSet EndGetProducts(System.IAsyncResult result);
+        Bakopanos.NW.Model.NWDataSet EndGetProducts(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -39,10 +39,10 @@ namespace Bakopanos.Samples.NW.Application.ProductsServiceReference {
             this.results = results;
         }
         
-        public Bakopanos.Samples.NW.Model.NWDataSet Result {
+        public Bakopanos.NW.Model.NWDataSet Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((Bakopanos.Samples.NW.Model.NWDataSet)(this.results[0]));
+                return ((Bakopanos.NW.Model.NWDataSet)(this.results[0]));
             }
         }
     }
@@ -78,7 +78,7 @@ namespace Bakopanos.Samples.NW.Application.ProductsServiceReference {
         
         public event System.EventHandler<GetProductsCompletedEventArgs> GetProductsCompleted;
         
-        public Bakopanos.Samples.NW.Model.NWDataSet GetProducts() {
+        public Bakopanos.NW.Model.NWDataSet GetProducts() {
             return base.Channel.GetProducts();
         }
         
@@ -88,7 +88,7 @@ namespace Bakopanos.Samples.NW.Application.ProductsServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public Bakopanos.Samples.NW.Model.NWDataSet EndGetProducts(System.IAsyncResult result) {
+        public Bakopanos.NW.Model.NWDataSet EndGetProducts(System.IAsyncResult result) {
             return base.Channel.EndGetProducts(result);
         }
         
@@ -97,7 +97,7 @@ namespace Bakopanos.Samples.NW.Application.ProductsServiceReference {
         }
         
         private object[] OnEndGetProducts(System.IAsyncResult result) {
-            Bakopanos.Samples.NW.Model.NWDataSet retVal = this.EndGetProducts(result);
+            Bakopanos.NW.Model.NWDataSet retVal = this.EndGetProducts(result);
             return new object[] {
                     retVal};
         }

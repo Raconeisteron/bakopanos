@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="mdH3kt+xZFy+emJSV3Pa+g0NwfI=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="a9EuvLeoPUzH+/NCXI7J6VU7C6c=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="wsHttpBinding" name="WSHttpBinding_IOrdersService">
       <properties>
@@ -115,10 +115,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WSHttpBinding_IOrdersService" contract="OrdersServiceReference.IOrdersService" bindingType="wsHttpBinding" address="http://localhost:8731/Design_Time_Addresses/Bakopanos.Samples.NW.Service/OrdersService/" bindingConfiguration="WSHttpBinding_IOrdersService">
+    <endpoint name="WSHttpBinding_IOrdersService" contract="OrdersServiceReference.IOrdersService" bindingType="wsHttpBinding" address="http://localhost:8731/Design_Time_Addresses/Bakopanos.NW.Service/OrdersService/" bindingConfiguration="WSHttpBinding_IOrdersService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8731/Design_Time_Addresses/Bakopanos.Samples.NW.Service/OrdersService/</serializedValue>
+          <serializedValue>http://localhost:8731/Design_Time_Addresses/Bakopanos.NW.Service/OrdersService/</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

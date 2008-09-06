@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8731/Design_Time_Addresses/Bakopanos.Samples.NW.Service/OrdersService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:8731/Design_Time_Addresses/Bakopanos.NW.Service/OrdersService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="582740d1-e525-4008-be4b-70d66d683001" SourceId="1" SourceUrl="http://localhost:8731/Design_Time_Addresses/Bakopanos.Samples.NW.Service/OrdersService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="3e191c29-cb91-4403-b57e-faa39128488e" SourceId="1" SourceUrl="http://localhost:8731/Design_Time_Addresses/Bakopanos.Samples.NW.Service/OrdersService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="ebc43e4f-043a-4abb-a175-da942840ae84" SourceId="1" SourceUrl="http://localhost:8731/Design_Time_Addresses/Bakopanos.Samples.NW.Service/OrdersService/mex" />
-    <MetadataFile FileName="NWDataSet.xsd" MetadataType="Schema" ID="a2de3120-f3b9-45e0-97e6-0fdb38738a87" SourceId="1" SourceUrl="http://localhost:8731/Design_Time_Addresses/Bakopanos.Samples.NW.Service/OrdersService/mex" />
-    <MetadataFile FileName="service11.xsd" MetadataType="Schema" ID="921bb7ba-226c-48c9-82fe-b09098aecadb" SourceId="1" SourceUrl="http://localhost:8731/Design_Time_Addresses/Bakopanos.Samples.NW.Service/OrdersService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="582740d1-e525-4008-be4b-70d66d683001" SourceId="1" SourceUrl="http://localhost:8731/Design_Time_Addresses/Bakopanos.NW.Service/OrdersService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="3e191c29-cb91-4403-b57e-faa39128488e" SourceId="1" SourceUrl="http://localhost:8731/Design_Time_Addresses/Bakopanos.NW.Service/OrdersService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="ebc43e4f-043a-4abb-a175-da942840ae84" SourceId="1" SourceUrl="http://localhost:8731/Design_Time_Addresses/Bakopanos.NW.Service/OrdersService/mex" />
+    <MetadataFile FileName="NWDataSet.xsd" MetadataType="Schema" ID="a2de3120-f3b9-45e0-97e6-0fdb38738a87" SourceId="1" SourceUrl="http://localhost:8731/Design_Time_Addresses/Bakopanos.NW.Service/OrdersService/mex" />
+    <MetadataFile FileName="service11.xsd" MetadataType="Schema" ID="921bb7ba-226c-48c9-82fe-b09098aecadb" SourceId="1" SourceUrl="http://localhost:8731/Design_Time_Addresses/Bakopanos.NW.Service/OrdersService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

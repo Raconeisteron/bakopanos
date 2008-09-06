@@ -14,7 +14,7 @@
 //
 #pragma warning disable 1591
 
-namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
+namespace Bakopanos.NW.Data.NWDataSetTableAdapters {
     
     
     /// <summary>
@@ -167,7 +167,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::Bakopanos.Samples.NW.Data.Properties.Settings.Default.NWConnectionString;
+            this._connection.ConnectionString = global::Bakopanos.NW.Data.Properties.Settings.Default.NWConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -183,7 +183,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Bakopanos.Samples.NW.Model.NWDataSet.CategoriesDataTable dataTable) {
+        public virtual int Fill(Bakopanos.NW.Model.NWDataSet.CategoriesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -195,22 +195,22 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Bakopanos.Samples.NW.Model.NWDataSet.CategoriesDataTable GetData() {
+        public virtual Bakopanos.NW.Model.NWDataSet.CategoriesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Bakopanos.Samples.NW.Model.NWDataSet.CategoriesDataTable dataTable = new Bakopanos.Samples.NW.Model.NWDataSet.CategoriesDataTable();
+            Bakopanos.NW.Model.NWDataSet.CategoriesDataTable dataTable = new Bakopanos.NW.Model.NWDataSet.CategoriesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet.CategoriesDataTable dataTable) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet.CategoriesDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet dataSet) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Categories");
         }
         
@@ -511,7 +511,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::Bakopanos.Samples.NW.Data.Properties.Settings.Default.NWConnectionString;
+            this._connection.ConnectionString = global::Bakopanos.NW.Data.Properties.Settings.Default.NWConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -527,7 +527,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Bakopanos.Samples.NW.Model.NWDataSet.CustomersDataTable dataTable) {
+        public virtual int Fill(Bakopanos.NW.Model.NWDataSet.CustomersDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -539,22 +539,22 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Bakopanos.Samples.NW.Model.NWDataSet.CustomersDataTable GetData() {
+        public virtual Bakopanos.NW.Model.NWDataSet.CustomersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Bakopanos.Samples.NW.Model.NWDataSet.CustomersDataTable dataTable = new Bakopanos.Samples.NW.Model.NWDataSet.CustomersDataTable();
+            Bakopanos.NW.Model.NWDataSet.CustomersDataTable dataTable = new Bakopanos.NW.Model.NWDataSet.CustomersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet.CustomersDataTable dataTable) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet.CustomersDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet dataSet) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Customers");
         }
         
@@ -964,7 +964,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::Bakopanos.Samples.NW.Data.Properties.Settings.Default.NWConnectionString;
+            this._connection.ConnectionString = global::Bakopanos.NW.Data.Properties.Settings.Default.NWConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -981,7 +981,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Bakopanos.Samples.NW.Model.NWDataSet.EmployeesDataTable dataTable) {
+        public virtual int Fill(Bakopanos.NW.Model.NWDataSet.EmployeesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -993,22 +993,22 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Bakopanos.Samples.NW.Model.NWDataSet.EmployeesDataTable GetData() {
+        public virtual Bakopanos.NW.Model.NWDataSet.EmployeesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Bakopanos.Samples.NW.Model.NWDataSet.EmployeesDataTable dataTable = new Bakopanos.Samples.NW.Model.NWDataSet.EmployeesDataTable();
+            Bakopanos.NW.Model.NWDataSet.EmployeesDataTable dataTable = new Bakopanos.NW.Model.NWDataSet.EmployeesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet.EmployeesDataTable dataTable) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet.EmployeesDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet dataSet) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Employees");
         }
         
@@ -1439,7 +1439,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::Bakopanos.Samples.NW.Data.Properties.Settings.Default.NWConnectionString;
+            this._connection.ConnectionString = global::Bakopanos.NW.Data.Properties.Settings.Default.NWConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1455,7 +1455,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Bakopanos.Samples.NW.Model.NWDataSet.Order_DetailsDataTable dataTable) {
+        public virtual int Fill(Bakopanos.NW.Model.NWDataSet.Order_DetailsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1467,22 +1467,22 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Bakopanos.Samples.NW.Model.NWDataSet.Order_DetailsDataTable GetData() {
+        public virtual Bakopanos.NW.Model.NWDataSet.Order_DetailsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Bakopanos.Samples.NW.Model.NWDataSet.Order_DetailsDataTable dataTable = new Bakopanos.Samples.NW.Model.NWDataSet.Order_DetailsDataTable();
+            Bakopanos.NW.Model.NWDataSet.Order_DetailsDataTable dataTable = new Bakopanos.NW.Model.NWDataSet.Order_DetailsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet.Order_DetailsDataTable dataTable) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet.Order_DetailsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet dataSet) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Order Details");
         }
         
@@ -1758,7 +1758,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::Bakopanos.Samples.NW.Data.Properties.Settings.Default.NWConnectionString;
+            this._connection.ConnectionString = global::Bakopanos.NW.Data.Properties.Settings.Default.NWConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1775,7 +1775,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Bakopanos.Samples.NW.Model.NWDataSet.OrdersDataTable dataTable) {
+        public virtual int Fill(Bakopanos.NW.Model.NWDataSet.OrdersDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1787,22 +1787,22 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Bakopanos.Samples.NW.Model.NWDataSet.OrdersDataTable GetData() {
+        public virtual Bakopanos.NW.Model.NWDataSet.OrdersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Bakopanos.Samples.NW.Model.NWDataSet.OrdersDataTable dataTable = new Bakopanos.Samples.NW.Model.NWDataSet.OrdersDataTable();
+            Bakopanos.NW.Model.NWDataSet.OrdersDataTable dataTable = new Bakopanos.NW.Model.NWDataSet.OrdersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet.OrdersDataTable dataTable) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet.OrdersDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet dataSet) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Orders");
         }
         
@@ -2216,7 +2216,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::Bakopanos.Samples.NW.Data.Properties.Settings.Default.NWConnectionString;
+            this._connection.ConnectionString = global::Bakopanos.NW.Data.Properties.Settings.Default.NWConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2233,7 +2233,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Bakopanos.Samples.NW.Model.NWDataSet.ProductsDataTable dataTable) {
+        public virtual int Fill(Bakopanos.NW.Model.NWDataSet.ProductsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -2245,22 +2245,22 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Bakopanos.Samples.NW.Model.NWDataSet.ProductsDataTable GetData() {
+        public virtual Bakopanos.NW.Model.NWDataSet.ProductsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Bakopanos.Samples.NW.Model.NWDataSet.ProductsDataTable dataTable = new Bakopanos.Samples.NW.Model.NWDataSet.ProductsDataTable();
+            Bakopanos.NW.Model.NWDataSet.ProductsDataTable dataTable = new Bakopanos.NW.Model.NWDataSet.ProductsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet.ProductsDataTable dataTable) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet.ProductsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet dataSet) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Products");
         }
         
@@ -2589,7 +2589,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::Bakopanos.Samples.NW.Data.Properties.Settings.Default.NWConnectionString;
+            this._connection.ConnectionString = global::Bakopanos.NW.Data.Properties.Settings.Default.NWConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2604,7 +2604,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Bakopanos.Samples.NW.Model.NWDataSet.ShippersDataTable dataTable) {
+        public virtual int Fill(Bakopanos.NW.Model.NWDataSet.ShippersDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -2616,22 +2616,22 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Bakopanos.Samples.NW.Model.NWDataSet.ShippersDataTable GetData() {
+        public virtual Bakopanos.NW.Model.NWDataSet.ShippersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Bakopanos.Samples.NW.Model.NWDataSet.ShippersDataTable dataTable = new Bakopanos.Samples.NW.Model.NWDataSet.ShippersDataTable();
+            Bakopanos.NW.Model.NWDataSet.ShippersDataTable dataTable = new Bakopanos.NW.Model.NWDataSet.ShippersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet.ShippersDataTable dataTable) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet.ShippersDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet dataSet) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Shippers");
         }
         
@@ -2893,7 +2893,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlServerCe.SqlCeConnection();
-            this._connection.ConnectionString = global::Bakopanos.Samples.NW.Data.Properties.Settings.Default.NWConnectionString;
+            this._connection.ConnectionString = global::Bakopanos.NW.Data.Properties.Settings.Default.NWConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2909,7 +2909,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Bakopanos.Samples.NW.Model.NWDataSet.SuppliersDataTable dataTable) {
+        public virtual int Fill(Bakopanos.NW.Model.NWDataSet.SuppliersDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -2921,22 +2921,22 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Bakopanos.Samples.NW.Model.NWDataSet.SuppliersDataTable GetData() {
+        public virtual Bakopanos.NW.Model.NWDataSet.SuppliersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Bakopanos.Samples.NW.Model.NWDataSet.SuppliersDataTable dataTable = new Bakopanos.Samples.NW.Model.NWDataSet.SuppliersDataTable();
+            Bakopanos.NW.Model.NWDataSet.SuppliersDataTable dataTable = new Bakopanos.NW.Model.NWDataSet.SuppliersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet.SuppliersDataTable dataTable) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet.SuppliersDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Bakopanos.Samples.NW.Model.NWDataSet dataSet) {
+        public virtual int Update(Bakopanos.NW.Model.NWDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Suppliers");
         }
         
@@ -3376,7 +3376,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         ///Update rows in top-down order.
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private int UpdateUpdatedRows(Bakopanos.Samples.NW.Model.NWDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(Bakopanos.NW.Model.NWDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._suppliersTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Suppliers.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
@@ -3457,7 +3457,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         ///Insert rows in top-down order.
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private int UpdateInsertedRows(Bakopanos.Samples.NW.Model.NWDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(Bakopanos.NW.Model.NWDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._suppliersTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Suppliers.Select(null, null, global::System.Data.DataViewRowState.Added);
@@ -3530,7 +3530,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         ///Delete rows in bottom-up order.
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private int UpdateDeletedRows(Bakopanos.Samples.NW.Model.NWDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(Bakopanos.NW.Model.NWDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             if ((this._order_DetailsTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Order_Details.Select(null, null, global::System.Data.DataViewRowState.Deleted);
@@ -3626,7 +3626,7 @@ namespace Bakopanos.Samples.NW.Data.NWDataSetTableAdapters {
         ///Update all changes to the dataset.
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public virtual int UpdateAll(Bakopanos.Samples.NW.Model.NWDataSet dataSet) {
+        public virtual int UpdateAll(Bakopanos.NW.Model.NWDataSet dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

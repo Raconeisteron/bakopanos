@@ -62,9 +62,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.Bakopanos.Samples.NW.MySettings
+        Friend ReadOnly Property Settings() As Global.Bakopanos.NW.MySettings
             Get
-                Return Global.Bakopanos.Samples.NW.MySettings.Default
+                Return Global.Bakopanos.NW.MySettings.Default
             End Get
         End Property
     End Module

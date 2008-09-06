@@ -6,7 +6,7 @@ Class Application
     ' can be handled in this file.
 
     Const AssemblyFile = "Samples.NW.Services.Dll"
-    Const TypeName = "Bakopanos.Samples.NW.Services.Manager"
+    Const TypeName = "Bakopanos.NW.Services.Manager"
 
     Public Sub New()        
         Dim obj As Object = _

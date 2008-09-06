@@ -86,13 +86,13 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Samples.NW.Application\Samples.NW.Application.csproj">
+    <ProjectReference Include="..\Samples.NW.Application\NW.Application.csproj">
       <Project>{A0030575-A539-4D38-9169-3E382C222C4C}</Project>
-      <Name>Samples.NW.Application</Name>
+      <Name>NW.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Samples.NW.Model\Samples.NW.Model.csproj">
+    <ProjectReference Include="..\Samples.NW.Model\NW.Model.csproj">
       <Project>{DB61C69D-0432-4596-A863-D13FDE2FD72D}</Project>
-      <Name>Samples.NW.Model</Name>
+      <Name>NW.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
