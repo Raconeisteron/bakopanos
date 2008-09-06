@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 
-namespace Bakopanos.Samples.NW.Services
+namespace Bakopanos.Samples.NW.Service
 {
     public class Manager
     {
