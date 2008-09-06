@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
 
-namespace Samples.NW.Services
+namespace Bakopanos.Samples.NW.Services
 {
-    // NOTE: If you change the interface name "IService1" here, you must also update the reference to "IService1" in App.config.
     [ServiceContract]
     public interface IService1
     {
@@ -20,12 +15,11 @@ namespace Samples.NW.Services
         // TODO: Add your service operations here
     }
 
-    // Use a data contract as illustrated in the sample below to add composite types to service operations
     [DataContract]
     public class CompositeType
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        private bool boolValue = true;
+        private string stringValue = "Hello ";
 
         [DataMember]
         public bool BoolValue
