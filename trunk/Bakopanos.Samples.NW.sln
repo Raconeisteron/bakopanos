@@ -13,6 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.NW.Application", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.NW.Services", "Samples.NW.Services\Samples.NW.Services.csproj", "{8AEC1CD5-ED34-45E0-8712-30A3A5454F49}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{21807479-C94D-465B-BEBE-5D977F4AED99}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{8A62F6D1-F95D-4C9E-8BA1-B5B1F2DD2EF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{9F64C5EE-AFFB-492D-B12E-26425045F259}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{4D0A9707-B09F-4530-8421-03EAC5EE4D8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,5 +54,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DB61C69D-0432-4596-A863-D13FDE2FD72D} = {21807479-C94D-465B-BEBE-5D977F4AED99}
+		{BEF8FB92-8ADA-4DC1-8713-9E17FC0611F7} = {8A62F6D1-F95D-4C9E-8BA1-B5B1F2DD2EF3}
+		{8AEC1CD5-ED34-45E0-8712-30A3A5454F49} = {9F64C5EE-AFFB-492D-B12E-26425045F259}
+		{DCE68FC2-E64B-4EF0-A133-E3571E5BFF2B} = {9F64C5EE-AFFB-492D-B12E-26425045F259}
+		{A0030575-A539-4D38-9169-3E382C222C4C} = {4D0A9707-B09F-4530-8421-03EAC5EE4D8A}
 	EndGlobalSection
 EndGlobal

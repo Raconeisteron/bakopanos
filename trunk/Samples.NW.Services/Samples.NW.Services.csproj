@@ -51,11 +51,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IService1.cs" />
+    <Compile Include="Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Samples.NW.Data\Samples.NW.Data.csproj">
+      <Project>{DCE68FC2-E64B-4EF0-A133-E3571E5BFF2B}</Project>
+      <Name>Samples.NW.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Samples.NW.Model\Samples.NW.Model.csproj">
+      <Project>{DB61C69D-0432-4596-A863-D13FDE2FD72D}</Project>
+      <Name>Samples.NW.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

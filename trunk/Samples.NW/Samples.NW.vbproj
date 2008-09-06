@@ -122,5 +122,11 @@
     </None>
     <AppDesigner Include="My Project\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Samples.NW.Presentation\Samples.NW.Presentation.csproj">
+      <Project>{BEF8FB92-8ADA-4DC1-8713-9E17FC0611F7}</Project>
+      <Name>Samples.NW.Presentation</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
