@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.NW.Application", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.NW.Services", "Samples.NW.Services\Samples.NW.Services.csproj", "{8AEC1CD5-ED34-45E0-8712-30A3A5454F49}"
 EndProject
+Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "Samples.NW.Database", "Samples.NW.Database\Samples.NW.Database.dbp", "{BFA9002C-6DAB-4F91-875E-B1638062C5C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
