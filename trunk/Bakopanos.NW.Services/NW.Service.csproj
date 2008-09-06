@@ -7,8 +7,8 @@
     <ProjectGuid>{8AEC1CD5-ED34-45E0-8712-30A3A5454F49}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bakopanos.Samples.NW.Service</RootNamespace>
-    <AssemblyName>Samples.NW.Service</AssemblyName>
+    <RootNamespace>Bakopanos.NW.Service</RootNamespace>
+    <AssemblyName>Bakopanos.NW.Service</AssemblyName>
     <ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\bin\Samples.NW.Service.xml</DocumentationFile>
+    <DocumentationFile>..\bin\Bakopanos.NW.Service.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,7 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\bin\Samples.NW.Service.xml</DocumentationFile>
+    <DocumentationFile>..\bin\Bakopanos.NW.Service.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -39,6 +39,9 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -62,11 +65,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Samples.NW.Data\NW.Data.csproj">
+    <ProjectReference Include="..\Bakopanos.NW.Data\NW.Data.csproj">
       <Project>{DCE68FC2-E64B-4EF0-A133-E3571E5BFF2B}</Project>
       <Name>NW.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Samples.NW.Model\NW.Model.csproj">
+    <ProjectReference Include="..\Bakopanos.NW.Model\NW.Model.csproj">
       <Project>{DB61C69D-0432-4596-A863-D13FDE2FD72D}</Project>
       <Name>NW.Model</Name>
     </ProjectReference>

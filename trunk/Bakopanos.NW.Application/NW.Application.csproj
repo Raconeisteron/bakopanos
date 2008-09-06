@@ -8,8 +8,8 @@
     <ProjectGuid>{A0030575-A539-4D38-9169-3E382C222C4C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bakopanos.Samples.NW.Application</RootNamespace>
-    <AssemblyName>Samples.NW.Application</AssemblyName>
+    <RootNamespace>Bakopanos.NW.Application</RootNamespace>
+    <AssemblyName>Bakopanos.NW.Application</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -21,7 +21,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\bin\Samples.NW.Application.XML</DocumentationFile>
+    <DocumentationFile>..\bin\Bakopanos.NW.Application.xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,7 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\bin\Samples.NW.Application.XML</DocumentationFile>
+    <DocumentationFile>..\bin\Bakopanos.NW.Application.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -58,15 +59,17 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Service References\ProductsServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Samples.NW.Model\NW.Model.csproj">
+    <ProjectReference Include="..\Bakopanos.NW.Model\NW.Model.csproj">
       <Project>{DB61C69D-0432-4596-A863-D13FDE2FD72D}</Project>
       <Name>NW.Model</Name>
     </ProjectReference>
@@ -105,11 +108,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\Bakopanos.Samples.NW.Model.NWDataSet.datasource" />
+    <None Include="Service References\OrdersServiceReference\Bakopanos.NW.Application.OrdersServiceReference.NWDataSet.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\OrdersServiceReference\NWDataSet.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\OrdersServiceReference\service1.xsd" />
     <None Include="Service References\OrdersServiceReference\service11.xsd" />
+    <None Include="Service References\ProductsServiceReference\Bakopanos.NW.Application.ProductsServiceReference.NWDataSet.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ProductsServiceReference\NWDataSet.xsd">
       <SubType>Designer</SubType>
     </None>

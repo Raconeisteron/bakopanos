@@ -10,7 +10,7 @@
 
 // 
 // This file contains the strongly-typed dataset class.
-// The TableAdapters and Dataset Designer (.xsd) file are in the Samples.NW.Data project. 
+// The TableAdapters and Dataset Designer (.xsd) file are in the NW.Data project. 
 //
 namespace Bakopanos.NW.Model {
     

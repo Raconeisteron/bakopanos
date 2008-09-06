@@ -8,8 +8,8 @@
     <ProjectGuid>{DCE68FC2-E64B-4EF0-A133-E3571E5BFF2B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bakopanos.Samples.NW.Data</RootNamespace>
-    <AssemblyName>Samples.NW.Data</AssemblyName>
+    <RootNamespace>Bakopanos.NW.Data</RootNamespace>
+    <AssemblyName>Bakopanos.NW.Data</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
@@ -36,7 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\bin\Samples.NW.Data.xml</DocumentationFile>
+    <DocumentationFile>..\bin\Bakopanos.NW.Data.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -46,7 +46,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\bin\Samples.NW.Data.xml</DocumentationFile>
+    <DocumentationFile>..\bin\Bakopanos.NW.Data.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -89,8 +89,8 @@
     </None>
     <None Include="NWDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>NWDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>NWDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="NWDataSet.xss">
       <DependentUpon>NWDataSet.xsd</DependentUpon>
@@ -138,7 +138,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Samples.NW.Model\NW.Model.csproj">
+    <ProjectReference Include="..\Bakopanos.NW.Model\NW.Model.csproj">
       <Project>{DB61C69D-0432-4596-A863-D13FDE2FD72D}</Project>
       <Name>NW.Model</Name>
     </ProjectReference>

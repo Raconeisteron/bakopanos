@@ -116,6 +116,7 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
@@ -123,7 +124,7 @@
     <AppDesigner Include="My Project\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Samples.NW.Presentation\NW.Presentation.csproj">
+    <ProjectReference Include="..\Bakopanos.NW.Presentation\NW.Presentation.csproj">
       <Project>{BEF8FB92-8ADA-4DC1-8713-9E17FC0611F7}</Project>
       <Name>NW.Presentation</Name>
     </ProjectReference>

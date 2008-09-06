@@ -8,8 +8,8 @@
     <ProjectGuid>{BEF8FB92-8ADA-4DC1-8713-9E17FC0611F7}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bakopanos.Samples.NW.Presentation</RootNamespace>
-    <AssemblyName>Samples.NW.Presentation</AssemblyName>
+    <RootNamespace>Bakopanos.NW.Presentation</RootNamespace>
+    <AssemblyName>Bakopanos.NW.Presentation</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -23,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\bin\Samples.NW.Presentation.XML</DocumentationFile>
+    <DocumentationFile>..\bin\Bakopanos.NW.Presentation.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,12 +32,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\bin\Samples.NW.Presentation.XML</DocumentationFile>
+    <DocumentationFile>..\bin\Bakopanos.NW.Presentation.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -86,11 +89,11 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Samples.NW.Application\NW.Application.csproj">
+    <ProjectReference Include="..\Bakopanos.NW.Application\NW.Application.csproj">
       <Project>{A0030575-A539-4D38-9169-3E382C222C4C}</Project>
       <Name>NW.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Samples.NW.Model\NW.Model.csproj">
+    <ProjectReference Include="..\Bakopanos.NW.Model\NW.Model.csproj">
       <Project>{DB61C69D-0432-4596-A863-D13FDE2FD72D}</Project>
       <Name>NW.Model</Name>
     </ProjectReference>

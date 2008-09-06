@@ -8,8 +8,8 @@
     <ProjectGuid>{DB61C69D-0432-4596-A863-D13FDE2FD72D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bakopanos.Samples.NW.Model</RootNamespace>
-    <AssemblyName>Samples.NW.Model</AssemblyName>
+    <RootNamespace>Bakopanos.NW.Model</RootNamespace>
+    <AssemblyName>Bakopanos.NW.Model</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\bin\Samples.NW.Model.XML</DocumentationFile>
+    <DocumentationFile>..\bin\Bakopanos.NW.Model.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -31,7 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\bin\Samples.NW.Model.XML</DocumentationFile>
+    <DocumentationFile>..\bin\Bakopanos.NW.Model.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
