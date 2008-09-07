@@ -14,5 +14,10 @@ namespace Bakopanos.NW.Service
     {
         [OperationContract]
         NWDataSet GetOrders();
+
+        [OperationContract]
+        NWDataSet GetSingleOrder();
+
+        
     }
 }

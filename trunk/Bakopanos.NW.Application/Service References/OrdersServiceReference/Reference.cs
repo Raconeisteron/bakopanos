@@ -24,6 +24,16 @@ namespace Bakopanos.NW.Application.OrdersServiceReference {
         System.IAsyncResult BeginGetOrders(Bakopanos.NW.Application.OrdersServiceReference.GetOrdersRequest request, System.AsyncCallback callback, object asyncState);
         
         Bakopanos.NW.Application.OrdersServiceReference.GetOrdersResponse EndGetOrders(System.IAsyncResult result);
+        
+        // CODEGEN: Parameter 'GetSingleOrderResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrdersService/GetSingleOrder", ReplyAction="http://tempuri.org/IOrdersService/GetSingleOrderResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute()]
+        Bakopanos.NW.Application.OrdersServiceReference.GetSingleOrderResponse GetSingleOrder(Bakopanos.NW.Application.OrdersServiceReference.GetSingleOrderRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IOrdersService/GetSingleOrder", ReplyAction="http://tempuri.org/IOrdersService/GetSingleOrderResponse")]
+        System.IAsyncResult BeginGetSingleOrder(Bakopanos.NW.Application.OrdersServiceReference.GetSingleOrderRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Bakopanos.NW.Application.OrdersServiceReference.GetSingleOrderResponse EndGetSingleOrder(System.IAsyncResult result);
     }
     
     /// <summary>
@@ -5436,6 +5446,32 @@ namespace Bakopanos.NW.Application.OrdersServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetSingleOrder", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetSingleOrderRequest {
+        
+        public GetSingleOrderRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetSingleOrderResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetSingleOrderResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public Bakopanos.NW.Application.OrdersServiceReference.NWDataSet GetSingleOrderResult;
+        
+        public GetSingleOrderResponse() {
+        }
+        
+        public GetSingleOrderResponse(Bakopanos.NW.Application.OrdersServiceReference.NWDataSet GetSingleOrderResult) {
+            this.GetSingleOrderResult = GetSingleOrderResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
     public interface IOrdersServiceChannel : Bakopanos.NW.Application.OrdersServiceReference.IOrdersService, System.ServiceModel.IClientChannel {
     }
@@ -5461,6 +5497,25 @@ namespace Bakopanos.NW.Application.OrdersServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    public partial class GetSingleOrderCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSingleOrderCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public Bakopanos.NW.Application.OrdersServiceReference.NWDataSet Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((Bakopanos.NW.Application.OrdersServiceReference.NWDataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
     public partial class OrdersServiceClient : System.ServiceModel.ClientBase<Bakopanos.NW.Application.OrdersServiceReference.IOrdersService>, Bakopanos.NW.Application.OrdersServiceReference.IOrdersService {
         
         private BeginOperationDelegate onBeginGetOrdersDelegate;
@@ -5468,6 +5523,12 @@ namespace Bakopanos.NW.Application.OrdersServiceReference {
         private EndOperationDelegate onEndGetOrdersDelegate;
         
         private System.Threading.SendOrPostCallback onGetOrdersCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSingleOrderDelegate;
+        
+        private EndOperationDelegate onEndGetSingleOrderDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSingleOrderCompletedDelegate;
         
         public OrdersServiceClient() {
         }
@@ -5489,6 +5550,8 @@ namespace Bakopanos.NW.Application.OrdersServiceReference {
         }
         
         public event System.EventHandler<GetOrdersCompletedEventArgs> GetOrdersCompleted;
+        
+        public event System.EventHandler<GetSingleOrderCompletedEventArgs> GetSingleOrderCompleted;
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         Bakopanos.NW.Application.OrdersServiceReference.GetOrdersResponse Bakopanos.NW.Application.OrdersServiceReference.IOrdersService.GetOrders(Bakopanos.NW.Application.OrdersServiceReference.GetOrdersRequest request) {
@@ -5555,6 +5618,73 @@ namespace Bakopanos.NW.Application.OrdersServiceReference {
                 this.onGetOrdersCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetOrdersCompleted);
             }
             base.InvokeAsync(this.onBeginGetOrdersDelegate, null, this.onEndGetOrdersDelegate, this.onGetOrdersCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Bakopanos.NW.Application.OrdersServiceReference.GetSingleOrderResponse Bakopanos.NW.Application.OrdersServiceReference.IOrdersService.GetSingleOrder(Bakopanos.NW.Application.OrdersServiceReference.GetSingleOrderRequest request) {
+            return base.Channel.GetSingleOrder(request);
+        }
+        
+        public Bakopanos.NW.Application.OrdersServiceReference.NWDataSet GetSingleOrder() {
+            Bakopanos.NW.Application.OrdersServiceReference.GetSingleOrderRequest inValue = new Bakopanos.NW.Application.OrdersServiceReference.GetSingleOrderRequest();
+            Bakopanos.NW.Application.OrdersServiceReference.GetSingleOrderResponse retVal = ((Bakopanos.NW.Application.OrdersServiceReference.IOrdersService)(this)).GetSingleOrder(inValue);
+            return retVal.GetSingleOrderResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Bakopanos.NW.Application.OrdersServiceReference.IOrdersService.BeginGetSingleOrder(Bakopanos.NW.Application.OrdersServiceReference.GetSingleOrderRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSingleOrder(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetSingleOrder(System.AsyncCallback callback, object asyncState) {
+            Bakopanos.NW.Application.OrdersServiceReference.GetSingleOrderRequest inValue = new Bakopanos.NW.Application.OrdersServiceReference.GetSingleOrderRequest();
+            return ((Bakopanos.NW.Application.OrdersServiceReference.IOrdersService)(this)).BeginGetSingleOrder(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Bakopanos.NW.Application.OrdersServiceReference.GetSingleOrderResponse Bakopanos.NW.Application.OrdersServiceReference.IOrdersService.EndGetSingleOrder(System.IAsyncResult result) {
+            return base.Channel.EndGetSingleOrder(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public Bakopanos.NW.Application.OrdersServiceReference.NWDataSet EndGetSingleOrder(System.IAsyncResult result) {
+            Bakopanos.NW.Application.OrdersServiceReference.GetSingleOrderResponse retVal = ((Bakopanos.NW.Application.OrdersServiceReference.IOrdersService)(this)).EndGetSingleOrder(result);
+            return retVal.GetSingleOrderResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetSingleOrder(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetSingleOrder(callback, asyncState);
+        }
+        
+        private object[] OnEndGetSingleOrder(System.IAsyncResult result) {
+            Bakopanos.NW.Application.OrdersServiceReference.NWDataSet retVal = this.EndGetSingleOrder(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSingleOrderCompleted(object state) {
+            if ((this.GetSingleOrderCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSingleOrderCompleted(this, new GetSingleOrderCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSingleOrderAsync() {
+            this.GetSingleOrderAsync(null);
+        }
+        
+        public void GetSingleOrderAsync(object userState) {
+            if ((this.onBeginGetSingleOrderDelegate == null)) {
+                this.onBeginGetSingleOrderDelegate = new BeginOperationDelegate(this.OnBeginGetSingleOrder);
+            }
+            if ((this.onEndGetSingleOrderDelegate == null)) {
+                this.onEndGetSingleOrderDelegate = new EndOperationDelegate(this.OnEndGetSingleOrder);
+            }
+            if ((this.onGetSingleOrderCompletedDelegate == null)) {
+                this.onGetSingleOrderCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSingleOrderCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSingleOrderDelegate, null, this.onEndGetSingleOrderDelegate, this.onGetSingleOrderCompletedDelegate, userState);
         }
     }
 }

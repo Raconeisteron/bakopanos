@@ -14,5 +14,17 @@ namespace Bakopanos.NW.Service
     {
         [OperationContract]
         NWDataSet GetProducts();
+
+        [OperationContract]
+        NWDataSet GetCategories();
+
+        [OperationContract]
+        NWDataSet GetSingleProduct(int ProductID);
+
+        [OperationContract]
+        NWDataSet GetSingleCategory(int CategoryID);
+
+        [OperationContract]
+        NWDataSet Update(NWDataSet dataset);
     }
 }

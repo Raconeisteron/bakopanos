@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using Bakopanos.NW.Data.NWDataSetTableAdapters;
 using Bakopanos.NW.Model;
 
 namespace Bakopanos.NW.Service
@@ -14,7 +15,15 @@ namespace Bakopanos.NW.Service
 
         public NWDataSet GetOrders()
         {
+            var ds = new NWDataSet();
+            new OrdersTableAdapter().Fill(ds.Orders);
+            return ds;
+        }
+
+        public NWDataSet GetSingleOrder()
+        {
             throw new NotImplementedException();
+            
         }
 
     }

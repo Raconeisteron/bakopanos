@@ -13,6 +13,7 @@ namespace Bakopanos.NW.Service
         public Manager()
         {
             
+            
         }
     }
 }

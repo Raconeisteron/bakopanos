@@ -24,6 +24,46 @@ namespace Bakopanos.NW.Application.ProductsServiceReference {
         System.IAsyncResult BeginGetProducts(Bakopanos.NW.Application.ProductsServiceReference.GetProductsRequest request, System.AsyncCallback callback, object asyncState);
         
         Bakopanos.NW.Application.ProductsServiceReference.GetProductsResponse EndGetProducts(System.IAsyncResult result);
+        
+        // CODEGEN: Parameter 'GetCategoriesResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetCategories", ReplyAction="http://tempuri.org/IProductsService/GetCategoriesResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute()]
+        Bakopanos.NW.Application.ProductsServiceReference.GetCategoriesResponse GetCategories(Bakopanos.NW.Application.ProductsServiceReference.GetCategoriesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IProductsService/GetCategories", ReplyAction="http://tempuri.org/IProductsService/GetCategoriesResponse")]
+        System.IAsyncResult BeginGetCategories(Bakopanos.NW.Application.ProductsServiceReference.GetCategoriesRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Bakopanos.NW.Application.ProductsServiceReference.GetCategoriesResponse EndGetCategories(System.IAsyncResult result);
+        
+        // CODEGEN: Parameter 'GetSingleProductResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetSingleProduct", ReplyAction="http://tempuri.org/IProductsService/GetSingleProductResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute()]
+        Bakopanos.NW.Application.ProductsServiceReference.GetSingleProductResponse GetSingleProduct(Bakopanos.NW.Application.ProductsServiceReference.GetSingleProductRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IProductsService/GetSingleProduct", ReplyAction="http://tempuri.org/IProductsService/GetSingleProductResponse")]
+        System.IAsyncResult BeginGetSingleProduct(Bakopanos.NW.Application.ProductsServiceReference.GetSingleProductRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Bakopanos.NW.Application.ProductsServiceReference.GetSingleProductResponse EndGetSingleProduct(System.IAsyncResult result);
+        
+        // CODEGEN: Parameter 'GetSingleCategoryResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/GetSingleCategory", ReplyAction="http://tempuri.org/IProductsService/GetSingleCategoryResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute()]
+        Bakopanos.NW.Application.ProductsServiceReference.GetSingleCategoryResponse GetSingleCategory(Bakopanos.NW.Application.ProductsServiceReference.GetSingleCategoryRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IProductsService/GetSingleCategory", ReplyAction="http://tempuri.org/IProductsService/GetSingleCategoryResponse")]
+        System.IAsyncResult BeginGetSingleCategory(Bakopanos.NW.Application.ProductsServiceReference.GetSingleCategoryRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Bakopanos.NW.Application.ProductsServiceReference.GetSingleCategoryResponse EndGetSingleCategory(System.IAsyncResult result);
+        
+        // CODEGEN: Parameter 'UpdateResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductsService/Update", ReplyAction="http://tempuri.org/IProductsService/UpdateResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute()]
+        Bakopanos.NW.Application.ProductsServiceReference.UpdateResponse Update(Bakopanos.NW.Application.ProductsServiceReference.UpdateRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IProductsService/Update", ReplyAction="http://tempuri.org/IProductsService/UpdateResponse")]
+        System.IAsyncResult BeginUpdate(Bakopanos.NW.Application.ProductsServiceReference.UpdateRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Bakopanos.NW.Application.ProductsServiceReference.UpdateResponse EndUpdate(System.IAsyncResult result);
     }
     
     /// <summary>
@@ -5436,6 +5476,132 @@ namespace Bakopanos.NW.Application.ProductsServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetCategories", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetCategoriesRequest {
+        
+        public GetCategoriesRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetCategoriesResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetCategoriesResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet GetCategoriesResult;
+        
+        public GetCategoriesResponse() {
+        }
+        
+        public GetCategoriesResponse(Bakopanos.NW.Application.ProductsServiceReference.NWDataSet GetCategoriesResult) {
+            this.GetCategoriesResult = GetCategoriesResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetSingleProduct", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetSingleProductRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int ProductID;
+        
+        public GetSingleProductRequest() {
+        }
+        
+        public GetSingleProductRequest(int ProductID) {
+            this.ProductID = ProductID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetSingleProductResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetSingleProductResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet GetSingleProductResult;
+        
+        public GetSingleProductResponse() {
+        }
+        
+        public GetSingleProductResponse(Bakopanos.NW.Application.ProductsServiceReference.NWDataSet GetSingleProductResult) {
+            this.GetSingleProductResult = GetSingleProductResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetSingleCategory", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetSingleCategoryRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int CategoryID;
+        
+        public GetSingleCategoryRequest() {
+        }
+        
+        public GetSingleCategoryRequest(int CategoryID) {
+            this.CategoryID = CategoryID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetSingleCategoryResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetSingleCategoryResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet GetSingleCategoryResult;
+        
+        public GetSingleCategoryResponse() {
+        }
+        
+        public GetSingleCategoryResponse(Bakopanos.NW.Application.ProductsServiceReference.NWDataSet GetSingleCategoryResult) {
+            this.GetSingleCategoryResult = GetSingleCategoryResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Update", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class UpdateRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet dataset;
+        
+        public UpdateRequest() {
+        }
+        
+        public UpdateRequest(Bakopanos.NW.Application.ProductsServiceReference.NWDataSet dataset) {
+            this.dataset = dataset;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="UpdateResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class UpdateResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet UpdateResult;
+        
+        public UpdateResponse() {
+        }
+        
+        public UpdateResponse(Bakopanos.NW.Application.ProductsServiceReference.NWDataSet UpdateResult) {
+            this.UpdateResult = UpdateResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
     public interface IProductsServiceChannel : Bakopanos.NW.Application.ProductsServiceReference.IProductsService, System.ServiceModel.IClientChannel {
     }
@@ -5461,6 +5627,82 @@ namespace Bakopanos.NW.Application.ProductsServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    public partial class GetCategoriesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetCategoriesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((Bakopanos.NW.Application.ProductsServiceReference.NWDataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    public partial class GetSingleProductCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSingleProductCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((Bakopanos.NW.Application.ProductsServiceReference.NWDataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    public partial class GetSingleCategoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSingleCategoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((Bakopanos.NW.Application.ProductsServiceReference.NWDataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
+    public partial class UpdateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UpdateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((Bakopanos.NW.Application.ProductsServiceReference.NWDataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
     public partial class ProductsServiceClient : System.ServiceModel.ClientBase<Bakopanos.NW.Application.ProductsServiceReference.IProductsService>, Bakopanos.NW.Application.ProductsServiceReference.IProductsService {
         
         private BeginOperationDelegate onBeginGetProductsDelegate;
@@ -5468,6 +5710,30 @@ namespace Bakopanos.NW.Application.ProductsServiceReference {
         private EndOperationDelegate onEndGetProductsDelegate;
         
         private System.Threading.SendOrPostCallback onGetProductsCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetCategoriesDelegate;
+        
+        private EndOperationDelegate onEndGetCategoriesDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetCategoriesCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSingleProductDelegate;
+        
+        private EndOperationDelegate onEndGetSingleProductDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSingleProductCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSingleCategoryDelegate;
+        
+        private EndOperationDelegate onEndGetSingleCategoryDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSingleCategoryCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUpdateDelegate;
+        
+        private EndOperationDelegate onEndUpdateDelegate;
+        
+        private System.Threading.SendOrPostCallback onUpdateCompletedDelegate;
         
         public ProductsServiceClient() {
         }
@@ -5489,6 +5755,14 @@ namespace Bakopanos.NW.Application.ProductsServiceReference {
         }
         
         public event System.EventHandler<GetProductsCompletedEventArgs> GetProductsCompleted;
+        
+        public event System.EventHandler<GetCategoriesCompletedEventArgs> GetCategoriesCompleted;
+        
+        public event System.EventHandler<GetSingleProductCompletedEventArgs> GetSingleProductCompleted;
+        
+        public event System.EventHandler<GetSingleCategoryCompletedEventArgs> GetSingleCategoryCompleted;
+        
+        public event System.EventHandler<UpdateCompletedEventArgs> UpdateCompleted;
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         Bakopanos.NW.Application.ProductsServiceReference.GetProductsResponse Bakopanos.NW.Application.ProductsServiceReference.IProductsService.GetProducts(Bakopanos.NW.Application.ProductsServiceReference.GetProductsRequest request) {
@@ -5555,6 +5829,286 @@ namespace Bakopanos.NW.Application.ProductsServiceReference {
                 this.onGetProductsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetProductsCompleted);
             }
             base.InvokeAsync(this.onBeginGetProductsDelegate, null, this.onEndGetProductsDelegate, this.onGetProductsCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Bakopanos.NW.Application.ProductsServiceReference.GetCategoriesResponse Bakopanos.NW.Application.ProductsServiceReference.IProductsService.GetCategories(Bakopanos.NW.Application.ProductsServiceReference.GetCategoriesRequest request) {
+            return base.Channel.GetCategories(request);
+        }
+        
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet GetCategories() {
+            Bakopanos.NW.Application.ProductsServiceReference.GetCategoriesRequest inValue = new Bakopanos.NW.Application.ProductsServiceReference.GetCategoriesRequest();
+            Bakopanos.NW.Application.ProductsServiceReference.GetCategoriesResponse retVal = ((Bakopanos.NW.Application.ProductsServiceReference.IProductsService)(this)).GetCategories(inValue);
+            return retVal.GetCategoriesResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Bakopanos.NW.Application.ProductsServiceReference.IProductsService.BeginGetCategories(Bakopanos.NW.Application.ProductsServiceReference.GetCategoriesRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetCategories(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetCategories(System.AsyncCallback callback, object asyncState) {
+            Bakopanos.NW.Application.ProductsServiceReference.GetCategoriesRequest inValue = new Bakopanos.NW.Application.ProductsServiceReference.GetCategoriesRequest();
+            return ((Bakopanos.NW.Application.ProductsServiceReference.IProductsService)(this)).BeginGetCategories(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Bakopanos.NW.Application.ProductsServiceReference.GetCategoriesResponse Bakopanos.NW.Application.ProductsServiceReference.IProductsService.EndGetCategories(System.IAsyncResult result) {
+            return base.Channel.EndGetCategories(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet EndGetCategories(System.IAsyncResult result) {
+            Bakopanos.NW.Application.ProductsServiceReference.GetCategoriesResponse retVal = ((Bakopanos.NW.Application.ProductsServiceReference.IProductsService)(this)).EndGetCategories(result);
+            return retVal.GetCategoriesResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetCategories(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginGetCategories(callback, asyncState);
+        }
+        
+        private object[] OnEndGetCategories(System.IAsyncResult result) {
+            Bakopanos.NW.Application.ProductsServiceReference.NWDataSet retVal = this.EndGetCategories(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetCategoriesCompleted(object state) {
+            if ((this.GetCategoriesCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetCategoriesCompleted(this, new GetCategoriesCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetCategoriesAsync() {
+            this.GetCategoriesAsync(null);
+        }
+        
+        public void GetCategoriesAsync(object userState) {
+            if ((this.onBeginGetCategoriesDelegate == null)) {
+                this.onBeginGetCategoriesDelegate = new BeginOperationDelegate(this.OnBeginGetCategories);
+            }
+            if ((this.onEndGetCategoriesDelegate == null)) {
+                this.onEndGetCategoriesDelegate = new EndOperationDelegate(this.OnEndGetCategories);
+            }
+            if ((this.onGetCategoriesCompletedDelegate == null)) {
+                this.onGetCategoriesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetCategoriesCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetCategoriesDelegate, null, this.onEndGetCategoriesDelegate, this.onGetCategoriesCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Bakopanos.NW.Application.ProductsServiceReference.GetSingleProductResponse Bakopanos.NW.Application.ProductsServiceReference.IProductsService.GetSingleProduct(Bakopanos.NW.Application.ProductsServiceReference.GetSingleProductRequest request) {
+            return base.Channel.GetSingleProduct(request);
+        }
+        
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet GetSingleProduct(int ProductID) {
+            Bakopanos.NW.Application.ProductsServiceReference.GetSingleProductRequest inValue = new Bakopanos.NW.Application.ProductsServiceReference.GetSingleProductRequest();
+            inValue.ProductID = ProductID;
+            Bakopanos.NW.Application.ProductsServiceReference.GetSingleProductResponse retVal = ((Bakopanos.NW.Application.ProductsServiceReference.IProductsService)(this)).GetSingleProduct(inValue);
+            return retVal.GetSingleProductResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Bakopanos.NW.Application.ProductsServiceReference.IProductsService.BeginGetSingleProduct(Bakopanos.NW.Application.ProductsServiceReference.GetSingleProductRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSingleProduct(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetSingleProduct(int ProductID, System.AsyncCallback callback, object asyncState) {
+            Bakopanos.NW.Application.ProductsServiceReference.GetSingleProductRequest inValue = new Bakopanos.NW.Application.ProductsServiceReference.GetSingleProductRequest();
+            inValue.ProductID = ProductID;
+            return ((Bakopanos.NW.Application.ProductsServiceReference.IProductsService)(this)).BeginGetSingleProduct(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Bakopanos.NW.Application.ProductsServiceReference.GetSingleProductResponse Bakopanos.NW.Application.ProductsServiceReference.IProductsService.EndGetSingleProduct(System.IAsyncResult result) {
+            return base.Channel.EndGetSingleProduct(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet EndGetSingleProduct(System.IAsyncResult result) {
+            Bakopanos.NW.Application.ProductsServiceReference.GetSingleProductResponse retVal = ((Bakopanos.NW.Application.ProductsServiceReference.IProductsService)(this)).EndGetSingleProduct(result);
+            return retVal.GetSingleProductResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetSingleProduct(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int ProductID = ((int)(inValues[0]));
+            return this.BeginGetSingleProduct(ProductID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetSingleProduct(System.IAsyncResult result) {
+            Bakopanos.NW.Application.ProductsServiceReference.NWDataSet retVal = this.EndGetSingleProduct(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSingleProductCompleted(object state) {
+            if ((this.GetSingleProductCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSingleProductCompleted(this, new GetSingleProductCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSingleProductAsync(int ProductID) {
+            this.GetSingleProductAsync(ProductID, null);
+        }
+        
+        public void GetSingleProductAsync(int ProductID, object userState) {
+            if ((this.onBeginGetSingleProductDelegate == null)) {
+                this.onBeginGetSingleProductDelegate = new BeginOperationDelegate(this.OnBeginGetSingleProduct);
+            }
+            if ((this.onEndGetSingleProductDelegate == null)) {
+                this.onEndGetSingleProductDelegate = new EndOperationDelegate(this.OnEndGetSingleProduct);
+            }
+            if ((this.onGetSingleProductCompletedDelegate == null)) {
+                this.onGetSingleProductCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSingleProductCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSingleProductDelegate, new object[] {
+                        ProductID}, this.onEndGetSingleProductDelegate, this.onGetSingleProductCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Bakopanos.NW.Application.ProductsServiceReference.GetSingleCategoryResponse Bakopanos.NW.Application.ProductsServiceReference.IProductsService.GetSingleCategory(Bakopanos.NW.Application.ProductsServiceReference.GetSingleCategoryRequest request) {
+            return base.Channel.GetSingleCategory(request);
+        }
+        
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet GetSingleCategory(int CategoryID) {
+            Bakopanos.NW.Application.ProductsServiceReference.GetSingleCategoryRequest inValue = new Bakopanos.NW.Application.ProductsServiceReference.GetSingleCategoryRequest();
+            inValue.CategoryID = CategoryID;
+            Bakopanos.NW.Application.ProductsServiceReference.GetSingleCategoryResponse retVal = ((Bakopanos.NW.Application.ProductsServiceReference.IProductsService)(this)).GetSingleCategory(inValue);
+            return retVal.GetSingleCategoryResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Bakopanos.NW.Application.ProductsServiceReference.IProductsService.BeginGetSingleCategory(Bakopanos.NW.Application.ProductsServiceReference.GetSingleCategoryRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSingleCategory(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginGetSingleCategory(int CategoryID, System.AsyncCallback callback, object asyncState) {
+            Bakopanos.NW.Application.ProductsServiceReference.GetSingleCategoryRequest inValue = new Bakopanos.NW.Application.ProductsServiceReference.GetSingleCategoryRequest();
+            inValue.CategoryID = CategoryID;
+            return ((Bakopanos.NW.Application.ProductsServiceReference.IProductsService)(this)).BeginGetSingleCategory(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Bakopanos.NW.Application.ProductsServiceReference.GetSingleCategoryResponse Bakopanos.NW.Application.ProductsServiceReference.IProductsService.EndGetSingleCategory(System.IAsyncResult result) {
+            return base.Channel.EndGetSingleCategory(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet EndGetSingleCategory(System.IAsyncResult result) {
+            Bakopanos.NW.Application.ProductsServiceReference.GetSingleCategoryResponse retVal = ((Bakopanos.NW.Application.ProductsServiceReference.IProductsService)(this)).EndGetSingleCategory(result);
+            return retVal.GetSingleCategoryResult;
+        }
+        
+        private System.IAsyncResult OnBeginGetSingleCategory(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int CategoryID = ((int)(inValues[0]));
+            return this.BeginGetSingleCategory(CategoryID, callback, asyncState);
+        }
+        
+        private object[] OnEndGetSingleCategory(System.IAsyncResult result) {
+            Bakopanos.NW.Application.ProductsServiceReference.NWDataSet retVal = this.EndGetSingleCategory(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSingleCategoryCompleted(object state) {
+            if ((this.GetSingleCategoryCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSingleCategoryCompleted(this, new GetSingleCategoryCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSingleCategoryAsync(int CategoryID) {
+            this.GetSingleCategoryAsync(CategoryID, null);
+        }
+        
+        public void GetSingleCategoryAsync(int CategoryID, object userState) {
+            if ((this.onBeginGetSingleCategoryDelegate == null)) {
+                this.onBeginGetSingleCategoryDelegate = new BeginOperationDelegate(this.OnBeginGetSingleCategory);
+            }
+            if ((this.onEndGetSingleCategoryDelegate == null)) {
+                this.onEndGetSingleCategoryDelegate = new EndOperationDelegate(this.OnEndGetSingleCategory);
+            }
+            if ((this.onGetSingleCategoryCompletedDelegate == null)) {
+                this.onGetSingleCategoryCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSingleCategoryCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSingleCategoryDelegate, new object[] {
+                        CategoryID}, this.onEndGetSingleCategoryDelegate, this.onGetSingleCategoryCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Bakopanos.NW.Application.ProductsServiceReference.UpdateResponse Bakopanos.NW.Application.ProductsServiceReference.IProductsService.Update(Bakopanos.NW.Application.ProductsServiceReference.UpdateRequest request) {
+            return base.Channel.Update(request);
+        }
+        
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet Update(Bakopanos.NW.Application.ProductsServiceReference.NWDataSet dataset) {
+            Bakopanos.NW.Application.ProductsServiceReference.UpdateRequest inValue = new Bakopanos.NW.Application.ProductsServiceReference.UpdateRequest();
+            inValue.dataset = dataset;
+            Bakopanos.NW.Application.ProductsServiceReference.UpdateResponse retVal = ((Bakopanos.NW.Application.ProductsServiceReference.IProductsService)(this)).Update(inValue);
+            return retVal.UpdateResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult Bakopanos.NW.Application.ProductsServiceReference.IProductsService.BeginUpdate(Bakopanos.NW.Application.ProductsServiceReference.UpdateRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdate(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginUpdate(Bakopanos.NW.Application.ProductsServiceReference.NWDataSet dataset, System.AsyncCallback callback, object asyncState) {
+            Bakopanos.NW.Application.ProductsServiceReference.UpdateRequest inValue = new Bakopanos.NW.Application.ProductsServiceReference.UpdateRequest();
+            inValue.dataset = dataset;
+            return ((Bakopanos.NW.Application.ProductsServiceReference.IProductsService)(this)).BeginUpdate(inValue, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Bakopanos.NW.Application.ProductsServiceReference.UpdateResponse Bakopanos.NW.Application.ProductsServiceReference.IProductsService.EndUpdate(System.IAsyncResult result) {
+            return base.Channel.EndUpdate(result);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public Bakopanos.NW.Application.ProductsServiceReference.NWDataSet EndUpdate(System.IAsyncResult result) {
+            Bakopanos.NW.Application.ProductsServiceReference.UpdateResponse retVal = ((Bakopanos.NW.Application.ProductsServiceReference.IProductsService)(this)).EndUpdate(result);
+            return retVal.UpdateResult;
+        }
+        
+        private System.IAsyncResult OnBeginUpdate(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            Bakopanos.NW.Application.ProductsServiceReference.NWDataSet dataset = ((Bakopanos.NW.Application.ProductsServiceReference.NWDataSet)(inValues[0]));
+            return this.BeginUpdate(dataset, callback, asyncState);
+        }
+        
+        private object[] OnEndUpdate(System.IAsyncResult result) {
+            Bakopanos.NW.Application.ProductsServiceReference.NWDataSet retVal = this.EndUpdate(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUpdateCompleted(object state) {
+            if ((this.UpdateCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UpdateCompleted(this, new UpdateCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UpdateAsync(Bakopanos.NW.Application.ProductsServiceReference.NWDataSet dataset) {
+            this.UpdateAsync(dataset, null);
+        }
+        
+        public void UpdateAsync(Bakopanos.NW.Application.ProductsServiceReference.NWDataSet dataset, object userState) {
+            if ((this.onBeginUpdateDelegate == null)) {
+                this.onBeginUpdateDelegate = new BeginOperationDelegate(this.OnBeginUpdate);
+            }
+            if ((this.onEndUpdateDelegate == null)) {
+                this.onEndUpdateDelegate = new EndOperationDelegate(this.OnEndUpdate);
+            }
+            if ((this.onUpdateCompletedDelegate == null)) {
+                this.onUpdateCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUpdateCompleted);
+            }
+            base.InvokeAsync(this.onBeginUpdateDelegate, new object[] {
+                        dataset}, this.onEndUpdateDelegate, this.onUpdateCompletedDelegate, userState);
         }
     }
 }
