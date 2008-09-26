@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 using Bakopanos.NW.Application.ProductsServiceReference;
 
 namespace Bakopanos.NW.Presentation
@@ -33,7 +21,7 @@ namespace Bakopanos.NW.Presentation
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
+        {           
             var worker = new BackgroundWorker();
             worker.DoWork += delegate { service = new ProductsServiceClient(); };
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
@@ -45,7 +33,7 @@ namespace Bakopanos.NW.Presentation
             service.GetCategoriesCompleted +=
                 delegate(object sender1, GetCategoriesCompletedEventArgs e1)
                     {
-                        cmbCategory.ItemsSource = e1.Result.Categories;
+                        cmbCategory.ItemsSource = e1.Result.Categories;                       
                     };
 
             service.GetProductsCompleted +=
@@ -53,7 +41,7 @@ namespace Bakopanos.NW.Presentation
                     {
                         dataset = e2.Result;
                         DataContext = dataset.Products;
-                        view = CollectionViewSource.GetDefaultView(dataset.Products) as CollectionView;
+                        view = CollectionViewSource.GetDefaultView(dataset.Products) as CollectionView;                       
                     };
 
             service.GetCategoriesAsync(); 
