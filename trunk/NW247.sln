@@ -17,6 +17,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{DFF421EF-225B-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{31549EC6-3E7D-4E1F-9D6C-420A55218EF3}"
 	ProjectSection(SolutionItems) = preProject
+		instnwnd.sql = instnwnd.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bin", "bin", "{D16749C2-F177-4DEB-B99C-A125010BC140}"
+	ProjectSection(SolutionItems) = preProject
 		bin\Microsoft.Practices.Composite.dll = bin\Microsoft.Practices.Composite.dll
 		bin\Microsoft.Practices.Composite.UnityExtensions.dll = bin\Microsoft.Practices.Composite.UnityExtensions.dll
 		bin\Microsoft.Practices.Composite.Wpf.dll = bin\Microsoft.Practices.Composite.Wpf.dll
