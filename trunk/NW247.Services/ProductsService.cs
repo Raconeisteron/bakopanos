@@ -1,32 +1,34 @@
-﻿using NW247.Data.NorthwindDataSetTableAdapters;
+﻿using Microsoft.Practices.Unity;
+using NW247.Data.NorthwindDataSetTableAdapters;
 using NW247.Model;
 
 namespace NW247.Services
 {
     internal class ProductsService : IProductsService
-    {
-        private readonly TableAdapterManager Manager;
-        private readonly ProductsTableAdapter TableAdapter;
+    {        
+        private ProductsTableAdapter tableAdapter;
 
-        public ProductsService(ProductsTableAdapter TableAdapter, TableAdapterManager Manager)
+        [Dependency]
+        public ProductsTableAdapter TableAdapter
         {
-            this.TableAdapter = TableAdapter;
-            this.Manager = Manager;
-            Manager.ProductsTableAdapter = TableAdapter;
+            set
+            {
+                tableAdapter = value;
+            }
         }
 
         #region IProductsService Members
 
-        public NorthwindDataSet GetProducts()
+        public NorthwindDataSet.ProductsDataTable GetProducts()
         {
             var dataset = new NorthwindDataSet();
-            TableAdapter.Fill(dataset.Products);
-            return dataset;
+            tableAdapter.Fill(dataset.Products);
+            return dataset.Products;
         }
 
-        public NorthwindDataSet UpdateAll(NorthwindDataSet products)
+        public NorthwindDataSet.ProductsDataTable UpdateAll(NorthwindDataSet.ProductsDataTable products)
         {
-            Manager.UpdateAll(products);
+            tableAdapter.Update(products);
             return products;
         }
 

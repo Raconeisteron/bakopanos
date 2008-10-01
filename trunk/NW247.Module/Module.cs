@@ -38,7 +38,7 @@ namespace NW247.Module
 
         protected void RegisterViewsAndServices()
         {
-            container.RegisterType<IProductsController, ProductsController>();
+            container.RegisterType<IProductsController, ProductsController>();            
 
             container.RegisterType<IProductsView, ProductsView>();
             container.RegisterType<IProductsPresenter, ProductsPresenter>();

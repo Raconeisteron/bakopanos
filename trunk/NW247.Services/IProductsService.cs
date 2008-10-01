@@ -4,7 +4,7 @@ namespace NW247.Services
 {
     public interface IProductsService
     {
-        NorthwindDataSet GetProducts();
-        NorthwindDataSet UpdateAll(NorthwindDataSet products);
+        NorthwindDataSet.ProductsDataTable GetProducts();
+        NorthwindDataSet.ProductsDataTable UpdateAll(NorthwindDataSet.ProductsDataTable products);
     }
 }

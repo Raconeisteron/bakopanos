@@ -5,9 +5,8 @@ namespace NW247.Module.Views
 {
     
     public class ProductsPresenter : IProductsPresenter
-    {
-        private readonly NorthwindDataSet dataSet;
-        private readonly IProductsService service;
+    {        
+        private readonly IProductsService service;        
 
         //private IProductsController controller;        
 
@@ -20,19 +19,9 @@ namespace NW247.Module.Views
         public ProductsPresenter(IProductsView view, IProductsService Service)
         {
             View = view;
-            service = Service;
-
-            dataSet = service.GetProducts();
-            View.Model = dataSet.Products;
-
-            View.Save += delegate
-                             {
-                                 if (dataSet.HasChanges())
-                                 {
-                                     var changes = dataSet.GetChanges() as NorthwindDataSet;
-                                     dataSet.Merge(service.UpdateAll(changes));
-                                 }
-                             };
+            service = Service;            
+            
+            View.Model = service.GetProducts();            
         }
 
         #region IProductsPresenter Members

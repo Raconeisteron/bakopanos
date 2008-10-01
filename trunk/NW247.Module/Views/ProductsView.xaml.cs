@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using NW247.Model;
+using NW247.Services;
 
 namespace NW247.Module.Views
 {
@@ -13,15 +14,16 @@ namespace NW247.Module.Views
     public partial class ProductsView : UserControl, IProductsView
     {
         private CollectionView colView;
+        private readonly IProductsService service;        
 
-        public ProductsView()
+        public ProductsView(IProductsService service)
         {
+            this.service = service;
+
             InitializeComponent();
         }
 
-        #region IProductsView Members
-
-        public event EventHandler Save = delegate { };
+        #region IProductsView Members        
 
         public NorthwindDataSet.ProductsDataTable Model
         {
@@ -89,8 +91,13 @@ namespace NW247.Module.Views
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
-            if (Save != null) Save(sender, e);
-            colView.MoveCurrentToLast();
+            if (Model.DataSet.HasChanges())
+            {
+                var changes = (NorthwindDataSet.ProductsDataTable)Model.GetChanges();
+                service.UpdateAll(changes);
+                Model.Merge(changes);
+                colView.MoveCurrentToLast();
+            }            
         }
     }
 }
