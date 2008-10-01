@@ -1,8 +1,8 @@
 ﻿using System.Windows;
-using NW247.Infrastructure;
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.UnityExtensions;
 using Microsoft.Practices.Unity.Configuration;
+using NW247.Infrastructure;
 
 namespace NW247.Shell
 {
@@ -25,7 +25,7 @@ namespace NW247.Shell
 
         protected override IModuleEnumerator GetModuleEnumerator()
         {
-            return new StaticModuleEnumerator().AddModule(typeof(Module.Module));
+            return new StaticModuleEnumerator().AddModule(typeof (Module.Module));
         }
     }
 }

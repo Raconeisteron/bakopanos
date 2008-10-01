@@ -1,29 +1,26 @@
 ﻿using NW247.Model;
 using NW247.Services;
-using NW247.Module.Controllers;
 
 namespace NW247.Module.Views
 {
-    public interface IProductsPresenter
-    {
-        IProductsView View { get; set; }
-    }
-
+    
     public class ProductsPresenter : IProductsPresenter
     {
         private readonly NorthwindDataSet dataSet;
-        private IProductsController controller;
-        private ProductsPresenter presenter;
-        private IProductsService service;
+        private readonly IProductsService service;
 
-        public ProductsPresenter(
-            IProductsView view,
-            IProductsController controller,
-            IProductsService service)
+        //private IProductsController controller;        
+
+        //[Dependency]
+        //private IProductsController Controller
+        //{
+        //    set { controller = value; }
+        //}
+
+        public ProductsPresenter(IProductsView view, IProductsService Service)
         {
             View = view;
-            this.controller = controller;
-            this.service = service;
+            service = Service;
 
             dataSet = service.GetProducts();
             View.Model = dataSet.Products;

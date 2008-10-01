@@ -1,21 +1,21 @@
-﻿using Microsoft.Practices.Composite.Regions;
-using Microsoft.Practices.Unity;
+﻿using Microsoft.Practices.Unity;
 
 namespace NW247.Module.Controllers
-{
-    public interface IProductsController
-    {
-    }
-
+{    
     public class ProductsController : IProductsController
     {
-        private IUnityContainer container;
-        private IRegionManager regionManager;
+        public IUnityContainer container;
+        //private readonly IRegionManager regionManager;
 
-        public ProductsController(IUnityContainer container, IRegionManager regionManager)
+        [Dependency]
+        public IUnityContainer Container
         {
-            this.container = container;
-            this.regionManager = regionManager;
+            set { container = value; }
         }
+
+        /*public ProductsController(IRegionManager regionManager)
+        {            
+            this.regionManager = regionManager;
+        }*/
     }
 }

@@ -12,691 +12,898 @@
 // This file contains the strongly-typed dataset class.
 // The TableAdapters and Dataset Designer (.xsd) file are in the NW247.Data project. 
 //
-namespace NW247.Model {
-    
-    
+using System;
+using System.CodeDom.Compiler;
+using System.Collections;
+using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Data;
+using System.Diagnostics;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
+namespace NW247.Model
+{
     /// <summary>
     ///Represents a strongly typed in-memory cache of data.
     ///</summary>
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-    [global::System.Serializable()]
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("NorthwindDataSet")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class NorthwindDataSet : global::System.Data.DataSet {
-        
+    [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+    [Serializable]
+    [DesignerCategory("code")]
+    [ToolboxItem(true)]
+    [XmlSchemaProvider("GetTypedDataSetSchema")]
+    [XmlRoot("NorthwindDataSet")]
+    [HelpKeyword("vs.data.DataSet")]
+    public class NorthwindDataSet : DataSet
+    {
+        #region Delegates
+
+        public delegate void CategoriesRowChangeEventHandler(object sender, CategoriesRowChangeEvent e);
+
+        public delegate void CustomerCustomerDemoRowChangeEventHandler(
+            object sender, CustomerCustomerDemoRowChangeEvent e);
+
+        public delegate void CustomerDemographicsRowChangeEventHandler(
+            object sender, CustomerDemographicsRowChangeEvent e);
+
+        public delegate void CustomersRowChangeEventHandler(object sender, CustomersRowChangeEvent e);
+
+        public delegate void EmployeesRowChangeEventHandler(object sender, EmployeesRowChangeEvent e);
+
+        public delegate void EmployeeTerritoriesRowChangeEventHandler(object sender, EmployeeTerritoriesRowChangeEvent e
+            );
+
+        public delegate void Order_DetailsRowChangeEventHandler(object sender, Order_DetailsRowChangeEvent e);
+
+        public delegate void OrdersRowChangeEventHandler(object sender, OrdersRowChangeEvent e);
+
+        public delegate void ProductsRowChangeEventHandler(object sender, ProductsRowChangeEvent e);
+
+        public delegate void RegionRowChangeEventHandler(object sender, RegionRowChangeEvent e);
+
+        public delegate void ShippersRowChangeEventHandler(object sender, ShippersRowChangeEvent e);
+
+        public delegate void SuppliersRowChangeEventHandler(object sender, SuppliersRowChangeEvent e);
+
+        public delegate void TerritoriesRowChangeEventHandler(object sender, TerritoriesRowChangeEvent e);
+
+        #endregion
+
+        private SchemaSerializationMode _schemaSerializationMode = SchemaSerializationMode.IncludeSchema;
+
+        private DataRelation relationFK_CustomerCustomerDemo;
+
+        private DataRelation relationFK_CustomerCustomerDemo_Customers;
+
+        private DataRelation relationFK_Employees_Employees;
+
+        private DataRelation relationFK_EmployeeTerritories_Employees;
+
+        private DataRelation relationFK_EmployeeTerritories_Territories;
+
+        private DataRelation relationFK_Order_Details_Orders;
+
+        private DataRelation relationFK_Order_Details_Products;
+
+        private DataRelation relationFK_Orders_Customers;
+
+        private DataRelation relationFK_Orders_Employees;
+
+        private DataRelation relationFK_Orders_Shippers;
+
+        private DataRelation relationFK_Products_Categories;
+
+        private DataRelation relationFK_Products_Suppliers;
+
+        private DataRelation relationFK_Territories_Region;
         private CategoriesDataTable tableCategories;
-        
+
         private CustomerCustomerDemoDataTable tableCustomerCustomerDemo;
-        
+
         private CustomerDemographicsDataTable tableCustomerDemographics;
-        
+
         private CustomersDataTable tableCustomers;
-        
+
         private EmployeesDataTable tableEmployees;
-        
+
         private EmployeeTerritoriesDataTable tableEmployeeTerritories;
-        
+
         private Order_DetailsDataTable tableOrder_Details;
-        
+
         private OrdersDataTable tableOrders;
-        
+
         private ProductsDataTable tableProducts;
-        
+
         private RegionDataTable tableRegion;
-        
+
         private ShippersDataTable tableShippers;
-        
+
         private SuppliersDataTable tableSuppliers;
-        
+
         private TerritoriesDataTable tableTerritories;
-        
-        private global::System.Data.DataRelation relationFK_CustomerCustomerDemo;
-        
-        private global::System.Data.DataRelation relationFK_CustomerCustomerDemo_Customers;
-        
-        private global::System.Data.DataRelation relationFK_Employees_Employees;
-        
-        private global::System.Data.DataRelation relationFK_EmployeeTerritories_Employees;
-        
-        private global::System.Data.DataRelation relationFK_EmployeeTerritories_Territories;
-        
-        private global::System.Data.DataRelation relationFK_Order_Details_Orders;
-        
-        private global::System.Data.DataRelation relationFK_Order_Details_Products;
-        
-        private global::System.Data.DataRelation relationFK_Orders_Customers;
-        
-        private global::System.Data.DataRelation relationFK_Orders_Employees;
-        
-        private global::System.Data.DataRelation relationFK_Orders_Shippers;
-        
-        private global::System.Data.DataRelation relationFK_Products_Categories;
-        
-        private global::System.Data.DataRelation relationFK_Products_Suppliers;
-        
-        private global::System.Data.DataRelation relationFK_Territories_Region;
-        
-        private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public NorthwindDataSet() {
-            this.BeginInit();
-            this.InitClass();
-            global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
+
+        [DebuggerNonUserCode]
+        public NorthwindDataSet()
+        {
+            BeginInit();
+            InitClass();
+            CollectionChangeEventHandler schemaChangedHandler = SchemaChanged;
             base.Tables.CollectionChanged += schemaChangedHandler;
             base.Relations.CollectionChanged += schemaChangedHandler;
-            this.EndInit();
+            EndInit();
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected NorthwindDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                base(info, context, false) {
-            if ((this.IsBinarySerialized(info, context) == true)) {
-                this.InitVars(false);
-                global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler1 = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
-                this.Tables.CollectionChanged += schemaChangedHandler1;
-                this.Relations.CollectionChanged += schemaChangedHandler1;
+
+        [DebuggerNonUserCode]
+        protected NorthwindDataSet(SerializationInfo info, StreamingContext context) :
+            base(info, context, false)
+        {
+            if (IsBinarySerialized(info, context))
+            {
+                InitVars(false);
+                CollectionChangeEventHandler schemaChangedHandler1 = SchemaChanged;
+                Tables.CollectionChanged += schemaChangedHandler1;
+                Relations.CollectionChanged += schemaChangedHandler1;
                 return;
             }
-            string strSchema = ((string)(info.GetValue("XmlSchema", typeof(string))));
-            if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
-                global::System.Data.DataSet ds = new global::System.Data.DataSet();
-                ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["Categories"] != null)) {
+            var strSchema = ((string) (info.GetValue("XmlSchema", typeof (string))));
+            if ((DetermineSchemaSerializationMode(info, context) == SchemaSerializationMode.IncludeSchema))
+            {
+                var ds = new DataSet();
+                ds.ReadXmlSchema(new XmlTextReader(new StringReader(strSchema)));
+                if ((ds.Tables["Categories"] != null))
+                {
                     base.Tables.Add(new CategoriesDataTable(ds.Tables["Categories"]));
                 }
-                if ((ds.Tables["CustomerCustomerDemo"] != null)) {
+                if ((ds.Tables["CustomerCustomerDemo"] != null))
+                {
                     base.Tables.Add(new CustomerCustomerDemoDataTable(ds.Tables["CustomerCustomerDemo"]));
                 }
-                if ((ds.Tables["CustomerDemographics"] != null)) {
+                if ((ds.Tables["CustomerDemographics"] != null))
+                {
                     base.Tables.Add(new CustomerDemographicsDataTable(ds.Tables["CustomerDemographics"]));
                 }
-                if ((ds.Tables["Customers"] != null)) {
+                if ((ds.Tables["Customers"] != null))
+                {
                     base.Tables.Add(new CustomersDataTable(ds.Tables["Customers"]));
                 }
-                if ((ds.Tables["Employees"] != null)) {
+                if ((ds.Tables["Employees"] != null))
+                {
                     base.Tables.Add(new EmployeesDataTable(ds.Tables["Employees"]));
                 }
-                if ((ds.Tables["EmployeeTerritories"] != null)) {
+                if ((ds.Tables["EmployeeTerritories"] != null))
+                {
                     base.Tables.Add(new EmployeeTerritoriesDataTable(ds.Tables["EmployeeTerritories"]));
                 }
-                if ((ds.Tables["Order Details"] != null)) {
+                if ((ds.Tables["Order Details"] != null))
+                {
                     base.Tables.Add(new Order_DetailsDataTable(ds.Tables["Order Details"]));
                 }
-                if ((ds.Tables["Orders"] != null)) {
+                if ((ds.Tables["Orders"] != null))
+                {
                     base.Tables.Add(new OrdersDataTable(ds.Tables["Orders"]));
                 }
-                if ((ds.Tables["Products"] != null)) {
+                if ((ds.Tables["Products"] != null))
+                {
                     base.Tables.Add(new ProductsDataTable(ds.Tables["Products"]));
                 }
-                if ((ds.Tables["Region"] != null)) {
+                if ((ds.Tables["Region"] != null))
+                {
                     base.Tables.Add(new RegionDataTable(ds.Tables["Region"]));
                 }
-                if ((ds.Tables["Shippers"] != null)) {
+                if ((ds.Tables["Shippers"] != null))
+                {
                     base.Tables.Add(new ShippersDataTable(ds.Tables["Shippers"]));
                 }
-                if ((ds.Tables["Suppliers"] != null)) {
+                if ((ds.Tables["Suppliers"] != null))
+                {
                     base.Tables.Add(new SuppliersDataTable(ds.Tables["Suppliers"]));
                 }
-                if ((ds.Tables["Territories"] != null)) {
+                if ((ds.Tables["Territories"] != null))
+                {
                     base.Tables.Add(new TerritoriesDataTable(ds.Tables["Territories"]));
                 }
-                this.DataSetName = ds.DataSetName;
-                this.Prefix = ds.Prefix;
-                this.Namespace = ds.Namespace;
-                this.Locale = ds.Locale;
-                this.CaseSensitive = ds.CaseSensitive;
-                this.EnforceConstraints = ds.EnforceConstraints;
-                this.Merge(ds, false, global::System.Data.MissingSchemaAction.Add);
-                this.InitVars();
+                DataSetName = ds.DataSetName;
+                Prefix = ds.Prefix;
+                Namespace = ds.Namespace;
+                Locale = ds.Locale;
+                CaseSensitive = ds.CaseSensitive;
+                EnforceConstraints = ds.EnforceConstraints;
+                Merge(ds, false, MissingSchemaAction.Add);
+                InitVars();
             }
-            else {
-                this.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
+            else
+            {
+                ReadXmlSchema(new XmlTextReader(new StringReader(strSchema)));
             }
-            this.GetSerializationData(info, context);
-            global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
+            GetSerializationData(info, context);
+            CollectionChangeEventHandler schemaChangedHandler = SchemaChanged;
             base.Tables.CollectionChanged += schemaChangedHandler;
-            this.Relations.CollectionChanged += schemaChangedHandler;
+            Relations.CollectionChanged += schemaChangedHandler;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public CategoriesDataTable Categories {
-            get {
-                return this.tableCategories;
-            }
+
+        [DebuggerNonUserCode]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public CategoriesDataTable Categories
+        {
+            get { return tableCategories; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public CustomerCustomerDemoDataTable CustomerCustomerDemo {
-            get {
-                return this.tableCustomerCustomerDemo;
-            }
+
+        [DebuggerNonUserCode]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public CustomerCustomerDemoDataTable CustomerCustomerDemo
+        {
+            get { return tableCustomerCustomerDemo; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public CustomerDemographicsDataTable CustomerDemographics {
-            get {
-                return this.tableCustomerDemographics;
-            }
+
+        [DebuggerNonUserCode]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public CustomerDemographicsDataTable CustomerDemographics
+        {
+            get { return tableCustomerDemographics; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public CustomersDataTable Customers {
-            get {
-                return this.tableCustomers;
-            }
+
+        [DebuggerNonUserCode]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public CustomersDataTable Customers
+        {
+            get { return tableCustomers; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public EmployeesDataTable Employees {
-            get {
-                return this.tableEmployees;
-            }
+
+        [DebuggerNonUserCode]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public EmployeesDataTable Employees
+        {
+            get { return tableEmployees; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public EmployeeTerritoriesDataTable EmployeeTerritories {
-            get {
-                return this.tableEmployeeTerritories;
-            }
+
+        [DebuggerNonUserCode]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public EmployeeTerritoriesDataTable EmployeeTerritories
+        {
+            get { return tableEmployeeTerritories; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public Order_DetailsDataTable Order_Details {
-            get {
-                return this.tableOrder_Details;
-            }
+
+        [DebuggerNonUserCode]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public Order_DetailsDataTable Order_Details
+        {
+            get { return tableOrder_Details; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public OrdersDataTable Orders {
-            get {
-                return this.tableOrders;
-            }
+
+        [DebuggerNonUserCode]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public OrdersDataTable Orders
+        {
+            get { return tableOrders; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ProductsDataTable Products {
-            get {
-                return this.tableProducts;
-            }
+
+        [DebuggerNonUserCode]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public ProductsDataTable Products
+        {
+            get { return tableProducts; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public RegionDataTable Region {
-            get {
-                return this.tableRegion;
-            }
+
+        [DebuggerNonUserCode]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RegionDataTable Region
+        {
+            get { return tableRegion; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ShippersDataTable Shippers {
-            get {
-                return this.tableShippers;
-            }
+
+        [DebuggerNonUserCode]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public ShippersDataTable Shippers
+        {
+            get { return tableShippers; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SuppliersDataTable Suppliers {
-            get {
-                return this.tableSuppliers;
-            }
+
+        [DebuggerNonUserCode]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public SuppliersDataTable Suppliers
+        {
+            get { return tableSuppliers; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public TerritoriesDataTable Territories {
-            get {
-                return this.tableTerritories;
-            }
+
+        [DebuggerNonUserCode]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public TerritoriesDataTable Territories
+        {
+            get { return tableTerritories; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.BrowsableAttribute(true)]
-        [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
-        public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
-            get {
-                return this._schemaSerializationMode;
-            }
-            set {
-                this._schemaSerializationMode = value;
-            }
+
+        [DebuggerNonUserCode]
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public override SchemaSerializationMode SchemaSerializationMode
+        {
+            get { return _schemaSerializationMode; }
+            set { _schemaSerializationMode = value; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public new global::System.Data.DataTableCollection Tables {
-            get {
-                return base.Tables;
-            }
+
+        [DebuggerNonUserCode]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new DataTableCollection Tables
+        {
+            get { return base.Tables; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public new global::System.Data.DataRelationCollection Relations {
-            get {
-                return base.Relations;
-            }
+
+        [DebuggerNonUserCode]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new DataRelationCollection Relations
+        {
+            get { return base.Relations; }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected override void InitializeDerivedDataSet() {
-            this.BeginInit();
-            this.InitClass();
-            this.EndInit();
+
+        [DebuggerNonUserCode]
+        protected override void InitializeDerivedDataSet()
+        {
+            BeginInit();
+            InitClass();
+            EndInit();
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public override global::System.Data.DataSet Clone() {
-            NorthwindDataSet cln = ((NorthwindDataSet)(base.Clone()));
+
+        [DebuggerNonUserCode]
+        public override DataSet Clone()
+        {
+            var cln = ((NorthwindDataSet) (base.Clone()));
             cln.InitVars();
-            cln.SchemaSerializationMode = this.SchemaSerializationMode;
+            cln.SchemaSerializationMode = SchemaSerializationMode;
             return cln;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected override bool ShouldSerializeTables() {
+
+        [DebuggerNonUserCode]
+        protected override bool ShouldSerializeTables()
+        {
             return false;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected override bool ShouldSerializeRelations() {
+
+        [DebuggerNonUserCode]
+        protected override bool ShouldSerializeRelations()
+        {
             return false;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected override void ReadXmlSerializable(global::System.Xml.XmlReader reader) {
-            if ((this.DetermineSchemaSerializationMode(reader) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
-                this.Reset();
-                global::System.Data.DataSet ds = new global::System.Data.DataSet();
+
+        [DebuggerNonUserCode]
+        protected override void ReadXmlSerializable(XmlReader reader)
+        {
+            if ((DetermineSchemaSerializationMode(reader) == SchemaSerializationMode.IncludeSchema))
+            {
+                Reset();
+                var ds = new DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["Categories"] != null)) {
+                if ((ds.Tables["Categories"] != null))
+                {
                     base.Tables.Add(new CategoriesDataTable(ds.Tables["Categories"]));
                 }
-                if ((ds.Tables["CustomerCustomerDemo"] != null)) {
+                if ((ds.Tables["CustomerCustomerDemo"] != null))
+                {
                     base.Tables.Add(new CustomerCustomerDemoDataTable(ds.Tables["CustomerCustomerDemo"]));
                 }
-                if ((ds.Tables["CustomerDemographics"] != null)) {
+                if ((ds.Tables["CustomerDemographics"] != null))
+                {
                     base.Tables.Add(new CustomerDemographicsDataTable(ds.Tables["CustomerDemographics"]));
                 }
-                if ((ds.Tables["Customers"] != null)) {
+                if ((ds.Tables["Customers"] != null))
+                {
                     base.Tables.Add(new CustomersDataTable(ds.Tables["Customers"]));
                 }
-                if ((ds.Tables["Employees"] != null)) {
+                if ((ds.Tables["Employees"] != null))
+                {
                     base.Tables.Add(new EmployeesDataTable(ds.Tables["Employees"]));
                 }
-                if ((ds.Tables["EmployeeTerritories"] != null)) {
+                if ((ds.Tables["EmployeeTerritories"] != null))
+                {
                     base.Tables.Add(new EmployeeTerritoriesDataTable(ds.Tables["EmployeeTerritories"]));
                 }
-                if ((ds.Tables["Order Details"] != null)) {
+                if ((ds.Tables["Order Details"] != null))
+                {
                     base.Tables.Add(new Order_DetailsDataTable(ds.Tables["Order Details"]));
                 }
-                if ((ds.Tables["Orders"] != null)) {
+                if ((ds.Tables["Orders"] != null))
+                {
                     base.Tables.Add(new OrdersDataTable(ds.Tables["Orders"]));
                 }
-                if ((ds.Tables["Products"] != null)) {
+                if ((ds.Tables["Products"] != null))
+                {
                     base.Tables.Add(new ProductsDataTable(ds.Tables["Products"]));
                 }
-                if ((ds.Tables["Region"] != null)) {
+                if ((ds.Tables["Region"] != null))
+                {
                     base.Tables.Add(new RegionDataTable(ds.Tables["Region"]));
                 }
-                if ((ds.Tables["Shippers"] != null)) {
+                if ((ds.Tables["Shippers"] != null))
+                {
                     base.Tables.Add(new ShippersDataTable(ds.Tables["Shippers"]));
                 }
-                if ((ds.Tables["Suppliers"] != null)) {
+                if ((ds.Tables["Suppliers"] != null))
+                {
                     base.Tables.Add(new SuppliersDataTable(ds.Tables["Suppliers"]));
                 }
-                if ((ds.Tables["Territories"] != null)) {
+                if ((ds.Tables["Territories"] != null))
+                {
                     base.Tables.Add(new TerritoriesDataTable(ds.Tables["Territories"]));
                 }
-                this.DataSetName = ds.DataSetName;
-                this.Prefix = ds.Prefix;
-                this.Namespace = ds.Namespace;
-                this.Locale = ds.Locale;
-                this.CaseSensitive = ds.CaseSensitive;
-                this.EnforceConstraints = ds.EnforceConstraints;
-                this.Merge(ds, false, global::System.Data.MissingSchemaAction.Add);
-                this.InitVars();
+                DataSetName = ds.DataSetName;
+                Prefix = ds.Prefix;
+                Namespace = ds.Namespace;
+                Locale = ds.Locale;
+                CaseSensitive = ds.CaseSensitive;
+                EnforceConstraints = ds.EnforceConstraints;
+                Merge(ds, false, MissingSchemaAction.Add);
+                InitVars();
             }
-            else {
-                this.ReadXml(reader);
-                this.InitVars();
+            else
+            {
+                ReadXml(reader);
+                InitVars();
             }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        protected override global::System.Xml.Schema.XmlSchema GetSchemaSerializable() {
-            global::System.IO.MemoryStream stream = new global::System.IO.MemoryStream();
-            this.WriteXmlSchema(new global::System.Xml.XmlTextWriter(stream, null));
+
+        [DebuggerNonUserCode]
+        protected override XmlSchema GetSchemaSerializable()
+        {
+            var stream = new MemoryStream();
+            WriteXmlSchema(new XmlTextWriter(stream, null));
             stream.Position = 0;
-            return global::System.Xml.Schema.XmlSchema.Read(new global::System.Xml.XmlTextReader(stream), null);
+            return XmlSchema.Read(new XmlTextReader(stream), null);
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        internal void InitVars() {
-            this.InitVars(true);
+
+        [DebuggerNonUserCode]
+        internal void InitVars()
+        {
+            InitVars(true);
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        internal void InitVars(bool initTable) {
-            this.tableCategories = ((CategoriesDataTable)(base.Tables["Categories"]));
-            if ((initTable == true)) {
-                if ((this.tableCategories != null)) {
-                    this.tableCategories.InitVars();
+
+        [DebuggerNonUserCode]
+        internal void InitVars(bool initTable)
+        {
+            tableCategories = ((CategoriesDataTable) (base.Tables["Categories"]));
+            if (initTable)
+            {
+                if ((tableCategories != null))
+                {
+                    tableCategories.InitVars();
                 }
             }
-            this.tableCustomerCustomerDemo = ((CustomerCustomerDemoDataTable)(base.Tables["CustomerCustomerDemo"]));
-            if ((initTable == true)) {
-                if ((this.tableCustomerCustomerDemo != null)) {
-                    this.tableCustomerCustomerDemo.InitVars();
+            tableCustomerCustomerDemo = ((CustomerCustomerDemoDataTable) (base.Tables["CustomerCustomerDemo"]));
+            if (initTable)
+            {
+                if ((tableCustomerCustomerDemo != null))
+                {
+                    tableCustomerCustomerDemo.InitVars();
                 }
             }
-            this.tableCustomerDemographics = ((CustomerDemographicsDataTable)(base.Tables["CustomerDemographics"]));
-            if ((initTable == true)) {
-                if ((this.tableCustomerDemographics != null)) {
-                    this.tableCustomerDemographics.InitVars();
+            tableCustomerDemographics = ((CustomerDemographicsDataTable) (base.Tables["CustomerDemographics"]));
+            if (initTable)
+            {
+                if ((tableCustomerDemographics != null))
+                {
+                    tableCustomerDemographics.InitVars();
                 }
             }
-            this.tableCustomers = ((CustomersDataTable)(base.Tables["Customers"]));
-            if ((initTable == true)) {
-                if ((this.tableCustomers != null)) {
-                    this.tableCustomers.InitVars();
+            tableCustomers = ((CustomersDataTable) (base.Tables["Customers"]));
+            if (initTable)
+            {
+                if ((tableCustomers != null))
+                {
+                    tableCustomers.InitVars();
                 }
             }
-            this.tableEmployees = ((EmployeesDataTable)(base.Tables["Employees"]));
-            if ((initTable == true)) {
-                if ((this.tableEmployees != null)) {
-                    this.tableEmployees.InitVars();
+            tableEmployees = ((EmployeesDataTable) (base.Tables["Employees"]));
+            if (initTable)
+            {
+                if ((tableEmployees != null))
+                {
+                    tableEmployees.InitVars();
                 }
             }
-            this.tableEmployeeTerritories = ((EmployeeTerritoriesDataTable)(base.Tables["EmployeeTerritories"]));
-            if ((initTable == true)) {
-                if ((this.tableEmployeeTerritories != null)) {
-                    this.tableEmployeeTerritories.InitVars();
+            tableEmployeeTerritories = ((EmployeeTerritoriesDataTable) (base.Tables["EmployeeTerritories"]));
+            if (initTable)
+            {
+                if ((tableEmployeeTerritories != null))
+                {
+                    tableEmployeeTerritories.InitVars();
                 }
             }
-            this.tableOrder_Details = ((Order_DetailsDataTable)(base.Tables["Order Details"]));
-            if ((initTable == true)) {
-                if ((this.tableOrder_Details != null)) {
-                    this.tableOrder_Details.InitVars();
+            tableOrder_Details = ((Order_DetailsDataTable) (base.Tables["Order Details"]));
+            if (initTable)
+            {
+                if ((tableOrder_Details != null))
+                {
+                    tableOrder_Details.InitVars();
                 }
             }
-            this.tableOrders = ((OrdersDataTable)(base.Tables["Orders"]));
-            if ((initTable == true)) {
-                if ((this.tableOrders != null)) {
-                    this.tableOrders.InitVars();
+            tableOrders = ((OrdersDataTable) (base.Tables["Orders"]));
+            if (initTable)
+            {
+                if ((tableOrders != null))
+                {
+                    tableOrders.InitVars();
                 }
             }
-            this.tableProducts = ((ProductsDataTable)(base.Tables["Products"]));
-            if ((initTable == true)) {
-                if ((this.tableProducts != null)) {
-                    this.tableProducts.InitVars();
+            tableProducts = ((ProductsDataTable) (base.Tables["Products"]));
+            if (initTable)
+            {
+                if ((tableProducts != null))
+                {
+                    tableProducts.InitVars();
                 }
             }
-            this.tableRegion = ((RegionDataTable)(base.Tables["Region"]));
-            if ((initTable == true)) {
-                if ((this.tableRegion != null)) {
-                    this.tableRegion.InitVars();
+            tableRegion = ((RegionDataTable) (base.Tables["Region"]));
+            if (initTable)
+            {
+                if ((tableRegion != null))
+                {
+                    tableRegion.InitVars();
                 }
             }
-            this.tableShippers = ((ShippersDataTable)(base.Tables["Shippers"]));
-            if ((initTable == true)) {
-                if ((this.tableShippers != null)) {
-                    this.tableShippers.InitVars();
+            tableShippers = ((ShippersDataTable) (base.Tables["Shippers"]));
+            if (initTable)
+            {
+                if ((tableShippers != null))
+                {
+                    tableShippers.InitVars();
                 }
             }
-            this.tableSuppliers = ((SuppliersDataTable)(base.Tables["Suppliers"]));
-            if ((initTable == true)) {
-                if ((this.tableSuppliers != null)) {
-                    this.tableSuppliers.InitVars();
+            tableSuppliers = ((SuppliersDataTable) (base.Tables["Suppliers"]));
+            if (initTable)
+            {
+                if ((tableSuppliers != null))
+                {
+                    tableSuppliers.InitVars();
                 }
             }
-            this.tableTerritories = ((TerritoriesDataTable)(base.Tables["Territories"]));
-            if ((initTable == true)) {
-                if ((this.tableTerritories != null)) {
-                    this.tableTerritories.InitVars();
+            tableTerritories = ((TerritoriesDataTable) (base.Tables["Territories"]));
+            if (initTable)
+            {
+                if ((tableTerritories != null))
+                {
+                    tableTerritories.InitVars();
                 }
             }
-            this.relationFK_CustomerCustomerDemo = this.Relations["FK_CustomerCustomerDemo"];
-            this.relationFK_CustomerCustomerDemo_Customers = this.Relations["FK_CustomerCustomerDemo_Customers"];
-            this.relationFK_Employees_Employees = this.Relations["FK_Employees_Employees"];
-            this.relationFK_EmployeeTerritories_Employees = this.Relations["FK_EmployeeTerritories_Employees"];
-            this.relationFK_EmployeeTerritories_Territories = this.Relations["FK_EmployeeTerritories_Territories"];
-            this.relationFK_Order_Details_Orders = this.Relations["FK_Order_Details_Orders"];
-            this.relationFK_Order_Details_Products = this.Relations["FK_Order_Details_Products"];
-            this.relationFK_Orders_Customers = this.Relations["FK_Orders_Customers"];
-            this.relationFK_Orders_Employees = this.Relations["FK_Orders_Employees"];
-            this.relationFK_Orders_Shippers = this.Relations["FK_Orders_Shippers"];
-            this.relationFK_Products_Categories = this.Relations["FK_Products_Categories"];
-            this.relationFK_Products_Suppliers = this.Relations["FK_Products_Suppliers"];
-            this.relationFK_Territories_Region = this.Relations["FK_Territories_Region"];
+            relationFK_CustomerCustomerDemo = Relations["FK_CustomerCustomerDemo"];
+            relationFK_CustomerCustomerDemo_Customers = Relations["FK_CustomerCustomerDemo_Customers"];
+            relationFK_Employees_Employees = Relations["FK_Employees_Employees"];
+            relationFK_EmployeeTerritories_Employees = Relations["FK_EmployeeTerritories_Employees"];
+            relationFK_EmployeeTerritories_Territories = Relations["FK_EmployeeTerritories_Territories"];
+            relationFK_Order_Details_Orders = Relations["FK_Order_Details_Orders"];
+            relationFK_Order_Details_Products = Relations["FK_Order_Details_Products"];
+            relationFK_Orders_Customers = Relations["FK_Orders_Customers"];
+            relationFK_Orders_Employees = Relations["FK_Orders_Employees"];
+            relationFK_Orders_Shippers = Relations["FK_Orders_Shippers"];
+            relationFK_Products_Categories = Relations["FK_Products_Categories"];
+            relationFK_Products_Suppliers = Relations["FK_Products_Suppliers"];
+            relationFK_Territories_Region = Relations["FK_Territories_Region"];
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private void InitClass() {
-            this.DataSetName = "NorthwindDataSet";
-            this.Prefix = "";
-            this.Namespace = "http://tempuri.org/NorthwindDataSet.xsd";
-            this.EnforceConstraints = true;
-            this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableCategories = new CategoriesDataTable();
-            base.Tables.Add(this.tableCategories);
-            this.tableCustomerCustomerDemo = new CustomerCustomerDemoDataTable();
-            base.Tables.Add(this.tableCustomerCustomerDemo);
-            this.tableCustomerDemographics = new CustomerDemographicsDataTable();
-            base.Tables.Add(this.tableCustomerDemographics);
-            this.tableCustomers = new CustomersDataTable();
-            base.Tables.Add(this.tableCustomers);
-            this.tableEmployees = new EmployeesDataTable();
-            base.Tables.Add(this.tableEmployees);
-            this.tableEmployeeTerritories = new EmployeeTerritoriesDataTable();
-            base.Tables.Add(this.tableEmployeeTerritories);
-            this.tableOrder_Details = new Order_DetailsDataTable();
-            base.Tables.Add(this.tableOrder_Details);
-            this.tableOrders = new OrdersDataTable();
-            base.Tables.Add(this.tableOrders);
-            this.tableProducts = new ProductsDataTable();
-            base.Tables.Add(this.tableProducts);
-            this.tableRegion = new RegionDataTable();
-            base.Tables.Add(this.tableRegion);
-            this.tableShippers = new ShippersDataTable();
-            base.Tables.Add(this.tableShippers);
-            this.tableSuppliers = new SuppliersDataTable();
-            base.Tables.Add(this.tableSuppliers);
-            this.tableTerritories = new TerritoriesDataTable();
-            base.Tables.Add(this.tableTerritories);
-            this.relationFK_CustomerCustomerDemo = new global::System.Data.DataRelation("FK_CustomerCustomerDemo", new global::System.Data.DataColumn[] {
-                        this.tableCustomerDemographics.CustomerTypeIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableCustomerCustomerDemo.CustomerTypeIDColumn}, false);
-            this.Relations.Add(this.relationFK_CustomerCustomerDemo);
-            this.relationFK_CustomerCustomerDemo_Customers = new global::System.Data.DataRelation("FK_CustomerCustomerDemo_Customers", new global::System.Data.DataColumn[] {
-                        this.tableCustomers.CustomerIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableCustomerCustomerDemo.CustomerIDColumn}, false);
-            this.Relations.Add(this.relationFK_CustomerCustomerDemo_Customers);
-            this.relationFK_Employees_Employees = new global::System.Data.DataRelation("FK_Employees_Employees", new global::System.Data.DataColumn[] {
-                        this.tableEmployees.EmployeeIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableEmployees.ReportsToColumn}, false);
-            this.Relations.Add(this.relationFK_Employees_Employees);
-            this.relationFK_EmployeeTerritories_Employees = new global::System.Data.DataRelation("FK_EmployeeTerritories_Employees", new global::System.Data.DataColumn[] {
-                        this.tableEmployees.EmployeeIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableEmployeeTerritories.EmployeeIDColumn}, false);
-            this.Relations.Add(this.relationFK_EmployeeTerritories_Employees);
-            this.relationFK_EmployeeTerritories_Territories = new global::System.Data.DataRelation("FK_EmployeeTerritories_Territories", new global::System.Data.DataColumn[] {
-                        this.tableTerritories.TerritoryIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableEmployeeTerritories.TerritoryIDColumn}, false);
-            this.Relations.Add(this.relationFK_EmployeeTerritories_Territories);
-            this.relationFK_Order_Details_Orders = new global::System.Data.DataRelation("FK_Order_Details_Orders", new global::System.Data.DataColumn[] {
-                        this.tableOrders.OrderIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOrder_Details.OrderIDColumn}, false);
-            this.Relations.Add(this.relationFK_Order_Details_Orders);
-            this.relationFK_Order_Details_Products = new global::System.Data.DataRelation("FK_Order_Details_Products", new global::System.Data.DataColumn[] {
-                        this.tableProducts.ProductIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOrder_Details.ProductIDColumn}, false);
-            this.Relations.Add(this.relationFK_Order_Details_Products);
-            this.relationFK_Orders_Customers = new global::System.Data.DataRelation("FK_Orders_Customers", new global::System.Data.DataColumn[] {
-                        this.tableCustomers.CustomerIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOrders.CustomerIDColumn}, false);
-            this.Relations.Add(this.relationFK_Orders_Customers);
-            this.relationFK_Orders_Employees = new global::System.Data.DataRelation("FK_Orders_Employees", new global::System.Data.DataColumn[] {
-                        this.tableEmployees.EmployeeIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOrders.EmployeeIDColumn}, false);
-            this.Relations.Add(this.relationFK_Orders_Employees);
-            this.relationFK_Orders_Shippers = new global::System.Data.DataRelation("FK_Orders_Shippers", new global::System.Data.DataColumn[] {
-                        this.tableShippers.ShipperIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableOrders.ShipViaColumn}, false);
-            this.Relations.Add(this.relationFK_Orders_Shippers);
-            this.relationFK_Products_Categories = new global::System.Data.DataRelation("FK_Products_Categories", new global::System.Data.DataColumn[] {
-                        this.tableCategories.CategoryIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableProducts.CategoryIDColumn}, false);
-            this.Relations.Add(this.relationFK_Products_Categories);
-            this.relationFK_Products_Suppliers = new global::System.Data.DataRelation("FK_Products_Suppliers", new global::System.Data.DataColumn[] {
-                        this.tableSuppliers.SupplierIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableProducts.SupplierIDColumn}, false);
-            this.Relations.Add(this.relationFK_Products_Suppliers);
-            this.relationFK_Territories_Region = new global::System.Data.DataRelation("FK_Territories_Region", new global::System.Data.DataColumn[] {
-                        this.tableRegion.RegionIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTerritories.RegionIDColumn}, false);
-            this.Relations.Add(this.relationFK_Territories_Region);
+
+        [DebuggerNonUserCode]
+        private void InitClass()
+        {
+            DataSetName = "NorthwindDataSet";
+            Prefix = "";
+            Namespace = "http://tempuri.org/NorthwindDataSet.xsd";
+            EnforceConstraints = true;
+            SchemaSerializationMode = SchemaSerializationMode.IncludeSchema;
+            tableCategories = new CategoriesDataTable();
+            base.Tables.Add(tableCategories);
+            tableCustomerCustomerDemo = new CustomerCustomerDemoDataTable();
+            base.Tables.Add(tableCustomerCustomerDemo);
+            tableCustomerDemographics = new CustomerDemographicsDataTable();
+            base.Tables.Add(tableCustomerDemographics);
+            tableCustomers = new CustomersDataTable();
+            base.Tables.Add(tableCustomers);
+            tableEmployees = new EmployeesDataTable();
+            base.Tables.Add(tableEmployees);
+            tableEmployeeTerritories = new EmployeeTerritoriesDataTable();
+            base.Tables.Add(tableEmployeeTerritories);
+            tableOrder_Details = new Order_DetailsDataTable();
+            base.Tables.Add(tableOrder_Details);
+            tableOrders = new OrdersDataTable();
+            base.Tables.Add(tableOrders);
+            tableProducts = new ProductsDataTable();
+            base.Tables.Add(tableProducts);
+            tableRegion = new RegionDataTable();
+            base.Tables.Add(tableRegion);
+            tableShippers = new ShippersDataTable();
+            base.Tables.Add(tableShippers);
+            tableSuppliers = new SuppliersDataTable();
+            base.Tables.Add(tableSuppliers);
+            tableTerritories = new TerritoriesDataTable();
+            base.Tables.Add(tableTerritories);
+            relationFK_CustomerCustomerDemo = new DataRelation("FK_CustomerCustomerDemo", new[]
+                                                                                              {
+                                                                                                  tableCustomerDemographics
+                                                                                                      .
+                                                                                                      CustomerTypeIDColumn
+                                                                                              }, new[]
+                                                                                                     {
+                                                                                                         tableCustomerCustomerDemo
+                                                                                                             .
+                                                                                                             CustomerTypeIDColumn
+                                                                                                     }, false);
+            Relations.Add(relationFK_CustomerCustomerDemo);
+            relationFK_CustomerCustomerDemo_Customers = new DataRelation("FK_CustomerCustomerDemo_Customers", new[]
+                                                                                                                  {
+                                                                                                                      tableCustomers
+                                                                                                                          .
+                                                                                                                          CustomerIDColumn
+                                                                                                                  },
+                                                                         new[]
+                                                                             {
+                                                                                 tableCustomerCustomerDemo.
+                                                                                     CustomerIDColumn
+                                                                             }, false);
+            Relations.Add(relationFK_CustomerCustomerDemo_Customers);
+            relationFK_Employees_Employees = new DataRelation("FK_Employees_Employees", new[]
+                                                                                            {
+                                                                                                tableEmployees.
+                                                                                                    EmployeeIDColumn
+                                                                                            }, new[]
+                                                                                                   {
+                                                                                                       tableEmployees.
+                                                                                                           ReportsToColumn
+                                                                                                   }, false);
+            Relations.Add(relationFK_Employees_Employees);
+            relationFK_EmployeeTerritories_Employees = new DataRelation("FK_EmployeeTerritories_Employees", new[]
+                                                                                                                {
+                                                                                                                    tableEmployees
+                                                                                                                        .
+                                                                                                                        EmployeeIDColumn
+                                                                                                                }, new[]
+                                                                                                                       {
+                                                                                                                           tableEmployeeTerritories
+                                                                                                                               .
+                                                                                                                               EmployeeIDColumn
+                                                                                                                       },
+                                                                        false);
+            Relations.Add(relationFK_EmployeeTerritories_Employees);
+            relationFK_EmployeeTerritories_Territories = new DataRelation("FK_EmployeeTerritories_Territories", new[]
+                                                                                                                    {
+                                                                                                                        tableTerritories
+                                                                                                                            .
+                                                                                                                            TerritoryIDColumn
+                                                                                                                    },
+                                                                          new[]
+                                                                              {
+                                                                                  tableEmployeeTerritories.
+                                                                                      TerritoryIDColumn
+                                                                              }, false);
+            Relations.Add(relationFK_EmployeeTerritories_Territories);
+            relationFK_Order_Details_Orders = new DataRelation("FK_Order_Details_Orders", new[]
+                                                                                              {
+                                                                                                  tableOrders.
+                                                                                                      OrderIDColumn
+                                                                                              }, new[]
+                                                                                                     {
+                                                                                                         tableOrder_Details
+                                                                                                             .
+                                                                                                             OrderIDColumn
+                                                                                                     }, false);
+            Relations.Add(relationFK_Order_Details_Orders);
+            relationFK_Order_Details_Products = new DataRelation("FK_Order_Details_Products", new[]
+                                                                                                  {
+                                                                                                      tableProducts.
+                                                                                                          ProductIDColumn
+                                                                                                  }, new[]
+                                                                                                         {
+                                                                                                             tableOrder_Details
+                                                                                                                 .
+                                                                                                                 ProductIDColumn
+                                                                                                         }, false);
+            Relations.Add(relationFK_Order_Details_Products);
+            relationFK_Orders_Customers = new DataRelation("FK_Orders_Customers", new[]
+                                                                                      {
+                                                                                          tableCustomers.
+                                                                                              CustomerIDColumn
+                                                                                      }, new[]
+                                                                                             {
+                                                                                                 tableOrders.
+                                                                                                     CustomerIDColumn
+                                                                                             }, false);
+            Relations.Add(relationFK_Orders_Customers);
+            relationFK_Orders_Employees = new DataRelation("FK_Orders_Employees", new[]
+                                                                                      {
+                                                                                          tableEmployees.
+                                                                                              EmployeeIDColumn
+                                                                                      }, new[]
+                                                                                             {
+                                                                                                 tableOrders.
+                                                                                                     EmployeeIDColumn
+                                                                                             }, false);
+            Relations.Add(relationFK_Orders_Employees);
+            relationFK_Orders_Shippers = new DataRelation("FK_Orders_Shippers", new[]
+                                                                                    {
+                                                                                        tableShippers.ShipperIDColumn
+                                                                                    }, new[]
+                                                                                           {
+                                                                                               tableOrders.ShipViaColumn
+                                                                                           }, false);
+            Relations.Add(relationFK_Orders_Shippers);
+            relationFK_Products_Categories = new DataRelation("FK_Products_Categories", new[]
+                                                                                            {
+                                                                                                tableCategories.
+                                                                                                    CategoryIDColumn
+                                                                                            }, new[]
+                                                                                                   {
+                                                                                                       tableProducts.
+                                                                                                           CategoryIDColumn
+                                                                                                   }, false);
+            Relations.Add(relationFK_Products_Categories);
+            relationFK_Products_Suppliers = new DataRelation("FK_Products_Suppliers", new[]
+                                                                                          {
+                                                                                              tableSuppliers.
+                                                                                                  SupplierIDColumn
+                                                                                          }, new[]
+                                                                                                 {
+                                                                                                     tableProducts.
+                                                                                                         SupplierIDColumn
+                                                                                                 }, false);
+            Relations.Add(relationFK_Products_Suppliers);
+            relationFK_Territories_Region = new DataRelation("FK_Territories_Region", new[]
+                                                                                          {
+                                                                                              tableRegion.RegionIDColumn
+                                                                                          }, new[]
+                                                                                                 {
+                                                                                                     tableTerritories.
+                                                                                                         RegionIDColumn
+                                                                                                 }, false);
+            Relations.Add(relationFK_Territories_Region);
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeCategories() {
+
+        [DebuggerNonUserCode]
+        private bool ShouldSerializeCategories()
+        {
             return false;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeCustomerCustomerDemo() {
+
+        [DebuggerNonUserCode]
+        private bool ShouldSerializeCustomerCustomerDemo()
+        {
             return false;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeCustomerDemographics() {
+
+        [DebuggerNonUserCode]
+        private bool ShouldSerializeCustomerDemographics()
+        {
             return false;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeCustomers() {
+
+        [DebuggerNonUserCode]
+        private bool ShouldSerializeCustomers()
+        {
             return false;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeEmployees() {
+
+        [DebuggerNonUserCode]
+        private bool ShouldSerializeEmployees()
+        {
             return false;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeEmployeeTerritories() {
+
+        [DebuggerNonUserCode]
+        private bool ShouldSerializeEmployeeTerritories()
+        {
             return false;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeOrder_Details() {
+
+        [DebuggerNonUserCode]
+        private bool ShouldSerializeOrder_Details()
+        {
             return false;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeOrders() {
+
+        [DebuggerNonUserCode]
+        private bool ShouldSerializeOrders()
+        {
             return false;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeProducts() {
+
+        [DebuggerNonUserCode]
+        private bool ShouldSerializeProducts()
+        {
             return false;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeRegion() {
+
+        [DebuggerNonUserCode]
+        private bool ShouldSerializeRegion()
+        {
             return false;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeShippers() {
+
+        [DebuggerNonUserCode]
+        private bool ShouldSerializeShippers()
+        {
             return false;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeSuppliers() {
+
+        [DebuggerNonUserCode]
+        private bool ShouldSerializeSuppliers()
+        {
             return false;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeTerritories() {
+
+        [DebuggerNonUserCode]
+        private bool ShouldSerializeTerritories()
+        {
             return false;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
-            if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
-                this.InitVars();
+
+        [DebuggerNonUserCode]
+        private void SchemaChanged(object sender, CollectionChangeEventArgs e)
+        {
+            if ((e.Action == CollectionChangeAction.Remove))
+            {
+                InitVars();
             }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            NorthwindDataSet ds = new NorthwindDataSet();
-            global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-            global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-            global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
+
+        [DebuggerNonUserCode]
+        public static XmlSchemaComplexType GetTypedDataSetSchema(XmlSchemaSet xs)
+        {
+            var ds = new NorthwindDataSet();
+            var type = new XmlSchemaComplexType();
+            var sequence = new XmlSchemaSequence();
+            var any = new XmlSchemaAny();
             any.Namespace = ds.Namespace;
             sequence.Items.Add(any);
             type.Particle = sequence;
-            global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-            if (xs.Contains(dsSchema.TargetNamespace)) {
-                global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                try {
-                    global::System.Xml.Schema.XmlSchema schema = null;
+            XmlSchema dsSchema = ds.GetSchemaSerializable();
+            if (xs.Contains(dsSchema.TargetNamespace))
+            {
+                var s1 = new MemoryStream();
+                var s2 = new MemoryStream();
+                try
+                {
+                    XmlSchema schema = null;
                     dsSchema.Write(s1);
-                    for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                        schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                    for (IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator();
+                         schemas.MoveNext();)
+                    {
+                        schema = ((XmlSchema) (schemas.Current));
                         s2.SetLength(0);
                         schema.Write(s2);
-                        if ((s1.Length == s2.Length)) {
+                        if ((s1.Length == s2.Length))
+                        {
                             s1.Position = 0;
                             s2.Position = 0;
-                            for (; ((s1.Position != s1.Length) 
-                                        && (s1.ReadByte() == s2.ReadByte())); ) {
+                            for (;
+                                ((s1.Position != s1.Length)
+                                 && (s1.ReadByte() == s2.ReadByte()));)
+                            {
                                 ;
                             }
-                            if ((s1.Position == s1.Length)) {
+                            if ((s1.Position == s1.Length))
+                            {
                                 return type;
                             }
                         }
                     }
                 }
-                finally {
-                    if ((s1 != null)) {
+                finally
+                {
+                    if ((s1 != null))
+                    {
                         s1.Close();
                     }
-                    if ((s2 != null)) {
+                    if ((s2 != null))
+                    {
                         s2.Close();
                     }
                 }
@@ -704,303 +911,316 @@ namespace NW247.Model {
             xs.Add(dsSchema);
             return type;
         }
-        
-        public delegate void CategoriesRowChangeEventHandler(object sender, CategoriesRowChangeEvent e);
-        
-        public delegate void CustomerCustomerDemoRowChangeEventHandler(object sender, CustomerCustomerDemoRowChangeEvent e);
-        
-        public delegate void CustomerDemographicsRowChangeEventHandler(object sender, CustomerDemographicsRowChangeEvent e);
-        
-        public delegate void CustomersRowChangeEventHandler(object sender, CustomersRowChangeEvent e);
-        
-        public delegate void EmployeesRowChangeEventHandler(object sender, EmployeesRowChangeEvent e);
-        
-        public delegate void EmployeeTerritoriesRowChangeEventHandler(object sender, EmployeeTerritoriesRowChangeEvent e);
-        
-        public delegate void Order_DetailsRowChangeEventHandler(object sender, Order_DetailsRowChangeEvent e);
-        
-        public delegate void OrdersRowChangeEventHandler(object sender, OrdersRowChangeEvent e);
-        
-        public delegate void ProductsRowChangeEventHandler(object sender, ProductsRowChangeEvent e);
-        
-        public delegate void RegionRowChangeEventHandler(object sender, RegionRowChangeEvent e);
-        
-        public delegate void ShippersRowChangeEventHandler(object sender, ShippersRowChangeEvent e);
-        
-        public delegate void SuppliersRowChangeEventHandler(object sender, SuppliersRowChangeEvent e);
-        
-        public delegate void TerritoriesRowChangeEventHandler(object sender, TerritoriesRowChangeEvent e);
-        
+
+        #region Nested type: CategoriesDataTable
+
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class CategoriesDataTable : global::System.Data.TypedTableBase<CategoriesRow> {
-            
-            private global::System.Data.DataColumn columnCategoryID;
-            
-            private global::System.Data.DataColumn columnCategoryName;
-            
-            private global::System.Data.DataColumn columnDescription;
-            
-            private global::System.Data.DataColumn columnPicture;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CategoriesDataTable() {
-                this.TableName = "Categories";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [Serializable]
+        [XmlSchemaProvider("GetTypedTableSchema")]
+        public class CategoriesDataTable : TypedTableBase<CategoriesRow>
+        {
+            private DataColumn columnCategoryID;
+
+            private DataColumn columnCategoryName;
+
+            private DataColumn columnDescription;
+
+            private DataColumn columnPicture;
+
+            [DebuggerNonUserCode]
+            public CategoriesDataTable()
+            {
+                TableName = "Categories";
+                BeginInit();
+                InitClass();
+                EndInit();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal CategoriesDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
+
+            [DebuggerNonUserCode]
+            internal CategoriesDataTable(DataTable table)
+            {
+                TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive))
+                {
+                    CaseSensitive = table.CaseSensitive;
                 }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
+                {
+                    Locale = table.Locale;
                 }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
+                if ((table.Namespace != table.DataSet.Namespace))
+                {
+                    Namespace = table.Namespace;
                 }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
+                Prefix = table.Prefix;
+                MinimumCapacity = table.MinimumCapacity;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected CategoriesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
+
+            [DebuggerNonUserCode]
+            protected CategoriesDataTable(SerializationInfo info, StreamingContext context) :
+                base(info, context)
+            {
+                InitVars();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CategoryIDColumn {
-                get {
-                    return this.columnCategoryID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CategoryIDColumn
+            {
+                get { return columnCategoryID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CategoryNameColumn {
-                get {
-                    return this.columnCategoryName;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CategoryNameColumn
+            {
+                get { return columnCategoryName; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn DescriptionColumn {
-                get {
-                    return this.columnDescription;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn DescriptionColumn
+            {
+                get { return columnDescription; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PictureColumn {
-                get {
-                    return this.columnPicture;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn PictureColumn
+            {
+                get { return columnPicture; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
+
+            [DebuggerNonUserCode]
+            [Browsable(false)]
+            public int Count
+            {
+                get { return Rows.Count; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CategoriesRow this[int index] {
-                get {
-                    return ((CategoriesRow)(this.Rows[index]));
-                }
+
+            [DebuggerNonUserCode]
+            public CategoriesRow this[int index]
+            {
+                get { return ((CategoriesRow) (Rows[index])); }
             }
-            
+
             public event CategoriesRowChangeEventHandler CategoriesRowChanging;
-            
+
             public event CategoriesRowChangeEventHandler CategoriesRowChanged;
-            
+
             public event CategoriesRowChangeEventHandler CategoriesRowDeleting;
-            
+
             public event CategoriesRowChangeEventHandler CategoriesRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddCategoriesRow(CategoriesRow row) {
-                this.Rows.Add(row);
+
+            [DebuggerNonUserCode]
+            public void AddCategoriesRow(CategoriesRow row)
+            {
+                Rows.Add(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CategoriesRow AddCategoriesRow(string CategoryName, string Description, byte[] Picture) {
-                CategoriesRow rowCategoriesRow = ((CategoriesRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        CategoryName,
-                        Description,
-                        Picture};
+
+            [DebuggerNonUserCode]
+            public CategoriesRow AddCategoriesRow(string CategoryName, string Description, byte[] Picture)
+            {
+                var rowCategoriesRow = ((CategoriesRow) (NewRow()));
+                var columnValuesArray = new object[]
+                                            {
+                                                null,
+                                                CategoryName,
+                                                Description,
+                                                Picture
+                                            };
                 rowCategoriesRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowCategoriesRow);
+                Rows.Add(rowCategoriesRow);
                 return rowCategoriesRow;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CategoriesRow FindByCategoryID(int CategoryID) {
-                return ((CategoriesRow)(this.Rows.Find(new object[] {
-                            CategoryID})));
+
+            [DebuggerNonUserCode]
+            public CategoriesRow FindByCategoryID(int CategoryID)
+            {
+                return ((CategoriesRow) (Rows.Find(new object[]
+                                                       {
+                                                           CategoryID
+                                                       })));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                CategoriesDataTable cln = ((CategoriesDataTable)(base.Clone()));
+
+            [DebuggerNonUserCode]
+            public override DataTable Clone()
+            {
+                var cln = ((CategoriesDataTable) (base.Clone()));
                 cln.InitVars();
                 return cln;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
+
+            [DebuggerNonUserCode]
+            protected override DataTable CreateInstance()
+            {
                 return new CategoriesDataTable();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnCategoryID = base.Columns["CategoryID"];
-                this.columnCategoryName = base.Columns["CategoryName"];
-                this.columnDescription = base.Columns["Description"];
-                this.columnPicture = base.Columns["Picture"];
+
+            [DebuggerNonUserCode]
+            internal void InitVars()
+            {
+                columnCategoryID = base.Columns["CategoryID"];
+                columnCategoryName = base.Columns["CategoryName"];
+                columnDescription = base.Columns["Description"];
+                columnPicture = base.Columns["Picture"];
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnCategoryID = new global::System.Data.DataColumn("CategoryID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCategoryID);
-                this.columnCategoryName = new global::System.Data.DataColumn("CategoryName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCategoryName);
-                this.columnDescription = new global::System.Data.DataColumn("Description", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDescription);
-                this.columnPicture = new global::System.Data.DataColumn("Picture", typeof(byte[]), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPicture);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnCategoryID}, true));
-                this.columnCategoryID.AutoIncrement = true;
-                this.columnCategoryID.AutoIncrementSeed = -1;
-                this.columnCategoryID.AutoIncrementStep = -1;
-                this.columnCategoryID.AllowDBNull = false;
-                this.columnCategoryID.ReadOnly = true;
-                this.columnCategoryID.Unique = true;
-                this.columnCategoryName.AllowDBNull = false;
-                this.columnCategoryName.MaxLength = 15;
-                this.columnDescription.MaxLength = 1073741823;
+
+            [DebuggerNonUserCode]
+            private void InitClass()
+            {
+                columnCategoryID = new DataColumn("CategoryID", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnCategoryID);
+                columnCategoryName = new DataColumn("CategoryName", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCategoryName);
+                columnDescription = new DataColumn("Description", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnDescription);
+                columnPicture = new DataColumn("Picture", typeof (byte[]), null, MappingType.Element);
+                base.Columns.Add(columnPicture);
+                Constraints.Add(new UniqueConstraint("Constraint1", new[]
+                                                                        {
+                                                                            columnCategoryID
+                                                                        }, true));
+                columnCategoryID.AutoIncrement = true;
+                columnCategoryID.AutoIncrementSeed = -1;
+                columnCategoryID.AutoIncrementStep = -1;
+                columnCategoryID.AllowDBNull = false;
+                columnCategoryID.ReadOnly = true;
+                columnCategoryID.Unique = true;
+                columnCategoryName.AllowDBNull = false;
+                columnCategoryName.MaxLength = 15;
+                columnDescription.MaxLength = 1073741823;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CategoriesRow NewCategoriesRow() {
-                return ((CategoriesRow)(this.NewRow()));
+
+            [DebuggerNonUserCode]
+            public CategoriesRow NewCategoriesRow()
+            {
+                return ((CategoriesRow) (NewRow()));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+
+            [DebuggerNonUserCode]
+            protected override DataRow NewRowFromBuilder(DataRowBuilder builder)
+            {
                 return new CategoriesRow(builder);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(CategoriesRow);
+
+            [DebuggerNonUserCode]
+            protected override Type GetRowType()
+            {
+                return typeof (CategoriesRow);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanged(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanged(e);
-                if ((this.CategoriesRowChanged != null)) {
-                    this.CategoriesRowChanged(this, new CategoriesRowChangeEvent(((CategoriesRow)(e.Row)), e.Action));
+                if ((CategoriesRowChanged != null))
+                {
+                    CategoriesRowChanged(this, new CategoriesRowChangeEvent(((CategoriesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanging(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanging(e);
-                if ((this.CategoriesRowChanging != null)) {
-                    this.CategoriesRowChanging(this, new CategoriesRowChangeEvent(((CategoriesRow)(e.Row)), e.Action));
+                if ((CategoriesRowChanging != null))
+                {
+                    CategoriesRowChanging(this, new CategoriesRowChangeEvent(((CategoriesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleted(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleted(e);
-                if ((this.CategoriesRowDeleted != null)) {
-                    this.CategoriesRowDeleted(this, new CategoriesRowChangeEvent(((CategoriesRow)(e.Row)), e.Action));
+                if ((CategoriesRowDeleted != null))
+                {
+                    CategoriesRowDeleted(this, new CategoriesRowChangeEvent(((CategoriesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleting(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleting(e);
-                if ((this.CategoriesRowDeleting != null)) {
-                    this.CategoriesRowDeleting(this, new CategoriesRowChangeEvent(((CategoriesRow)(e.Row)), e.Action));
+                if ((CategoriesRowDeleting != null))
+                {
+                    CategoriesRowDeleting(this, new CategoriesRowChangeEvent(((CategoriesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveCategoriesRow(CategoriesRow row) {
-                this.Rows.Remove(row);
+
+            [DebuggerNonUserCode]
+            public void RemoveCategoriesRow(CategoriesRow row)
+            {
+                Rows.Remove(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NorthwindDataSet ds = new NorthwindDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+
+            [DebuggerNonUserCode]
+            public static XmlSchemaComplexType GetTypedTableSchema(XmlSchemaSet xs)
+            {
+                var type = new XmlSchemaComplexType();
+                var sequence = new XmlSchemaSequence();
+                var ds = new NorthwindDataSet();
+                var any1 = new XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any1.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any2.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "CategoriesDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
+                XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace))
+                {
+                    var s1 = new MemoryStream();
+                    var s2 = new MemoryStream();
+                    try
+                    {
+                        XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                        for (IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator();
+                             schemas.MoveNext();)
+                        {
+                            schema = ((XmlSchema) (schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
+                            if ((s1.Length == s2.Length))
+                            {
                                 s1.Position = 0;
                                 s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                for (;
+                                    ((s1.Position != s1.Length)
+                                     && (s1.ReadByte() == s2.ReadByte()));)
+                                {
                                     ;
                                 }
-                                if ((s1.Position == s1.Length)) {
+                                if ((s1.Position == s1.Length))
+                                {
                                     return type;
                                 }
                             }
                         }
                     }
-                    finally {
-                        if ((s1 != null)) {
+                    finally
+                    {
+                        if ((s1 != null))
+                        {
                             s1.Close();
                         }
-                        if ((s2 != null)) {
+                        if ((s2 != null))
+                        {
                             s2.Close();
                         }
                     }
@@ -1009,254 +1229,449 @@ namespace NW247.Model {
                 return type;
             }
         }
-        
+
+        #endregion
+
+        #region Nested type: CategoriesRow
+
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class CategoriesRow : DataRow
+        {
+            private readonly CategoriesDataTable tableCategories;
+
+            [DebuggerNonUserCode]
+            internal CategoriesRow(DataRowBuilder rb) :
+                base(rb)
+            {
+                tableCategories = ((CategoriesDataTable) (Table));
+            }
+
+            [DebuggerNonUserCode]
+            public int CategoryID
+            {
+                get { return ((int) (this[tableCategories.CategoryIDColumn])); }
+                set { this[tableCategories.CategoryIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string CategoryName
+            {
+                get { return ((string) (this[tableCategories.CategoryNameColumn])); }
+                set { this[tableCategories.CategoryNameColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Description
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableCategories.DescriptionColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Description\' in table \'Categories\' is DBNull.", e);
+                    }
+                }
+                set { this[tableCategories.DescriptionColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public byte[] Picture
+            {
+                get
+                {
+                    try
+                    {
+                        return ((byte[]) (this[tableCategories.PictureColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Picture\' in table \'Categories\' is DBNull.", e);
+                    }
+                }
+                set { this[tableCategories.PictureColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsDescriptionNull()
+            {
+                return IsNull(tableCategories.DescriptionColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetDescriptionNull()
+            {
+                this[tableCategories.DescriptionColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsPictureNull()
+            {
+                return IsNull(tableCategories.PictureColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetPictureNull()
+            {
+                this[tableCategories.PictureColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public ProductsRow[] GetProductsRows()
+            {
+                if ((Table.ChildRelations["FK_Products_Categories"] == null))
+                {
+                    return new ProductsRow[0];
+                }
+                else
+                {
+                    return ((ProductsRow[]) (base.GetChildRows(Table.ChildRelations["FK_Products_Categories"])));
+                }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: CategoriesRowChangeEvent
+
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class CategoriesRowChangeEvent : EventArgs
+        {
+            private readonly DataRowAction eventAction;
+            private readonly CategoriesRow eventRow;
+
+            [DebuggerNonUserCode]
+            public CategoriesRowChangeEvent(CategoriesRow row, DataRowAction action)
+            {
+                eventRow = row;
+                eventAction = action;
+            }
+
+            [DebuggerNonUserCode]
+            public CategoriesRow Row
+            {
+                get { return eventRow; }
+            }
+
+            [DebuggerNonUserCode]
+            public DataRowAction Action
+            {
+                get { return eventAction; }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: CustomerCustomerDemoDataTable
+
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class CustomerCustomerDemoDataTable : global::System.Data.TypedTableBase<CustomerCustomerDemoRow> {
-            
-            private global::System.Data.DataColumn columnCustomerID;
-            
-            private global::System.Data.DataColumn columnCustomerTypeID;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerCustomerDemoDataTable() {
-                this.TableName = "CustomerCustomerDemo";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [Serializable]
+        [XmlSchemaProvider("GetTypedTableSchema")]
+        public class CustomerCustomerDemoDataTable : TypedTableBase<CustomerCustomerDemoRow>
+        {
+            private DataColumn columnCustomerID;
+
+            private DataColumn columnCustomerTypeID;
+
+            [DebuggerNonUserCode]
+            public CustomerCustomerDemoDataTable()
+            {
+                TableName = "CustomerCustomerDemo";
+                BeginInit();
+                InitClass();
+                EndInit();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal CustomerCustomerDemoDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
+
+            [DebuggerNonUserCode]
+            internal CustomerCustomerDemoDataTable(DataTable table)
+            {
+                TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive))
+                {
+                    CaseSensitive = table.CaseSensitive;
                 }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
+                {
+                    Locale = table.Locale;
                 }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
+                if ((table.Namespace != table.DataSet.Namespace))
+                {
+                    Namespace = table.Namespace;
                 }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
+                Prefix = table.Prefix;
+                MinimumCapacity = table.MinimumCapacity;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected CustomerCustomerDemoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
+
+            [DebuggerNonUserCode]
+            protected CustomerCustomerDemoDataTable(SerializationInfo info, StreamingContext context) :
+                base(info, context)
+            {
+                InitVars();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CustomerIDColumn {
-                get {
-                    return this.columnCustomerID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CustomerIDColumn
+            {
+                get { return columnCustomerID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CustomerTypeIDColumn {
-                get {
-                    return this.columnCustomerTypeID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CustomerTypeIDColumn
+            {
+                get { return columnCustomerTypeID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
+
+            [DebuggerNonUserCode]
+            [Browsable(false)]
+            public int Count
+            {
+                get { return Rows.Count; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerCustomerDemoRow this[int index] {
-                get {
-                    return ((CustomerCustomerDemoRow)(this.Rows[index]));
-                }
+
+            [DebuggerNonUserCode]
+            public CustomerCustomerDemoRow this[int index]
+            {
+                get { return ((CustomerCustomerDemoRow) (Rows[index])); }
             }
-            
+
             public event CustomerCustomerDemoRowChangeEventHandler CustomerCustomerDemoRowChanging;
-            
+
             public event CustomerCustomerDemoRowChangeEventHandler CustomerCustomerDemoRowChanged;
-            
+
             public event CustomerCustomerDemoRowChangeEventHandler CustomerCustomerDemoRowDeleting;
-            
+
             public event CustomerCustomerDemoRowChangeEventHandler CustomerCustomerDemoRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddCustomerCustomerDemoRow(CustomerCustomerDemoRow row) {
-                this.Rows.Add(row);
+
+            [DebuggerNonUserCode]
+            public void AddCustomerCustomerDemoRow(CustomerCustomerDemoRow row)
+            {
+                Rows.Add(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerCustomerDemoRow AddCustomerCustomerDemoRow(CustomersRow parentCustomersRowByFK_CustomerCustomerDemo_Customers, CustomerDemographicsRow parentCustomerDemographicsRowByFK_CustomerCustomerDemo) {
-                CustomerCustomerDemoRow rowCustomerCustomerDemoRow = ((CustomerCustomerDemoRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        null};
-                if ((parentCustomersRowByFK_CustomerCustomerDemo_Customers != null)) {
+
+            [DebuggerNonUserCode]
+            public CustomerCustomerDemoRow AddCustomerCustomerDemoRow(
+                CustomersRow parentCustomersRowByFK_CustomerCustomerDemo_Customers,
+                CustomerDemographicsRow parentCustomerDemographicsRowByFK_CustomerCustomerDemo)
+            {
+                var rowCustomerCustomerDemoRow = ((CustomerCustomerDemoRow) (NewRow()));
+                var columnValuesArray = new object[]
+                                            {
+                                                null,
+                                                null
+                                            };
+                if ((parentCustomersRowByFK_CustomerCustomerDemo_Customers != null))
+                {
                     columnValuesArray[0] = parentCustomersRowByFK_CustomerCustomerDemo_Customers[0];
                 }
-                if ((parentCustomerDemographicsRowByFK_CustomerCustomerDemo != null)) {
+                if ((parentCustomerDemographicsRowByFK_CustomerCustomerDemo != null))
+                {
                     columnValuesArray[1] = parentCustomerDemographicsRowByFK_CustomerCustomerDemo[0];
                 }
                 rowCustomerCustomerDemoRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowCustomerCustomerDemoRow);
+                Rows.Add(rowCustomerCustomerDemoRow);
                 return rowCustomerCustomerDemoRow;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerCustomerDemoRow FindByCustomerIDCustomerTypeID(string CustomerID, string CustomerTypeID) {
-                return ((CustomerCustomerDemoRow)(this.Rows.Find(new object[] {
-                            CustomerID,
-                            CustomerTypeID})));
+
+            [DebuggerNonUserCode]
+            public CustomerCustomerDemoRow FindByCustomerIDCustomerTypeID(string CustomerID, string CustomerTypeID)
+            {
+                return ((CustomerCustomerDemoRow) (Rows.Find(new object[]
+                                                                 {
+                                                                     CustomerID,
+                                                                     CustomerTypeID
+                                                                 })));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                CustomerCustomerDemoDataTable cln = ((CustomerCustomerDemoDataTable)(base.Clone()));
+
+            [DebuggerNonUserCode]
+            public override DataTable Clone()
+            {
+                var cln = ((CustomerCustomerDemoDataTable) (base.Clone()));
                 cln.InitVars();
                 return cln;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
+
+            [DebuggerNonUserCode]
+            protected override DataTable CreateInstance()
+            {
                 return new CustomerCustomerDemoDataTable();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnCustomerID = base.Columns["CustomerID"];
-                this.columnCustomerTypeID = base.Columns["CustomerTypeID"];
+
+            [DebuggerNonUserCode]
+            internal void InitVars()
+            {
+                columnCustomerID = base.Columns["CustomerID"];
+                columnCustomerTypeID = base.Columns["CustomerTypeID"];
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnCustomerID = new global::System.Data.DataColumn("CustomerID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCustomerID);
-                this.columnCustomerTypeID = new global::System.Data.DataColumn("CustomerTypeID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCustomerTypeID);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnCustomerID,
-                                this.columnCustomerTypeID}, true));
-                this.columnCustomerID.AllowDBNull = false;
-                this.columnCustomerID.MaxLength = 5;
-                this.columnCustomerTypeID.AllowDBNull = false;
-                this.columnCustomerTypeID.MaxLength = 10;
+
+            [DebuggerNonUserCode]
+            private void InitClass()
+            {
+                columnCustomerID = new DataColumn("CustomerID", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCustomerID);
+                columnCustomerTypeID = new DataColumn("CustomerTypeID", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCustomerTypeID);
+                Constraints.Add(new UniqueConstraint("Constraint1", new[]
+                                                                        {
+                                                                            columnCustomerID,
+                                                                            columnCustomerTypeID
+                                                                        }, true));
+                columnCustomerID.AllowDBNull = false;
+                columnCustomerID.MaxLength = 5;
+                columnCustomerTypeID.AllowDBNull = false;
+                columnCustomerTypeID.MaxLength = 10;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerCustomerDemoRow NewCustomerCustomerDemoRow() {
-                return ((CustomerCustomerDemoRow)(this.NewRow()));
+
+            [DebuggerNonUserCode]
+            public CustomerCustomerDemoRow NewCustomerCustomerDemoRow()
+            {
+                return ((CustomerCustomerDemoRow) (NewRow()));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+
+            [DebuggerNonUserCode]
+            protected override DataRow NewRowFromBuilder(DataRowBuilder builder)
+            {
                 return new CustomerCustomerDemoRow(builder);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(CustomerCustomerDemoRow);
+
+            [DebuggerNonUserCode]
+            protected override Type GetRowType()
+            {
+                return typeof (CustomerCustomerDemoRow);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanged(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanged(e);
-                if ((this.CustomerCustomerDemoRowChanged != null)) {
-                    this.CustomerCustomerDemoRowChanged(this, new CustomerCustomerDemoRowChangeEvent(((CustomerCustomerDemoRow)(e.Row)), e.Action));
+                if ((CustomerCustomerDemoRowChanged != null))
+                {
+                    CustomerCustomerDemoRowChanged(this,
+                                                   new CustomerCustomerDemoRowChangeEvent(
+                                                       ((CustomerCustomerDemoRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanging(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanging(e);
-                if ((this.CustomerCustomerDemoRowChanging != null)) {
-                    this.CustomerCustomerDemoRowChanging(this, new CustomerCustomerDemoRowChangeEvent(((CustomerCustomerDemoRow)(e.Row)), e.Action));
+                if ((CustomerCustomerDemoRowChanging != null))
+                {
+                    CustomerCustomerDemoRowChanging(this,
+                                                    new CustomerCustomerDemoRowChangeEvent(
+                                                        ((CustomerCustomerDemoRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleted(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleted(e);
-                if ((this.CustomerCustomerDemoRowDeleted != null)) {
-                    this.CustomerCustomerDemoRowDeleted(this, new CustomerCustomerDemoRowChangeEvent(((CustomerCustomerDemoRow)(e.Row)), e.Action));
+                if ((CustomerCustomerDemoRowDeleted != null))
+                {
+                    CustomerCustomerDemoRowDeleted(this,
+                                                   new CustomerCustomerDemoRowChangeEvent(
+                                                       ((CustomerCustomerDemoRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleting(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleting(e);
-                if ((this.CustomerCustomerDemoRowDeleting != null)) {
-                    this.CustomerCustomerDemoRowDeleting(this, new CustomerCustomerDemoRowChangeEvent(((CustomerCustomerDemoRow)(e.Row)), e.Action));
+                if ((CustomerCustomerDemoRowDeleting != null))
+                {
+                    CustomerCustomerDemoRowDeleting(this,
+                                                    new CustomerCustomerDemoRowChangeEvent(
+                                                        ((CustomerCustomerDemoRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveCustomerCustomerDemoRow(CustomerCustomerDemoRow row) {
-                this.Rows.Remove(row);
+
+            [DebuggerNonUserCode]
+            public void RemoveCustomerCustomerDemoRow(CustomerCustomerDemoRow row)
+            {
+                Rows.Remove(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NorthwindDataSet ds = new NorthwindDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+
+            [DebuggerNonUserCode]
+            public static XmlSchemaComplexType GetTypedTableSchema(XmlSchemaSet xs)
+            {
+                var type = new XmlSchemaComplexType();
+                var sequence = new XmlSchemaSequence();
+                var ds = new NorthwindDataSet();
+                var any1 = new XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any1.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any2.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "CustomerCustomerDemoDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
+                XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace))
+                {
+                    var s1 = new MemoryStream();
+                    var s2 = new MemoryStream();
+                    try
+                    {
+                        XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                        for (IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator();
+                             schemas.MoveNext();)
+                        {
+                            schema = ((XmlSchema) (schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
+                            if ((s1.Length == s2.Length))
+                            {
                                 s1.Position = 0;
                                 s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                for (;
+                                    ((s1.Position != s1.Length)
+                                     && (s1.ReadByte() == s2.ReadByte()));)
+                                {
                                     ;
                                 }
-                                if ((s1.Position == s1.Length)) {
+                                if ((s1.Position == s1.Length))
+                                {
                                     return type;
                                 }
                             }
                         }
                     }
-                    finally {
-                        if ((s1 != null)) {
+                    finally
+                    {
+                        if ((s1 != null))
+                        {
                             s1.Close();
                         }
-                        if ((s2 != null)) {
+                        if ((s2 != null))
+                        {
                             s2.Close();
                         }
                     }
@@ -1265,246 +1680,377 @@ namespace NW247.Model {
                 return type;
             }
         }
-        
+
+        #endregion
+
+        #region Nested type: CustomerCustomerDemoRow
+
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class CustomerCustomerDemoRow : DataRow
+        {
+            private readonly CustomerCustomerDemoDataTable tableCustomerCustomerDemo;
+
+            [DebuggerNonUserCode]
+            internal CustomerCustomerDemoRow(DataRowBuilder rb) :
+                base(rb)
+            {
+                tableCustomerCustomerDemo = ((CustomerCustomerDemoDataTable) (Table));
+            }
+
+            [DebuggerNonUserCode]
+            public string CustomerID
+            {
+                get { return ((string) (this[tableCustomerCustomerDemo.CustomerIDColumn])); }
+                set { this[tableCustomerCustomerDemo.CustomerIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string CustomerTypeID
+            {
+                get { return ((string) (this[tableCustomerCustomerDemo.CustomerTypeIDColumn])); }
+                set { this[tableCustomerCustomerDemo.CustomerTypeIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public CustomerDemographicsRow CustomerDemographicsRow
+            {
+                get { return ((CustomerDemographicsRow) (GetParentRow(Table.ParentRelations["FK_CustomerCustomerDemo"]))); }
+                set { SetParentRow(value, Table.ParentRelations["FK_CustomerCustomerDemo"]); }
+            }
+
+            [DebuggerNonUserCode]
+            public CustomersRow CustomersRow
+            {
+                get { return ((CustomersRow) (GetParentRow(Table.ParentRelations["FK_CustomerCustomerDemo_Customers"]))); }
+                set { SetParentRow(value, Table.ParentRelations["FK_CustomerCustomerDemo_Customers"]); }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: CustomerCustomerDemoRowChangeEvent
+
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class CustomerCustomerDemoRowChangeEvent : EventArgs
+        {
+            private readonly DataRowAction eventAction;
+            private readonly CustomerCustomerDemoRow eventRow;
+
+            [DebuggerNonUserCode]
+            public CustomerCustomerDemoRowChangeEvent(CustomerCustomerDemoRow row, DataRowAction action)
+            {
+                eventRow = row;
+                eventAction = action;
+            }
+
+            [DebuggerNonUserCode]
+            public CustomerCustomerDemoRow Row
+            {
+                get { return eventRow; }
+            }
+
+            [DebuggerNonUserCode]
+            public DataRowAction Action
+            {
+                get { return eventAction; }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: CustomerDemographicsDataTable
+
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class CustomerDemographicsDataTable : global::System.Data.TypedTableBase<CustomerDemographicsRow> {
-            
-            private global::System.Data.DataColumn columnCustomerTypeID;
-            
-            private global::System.Data.DataColumn columnCustomerDesc;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerDemographicsDataTable() {
-                this.TableName = "CustomerDemographics";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [Serializable]
+        [XmlSchemaProvider("GetTypedTableSchema")]
+        public class CustomerDemographicsDataTable : TypedTableBase<CustomerDemographicsRow>
+        {
+            private DataColumn columnCustomerDesc;
+            private DataColumn columnCustomerTypeID;
+
+            [DebuggerNonUserCode]
+            public CustomerDemographicsDataTable()
+            {
+                TableName = "CustomerDemographics";
+                BeginInit();
+                InitClass();
+                EndInit();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal CustomerDemographicsDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
+
+            [DebuggerNonUserCode]
+            internal CustomerDemographicsDataTable(DataTable table)
+            {
+                TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive))
+                {
+                    CaseSensitive = table.CaseSensitive;
                 }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
+                {
+                    Locale = table.Locale;
                 }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
+                if ((table.Namespace != table.DataSet.Namespace))
+                {
+                    Namespace = table.Namespace;
                 }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
+                Prefix = table.Prefix;
+                MinimumCapacity = table.MinimumCapacity;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected CustomerDemographicsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
+
+            [DebuggerNonUserCode]
+            protected CustomerDemographicsDataTable(SerializationInfo info, StreamingContext context) :
+                base(info, context)
+            {
+                InitVars();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CustomerTypeIDColumn {
-                get {
-                    return this.columnCustomerTypeID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CustomerTypeIDColumn
+            {
+                get { return columnCustomerTypeID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CustomerDescColumn {
-                get {
-                    return this.columnCustomerDesc;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CustomerDescColumn
+            {
+                get { return columnCustomerDesc; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
+
+            [DebuggerNonUserCode]
+            [Browsable(false)]
+            public int Count
+            {
+                get { return Rows.Count; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerDemographicsRow this[int index] {
-                get {
-                    return ((CustomerDemographicsRow)(this.Rows[index]));
-                }
+
+            [DebuggerNonUserCode]
+            public CustomerDemographicsRow this[int index]
+            {
+                get { return ((CustomerDemographicsRow) (Rows[index])); }
             }
-            
+
             public event CustomerDemographicsRowChangeEventHandler CustomerDemographicsRowChanging;
-            
+
             public event CustomerDemographicsRowChangeEventHandler CustomerDemographicsRowChanged;
-            
+
             public event CustomerDemographicsRowChangeEventHandler CustomerDemographicsRowDeleting;
-            
+
             public event CustomerDemographicsRowChangeEventHandler CustomerDemographicsRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddCustomerDemographicsRow(CustomerDemographicsRow row) {
-                this.Rows.Add(row);
+
+            [DebuggerNonUserCode]
+            public void AddCustomerDemographicsRow(CustomerDemographicsRow row)
+            {
+                Rows.Add(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerDemographicsRow AddCustomerDemographicsRow(string CustomerTypeID, string CustomerDesc) {
-                CustomerDemographicsRow rowCustomerDemographicsRow = ((CustomerDemographicsRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        CustomerTypeID,
-                        CustomerDesc};
+
+            [DebuggerNonUserCode]
+            public CustomerDemographicsRow AddCustomerDemographicsRow(string CustomerTypeID, string CustomerDesc)
+            {
+                var rowCustomerDemographicsRow = ((CustomerDemographicsRow) (NewRow()));
+                var columnValuesArray = new object[]
+                                            {
+                                                CustomerTypeID,
+                                                CustomerDesc
+                                            };
                 rowCustomerDemographicsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowCustomerDemographicsRow);
+                Rows.Add(rowCustomerDemographicsRow);
                 return rowCustomerDemographicsRow;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerDemographicsRow FindByCustomerTypeID(string CustomerTypeID) {
-                return ((CustomerDemographicsRow)(this.Rows.Find(new object[] {
-                            CustomerTypeID})));
+
+            [DebuggerNonUserCode]
+            public CustomerDemographicsRow FindByCustomerTypeID(string CustomerTypeID)
+            {
+                return ((CustomerDemographicsRow) (Rows.Find(new object[]
+                                                                 {
+                                                                     CustomerTypeID
+                                                                 })));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                CustomerDemographicsDataTable cln = ((CustomerDemographicsDataTable)(base.Clone()));
+
+            [DebuggerNonUserCode]
+            public override DataTable Clone()
+            {
+                var cln = ((CustomerDemographicsDataTable) (base.Clone()));
                 cln.InitVars();
                 return cln;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
+
+            [DebuggerNonUserCode]
+            protected override DataTable CreateInstance()
+            {
                 return new CustomerDemographicsDataTable();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnCustomerTypeID = base.Columns["CustomerTypeID"];
-                this.columnCustomerDesc = base.Columns["CustomerDesc"];
+
+            [DebuggerNonUserCode]
+            internal void InitVars()
+            {
+                columnCustomerTypeID = base.Columns["CustomerTypeID"];
+                columnCustomerDesc = base.Columns["CustomerDesc"];
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnCustomerTypeID = new global::System.Data.DataColumn("CustomerTypeID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCustomerTypeID);
-                this.columnCustomerDesc = new global::System.Data.DataColumn("CustomerDesc", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCustomerDesc);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnCustomerTypeID}, true));
-                this.columnCustomerTypeID.AllowDBNull = false;
-                this.columnCustomerTypeID.Unique = true;
-                this.columnCustomerTypeID.MaxLength = 10;
-                this.columnCustomerDesc.MaxLength = 1073741823;
+
+            [DebuggerNonUserCode]
+            private void InitClass()
+            {
+                columnCustomerTypeID = new DataColumn("CustomerTypeID", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCustomerTypeID);
+                columnCustomerDesc = new DataColumn("CustomerDesc", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCustomerDesc);
+                Constraints.Add(new UniqueConstraint("Constraint1", new[]
+                                                                        {
+                                                                            columnCustomerTypeID
+                                                                        }, true));
+                columnCustomerTypeID.AllowDBNull = false;
+                columnCustomerTypeID.Unique = true;
+                columnCustomerTypeID.MaxLength = 10;
+                columnCustomerDesc.MaxLength = 1073741823;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerDemographicsRow NewCustomerDemographicsRow() {
-                return ((CustomerDemographicsRow)(this.NewRow()));
+
+            [DebuggerNonUserCode]
+            public CustomerDemographicsRow NewCustomerDemographicsRow()
+            {
+                return ((CustomerDemographicsRow) (NewRow()));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+
+            [DebuggerNonUserCode]
+            protected override DataRow NewRowFromBuilder(DataRowBuilder builder)
+            {
                 return new CustomerDemographicsRow(builder);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(CustomerDemographicsRow);
+
+            [DebuggerNonUserCode]
+            protected override Type GetRowType()
+            {
+                return typeof (CustomerDemographicsRow);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanged(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanged(e);
-                if ((this.CustomerDemographicsRowChanged != null)) {
-                    this.CustomerDemographicsRowChanged(this, new CustomerDemographicsRowChangeEvent(((CustomerDemographicsRow)(e.Row)), e.Action));
+                if ((CustomerDemographicsRowChanged != null))
+                {
+                    CustomerDemographicsRowChanged(this,
+                                                   new CustomerDemographicsRowChangeEvent(
+                                                       ((CustomerDemographicsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanging(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanging(e);
-                if ((this.CustomerDemographicsRowChanging != null)) {
-                    this.CustomerDemographicsRowChanging(this, new CustomerDemographicsRowChangeEvent(((CustomerDemographicsRow)(e.Row)), e.Action));
+                if ((CustomerDemographicsRowChanging != null))
+                {
+                    CustomerDemographicsRowChanging(this,
+                                                    new CustomerDemographicsRowChangeEvent(
+                                                        ((CustomerDemographicsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleted(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleted(e);
-                if ((this.CustomerDemographicsRowDeleted != null)) {
-                    this.CustomerDemographicsRowDeleted(this, new CustomerDemographicsRowChangeEvent(((CustomerDemographicsRow)(e.Row)), e.Action));
+                if ((CustomerDemographicsRowDeleted != null))
+                {
+                    CustomerDemographicsRowDeleted(this,
+                                                   new CustomerDemographicsRowChangeEvent(
+                                                       ((CustomerDemographicsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleting(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleting(e);
-                if ((this.CustomerDemographicsRowDeleting != null)) {
-                    this.CustomerDemographicsRowDeleting(this, new CustomerDemographicsRowChangeEvent(((CustomerDemographicsRow)(e.Row)), e.Action));
+                if ((CustomerDemographicsRowDeleting != null))
+                {
+                    CustomerDemographicsRowDeleting(this,
+                                                    new CustomerDemographicsRowChangeEvent(
+                                                        ((CustomerDemographicsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveCustomerDemographicsRow(CustomerDemographicsRow row) {
-                this.Rows.Remove(row);
+
+            [DebuggerNonUserCode]
+            public void RemoveCustomerDemographicsRow(CustomerDemographicsRow row)
+            {
+                Rows.Remove(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NorthwindDataSet ds = new NorthwindDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+
+            [DebuggerNonUserCode]
+            public static XmlSchemaComplexType GetTypedTableSchema(XmlSchemaSet xs)
+            {
+                var type = new XmlSchemaComplexType();
+                var sequence = new XmlSchemaSequence();
+                var ds = new NorthwindDataSet();
+                var any1 = new XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any1.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any2.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "CustomerDemographicsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
+                XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace))
+                {
+                    var s1 = new MemoryStream();
+                    var s2 = new MemoryStream();
+                    try
+                    {
+                        XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                        for (IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator();
+                             schemas.MoveNext();)
+                        {
+                            schema = ((XmlSchema) (schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
+                            if ((s1.Length == s2.Length))
+                            {
                                 s1.Position = 0;
                                 s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                for (;
+                                    ((s1.Position != s1.Length)
+                                     && (s1.ReadByte() == s2.ReadByte()));)
+                                {
                                     ;
                                 }
-                                if ((s1.Position == s1.Length)) {
+                                if ((s1.Position == s1.Length))
+                                {
                                     return type;
                                 }
                             }
                         }
                     }
-                    finally {
-                        if ((s1 != null)) {
+                    finally
+                    {
+                        if ((s1 != null))
+                        {
                             s1.Close();
                         }
-                        if ((s2 != null)) {
+                        if ((s2 != null))
+                        {
                             s2.Close();
                         }
                     }
@@ -1513,373 +2059,509 @@ namespace NW247.Model {
                 return type;
             }
         }
-        
+
+        #endregion
+
+        #region Nested type: CustomerDemographicsRow
+
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class CustomerDemographicsRow : DataRow
+        {
+            private readonly CustomerDemographicsDataTable tableCustomerDemographics;
+
+            [DebuggerNonUserCode]
+            internal CustomerDemographicsRow(DataRowBuilder rb) :
+                base(rb)
+            {
+                tableCustomerDemographics = ((CustomerDemographicsDataTable) (Table));
+            }
+
+            [DebuggerNonUserCode]
+            public string CustomerTypeID
+            {
+                get { return ((string) (this[tableCustomerDemographics.CustomerTypeIDColumn])); }
+                set { this[tableCustomerDemographics.CustomerTypeIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string CustomerDesc
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableCustomerDemographics.CustomerDescColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'CustomerDesc\' in table \'CustomerDemographics\' is DBNull.", e);
+                    }
+                }
+                set { this[tableCustomerDemographics.CustomerDescColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsCustomerDescNull()
+            {
+                return IsNull(tableCustomerDemographics.CustomerDescColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetCustomerDescNull()
+            {
+                this[tableCustomerDemographics.CustomerDescColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public CustomerCustomerDemoRow[] GetCustomerCustomerDemoRows()
+            {
+                if ((Table.ChildRelations["FK_CustomerCustomerDemo"] == null))
+                {
+                    return new CustomerCustomerDemoRow[0];
+                }
+                else
+                {
+                    return
+                        ((CustomerCustomerDemoRow[])
+                         (base.GetChildRows(Table.ChildRelations["FK_CustomerCustomerDemo"])));
+                }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: CustomerDemographicsRowChangeEvent
+
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class CustomerDemographicsRowChangeEvent : EventArgs
+        {
+            private readonly DataRowAction eventAction;
+            private readonly CustomerDemographicsRow eventRow;
+
+            [DebuggerNonUserCode]
+            public CustomerDemographicsRowChangeEvent(CustomerDemographicsRow row, DataRowAction action)
+            {
+                eventRow = row;
+                eventAction = action;
+            }
+
+            [DebuggerNonUserCode]
+            public CustomerDemographicsRow Row
+            {
+                get { return eventRow; }
+            }
+
+            [DebuggerNonUserCode]
+            public DataRowAction Action
+            {
+                get { return eventAction; }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: CustomersDataTable
+
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class CustomersDataTable : global::System.Data.TypedTableBase<CustomersRow> {
-            
-            private global::System.Data.DataColumn columnCustomerID;
-            
-            private global::System.Data.DataColumn columnCompanyName;
-            
-            private global::System.Data.DataColumn columnContactName;
-            
-            private global::System.Data.DataColumn columnContactTitle;
-            
-            private global::System.Data.DataColumn columnAddress;
-            
-            private global::System.Data.DataColumn columnCity;
-            
-            private global::System.Data.DataColumn columnRegion;
-            
-            private global::System.Data.DataColumn columnPostalCode;
-            
-            private global::System.Data.DataColumn columnCountry;
-            
-            private global::System.Data.DataColumn columnPhone;
-            
-            private global::System.Data.DataColumn columnFax;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomersDataTable() {
-                this.TableName = "Customers";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [Serializable]
+        [XmlSchemaProvider("GetTypedTableSchema")]
+        public class CustomersDataTable : TypedTableBase<CustomersRow>
+        {
+            private DataColumn columnAddress;
+
+            private DataColumn columnCity;
+            private DataColumn columnCompanyName;
+
+            private DataColumn columnContactName;
+
+            private DataColumn columnContactTitle;
+
+            private DataColumn columnCountry;
+            private DataColumn columnCustomerID;
+
+            private DataColumn columnFax;
+            private DataColumn columnPhone;
+            private DataColumn columnPostalCode;
+            private DataColumn columnRegion;
+
+            [DebuggerNonUserCode]
+            public CustomersDataTable()
+            {
+                TableName = "Customers";
+                BeginInit();
+                InitClass();
+                EndInit();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal CustomersDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
+
+            [DebuggerNonUserCode]
+            internal CustomersDataTable(DataTable table)
+            {
+                TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive))
+                {
+                    CaseSensitive = table.CaseSensitive;
                 }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
+                {
+                    Locale = table.Locale;
                 }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
+                if ((table.Namespace != table.DataSet.Namespace))
+                {
+                    Namespace = table.Namespace;
                 }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
+                Prefix = table.Prefix;
+                MinimumCapacity = table.MinimumCapacity;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected CustomersDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
+
+            [DebuggerNonUserCode]
+            protected CustomersDataTable(SerializationInfo info, StreamingContext context) :
+                base(info, context)
+            {
+                InitVars();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CustomerIDColumn {
-                get {
-                    return this.columnCustomerID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CustomerIDColumn
+            {
+                get { return columnCustomerID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CompanyNameColumn {
-                get {
-                    return this.columnCompanyName;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CompanyNameColumn
+            {
+                get { return columnCompanyName; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ContactNameColumn {
-                get {
-                    return this.columnContactName;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ContactNameColumn
+            {
+                get { return columnContactName; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ContactTitleColumn {
-                get {
-                    return this.columnContactTitle;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ContactTitleColumn
+            {
+                get { return columnContactTitle; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn AddressColumn {
-                get {
-                    return this.columnAddress;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn AddressColumn
+            {
+                get { return columnAddress; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CityColumn {
-                get {
-                    return this.columnCity;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CityColumn
+            {
+                get { return columnCity; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn RegionColumn {
-                get {
-                    return this.columnRegion;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn RegionColumn
+            {
+                get { return columnRegion; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PostalCodeColumn {
-                get {
-                    return this.columnPostalCode;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn PostalCodeColumn
+            {
+                get { return columnPostalCode; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CountryColumn {
-                get {
-                    return this.columnCountry;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CountryColumn
+            {
+                get { return columnCountry; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PhoneColumn {
-                get {
-                    return this.columnPhone;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn PhoneColumn
+            {
+                get { return columnPhone; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn FaxColumn {
-                get {
-                    return this.columnFax;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn FaxColumn
+            {
+                get { return columnFax; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
+
+            [DebuggerNonUserCode]
+            [Browsable(false)]
+            public int Count
+            {
+                get { return Rows.Count; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomersRow this[int index] {
-                get {
-                    return ((CustomersRow)(this.Rows[index]));
-                }
+
+            [DebuggerNonUserCode]
+            public CustomersRow this[int index]
+            {
+                get { return ((CustomersRow) (Rows[index])); }
             }
-            
+
             public event CustomersRowChangeEventHandler CustomersRowChanging;
-            
+
             public event CustomersRowChangeEventHandler CustomersRowChanged;
-            
+
             public event CustomersRowChangeEventHandler CustomersRowDeleting;
-            
+
             public event CustomersRowChangeEventHandler CustomersRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddCustomersRow(CustomersRow row) {
-                this.Rows.Add(row);
+
+            [DebuggerNonUserCode]
+            public void AddCustomersRow(CustomersRow row)
+            {
+                Rows.Add(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomersRow AddCustomersRow(string CustomerID, string CompanyName, string ContactName, string ContactTitle, string Address, string City, string Region, string PostalCode, string Country, string Phone, string Fax) {
-                CustomersRow rowCustomersRow = ((CustomersRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        CustomerID,
-                        CompanyName,
-                        ContactName,
-                        ContactTitle,
-                        Address,
-                        City,
-                        Region,
-                        PostalCode,
-                        Country,
-                        Phone,
-                        Fax};
+
+            [DebuggerNonUserCode]
+            public CustomersRow AddCustomersRow(string CustomerID, string CompanyName, string ContactName,
+                                                string ContactTitle, string Address, string City, string Region,
+                                                string PostalCode, string Country, string Phone, string Fax)
+            {
+                var rowCustomersRow = ((CustomersRow) (NewRow()));
+                var columnValuesArray = new object[]
+                                            {
+                                                CustomerID,
+                                                CompanyName,
+                                                ContactName,
+                                                ContactTitle,
+                                                Address,
+                                                City,
+                                                Region,
+                                                PostalCode,
+                                                Country,
+                                                Phone,
+                                                Fax
+                                            };
                 rowCustomersRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowCustomersRow);
+                Rows.Add(rowCustomersRow);
                 return rowCustomersRow;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomersRow FindByCustomerID(string CustomerID) {
-                return ((CustomersRow)(this.Rows.Find(new object[] {
-                            CustomerID})));
+
+            [DebuggerNonUserCode]
+            public CustomersRow FindByCustomerID(string CustomerID)
+            {
+                return ((CustomersRow) (Rows.Find(new object[]
+                                                      {
+                                                          CustomerID
+                                                      })));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                CustomersDataTable cln = ((CustomersDataTable)(base.Clone()));
+
+            [DebuggerNonUserCode]
+            public override DataTable Clone()
+            {
+                var cln = ((CustomersDataTable) (base.Clone()));
                 cln.InitVars();
                 return cln;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
+
+            [DebuggerNonUserCode]
+            protected override DataTable CreateInstance()
+            {
                 return new CustomersDataTable();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnCustomerID = base.Columns["CustomerID"];
-                this.columnCompanyName = base.Columns["CompanyName"];
-                this.columnContactName = base.Columns["ContactName"];
-                this.columnContactTitle = base.Columns["ContactTitle"];
-                this.columnAddress = base.Columns["Address"];
-                this.columnCity = base.Columns["City"];
-                this.columnRegion = base.Columns["Region"];
-                this.columnPostalCode = base.Columns["PostalCode"];
-                this.columnCountry = base.Columns["Country"];
-                this.columnPhone = base.Columns["Phone"];
-                this.columnFax = base.Columns["Fax"];
+
+            [DebuggerNonUserCode]
+            internal void InitVars()
+            {
+                columnCustomerID = base.Columns["CustomerID"];
+                columnCompanyName = base.Columns["CompanyName"];
+                columnContactName = base.Columns["ContactName"];
+                columnContactTitle = base.Columns["ContactTitle"];
+                columnAddress = base.Columns["Address"];
+                columnCity = base.Columns["City"];
+                columnRegion = base.Columns["Region"];
+                columnPostalCode = base.Columns["PostalCode"];
+                columnCountry = base.Columns["Country"];
+                columnPhone = base.Columns["Phone"];
+                columnFax = base.Columns["Fax"];
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnCustomerID = new global::System.Data.DataColumn("CustomerID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCustomerID);
-                this.columnCompanyName = new global::System.Data.DataColumn("CompanyName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCompanyName);
-                this.columnContactName = new global::System.Data.DataColumn("ContactName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnContactName);
-                this.columnContactTitle = new global::System.Data.DataColumn("ContactTitle", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnContactTitle);
-                this.columnAddress = new global::System.Data.DataColumn("Address", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAddress);
-                this.columnCity = new global::System.Data.DataColumn("City", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCity);
-                this.columnRegion = new global::System.Data.DataColumn("Region", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRegion);
-                this.columnPostalCode = new global::System.Data.DataColumn("PostalCode", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPostalCode);
-                this.columnCountry = new global::System.Data.DataColumn("Country", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCountry);
-                this.columnPhone = new global::System.Data.DataColumn("Phone", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPhone);
-                this.columnFax = new global::System.Data.DataColumn("Fax", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFax);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnCustomerID}, true));
-                this.columnCustomerID.AllowDBNull = false;
-                this.columnCustomerID.Unique = true;
-                this.columnCustomerID.MaxLength = 5;
-                this.columnCompanyName.AllowDBNull = false;
-                this.columnCompanyName.MaxLength = 40;
-                this.columnContactName.MaxLength = 30;
-                this.columnContactTitle.MaxLength = 30;
-                this.columnAddress.MaxLength = 60;
-                this.columnCity.MaxLength = 15;
-                this.columnRegion.MaxLength = 15;
-                this.columnPostalCode.MaxLength = 10;
-                this.columnCountry.MaxLength = 15;
-                this.columnPhone.MaxLength = 24;
-                this.columnFax.MaxLength = 24;
+
+            [DebuggerNonUserCode]
+            private void InitClass()
+            {
+                columnCustomerID = new DataColumn("CustomerID", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCustomerID);
+                columnCompanyName = new DataColumn("CompanyName", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCompanyName);
+                columnContactName = new DataColumn("ContactName", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnContactName);
+                columnContactTitle = new DataColumn("ContactTitle", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnContactTitle);
+                columnAddress = new DataColumn("Address", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnAddress);
+                columnCity = new DataColumn("City", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCity);
+                columnRegion = new DataColumn("Region", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnRegion);
+                columnPostalCode = new DataColumn("PostalCode", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnPostalCode);
+                columnCountry = new DataColumn("Country", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCountry);
+                columnPhone = new DataColumn("Phone", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnPhone);
+                columnFax = new DataColumn("Fax", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnFax);
+                Constraints.Add(new UniqueConstraint("Constraint1", new[]
+                                                                        {
+                                                                            columnCustomerID
+                                                                        }, true));
+                columnCustomerID.AllowDBNull = false;
+                columnCustomerID.Unique = true;
+                columnCustomerID.MaxLength = 5;
+                columnCompanyName.AllowDBNull = false;
+                columnCompanyName.MaxLength = 40;
+                columnContactName.MaxLength = 30;
+                columnContactTitle.MaxLength = 30;
+                columnAddress.MaxLength = 60;
+                columnCity.MaxLength = 15;
+                columnRegion.MaxLength = 15;
+                columnPostalCode.MaxLength = 10;
+                columnCountry.MaxLength = 15;
+                columnPhone.MaxLength = 24;
+                columnFax.MaxLength = 24;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomersRow NewCustomersRow() {
-                return ((CustomersRow)(this.NewRow()));
+
+            [DebuggerNonUserCode]
+            public CustomersRow NewCustomersRow()
+            {
+                return ((CustomersRow) (NewRow()));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+
+            [DebuggerNonUserCode]
+            protected override DataRow NewRowFromBuilder(DataRowBuilder builder)
+            {
                 return new CustomersRow(builder);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(CustomersRow);
+
+            [DebuggerNonUserCode]
+            protected override Type GetRowType()
+            {
+                return typeof (CustomersRow);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanged(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanged(e);
-                if ((this.CustomersRowChanged != null)) {
-                    this.CustomersRowChanged(this, new CustomersRowChangeEvent(((CustomersRow)(e.Row)), e.Action));
+                if ((CustomersRowChanged != null))
+                {
+                    CustomersRowChanged(this, new CustomersRowChangeEvent(((CustomersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanging(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanging(e);
-                if ((this.CustomersRowChanging != null)) {
-                    this.CustomersRowChanging(this, new CustomersRowChangeEvent(((CustomersRow)(e.Row)), e.Action));
+                if ((CustomersRowChanging != null))
+                {
+                    CustomersRowChanging(this, new CustomersRowChangeEvent(((CustomersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleted(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleted(e);
-                if ((this.CustomersRowDeleted != null)) {
-                    this.CustomersRowDeleted(this, new CustomersRowChangeEvent(((CustomersRow)(e.Row)), e.Action));
+                if ((CustomersRowDeleted != null))
+                {
+                    CustomersRowDeleted(this, new CustomersRowChangeEvent(((CustomersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleting(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleting(e);
-                if ((this.CustomersRowDeleting != null)) {
-                    this.CustomersRowDeleting(this, new CustomersRowChangeEvent(((CustomersRow)(e.Row)), e.Action));
+                if ((CustomersRowDeleting != null))
+                {
+                    CustomersRowDeleting(this, new CustomersRowChangeEvent(((CustomersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveCustomersRow(CustomersRow row) {
-                this.Rows.Remove(row);
+
+            [DebuggerNonUserCode]
+            public void RemoveCustomersRow(CustomersRow row)
+            {
+                Rows.Remove(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NorthwindDataSet ds = new NorthwindDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+
+            [DebuggerNonUserCode]
+            public static XmlSchemaComplexType GetTypedTableSchema(XmlSchemaSet xs)
+            {
+                var type = new XmlSchemaComplexType();
+                var sequence = new XmlSchemaSequence();
+                var ds = new NorthwindDataSet();
+                var any1 = new XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any1.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any2.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "CustomersDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
+                XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace))
+                {
+                    var s1 = new MemoryStream();
+                    var s2 = new MemoryStream();
+                    try
+                    {
+                        XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                        for (IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator();
+                             schemas.MoveNext();)
+                        {
+                            schema = ((XmlSchema) (schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
+                            if ((s1.Length == s2.Length))
+                            {
                                 s1.Position = 0;
                                 s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                for (;
+                                    ((s1.Position != s1.Length)
+                                     && (s1.ReadByte() == s2.ReadByte()));)
+                                {
                                     ;
                                 }
-                                if ((s1.Position == s1.Length)) {
+                                if ((s1.Position == s1.Length))
+                                {
                                     return type;
                                 }
                             }
                         }
                     }
-                    finally {
-                        if ((s1 != null)) {
+                    finally
+                    {
+                        if ((s1 != null))
+                        {
                             s1.Close();
                         }
-                        if ((s2 != null)) {
+                        if ((s2 != null))
+                        {
                             s2.Close();
                         }
                     }
@@ -1888,491 +2570,873 @@ namespace NW247.Model {
                 return type;
             }
         }
-        
+
+        #endregion
+
+        #region Nested type: CustomersRow
+
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class CustomersRow : DataRow
+        {
+            private readonly CustomersDataTable tableCustomers;
+
+            [DebuggerNonUserCode]
+            internal CustomersRow(DataRowBuilder rb) :
+                base(rb)
+            {
+                tableCustomers = ((CustomersDataTable) (Table));
+            }
+
+            [DebuggerNonUserCode]
+            public string CustomerID
+            {
+                get { return ((string) (this[tableCustomers.CustomerIDColumn])); }
+                set { this[tableCustomers.CustomerIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string CompanyName
+            {
+                get { return ((string) (this[tableCustomers.CompanyNameColumn])); }
+                set { this[tableCustomers.CompanyNameColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string ContactName
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableCustomers.ContactNameColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'ContactName\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableCustomers.ContactNameColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string ContactTitle
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableCustomers.ContactTitleColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'ContactTitle\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableCustomers.ContactTitleColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Address
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableCustomers.AddressColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Address\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableCustomers.AddressColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string City
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableCustomers.CityColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'City\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableCustomers.CityColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Region
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableCustomers.RegionColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Region\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableCustomers.RegionColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string PostalCode
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableCustomers.PostalCodeColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'PostalCode\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableCustomers.PostalCodeColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Country
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableCustomers.CountryColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Country\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableCustomers.CountryColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Phone
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableCustomers.PhoneColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Phone\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableCustomers.PhoneColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Fax
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableCustomers.FaxColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Fax\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableCustomers.FaxColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsContactNameNull()
+            {
+                return IsNull(tableCustomers.ContactNameColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetContactNameNull()
+            {
+                this[tableCustomers.ContactNameColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsContactTitleNull()
+            {
+                return IsNull(tableCustomers.ContactTitleColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetContactTitleNull()
+            {
+                this[tableCustomers.ContactTitleColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsAddressNull()
+            {
+                return IsNull(tableCustomers.AddressColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetAddressNull()
+            {
+                this[tableCustomers.AddressColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsCityNull()
+            {
+                return IsNull(tableCustomers.CityColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetCityNull()
+            {
+                this[tableCustomers.CityColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsRegionNull()
+            {
+                return IsNull(tableCustomers.RegionColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetRegionNull()
+            {
+                this[tableCustomers.RegionColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsPostalCodeNull()
+            {
+                return IsNull(tableCustomers.PostalCodeColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetPostalCodeNull()
+            {
+                this[tableCustomers.PostalCodeColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsCountryNull()
+            {
+                return IsNull(tableCustomers.CountryColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetCountryNull()
+            {
+                this[tableCustomers.CountryColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsPhoneNull()
+            {
+                return IsNull(tableCustomers.PhoneColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetPhoneNull()
+            {
+                this[tableCustomers.PhoneColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsFaxNull()
+            {
+                return IsNull(tableCustomers.FaxColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetFaxNull()
+            {
+                this[tableCustomers.FaxColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public CustomerCustomerDemoRow[] GetCustomerCustomerDemoRows()
+            {
+                if ((Table.ChildRelations["FK_CustomerCustomerDemo_Customers"] == null))
+                {
+                    return new CustomerCustomerDemoRow[0];
+                }
+                else
+                {
+                    return
+                        ((CustomerCustomerDemoRow[])
+                         (base.GetChildRows(Table.ChildRelations["FK_CustomerCustomerDemo_Customers"])));
+                }
+            }
+
+            [DebuggerNonUserCode]
+            public OrdersRow[] GetOrdersRows()
+            {
+                if ((Table.ChildRelations["FK_Orders_Customers"] == null))
+                {
+                    return new OrdersRow[0];
+                }
+                else
+                {
+                    return ((OrdersRow[]) (base.GetChildRows(Table.ChildRelations["FK_Orders_Customers"])));
+                }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: CustomersRowChangeEvent
+
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class CustomersRowChangeEvent : EventArgs
+        {
+            private readonly DataRowAction eventAction;
+            private readonly CustomersRow eventRow;
+
+            [DebuggerNonUserCode]
+            public CustomersRowChangeEvent(CustomersRow row, DataRowAction action)
+            {
+                eventRow = row;
+                eventAction = action;
+            }
+
+            [DebuggerNonUserCode]
+            public CustomersRow Row
+            {
+                get { return eventRow; }
+            }
+
+            [DebuggerNonUserCode]
+            public DataRowAction Action
+            {
+                get { return eventAction; }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: EmployeesDataTable
+
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class EmployeesDataTable : global::System.Data.TypedTableBase<EmployeesRow> {
-            
-            private global::System.Data.DataColumn columnEmployeeID;
-            
-            private global::System.Data.DataColumn columnLastName;
-            
-            private global::System.Data.DataColumn columnFirstName;
-            
-            private global::System.Data.DataColumn columnTitle;
-            
-            private global::System.Data.DataColumn columnTitleOfCourtesy;
-            
-            private global::System.Data.DataColumn columnBirthDate;
-            
-            private global::System.Data.DataColumn columnHireDate;
-            
-            private global::System.Data.DataColumn columnAddress;
-            
-            private global::System.Data.DataColumn columnCity;
-            
-            private global::System.Data.DataColumn columnRegion;
-            
-            private global::System.Data.DataColumn columnPostalCode;
-            
-            private global::System.Data.DataColumn columnCountry;
-            
-            private global::System.Data.DataColumn columnHomePhone;
-            
-            private global::System.Data.DataColumn columnExtension;
-            
-            private global::System.Data.DataColumn columnPhoto;
-            
-            private global::System.Data.DataColumn columnNotes;
-            
-            private global::System.Data.DataColumn columnReportsTo;
-            
-            private global::System.Data.DataColumn columnPhotoPath;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeesDataTable() {
-                this.TableName = "Employees";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [Serializable]
+        [XmlSchemaProvider("GetTypedTableSchema")]
+        public class EmployeesDataTable : TypedTableBase<EmployeesRow>
+        {
+            private DataColumn columnAddress;
+            private DataColumn columnBirthDate;
+
+            private DataColumn columnCity;
+
+            private DataColumn columnCountry;
+            private DataColumn columnEmployeeID;
+
+            private DataColumn columnExtension;
+            private DataColumn columnFirstName;
+            private DataColumn columnHireDate;
+            private DataColumn columnHomePhone;
+            private DataColumn columnLastName;
+
+            private DataColumn columnNotes;
+            private DataColumn columnPhoto;
+
+            private DataColumn columnPhotoPath;
+            private DataColumn columnPostalCode;
+            private DataColumn columnRegion;
+            private DataColumn columnReportsTo;
+            private DataColumn columnTitle;
+
+            private DataColumn columnTitleOfCourtesy;
+
+            [DebuggerNonUserCode]
+            public EmployeesDataTable()
+            {
+                TableName = "Employees";
+                BeginInit();
+                InitClass();
+                EndInit();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal EmployeesDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
+
+            [DebuggerNonUserCode]
+            internal EmployeesDataTable(DataTable table)
+            {
+                TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive))
+                {
+                    CaseSensitive = table.CaseSensitive;
                 }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
+                {
+                    Locale = table.Locale;
                 }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
+                if ((table.Namespace != table.DataSet.Namespace))
+                {
+                    Namespace = table.Namespace;
                 }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
+                Prefix = table.Prefix;
+                MinimumCapacity = table.MinimumCapacity;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected EmployeesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
+
+            [DebuggerNonUserCode]
+            protected EmployeesDataTable(SerializationInfo info, StreamingContext context) :
+                base(info, context)
+            {
+                InitVars();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn EmployeeIDColumn {
-                get {
-                    return this.columnEmployeeID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn EmployeeIDColumn
+            {
+                get { return columnEmployeeID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn LastNameColumn {
-                get {
-                    return this.columnLastName;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn LastNameColumn
+            {
+                get { return columnLastName; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn FirstNameColumn {
-                get {
-                    return this.columnFirstName;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn FirstNameColumn
+            {
+                get { return columnFirstName; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn TitleColumn {
-                get {
-                    return this.columnTitle;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn TitleColumn
+            {
+                get { return columnTitle; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn TitleOfCourtesyColumn {
-                get {
-                    return this.columnTitleOfCourtesy;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn TitleOfCourtesyColumn
+            {
+                get { return columnTitleOfCourtesy; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn BirthDateColumn {
-                get {
-                    return this.columnBirthDate;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn BirthDateColumn
+            {
+                get { return columnBirthDate; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn HireDateColumn {
-                get {
-                    return this.columnHireDate;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn HireDateColumn
+            {
+                get { return columnHireDate; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn AddressColumn {
-                get {
-                    return this.columnAddress;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn AddressColumn
+            {
+                get { return columnAddress; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CityColumn {
-                get {
-                    return this.columnCity;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CityColumn
+            {
+                get { return columnCity; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn RegionColumn {
-                get {
-                    return this.columnRegion;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn RegionColumn
+            {
+                get { return columnRegion; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PostalCodeColumn {
-                get {
-                    return this.columnPostalCode;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn PostalCodeColumn
+            {
+                get { return columnPostalCode; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CountryColumn {
-                get {
-                    return this.columnCountry;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CountryColumn
+            {
+                get { return columnCountry; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn HomePhoneColumn {
-                get {
-                    return this.columnHomePhone;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn HomePhoneColumn
+            {
+                get { return columnHomePhone; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ExtensionColumn {
-                get {
-                    return this.columnExtension;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ExtensionColumn
+            {
+                get { return columnExtension; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PhotoColumn {
-                get {
-                    return this.columnPhoto;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn PhotoColumn
+            {
+                get { return columnPhoto; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn NotesColumn {
-                get {
-                    return this.columnNotes;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn NotesColumn
+            {
+                get { return columnNotes; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ReportsToColumn {
-                get {
-                    return this.columnReportsTo;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ReportsToColumn
+            {
+                get { return columnReportsTo; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PhotoPathColumn {
-                get {
-                    return this.columnPhotoPath;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn PhotoPathColumn
+            {
+                get { return columnPhotoPath; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
+
+            [DebuggerNonUserCode]
+            [Browsable(false)]
+            public int Count
+            {
+                get { return Rows.Count; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeesRow this[int index] {
-                get {
-                    return ((EmployeesRow)(this.Rows[index]));
-                }
+
+            [DebuggerNonUserCode]
+            public EmployeesRow this[int index]
+            {
+                get { return ((EmployeesRow) (Rows[index])); }
             }
-            
+
             public event EmployeesRowChangeEventHandler EmployeesRowChanging;
-            
+
             public event EmployeesRowChangeEventHandler EmployeesRowChanged;
-            
+
             public event EmployeesRowChangeEventHandler EmployeesRowDeleting;
-            
+
             public event EmployeesRowChangeEventHandler EmployeesRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddEmployeesRow(EmployeesRow row) {
-                this.Rows.Add(row);
+
+            [DebuggerNonUserCode]
+            public void AddEmployeesRow(EmployeesRow row)
+            {
+                Rows.Add(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+
+            [DebuggerNonUserCode]
             public EmployeesRow AddEmployeesRow(
-                        string LastName, 
-                        string FirstName, 
-                        string Title, 
-                        string TitleOfCourtesy, 
-                        System.DateTime BirthDate, 
-                        System.DateTime HireDate, 
-                        string Address, 
-                        string City, 
-                        string Region, 
-                        string PostalCode, 
-                        string Country, 
-                        string HomePhone, 
-                        string Extension, 
-                        byte[] Photo, 
-                        string Notes, 
-                        EmployeesRow parentEmployeesRowByFK_Employees_Employees, 
-                        string PhotoPath) {
-                EmployeesRow rowEmployeesRow = ((EmployeesRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        LastName,
-                        FirstName,
-                        Title,
-                        TitleOfCourtesy,
-                        BirthDate,
-                        HireDate,
-                        Address,
-                        City,
-                        Region,
-                        PostalCode,
-                        Country,
-                        HomePhone,
-                        Extension,
-                        Photo,
-                        Notes,
-                        null,
-                        PhotoPath};
-                if ((parentEmployeesRowByFK_Employees_Employees != null)) {
+                string LastName,
+                string FirstName,
+                string Title,
+                string TitleOfCourtesy,
+                DateTime BirthDate,
+                DateTime HireDate,
+                string Address,
+                string City,
+                string Region,
+                string PostalCode,
+                string Country,
+                string HomePhone,
+                string Extension,
+                byte[] Photo,
+                string Notes,
+                EmployeesRow parentEmployeesRowByFK_Employees_Employees,
+                string PhotoPath)
+            {
+                var rowEmployeesRow = ((EmployeesRow) (NewRow()));
+                var columnValuesArray = new object[]
+                                            {
+                                                null,
+                                                LastName,
+                                                FirstName,
+                                                Title,
+                                                TitleOfCourtesy,
+                                                BirthDate,
+                                                HireDate,
+                                                Address,
+                                                City,
+                                                Region,
+                                                PostalCode,
+                                                Country,
+                                                HomePhone,
+                                                Extension,
+                                                Photo,
+                                                Notes,
+                                                null,
+                                                PhotoPath
+                                            };
+                if ((parentEmployeesRowByFK_Employees_Employees != null))
+                {
                     columnValuesArray[16] = parentEmployeesRowByFK_Employees_Employees[0];
                 }
                 rowEmployeesRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowEmployeesRow);
+                Rows.Add(rowEmployeesRow);
                 return rowEmployeesRow;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeesRow FindByEmployeeID(int EmployeeID) {
-                return ((EmployeesRow)(this.Rows.Find(new object[] {
-                            EmployeeID})));
+
+            [DebuggerNonUserCode]
+            public EmployeesRow FindByEmployeeID(int EmployeeID)
+            {
+                return ((EmployeesRow) (Rows.Find(new object[]
+                                                      {
+                                                          EmployeeID
+                                                      })));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                EmployeesDataTable cln = ((EmployeesDataTable)(base.Clone()));
+
+            [DebuggerNonUserCode]
+            public override DataTable Clone()
+            {
+                var cln = ((EmployeesDataTable) (base.Clone()));
                 cln.InitVars();
                 return cln;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
+
+            [DebuggerNonUserCode]
+            protected override DataTable CreateInstance()
+            {
                 return new EmployeesDataTable();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnEmployeeID = base.Columns["EmployeeID"];
-                this.columnLastName = base.Columns["LastName"];
-                this.columnFirstName = base.Columns["FirstName"];
-                this.columnTitle = base.Columns["Title"];
-                this.columnTitleOfCourtesy = base.Columns["TitleOfCourtesy"];
-                this.columnBirthDate = base.Columns["BirthDate"];
-                this.columnHireDate = base.Columns["HireDate"];
-                this.columnAddress = base.Columns["Address"];
-                this.columnCity = base.Columns["City"];
-                this.columnRegion = base.Columns["Region"];
-                this.columnPostalCode = base.Columns["PostalCode"];
-                this.columnCountry = base.Columns["Country"];
-                this.columnHomePhone = base.Columns["HomePhone"];
-                this.columnExtension = base.Columns["Extension"];
-                this.columnPhoto = base.Columns["Photo"];
-                this.columnNotes = base.Columns["Notes"];
-                this.columnReportsTo = base.Columns["ReportsTo"];
-                this.columnPhotoPath = base.Columns["PhotoPath"];
+
+            [DebuggerNonUserCode]
+            internal void InitVars()
+            {
+                columnEmployeeID = base.Columns["EmployeeID"];
+                columnLastName = base.Columns["LastName"];
+                columnFirstName = base.Columns["FirstName"];
+                columnTitle = base.Columns["Title"];
+                columnTitleOfCourtesy = base.Columns["TitleOfCourtesy"];
+                columnBirthDate = base.Columns["BirthDate"];
+                columnHireDate = base.Columns["HireDate"];
+                columnAddress = base.Columns["Address"];
+                columnCity = base.Columns["City"];
+                columnRegion = base.Columns["Region"];
+                columnPostalCode = base.Columns["PostalCode"];
+                columnCountry = base.Columns["Country"];
+                columnHomePhone = base.Columns["HomePhone"];
+                columnExtension = base.Columns["Extension"];
+                columnPhoto = base.Columns["Photo"];
+                columnNotes = base.Columns["Notes"];
+                columnReportsTo = base.Columns["ReportsTo"];
+                columnPhotoPath = base.Columns["PhotoPath"];
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnEmployeeID = new global::System.Data.DataColumn("EmployeeID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEmployeeID);
-                this.columnLastName = new global::System.Data.DataColumn("LastName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLastName);
-                this.columnFirstName = new global::System.Data.DataColumn("FirstName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFirstName);
-                this.columnTitle = new global::System.Data.DataColumn("Title", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTitle);
-                this.columnTitleOfCourtesy = new global::System.Data.DataColumn("TitleOfCourtesy", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTitleOfCourtesy);
-                this.columnBirthDate = new global::System.Data.DataColumn("BirthDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBirthDate);
-                this.columnHireDate = new global::System.Data.DataColumn("HireDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnHireDate);
-                this.columnAddress = new global::System.Data.DataColumn("Address", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAddress);
-                this.columnCity = new global::System.Data.DataColumn("City", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCity);
-                this.columnRegion = new global::System.Data.DataColumn("Region", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRegion);
-                this.columnPostalCode = new global::System.Data.DataColumn("PostalCode", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPostalCode);
-                this.columnCountry = new global::System.Data.DataColumn("Country", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCountry);
-                this.columnHomePhone = new global::System.Data.DataColumn("HomePhone", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnHomePhone);
-                this.columnExtension = new global::System.Data.DataColumn("Extension", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnExtension);
-                this.columnPhoto = new global::System.Data.DataColumn("Photo", typeof(byte[]), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPhoto);
-                this.columnNotes = new global::System.Data.DataColumn("Notes", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNotes);
-                this.columnReportsTo = new global::System.Data.DataColumn("ReportsTo", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnReportsTo);
-                this.columnPhotoPath = new global::System.Data.DataColumn("PhotoPath", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPhotoPath);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnEmployeeID}, true));
-                this.columnEmployeeID.AutoIncrement = true;
-                this.columnEmployeeID.AutoIncrementSeed = -1;
-                this.columnEmployeeID.AutoIncrementStep = -1;
-                this.columnEmployeeID.AllowDBNull = false;
-                this.columnEmployeeID.ReadOnly = true;
-                this.columnEmployeeID.Unique = true;
-                this.columnLastName.AllowDBNull = false;
-                this.columnLastName.MaxLength = 20;
-                this.columnFirstName.AllowDBNull = false;
-                this.columnFirstName.MaxLength = 10;
-                this.columnTitle.MaxLength = 30;
-                this.columnTitleOfCourtesy.MaxLength = 25;
-                this.columnAddress.MaxLength = 60;
-                this.columnCity.MaxLength = 15;
-                this.columnRegion.MaxLength = 15;
-                this.columnPostalCode.MaxLength = 10;
-                this.columnCountry.MaxLength = 15;
-                this.columnHomePhone.MaxLength = 24;
-                this.columnExtension.MaxLength = 4;
-                this.columnNotes.MaxLength = 1073741823;
-                this.columnPhotoPath.MaxLength = 255;
+
+            [DebuggerNonUserCode]
+            private void InitClass()
+            {
+                columnEmployeeID = new DataColumn("EmployeeID", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnEmployeeID);
+                columnLastName = new DataColumn("LastName", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnLastName);
+                columnFirstName = new DataColumn("FirstName", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnFirstName);
+                columnTitle = new DataColumn("Title", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnTitle);
+                columnTitleOfCourtesy = new DataColumn("TitleOfCourtesy", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnTitleOfCourtesy);
+                columnBirthDate = new DataColumn("BirthDate", typeof (DateTime), null, MappingType.Element);
+                base.Columns.Add(columnBirthDate);
+                columnHireDate = new DataColumn("HireDate", typeof (DateTime), null, MappingType.Element);
+                base.Columns.Add(columnHireDate);
+                columnAddress = new DataColumn("Address", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnAddress);
+                columnCity = new DataColumn("City", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCity);
+                columnRegion = new DataColumn("Region", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnRegion);
+                columnPostalCode = new DataColumn("PostalCode", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnPostalCode);
+                columnCountry = new DataColumn("Country", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCountry);
+                columnHomePhone = new DataColumn("HomePhone", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnHomePhone);
+                columnExtension = new DataColumn("Extension", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnExtension);
+                columnPhoto = new DataColumn("Photo", typeof (byte[]), null, MappingType.Element);
+                base.Columns.Add(columnPhoto);
+                columnNotes = new DataColumn("Notes", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnNotes);
+                columnReportsTo = new DataColumn("ReportsTo", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnReportsTo);
+                columnPhotoPath = new DataColumn("PhotoPath", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnPhotoPath);
+                Constraints.Add(new UniqueConstraint("Constraint1", new[]
+                                                                        {
+                                                                            columnEmployeeID
+                                                                        }, true));
+                columnEmployeeID.AutoIncrement = true;
+                columnEmployeeID.AutoIncrementSeed = -1;
+                columnEmployeeID.AutoIncrementStep = -1;
+                columnEmployeeID.AllowDBNull = false;
+                columnEmployeeID.ReadOnly = true;
+                columnEmployeeID.Unique = true;
+                columnLastName.AllowDBNull = false;
+                columnLastName.MaxLength = 20;
+                columnFirstName.AllowDBNull = false;
+                columnFirstName.MaxLength = 10;
+                columnTitle.MaxLength = 30;
+                columnTitleOfCourtesy.MaxLength = 25;
+                columnAddress.MaxLength = 60;
+                columnCity.MaxLength = 15;
+                columnRegion.MaxLength = 15;
+                columnPostalCode.MaxLength = 10;
+                columnCountry.MaxLength = 15;
+                columnHomePhone.MaxLength = 24;
+                columnExtension.MaxLength = 4;
+                columnNotes.MaxLength = 1073741823;
+                columnPhotoPath.MaxLength = 255;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeesRow NewEmployeesRow() {
-                return ((EmployeesRow)(this.NewRow()));
+
+            [DebuggerNonUserCode]
+            public EmployeesRow NewEmployeesRow()
+            {
+                return ((EmployeesRow) (NewRow()));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+
+            [DebuggerNonUserCode]
+            protected override DataRow NewRowFromBuilder(DataRowBuilder builder)
+            {
                 return new EmployeesRow(builder);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(EmployeesRow);
+
+            [DebuggerNonUserCode]
+            protected override Type GetRowType()
+            {
+                return typeof (EmployeesRow);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanged(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanged(e);
-                if ((this.EmployeesRowChanged != null)) {
-                    this.EmployeesRowChanged(this, new EmployeesRowChangeEvent(((EmployeesRow)(e.Row)), e.Action));
+                if ((EmployeesRowChanged != null))
+                {
+                    EmployeesRowChanged(this, new EmployeesRowChangeEvent(((EmployeesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanging(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanging(e);
-                if ((this.EmployeesRowChanging != null)) {
-                    this.EmployeesRowChanging(this, new EmployeesRowChangeEvent(((EmployeesRow)(e.Row)), e.Action));
+                if ((EmployeesRowChanging != null))
+                {
+                    EmployeesRowChanging(this, new EmployeesRowChangeEvent(((EmployeesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleted(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleted(e);
-                if ((this.EmployeesRowDeleted != null)) {
-                    this.EmployeesRowDeleted(this, new EmployeesRowChangeEvent(((EmployeesRow)(e.Row)), e.Action));
+                if ((EmployeesRowDeleted != null))
+                {
+                    EmployeesRowDeleted(this, new EmployeesRowChangeEvent(((EmployeesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleting(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleting(e);
-                if ((this.EmployeesRowDeleting != null)) {
-                    this.EmployeesRowDeleting(this, new EmployeesRowChangeEvent(((EmployeesRow)(e.Row)), e.Action));
+                if ((EmployeesRowDeleting != null))
+                {
+                    EmployeesRowDeleting(this, new EmployeesRowChangeEvent(((EmployeesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveEmployeesRow(EmployeesRow row) {
-                this.Rows.Remove(row);
+
+            [DebuggerNonUserCode]
+            public void RemoveEmployeesRow(EmployeesRow row)
+            {
+                Rows.Remove(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NorthwindDataSet ds = new NorthwindDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+
+            [DebuggerNonUserCode]
+            public static XmlSchemaComplexType GetTypedTableSchema(XmlSchemaSet xs)
+            {
+                var type = new XmlSchemaComplexType();
+                var sequence = new XmlSchemaSequence();
+                var ds = new NorthwindDataSet();
+                var any1 = new XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any1.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any2.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "EmployeesDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
+                XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace))
+                {
+                    var s1 = new MemoryStream();
+                    var s2 = new MemoryStream();
+                    try
+                    {
+                        XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                        for (IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator();
+                             schemas.MoveNext();)
+                        {
+                            schema = ((XmlSchema) (schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
+                            if ((s1.Length == s2.Length))
+                            {
                                 s1.Position = 0;
                                 s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                for (;
+                                    ((s1.Position != s1.Length)
+                                     && (s1.ReadByte() == s2.ReadByte()));)
+                                {
                                     ;
                                 }
-                                if ((s1.Position == s1.Length)) {
+                                if ((s1.Position == s1.Length))
+                                {
                                     return type;
                                 }
                             }
                         }
                     }
-                    finally {
-                        if ((s1 != null)) {
+                    finally
+                    {
+                        if ((s1 != null))
+                        {
                             s1.Close();
                         }
-                        if ((s2 != null)) {
+                        if ((s2 != null))
+                        {
                             s2.Close();
                         }
                     }
@@ -2381,253 +3445,880 @@ namespace NW247.Model {
                 return type;
             }
         }
-        
+
+        #endregion
+
+        #region Nested type: EmployeesRow
+
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class EmployeesRow : DataRow
+        {
+            private readonly EmployeesDataTable tableEmployees;
+
+            [DebuggerNonUserCode]
+            internal EmployeesRow(DataRowBuilder rb) :
+                base(rb)
+            {
+                tableEmployees = ((EmployeesDataTable) (Table));
+            }
+
+            [DebuggerNonUserCode]
+            public int EmployeeID
+            {
+                get { return ((int) (this[tableEmployees.EmployeeIDColumn])); }
+                set { this[tableEmployees.EmployeeIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string LastName
+            {
+                get { return ((string) (this[tableEmployees.LastNameColumn])); }
+                set { this[tableEmployees.LastNameColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string FirstName
+            {
+                get { return ((string) (this[tableEmployees.FirstNameColumn])); }
+                set { this[tableEmployees.FirstNameColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Title
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableEmployees.TitleColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Title\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set { this[tableEmployees.TitleColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string TitleOfCourtesy
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableEmployees.TitleOfCourtesyColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'TitleOfCourtesy\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set { this[tableEmployees.TitleOfCourtesyColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public DateTime BirthDate
+            {
+                get
+                {
+                    try
+                    {
+                        return ((DateTime) (this[tableEmployees.BirthDateColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'BirthDate\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set { this[tableEmployees.BirthDateColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public DateTime HireDate
+            {
+                get
+                {
+                    try
+                    {
+                        return ((DateTime) (this[tableEmployees.HireDateColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'HireDate\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set { this[tableEmployees.HireDateColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Address
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableEmployees.AddressColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Address\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set { this[tableEmployees.AddressColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string City
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableEmployees.CityColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'City\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set { this[tableEmployees.CityColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Region
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableEmployees.RegionColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Region\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set { this[tableEmployees.RegionColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string PostalCode
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableEmployees.PostalCodeColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'PostalCode\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set { this[tableEmployees.PostalCodeColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Country
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableEmployees.CountryColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Country\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set { this[tableEmployees.CountryColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string HomePhone
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableEmployees.HomePhoneColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'HomePhone\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set { this[tableEmployees.HomePhoneColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Extension
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableEmployees.ExtensionColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Extension\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set { this[tableEmployees.ExtensionColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public byte[] Photo
+            {
+                get
+                {
+                    try
+                    {
+                        return ((byte[]) (this[tableEmployees.PhotoColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Photo\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set { this[tableEmployees.PhotoColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Notes
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableEmployees.NotesColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Notes\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set { this[tableEmployees.NotesColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public int ReportsTo
+            {
+                get
+                {
+                    try
+                    {
+                        return ((int) (this[tableEmployees.ReportsToColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'ReportsTo\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set { this[tableEmployees.ReportsToColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string PhotoPath
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableEmployees.PhotoPathColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'PhotoPath\' in table \'Employees\' is DBNull.", e);
+                    }
+                }
+                set { this[tableEmployees.PhotoPathColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public EmployeesRow EmployeesRowParent
+            {
+                get { return ((EmployeesRow) (GetParentRow(Table.ParentRelations["FK_Employees_Employees"]))); }
+                set { SetParentRow(value, Table.ParentRelations["FK_Employees_Employees"]); }
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsTitleNull()
+            {
+                return IsNull(tableEmployees.TitleColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetTitleNull()
+            {
+                this[tableEmployees.TitleColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsTitleOfCourtesyNull()
+            {
+                return IsNull(tableEmployees.TitleOfCourtesyColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetTitleOfCourtesyNull()
+            {
+                this[tableEmployees.TitleOfCourtesyColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsBirthDateNull()
+            {
+                return IsNull(tableEmployees.BirthDateColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetBirthDateNull()
+            {
+                this[tableEmployees.BirthDateColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsHireDateNull()
+            {
+                return IsNull(tableEmployees.HireDateColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetHireDateNull()
+            {
+                this[tableEmployees.HireDateColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsAddressNull()
+            {
+                return IsNull(tableEmployees.AddressColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetAddressNull()
+            {
+                this[tableEmployees.AddressColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsCityNull()
+            {
+                return IsNull(tableEmployees.CityColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetCityNull()
+            {
+                this[tableEmployees.CityColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsRegionNull()
+            {
+                return IsNull(tableEmployees.RegionColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetRegionNull()
+            {
+                this[tableEmployees.RegionColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsPostalCodeNull()
+            {
+                return IsNull(tableEmployees.PostalCodeColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetPostalCodeNull()
+            {
+                this[tableEmployees.PostalCodeColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsCountryNull()
+            {
+                return IsNull(tableEmployees.CountryColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetCountryNull()
+            {
+                this[tableEmployees.CountryColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsHomePhoneNull()
+            {
+                return IsNull(tableEmployees.HomePhoneColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetHomePhoneNull()
+            {
+                this[tableEmployees.HomePhoneColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsExtensionNull()
+            {
+                return IsNull(tableEmployees.ExtensionColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetExtensionNull()
+            {
+                this[tableEmployees.ExtensionColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsPhotoNull()
+            {
+                return IsNull(tableEmployees.PhotoColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetPhotoNull()
+            {
+                this[tableEmployees.PhotoColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsNotesNull()
+            {
+                return IsNull(tableEmployees.NotesColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetNotesNull()
+            {
+                this[tableEmployees.NotesColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsReportsToNull()
+            {
+                return IsNull(tableEmployees.ReportsToColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetReportsToNull()
+            {
+                this[tableEmployees.ReportsToColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsPhotoPathNull()
+            {
+                return IsNull(tableEmployees.PhotoPathColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetPhotoPathNull()
+            {
+                this[tableEmployees.PhotoPathColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public EmployeesRow[] GetEmployeesRows()
+            {
+                if ((Table.ChildRelations["FK_Employees_Employees"] == null))
+                {
+                    return new EmployeesRow[0];
+                }
+                else
+                {
+                    return ((EmployeesRow[]) (base.GetChildRows(Table.ChildRelations["FK_Employees_Employees"])));
+                }
+            }
+
+            [DebuggerNonUserCode]
+            public EmployeeTerritoriesRow[] GetEmployeeTerritoriesRows()
+            {
+                if ((Table.ChildRelations["FK_EmployeeTerritories_Employees"] == null))
+                {
+                    return new EmployeeTerritoriesRow[0];
+                }
+                else
+                {
+                    return
+                        ((EmployeeTerritoriesRow[])
+                         (base.GetChildRows(Table.ChildRelations["FK_EmployeeTerritories_Employees"])));
+                }
+            }
+
+            [DebuggerNonUserCode]
+            public OrdersRow[] GetOrdersRows()
+            {
+                if ((Table.ChildRelations["FK_Orders_Employees"] == null))
+                {
+                    return new OrdersRow[0];
+                }
+                else
+                {
+                    return ((OrdersRow[]) (base.GetChildRows(Table.ChildRelations["FK_Orders_Employees"])));
+                }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: EmployeesRowChangeEvent
+
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class EmployeesRowChangeEvent : EventArgs
+        {
+            private readonly DataRowAction eventAction;
+            private readonly EmployeesRow eventRow;
+
+            [DebuggerNonUserCode]
+            public EmployeesRowChangeEvent(EmployeesRow row, DataRowAction action)
+            {
+                eventRow = row;
+                eventAction = action;
+            }
+
+            [DebuggerNonUserCode]
+            public EmployeesRow Row
+            {
+                get { return eventRow; }
+            }
+
+            [DebuggerNonUserCode]
+            public DataRowAction Action
+            {
+                get { return eventAction; }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: EmployeeTerritoriesDataTable
+
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class EmployeeTerritoriesDataTable : global::System.Data.TypedTableBase<EmployeeTerritoriesRow> {
-            
-            private global::System.Data.DataColumn columnEmployeeID;
-            
-            private global::System.Data.DataColumn columnTerritoryID;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeeTerritoriesDataTable() {
-                this.TableName = "EmployeeTerritories";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [Serializable]
+        [XmlSchemaProvider("GetTypedTableSchema")]
+        public class EmployeeTerritoriesDataTable : TypedTableBase<EmployeeTerritoriesRow>
+        {
+            private DataColumn columnEmployeeID;
+
+            private DataColumn columnTerritoryID;
+
+            [DebuggerNonUserCode]
+            public EmployeeTerritoriesDataTable()
+            {
+                TableName = "EmployeeTerritories";
+                BeginInit();
+                InitClass();
+                EndInit();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal EmployeeTerritoriesDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
+
+            [DebuggerNonUserCode]
+            internal EmployeeTerritoriesDataTable(DataTable table)
+            {
+                TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive))
+                {
+                    CaseSensitive = table.CaseSensitive;
                 }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
+                {
+                    Locale = table.Locale;
                 }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
+                if ((table.Namespace != table.DataSet.Namespace))
+                {
+                    Namespace = table.Namespace;
                 }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
+                Prefix = table.Prefix;
+                MinimumCapacity = table.MinimumCapacity;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected EmployeeTerritoriesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
+
+            [DebuggerNonUserCode]
+            protected EmployeeTerritoriesDataTable(SerializationInfo info, StreamingContext context) :
+                base(info, context)
+            {
+                InitVars();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn EmployeeIDColumn {
-                get {
-                    return this.columnEmployeeID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn EmployeeIDColumn
+            {
+                get { return columnEmployeeID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn TerritoryIDColumn {
-                get {
-                    return this.columnTerritoryID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn TerritoryIDColumn
+            {
+                get { return columnTerritoryID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
+
+            [DebuggerNonUserCode]
+            [Browsable(false)]
+            public int Count
+            {
+                get { return Rows.Count; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeeTerritoriesRow this[int index] {
-                get {
-                    return ((EmployeeTerritoriesRow)(this.Rows[index]));
-                }
+
+            [DebuggerNonUserCode]
+            public EmployeeTerritoriesRow this[int index]
+            {
+                get { return ((EmployeeTerritoriesRow) (Rows[index])); }
             }
-            
+
             public event EmployeeTerritoriesRowChangeEventHandler EmployeeTerritoriesRowChanging;
-            
+
             public event EmployeeTerritoriesRowChangeEventHandler EmployeeTerritoriesRowChanged;
-            
+
             public event EmployeeTerritoriesRowChangeEventHandler EmployeeTerritoriesRowDeleting;
-            
+
             public event EmployeeTerritoriesRowChangeEventHandler EmployeeTerritoriesRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddEmployeeTerritoriesRow(EmployeeTerritoriesRow row) {
-                this.Rows.Add(row);
+
+            [DebuggerNonUserCode]
+            public void AddEmployeeTerritoriesRow(EmployeeTerritoriesRow row)
+            {
+                Rows.Add(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeeTerritoriesRow AddEmployeeTerritoriesRow(EmployeesRow parentEmployeesRowByFK_EmployeeTerritories_Employees, TerritoriesRow parentTerritoriesRowByFK_EmployeeTerritories_Territories) {
-                EmployeeTerritoriesRow rowEmployeeTerritoriesRow = ((EmployeeTerritoriesRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        null};
-                if ((parentEmployeesRowByFK_EmployeeTerritories_Employees != null)) {
+
+            [DebuggerNonUserCode]
+            public EmployeeTerritoriesRow AddEmployeeTerritoriesRow(
+                EmployeesRow parentEmployeesRowByFK_EmployeeTerritories_Employees,
+                TerritoriesRow parentTerritoriesRowByFK_EmployeeTerritories_Territories)
+            {
+                var rowEmployeeTerritoriesRow = ((EmployeeTerritoriesRow) (NewRow()));
+                var columnValuesArray = new object[]
+                                            {
+                                                null,
+                                                null
+                                            };
+                if ((parentEmployeesRowByFK_EmployeeTerritories_Employees != null))
+                {
                     columnValuesArray[0] = parentEmployeesRowByFK_EmployeeTerritories_Employees[0];
                 }
-                if ((parentTerritoriesRowByFK_EmployeeTerritories_Territories != null)) {
+                if ((parentTerritoriesRowByFK_EmployeeTerritories_Territories != null))
+                {
                     columnValuesArray[1] = parentTerritoriesRowByFK_EmployeeTerritories_Territories[0];
                 }
                 rowEmployeeTerritoriesRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowEmployeeTerritoriesRow);
+                Rows.Add(rowEmployeeTerritoriesRow);
                 return rowEmployeeTerritoriesRow;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeeTerritoriesRow FindByEmployeeIDTerritoryID(int EmployeeID, string TerritoryID) {
-                return ((EmployeeTerritoriesRow)(this.Rows.Find(new object[] {
-                            EmployeeID,
-                            TerritoryID})));
+
+            [DebuggerNonUserCode]
+            public EmployeeTerritoriesRow FindByEmployeeIDTerritoryID(int EmployeeID, string TerritoryID)
+            {
+                return ((EmployeeTerritoriesRow) (Rows.Find(new object[]
+                                                                {
+                                                                    EmployeeID,
+                                                                    TerritoryID
+                                                                })));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                EmployeeTerritoriesDataTable cln = ((EmployeeTerritoriesDataTable)(base.Clone()));
+
+            [DebuggerNonUserCode]
+            public override DataTable Clone()
+            {
+                var cln = ((EmployeeTerritoriesDataTable) (base.Clone()));
                 cln.InitVars();
                 return cln;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
+
+            [DebuggerNonUserCode]
+            protected override DataTable CreateInstance()
+            {
                 return new EmployeeTerritoriesDataTable();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnEmployeeID = base.Columns["EmployeeID"];
-                this.columnTerritoryID = base.Columns["TerritoryID"];
+
+            [DebuggerNonUserCode]
+            internal void InitVars()
+            {
+                columnEmployeeID = base.Columns["EmployeeID"];
+                columnTerritoryID = base.Columns["TerritoryID"];
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnEmployeeID = new global::System.Data.DataColumn("EmployeeID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEmployeeID);
-                this.columnTerritoryID = new global::System.Data.DataColumn("TerritoryID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTerritoryID);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnEmployeeID,
-                                this.columnTerritoryID}, true));
-                this.columnEmployeeID.AllowDBNull = false;
-                this.columnTerritoryID.AllowDBNull = false;
-                this.columnTerritoryID.MaxLength = 20;
+
+            [DebuggerNonUserCode]
+            private void InitClass()
+            {
+                columnEmployeeID = new DataColumn("EmployeeID", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnEmployeeID);
+                columnTerritoryID = new DataColumn("TerritoryID", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnTerritoryID);
+                Constraints.Add(new UniqueConstraint("Constraint1", new[]
+                                                                        {
+                                                                            columnEmployeeID,
+                                                                            columnTerritoryID
+                                                                        }, true));
+                columnEmployeeID.AllowDBNull = false;
+                columnTerritoryID.AllowDBNull = false;
+                columnTerritoryID.MaxLength = 20;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeeTerritoriesRow NewEmployeeTerritoriesRow() {
-                return ((EmployeeTerritoriesRow)(this.NewRow()));
+
+            [DebuggerNonUserCode]
+            public EmployeeTerritoriesRow NewEmployeeTerritoriesRow()
+            {
+                return ((EmployeeTerritoriesRow) (NewRow()));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+
+            [DebuggerNonUserCode]
+            protected override DataRow NewRowFromBuilder(DataRowBuilder builder)
+            {
                 return new EmployeeTerritoriesRow(builder);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(EmployeeTerritoriesRow);
+
+            [DebuggerNonUserCode]
+            protected override Type GetRowType()
+            {
+                return typeof (EmployeeTerritoriesRow);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanged(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanged(e);
-                if ((this.EmployeeTerritoriesRowChanged != null)) {
-                    this.EmployeeTerritoriesRowChanged(this, new EmployeeTerritoriesRowChangeEvent(((EmployeeTerritoriesRow)(e.Row)), e.Action));
+                if ((EmployeeTerritoriesRowChanged != null))
+                {
+                    EmployeeTerritoriesRowChanged(this,
+                                                  new EmployeeTerritoriesRowChangeEvent(
+                                                      ((EmployeeTerritoriesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanging(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanging(e);
-                if ((this.EmployeeTerritoriesRowChanging != null)) {
-                    this.EmployeeTerritoriesRowChanging(this, new EmployeeTerritoriesRowChangeEvent(((EmployeeTerritoriesRow)(e.Row)), e.Action));
+                if ((EmployeeTerritoriesRowChanging != null))
+                {
+                    EmployeeTerritoriesRowChanging(this,
+                                                   new EmployeeTerritoriesRowChangeEvent(
+                                                       ((EmployeeTerritoriesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleted(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleted(e);
-                if ((this.EmployeeTerritoriesRowDeleted != null)) {
-                    this.EmployeeTerritoriesRowDeleted(this, new EmployeeTerritoriesRowChangeEvent(((EmployeeTerritoriesRow)(e.Row)), e.Action));
+                if ((EmployeeTerritoriesRowDeleted != null))
+                {
+                    EmployeeTerritoriesRowDeleted(this,
+                                                  new EmployeeTerritoriesRowChangeEvent(
+                                                      ((EmployeeTerritoriesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleting(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleting(e);
-                if ((this.EmployeeTerritoriesRowDeleting != null)) {
-                    this.EmployeeTerritoriesRowDeleting(this, new EmployeeTerritoriesRowChangeEvent(((EmployeeTerritoriesRow)(e.Row)), e.Action));
+                if ((EmployeeTerritoriesRowDeleting != null))
+                {
+                    EmployeeTerritoriesRowDeleting(this,
+                                                   new EmployeeTerritoriesRowChangeEvent(
+                                                       ((EmployeeTerritoriesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveEmployeeTerritoriesRow(EmployeeTerritoriesRow row) {
-                this.Rows.Remove(row);
+
+            [DebuggerNonUserCode]
+            public void RemoveEmployeeTerritoriesRow(EmployeeTerritoriesRow row)
+            {
+                Rows.Remove(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NorthwindDataSet ds = new NorthwindDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+
+            [DebuggerNonUserCode]
+            public static XmlSchemaComplexType GetTypedTableSchema(XmlSchemaSet xs)
+            {
+                var type = new XmlSchemaComplexType();
+                var sequence = new XmlSchemaSequence();
+                var ds = new NorthwindDataSet();
+                var any1 = new XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any1.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any2.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "EmployeeTerritoriesDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
+                XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace))
+                {
+                    var s1 = new MemoryStream();
+                    var s2 = new MemoryStream();
+                    try
+                    {
+                        XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                        for (IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator();
+                             schemas.MoveNext();)
+                        {
+                            schema = ((XmlSchema) (schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
+                            if ((s1.Length == s2.Length))
+                            {
                                 s1.Position = 0;
                                 s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                for (;
+                                    ((s1.Position != s1.Length)
+                                     && (s1.ReadByte() == s2.ReadByte()));)
+                                {
                                     ;
                                 }
-                                if ((s1.Position == s1.Length)) {
+                                if ((s1.Position == s1.Length))
+                                {
                                     return type;
                                 }
                             }
                         }
                     }
-                    finally {
-                        if ((s1 != null)) {
+                    finally
+                    {
+                        if ((s1 != null))
+                        {
                             s1.Close();
                         }
-                        if ((s2 != null)) {
+                        if ((s2 != null))
+                        {
                             s2.Close();
                         }
                     }
@@ -2636,294 +4327,421 @@ namespace NW247.Model {
                 return type;
             }
         }
-        
+
+        #endregion
+
+        #region Nested type: EmployeeTerritoriesRow
+
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class EmployeeTerritoriesRow : DataRow
+        {
+            private readonly EmployeeTerritoriesDataTable tableEmployeeTerritories;
+
+            [DebuggerNonUserCode]
+            internal EmployeeTerritoriesRow(DataRowBuilder rb) :
+                base(rb)
+            {
+                tableEmployeeTerritories = ((EmployeeTerritoriesDataTable) (Table));
+            }
+
+            [DebuggerNonUserCode]
+            public int EmployeeID
+            {
+                get { return ((int) (this[tableEmployeeTerritories.EmployeeIDColumn])); }
+                set { this[tableEmployeeTerritories.EmployeeIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string TerritoryID
+            {
+                get { return ((string) (this[tableEmployeeTerritories.TerritoryIDColumn])); }
+                set { this[tableEmployeeTerritories.TerritoryIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public EmployeesRow EmployeesRow
+            {
+                get { return ((EmployeesRow) (GetParentRow(Table.ParentRelations["FK_EmployeeTerritories_Employees"]))); }
+                set { SetParentRow(value, Table.ParentRelations["FK_EmployeeTerritories_Employees"]); }
+            }
+
+            [DebuggerNonUserCode]
+            public TerritoriesRow TerritoriesRow
+            {
+                get { return ((TerritoriesRow) (GetParentRow(Table.ParentRelations["FK_EmployeeTerritories_Territories"]))); }
+                set { SetParentRow(value, Table.ParentRelations["FK_EmployeeTerritories_Territories"]); }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: EmployeeTerritoriesRowChangeEvent
+
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class EmployeeTerritoriesRowChangeEvent : EventArgs
+        {
+            private readonly DataRowAction eventAction;
+            private readonly EmployeeTerritoriesRow eventRow;
+
+            [DebuggerNonUserCode]
+            public EmployeeTerritoriesRowChangeEvent(EmployeeTerritoriesRow row, DataRowAction action)
+            {
+                eventRow = row;
+                eventAction = action;
+            }
+
+            [DebuggerNonUserCode]
+            public EmployeeTerritoriesRow Row
+            {
+                get { return eventRow; }
+            }
+
+            [DebuggerNonUserCode]
+            public DataRowAction Action
+            {
+                get { return eventAction; }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: Order_DetailsDataTable
+
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class Order_DetailsDataTable : global::System.Data.TypedTableBase<Order_DetailsRow> {
-            
-            private global::System.Data.DataColumn columnOrderID;
-            
-            private global::System.Data.DataColumn columnProductID;
-            
-            private global::System.Data.DataColumn columnUnitPrice;
-            
-            private global::System.Data.DataColumn columnQuantity;
-            
-            private global::System.Data.DataColumn columnDiscount;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public Order_DetailsDataTable() {
-                this.TableName = "Order Details";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [Serializable]
+        [XmlSchemaProvider("GetTypedTableSchema")]
+        public class Order_DetailsDataTable : TypedTableBase<Order_DetailsRow>
+        {
+            private DataColumn columnDiscount;
+            private DataColumn columnOrderID;
+
+            private DataColumn columnProductID;
+
+            private DataColumn columnQuantity;
+            private DataColumn columnUnitPrice;
+
+            [DebuggerNonUserCode]
+            public Order_DetailsDataTable()
+            {
+                TableName = "Order Details";
+                BeginInit();
+                InitClass();
+                EndInit();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal Order_DetailsDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
+
+            [DebuggerNonUserCode]
+            internal Order_DetailsDataTable(DataTable table)
+            {
+                TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive))
+                {
+                    CaseSensitive = table.CaseSensitive;
                 }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
+                {
+                    Locale = table.Locale;
                 }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
+                if ((table.Namespace != table.DataSet.Namespace))
+                {
+                    Namespace = table.Namespace;
                 }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
+                Prefix = table.Prefix;
+                MinimumCapacity = table.MinimumCapacity;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected Order_DetailsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
+
+            [DebuggerNonUserCode]
+            protected Order_DetailsDataTable(SerializationInfo info, StreamingContext context) :
+                base(info, context)
+            {
+                InitVars();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn OrderIDColumn {
-                get {
-                    return this.columnOrderID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn OrderIDColumn
+            {
+                get { return columnOrderID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ProductIDColumn {
-                get {
-                    return this.columnProductID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ProductIDColumn
+            {
+                get { return columnProductID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn UnitPriceColumn {
-                get {
-                    return this.columnUnitPrice;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn UnitPriceColumn
+            {
+                get { return columnUnitPrice; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn QuantityColumn {
-                get {
-                    return this.columnQuantity;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn QuantityColumn
+            {
+                get { return columnQuantity; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn DiscountColumn {
-                get {
-                    return this.columnDiscount;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn DiscountColumn
+            {
+                get { return columnDiscount; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
+
+            [DebuggerNonUserCode]
+            [Browsable(false)]
+            public int Count
+            {
+                get { return Rows.Count; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public Order_DetailsRow this[int index] {
-                get {
-                    return ((Order_DetailsRow)(this.Rows[index]));
-                }
+
+            [DebuggerNonUserCode]
+            public Order_DetailsRow this[int index]
+            {
+                get { return ((Order_DetailsRow) (Rows[index])); }
             }
-            
+
             public event Order_DetailsRowChangeEventHandler Order_DetailsRowChanging;
-            
+
             public event Order_DetailsRowChangeEventHandler Order_DetailsRowChanged;
-            
+
             public event Order_DetailsRowChangeEventHandler Order_DetailsRowDeleting;
-            
+
             public event Order_DetailsRowChangeEventHandler Order_DetailsRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddOrder_DetailsRow(Order_DetailsRow row) {
-                this.Rows.Add(row);
+
+            [DebuggerNonUserCode]
+            public void AddOrder_DetailsRow(Order_DetailsRow row)
+            {
+                Rows.Add(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public Order_DetailsRow AddOrder_DetailsRow(OrdersRow parentOrdersRowByFK_Order_Details_Orders, ProductsRow parentProductsRowByFK_Order_Details_Products, decimal UnitPrice, short Quantity, float Discount) {
-                Order_DetailsRow rowOrder_DetailsRow = ((Order_DetailsRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        null,
-                        UnitPrice,
-                        Quantity,
-                        Discount};
-                if ((parentOrdersRowByFK_Order_Details_Orders != null)) {
+
+            [DebuggerNonUserCode]
+            public Order_DetailsRow AddOrder_DetailsRow(OrdersRow parentOrdersRowByFK_Order_Details_Orders,
+                                                        ProductsRow parentProductsRowByFK_Order_Details_Products,
+                                                        decimal UnitPrice, short Quantity, float Discount)
+            {
+                var rowOrder_DetailsRow = ((Order_DetailsRow) (NewRow()));
+                var columnValuesArray = new object[]
+                                            {
+                                                null,
+                                                null,
+                                                UnitPrice,
+                                                Quantity,
+                                                Discount
+                                            };
+                if ((parentOrdersRowByFK_Order_Details_Orders != null))
+                {
                     columnValuesArray[0] = parentOrdersRowByFK_Order_Details_Orders[0];
                 }
-                if ((parentProductsRowByFK_Order_Details_Products != null)) {
+                if ((parentProductsRowByFK_Order_Details_Products != null))
+                {
                     columnValuesArray[1] = parentProductsRowByFK_Order_Details_Products[0];
                 }
                 rowOrder_DetailsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowOrder_DetailsRow);
+                Rows.Add(rowOrder_DetailsRow);
                 return rowOrder_DetailsRow;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public Order_DetailsRow FindByOrderIDProductID(int OrderID, int ProductID) {
-                return ((Order_DetailsRow)(this.Rows.Find(new object[] {
-                            OrderID,
-                            ProductID})));
+
+            [DebuggerNonUserCode]
+            public Order_DetailsRow FindByOrderIDProductID(int OrderID, int ProductID)
+            {
+                return ((Order_DetailsRow) (Rows.Find(new object[]
+                                                          {
+                                                              OrderID,
+                                                              ProductID
+                                                          })));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                Order_DetailsDataTable cln = ((Order_DetailsDataTable)(base.Clone()));
+
+            [DebuggerNonUserCode]
+            public override DataTable Clone()
+            {
+                var cln = ((Order_DetailsDataTable) (base.Clone()));
                 cln.InitVars();
                 return cln;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
+
+            [DebuggerNonUserCode]
+            protected override DataTable CreateInstance()
+            {
                 return new Order_DetailsDataTable();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnOrderID = base.Columns["OrderID"];
-                this.columnProductID = base.Columns["ProductID"];
-                this.columnUnitPrice = base.Columns["UnitPrice"];
-                this.columnQuantity = base.Columns["Quantity"];
-                this.columnDiscount = base.Columns["Discount"];
+
+            [DebuggerNonUserCode]
+            internal void InitVars()
+            {
+                columnOrderID = base.Columns["OrderID"];
+                columnProductID = base.Columns["ProductID"];
+                columnUnitPrice = base.Columns["UnitPrice"];
+                columnQuantity = base.Columns["Quantity"];
+                columnDiscount = base.Columns["Discount"];
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnOrderID = new global::System.Data.DataColumn("OrderID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOrderID);
-                this.columnProductID = new global::System.Data.DataColumn("ProductID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProductID);
-                this.columnUnitPrice = new global::System.Data.DataColumn("UnitPrice", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnUnitPrice);
-                this.columnQuantity = new global::System.Data.DataColumn("Quantity", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQuantity);
-                this.columnDiscount = new global::System.Data.DataColumn("Discount", typeof(float), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDiscount);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnOrderID,
-                                this.columnProductID}, true));
-                this.columnOrderID.AllowDBNull = false;
-                this.columnProductID.AllowDBNull = false;
-                this.columnUnitPrice.AllowDBNull = false;
-                this.columnQuantity.AllowDBNull = false;
-                this.columnDiscount.AllowDBNull = false;
+
+            [DebuggerNonUserCode]
+            private void InitClass()
+            {
+                columnOrderID = new DataColumn("OrderID", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnOrderID);
+                columnProductID = new DataColumn("ProductID", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnProductID);
+                columnUnitPrice = new DataColumn("UnitPrice", typeof (decimal), null, MappingType.Element);
+                base.Columns.Add(columnUnitPrice);
+                columnQuantity = new DataColumn("Quantity", typeof (short), null, MappingType.Element);
+                base.Columns.Add(columnQuantity);
+                columnDiscount = new DataColumn("Discount", typeof (float), null, MappingType.Element);
+                base.Columns.Add(columnDiscount);
+                Constraints.Add(new UniqueConstraint("Constraint1", new[]
+                                                                        {
+                                                                            columnOrderID,
+                                                                            columnProductID
+                                                                        }, true));
+                columnOrderID.AllowDBNull = false;
+                columnProductID.AllowDBNull = false;
+                columnUnitPrice.AllowDBNull = false;
+                columnQuantity.AllowDBNull = false;
+                columnDiscount.AllowDBNull = false;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public Order_DetailsRow NewOrder_DetailsRow() {
-                return ((Order_DetailsRow)(this.NewRow()));
+
+            [DebuggerNonUserCode]
+            public Order_DetailsRow NewOrder_DetailsRow()
+            {
+                return ((Order_DetailsRow) (NewRow()));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+
+            [DebuggerNonUserCode]
+            protected override DataRow NewRowFromBuilder(DataRowBuilder builder)
+            {
                 return new Order_DetailsRow(builder);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(Order_DetailsRow);
+
+            [DebuggerNonUserCode]
+            protected override Type GetRowType()
+            {
+                return typeof (Order_DetailsRow);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanged(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanged(e);
-                if ((this.Order_DetailsRowChanged != null)) {
-                    this.Order_DetailsRowChanged(this, new Order_DetailsRowChangeEvent(((Order_DetailsRow)(e.Row)), e.Action));
+                if ((Order_DetailsRowChanged != null))
+                {
+                    Order_DetailsRowChanged(this,
+                                            new Order_DetailsRowChangeEvent(((Order_DetailsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanging(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanging(e);
-                if ((this.Order_DetailsRowChanging != null)) {
-                    this.Order_DetailsRowChanging(this, new Order_DetailsRowChangeEvent(((Order_DetailsRow)(e.Row)), e.Action));
+                if ((Order_DetailsRowChanging != null))
+                {
+                    Order_DetailsRowChanging(this,
+                                             new Order_DetailsRowChangeEvent(((Order_DetailsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleted(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleted(e);
-                if ((this.Order_DetailsRowDeleted != null)) {
-                    this.Order_DetailsRowDeleted(this, new Order_DetailsRowChangeEvent(((Order_DetailsRow)(e.Row)), e.Action));
+                if ((Order_DetailsRowDeleted != null))
+                {
+                    Order_DetailsRowDeleted(this,
+                                            new Order_DetailsRowChangeEvent(((Order_DetailsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleting(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleting(e);
-                if ((this.Order_DetailsRowDeleting != null)) {
-                    this.Order_DetailsRowDeleting(this, new Order_DetailsRowChangeEvent(((Order_DetailsRow)(e.Row)), e.Action));
+                if ((Order_DetailsRowDeleting != null))
+                {
+                    Order_DetailsRowDeleting(this,
+                                             new Order_DetailsRowChangeEvent(((Order_DetailsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveOrder_DetailsRow(Order_DetailsRow row) {
-                this.Rows.Remove(row);
+
+            [DebuggerNonUserCode]
+            public void RemoveOrder_DetailsRow(Order_DetailsRow row)
+            {
+                Rows.Remove(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NorthwindDataSet ds = new NorthwindDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+
+            [DebuggerNonUserCode]
+            public static XmlSchemaComplexType GetTypedTableSchema(XmlSchemaSet xs)
+            {
+                var type = new XmlSchemaComplexType();
+                var sequence = new XmlSchemaSequence();
+                var ds = new NorthwindDataSet();
+                var any1 = new XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any1.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any2.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "Order_DetailsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
+                XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace))
+                {
+                    var s1 = new MemoryStream();
+                    var s2 = new MemoryStream();
+                    try
+                    {
+                        XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                        for (IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator();
+                             schemas.MoveNext();)
+                        {
+                            schema = ((XmlSchema) (schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
+                            if ((s1.Length == s2.Length))
+                            {
                                 s1.Position = 0;
                                 s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                for (;
+                                    ((s1.Position != s1.Length)
+                                     && (s1.ReadByte() == s2.ReadByte()));)
+                                {
                                     ;
                                 }
-                                if ((s1.Position == s1.Length)) {
+                                if ((s1.Position == s1.Length))
+                                {
                                     return type;
                                 }
                             }
                         }
                     }
-                    finally {
-                        if ((s1 != null)) {
+                    finally
+                    {
+                        if ((s1 != null))
+                        {
                             s1.Close();
                         }
-                        if ((s2 != null)) {
+                        if ((s2 != null))
+                        {
                             s2.Close();
                         }
                     }
@@ -2932,420 +4750,554 @@ namespace NW247.Model {
                 return type;
             }
         }
-        
+
+        #endregion
+
+        #region Nested type: Order_DetailsRow
+
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class Order_DetailsRow : DataRow
+        {
+            private readonly Order_DetailsDataTable tableOrder_Details;
+
+            [DebuggerNonUserCode]
+            internal Order_DetailsRow(DataRowBuilder rb) :
+                base(rb)
+            {
+                tableOrder_Details = ((Order_DetailsDataTable) (Table));
+            }
+
+            [DebuggerNonUserCode]
+            public int OrderID
+            {
+                get { return ((int) (this[tableOrder_Details.OrderIDColumn])); }
+                set { this[tableOrder_Details.OrderIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public int ProductID
+            {
+                get { return ((int) (this[tableOrder_Details.ProductIDColumn])); }
+                set { this[tableOrder_Details.ProductIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public decimal UnitPrice
+            {
+                get { return ((decimal) (this[tableOrder_Details.UnitPriceColumn])); }
+                set { this[tableOrder_Details.UnitPriceColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public short Quantity
+            {
+                get { return ((short) (this[tableOrder_Details.QuantityColumn])); }
+                set { this[tableOrder_Details.QuantityColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public float Discount
+            {
+                get { return ((float) (this[tableOrder_Details.DiscountColumn])); }
+                set { this[tableOrder_Details.DiscountColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public OrdersRow OrdersRow
+            {
+                get { return ((OrdersRow) (GetParentRow(Table.ParentRelations["FK_Order_Details_Orders"]))); }
+                set { SetParentRow(value, Table.ParentRelations["FK_Order_Details_Orders"]); }
+            }
+
+            [DebuggerNonUserCode]
+            public ProductsRow ProductsRow
+            {
+                get { return ((ProductsRow) (GetParentRow(Table.ParentRelations["FK_Order_Details_Products"]))); }
+                set { SetParentRow(value, Table.ParentRelations["FK_Order_Details_Products"]); }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: Order_DetailsRowChangeEvent
+
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class Order_DetailsRowChangeEvent : EventArgs
+        {
+            private readonly DataRowAction eventAction;
+            private readonly Order_DetailsRow eventRow;
+
+            [DebuggerNonUserCode]
+            public Order_DetailsRowChangeEvent(Order_DetailsRow row, DataRowAction action)
+            {
+                eventRow = row;
+                eventAction = action;
+            }
+
+            [DebuggerNonUserCode]
+            public Order_DetailsRow Row
+            {
+                get { return eventRow; }
+            }
+
+            [DebuggerNonUserCode]
+            public DataRowAction Action
+            {
+                get { return eventAction; }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: OrdersDataTable
+
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class OrdersDataTable : global::System.Data.TypedTableBase<OrdersRow> {
-            
-            private global::System.Data.DataColumn columnOrderID;
-            
-            private global::System.Data.DataColumn columnCustomerID;
-            
-            private global::System.Data.DataColumn columnEmployeeID;
-            
-            private global::System.Data.DataColumn columnOrderDate;
-            
-            private global::System.Data.DataColumn columnRequiredDate;
-            
-            private global::System.Data.DataColumn columnShippedDate;
-            
-            private global::System.Data.DataColumn columnShipVia;
-            
-            private global::System.Data.DataColumn columnFreight;
-            
-            private global::System.Data.DataColumn columnShipName;
-            
-            private global::System.Data.DataColumn columnShipAddress;
-            
-            private global::System.Data.DataColumn columnShipCity;
-            
-            private global::System.Data.DataColumn columnShipRegion;
-            
-            private global::System.Data.DataColumn columnShipPostalCode;
-            
-            private global::System.Data.DataColumn columnShipCountry;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public OrdersDataTable() {
-                this.TableName = "Orders";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [Serializable]
+        [XmlSchemaProvider("GetTypedTableSchema")]
+        public class OrdersDataTable : TypedTableBase<OrdersRow>
+        {
+            private DataColumn columnCustomerID;
+
+            private DataColumn columnEmployeeID;
+            private DataColumn columnFreight;
+
+            private DataColumn columnOrderDate;
+            private DataColumn columnOrderID;
+
+            private DataColumn columnRequiredDate;
+
+            private DataColumn columnShipAddress;
+
+            private DataColumn columnShipCity;
+
+            private DataColumn columnShipCountry;
+            private DataColumn columnShipName;
+            private DataColumn columnShippedDate;
+            private DataColumn columnShipPostalCode;
+            private DataColumn columnShipRegion;
+            private DataColumn columnShipVia;
+
+            [DebuggerNonUserCode]
+            public OrdersDataTable()
+            {
+                TableName = "Orders";
+                BeginInit();
+                InitClass();
+                EndInit();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal OrdersDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
+
+            [DebuggerNonUserCode]
+            internal OrdersDataTable(DataTable table)
+            {
+                TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive))
+                {
+                    CaseSensitive = table.CaseSensitive;
                 }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
+                {
+                    Locale = table.Locale;
                 }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
+                if ((table.Namespace != table.DataSet.Namespace))
+                {
+                    Namespace = table.Namespace;
                 }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
+                Prefix = table.Prefix;
+                MinimumCapacity = table.MinimumCapacity;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected OrdersDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
+
+            [DebuggerNonUserCode]
+            protected OrdersDataTable(SerializationInfo info, StreamingContext context) :
+                base(info, context)
+            {
+                InitVars();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn OrderIDColumn {
-                get {
-                    return this.columnOrderID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn OrderIDColumn
+            {
+                get { return columnOrderID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CustomerIDColumn {
-                get {
-                    return this.columnCustomerID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CustomerIDColumn
+            {
+                get { return columnCustomerID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn EmployeeIDColumn {
-                get {
-                    return this.columnEmployeeID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn EmployeeIDColumn
+            {
+                get { return columnEmployeeID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn OrderDateColumn {
-                get {
-                    return this.columnOrderDate;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn OrderDateColumn
+            {
+                get { return columnOrderDate; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn RequiredDateColumn {
-                get {
-                    return this.columnRequiredDate;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn RequiredDateColumn
+            {
+                get { return columnRequiredDate; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ShippedDateColumn {
-                get {
-                    return this.columnShippedDate;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ShippedDateColumn
+            {
+                get { return columnShippedDate; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ShipViaColumn {
-                get {
-                    return this.columnShipVia;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ShipViaColumn
+            {
+                get { return columnShipVia; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn FreightColumn {
-                get {
-                    return this.columnFreight;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn FreightColumn
+            {
+                get { return columnFreight; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ShipNameColumn {
-                get {
-                    return this.columnShipName;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ShipNameColumn
+            {
+                get { return columnShipName; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ShipAddressColumn {
-                get {
-                    return this.columnShipAddress;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ShipAddressColumn
+            {
+                get { return columnShipAddress; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ShipCityColumn {
-                get {
-                    return this.columnShipCity;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ShipCityColumn
+            {
+                get { return columnShipCity; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ShipRegionColumn {
-                get {
-                    return this.columnShipRegion;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ShipRegionColumn
+            {
+                get { return columnShipRegion; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ShipPostalCodeColumn {
-                get {
-                    return this.columnShipPostalCode;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ShipPostalCodeColumn
+            {
+                get { return columnShipPostalCode; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ShipCountryColumn {
-                get {
-                    return this.columnShipCountry;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ShipCountryColumn
+            {
+                get { return columnShipCountry; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
+
+            [DebuggerNonUserCode]
+            [Browsable(false)]
+            public int Count
+            {
+                get { return Rows.Count; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public OrdersRow this[int index] {
-                get {
-                    return ((OrdersRow)(this.Rows[index]));
-                }
+
+            [DebuggerNonUserCode]
+            public OrdersRow this[int index]
+            {
+                get { return ((OrdersRow) (Rows[index])); }
             }
-            
+
             public event OrdersRowChangeEventHandler OrdersRowChanging;
-            
+
             public event OrdersRowChangeEventHandler OrdersRowChanged;
-            
+
             public event OrdersRowChangeEventHandler OrdersRowDeleting;
-            
+
             public event OrdersRowChangeEventHandler OrdersRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddOrdersRow(OrdersRow row) {
-                this.Rows.Add(row);
+
+            [DebuggerNonUserCode]
+            public void AddOrdersRow(OrdersRow row)
+            {
+                Rows.Add(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public OrdersRow AddOrdersRow(CustomersRow parentCustomersRowByFK_Orders_Customers, EmployeesRow parentEmployeesRowByFK_Orders_Employees, System.DateTime OrderDate, System.DateTime RequiredDate, System.DateTime ShippedDate, ShippersRow parentShippersRowByFK_Orders_Shippers, decimal Freight, string ShipName, string ShipAddress, string ShipCity, string ShipRegion, string ShipPostalCode, string ShipCountry) {
-                OrdersRow rowOrdersRow = ((OrdersRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        null,
-                        null,
-                        OrderDate,
-                        RequiredDate,
-                        ShippedDate,
-                        null,
-                        Freight,
-                        ShipName,
-                        ShipAddress,
-                        ShipCity,
-                        ShipRegion,
-                        ShipPostalCode,
-                        ShipCountry};
-                if ((parentCustomersRowByFK_Orders_Customers != null)) {
+
+            [DebuggerNonUserCode]
+            public OrdersRow AddOrdersRow(CustomersRow parentCustomersRowByFK_Orders_Customers,
+                                          EmployeesRow parentEmployeesRowByFK_Orders_Employees, DateTime OrderDate,
+                                          DateTime RequiredDate, DateTime ShippedDate,
+                                          ShippersRow parentShippersRowByFK_Orders_Shippers, decimal Freight,
+                                          string ShipName, string ShipAddress, string ShipCity, string ShipRegion,
+                                          string ShipPostalCode, string ShipCountry)
+            {
+                var rowOrdersRow = ((OrdersRow) (NewRow()));
+                var columnValuesArray = new object[]
+                                            {
+                                                null,
+                                                null,
+                                                null,
+                                                OrderDate,
+                                                RequiredDate,
+                                                ShippedDate,
+                                                null,
+                                                Freight,
+                                                ShipName,
+                                                ShipAddress,
+                                                ShipCity,
+                                                ShipRegion,
+                                                ShipPostalCode,
+                                                ShipCountry
+                                            };
+                if ((parentCustomersRowByFK_Orders_Customers != null))
+                {
                     columnValuesArray[1] = parentCustomersRowByFK_Orders_Customers[0];
                 }
-                if ((parentEmployeesRowByFK_Orders_Employees != null)) {
+                if ((parentEmployeesRowByFK_Orders_Employees != null))
+                {
                     columnValuesArray[2] = parentEmployeesRowByFK_Orders_Employees[0];
                 }
-                if ((parentShippersRowByFK_Orders_Shippers != null)) {
+                if ((parentShippersRowByFK_Orders_Shippers != null))
+                {
                     columnValuesArray[6] = parentShippersRowByFK_Orders_Shippers[0];
                 }
                 rowOrdersRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowOrdersRow);
+                Rows.Add(rowOrdersRow);
                 return rowOrdersRow;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public OrdersRow FindByOrderID(int OrderID) {
-                return ((OrdersRow)(this.Rows.Find(new object[] {
-                            OrderID})));
+
+            [DebuggerNonUserCode]
+            public OrdersRow FindByOrderID(int OrderID)
+            {
+                return ((OrdersRow) (Rows.Find(new object[]
+                                                   {
+                                                       OrderID
+                                                   })));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                OrdersDataTable cln = ((OrdersDataTable)(base.Clone()));
+
+            [DebuggerNonUserCode]
+            public override DataTable Clone()
+            {
+                var cln = ((OrdersDataTable) (base.Clone()));
                 cln.InitVars();
                 return cln;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
+
+            [DebuggerNonUserCode]
+            protected override DataTable CreateInstance()
+            {
                 return new OrdersDataTable();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnOrderID = base.Columns["OrderID"];
-                this.columnCustomerID = base.Columns["CustomerID"];
-                this.columnEmployeeID = base.Columns["EmployeeID"];
-                this.columnOrderDate = base.Columns["OrderDate"];
-                this.columnRequiredDate = base.Columns["RequiredDate"];
-                this.columnShippedDate = base.Columns["ShippedDate"];
-                this.columnShipVia = base.Columns["ShipVia"];
-                this.columnFreight = base.Columns["Freight"];
-                this.columnShipName = base.Columns["ShipName"];
-                this.columnShipAddress = base.Columns["ShipAddress"];
-                this.columnShipCity = base.Columns["ShipCity"];
-                this.columnShipRegion = base.Columns["ShipRegion"];
-                this.columnShipPostalCode = base.Columns["ShipPostalCode"];
-                this.columnShipCountry = base.Columns["ShipCountry"];
+
+            [DebuggerNonUserCode]
+            internal void InitVars()
+            {
+                columnOrderID = base.Columns["OrderID"];
+                columnCustomerID = base.Columns["CustomerID"];
+                columnEmployeeID = base.Columns["EmployeeID"];
+                columnOrderDate = base.Columns["OrderDate"];
+                columnRequiredDate = base.Columns["RequiredDate"];
+                columnShippedDate = base.Columns["ShippedDate"];
+                columnShipVia = base.Columns["ShipVia"];
+                columnFreight = base.Columns["Freight"];
+                columnShipName = base.Columns["ShipName"];
+                columnShipAddress = base.Columns["ShipAddress"];
+                columnShipCity = base.Columns["ShipCity"];
+                columnShipRegion = base.Columns["ShipRegion"];
+                columnShipPostalCode = base.Columns["ShipPostalCode"];
+                columnShipCountry = base.Columns["ShipCountry"];
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnOrderID = new global::System.Data.DataColumn("OrderID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOrderID);
-                this.columnCustomerID = new global::System.Data.DataColumn("CustomerID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCustomerID);
-                this.columnEmployeeID = new global::System.Data.DataColumn("EmployeeID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEmployeeID);
-                this.columnOrderDate = new global::System.Data.DataColumn("OrderDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOrderDate);
-                this.columnRequiredDate = new global::System.Data.DataColumn("RequiredDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRequiredDate);
-                this.columnShippedDate = new global::System.Data.DataColumn("ShippedDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnShippedDate);
-                this.columnShipVia = new global::System.Data.DataColumn("ShipVia", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnShipVia);
-                this.columnFreight = new global::System.Data.DataColumn("Freight", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFreight);
-                this.columnShipName = new global::System.Data.DataColumn("ShipName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnShipName);
-                this.columnShipAddress = new global::System.Data.DataColumn("ShipAddress", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnShipAddress);
-                this.columnShipCity = new global::System.Data.DataColumn("ShipCity", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnShipCity);
-                this.columnShipRegion = new global::System.Data.DataColumn("ShipRegion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnShipRegion);
-                this.columnShipPostalCode = new global::System.Data.DataColumn("ShipPostalCode", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnShipPostalCode);
-                this.columnShipCountry = new global::System.Data.DataColumn("ShipCountry", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnShipCountry);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnOrderID}, true));
-                this.columnOrderID.AutoIncrement = true;
-                this.columnOrderID.AutoIncrementSeed = -1;
-                this.columnOrderID.AutoIncrementStep = -1;
-                this.columnOrderID.AllowDBNull = false;
-                this.columnOrderID.ReadOnly = true;
-                this.columnOrderID.Unique = true;
-                this.columnCustomerID.MaxLength = 5;
-                this.columnShipName.MaxLength = 40;
-                this.columnShipAddress.MaxLength = 60;
-                this.columnShipCity.MaxLength = 15;
-                this.columnShipRegion.MaxLength = 15;
-                this.columnShipPostalCode.MaxLength = 10;
-                this.columnShipCountry.MaxLength = 15;
+
+            [DebuggerNonUserCode]
+            private void InitClass()
+            {
+                columnOrderID = new DataColumn("OrderID", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnOrderID);
+                columnCustomerID = new DataColumn("CustomerID", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCustomerID);
+                columnEmployeeID = new DataColumn("EmployeeID", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnEmployeeID);
+                columnOrderDate = new DataColumn("OrderDate", typeof (DateTime), null, MappingType.Element);
+                base.Columns.Add(columnOrderDate);
+                columnRequiredDate = new DataColumn("RequiredDate", typeof (DateTime), null, MappingType.Element);
+                base.Columns.Add(columnRequiredDate);
+                columnShippedDate = new DataColumn("ShippedDate", typeof (DateTime), null, MappingType.Element);
+                base.Columns.Add(columnShippedDate);
+                columnShipVia = new DataColumn("ShipVia", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnShipVia);
+                columnFreight = new DataColumn("Freight", typeof (decimal), null, MappingType.Element);
+                base.Columns.Add(columnFreight);
+                columnShipName = new DataColumn("ShipName", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnShipName);
+                columnShipAddress = new DataColumn("ShipAddress", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnShipAddress);
+                columnShipCity = new DataColumn("ShipCity", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnShipCity);
+                columnShipRegion = new DataColumn("ShipRegion", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnShipRegion);
+                columnShipPostalCode = new DataColumn("ShipPostalCode", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnShipPostalCode);
+                columnShipCountry = new DataColumn("ShipCountry", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnShipCountry);
+                Constraints.Add(new UniqueConstraint("Constraint1", new[]
+                                                                        {
+                                                                            columnOrderID
+                                                                        }, true));
+                columnOrderID.AutoIncrement = true;
+                columnOrderID.AutoIncrementSeed = -1;
+                columnOrderID.AutoIncrementStep = -1;
+                columnOrderID.AllowDBNull = false;
+                columnOrderID.ReadOnly = true;
+                columnOrderID.Unique = true;
+                columnCustomerID.MaxLength = 5;
+                columnShipName.MaxLength = 40;
+                columnShipAddress.MaxLength = 60;
+                columnShipCity.MaxLength = 15;
+                columnShipRegion.MaxLength = 15;
+                columnShipPostalCode.MaxLength = 10;
+                columnShipCountry.MaxLength = 15;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public OrdersRow NewOrdersRow() {
-                return ((OrdersRow)(this.NewRow()));
+
+            [DebuggerNonUserCode]
+            public OrdersRow NewOrdersRow()
+            {
+                return ((OrdersRow) (NewRow()));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+
+            [DebuggerNonUserCode]
+            protected override DataRow NewRowFromBuilder(DataRowBuilder builder)
+            {
                 return new OrdersRow(builder);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(OrdersRow);
+
+            [DebuggerNonUserCode]
+            protected override Type GetRowType()
+            {
+                return typeof (OrdersRow);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanged(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanged(e);
-                if ((this.OrdersRowChanged != null)) {
-                    this.OrdersRowChanged(this, new OrdersRowChangeEvent(((OrdersRow)(e.Row)), e.Action));
+                if ((OrdersRowChanged != null))
+                {
+                    OrdersRowChanged(this, new OrdersRowChangeEvent(((OrdersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanging(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanging(e);
-                if ((this.OrdersRowChanging != null)) {
-                    this.OrdersRowChanging(this, new OrdersRowChangeEvent(((OrdersRow)(e.Row)), e.Action));
+                if ((OrdersRowChanging != null))
+                {
+                    OrdersRowChanging(this, new OrdersRowChangeEvent(((OrdersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleted(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleted(e);
-                if ((this.OrdersRowDeleted != null)) {
-                    this.OrdersRowDeleted(this, new OrdersRowChangeEvent(((OrdersRow)(e.Row)), e.Action));
+                if ((OrdersRowDeleted != null))
+                {
+                    OrdersRowDeleted(this, new OrdersRowChangeEvent(((OrdersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleting(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleting(e);
-                if ((this.OrdersRowDeleting != null)) {
-                    this.OrdersRowDeleting(this, new OrdersRowChangeEvent(((OrdersRow)(e.Row)), e.Action));
+                if ((OrdersRowDeleting != null))
+                {
+                    OrdersRowDeleting(this, new OrdersRowChangeEvent(((OrdersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveOrdersRow(OrdersRow row) {
-                this.Rows.Remove(row);
+
+            [DebuggerNonUserCode]
+            public void RemoveOrdersRow(OrdersRow row)
+            {
+                Rows.Remove(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NorthwindDataSet ds = new NorthwindDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+
+            [DebuggerNonUserCode]
+            public static XmlSchemaComplexType GetTypedTableSchema(XmlSchemaSet xs)
+            {
+                var type = new XmlSchemaComplexType();
+                var sequence = new XmlSchemaSequence();
+                var ds = new NorthwindDataSet();
+                var any1 = new XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any1.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any2.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "OrdersDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
+                XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace))
+                {
+                    var s1 = new MemoryStream();
+                    var s2 = new MemoryStream();
+                    try
+                    {
+                        XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                        for (IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator();
+                             schemas.MoveNext();)
+                        {
+                            schema = ((XmlSchema) (schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
+                            if ((s1.Length == s2.Length))
+                            {
                                 s1.Position = 0;
                                 s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                for (;
+                                    ((s1.Position != s1.Length)
+                                     && (s1.ReadByte() == s2.ReadByte()));)
+                                {
                                     ;
                                 }
-                                if ((s1.Position == s1.Length)) {
+                                if ((s1.Position == s1.Length))
+                                {
                                     return type;
                                 }
                             }
                         }
                     }
-                    finally {
-                        if ((s1 != null)) {
+                    finally
+                    {
+                        if ((s1 != null))
+                        {
                             s1.Close();
                         }
-                        if ((s2 != null)) {
+                        if ((s2 != null))
+                        {
                             s2.Close();
                         }
                     }
@@ -3354,362 +5306,882 @@ namespace NW247.Model {
                 return type;
             }
         }
-        
+
+        #endregion
+
+        #region Nested type: OrdersRow
+
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class OrdersRow : DataRow
+        {
+            private readonly OrdersDataTable tableOrders;
+
+            [DebuggerNonUserCode]
+            internal OrdersRow(DataRowBuilder rb) :
+                base(rb)
+            {
+                tableOrders = ((OrdersDataTable) (Table));
+            }
+
+            [DebuggerNonUserCode]
+            public int OrderID
+            {
+                get { return ((int) (this[tableOrders.OrderIDColumn])); }
+                set { this[tableOrders.OrderIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string CustomerID
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableOrders.CustomerIDColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'CustomerID\' in table \'Orders\' is DBNull.", e);
+                    }
+                }
+                set { this[tableOrders.CustomerIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public int EmployeeID
+            {
+                get
+                {
+                    try
+                    {
+                        return ((int) (this[tableOrders.EmployeeIDColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'EmployeeID\' in table \'Orders\' is DBNull.", e);
+                    }
+                }
+                set { this[tableOrders.EmployeeIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public DateTime OrderDate
+            {
+                get
+                {
+                    try
+                    {
+                        return ((DateTime) (this[tableOrders.OrderDateColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'OrderDate\' in table \'Orders\' is DBNull.", e);
+                    }
+                }
+                set { this[tableOrders.OrderDateColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public DateTime RequiredDate
+            {
+                get
+                {
+                    try
+                    {
+                        return ((DateTime) (this[tableOrders.RequiredDateColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'RequiredDate\' in table \'Orders\' is DBNull.", e);
+                    }
+                }
+                set { this[tableOrders.RequiredDateColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public DateTime ShippedDate
+            {
+                get
+                {
+                    try
+                    {
+                        return ((DateTime) (this[tableOrders.ShippedDateColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'ShippedDate\' in table \'Orders\' is DBNull.", e);
+                    }
+                }
+                set { this[tableOrders.ShippedDateColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public int ShipVia
+            {
+                get
+                {
+                    try
+                    {
+                        return ((int) (this[tableOrders.ShipViaColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'ShipVia\' in table \'Orders\' is DBNull.", e);
+                    }
+                }
+                set { this[tableOrders.ShipViaColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public decimal Freight
+            {
+                get
+                {
+                    try
+                    {
+                        return ((decimal) (this[tableOrders.FreightColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Freight\' in table \'Orders\' is DBNull.", e);
+                    }
+                }
+                set { this[tableOrders.FreightColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string ShipName
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableOrders.ShipNameColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'ShipName\' in table \'Orders\' is DBNull.", e);
+                    }
+                }
+                set { this[tableOrders.ShipNameColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string ShipAddress
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableOrders.ShipAddressColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'ShipAddress\' in table \'Orders\' is DBNull.", e);
+                    }
+                }
+                set { this[tableOrders.ShipAddressColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string ShipCity
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableOrders.ShipCityColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'ShipCity\' in table \'Orders\' is DBNull.", e);
+                    }
+                }
+                set { this[tableOrders.ShipCityColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string ShipRegion
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableOrders.ShipRegionColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'ShipRegion\' in table \'Orders\' is DBNull.", e);
+                    }
+                }
+                set { this[tableOrders.ShipRegionColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string ShipPostalCode
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableOrders.ShipPostalCodeColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'ShipPostalCode\' in table \'Orders\' is DBNull.", e);
+                    }
+                }
+                set { this[tableOrders.ShipPostalCodeColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string ShipCountry
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableOrders.ShipCountryColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'ShipCountry\' in table \'Orders\' is DBNull.", e);
+                    }
+                }
+                set { this[tableOrders.ShipCountryColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public CustomersRow CustomersRow
+            {
+                get { return ((CustomersRow) (GetParentRow(Table.ParentRelations["FK_Orders_Customers"]))); }
+                set { SetParentRow(value, Table.ParentRelations["FK_Orders_Customers"]); }
+            }
+
+            [DebuggerNonUserCode]
+            public EmployeesRow EmployeesRow
+            {
+                get { return ((EmployeesRow) (GetParentRow(Table.ParentRelations["FK_Orders_Employees"]))); }
+                set { SetParentRow(value, Table.ParentRelations["FK_Orders_Employees"]); }
+            }
+
+            [DebuggerNonUserCode]
+            public ShippersRow ShippersRow
+            {
+                get { return ((ShippersRow) (GetParentRow(Table.ParentRelations["FK_Orders_Shippers"]))); }
+                set { SetParentRow(value, Table.ParentRelations["FK_Orders_Shippers"]); }
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsCustomerIDNull()
+            {
+                return IsNull(tableOrders.CustomerIDColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetCustomerIDNull()
+            {
+                this[tableOrders.CustomerIDColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsEmployeeIDNull()
+            {
+                return IsNull(tableOrders.EmployeeIDColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetEmployeeIDNull()
+            {
+                this[tableOrders.EmployeeIDColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsOrderDateNull()
+            {
+                return IsNull(tableOrders.OrderDateColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetOrderDateNull()
+            {
+                this[tableOrders.OrderDateColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsRequiredDateNull()
+            {
+                return IsNull(tableOrders.RequiredDateColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetRequiredDateNull()
+            {
+                this[tableOrders.RequiredDateColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsShippedDateNull()
+            {
+                return IsNull(tableOrders.ShippedDateColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetShippedDateNull()
+            {
+                this[tableOrders.ShippedDateColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsShipViaNull()
+            {
+                return IsNull(tableOrders.ShipViaColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetShipViaNull()
+            {
+                this[tableOrders.ShipViaColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsFreightNull()
+            {
+                return IsNull(tableOrders.FreightColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetFreightNull()
+            {
+                this[tableOrders.FreightColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsShipNameNull()
+            {
+                return IsNull(tableOrders.ShipNameColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetShipNameNull()
+            {
+                this[tableOrders.ShipNameColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsShipAddressNull()
+            {
+                return IsNull(tableOrders.ShipAddressColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetShipAddressNull()
+            {
+                this[tableOrders.ShipAddressColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsShipCityNull()
+            {
+                return IsNull(tableOrders.ShipCityColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetShipCityNull()
+            {
+                this[tableOrders.ShipCityColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsShipRegionNull()
+            {
+                return IsNull(tableOrders.ShipRegionColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetShipRegionNull()
+            {
+                this[tableOrders.ShipRegionColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsShipPostalCodeNull()
+            {
+                return IsNull(tableOrders.ShipPostalCodeColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetShipPostalCodeNull()
+            {
+                this[tableOrders.ShipPostalCodeColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsShipCountryNull()
+            {
+                return IsNull(tableOrders.ShipCountryColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetShipCountryNull()
+            {
+                this[tableOrders.ShipCountryColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public Order_DetailsRow[] GetOrder_DetailsRows()
+            {
+                if ((Table.ChildRelations["FK_Order_Details_Orders"] == null))
+                {
+                    return new Order_DetailsRow[0];
+                }
+                else
+                {
+                    return ((Order_DetailsRow[]) (base.GetChildRows(Table.ChildRelations["FK_Order_Details_Orders"])));
+                }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: OrdersRowChangeEvent
+
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class OrdersRowChangeEvent : EventArgs
+        {
+            private readonly DataRowAction eventAction;
+            private readonly OrdersRow eventRow;
+
+            [DebuggerNonUserCode]
+            public OrdersRowChangeEvent(OrdersRow row, DataRowAction action)
+            {
+                eventRow = row;
+                eventAction = action;
+            }
+
+            [DebuggerNonUserCode]
+            public OrdersRow Row
+            {
+                get { return eventRow; }
+            }
+
+            [DebuggerNonUserCode]
+            public DataRowAction Action
+            {
+                get { return eventAction; }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: ProductsDataTable
+
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ProductsDataTable : global::System.Data.TypedTableBase<ProductsRow> {
-            
-            private global::System.Data.DataColumn columnProductID;
-            
-            private global::System.Data.DataColumn columnProductName;
-            
-            private global::System.Data.DataColumn columnSupplierID;
-            
-            private global::System.Data.DataColumn columnCategoryID;
-            
-            private global::System.Data.DataColumn columnQuantityPerUnit;
-            
-            private global::System.Data.DataColumn columnUnitPrice;
-            
-            private global::System.Data.DataColumn columnUnitsInStock;
-            
-            private global::System.Data.DataColumn columnUnitsOnOrder;
-            
-            private global::System.Data.DataColumn columnReorderLevel;
-            
-            private global::System.Data.DataColumn columnDiscontinued;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ProductsDataTable() {
-                this.TableName = "Products";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [Serializable]
+        [XmlSchemaProvider("GetTypedTableSchema")]
+        public class ProductsDataTable : TypedTableBase<ProductsRow>
+        {
+            private DataColumn columnCategoryID;
+            private DataColumn columnDiscontinued;
+            private DataColumn columnProductID;
+
+            private DataColumn columnProductName;
+
+            private DataColumn columnQuantityPerUnit;
+            private DataColumn columnReorderLevel;
+            private DataColumn columnSupplierID;
+
+            private DataColumn columnUnitPrice;
+
+            private DataColumn columnUnitsInStock;
+
+            private DataColumn columnUnitsOnOrder;
+
+            [DebuggerNonUserCode]
+            public ProductsDataTable()
+            {
+                TableName = "Products";
+                BeginInit();
+                InitClass();
+                EndInit();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal ProductsDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
+
+            [DebuggerNonUserCode]
+            internal ProductsDataTable(DataTable table)
+            {
+                TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive))
+                {
+                    CaseSensitive = table.CaseSensitive;
                 }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
+                {
+                    Locale = table.Locale;
                 }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
+                if ((table.Namespace != table.DataSet.Namespace))
+                {
+                    Namespace = table.Namespace;
                 }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
+                Prefix = table.Prefix;
+                MinimumCapacity = table.MinimumCapacity;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected ProductsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
+
+            [DebuggerNonUserCode]
+            protected ProductsDataTable(SerializationInfo info, StreamingContext context) :
+                base(info, context)
+            {
+                InitVars();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ProductIDColumn {
-                get {
-                    return this.columnProductID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ProductIDColumn
+            {
+                get { return columnProductID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ProductNameColumn {
-                get {
-                    return this.columnProductName;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ProductNameColumn
+            {
+                get { return columnProductName; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn SupplierIDColumn {
-                get {
-                    return this.columnSupplierID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn SupplierIDColumn
+            {
+                get { return columnSupplierID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CategoryIDColumn {
-                get {
-                    return this.columnCategoryID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CategoryIDColumn
+            {
+                get { return columnCategoryID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn QuantityPerUnitColumn {
-                get {
-                    return this.columnQuantityPerUnit;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn QuantityPerUnitColumn
+            {
+                get { return columnQuantityPerUnit; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn UnitPriceColumn {
-                get {
-                    return this.columnUnitPrice;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn UnitPriceColumn
+            {
+                get { return columnUnitPrice; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn UnitsInStockColumn {
-                get {
-                    return this.columnUnitsInStock;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn UnitsInStockColumn
+            {
+                get { return columnUnitsInStock; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn UnitsOnOrderColumn {
-                get {
-                    return this.columnUnitsOnOrder;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn UnitsOnOrderColumn
+            {
+                get { return columnUnitsOnOrder; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ReorderLevelColumn {
-                get {
-                    return this.columnReorderLevel;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ReorderLevelColumn
+            {
+                get { return columnReorderLevel; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn DiscontinuedColumn {
-                get {
-                    return this.columnDiscontinued;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn DiscontinuedColumn
+            {
+                get { return columnDiscontinued; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
+
+            [DebuggerNonUserCode]
+            [Browsable(false)]
+            public int Count
+            {
+                get { return Rows.Count; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ProductsRow this[int index] {
-                get {
-                    return ((ProductsRow)(this.Rows[index]));
-                }
+
+            [DebuggerNonUserCode]
+            public ProductsRow this[int index]
+            {
+                get { return ((ProductsRow) (Rows[index])); }
             }
-            
+
             public event ProductsRowChangeEventHandler ProductsRowChanging;
-            
+
             public event ProductsRowChangeEventHandler ProductsRowChanged;
-            
+
             public event ProductsRowChangeEventHandler ProductsRowDeleting;
-            
+
             public event ProductsRowChangeEventHandler ProductsRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddProductsRow(ProductsRow row) {
-                this.Rows.Add(row);
+
+            [DebuggerNonUserCode]
+            public void AddProductsRow(ProductsRow row)
+            {
+                Rows.Add(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ProductsRow AddProductsRow(string ProductName, SuppliersRow parentSuppliersRowByFK_Products_Suppliers, CategoriesRow parentCategoriesRowByFK_Products_Categories, string QuantityPerUnit, decimal UnitPrice, short UnitsInStock, short UnitsOnOrder, short ReorderLevel, bool Discontinued) {
-                ProductsRow rowProductsRow = ((ProductsRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        ProductName,
-                        null,
-                        null,
-                        QuantityPerUnit,
-                        UnitPrice,
-                        UnitsInStock,
-                        UnitsOnOrder,
-                        ReorderLevel,
-                        Discontinued};
-                if ((parentSuppliersRowByFK_Products_Suppliers != null)) {
+
+            [DebuggerNonUserCode]
+            public ProductsRow AddProductsRow(string ProductName, SuppliersRow parentSuppliersRowByFK_Products_Suppliers,
+                                              CategoriesRow parentCategoriesRowByFK_Products_Categories,
+                                              string QuantityPerUnit, decimal UnitPrice, short UnitsInStock,
+                                              short UnitsOnOrder, short ReorderLevel, bool Discontinued)
+            {
+                var rowProductsRow = ((ProductsRow) (NewRow()));
+                var columnValuesArray = new object[]
+                                            {
+                                                null,
+                                                ProductName,
+                                                null,
+                                                null,
+                                                QuantityPerUnit,
+                                                UnitPrice,
+                                                UnitsInStock,
+                                                UnitsOnOrder,
+                                                ReorderLevel,
+                                                Discontinued
+                                            };
+                if ((parentSuppliersRowByFK_Products_Suppliers != null))
+                {
                     columnValuesArray[2] = parentSuppliersRowByFK_Products_Suppliers[0];
                 }
-                if ((parentCategoriesRowByFK_Products_Categories != null)) {
+                if ((parentCategoriesRowByFK_Products_Categories != null))
+                {
                     columnValuesArray[3] = parentCategoriesRowByFK_Products_Categories[0];
                 }
                 rowProductsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowProductsRow);
+                Rows.Add(rowProductsRow);
                 return rowProductsRow;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ProductsRow FindByProductID(int ProductID) {
-                return ((ProductsRow)(this.Rows.Find(new object[] {
-                            ProductID})));
+
+            [DebuggerNonUserCode]
+            public ProductsRow FindByProductID(int ProductID)
+            {
+                return ((ProductsRow) (Rows.Find(new object[]
+                                                     {
+                                                         ProductID
+                                                     })));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                ProductsDataTable cln = ((ProductsDataTable)(base.Clone()));
+
+            [DebuggerNonUserCode]
+            public override DataTable Clone()
+            {
+                var cln = ((ProductsDataTable) (base.Clone()));
                 cln.InitVars();
                 return cln;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
+
+            [DebuggerNonUserCode]
+            protected override DataTable CreateInstance()
+            {
                 return new ProductsDataTable();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnProductID = base.Columns["ProductID"];
-                this.columnProductName = base.Columns["ProductName"];
-                this.columnSupplierID = base.Columns["SupplierID"];
-                this.columnCategoryID = base.Columns["CategoryID"];
-                this.columnQuantityPerUnit = base.Columns["QuantityPerUnit"];
-                this.columnUnitPrice = base.Columns["UnitPrice"];
-                this.columnUnitsInStock = base.Columns["UnitsInStock"];
-                this.columnUnitsOnOrder = base.Columns["UnitsOnOrder"];
-                this.columnReorderLevel = base.Columns["ReorderLevel"];
-                this.columnDiscontinued = base.Columns["Discontinued"];
+
+            [DebuggerNonUserCode]
+            internal void InitVars()
+            {
+                columnProductID = base.Columns["ProductID"];
+                columnProductName = base.Columns["ProductName"];
+                columnSupplierID = base.Columns["SupplierID"];
+                columnCategoryID = base.Columns["CategoryID"];
+                columnQuantityPerUnit = base.Columns["QuantityPerUnit"];
+                columnUnitPrice = base.Columns["UnitPrice"];
+                columnUnitsInStock = base.Columns["UnitsInStock"];
+                columnUnitsOnOrder = base.Columns["UnitsOnOrder"];
+                columnReorderLevel = base.Columns["ReorderLevel"];
+                columnDiscontinued = base.Columns["Discontinued"];
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnProductID = new global::System.Data.DataColumn("ProductID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProductID);
-                this.columnProductName = new global::System.Data.DataColumn("ProductName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProductName);
-                this.columnSupplierID = new global::System.Data.DataColumn("SupplierID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSupplierID);
-                this.columnCategoryID = new global::System.Data.DataColumn("CategoryID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCategoryID);
-                this.columnQuantityPerUnit = new global::System.Data.DataColumn("QuantityPerUnit", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQuantityPerUnit);
-                this.columnUnitPrice = new global::System.Data.DataColumn("UnitPrice", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnUnitPrice);
-                this.columnUnitsInStock = new global::System.Data.DataColumn("UnitsInStock", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnUnitsInStock);
-                this.columnUnitsOnOrder = new global::System.Data.DataColumn("UnitsOnOrder", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnUnitsOnOrder);
-                this.columnReorderLevel = new global::System.Data.DataColumn("ReorderLevel", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnReorderLevel);
-                this.columnDiscontinued = new global::System.Data.DataColumn("Discontinued", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDiscontinued);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnProductID}, true));
-                this.columnProductID.AutoIncrement = true;
-                this.columnProductID.AutoIncrementSeed = -1;
-                this.columnProductID.AutoIncrementStep = -1;
-                this.columnProductID.AllowDBNull = false;
-                this.columnProductID.ReadOnly = true;
-                this.columnProductID.Unique = true;
-                this.columnProductName.AllowDBNull = false;
-                this.columnProductName.MaxLength = 40;
-                this.columnQuantityPerUnit.MaxLength = 20;
-                this.columnDiscontinued.AllowDBNull = false;
+
+            [DebuggerNonUserCode]
+            private void InitClass()
+            {
+                columnProductID = new DataColumn("ProductID", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnProductID);
+                columnProductName = new DataColumn("ProductName", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnProductName);
+                columnSupplierID = new DataColumn("SupplierID", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnSupplierID);
+                columnCategoryID = new DataColumn("CategoryID", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnCategoryID);
+                columnQuantityPerUnit = new DataColumn("QuantityPerUnit", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnQuantityPerUnit);
+                columnUnitPrice = new DataColumn("UnitPrice", typeof (decimal), null, MappingType.Element);
+                base.Columns.Add(columnUnitPrice);
+                columnUnitsInStock = new DataColumn("UnitsInStock", typeof (short), null, MappingType.Element);
+                base.Columns.Add(columnUnitsInStock);
+                columnUnitsOnOrder = new DataColumn("UnitsOnOrder", typeof (short), null, MappingType.Element);
+                base.Columns.Add(columnUnitsOnOrder);
+                columnReorderLevel = new DataColumn("ReorderLevel", typeof (short), null, MappingType.Element);
+                base.Columns.Add(columnReorderLevel);
+                columnDiscontinued = new DataColumn("Discontinued", typeof (bool), null, MappingType.Element);
+                base.Columns.Add(columnDiscontinued);
+                Constraints.Add(new UniqueConstraint("Constraint1", new[]
+                                                                        {
+                                                                            columnProductID
+                                                                        }, true));
+                columnProductID.AutoIncrement = true;
+                columnProductID.AutoIncrementSeed = -1;
+                columnProductID.AutoIncrementStep = -1;
+                columnProductID.AllowDBNull = false;
+                columnProductID.ReadOnly = true;
+                columnProductID.Unique = true;
+                columnProductName.AllowDBNull = false;
+                columnProductName.MaxLength = 40;
+                columnQuantityPerUnit.MaxLength = 20;
+                columnDiscontinued.AllowDBNull = false;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ProductsRow NewProductsRow() {
-                return ((ProductsRow)(this.NewRow()));
+
+            [DebuggerNonUserCode]
+            public ProductsRow NewProductsRow()
+            {
+                return ((ProductsRow) (NewRow()));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+
+            [DebuggerNonUserCode]
+            protected override DataRow NewRowFromBuilder(DataRowBuilder builder)
+            {
                 return new ProductsRow(builder);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(ProductsRow);
+
+            [DebuggerNonUserCode]
+            protected override Type GetRowType()
+            {
+                return typeof (ProductsRow);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanged(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanged(e);
-                if ((this.ProductsRowChanged != null)) {
-                    this.ProductsRowChanged(this, new ProductsRowChangeEvent(((ProductsRow)(e.Row)), e.Action));
+                if ((ProductsRowChanged != null))
+                {
+                    ProductsRowChanged(this, new ProductsRowChangeEvent(((ProductsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanging(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanging(e);
-                if ((this.ProductsRowChanging != null)) {
-                    this.ProductsRowChanging(this, new ProductsRowChangeEvent(((ProductsRow)(e.Row)), e.Action));
+                if ((ProductsRowChanging != null))
+                {
+                    ProductsRowChanging(this, new ProductsRowChangeEvent(((ProductsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleted(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleted(e);
-                if ((this.ProductsRowDeleted != null)) {
-                    this.ProductsRowDeleted(this, new ProductsRowChangeEvent(((ProductsRow)(e.Row)), e.Action));
+                if ((ProductsRowDeleted != null))
+                {
+                    ProductsRowDeleted(this, new ProductsRowChangeEvent(((ProductsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleting(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleting(e);
-                if ((this.ProductsRowDeleting != null)) {
-                    this.ProductsRowDeleting(this, new ProductsRowChangeEvent(((ProductsRow)(e.Row)), e.Action));
+                if ((ProductsRowDeleting != null))
+                {
+                    ProductsRowDeleting(this, new ProductsRowChangeEvent(((ProductsRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveProductsRow(ProductsRow row) {
-                this.Rows.Remove(row);
+
+            [DebuggerNonUserCode]
+            public void RemoveProductsRow(ProductsRow row)
+            {
+                Rows.Remove(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NorthwindDataSet ds = new NorthwindDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+
+            [DebuggerNonUserCode]
+            public static XmlSchemaComplexType GetTypedTableSchema(XmlSchemaSet xs)
+            {
+                var type = new XmlSchemaComplexType();
+                var sequence = new XmlSchemaSequence();
+                var ds = new NorthwindDataSet();
+                var any1 = new XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any1.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any2.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "ProductsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
+                XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace))
+                {
+                    var s1 = new MemoryStream();
+                    var s2 = new MemoryStream();
+                    try
+                    {
+                        XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                        for (IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator();
+                             schemas.MoveNext();)
+                        {
+                            schema = ((XmlSchema) (schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
+                            if ((s1.Length == s2.Length))
+                            {
                                 s1.Position = 0;
                                 s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                for (;
+                                    ((s1.Position != s1.Length)
+                                     && (s1.ReadByte() == s2.ReadByte()));)
+                                {
                                     ;
                                 }
-                                if ((s1.Position == s1.Length)) {
+                                if ((s1.Position == s1.Length))
+                                {
                                     return type;
                                 }
                             }
                         }
                     }
-                    finally {
-                        if ((s1 != null)) {
+                    finally
+                    {
+                        if ((s1 != null))
+                        {
                             s1.Close();
                         }
-                        if ((s2 != null)) {
+                        if ((s2 != null))
+                        {
                             s2.Close();
                         }
                     }
@@ -3718,246 +6190,599 @@ namespace NW247.Model {
                 return type;
             }
         }
-        
+
+        #endregion
+
+        #region Nested type: ProductsRow
+
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class ProductsRow : DataRow
+        {
+            private readonly ProductsDataTable tableProducts;
+
+            [DebuggerNonUserCode]
+            internal ProductsRow(DataRowBuilder rb) :
+                base(rb)
+            {
+                tableProducts = ((ProductsDataTable) (Table));
+            }
+
+            [DebuggerNonUserCode]
+            public int ProductID
+            {
+                get { return ((int) (this[tableProducts.ProductIDColumn])); }
+                set { this[tableProducts.ProductIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string ProductName
+            {
+                get { return ((string) (this[tableProducts.ProductNameColumn])); }
+                set { this[tableProducts.ProductNameColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public int SupplierID
+            {
+                get
+                {
+                    try
+                    {
+                        return ((int) (this[tableProducts.SupplierIDColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'SupplierID\' in table \'Products\' is DBNull.", e);
+                    }
+                }
+                set { this[tableProducts.SupplierIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public int CategoryID
+            {
+                get
+                {
+                    try
+                    {
+                        return ((int) (this[tableProducts.CategoryIDColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'CategoryID\' in table \'Products\' is DBNull.", e);
+                    }
+                }
+                set { this[tableProducts.CategoryIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string QuantityPerUnit
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableProducts.QuantityPerUnitColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'QuantityPerUnit\' in table \'Products\' is DBNull.", e);
+                    }
+                }
+                set { this[tableProducts.QuantityPerUnitColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public decimal UnitPrice
+            {
+                get
+                {
+                    try
+                    {
+                        return ((decimal) (this[tableProducts.UnitPriceColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'UnitPrice\' in table \'Products\' is DBNull.", e);
+                    }
+                }
+                set { this[tableProducts.UnitPriceColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public short UnitsInStock
+            {
+                get
+                {
+                    try
+                    {
+                        return ((short) (this[tableProducts.UnitsInStockColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'UnitsInStock\' in table \'Products\' is DBNull.", e);
+                    }
+                }
+                set { this[tableProducts.UnitsInStockColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public short UnitsOnOrder
+            {
+                get
+                {
+                    try
+                    {
+                        return ((short) (this[tableProducts.UnitsOnOrderColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'UnitsOnOrder\' in table \'Products\' is DBNull.", e);
+                    }
+                }
+                set { this[tableProducts.UnitsOnOrderColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public short ReorderLevel
+            {
+                get
+                {
+                    try
+                    {
+                        return ((short) (this[tableProducts.ReorderLevelColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'ReorderLevel\' in table \'Products\' is DBNull.", e);
+                    }
+                }
+                set { this[tableProducts.ReorderLevelColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public bool Discontinued
+            {
+                get { return ((bool) (this[tableProducts.DiscontinuedColumn])); }
+                set { this[tableProducts.DiscontinuedColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public CategoriesRow CategoriesRow
+            {
+                get { return ((CategoriesRow) (GetParentRow(Table.ParentRelations["FK_Products_Categories"]))); }
+                set { SetParentRow(value, Table.ParentRelations["FK_Products_Categories"]); }
+            }
+
+            [DebuggerNonUserCode]
+            public SuppliersRow SuppliersRow
+            {
+                get { return ((SuppliersRow) (GetParentRow(Table.ParentRelations["FK_Products_Suppliers"]))); }
+                set { SetParentRow(value, Table.ParentRelations["FK_Products_Suppliers"]); }
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsSupplierIDNull()
+            {
+                return IsNull(tableProducts.SupplierIDColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetSupplierIDNull()
+            {
+                this[tableProducts.SupplierIDColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsCategoryIDNull()
+            {
+                return IsNull(tableProducts.CategoryIDColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetCategoryIDNull()
+            {
+                this[tableProducts.CategoryIDColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsQuantityPerUnitNull()
+            {
+                return IsNull(tableProducts.QuantityPerUnitColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetQuantityPerUnitNull()
+            {
+                this[tableProducts.QuantityPerUnitColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsUnitPriceNull()
+            {
+                return IsNull(tableProducts.UnitPriceColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetUnitPriceNull()
+            {
+                this[tableProducts.UnitPriceColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsUnitsInStockNull()
+            {
+                return IsNull(tableProducts.UnitsInStockColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetUnitsInStockNull()
+            {
+                this[tableProducts.UnitsInStockColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsUnitsOnOrderNull()
+            {
+                return IsNull(tableProducts.UnitsOnOrderColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetUnitsOnOrderNull()
+            {
+                this[tableProducts.UnitsOnOrderColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsReorderLevelNull()
+            {
+                return IsNull(tableProducts.ReorderLevelColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetReorderLevelNull()
+            {
+                this[tableProducts.ReorderLevelColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public Order_DetailsRow[] GetOrder_DetailsRows()
+            {
+                if ((Table.ChildRelations["FK_Order_Details_Products"] == null))
+                {
+                    return new Order_DetailsRow[0];
+                }
+                else
+                {
+                    return ((Order_DetailsRow[]) (base.GetChildRows(Table.ChildRelations["FK_Order_Details_Products"])));
+                }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: ProductsRowChangeEvent
+
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class ProductsRowChangeEvent : EventArgs
+        {
+            private readonly DataRowAction eventAction;
+            private readonly ProductsRow eventRow;
+
+            [DebuggerNonUserCode]
+            public ProductsRowChangeEvent(ProductsRow row, DataRowAction action)
+            {
+                eventRow = row;
+                eventAction = action;
+            }
+
+            [DebuggerNonUserCode]
+            public ProductsRow Row
+            {
+                get { return eventRow; }
+            }
+
+            [DebuggerNonUserCode]
+            public DataRowAction Action
+            {
+                get { return eventAction; }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: RegionDataTable
+
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class RegionDataTable : global::System.Data.TypedTableBase<RegionRow> {
-            
-            private global::System.Data.DataColumn columnRegionID;
-            
-            private global::System.Data.DataColumn columnRegionDescription;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public RegionDataTable() {
-                this.TableName = "Region";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [Serializable]
+        [XmlSchemaProvider("GetTypedTableSchema")]
+        public class RegionDataTable : TypedTableBase<RegionRow>
+        {
+            private DataColumn columnRegionDescription;
+            private DataColumn columnRegionID;
+
+            [DebuggerNonUserCode]
+            public RegionDataTable()
+            {
+                TableName = "Region";
+                BeginInit();
+                InitClass();
+                EndInit();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal RegionDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
+
+            [DebuggerNonUserCode]
+            internal RegionDataTable(DataTable table)
+            {
+                TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive))
+                {
+                    CaseSensitive = table.CaseSensitive;
                 }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
+                {
+                    Locale = table.Locale;
                 }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
+                if ((table.Namespace != table.DataSet.Namespace))
+                {
+                    Namespace = table.Namespace;
                 }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
+                Prefix = table.Prefix;
+                MinimumCapacity = table.MinimumCapacity;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected RegionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
+
+            [DebuggerNonUserCode]
+            protected RegionDataTable(SerializationInfo info, StreamingContext context) :
+                base(info, context)
+            {
+                InitVars();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn RegionIDColumn {
-                get {
-                    return this.columnRegionID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn RegionIDColumn
+            {
+                get { return columnRegionID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn RegionDescriptionColumn {
-                get {
-                    return this.columnRegionDescription;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn RegionDescriptionColumn
+            {
+                get { return columnRegionDescription; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
+
+            [DebuggerNonUserCode]
+            [Browsable(false)]
+            public int Count
+            {
+                get { return Rows.Count; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public RegionRow this[int index] {
-                get {
-                    return ((RegionRow)(this.Rows[index]));
-                }
+
+            [DebuggerNonUserCode]
+            public RegionRow this[int index]
+            {
+                get { return ((RegionRow) (Rows[index])); }
             }
-            
+
             public event RegionRowChangeEventHandler RegionRowChanging;
-            
+
             public event RegionRowChangeEventHandler RegionRowChanged;
-            
+
             public event RegionRowChangeEventHandler RegionRowDeleting;
-            
+
             public event RegionRowChangeEventHandler RegionRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddRegionRow(RegionRow row) {
-                this.Rows.Add(row);
+
+            [DebuggerNonUserCode]
+            public void AddRegionRow(RegionRow row)
+            {
+                Rows.Add(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public RegionRow AddRegionRow(int RegionID, string RegionDescription) {
-                RegionRow rowRegionRow = ((RegionRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        RegionID,
-                        RegionDescription};
+
+            [DebuggerNonUserCode]
+            public RegionRow AddRegionRow(int RegionID, string RegionDescription)
+            {
+                var rowRegionRow = ((RegionRow) (NewRow()));
+                var columnValuesArray = new object[]
+                                            {
+                                                RegionID,
+                                                RegionDescription
+                                            };
                 rowRegionRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowRegionRow);
+                Rows.Add(rowRegionRow);
                 return rowRegionRow;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public RegionRow FindByRegionID(int RegionID) {
-                return ((RegionRow)(this.Rows.Find(new object[] {
-                            RegionID})));
+
+            [DebuggerNonUserCode]
+            public RegionRow FindByRegionID(int RegionID)
+            {
+                return ((RegionRow) (Rows.Find(new object[]
+                                                   {
+                                                       RegionID
+                                                   })));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                RegionDataTable cln = ((RegionDataTable)(base.Clone()));
+
+            [DebuggerNonUserCode]
+            public override DataTable Clone()
+            {
+                var cln = ((RegionDataTable) (base.Clone()));
                 cln.InitVars();
                 return cln;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
+
+            [DebuggerNonUserCode]
+            protected override DataTable CreateInstance()
+            {
                 return new RegionDataTable();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnRegionID = base.Columns["RegionID"];
-                this.columnRegionDescription = base.Columns["RegionDescription"];
+
+            [DebuggerNonUserCode]
+            internal void InitVars()
+            {
+                columnRegionID = base.Columns["RegionID"];
+                columnRegionDescription = base.Columns["RegionDescription"];
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnRegionID = new global::System.Data.DataColumn("RegionID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRegionID);
-                this.columnRegionDescription = new global::System.Data.DataColumn("RegionDescription", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRegionDescription);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnRegionID}, true));
-                this.columnRegionID.AllowDBNull = false;
-                this.columnRegionID.Unique = true;
-                this.columnRegionDescription.AllowDBNull = false;
-                this.columnRegionDescription.MaxLength = 50;
+
+            [DebuggerNonUserCode]
+            private void InitClass()
+            {
+                columnRegionID = new DataColumn("RegionID", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnRegionID);
+                columnRegionDescription = new DataColumn("RegionDescription", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnRegionDescription);
+                Constraints.Add(new UniqueConstraint("Constraint1", new[]
+                                                                        {
+                                                                            columnRegionID
+                                                                        }, true));
+                columnRegionID.AllowDBNull = false;
+                columnRegionID.Unique = true;
+                columnRegionDescription.AllowDBNull = false;
+                columnRegionDescription.MaxLength = 50;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public RegionRow NewRegionRow() {
-                return ((RegionRow)(this.NewRow()));
+
+            [DebuggerNonUserCode]
+            public RegionRow NewRegionRow()
+            {
+                return ((RegionRow) (NewRow()));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+
+            [DebuggerNonUserCode]
+            protected override DataRow NewRowFromBuilder(DataRowBuilder builder)
+            {
                 return new RegionRow(builder);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(RegionRow);
+
+            [DebuggerNonUserCode]
+            protected override Type GetRowType()
+            {
+                return typeof (RegionRow);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanged(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanged(e);
-                if ((this.RegionRowChanged != null)) {
-                    this.RegionRowChanged(this, new RegionRowChangeEvent(((RegionRow)(e.Row)), e.Action));
+                if ((RegionRowChanged != null))
+                {
+                    RegionRowChanged(this, new RegionRowChangeEvent(((RegionRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanging(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanging(e);
-                if ((this.RegionRowChanging != null)) {
-                    this.RegionRowChanging(this, new RegionRowChangeEvent(((RegionRow)(e.Row)), e.Action));
+                if ((RegionRowChanging != null))
+                {
+                    RegionRowChanging(this, new RegionRowChangeEvent(((RegionRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleted(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleted(e);
-                if ((this.RegionRowDeleted != null)) {
-                    this.RegionRowDeleted(this, new RegionRowChangeEvent(((RegionRow)(e.Row)), e.Action));
+                if ((RegionRowDeleted != null))
+                {
+                    RegionRowDeleted(this, new RegionRowChangeEvent(((RegionRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleting(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleting(e);
-                if ((this.RegionRowDeleting != null)) {
-                    this.RegionRowDeleting(this, new RegionRowChangeEvent(((RegionRow)(e.Row)), e.Action));
+                if ((RegionRowDeleting != null))
+                {
+                    RegionRowDeleting(this, new RegionRowChangeEvent(((RegionRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveRegionRow(RegionRow row) {
-                this.Rows.Remove(row);
+
+            [DebuggerNonUserCode]
+            public void RemoveRegionRow(RegionRow row)
+            {
+                Rows.Remove(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NorthwindDataSet ds = new NorthwindDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+
+            [DebuggerNonUserCode]
+            public static XmlSchemaComplexType GetTypedTableSchema(XmlSchemaSet xs)
+            {
+                var type = new XmlSchemaComplexType();
+                var sequence = new XmlSchemaSequence();
+                var ds = new NorthwindDataSet();
+                var any1 = new XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any1.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any2.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "RegionDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
+                XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace))
+                {
+                    var s1 = new MemoryStream();
+                    var s2 = new MemoryStream();
+                    try
+                    {
+                        XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                        for (IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator();
+                             schemas.MoveNext();)
+                        {
+                            schema = ((XmlSchema) (schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
+                            if ((s1.Length == s2.Length))
+                            {
                                 s1.Position = 0;
                                 s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                for (;
+                                    ((s1.Position != s1.Length)
+                                     && (s1.ReadByte() == s2.ReadByte()));)
+                                {
                                     ;
                                 }
-                                if ((s1.Position == s1.Length)) {
+                                if ((s1.Position == s1.Length))
+                                {
                                     return type;
                                 }
                             }
                         }
                     }
-                    finally {
-                        if ((s1 != null)) {
+                    finally
+                    {
+                        if ((s1 != null))
+                        {
                             s1.Close();
                         }
-                        if ((s2 != null)) {
+                        if ((s2 != null))
+                        {
                             s2.Close();
                         }
                     }
@@ -3966,264 +6791,385 @@ namespace NW247.Model {
                 return type;
             }
         }
-        
+
+        #endregion
+
+        #region Nested type: RegionRow
+
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class RegionRow : DataRow
+        {
+            private readonly RegionDataTable tableRegion;
+
+            [DebuggerNonUserCode]
+            internal RegionRow(DataRowBuilder rb) :
+                base(rb)
+            {
+                tableRegion = ((RegionDataTable) (Table));
+            }
+
+            [DebuggerNonUserCode]
+            public int RegionID
+            {
+                get { return ((int) (this[tableRegion.RegionIDColumn])); }
+                set { this[tableRegion.RegionIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string RegionDescription
+            {
+                get { return ((string) (this[tableRegion.RegionDescriptionColumn])); }
+                set { this[tableRegion.RegionDescriptionColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public TerritoriesRow[] GetTerritoriesRows()
+            {
+                if ((Table.ChildRelations["FK_Territories_Region"] == null))
+                {
+                    return new TerritoriesRow[0];
+                }
+                else
+                {
+                    return ((TerritoriesRow[]) (base.GetChildRows(Table.ChildRelations["FK_Territories_Region"])));
+                }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: RegionRowChangeEvent
+
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class RegionRowChangeEvent : EventArgs
+        {
+            private readonly DataRowAction eventAction;
+            private readonly RegionRow eventRow;
+
+            [DebuggerNonUserCode]
+            public RegionRowChangeEvent(RegionRow row, DataRowAction action)
+            {
+                eventRow = row;
+                eventAction = action;
+            }
+
+            [DebuggerNonUserCode]
+            public RegionRow Row
+            {
+                get { return eventRow; }
+            }
+
+            [DebuggerNonUserCode]
+            public DataRowAction Action
+            {
+                get { return eventAction; }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: ShippersDataTable
+
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ShippersDataTable : global::System.Data.TypedTableBase<ShippersRow> {
-            
-            private global::System.Data.DataColumn columnShipperID;
-            
-            private global::System.Data.DataColumn columnCompanyName;
-            
-            private global::System.Data.DataColumn columnPhone;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ShippersDataTable() {
-                this.TableName = "Shippers";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [Serializable]
+        [XmlSchemaProvider("GetTypedTableSchema")]
+        public class ShippersDataTable : TypedTableBase<ShippersRow>
+        {
+            private DataColumn columnCompanyName;
+
+            private DataColumn columnPhone;
+            private DataColumn columnShipperID;
+
+            [DebuggerNonUserCode]
+            public ShippersDataTable()
+            {
+                TableName = "Shippers";
+                BeginInit();
+                InitClass();
+                EndInit();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal ShippersDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
+
+            [DebuggerNonUserCode]
+            internal ShippersDataTable(DataTable table)
+            {
+                TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive))
+                {
+                    CaseSensitive = table.CaseSensitive;
                 }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
+                {
+                    Locale = table.Locale;
                 }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
+                if ((table.Namespace != table.DataSet.Namespace))
+                {
+                    Namespace = table.Namespace;
                 }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
+                Prefix = table.Prefix;
+                MinimumCapacity = table.MinimumCapacity;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected ShippersDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
+
+            [DebuggerNonUserCode]
+            protected ShippersDataTable(SerializationInfo info, StreamingContext context) :
+                base(info, context)
+            {
+                InitVars();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ShipperIDColumn {
-                get {
-                    return this.columnShipperID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ShipperIDColumn
+            {
+                get { return columnShipperID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CompanyNameColumn {
-                get {
-                    return this.columnCompanyName;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CompanyNameColumn
+            {
+                get { return columnCompanyName; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PhoneColumn {
-                get {
-                    return this.columnPhone;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn PhoneColumn
+            {
+                get { return columnPhone; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
+
+            [DebuggerNonUserCode]
+            [Browsable(false)]
+            public int Count
+            {
+                get { return Rows.Count; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ShippersRow this[int index] {
-                get {
-                    return ((ShippersRow)(this.Rows[index]));
-                }
+
+            [DebuggerNonUserCode]
+            public ShippersRow this[int index]
+            {
+                get { return ((ShippersRow) (Rows[index])); }
             }
-            
+
             public event ShippersRowChangeEventHandler ShippersRowChanging;
-            
+
             public event ShippersRowChangeEventHandler ShippersRowChanged;
-            
+
             public event ShippersRowChangeEventHandler ShippersRowDeleting;
-            
+
             public event ShippersRowChangeEventHandler ShippersRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddShippersRow(ShippersRow row) {
-                this.Rows.Add(row);
+
+            [DebuggerNonUserCode]
+            public void AddShippersRow(ShippersRow row)
+            {
+                Rows.Add(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ShippersRow AddShippersRow(string CompanyName, string Phone) {
-                ShippersRow rowShippersRow = ((ShippersRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        CompanyName,
-                        Phone};
+
+            [DebuggerNonUserCode]
+            public ShippersRow AddShippersRow(string CompanyName, string Phone)
+            {
+                var rowShippersRow = ((ShippersRow) (NewRow()));
+                var columnValuesArray = new object[]
+                                            {
+                                                null,
+                                                CompanyName,
+                                                Phone
+                                            };
                 rowShippersRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowShippersRow);
+                Rows.Add(rowShippersRow);
                 return rowShippersRow;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ShippersRow FindByShipperID(int ShipperID) {
-                return ((ShippersRow)(this.Rows.Find(new object[] {
-                            ShipperID})));
+
+            [DebuggerNonUserCode]
+            public ShippersRow FindByShipperID(int ShipperID)
+            {
+                return ((ShippersRow) (Rows.Find(new object[]
+                                                     {
+                                                         ShipperID
+                                                     })));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                ShippersDataTable cln = ((ShippersDataTable)(base.Clone()));
+
+            [DebuggerNonUserCode]
+            public override DataTable Clone()
+            {
+                var cln = ((ShippersDataTable) (base.Clone()));
                 cln.InitVars();
                 return cln;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
+
+            [DebuggerNonUserCode]
+            protected override DataTable CreateInstance()
+            {
                 return new ShippersDataTable();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnShipperID = base.Columns["ShipperID"];
-                this.columnCompanyName = base.Columns["CompanyName"];
-                this.columnPhone = base.Columns["Phone"];
+
+            [DebuggerNonUserCode]
+            internal void InitVars()
+            {
+                columnShipperID = base.Columns["ShipperID"];
+                columnCompanyName = base.Columns["CompanyName"];
+                columnPhone = base.Columns["Phone"];
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnShipperID = new global::System.Data.DataColumn("ShipperID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnShipperID);
-                this.columnCompanyName = new global::System.Data.DataColumn("CompanyName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCompanyName);
-                this.columnPhone = new global::System.Data.DataColumn("Phone", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPhone);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnShipperID}, true));
-                this.columnShipperID.AutoIncrement = true;
-                this.columnShipperID.AutoIncrementSeed = -1;
-                this.columnShipperID.AutoIncrementStep = -1;
-                this.columnShipperID.AllowDBNull = false;
-                this.columnShipperID.ReadOnly = true;
-                this.columnShipperID.Unique = true;
-                this.columnCompanyName.AllowDBNull = false;
-                this.columnCompanyName.MaxLength = 40;
-                this.columnPhone.MaxLength = 24;
+
+            [DebuggerNonUserCode]
+            private void InitClass()
+            {
+                columnShipperID = new DataColumn("ShipperID", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnShipperID);
+                columnCompanyName = new DataColumn("CompanyName", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCompanyName);
+                columnPhone = new DataColumn("Phone", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnPhone);
+                Constraints.Add(new UniqueConstraint("Constraint1", new[]
+                                                                        {
+                                                                            columnShipperID
+                                                                        }, true));
+                columnShipperID.AutoIncrement = true;
+                columnShipperID.AutoIncrementSeed = -1;
+                columnShipperID.AutoIncrementStep = -1;
+                columnShipperID.AllowDBNull = false;
+                columnShipperID.ReadOnly = true;
+                columnShipperID.Unique = true;
+                columnCompanyName.AllowDBNull = false;
+                columnCompanyName.MaxLength = 40;
+                columnPhone.MaxLength = 24;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ShippersRow NewShippersRow() {
-                return ((ShippersRow)(this.NewRow()));
+
+            [DebuggerNonUserCode]
+            public ShippersRow NewShippersRow()
+            {
+                return ((ShippersRow) (NewRow()));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+
+            [DebuggerNonUserCode]
+            protected override DataRow NewRowFromBuilder(DataRowBuilder builder)
+            {
                 return new ShippersRow(builder);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(ShippersRow);
+
+            [DebuggerNonUserCode]
+            protected override Type GetRowType()
+            {
+                return typeof (ShippersRow);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanged(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanged(e);
-                if ((this.ShippersRowChanged != null)) {
-                    this.ShippersRowChanged(this, new ShippersRowChangeEvent(((ShippersRow)(e.Row)), e.Action));
+                if ((ShippersRowChanged != null))
+                {
+                    ShippersRowChanged(this, new ShippersRowChangeEvent(((ShippersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanging(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanging(e);
-                if ((this.ShippersRowChanging != null)) {
-                    this.ShippersRowChanging(this, new ShippersRowChangeEvent(((ShippersRow)(e.Row)), e.Action));
+                if ((ShippersRowChanging != null))
+                {
+                    ShippersRowChanging(this, new ShippersRowChangeEvent(((ShippersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleted(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleted(e);
-                if ((this.ShippersRowDeleted != null)) {
-                    this.ShippersRowDeleted(this, new ShippersRowChangeEvent(((ShippersRow)(e.Row)), e.Action));
+                if ((ShippersRowDeleted != null))
+                {
+                    ShippersRowDeleted(this, new ShippersRowChangeEvent(((ShippersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleting(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleting(e);
-                if ((this.ShippersRowDeleting != null)) {
-                    this.ShippersRowDeleting(this, new ShippersRowChangeEvent(((ShippersRow)(e.Row)), e.Action));
+                if ((ShippersRowDeleting != null))
+                {
+                    ShippersRowDeleting(this, new ShippersRowChangeEvent(((ShippersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveShippersRow(ShippersRow row) {
-                this.Rows.Remove(row);
+
+            [DebuggerNonUserCode]
+            public void RemoveShippersRow(ShippersRow row)
+            {
+                Rows.Remove(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NorthwindDataSet ds = new NorthwindDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+
+            [DebuggerNonUserCode]
+            public static XmlSchemaComplexType GetTypedTableSchema(XmlSchemaSet xs)
+            {
+                var type = new XmlSchemaComplexType();
+                var sequence = new XmlSchemaSequence();
+                var ds = new NorthwindDataSet();
+                var any1 = new XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any1.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any2.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "ShippersDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
+                XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace))
+                {
+                    var s1 = new MemoryStream();
+                    var s2 = new MemoryStream();
+                    try
+                    {
+                        XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                        for (IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator();
+                             schemas.MoveNext();)
+                        {
+                            schema = ((XmlSchema) (schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
+                            if ((s1.Length == s2.Length))
+                            {
                                 s1.Position = 0;
                                 s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                for (;
+                                    ((s1.Position != s1.Length)
+                                     && (s1.ReadByte() == s2.ReadByte()));)
+                                {
                                     ;
                                 }
-                                if ((s1.Position == s1.Length)) {
+                                if ((s1.Position == s1.Length))
+                                {
                                     return type;
                                 }
                             }
                         }
                     }
-                    finally {
-                        if ((s1 != null)) {
+                    finally
+                    {
+                        if ((s1 != null))
+                        {
                             s1.Close();
                         }
-                        if ((s2 != null)) {
+                        if ((s2 != null))
+                        {
                             s2.Close();
                         }
                     }
@@ -4232,390 +7178,530 @@ namespace NW247.Model {
                 return type;
             }
         }
-        
+
+        #endregion
+
+        #region Nested type: ShippersRow
+
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class ShippersRow : DataRow
+        {
+            private readonly ShippersDataTable tableShippers;
+
+            [DebuggerNonUserCode]
+            internal ShippersRow(DataRowBuilder rb) :
+                base(rb)
+            {
+                tableShippers = ((ShippersDataTable) (Table));
+            }
+
+            [DebuggerNonUserCode]
+            public int ShipperID
+            {
+                get { return ((int) (this[tableShippers.ShipperIDColumn])); }
+                set { this[tableShippers.ShipperIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string CompanyName
+            {
+                get { return ((string) (this[tableShippers.CompanyNameColumn])); }
+                set { this[tableShippers.CompanyNameColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Phone
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableShippers.PhoneColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Phone\' in table \'Shippers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableShippers.PhoneColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsPhoneNull()
+            {
+                return IsNull(tableShippers.PhoneColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetPhoneNull()
+            {
+                this[tableShippers.PhoneColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public OrdersRow[] GetOrdersRows()
+            {
+                if ((Table.ChildRelations["FK_Orders_Shippers"] == null))
+                {
+                    return new OrdersRow[0];
+                }
+                else
+                {
+                    return ((OrdersRow[]) (base.GetChildRows(Table.ChildRelations["FK_Orders_Shippers"])));
+                }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: ShippersRowChangeEvent
+
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class ShippersRowChangeEvent : EventArgs
+        {
+            private readonly DataRowAction eventAction;
+            private readonly ShippersRow eventRow;
+
+            [DebuggerNonUserCode]
+            public ShippersRowChangeEvent(ShippersRow row, DataRowAction action)
+            {
+                eventRow = row;
+                eventAction = action;
+            }
+
+            [DebuggerNonUserCode]
+            public ShippersRow Row
+            {
+                get { return eventRow; }
+            }
+
+            [DebuggerNonUserCode]
+            public DataRowAction Action
+            {
+                get { return eventAction; }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: SuppliersDataTable
+
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SuppliersDataTable : global::System.Data.TypedTableBase<SuppliersRow> {
-            
-            private global::System.Data.DataColumn columnSupplierID;
-            
-            private global::System.Data.DataColumn columnCompanyName;
-            
-            private global::System.Data.DataColumn columnContactName;
-            
-            private global::System.Data.DataColumn columnContactTitle;
-            
-            private global::System.Data.DataColumn columnAddress;
-            
-            private global::System.Data.DataColumn columnCity;
-            
-            private global::System.Data.DataColumn columnRegion;
-            
-            private global::System.Data.DataColumn columnPostalCode;
-            
-            private global::System.Data.DataColumn columnCountry;
-            
-            private global::System.Data.DataColumn columnPhone;
-            
-            private global::System.Data.DataColumn columnFax;
-            
-            private global::System.Data.DataColumn columnHomePage;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SuppliersDataTable() {
-                this.TableName = "Suppliers";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [Serializable]
+        [XmlSchemaProvider("GetTypedTableSchema")]
+        public class SuppliersDataTable : TypedTableBase<SuppliersRow>
+        {
+            private DataColumn columnAddress;
+
+            private DataColumn columnCity;
+            private DataColumn columnCompanyName;
+
+            private DataColumn columnContactName;
+
+            private DataColumn columnContactTitle;
+
+            private DataColumn columnCountry;
+
+            private DataColumn columnFax;
+
+            private DataColumn columnHomePage;
+            private DataColumn columnPhone;
+            private DataColumn columnPostalCode;
+            private DataColumn columnRegion;
+            private DataColumn columnSupplierID;
+
+            [DebuggerNonUserCode]
+            public SuppliersDataTable()
+            {
+                TableName = "Suppliers";
+                BeginInit();
+                InitClass();
+                EndInit();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal SuppliersDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
+
+            [DebuggerNonUserCode]
+            internal SuppliersDataTable(DataTable table)
+            {
+                TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive))
+                {
+                    CaseSensitive = table.CaseSensitive;
                 }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
+                {
+                    Locale = table.Locale;
                 }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
+                if ((table.Namespace != table.DataSet.Namespace))
+                {
+                    Namespace = table.Namespace;
                 }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
+                Prefix = table.Prefix;
+                MinimumCapacity = table.MinimumCapacity;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected SuppliersDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
+
+            [DebuggerNonUserCode]
+            protected SuppliersDataTable(SerializationInfo info, StreamingContext context) :
+                base(info, context)
+            {
+                InitVars();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn SupplierIDColumn {
-                get {
-                    return this.columnSupplierID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn SupplierIDColumn
+            {
+                get { return columnSupplierID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CompanyNameColumn {
-                get {
-                    return this.columnCompanyName;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CompanyNameColumn
+            {
+                get { return columnCompanyName; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ContactNameColumn {
-                get {
-                    return this.columnContactName;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ContactNameColumn
+            {
+                get { return columnContactName; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn ContactTitleColumn {
-                get {
-                    return this.columnContactTitle;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn ContactTitleColumn
+            {
+                get { return columnContactTitle; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn AddressColumn {
-                get {
-                    return this.columnAddress;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn AddressColumn
+            {
+                get { return columnAddress; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CityColumn {
-                get {
-                    return this.columnCity;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CityColumn
+            {
+                get { return columnCity; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn RegionColumn {
-                get {
-                    return this.columnRegion;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn RegionColumn
+            {
+                get { return columnRegion; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PostalCodeColumn {
-                get {
-                    return this.columnPostalCode;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn PostalCodeColumn
+            {
+                get { return columnPostalCode; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn CountryColumn {
-                get {
-                    return this.columnCountry;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn CountryColumn
+            {
+                get { return columnCountry; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PhoneColumn {
-                get {
-                    return this.columnPhone;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn PhoneColumn
+            {
+                get { return columnPhone; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn FaxColumn {
-                get {
-                    return this.columnFax;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn FaxColumn
+            {
+                get { return columnFax; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn HomePageColumn {
-                get {
-                    return this.columnHomePage;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn HomePageColumn
+            {
+                get { return columnHomePage; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
+
+            [DebuggerNonUserCode]
+            [Browsable(false)]
+            public int Count
+            {
+                get { return Rows.Count; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SuppliersRow this[int index] {
-                get {
-                    return ((SuppliersRow)(this.Rows[index]));
-                }
+
+            [DebuggerNonUserCode]
+            public SuppliersRow this[int index]
+            {
+                get { return ((SuppliersRow) (Rows[index])); }
             }
-            
+
             public event SuppliersRowChangeEventHandler SuppliersRowChanging;
-            
+
             public event SuppliersRowChangeEventHandler SuppliersRowChanged;
-            
+
             public event SuppliersRowChangeEventHandler SuppliersRowDeleting;
-            
+
             public event SuppliersRowChangeEventHandler SuppliersRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddSuppliersRow(SuppliersRow row) {
-                this.Rows.Add(row);
+
+            [DebuggerNonUserCode]
+            public void AddSuppliersRow(SuppliersRow row)
+            {
+                Rows.Add(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SuppliersRow AddSuppliersRow(string CompanyName, string ContactName, string ContactTitle, string Address, string City, string Region, string PostalCode, string Country, string Phone, string Fax, string HomePage) {
-                SuppliersRow rowSuppliersRow = ((SuppliersRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        CompanyName,
-                        ContactName,
-                        ContactTitle,
-                        Address,
-                        City,
-                        Region,
-                        PostalCode,
-                        Country,
-                        Phone,
-                        Fax,
-                        HomePage};
+
+            [DebuggerNonUserCode]
+            public SuppliersRow AddSuppliersRow(string CompanyName, string ContactName, string ContactTitle,
+                                                string Address, string City, string Region, string PostalCode,
+                                                string Country, string Phone, string Fax, string HomePage)
+            {
+                var rowSuppliersRow = ((SuppliersRow) (NewRow()));
+                var columnValuesArray = new object[]
+                                            {
+                                                null,
+                                                CompanyName,
+                                                ContactName,
+                                                ContactTitle,
+                                                Address,
+                                                City,
+                                                Region,
+                                                PostalCode,
+                                                Country,
+                                                Phone,
+                                                Fax,
+                                                HomePage
+                                            };
                 rowSuppliersRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSuppliersRow);
+                Rows.Add(rowSuppliersRow);
                 return rowSuppliersRow;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SuppliersRow FindBySupplierID(int SupplierID) {
-                return ((SuppliersRow)(this.Rows.Find(new object[] {
-                            SupplierID})));
+
+            [DebuggerNonUserCode]
+            public SuppliersRow FindBySupplierID(int SupplierID)
+            {
+                return ((SuppliersRow) (Rows.Find(new object[]
+                                                      {
+                                                          SupplierID
+                                                      })));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                SuppliersDataTable cln = ((SuppliersDataTable)(base.Clone()));
+
+            [DebuggerNonUserCode]
+            public override DataTable Clone()
+            {
+                var cln = ((SuppliersDataTable) (base.Clone()));
                 cln.InitVars();
                 return cln;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
+
+            [DebuggerNonUserCode]
+            protected override DataTable CreateInstance()
+            {
                 return new SuppliersDataTable();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnSupplierID = base.Columns["SupplierID"];
-                this.columnCompanyName = base.Columns["CompanyName"];
-                this.columnContactName = base.Columns["ContactName"];
-                this.columnContactTitle = base.Columns["ContactTitle"];
-                this.columnAddress = base.Columns["Address"];
-                this.columnCity = base.Columns["City"];
-                this.columnRegion = base.Columns["Region"];
-                this.columnPostalCode = base.Columns["PostalCode"];
-                this.columnCountry = base.Columns["Country"];
-                this.columnPhone = base.Columns["Phone"];
-                this.columnFax = base.Columns["Fax"];
-                this.columnHomePage = base.Columns["HomePage"];
+
+            [DebuggerNonUserCode]
+            internal void InitVars()
+            {
+                columnSupplierID = base.Columns["SupplierID"];
+                columnCompanyName = base.Columns["CompanyName"];
+                columnContactName = base.Columns["ContactName"];
+                columnContactTitle = base.Columns["ContactTitle"];
+                columnAddress = base.Columns["Address"];
+                columnCity = base.Columns["City"];
+                columnRegion = base.Columns["Region"];
+                columnPostalCode = base.Columns["PostalCode"];
+                columnCountry = base.Columns["Country"];
+                columnPhone = base.Columns["Phone"];
+                columnFax = base.Columns["Fax"];
+                columnHomePage = base.Columns["HomePage"];
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnSupplierID = new global::System.Data.DataColumn("SupplierID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSupplierID);
-                this.columnCompanyName = new global::System.Data.DataColumn("CompanyName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCompanyName);
-                this.columnContactName = new global::System.Data.DataColumn("ContactName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnContactName);
-                this.columnContactTitle = new global::System.Data.DataColumn("ContactTitle", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnContactTitle);
-                this.columnAddress = new global::System.Data.DataColumn("Address", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAddress);
-                this.columnCity = new global::System.Data.DataColumn("City", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCity);
-                this.columnRegion = new global::System.Data.DataColumn("Region", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRegion);
-                this.columnPostalCode = new global::System.Data.DataColumn("PostalCode", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPostalCode);
-                this.columnCountry = new global::System.Data.DataColumn("Country", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCountry);
-                this.columnPhone = new global::System.Data.DataColumn("Phone", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPhone);
-                this.columnFax = new global::System.Data.DataColumn("Fax", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFax);
-                this.columnHomePage = new global::System.Data.DataColumn("HomePage", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnHomePage);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnSupplierID}, true));
-                this.columnSupplierID.AutoIncrement = true;
-                this.columnSupplierID.AutoIncrementSeed = -1;
-                this.columnSupplierID.AutoIncrementStep = -1;
-                this.columnSupplierID.AllowDBNull = false;
-                this.columnSupplierID.ReadOnly = true;
-                this.columnSupplierID.Unique = true;
-                this.columnCompanyName.AllowDBNull = false;
-                this.columnCompanyName.MaxLength = 40;
-                this.columnContactName.MaxLength = 30;
-                this.columnContactTitle.MaxLength = 30;
-                this.columnAddress.MaxLength = 60;
-                this.columnCity.MaxLength = 15;
-                this.columnRegion.MaxLength = 15;
-                this.columnPostalCode.MaxLength = 10;
-                this.columnCountry.MaxLength = 15;
-                this.columnPhone.MaxLength = 24;
-                this.columnFax.MaxLength = 24;
-                this.columnHomePage.MaxLength = 1073741823;
+
+            [DebuggerNonUserCode]
+            private void InitClass()
+            {
+                columnSupplierID = new DataColumn("SupplierID", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnSupplierID);
+                columnCompanyName = new DataColumn("CompanyName", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCompanyName);
+                columnContactName = new DataColumn("ContactName", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnContactName);
+                columnContactTitle = new DataColumn("ContactTitle", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnContactTitle);
+                columnAddress = new DataColumn("Address", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnAddress);
+                columnCity = new DataColumn("City", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCity);
+                columnRegion = new DataColumn("Region", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnRegion);
+                columnPostalCode = new DataColumn("PostalCode", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnPostalCode);
+                columnCountry = new DataColumn("Country", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnCountry);
+                columnPhone = new DataColumn("Phone", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnPhone);
+                columnFax = new DataColumn("Fax", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnFax);
+                columnHomePage = new DataColumn("HomePage", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnHomePage);
+                Constraints.Add(new UniqueConstraint("Constraint1", new[]
+                                                                        {
+                                                                            columnSupplierID
+                                                                        }, true));
+                columnSupplierID.AutoIncrement = true;
+                columnSupplierID.AutoIncrementSeed = -1;
+                columnSupplierID.AutoIncrementStep = -1;
+                columnSupplierID.AllowDBNull = false;
+                columnSupplierID.ReadOnly = true;
+                columnSupplierID.Unique = true;
+                columnCompanyName.AllowDBNull = false;
+                columnCompanyName.MaxLength = 40;
+                columnContactName.MaxLength = 30;
+                columnContactTitle.MaxLength = 30;
+                columnAddress.MaxLength = 60;
+                columnCity.MaxLength = 15;
+                columnRegion.MaxLength = 15;
+                columnPostalCode.MaxLength = 10;
+                columnCountry.MaxLength = 15;
+                columnPhone.MaxLength = 24;
+                columnFax.MaxLength = 24;
+                columnHomePage.MaxLength = 1073741823;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SuppliersRow NewSuppliersRow() {
-                return ((SuppliersRow)(this.NewRow()));
+
+            [DebuggerNonUserCode]
+            public SuppliersRow NewSuppliersRow()
+            {
+                return ((SuppliersRow) (NewRow()));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+
+            [DebuggerNonUserCode]
+            protected override DataRow NewRowFromBuilder(DataRowBuilder builder)
+            {
                 return new SuppliersRow(builder);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(SuppliersRow);
+
+            [DebuggerNonUserCode]
+            protected override Type GetRowType()
+            {
+                return typeof (SuppliersRow);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanged(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanged(e);
-                if ((this.SuppliersRowChanged != null)) {
-                    this.SuppliersRowChanged(this, new SuppliersRowChangeEvent(((SuppliersRow)(e.Row)), e.Action));
+                if ((SuppliersRowChanged != null))
+                {
+                    SuppliersRowChanged(this, new SuppliersRowChangeEvent(((SuppliersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanging(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanging(e);
-                if ((this.SuppliersRowChanging != null)) {
-                    this.SuppliersRowChanging(this, new SuppliersRowChangeEvent(((SuppliersRow)(e.Row)), e.Action));
+                if ((SuppliersRowChanging != null))
+                {
+                    SuppliersRowChanging(this, new SuppliersRowChangeEvent(((SuppliersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleted(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleted(e);
-                if ((this.SuppliersRowDeleted != null)) {
-                    this.SuppliersRowDeleted(this, new SuppliersRowChangeEvent(((SuppliersRow)(e.Row)), e.Action));
+                if ((SuppliersRowDeleted != null))
+                {
+                    SuppliersRowDeleted(this, new SuppliersRowChangeEvent(((SuppliersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleting(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleting(e);
-                if ((this.SuppliersRowDeleting != null)) {
-                    this.SuppliersRowDeleting(this, new SuppliersRowChangeEvent(((SuppliersRow)(e.Row)), e.Action));
+                if ((SuppliersRowDeleting != null))
+                {
+                    SuppliersRowDeleting(this, new SuppliersRowChangeEvent(((SuppliersRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveSuppliersRow(SuppliersRow row) {
-                this.Rows.Remove(row);
+
+            [DebuggerNonUserCode]
+            public void RemoveSuppliersRow(SuppliersRow row)
+            {
+                Rows.Remove(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NorthwindDataSet ds = new NorthwindDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+
+            [DebuggerNonUserCode]
+            public static XmlSchemaComplexType GetTypedTableSchema(XmlSchemaSet xs)
+            {
+                var type = new XmlSchemaComplexType();
+                var sequence = new XmlSchemaSequence();
+                var ds = new NorthwindDataSet();
+                var any1 = new XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any1.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any2.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "SuppliersDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
+                XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace))
+                {
+                    var s1 = new MemoryStream();
+                    var s2 = new MemoryStream();
+                    try
+                    {
+                        XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                        for (IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator();
+                             schemas.MoveNext();)
+                        {
+                            schema = ((XmlSchema) (schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
+                            if ((s1.Length == s2.Length))
+                            {
                                 s1.Position = 0;
                                 s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                for (;
+                                    ((s1.Position != s1.Length)
+                                     && (s1.ReadByte() == s2.ReadByte()));)
+                                {
                                     ;
                                 }
-                                if ((s1.Position == s1.Length)) {
+                                if ((s1.Position == s1.Length))
+                                {
                                     return type;
                                 }
                             }
                         }
                     }
-                    finally {
-                        if ((s1 != null)) {
+                    finally
+                    {
+                        if ((s1 != null))
+                        {
                             s1.Close();
                         }
-                        if ((s2 != null)) {
+                        if ((s2 != null))
+                        {
                             s2.Close();
                         }
                     }
@@ -4624,264 +7710,687 @@ namespace NW247.Model {
                 return type;
             }
         }
-        
+
+        #endregion
+
+        #region Nested type: SuppliersRow
+
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class SuppliersRow : DataRow
+        {
+            private readonly SuppliersDataTable tableSuppliers;
+
+            [DebuggerNonUserCode]
+            internal SuppliersRow(DataRowBuilder rb) :
+                base(rb)
+            {
+                tableSuppliers = ((SuppliersDataTable) (Table));
+            }
+
+            [DebuggerNonUserCode]
+            public int SupplierID
+            {
+                get { return ((int) (this[tableSuppliers.SupplierIDColumn])); }
+                set { this[tableSuppliers.SupplierIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string CompanyName
+            {
+                get { return ((string) (this[tableSuppliers.CompanyNameColumn])); }
+                set { this[tableSuppliers.CompanyNameColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string ContactName
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableSuppliers.ContactNameColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'ContactName\' in table \'Suppliers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableSuppliers.ContactNameColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string ContactTitle
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableSuppliers.ContactTitleColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'ContactTitle\' in table \'Suppliers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableSuppliers.ContactTitleColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Address
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableSuppliers.AddressColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Address\' in table \'Suppliers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableSuppliers.AddressColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string City
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableSuppliers.CityColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'City\' in table \'Suppliers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableSuppliers.CityColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Region
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableSuppliers.RegionColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Region\' in table \'Suppliers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableSuppliers.RegionColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string PostalCode
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableSuppliers.PostalCodeColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'PostalCode\' in table \'Suppliers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableSuppliers.PostalCodeColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Country
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableSuppliers.CountryColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Country\' in table \'Suppliers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableSuppliers.CountryColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Phone
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableSuppliers.PhoneColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Phone\' in table \'Suppliers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableSuppliers.PhoneColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string Fax
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableSuppliers.FaxColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'Fax\' in table \'Suppliers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableSuppliers.FaxColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string HomePage
+            {
+                get
+                {
+                    try
+                    {
+                        return ((string) (this[tableSuppliers.HomePageColumn]));
+                    }
+                    catch (InvalidCastException e)
+                    {
+                        throw new StrongTypingException(
+                            "The value for column \'HomePage\' in table \'Suppliers\' is DBNull.", e);
+                    }
+                }
+                set { this[tableSuppliers.HomePageColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsContactNameNull()
+            {
+                return IsNull(tableSuppliers.ContactNameColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetContactNameNull()
+            {
+                this[tableSuppliers.ContactNameColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsContactTitleNull()
+            {
+                return IsNull(tableSuppliers.ContactTitleColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetContactTitleNull()
+            {
+                this[tableSuppliers.ContactTitleColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsAddressNull()
+            {
+                return IsNull(tableSuppliers.AddressColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetAddressNull()
+            {
+                this[tableSuppliers.AddressColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsCityNull()
+            {
+                return IsNull(tableSuppliers.CityColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetCityNull()
+            {
+                this[tableSuppliers.CityColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsRegionNull()
+            {
+                return IsNull(tableSuppliers.RegionColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetRegionNull()
+            {
+                this[tableSuppliers.RegionColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsPostalCodeNull()
+            {
+                return IsNull(tableSuppliers.PostalCodeColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetPostalCodeNull()
+            {
+                this[tableSuppliers.PostalCodeColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsCountryNull()
+            {
+                return IsNull(tableSuppliers.CountryColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetCountryNull()
+            {
+                this[tableSuppliers.CountryColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsPhoneNull()
+            {
+                return IsNull(tableSuppliers.PhoneColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetPhoneNull()
+            {
+                this[tableSuppliers.PhoneColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsFaxNull()
+            {
+                return IsNull(tableSuppliers.FaxColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetFaxNull()
+            {
+                this[tableSuppliers.FaxColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public bool IsHomePageNull()
+            {
+                return IsNull(tableSuppliers.HomePageColumn);
+            }
+
+            [DebuggerNonUserCode]
+            public void SetHomePageNull()
+            {
+                this[tableSuppliers.HomePageColumn] = Convert.DBNull;
+            }
+
+            [DebuggerNonUserCode]
+            public ProductsRow[] GetProductsRows()
+            {
+                if ((Table.ChildRelations["FK_Products_Suppliers"] == null))
+                {
+                    return new ProductsRow[0];
+                }
+                else
+                {
+                    return ((ProductsRow[]) (base.GetChildRows(Table.ChildRelations["FK_Products_Suppliers"])));
+                }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: SuppliersRowChangeEvent
+
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class SuppliersRowChangeEvent : EventArgs
+        {
+            private readonly DataRowAction eventAction;
+            private readonly SuppliersRow eventRow;
+
+            [DebuggerNonUserCode]
+            public SuppliersRowChangeEvent(SuppliersRow row, DataRowAction action)
+            {
+                eventRow = row;
+                eventAction = action;
+            }
+
+            [DebuggerNonUserCode]
+            public SuppliersRow Row
+            {
+                get { return eventRow; }
+            }
+
+            [DebuggerNonUserCode]
+            public DataRowAction Action
+            {
+                get { return eventAction; }
+            }
+        }
+
+        #endregion
+
+        #region Nested type: TerritoriesDataTable
+
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class TerritoriesDataTable : global::System.Data.TypedTableBase<TerritoriesRow> {
-            
-            private global::System.Data.DataColumn columnTerritoryID;
-            
-            private global::System.Data.DataColumn columnTerritoryDescription;
-            
-            private global::System.Data.DataColumn columnRegionID;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TerritoriesDataTable() {
-                this.TableName = "Territories";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [Serializable]
+        [XmlSchemaProvider("GetTypedTableSchema")]
+        public class TerritoriesDataTable : TypedTableBase<TerritoriesRow>
+        {
+            private DataColumn columnRegionID;
+            private DataColumn columnTerritoryDescription;
+            private DataColumn columnTerritoryID;
+
+            [DebuggerNonUserCode]
+            public TerritoriesDataTable()
+            {
+                TableName = "Territories";
+                BeginInit();
+                InitClass();
+                EndInit();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal TerritoriesDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
+
+            [DebuggerNonUserCode]
+            internal TerritoriesDataTable(DataTable table)
+            {
+                TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive))
+                {
+                    CaseSensitive = table.CaseSensitive;
                 }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
+                {
+                    Locale = table.Locale;
                 }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
+                if ((table.Namespace != table.DataSet.Namespace))
+                {
+                    Namespace = table.Namespace;
                 }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
+                Prefix = table.Prefix;
+                MinimumCapacity = table.MinimumCapacity;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected TerritoriesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
+
+            [DebuggerNonUserCode]
+            protected TerritoriesDataTable(SerializationInfo info, StreamingContext context) :
+                base(info, context)
+            {
+                InitVars();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn TerritoryIDColumn {
-                get {
-                    return this.columnTerritoryID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn TerritoryIDColumn
+            {
+                get { return columnTerritoryID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn TerritoryDescriptionColumn {
-                get {
-                    return this.columnTerritoryDescription;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn TerritoryDescriptionColumn
+            {
+                get { return columnTerritoryDescription; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn RegionIDColumn {
-                get {
-                    return this.columnRegionID;
-                }
+
+            [DebuggerNonUserCode]
+            public DataColumn RegionIDColumn
+            {
+                get { return columnRegionID; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
+
+            [DebuggerNonUserCode]
+            [Browsable(false)]
+            public int Count
+            {
+                get { return Rows.Count; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TerritoriesRow this[int index] {
-                get {
-                    return ((TerritoriesRow)(this.Rows[index]));
-                }
+
+            [DebuggerNonUserCode]
+            public TerritoriesRow this[int index]
+            {
+                get { return ((TerritoriesRow) (Rows[index])); }
             }
-            
+
             public event TerritoriesRowChangeEventHandler TerritoriesRowChanging;
-            
+
             public event TerritoriesRowChangeEventHandler TerritoriesRowChanged;
-            
+
             public event TerritoriesRowChangeEventHandler TerritoriesRowDeleting;
-            
+
             public event TerritoriesRowChangeEventHandler TerritoriesRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddTerritoriesRow(TerritoriesRow row) {
-                this.Rows.Add(row);
+
+            [DebuggerNonUserCode]
+            public void AddTerritoriesRow(TerritoriesRow row)
+            {
+                Rows.Add(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TerritoriesRow AddTerritoriesRow(string TerritoryID, string TerritoryDescription, RegionRow parentRegionRowByFK_Territories_Region) {
-                TerritoriesRow rowTerritoriesRow = ((TerritoriesRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        TerritoryID,
-                        TerritoryDescription,
-                        null};
-                if ((parentRegionRowByFK_Territories_Region != null)) {
+
+            [DebuggerNonUserCode]
+            public TerritoriesRow AddTerritoriesRow(string TerritoryID, string TerritoryDescription,
+                                                    RegionRow parentRegionRowByFK_Territories_Region)
+            {
+                var rowTerritoriesRow = ((TerritoriesRow) (NewRow()));
+                var columnValuesArray = new object[]
+                                            {
+                                                TerritoryID,
+                                                TerritoryDescription,
+                                                null
+                                            };
+                if ((parentRegionRowByFK_Territories_Region != null))
+                {
                     columnValuesArray[2] = parentRegionRowByFK_Territories_Region[0];
                 }
                 rowTerritoriesRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTerritoriesRow);
+                Rows.Add(rowTerritoriesRow);
                 return rowTerritoriesRow;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TerritoriesRow FindByTerritoryID(string TerritoryID) {
-                return ((TerritoriesRow)(this.Rows.Find(new object[] {
-                            TerritoryID})));
+
+            [DebuggerNonUserCode]
+            public TerritoriesRow FindByTerritoryID(string TerritoryID)
+            {
+                return ((TerritoriesRow) (Rows.Find(new object[]
+                                                        {
+                                                            TerritoryID
+                                                        })));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public override global::System.Data.DataTable Clone() {
-                TerritoriesDataTable cln = ((TerritoriesDataTable)(base.Clone()));
+
+            [DebuggerNonUserCode]
+            public override DataTable Clone()
+            {
+                var cln = ((TerritoriesDataTable) (base.Clone()));
                 cln.InitVars();
                 return cln;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataTable CreateInstance() {
+
+            [DebuggerNonUserCode]
+            protected override DataTable CreateInstance()
+            {
                 return new TerritoriesDataTable();
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal void InitVars() {
-                this.columnTerritoryID = base.Columns["TerritoryID"];
-                this.columnTerritoryDescription = base.Columns["TerritoryDescription"];
-                this.columnRegionID = base.Columns["RegionID"];
+
+            [DebuggerNonUserCode]
+            internal void InitVars()
+            {
+                columnTerritoryID = base.Columns["TerritoryID"];
+                columnTerritoryDescription = base.Columns["TerritoryDescription"];
+                columnRegionID = base.Columns["RegionID"];
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitClass() {
-                this.columnTerritoryID = new global::System.Data.DataColumn("TerritoryID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTerritoryID);
-                this.columnTerritoryDescription = new global::System.Data.DataColumn("TerritoryDescription", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTerritoryDescription);
-                this.columnRegionID = new global::System.Data.DataColumn("RegionID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRegionID);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnTerritoryID}, true));
-                this.columnTerritoryID.AllowDBNull = false;
-                this.columnTerritoryID.Unique = true;
-                this.columnTerritoryID.MaxLength = 20;
-                this.columnTerritoryDescription.AllowDBNull = false;
-                this.columnTerritoryDescription.MaxLength = 50;
-                this.columnRegionID.AllowDBNull = false;
+
+            [DebuggerNonUserCode]
+            private void InitClass()
+            {
+                columnTerritoryID = new DataColumn("TerritoryID", typeof (string), null, MappingType.Element);
+                base.Columns.Add(columnTerritoryID);
+                columnTerritoryDescription = new DataColumn("TerritoryDescription", typeof (string), null,
+                                                            MappingType.Element);
+                base.Columns.Add(columnTerritoryDescription);
+                columnRegionID = new DataColumn("RegionID", typeof (int), null, MappingType.Element);
+                base.Columns.Add(columnRegionID);
+                Constraints.Add(new UniqueConstraint("Constraint1", new[]
+                                                                        {
+                                                                            columnTerritoryID
+                                                                        }, true));
+                columnTerritoryID.AllowDBNull = false;
+                columnTerritoryID.Unique = true;
+                columnTerritoryID.MaxLength = 20;
+                columnTerritoryDescription.AllowDBNull = false;
+                columnTerritoryDescription.MaxLength = 50;
+                columnRegionID.AllowDBNull = false;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TerritoriesRow NewTerritoriesRow() {
-                return ((TerritoriesRow)(this.NewRow()));
+
+            [DebuggerNonUserCode]
+            public TerritoriesRow NewTerritoriesRow()
+            {
+                return ((TerritoriesRow) (NewRow()));
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+
+            [DebuggerNonUserCode]
+            protected override DataRow NewRowFromBuilder(DataRowBuilder builder)
+            {
                 return new TerritoriesRow(builder);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override global::System.Type GetRowType() {
-                return typeof(TerritoriesRow);
+
+            [DebuggerNonUserCode]
+            protected override Type GetRowType()
+            {
+                return typeof (TerritoriesRow);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanged(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanged(e);
-                if ((this.TerritoriesRowChanged != null)) {
-                    this.TerritoriesRowChanged(this, new TerritoriesRowChangeEvent(((TerritoriesRow)(e.Row)), e.Action));
+                if ((TerritoriesRowChanged != null))
+                {
+                    TerritoriesRowChanged(this, new TerritoriesRowChangeEvent(((TerritoriesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowChanging(DataRowChangeEventArgs e)
+            {
                 base.OnRowChanging(e);
-                if ((this.TerritoriesRowChanging != null)) {
-                    this.TerritoriesRowChanging(this, new TerritoriesRowChangeEvent(((TerritoriesRow)(e.Row)), e.Action));
+                if ((TerritoriesRowChanging != null))
+                {
+                    TerritoriesRowChanging(this, new TerritoriesRowChangeEvent(((TerritoriesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleted(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleted(e);
-                if ((this.TerritoriesRowDeleted != null)) {
-                    this.TerritoriesRowDeleted(this, new TerritoriesRowChangeEvent(((TerritoriesRow)(e.Row)), e.Action));
+                if ((TerritoriesRowDeleted != null))
+                {
+                    TerritoriesRowDeleted(this, new TerritoriesRowChangeEvent(((TerritoriesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+
+            [DebuggerNonUserCode]
+            protected override void OnRowDeleting(DataRowChangeEventArgs e)
+            {
                 base.OnRowDeleting(e);
-                if ((this.TerritoriesRowDeleting != null)) {
-                    this.TerritoriesRowDeleting(this, new TerritoriesRowChangeEvent(((TerritoriesRow)(e.Row)), e.Action));
+                if ((TerritoriesRowDeleting != null))
+                {
+                    TerritoriesRowDeleting(this, new TerritoriesRowChangeEvent(((TerritoriesRow) (e.Row)), e.Action));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveTerritoriesRow(TerritoriesRow row) {
-                this.Rows.Remove(row);
+
+            [DebuggerNonUserCode]
+            public void RemoveTerritoriesRow(TerritoriesRow row)
+            {
+                Rows.Remove(row);
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                NorthwindDataSet ds = new NorthwindDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+
+            [DebuggerNonUserCode]
+            public static XmlSchemaComplexType GetTypedTableSchema(XmlSchemaSet xs)
+            {
+                var type = new XmlSchemaComplexType();
+                var sequence = new XmlSchemaSequence();
+                var ds = new NorthwindDataSet();
+                var any1 = new XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
                 any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any1.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                var any2 = new XmlSchemaAny();
                 any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
                 any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                any2.ProcessContents = XmlSchemaContentProcessing.Lax;
                 sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute1 = new XmlSchemaAttribute();
                 attribute1.Name = "namespace";
                 attribute1.FixedValue = ds.Namespace;
                 type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                var attribute2 = new XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "TerritoriesDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
+                XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace))
+                {
+                    var s1 = new MemoryStream();
+                    var s2 = new MemoryStream();
+                    try
+                    {
+                        XmlSchema schema = null;
                         dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                        for (IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator();
+                             schemas.MoveNext();)
+                        {
+                            schema = ((XmlSchema) (schemas.Current));
                             s2.SetLength(0);
                             schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
+                            if ((s1.Length == s2.Length))
+                            {
                                 s1.Position = 0;
                                 s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                for (;
+                                    ((s1.Position != s1.Length)
+                                     && (s1.ReadByte() == s2.ReadByte()));)
+                                {
                                     ;
                                 }
-                                if ((s1.Position == s1.Length)) {
+                                if ((s1.Position == s1.Length))
+                                {
                                     return type;
                                 }
                             }
                         }
                     }
-                    finally {
-                        if ((s1 != null)) {
+                    finally
+                    {
+                        if ((s1 != null))
+                        {
                             s1.Close();
                         }
-                        if ((s2 != null)) {
+                        if ((s2 != null))
+                        {
                             s2.Close();
                         }
                     }
@@ -4890,2613 +8399,103 @@ namespace NW247.Model {
                 return type;
             }
         }
-        
+
+        #endregion
+
+        #region Nested type: TerritoriesRow
+
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class CategoriesRow : global::System.Data.DataRow {
-            
-            private CategoriesDataTable tableCategories;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal CategoriesRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableCategories = ((CategoriesDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int CategoryID {
-                get {
-                    return ((int)(this[this.tableCategories.CategoryIDColumn]));
-                }
-                set {
-                    this[this.tableCategories.CategoryIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string CategoryName {
-                get {
-                    return ((string)(this[this.tableCategories.CategoryNameColumn]));
-                }
-                set {
-                    this[this.tableCategories.CategoryNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Description {
-                get {
-                    try {
-                        return ((string)(this[this.tableCategories.DescriptionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Description\' in table \'Categories\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCategories.DescriptionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public byte[] Picture {
-                get {
-                    try {
-                        return ((byte[])(this[this.tableCategories.PictureColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Picture\' in table \'Categories\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCategories.PictureColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsDescriptionNull() {
-                return this.IsNull(this.tableCategories.DescriptionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetDescriptionNull() {
-                this[this.tableCategories.DescriptionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPictureNull() {
-                return this.IsNull(this.tableCategories.PictureColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPictureNull() {
-                this[this.tableCategories.PictureColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ProductsRow[] GetProductsRows() {
-                if ((this.Table.ChildRelations["FK_Products_Categories"] == null)) {
-                    return new ProductsRow[0];
-                }
-                else {
-                    return ((ProductsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Products_Categories"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class CustomerCustomerDemoRow : global::System.Data.DataRow {
-            
-            private CustomerCustomerDemoDataTable tableCustomerCustomerDemo;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal CustomerCustomerDemoRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableCustomerCustomerDemo = ((CustomerCustomerDemoDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string CustomerID {
-                get {
-                    return ((string)(this[this.tableCustomerCustomerDemo.CustomerIDColumn]));
-                }
-                set {
-                    this[this.tableCustomerCustomerDemo.CustomerIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string CustomerTypeID {
-                get {
-                    return ((string)(this[this.tableCustomerCustomerDemo.CustomerTypeIDColumn]));
-                }
-                set {
-                    this[this.tableCustomerCustomerDemo.CustomerTypeIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerDemographicsRow CustomerDemographicsRow {
-                get {
-                    return ((CustomerDemographicsRow)(this.GetParentRow(this.Table.ParentRelations["FK_CustomerCustomerDemo"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_CustomerCustomerDemo"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomersRow CustomersRow {
-                get {
-                    return ((CustomersRow)(this.GetParentRow(this.Table.ParentRelations["FK_CustomerCustomerDemo_Customers"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_CustomerCustomerDemo_Customers"]);
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class CustomerDemographicsRow : global::System.Data.DataRow {
-            
-            private CustomerDemographicsDataTable tableCustomerDemographics;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal CustomerDemographicsRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableCustomerDemographics = ((CustomerDemographicsDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string CustomerTypeID {
-                get {
-                    return ((string)(this[this.tableCustomerDemographics.CustomerTypeIDColumn]));
-                }
-                set {
-                    this[this.tableCustomerDemographics.CustomerTypeIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string CustomerDesc {
-                get {
-                    try {
-                        return ((string)(this[this.tableCustomerDemographics.CustomerDescColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CustomerDesc\' in table \'CustomerDemographics\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCustomerDemographics.CustomerDescColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsCustomerDescNull() {
-                return this.IsNull(this.tableCustomerDemographics.CustomerDescColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetCustomerDescNull() {
-                this[this.tableCustomerDemographics.CustomerDescColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerCustomerDemoRow[] GetCustomerCustomerDemoRows() {
-                if ((this.Table.ChildRelations["FK_CustomerCustomerDemo"] == null)) {
-                    return new CustomerCustomerDemoRow[0];
-                }
-                else {
-                    return ((CustomerCustomerDemoRow[])(base.GetChildRows(this.Table.ChildRelations["FK_CustomerCustomerDemo"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class CustomersRow : global::System.Data.DataRow {
-            
-            private CustomersDataTable tableCustomers;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal CustomersRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableCustomers = ((CustomersDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string CustomerID {
-                get {
-                    return ((string)(this[this.tableCustomers.CustomerIDColumn]));
-                }
-                set {
-                    this[this.tableCustomers.CustomerIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string CompanyName {
-                get {
-                    return ((string)(this[this.tableCustomers.CompanyNameColumn]));
-                }
-                set {
-                    this[this.tableCustomers.CompanyNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ContactName {
-                get {
-                    try {
-                        return ((string)(this[this.tableCustomers.ContactNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ContactName\' in table \'Customers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCustomers.ContactNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ContactTitle {
-                get {
-                    try {
-                        return ((string)(this[this.tableCustomers.ContactTitleColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ContactTitle\' in table \'Customers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCustomers.ContactTitleColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Address {
-                get {
-                    try {
-                        return ((string)(this[this.tableCustomers.AddressColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Address\' in table \'Customers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCustomers.AddressColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string City {
-                get {
-                    try {
-                        return ((string)(this[this.tableCustomers.CityColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'City\' in table \'Customers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCustomers.CityColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Region {
-                get {
-                    try {
-                        return ((string)(this[this.tableCustomers.RegionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Region\' in table \'Customers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCustomers.RegionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string PostalCode {
-                get {
-                    try {
-                        return ((string)(this[this.tableCustomers.PostalCodeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PostalCode\' in table \'Customers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCustomers.PostalCodeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Country {
-                get {
-                    try {
-                        return ((string)(this[this.tableCustomers.CountryColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Country\' in table \'Customers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCustomers.CountryColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Phone {
-                get {
-                    try {
-                        return ((string)(this[this.tableCustomers.PhoneColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Phone\' in table \'Customers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCustomers.PhoneColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Fax {
-                get {
-                    try {
-                        return ((string)(this[this.tableCustomers.FaxColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Fax\' in table \'Customers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCustomers.FaxColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsContactNameNull() {
-                return this.IsNull(this.tableCustomers.ContactNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetContactNameNull() {
-                this[this.tableCustomers.ContactNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsContactTitleNull() {
-                return this.IsNull(this.tableCustomers.ContactTitleColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetContactTitleNull() {
-                this[this.tableCustomers.ContactTitleColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsAddressNull() {
-                return this.IsNull(this.tableCustomers.AddressColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetAddressNull() {
-                this[this.tableCustomers.AddressColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsCityNull() {
-                return this.IsNull(this.tableCustomers.CityColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetCityNull() {
-                this[this.tableCustomers.CityColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsRegionNull() {
-                return this.IsNull(this.tableCustomers.RegionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetRegionNull() {
-                this[this.tableCustomers.RegionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPostalCodeNull() {
-                return this.IsNull(this.tableCustomers.PostalCodeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPostalCodeNull() {
-                this[this.tableCustomers.PostalCodeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsCountryNull() {
-                return this.IsNull(this.tableCustomers.CountryColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetCountryNull() {
-                this[this.tableCustomers.CountryColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPhoneNull() {
-                return this.IsNull(this.tableCustomers.PhoneColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPhoneNull() {
-                this[this.tableCustomers.PhoneColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsFaxNull() {
-                return this.IsNull(this.tableCustomers.FaxColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetFaxNull() {
-                this[this.tableCustomers.FaxColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerCustomerDemoRow[] GetCustomerCustomerDemoRows() {
-                if ((this.Table.ChildRelations["FK_CustomerCustomerDemo_Customers"] == null)) {
-                    return new CustomerCustomerDemoRow[0];
-                }
-                else {
-                    return ((CustomerCustomerDemoRow[])(base.GetChildRows(this.Table.ChildRelations["FK_CustomerCustomerDemo_Customers"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public OrdersRow[] GetOrdersRows() {
-                if ((this.Table.ChildRelations["FK_Orders_Customers"] == null)) {
-                    return new OrdersRow[0];
-                }
-                else {
-                    return ((OrdersRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Orders_Customers"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class EmployeesRow : global::System.Data.DataRow {
-            
-            private EmployeesDataTable tableEmployees;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal EmployeesRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableEmployees = ((EmployeesDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int EmployeeID {
-                get {
-                    return ((int)(this[this.tableEmployees.EmployeeIDColumn]));
-                }
-                set {
-                    this[this.tableEmployees.EmployeeIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string LastName {
-                get {
-                    return ((string)(this[this.tableEmployees.LastNameColumn]));
-                }
-                set {
-                    this[this.tableEmployees.LastNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string FirstName {
-                get {
-                    return ((string)(this[this.tableEmployees.FirstNameColumn]));
-                }
-                set {
-                    this[this.tableEmployees.FirstNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Title {
-                get {
-                    try {
-                        return ((string)(this[this.tableEmployees.TitleColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Title\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.TitleColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string TitleOfCourtesy {
-                get {
-                    try {
-                        return ((string)(this[this.tableEmployees.TitleOfCourtesyColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TitleOfCourtesy\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.TitleOfCourtesyColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.DateTime BirthDate {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableEmployees.BirthDateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'BirthDate\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.BirthDateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.DateTime HireDate {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableEmployees.HireDateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'HireDate\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.HireDateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Address {
-                get {
-                    try {
-                        return ((string)(this[this.tableEmployees.AddressColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Address\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.AddressColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string City {
-                get {
-                    try {
-                        return ((string)(this[this.tableEmployees.CityColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'City\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.CityColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Region {
-                get {
-                    try {
-                        return ((string)(this[this.tableEmployees.RegionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Region\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.RegionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string PostalCode {
-                get {
-                    try {
-                        return ((string)(this[this.tableEmployees.PostalCodeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PostalCode\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.PostalCodeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Country {
-                get {
-                    try {
-                        return ((string)(this[this.tableEmployees.CountryColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Country\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.CountryColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string HomePhone {
-                get {
-                    try {
-                        return ((string)(this[this.tableEmployees.HomePhoneColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'HomePhone\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.HomePhoneColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Extension {
-                get {
-                    try {
-                        return ((string)(this[this.tableEmployees.ExtensionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Extension\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.ExtensionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public byte[] Photo {
-                get {
-                    try {
-                        return ((byte[])(this[this.tableEmployees.PhotoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Photo\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.PhotoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Notes {
-                get {
-                    try {
-                        return ((string)(this[this.tableEmployees.NotesColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Notes\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.NotesColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int ReportsTo {
-                get {
-                    try {
-                        return ((int)(this[this.tableEmployees.ReportsToColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ReportsTo\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.ReportsToColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string PhotoPath {
-                get {
-                    try {
-                        return ((string)(this[this.tableEmployees.PhotoPathColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PhotoPath\' in table \'Employees\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEmployees.PhotoPathColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeesRow EmployeesRowParent {
-                get {
-                    return ((EmployeesRow)(this.GetParentRow(this.Table.ParentRelations["FK_Employees_Employees"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Employees_Employees"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsTitleNull() {
-                return this.IsNull(this.tableEmployees.TitleColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetTitleNull() {
-                this[this.tableEmployees.TitleColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsTitleOfCourtesyNull() {
-                return this.IsNull(this.tableEmployees.TitleOfCourtesyColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetTitleOfCourtesyNull() {
-                this[this.tableEmployees.TitleOfCourtesyColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsBirthDateNull() {
-                return this.IsNull(this.tableEmployees.BirthDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetBirthDateNull() {
-                this[this.tableEmployees.BirthDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsHireDateNull() {
-                return this.IsNull(this.tableEmployees.HireDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetHireDateNull() {
-                this[this.tableEmployees.HireDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsAddressNull() {
-                return this.IsNull(this.tableEmployees.AddressColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetAddressNull() {
-                this[this.tableEmployees.AddressColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsCityNull() {
-                return this.IsNull(this.tableEmployees.CityColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetCityNull() {
-                this[this.tableEmployees.CityColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsRegionNull() {
-                return this.IsNull(this.tableEmployees.RegionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetRegionNull() {
-                this[this.tableEmployees.RegionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPostalCodeNull() {
-                return this.IsNull(this.tableEmployees.PostalCodeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPostalCodeNull() {
-                this[this.tableEmployees.PostalCodeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsCountryNull() {
-                return this.IsNull(this.tableEmployees.CountryColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetCountryNull() {
-                this[this.tableEmployees.CountryColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsHomePhoneNull() {
-                return this.IsNull(this.tableEmployees.HomePhoneColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetHomePhoneNull() {
-                this[this.tableEmployees.HomePhoneColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsExtensionNull() {
-                return this.IsNull(this.tableEmployees.ExtensionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetExtensionNull() {
-                this[this.tableEmployees.ExtensionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPhotoNull() {
-                return this.IsNull(this.tableEmployees.PhotoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPhotoNull() {
-                this[this.tableEmployees.PhotoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsNotesNull() {
-                return this.IsNull(this.tableEmployees.NotesColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetNotesNull() {
-                this[this.tableEmployees.NotesColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsReportsToNull() {
-                return this.IsNull(this.tableEmployees.ReportsToColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetReportsToNull() {
-                this[this.tableEmployees.ReportsToColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPhotoPathNull() {
-                return this.IsNull(this.tableEmployees.PhotoPathColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPhotoPathNull() {
-                this[this.tableEmployees.PhotoPathColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeesRow[] GetEmployeesRows() {
-                if ((this.Table.ChildRelations["FK_Employees_Employees"] == null)) {
-                    return new EmployeesRow[0];
-                }
-                else {
-                    return ((EmployeesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Employees_Employees"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeeTerritoriesRow[] GetEmployeeTerritoriesRows() {
-                if ((this.Table.ChildRelations["FK_EmployeeTerritories_Employees"] == null)) {
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class TerritoriesRow : DataRow
+        {
+            private readonly TerritoriesDataTable tableTerritories;
+
+            [DebuggerNonUserCode]
+            internal TerritoriesRow(DataRowBuilder rb) :
+                base(rb)
+            {
+                tableTerritories = ((TerritoriesDataTable) (Table));
+            }
+
+            [DebuggerNonUserCode]
+            public string TerritoryID
+            {
+                get { return ((string) (this[tableTerritories.TerritoryIDColumn])); }
+                set { this[tableTerritories.TerritoryIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public string TerritoryDescription
+            {
+                get { return ((string) (this[tableTerritories.TerritoryDescriptionColumn])); }
+                set { this[tableTerritories.TerritoryDescriptionColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public int RegionID
+            {
+                get { return ((int) (this[tableTerritories.RegionIDColumn])); }
+                set { this[tableTerritories.RegionIDColumn] = value; }
+            }
+
+            [DebuggerNonUserCode]
+            public RegionRow RegionRow
+            {
+                get { return ((RegionRow) (GetParentRow(Table.ParentRelations["FK_Territories_Region"]))); }
+                set { SetParentRow(value, Table.ParentRelations["FK_Territories_Region"]); }
+            }
+
+            [DebuggerNonUserCode]
+            public EmployeeTerritoriesRow[] GetEmployeeTerritoriesRows()
+            {
+                if ((Table.ChildRelations["FK_EmployeeTerritories_Territories"] == null))
+                {
                     return new EmployeeTerritoriesRow[0];
                 }
-                else {
-                    return ((EmployeeTerritoriesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_EmployeeTerritories_Employees"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public OrdersRow[] GetOrdersRows() {
-                if ((this.Table.ChildRelations["FK_Orders_Employees"] == null)) {
-                    return new OrdersRow[0];
-                }
-                else {
-                    return ((OrdersRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Orders_Employees"])));
+                else
+                {
+                    return
+                        ((EmployeeTerritoriesRow[])
+                         (base.GetChildRows(Table.ChildRelations["FK_EmployeeTerritories_Territories"])));
                 }
             }
         }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class EmployeeTerritoriesRow : global::System.Data.DataRow {
-            
-            private EmployeeTerritoriesDataTable tableEmployeeTerritories;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal EmployeeTerritoriesRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableEmployeeTerritories = ((EmployeeTerritoriesDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int EmployeeID {
-                get {
-                    return ((int)(this[this.tableEmployeeTerritories.EmployeeIDColumn]));
-                }
-                set {
-                    this[this.tableEmployeeTerritories.EmployeeIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string TerritoryID {
-                get {
-                    return ((string)(this[this.tableEmployeeTerritories.TerritoryIDColumn]));
-                }
-                set {
-                    this[this.tableEmployeeTerritories.TerritoryIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeesRow EmployeesRow {
-                get {
-                    return ((EmployeesRow)(this.GetParentRow(this.Table.ParentRelations["FK_EmployeeTerritories_Employees"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_EmployeeTerritories_Employees"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TerritoriesRow TerritoriesRow {
-                get {
-                    return ((TerritoriesRow)(this.GetParentRow(this.Table.ParentRelations["FK_EmployeeTerritories_Territories"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_EmployeeTerritories_Territories"]);
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class Order_DetailsRow : global::System.Data.DataRow {
-            
-            private Order_DetailsDataTable tableOrder_Details;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal Order_DetailsRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableOrder_Details = ((Order_DetailsDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int OrderID {
-                get {
-                    return ((int)(this[this.tableOrder_Details.OrderIDColumn]));
-                }
-                set {
-                    this[this.tableOrder_Details.OrderIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int ProductID {
-                get {
-                    return ((int)(this[this.tableOrder_Details.ProductIDColumn]));
-                }
-                set {
-                    this[this.tableOrder_Details.ProductIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public decimal UnitPrice {
-                get {
-                    return ((decimal)(this[this.tableOrder_Details.UnitPriceColumn]));
-                }
-                set {
-                    this[this.tableOrder_Details.UnitPriceColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public short Quantity {
-                get {
-                    return ((short)(this[this.tableOrder_Details.QuantityColumn]));
-                }
-                set {
-                    this[this.tableOrder_Details.QuantityColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public float Discount {
-                get {
-                    return ((float)(this[this.tableOrder_Details.DiscountColumn]));
-                }
-                set {
-                    this[this.tableOrder_Details.DiscountColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public OrdersRow OrdersRow {
-                get {
-                    return ((OrdersRow)(this.GetParentRow(this.Table.ParentRelations["FK_Order_Details_Orders"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Order_Details_Orders"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ProductsRow ProductsRow {
-                get {
-                    return ((ProductsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Order_Details_Products"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Order_Details_Products"]);
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class OrdersRow : global::System.Data.DataRow {
-            
-            private OrdersDataTable tableOrders;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal OrdersRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableOrders = ((OrdersDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int OrderID {
-                get {
-                    return ((int)(this[this.tableOrders.OrderIDColumn]));
-                }
-                set {
-                    this[this.tableOrders.OrderIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string CustomerID {
-                get {
-                    try {
-                        return ((string)(this[this.tableOrders.CustomerIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CustomerID\' in table \'Orders\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrders.CustomerIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int EmployeeID {
-                get {
-                    try {
-                        return ((int)(this[this.tableOrders.EmployeeIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EmployeeID\' in table \'Orders\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrders.EmployeeIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.DateTime OrderDate {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableOrders.OrderDateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OrderDate\' in table \'Orders\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrders.OrderDateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.DateTime RequiredDate {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableOrders.RequiredDateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'RequiredDate\' in table \'Orders\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrders.RequiredDateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public System.DateTime ShippedDate {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableOrders.ShippedDateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ShippedDate\' in table \'Orders\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrders.ShippedDateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int ShipVia {
-                get {
-                    try {
-                        return ((int)(this[this.tableOrders.ShipViaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ShipVia\' in table \'Orders\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrders.ShipViaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public decimal Freight {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableOrders.FreightColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Freight\' in table \'Orders\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrders.FreightColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ShipName {
-                get {
-                    try {
-                        return ((string)(this[this.tableOrders.ShipNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ShipName\' in table \'Orders\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrders.ShipNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ShipAddress {
-                get {
-                    try {
-                        return ((string)(this[this.tableOrders.ShipAddressColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ShipAddress\' in table \'Orders\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrders.ShipAddressColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ShipCity {
-                get {
-                    try {
-                        return ((string)(this[this.tableOrders.ShipCityColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ShipCity\' in table \'Orders\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrders.ShipCityColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ShipRegion {
-                get {
-                    try {
-                        return ((string)(this[this.tableOrders.ShipRegionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ShipRegion\' in table \'Orders\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrders.ShipRegionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ShipPostalCode {
-                get {
-                    try {
-                        return ((string)(this[this.tableOrders.ShipPostalCodeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ShipPostalCode\' in table \'Orders\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrders.ShipPostalCodeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ShipCountry {
-                get {
-                    try {
-                        return ((string)(this[this.tableOrders.ShipCountryColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ShipCountry\' in table \'Orders\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableOrders.ShipCountryColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomersRow CustomersRow {
-                get {
-                    return ((CustomersRow)(this.GetParentRow(this.Table.ParentRelations["FK_Orders_Customers"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Orders_Customers"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeesRow EmployeesRow {
-                get {
-                    return ((EmployeesRow)(this.GetParentRow(this.Table.ParentRelations["FK_Orders_Employees"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Orders_Employees"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ShippersRow ShippersRow {
-                get {
-                    return ((ShippersRow)(this.GetParentRow(this.Table.ParentRelations["FK_Orders_Shippers"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Orders_Shippers"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsCustomerIDNull() {
-                return this.IsNull(this.tableOrders.CustomerIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetCustomerIDNull() {
-                this[this.tableOrders.CustomerIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsEmployeeIDNull() {
-                return this.IsNull(this.tableOrders.EmployeeIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetEmployeeIDNull() {
-                this[this.tableOrders.EmployeeIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsOrderDateNull() {
-                return this.IsNull(this.tableOrders.OrderDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetOrderDateNull() {
-                this[this.tableOrders.OrderDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsRequiredDateNull() {
-                return this.IsNull(this.tableOrders.RequiredDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetRequiredDateNull() {
-                this[this.tableOrders.RequiredDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsShippedDateNull() {
-                return this.IsNull(this.tableOrders.ShippedDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetShippedDateNull() {
-                this[this.tableOrders.ShippedDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsShipViaNull() {
-                return this.IsNull(this.tableOrders.ShipViaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetShipViaNull() {
-                this[this.tableOrders.ShipViaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsFreightNull() {
-                return this.IsNull(this.tableOrders.FreightColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetFreightNull() {
-                this[this.tableOrders.FreightColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsShipNameNull() {
-                return this.IsNull(this.tableOrders.ShipNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetShipNameNull() {
-                this[this.tableOrders.ShipNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsShipAddressNull() {
-                return this.IsNull(this.tableOrders.ShipAddressColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetShipAddressNull() {
-                this[this.tableOrders.ShipAddressColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsShipCityNull() {
-                return this.IsNull(this.tableOrders.ShipCityColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetShipCityNull() {
-                this[this.tableOrders.ShipCityColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsShipRegionNull() {
-                return this.IsNull(this.tableOrders.ShipRegionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetShipRegionNull() {
-                this[this.tableOrders.ShipRegionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsShipPostalCodeNull() {
-                return this.IsNull(this.tableOrders.ShipPostalCodeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetShipPostalCodeNull() {
-                this[this.tableOrders.ShipPostalCodeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsShipCountryNull() {
-                return this.IsNull(this.tableOrders.ShipCountryColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetShipCountryNull() {
-                this[this.tableOrders.ShipCountryColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public Order_DetailsRow[] GetOrder_DetailsRows() {
-                if ((this.Table.ChildRelations["FK_Order_Details_Orders"] == null)) {
-                    return new Order_DetailsRow[0];
-                }
-                else {
-                    return ((Order_DetailsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Order_Details_Orders"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class ProductsRow : global::System.Data.DataRow {
-            
-            private ProductsDataTable tableProducts;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal ProductsRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableProducts = ((ProductsDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int ProductID {
-                get {
-                    return ((int)(this[this.tableProducts.ProductIDColumn]));
-                }
-                set {
-                    this[this.tableProducts.ProductIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ProductName {
-                get {
-                    return ((string)(this[this.tableProducts.ProductNameColumn]));
-                }
-                set {
-                    this[this.tableProducts.ProductNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int SupplierID {
-                get {
-                    try {
-                        return ((int)(this[this.tableProducts.SupplierIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SupplierID\' in table \'Products\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableProducts.SupplierIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int CategoryID {
-                get {
-                    try {
-                        return ((int)(this[this.tableProducts.CategoryIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CategoryID\' in table \'Products\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableProducts.CategoryIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string QuantityPerUnit {
-                get {
-                    try {
-                        return ((string)(this[this.tableProducts.QuantityPerUnitColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QuantityPerUnit\' in table \'Products\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableProducts.QuantityPerUnitColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public decimal UnitPrice {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableProducts.UnitPriceColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'UnitPrice\' in table \'Products\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableProducts.UnitPriceColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public short UnitsInStock {
-                get {
-                    try {
-                        return ((short)(this[this.tableProducts.UnitsInStockColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'UnitsInStock\' in table \'Products\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableProducts.UnitsInStockColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public short UnitsOnOrder {
-                get {
-                    try {
-                        return ((short)(this[this.tableProducts.UnitsOnOrderColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'UnitsOnOrder\' in table \'Products\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableProducts.UnitsOnOrderColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public short ReorderLevel {
-                get {
-                    try {
-                        return ((short)(this[this.tableProducts.ReorderLevelColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ReorderLevel\' in table \'Products\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableProducts.ReorderLevelColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool Discontinued {
-                get {
-                    return ((bool)(this[this.tableProducts.DiscontinuedColumn]));
-                }
-                set {
-                    this[this.tableProducts.DiscontinuedColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CategoriesRow CategoriesRow {
-                get {
-                    return ((CategoriesRow)(this.GetParentRow(this.Table.ParentRelations["FK_Products_Categories"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Products_Categories"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SuppliersRow SuppliersRow {
-                get {
-                    return ((SuppliersRow)(this.GetParentRow(this.Table.ParentRelations["FK_Products_Suppliers"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Products_Suppliers"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsSupplierIDNull() {
-                return this.IsNull(this.tableProducts.SupplierIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetSupplierIDNull() {
-                this[this.tableProducts.SupplierIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsCategoryIDNull() {
-                return this.IsNull(this.tableProducts.CategoryIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetCategoryIDNull() {
-                this[this.tableProducts.CategoryIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsQuantityPerUnitNull() {
-                return this.IsNull(this.tableProducts.QuantityPerUnitColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetQuantityPerUnitNull() {
-                this[this.tableProducts.QuantityPerUnitColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsUnitPriceNull() {
-                return this.IsNull(this.tableProducts.UnitPriceColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetUnitPriceNull() {
-                this[this.tableProducts.UnitPriceColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsUnitsInStockNull() {
-                return this.IsNull(this.tableProducts.UnitsInStockColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetUnitsInStockNull() {
-                this[this.tableProducts.UnitsInStockColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsUnitsOnOrderNull() {
-                return this.IsNull(this.tableProducts.UnitsOnOrderColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetUnitsOnOrderNull() {
-                this[this.tableProducts.UnitsOnOrderColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsReorderLevelNull() {
-                return this.IsNull(this.tableProducts.ReorderLevelColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetReorderLevelNull() {
-                this[this.tableProducts.ReorderLevelColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public Order_DetailsRow[] GetOrder_DetailsRows() {
-                if ((this.Table.ChildRelations["FK_Order_Details_Products"] == null)) {
-                    return new Order_DetailsRow[0];
-                }
-                else {
-                    return ((Order_DetailsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Order_Details_Products"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class RegionRow : global::System.Data.DataRow {
-            
-            private RegionDataTable tableRegion;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal RegionRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableRegion = ((RegionDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int RegionID {
-                get {
-                    return ((int)(this[this.tableRegion.RegionIDColumn]));
-                }
-                set {
-                    this[this.tableRegion.RegionIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string RegionDescription {
-                get {
-                    return ((string)(this[this.tableRegion.RegionDescriptionColumn]));
-                }
-                set {
-                    this[this.tableRegion.RegionDescriptionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TerritoriesRow[] GetTerritoriesRows() {
-                if ((this.Table.ChildRelations["FK_Territories_Region"] == null)) {
-                    return new TerritoriesRow[0];
-                }
-                else {
-                    return ((TerritoriesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Territories_Region"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class ShippersRow : global::System.Data.DataRow {
-            
-            private ShippersDataTable tableShippers;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal ShippersRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableShippers = ((ShippersDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int ShipperID {
-                get {
-                    return ((int)(this[this.tableShippers.ShipperIDColumn]));
-                }
-                set {
-                    this[this.tableShippers.ShipperIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string CompanyName {
-                get {
-                    return ((string)(this[this.tableShippers.CompanyNameColumn]));
-                }
-                set {
-                    this[this.tableShippers.CompanyNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Phone {
-                get {
-                    try {
-                        return ((string)(this[this.tableShippers.PhoneColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Phone\' in table \'Shippers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableShippers.PhoneColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPhoneNull() {
-                return this.IsNull(this.tableShippers.PhoneColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPhoneNull() {
-                this[this.tableShippers.PhoneColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public OrdersRow[] GetOrdersRows() {
-                if ((this.Table.ChildRelations["FK_Orders_Shippers"] == null)) {
-                    return new OrdersRow[0];
-                }
-                else {
-                    return ((OrdersRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Orders_Shippers"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class SuppliersRow : global::System.Data.DataRow {
-            
-            private SuppliersDataTable tableSuppliers;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal SuppliersRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableSuppliers = ((SuppliersDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int SupplierID {
-                get {
-                    return ((int)(this[this.tableSuppliers.SupplierIDColumn]));
-                }
-                set {
-                    this[this.tableSuppliers.SupplierIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string CompanyName {
-                get {
-                    return ((string)(this[this.tableSuppliers.CompanyNameColumn]));
-                }
-                set {
-                    this[this.tableSuppliers.CompanyNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ContactName {
-                get {
-                    try {
-                        return ((string)(this[this.tableSuppliers.ContactNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ContactName\' in table \'Suppliers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSuppliers.ContactNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string ContactTitle {
-                get {
-                    try {
-                        return ((string)(this[this.tableSuppliers.ContactTitleColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ContactTitle\' in table \'Suppliers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSuppliers.ContactTitleColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Address {
-                get {
-                    try {
-                        return ((string)(this[this.tableSuppliers.AddressColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Address\' in table \'Suppliers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSuppliers.AddressColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string City {
-                get {
-                    try {
-                        return ((string)(this[this.tableSuppliers.CityColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'City\' in table \'Suppliers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSuppliers.CityColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Region {
-                get {
-                    try {
-                        return ((string)(this[this.tableSuppliers.RegionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Region\' in table \'Suppliers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSuppliers.RegionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string PostalCode {
-                get {
-                    try {
-                        return ((string)(this[this.tableSuppliers.PostalCodeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PostalCode\' in table \'Suppliers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSuppliers.PostalCodeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Country {
-                get {
-                    try {
-                        return ((string)(this[this.tableSuppliers.CountryColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Country\' in table \'Suppliers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSuppliers.CountryColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Phone {
-                get {
-                    try {
-                        return ((string)(this[this.tableSuppliers.PhoneColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Phone\' in table \'Suppliers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSuppliers.PhoneColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Fax {
-                get {
-                    try {
-                        return ((string)(this[this.tableSuppliers.FaxColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Fax\' in table \'Suppliers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSuppliers.FaxColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string HomePage {
-                get {
-                    try {
-                        return ((string)(this[this.tableSuppliers.HomePageColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'HomePage\' in table \'Suppliers\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSuppliers.HomePageColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsContactNameNull() {
-                return this.IsNull(this.tableSuppliers.ContactNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetContactNameNull() {
-                this[this.tableSuppliers.ContactNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsContactTitleNull() {
-                return this.IsNull(this.tableSuppliers.ContactTitleColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetContactTitleNull() {
-                this[this.tableSuppliers.ContactTitleColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsAddressNull() {
-                return this.IsNull(this.tableSuppliers.AddressColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetAddressNull() {
-                this[this.tableSuppliers.AddressColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsCityNull() {
-                return this.IsNull(this.tableSuppliers.CityColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetCityNull() {
-                this[this.tableSuppliers.CityColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsRegionNull() {
-                return this.IsNull(this.tableSuppliers.RegionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetRegionNull() {
-                this[this.tableSuppliers.RegionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPostalCodeNull() {
-                return this.IsNull(this.tableSuppliers.PostalCodeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPostalCodeNull() {
-                this[this.tableSuppliers.PostalCodeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsCountryNull() {
-                return this.IsNull(this.tableSuppliers.CountryColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetCountryNull() {
-                this[this.tableSuppliers.CountryColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPhoneNull() {
-                return this.IsNull(this.tableSuppliers.PhoneColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPhoneNull() {
-                this[this.tableSuppliers.PhoneColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsFaxNull() {
-                return this.IsNull(this.tableSuppliers.FaxColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetFaxNull() {
-                this[this.tableSuppliers.FaxColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsHomePageNull() {
-                return this.IsNull(this.tableSuppliers.HomePageColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetHomePageNull() {
-                this[this.tableSuppliers.HomePageColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ProductsRow[] GetProductsRows() {
-                if ((this.Table.ChildRelations["FK_Products_Suppliers"] == null)) {
-                    return new ProductsRow[0];
-                }
-                else {
-                    return ((ProductsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Products_Suppliers"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class TerritoriesRow : global::System.Data.DataRow {
-            
-            private TerritoriesDataTable tableTerritories;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal TerritoriesRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableTerritories = ((TerritoriesDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string TerritoryID {
-                get {
-                    return ((string)(this[this.tableTerritories.TerritoryIDColumn]));
-                }
-                set {
-                    this[this.tableTerritories.TerritoryIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string TerritoryDescription {
-                get {
-                    return ((string)(this[this.tableTerritories.TerritoryDescriptionColumn]));
-                }
-                set {
-                    this[this.tableTerritories.TerritoryDescriptionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int RegionID {
-                get {
-                    return ((int)(this[this.tableTerritories.RegionIDColumn]));
-                }
-                set {
-                    this[this.tableTerritories.RegionIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public RegionRow RegionRow {
-                get {
-                    return ((RegionRow)(this.GetParentRow(this.Table.ParentRelations["FK_Territories_Region"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Territories_Region"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeeTerritoriesRow[] GetEmployeeTerritoriesRows() {
-                if ((this.Table.ChildRelations["FK_EmployeeTerritories_Territories"] == null)) {
-                    return new EmployeeTerritoriesRow[0];
-                }
-                else {
-                    return ((EmployeeTerritoriesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_EmployeeTerritories_Territories"])));
-                }
-            }
-        }
-        
+
+        #endregion
+
+        #region Nested type: TerritoriesRowChangeEvent
+
         /// <summary>
         ///Row event argument class
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class CategoriesRowChangeEvent : global::System.EventArgs {
-            
-            private CategoriesRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CategoriesRowChangeEvent(CategoriesRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
+        [GeneratedCode("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class TerritoriesRowChangeEvent : EventArgs
+        {
+            private readonly DataRowAction eventAction;
+            private readonly TerritoriesRow eventRow;
+
+            [DebuggerNonUserCode]
+            public TerritoriesRowChangeEvent(TerritoriesRow row, DataRowAction action)
+            {
+                eventRow = row;
+                eventAction = action;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CategoriesRow Row {
-                get {
-                    return this.eventRow;
-                }
+
+            [DebuggerNonUserCode]
+            public TerritoriesRow Row
+            {
+                get { return eventRow; }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
+
+            [DebuggerNonUserCode]
+            public DataRowAction Action
+            {
+                get { return eventAction; }
             }
         }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class CustomerCustomerDemoRowChangeEvent : global::System.EventArgs {
-            
-            private CustomerCustomerDemoRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerCustomerDemoRowChangeEvent(CustomerCustomerDemoRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerCustomerDemoRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class CustomerDemographicsRowChangeEvent : global::System.EventArgs {
-            
-            private CustomerDemographicsRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerDemographicsRowChangeEvent(CustomerDemographicsRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomerDemographicsRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class CustomersRowChangeEvent : global::System.EventArgs {
-            
-            private CustomersRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomersRowChangeEvent(CustomersRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public CustomersRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class EmployeesRowChangeEvent : global::System.EventArgs {
-            
-            private EmployeesRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeesRowChangeEvent(EmployeesRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeesRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class EmployeeTerritoriesRowChangeEvent : global::System.EventArgs {
-            
-            private EmployeeTerritoriesRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeeTerritoriesRowChangeEvent(EmployeeTerritoriesRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public EmployeeTerritoriesRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class Order_DetailsRowChangeEvent : global::System.EventArgs {
-            
-            private Order_DetailsRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public Order_DetailsRowChangeEvent(Order_DetailsRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public Order_DetailsRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class OrdersRowChangeEvent : global::System.EventArgs {
-            
-            private OrdersRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public OrdersRowChangeEvent(OrdersRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public OrdersRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class ProductsRowChangeEvent : global::System.EventArgs {
-            
-            private ProductsRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ProductsRowChangeEvent(ProductsRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ProductsRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class RegionRowChangeEvent : global::System.EventArgs {
-            
-            private RegionRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public RegionRowChangeEvent(RegionRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public RegionRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class ShippersRowChangeEvent : global::System.EventArgs {
-            
-            private ShippersRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ShippersRowChangeEvent(ShippersRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ShippersRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class SuppliersRowChangeEvent : global::System.EventArgs {
-            
-            private SuppliersRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SuppliersRowChangeEvent(SuppliersRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public SuppliersRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class TerritoriesRowChangeEvent : global::System.EventArgs {
-            
-            private TerritoriesRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TerritoriesRowChangeEvent(TerritoriesRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public TerritoriesRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
+
+        #endregion
     }
 }

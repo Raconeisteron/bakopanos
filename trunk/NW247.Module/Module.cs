@@ -8,13 +8,18 @@ namespace NW247.Module
 {
     public class Module : IModule
     {
-        private readonly IUnityContainer container;
         private readonly IRegionManager regionManager;
+        public IUnityContainer container;
 
-        public Module(IUnityContainer container, IRegionManager regionManager)
+        public Module(IRegionManager regionManager)
         {
-            this.container = container;
             this.regionManager = regionManager;
+        }
+
+        [Dependency]
+        public IUnityContainer Container
+        {
+            set { container = value; }
         }
 
         #region IModule Members
