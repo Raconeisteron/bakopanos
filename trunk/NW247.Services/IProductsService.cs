@@ -1,6 +1,6 @@
-﻿using Model;
+﻿using NW247.Model;
 
-namespace Services
+namespace NW247.Services
 {
     public interface IProductsService
     {

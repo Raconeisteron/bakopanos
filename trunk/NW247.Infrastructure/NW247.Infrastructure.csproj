@@ -8,8 +8,8 @@
     <ProjectGuid>{986DEB12-7420-4495-8C97-62CEC9B8C26D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Infrastructure</RootNamespace>
-    <AssemblyName>Infrastructure</AssemblyName>
+    <RootNamespace>NW247.Infrastructure</RootNamespace>
+    <AssemblyName>NW247.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

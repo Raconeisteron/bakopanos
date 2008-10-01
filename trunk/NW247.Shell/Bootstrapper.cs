@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using Infrastructure;
+using NW247.Infrastructure;
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.UnityExtensions;
 using Microsoft.Practices.Unity.Configuration;

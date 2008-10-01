@@ -8,8 +8,8 @@
     <ProjectGuid>{49BE8BED-D0EA-4610-A12C-EDAE5F2F030A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Data</RootNamespace>
-    <AssemblyName>Data</AssemblyName>
+    <RootNamespace>NW247.Data</RootNamespace>
+    <AssemblyName>NW247.Data</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>true</IsWebBootstrapper>
@@ -78,9 +78,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
+    <ProjectReference Include="..\NW247.Model\NW247.Model.csproj">
       <Project>{D831BB7E-C328-4CCA-BC50-A14A63242F82}</Project>
-      <Name>Model</Name>
+      <Name>NW247.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -135,8 +135,8 @@
     </None>
     <None Include="NorthwindDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>NorthwindDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>NorthwindDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="NorthwindDataSet.xss">
       <DependentUpon>NorthwindDataSet.xsd</DependentUpon>

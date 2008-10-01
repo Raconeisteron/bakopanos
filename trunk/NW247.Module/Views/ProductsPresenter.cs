@@ -1,5 +1,5 @@
-﻿using Model;
-using Services;
+﻿using NW247.Model;
+using NW247.Services;
 using NW247.Module.Controllers;
 
 namespace NW247.Module.Views

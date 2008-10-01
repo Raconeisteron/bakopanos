@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.IO;
 
-namespace Infrastructure
+namespace NW247.Infrastructure
 {
     public static class ConfigManager
     {

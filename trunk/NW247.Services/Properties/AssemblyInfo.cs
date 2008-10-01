@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Services")]
+[assembly: AssemblyTitle("NW247.Services")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Phonak AG")]
-[assembly: AssemblyProduct("Services")]
+[assembly: AssemblyProduct("NW247.Services")]
 [assembly: AssemblyCopyright("Copyright © Phonak AG 2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -1,7 +1,7 @@
-﻿using Data.NorthwindDataSetTableAdapters;
-using Model;
+﻿using NW247.Data.NorthwindDataSetTableAdapters;
+using NW247.Model;
 
-namespace Services
+namespace NW247.Services
 {
     internal class ProductsService : IProductsService
     {

@@ -3,7 +3,7 @@ using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using Model;
+using NW247.Model;
 
 namespace NW247.Module.Views
 {

@@ -10,11 +10,11 @@
 
 // 
 // This file contains the generated TableAdapter classes. 
-// The strongly-typed dataset class is in the Model project.
+// The strongly-typed dataset class is in the NW247.Model project.
 //
 #pragma warning disable 1591
 
-namespace Data.NorthwindDataSetTableAdapters {
+namespace NW247.Data.NorthwindDataSetTableAdapters {
     
     
     /// <summary>
@@ -169,7 +169,7 @@ SELECT CategoryID, CategoryName, Description, Picture FROM Categories WHERE (Cat
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.DbConnectionString;
+            this._connection.ConnectionString = global::NW247.Data.Properties.Settings.Default.DbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -184,7 +184,7 @@ SELECT CategoryID, CategoryName, Description, Picture FROM Categories WHERE (Cat
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Model.NorthwindDataSet.CategoriesDataTable dataTable) {
+        public virtual int Fill(NW247.Model.NorthwindDataSet.CategoriesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -196,22 +196,22 @@ SELECT CategoryID, CategoryName, Description, Picture FROM Categories WHERE (Cat
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Model.NorthwindDataSet.CategoriesDataTable GetData() {
+        public virtual NW247.Model.NorthwindDataSet.CategoriesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Model.NorthwindDataSet.CategoriesDataTable dataTable = new Model.NorthwindDataSet.CategoriesDataTable();
+            NW247.Model.NorthwindDataSet.CategoriesDataTable dataTable = new NW247.Model.NorthwindDataSet.CategoriesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet.CategoriesDataTable dataTable) {
+        public virtual int Update(NW247.Model.NorthwindDataSet.CategoriesDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet dataSet) {
+        public virtual int Update(NW247.Model.NorthwindDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Categories");
         }
         
@@ -495,7 +495,7 @@ SELECT CustomerID, CustomerTypeID FROM CustomerCustomerDemo WHERE (CustomerID = 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.DbConnectionString;
+            this._connection.ConnectionString = global::NW247.Data.Properties.Settings.Default.DbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -510,7 +510,7 @@ SELECT CustomerID, CustomerTypeID FROM CustomerCustomerDemo WHERE (CustomerID = 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Model.NorthwindDataSet.CustomerCustomerDemoDataTable dataTable) {
+        public virtual int Fill(NW247.Model.NorthwindDataSet.CustomerCustomerDemoDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -522,22 +522,22 @@ SELECT CustomerID, CustomerTypeID FROM CustomerCustomerDemo WHERE (CustomerID = 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Model.NorthwindDataSet.CustomerCustomerDemoDataTable GetData() {
+        public virtual NW247.Model.NorthwindDataSet.CustomerCustomerDemoDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Model.NorthwindDataSet.CustomerCustomerDemoDataTable dataTable = new Model.NorthwindDataSet.CustomerCustomerDemoDataTable();
+            NW247.Model.NorthwindDataSet.CustomerCustomerDemoDataTable dataTable = new NW247.Model.NorthwindDataSet.CustomerCustomerDemoDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet.CustomerCustomerDemoDataTable dataTable) {
+        public virtual int Update(NW247.Model.NorthwindDataSet.CustomerCustomerDemoDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet dataSet) {
+        public virtual int Update(NW247.Model.NorthwindDataSet dataSet) {
             return this.Adapter.Update(dataSet, "CustomerCustomerDemo");
         }
         
@@ -815,7 +815,7 @@ SELECT CustomerTypeID, CustomerDesc FROM CustomerDemographics WHERE (CustomerTyp
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.DbConnectionString;
+            this._connection.ConnectionString = global::NW247.Data.Properties.Settings.Default.DbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -830,7 +830,7 @@ SELECT CustomerTypeID, CustomerDesc FROM CustomerDemographics WHERE (CustomerTyp
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Model.NorthwindDataSet.CustomerDemographicsDataTable dataTable) {
+        public virtual int Fill(NW247.Model.NorthwindDataSet.CustomerDemographicsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -842,22 +842,22 @@ SELECT CustomerTypeID, CustomerDesc FROM CustomerDemographics WHERE (CustomerTyp
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Model.NorthwindDataSet.CustomerDemographicsDataTable GetData() {
+        public virtual NW247.Model.NorthwindDataSet.CustomerDemographicsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Model.NorthwindDataSet.CustomerDemographicsDataTable dataTable = new Model.NorthwindDataSet.CustomerDemographicsDataTable();
+            NW247.Model.NorthwindDataSet.CustomerDemographicsDataTable dataTable = new NW247.Model.NorthwindDataSet.CustomerDemographicsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet.CustomerDemographicsDataTable dataTable) {
+        public virtual int Update(NW247.Model.NorthwindDataSet.CustomerDemographicsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet dataSet) {
+        public virtual int Update(NW247.Model.NorthwindDataSet dataSet) {
             return this.Adapter.Update(dataSet, "CustomerDemographics");
         }
         
@@ -1186,7 +1186,7 @@ SELECT CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.DbConnectionString;
+            this._connection.ConnectionString = global::NW247.Data.Properties.Settings.Default.DbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1202,7 +1202,7 @@ SELECT CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Model.NorthwindDataSet.CustomersDataTable dataTable) {
+        public virtual int Fill(NW247.Model.NorthwindDataSet.CustomersDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1214,22 +1214,22 @@ SELECT CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Model.NorthwindDataSet.CustomersDataTable GetData() {
+        public virtual NW247.Model.NorthwindDataSet.CustomersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Model.NorthwindDataSet.CustomersDataTable dataTable = new Model.NorthwindDataSet.CustomersDataTable();
+            NW247.Model.NorthwindDataSet.CustomersDataTable dataTable = new NW247.Model.NorthwindDataSet.CustomersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet.CustomersDataTable dataTable) {
+        public virtual int Update(NW247.Model.NorthwindDataSet.CustomersDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet dataSet) {
+        public virtual int Update(NW247.Model.NorthwindDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Customers");
         }
         
@@ -1926,7 +1926,7 @@ SELECT EmployeeID, LastName, FirstName, Title, TitleOfCourtesy, BirthDate, HireD
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.DbConnectionString;
+            this._connection.ConnectionString = global::NW247.Data.Properties.Settings.Default.DbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1943,7 +1943,7 @@ SELECT EmployeeID, LastName, FirstName, Title, TitleOfCourtesy, BirthDate, HireD
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Model.NorthwindDataSet.EmployeesDataTable dataTable) {
+        public virtual int Fill(NW247.Model.NorthwindDataSet.EmployeesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1955,22 +1955,22 @@ SELECT EmployeeID, LastName, FirstName, Title, TitleOfCourtesy, BirthDate, HireD
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Model.NorthwindDataSet.EmployeesDataTable GetData() {
+        public virtual NW247.Model.NorthwindDataSet.EmployeesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Model.NorthwindDataSet.EmployeesDataTable dataTable = new Model.NorthwindDataSet.EmployeesDataTable();
+            NW247.Model.NorthwindDataSet.EmployeesDataTable dataTable = new NW247.Model.NorthwindDataSet.EmployeesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet.EmployeesDataTable dataTable) {
+        public virtual int Update(NW247.Model.NorthwindDataSet.EmployeesDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet dataSet) {
+        public virtual int Update(NW247.Model.NorthwindDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Employees");
         }
         
@@ -2741,7 +2741,7 @@ SELECT EmployeeID, TerritoryID FROM EmployeeTerritories WHERE (EmployeeID = @Emp
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.DbConnectionString;
+            this._connection.ConnectionString = global::NW247.Data.Properties.Settings.Default.DbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2756,7 +2756,7 @@ SELECT EmployeeID, TerritoryID FROM EmployeeTerritories WHERE (EmployeeID = @Emp
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Model.NorthwindDataSet.EmployeeTerritoriesDataTable dataTable) {
+        public virtual int Fill(NW247.Model.NorthwindDataSet.EmployeeTerritoriesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -2768,22 +2768,22 @@ SELECT EmployeeID, TerritoryID FROM EmployeeTerritories WHERE (EmployeeID = @Emp
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Model.NorthwindDataSet.EmployeeTerritoriesDataTable GetData() {
+        public virtual NW247.Model.NorthwindDataSet.EmployeeTerritoriesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Model.NorthwindDataSet.EmployeeTerritoriesDataTable dataTable = new Model.NorthwindDataSet.EmployeeTerritoriesDataTable();
+            NW247.Model.NorthwindDataSet.EmployeeTerritoriesDataTable dataTable = new NW247.Model.NorthwindDataSet.EmployeeTerritoriesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet.EmployeeTerritoriesDataTable dataTable) {
+        public virtual int Update(NW247.Model.NorthwindDataSet.EmployeeTerritoriesDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet dataSet) {
+        public virtual int Update(NW247.Model.NorthwindDataSet dataSet) {
             return this.Adapter.Update(dataSet, "EmployeeTerritories");
         }
         
@@ -3058,7 +3058,7 @@ SELECT OrderID, ProductID, UnitPrice, Quantity, Discount FROM [Order Details] WH
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.DbConnectionString;
+            this._connection.ConnectionString = global::NW247.Data.Properties.Settings.Default.DbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3074,7 +3074,7 @@ SELECT OrderID, ProductID, UnitPrice, Quantity, Discount FROM [Order Details] WH
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Model.NorthwindDataSet.Order_DetailsDataTable dataTable) {
+        public virtual int Fill(NW247.Model.NorthwindDataSet.Order_DetailsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -3086,22 +3086,22 @@ SELECT OrderID, ProductID, UnitPrice, Quantity, Discount FROM [Order Details] WH
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Model.NorthwindDataSet.Order_DetailsDataTable GetData() {
+        public virtual NW247.Model.NorthwindDataSet.Order_DetailsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Model.NorthwindDataSet.Order_DetailsDataTable dataTable = new Model.NorthwindDataSet.Order_DetailsDataTable();
+            NW247.Model.NorthwindDataSet.Order_DetailsDataTable dataTable = new NW247.Model.NorthwindDataSet.Order_DetailsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet.Order_DetailsDataTable dataTable) {
+        public virtual int Update(NW247.Model.NorthwindDataSet.Order_DetailsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet dataSet) {
+        public virtual int Update(NW247.Model.NorthwindDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Order Details");
         }
         
@@ -3458,7 +3458,7 @@ SELECT OrderID, CustomerID, EmployeeID, OrderDate, RequiredDate, ShippedDate, Sh
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.DbConnectionString;
+            this._connection.ConnectionString = global::NW247.Data.Properties.Settings.Default.DbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3475,7 +3475,7 @@ SELECT OrderID, CustomerID, EmployeeID, OrderDate, RequiredDate, ShippedDate, Sh
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Model.NorthwindDataSet.OrdersDataTable dataTable) {
+        public virtual int Fill(NW247.Model.NorthwindDataSet.OrdersDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -3487,22 +3487,22 @@ SELECT OrderID, CustomerID, EmployeeID, OrderDate, RequiredDate, ShippedDate, Sh
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Model.NorthwindDataSet.OrdersDataTable GetData() {
+        public virtual NW247.Model.NorthwindDataSet.OrdersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Model.NorthwindDataSet.OrdersDataTable dataTable = new Model.NorthwindDataSet.OrdersDataTable();
+            NW247.Model.NorthwindDataSet.OrdersDataTable dataTable = new NW247.Model.NorthwindDataSet.OrdersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet.OrdersDataTable dataTable) {
+        public virtual int Update(NW247.Model.NorthwindDataSet.OrdersDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet dataSet) {
+        public virtual int Update(NW247.Model.NorthwindDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Orders");
         }
         
@@ -4207,7 +4207,7 @@ SELECT ProductID, ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPric
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.DbConnectionString;
+            this._connection.ConnectionString = global::NW247.Data.Properties.Settings.Default.DbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4223,7 +4223,7 @@ SELECT ProductID, ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPric
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Model.NorthwindDataSet.ProductsDataTable dataTable) {
+        public virtual int Fill(NW247.Model.NorthwindDataSet.ProductsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -4235,22 +4235,22 @@ SELECT ProductID, ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPric
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Model.NorthwindDataSet.ProductsDataTable GetData() {
+        public virtual NW247.Model.NorthwindDataSet.ProductsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Model.NorthwindDataSet.ProductsDataTable dataTable = new Model.NorthwindDataSet.ProductsDataTable();
+            NW247.Model.NorthwindDataSet.ProductsDataTable dataTable = new NW247.Model.NorthwindDataSet.ProductsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet.ProductsDataTable dataTable) {
+        public virtual int Update(NW247.Model.NorthwindDataSet.ProductsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet dataSet) {
+        public virtual int Update(NW247.Model.NorthwindDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Products");
         }
         
@@ -4748,7 +4748,7 @@ SELECT RegionID, RegionDescription FROM Region WHERE (RegionID = @RegionID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.DbConnectionString;
+            this._connection.ConnectionString = global::NW247.Data.Properties.Settings.Default.DbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4763,7 +4763,7 @@ SELECT RegionID, RegionDescription FROM Region WHERE (RegionID = @RegionID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Model.NorthwindDataSet.RegionDataTable dataTable) {
+        public virtual int Fill(NW247.Model.NorthwindDataSet.RegionDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -4775,22 +4775,22 @@ SELECT RegionID, RegionDescription FROM Region WHERE (RegionID = @RegionID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Model.NorthwindDataSet.RegionDataTable GetData() {
+        public virtual NW247.Model.NorthwindDataSet.RegionDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Model.NorthwindDataSet.RegionDataTable dataTable = new Model.NorthwindDataSet.RegionDataTable();
+            NW247.Model.NorthwindDataSet.RegionDataTable dataTable = new NW247.Model.NorthwindDataSet.RegionDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet.RegionDataTable dataTable) {
+        public virtual int Update(NW247.Model.NorthwindDataSet.RegionDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet dataSet) {
+        public virtual int Update(NW247.Model.NorthwindDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Region");
         }
         
@@ -5057,7 +5057,7 @@ SELECT ShipperID, CompanyName, Phone FROM Shippers WHERE (ShipperID = @ShipperID
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.DbConnectionString;
+            this._connection.ConnectionString = global::NW247.Data.Properties.Settings.Default.DbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5072,7 +5072,7 @@ SELECT ShipperID, CompanyName, Phone FROM Shippers WHERE (ShipperID = @ShipperID
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Model.NorthwindDataSet.ShippersDataTable dataTable) {
+        public virtual int Fill(NW247.Model.NorthwindDataSet.ShippersDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -5084,22 +5084,22 @@ SELECT ShipperID, CompanyName, Phone FROM Shippers WHERE (ShipperID = @ShipperID
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Model.NorthwindDataSet.ShippersDataTable GetData() {
+        public virtual NW247.Model.NorthwindDataSet.ShippersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Model.NorthwindDataSet.ShippersDataTable dataTable = new Model.NorthwindDataSet.ShippersDataTable();
+            NW247.Model.NorthwindDataSet.ShippersDataTable dataTable = new NW247.Model.NorthwindDataSet.ShippersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet.ShippersDataTable dataTable) {
+        public virtual int Update(NW247.Model.NorthwindDataSet.ShippersDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet dataSet) {
+        public virtual int Update(NW247.Model.NorthwindDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Shippers");
         }
         
@@ -5449,7 +5449,7 @@ SELECT SupplierID, CompanyName, ContactName, ContactTitle, Address, City, Region
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.DbConnectionString;
+            this._connection.ConnectionString = global::NW247.Data.Properties.Settings.Default.DbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5465,7 +5465,7 @@ SELECT SupplierID, CompanyName, ContactName, ContactTitle, Address, City, Region
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Model.NorthwindDataSet.SuppliersDataTable dataTable) {
+        public virtual int Fill(NW247.Model.NorthwindDataSet.SuppliersDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -5477,22 +5477,22 @@ SELECT SupplierID, CompanyName, ContactName, ContactTitle, Address, City, Region
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Model.NorthwindDataSet.SuppliersDataTable GetData() {
+        public virtual NW247.Model.NorthwindDataSet.SuppliersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Model.NorthwindDataSet.SuppliersDataTable dataTable = new Model.NorthwindDataSet.SuppliersDataTable();
+            NW247.Model.NorthwindDataSet.SuppliersDataTable dataTable = new NW247.Model.NorthwindDataSet.SuppliersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet.SuppliersDataTable dataTable) {
+        public virtual int Update(NW247.Model.NorthwindDataSet.SuppliersDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet dataSet) {
+        public virtual int Update(NW247.Model.NorthwindDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Suppliers");
         }
         
@@ -6067,7 +6067,7 @@ SELECT TerritoryID, TerritoryDescription, RegionID FROM Territories WHERE (Terri
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.DbConnectionString;
+            this._connection.ConnectionString = global::NW247.Data.Properties.Settings.Default.DbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6082,7 +6082,7 @@ SELECT TerritoryID, TerritoryDescription, RegionID FROM Territories WHERE (Terri
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Model.NorthwindDataSet.TerritoriesDataTable dataTable) {
+        public virtual int Fill(NW247.Model.NorthwindDataSet.TerritoriesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -6094,22 +6094,22 @@ SELECT TerritoryID, TerritoryDescription, RegionID FROM Territories WHERE (Terri
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Model.NorthwindDataSet.TerritoriesDataTable GetData() {
+        public virtual NW247.Model.NorthwindDataSet.TerritoriesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            Model.NorthwindDataSet.TerritoriesDataTable dataTable = new Model.NorthwindDataSet.TerritoriesDataTable();
+            NW247.Model.NorthwindDataSet.TerritoriesDataTable dataTable = new NW247.Model.NorthwindDataSet.TerritoriesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet.TerritoriesDataTable dataTable) {
+        public virtual int Update(NW247.Model.NorthwindDataSet.TerritoriesDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Model.NorthwindDataSet dataSet) {
+        public virtual int Update(NW247.Model.NorthwindDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Territories");
         }
         
@@ -6596,7 +6596,7 @@ SELECT TerritoryID, TerritoryDescription, RegionID FROM Territories WHERE (Terri
         ///Update rows in top-down order.
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private int UpdateUpdatedRows(Model.NorthwindDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(NW247.Model.NorthwindDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._customersTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Customers.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
@@ -6723,7 +6723,7 @@ SELECT TerritoryID, TerritoryDescription, RegionID FROM Territories WHERE (Terri
         ///Insert rows in top-down order.
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private int UpdateInsertedRows(Model.NorthwindDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(NW247.Model.NorthwindDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._customersTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Customers.Select(null, null, global::System.Data.DataViewRowState.Added);
@@ -6837,7 +6837,7 @@ SELECT TerritoryID, TerritoryDescription, RegionID FROM Territories WHERE (Terri
         ///Delete rows in bottom-up order.
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private int UpdateDeletedRows(Model.NorthwindDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(NW247.Model.NorthwindDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             if ((this._employeeTerritoriesTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.EmployeeTerritories.Select(null, null, global::System.Data.DataViewRowState.Deleted);
@@ -6974,7 +6974,7 @@ SELECT TerritoryID, TerritoryDescription, RegionID FROM Territories WHERE (Terri
         ///Update all changes to the dataset.
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public virtual int UpdateAll(Model.NorthwindDataSet dataSet) {
+        public virtual int UpdateAll(NW247.Model.NorthwindDataSet dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

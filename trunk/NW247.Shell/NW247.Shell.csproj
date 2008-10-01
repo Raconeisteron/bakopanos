@@ -136,9 +136,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+    <ProjectReference Include="..\NW247.Infrastructure\NW247.Infrastructure.csproj">
       <Project>{986DEB12-7420-4495-8C97-62CEC9B8C26D}</Project>
-      <Name>Infrastructure</Name>
+      <Name>NW247.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\NW247.Module\NW247.Module.csproj">
       <Project>{8C15254E-1490-423E-84EE-95608EA423EE}</Project>

@@ -1,5 +1,5 @@
 ﻿using System;
-using Model;
+using NW247.Model;
 
 namespace NW247.Module.Views
 {

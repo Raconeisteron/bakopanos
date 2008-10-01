@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Infrastructure")]
+[assembly: AssemblyTitle("NW247.Model")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Phonak AG")]
-[assembly: AssemblyProduct("Infrastructure")]
+[assembly: AssemblyProduct("NW247.Model")]
 [assembly: AssemblyCopyright("Copyright © Phonak AG 2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 
-[assembly: Guid("fea41003-498c-4c8e-b1d8-3111bd9e5238")]
+[assembly: Guid("c44d1406-6a40-4e98-9907-aaea07ba0c62")]
 
 // Version information for an assembly consists of the following four values:
 //

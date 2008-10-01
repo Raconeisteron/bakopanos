@@ -90,17 +90,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+    <ProjectReference Include="..\NW247.Infrastructure\NW247.Infrastructure.csproj">
       <Project>{986DEB12-7420-4495-8C97-62CEC9B8C26D}</Project>
-      <Name>Infrastructure</Name>
+      <Name>NW247.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
+    <ProjectReference Include="..\NW247.Model\NW247.Model.csproj">
       <Project>{D831BB7E-C328-4CCA-BC50-A14A63242F82}</Project>
-      <Name>Model</Name>
+      <Name>NW247.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services\Services.csproj">
+    <ProjectReference Include="..\NW247.Services\NW247.Services.csproj">
       <Project>{5C832D1C-E342-4A56-AC44-0B22D5FEA985}</Project>
-      <Name>Services</Name>
+      <Name>NW247.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
