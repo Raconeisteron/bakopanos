@@ -1,9 +1,7 @@
-﻿using System.Data;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
+using Microsoft.Practices.Unity;
 using NW247.Model;
-using NW247.Services;
 
 namespace NW247.Module.Views
 {
@@ -12,91 +10,59 @@ namespace NW247.Module.Views
     /// </summary>
     public partial class ProductsView : UserControl, IProductsView
     {
-        private readonly IProductsService service;
-        private CollectionView colView;
+        private readonly IProductsPresenter _Presenter;
 
-        public ProductsView(IProductsService service)
-        {
-            this.service = service;
-
-            InitializeComponent();
-        }
-
-        #region IProductsView Members
-
+        [Dependency]
         public NorthwindDataSet.ProductsDataTable Model
         {
-            get { return DataContext as NorthwindDataSet.ProductsDataTable; }
-            set
-            {
-                DataContext = value;
-                colView = CollectionViewSource.GetDefaultView(value) as CollectionView;
-            }
+            set { DataContext = value; }
         }
 
-        #endregion
+        public ProductsView(IProductsPresenter Presenter)
+        {
+            InitializeComponent();
+
+            _Presenter = Presenter;            
+        }
 
         private void buttonFirst_Click(object sender, RoutedEventArgs e)
         {
-            colView.MoveCurrentToFirst();
+            _Presenter.MoveFirst();
         }
 
         private void buttonPrev_Click(object sender, RoutedEventArgs e)
         {
-            if (colView.CurrentPosition > 0)
-            {
-                colView.MoveCurrentToPrevious();
-            }
+            _Presenter.MovePrev();
         }
 
         private void buttonNext_Click(object sender, RoutedEventArgs e)
         {
-            if (colView.CurrentPosition < colView.Count - 1)
-            {
-                colView.MoveCurrentToNext();
-            }
+            _Presenter.MoveNext();
         }
 
         private void buttonLast_Click(object sender, RoutedEventArgs e)
         {
-            colView.MoveCurrentToLast();
+            _Presenter.MoveLast();
         }
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (Model != null)
-            {
-                NorthwindDataSet.ProductsRow row = Model.NewProductsRow();
-                row.ProductName = "<Name>";
-                row.Discontinued = false;
-                Model.AddProductsRow(row);
-                colView.MoveCurrentToLast();
-            }
+            _Presenter.Add();
         }
 
         private void buttonDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (colView.CurrentPosition > -1)
-            {
-                DataRow row = ((DataRowView) colView.CurrentItem).Row;
-                row.Delete();
-            }
+            _Presenter.Delete();
         }
 
         private void buttonCancel_Click(object sender, RoutedEventArgs e)
         {
-            Model.RejectChanges();
+            _Presenter.Cancel();
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
-            if (Model.DataSet.HasChanges())
-            {
-                var changes = (NorthwindDataSet.ProductsDataTable) Model.GetChanges();
-                service.UpdateAll(changes);
-                Model.Merge(changes);
-                colView.MoveCurrentToLast();
-            }
+            _Presenter.Save();
         }
     }
 }

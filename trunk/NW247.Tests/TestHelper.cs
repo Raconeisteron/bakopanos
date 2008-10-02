@@ -3,6 +3,7 @@ using System.Configuration;
 using System.IO;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
+using NW247.Module.Views;
 using NW247.Services;
 
 namespace NW247
@@ -20,11 +21,20 @@ namespace NW247
 
         public static IProductsService GetProductsService()
         {
-            var container = new UnityContainer();
+            return new UnityContainer().
+                RegisterType<IProductsService, ProductsService>().
+                Resolve<IProductsService>();
+        }
+
+        public static IProductsPresenter GetProductsPresenter()
+        {
+            IUnityContainer container = new UnityContainer();
             container.RegisterType<IProductsService, ProductsService>();
             var service = container.Resolve<IProductsService>();
-            return service;
+
+            return new ProductsPresenter(service, container);            
         }
+
 
         #region config manager
 

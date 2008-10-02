@@ -1,21 +1,35 @@
-﻿using Microsoft.Practices.Unity;
+﻿using Microsoft.Practices.Composite.Regions;
+using Microsoft.Practices.Unity;
+using NW247.Infrastructure;
+using NW247.Module.Views;
 
 namespace NW247.Module.Controllers
 {
     public class ProductsController : IProductsController
     {
-        public IUnityContainer container;
-        //private readonly IRegionManager regionManager;
+        private readonly IUnityContainer _Container;
+        private readonly IRegionManager _Manager;                
 
-        [Dependency]
-        public IUnityContainer Container
+        public ProductsController(IRegionManager RegionManager, IUnityContainer UnityContainer)
         {
-            set { container = value; }
+
+            _Container = UnityContainer;
+            _Manager = RegionManager;
+
+            RegisterViewsAndServices();
+
+            var view = _Container.Resolve<IProductsView>();
+
+            IRegion mainRegion = _Manager.Regions[RegionNames.MainRegion];
+            mainRegion.Add(view);
         }
 
-        /*public ProductsController(IRegionManager regionManager)
-        {            
-            this.regionManager = regionManager;
-        }*/
+        private void RegisterViewsAndServices()
+        {
+            _Container.RegisterType<IProductsView, ProductsView>();
+            _Container.RegisterType<IProductsPresenter, ProductsPresenter>();
+        }
+
+
     }
 }

@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IntegrationTests.cs" />
+    <Compile Include="Module\Views\ProductsPresenterFixture.cs" />
     <Compile Include="Services\ProductsServiceFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestHelper.cs" />
@@ -80,6 +81,10 @@
     <ProjectReference Include="..\NW247.Model\NW247.Model.csproj">
       <Project>{D831BB7E-C328-4CCA-BC50-A14A63242F82}</Project>
       <Name>NW247.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NW247.Module\NW247.Module.csproj">
+      <Project>{8C15254E-1490-423E-84EE-95608EA423EE}</Project>
+      <Name>NW247.Module</Name>
     </ProjectReference>
     <ProjectReference Include="..\NW247.Services\NW247.Services.csproj">
       <Project>{5C832D1C-E342-4A56-AC44-0B22D5FEA985}</Project>
