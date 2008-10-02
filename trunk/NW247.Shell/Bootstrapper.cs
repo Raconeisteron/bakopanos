@@ -1,8 +1,8 @@
-﻿using System.Windows;
+﻿using System.Configuration;
+using System.Windows;
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.UnityExtensions;
 using Microsoft.Practices.Unity.Configuration;
-using NW247.Infrastructure;
 
 namespace NW247.Shell
 {
@@ -19,13 +19,13 @@ namespace NW247.Shell
 
         private void RegisterServices()
         {
-            var config = ConfigManager.GetConfigSettings<UnityConfigurationSection>("DI.config", "unity");
+            var config = (UnityConfigurationSection) ConfigurationManager.GetSection("unity");
             config.Containers.Default.Configure(Container);
         }
 
         protected override IModuleEnumerator GetModuleEnumerator()
         {
-            return new StaticModuleEnumerator().AddModule(typeof (Module.Module));
+            return new DirectoryLookupModuleEnumerator(".");
         }
     }
 }

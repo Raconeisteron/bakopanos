@@ -1,12 +1,10 @@
-﻿using NW247.Model;
-using NW247.Services;
+﻿using NW247.Services;
 
 namespace NW247.Module.Views
 {
-    
     public class ProductsPresenter : IProductsPresenter
-    {        
-        private readonly IProductsService service;        
+    {
+        private readonly IProductsService service;
 
         //private IProductsController controller;        
 
@@ -19,9 +17,9 @@ namespace NW247.Module.Views
         public ProductsPresenter(IProductsView view, IProductsService Service)
         {
             View = view;
-            service = Service;            
-            
-            View.Model = service.GetProducts();            
+            service = Service;
+
+            View.Model = service.GetProducts();
         }
 
         #region IProductsPresenter Members

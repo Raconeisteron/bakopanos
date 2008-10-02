@@ -91,6 +91,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NW247.Infrastructure\NW247.Infrastructure.csproj">
+      <Project>{986DEB12-7420-4495-8C97-62CEC9B8C26D}</Project>
+      <Name>NW247.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NW247.Model\NW247.Model.csproj">
       <Project>{D831BB7E-C328-4CCA-BC50-A14A63242F82}</Project>
       <Name>NW247.Model</Name>

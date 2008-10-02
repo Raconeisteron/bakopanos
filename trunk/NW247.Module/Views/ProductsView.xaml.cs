@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,8 +12,8 @@ namespace NW247.Module.Views
     /// </summary>
     public partial class ProductsView : UserControl, IProductsView
     {
+        private readonly IProductsService service;
         private CollectionView colView;
-        private readonly IProductsService service;        
 
         public ProductsView(IProductsService service)
         {
@@ -23,7 +22,7 @@ namespace NW247.Module.Views
             InitializeComponent();
         }
 
-        #region IProductsView Members        
+        #region IProductsView Members
 
         public NorthwindDataSet.ProductsDataTable Model
         {
@@ -93,11 +92,11 @@ namespace NW247.Module.Views
         {
             if (Model.DataSet.HasChanges())
             {
-                var changes = (NorthwindDataSet.ProductsDataTable)Model.GetChanges();
+                var changes = (NorthwindDataSet.ProductsDataTable) Model.GetChanges();
                 service.UpdateAll(changes);
                 Model.Merge(changes);
                 colView.MoveCurrentToLast();
-            }            
+            }
         }
     }
 }

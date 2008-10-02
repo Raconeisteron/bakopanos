@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.Unity;
+using NW247.Infrastructure;
 using NW247.Module.Controllers;
 using NW247.Module.Views;
 
@@ -30,7 +31,7 @@ namespace NW247.Module
 
             var presenter = container.Resolve<IProductsPresenter>();
 
-            IRegion mainRegion = regionManager.Regions["MainRegion"];
+            IRegion mainRegion = regionManager.Regions[RegionNames.MainRegion];
             mainRegion.Add(presenter.View);
         }
 
@@ -38,7 +39,7 @@ namespace NW247.Module
 
         protected void RegisterViewsAndServices()
         {
-            container.RegisterType<IProductsController, ProductsController>();            
+            container.RegisterType<IProductsController, ProductsController>();
 
             container.RegisterType<IProductsView, ProductsView>();
             container.RegisterType<IProductsPresenter, ProductsPresenter>();
