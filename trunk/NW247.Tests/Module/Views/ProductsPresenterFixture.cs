@@ -10,50 +10,12 @@ using Rhino.Mocks;
 namespace NW247.Module.Views
 {
     [TestFixture]
-    public class ProductsPresenterFixture 
+    public class ProductsPresenterFixture : TestHelper
     {
         [Test]
-        public void MoveFirstTest()
+        public void CanResolveProductsPresenterTest()
         {
-            TestHelper.GetProductsPresenter().MoveFirst();            
+            Assert.IsNotNull(GetProductsPresenter());
         }
-
-        [Test]
-        public void MovePrev()
-        {
-            TestHelper.GetProductsPresenter().MovePrev();            
-        }
-
-        [Test]
-        public void MoveNext()
-        {
-            TestHelper.GetProductsPresenter().MoveNext();            
-        }
-
-        [Test]
-        public void MoveLast()
-        {
-            TestHelper.GetProductsPresenter().MoveLast();            
-        }
-
-        //public void Add()
-        //{
-        //    TestHelper.GetProductsPresenter().Add();            
-        //}
-
-        //public void Delete()
-        //{
-        //    TestHelper.GetProductsPresenter().Delete();            
-        //}
-
-        //public void Cancel()
-        //{
-        //    TestHelper.GetProductsPresenter().Cancel();            
-        //}
-
-        //public void Save()
-        //{
-        //    TestHelper.GetProductsPresenter().Save();            
-        //}
     }
 }

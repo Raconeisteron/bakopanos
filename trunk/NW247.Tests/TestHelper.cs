@@ -3,36 +3,52 @@ using System.Configuration;
 using System.IO;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
+using NW247.Data.NorthwindDataSetTableAdapters;
+using NW247.Model;
 using NW247.Module.Views;
 using NW247.Services;
+using Rhino.Mocks;
 
 namespace NW247
 {
-    internal class TestHelper
+    public class TestHelper
     {
-        public static IUnityContainer IntegrationTestContainer()
+        public IUnityContainer IntegrationTestContainer()
         {
             var container = new UnityContainer();
+            container.RegisterInstance<IUnityContainer>(container);
             var config =
                 GetConfigSettings<UnityConfigurationSection>("NW247.Shell.exe.config", "unity");
             config.Containers.Default.Configure(container);
+            
             return container;
         }
 
-        public static IProductsService GetProductsService()
+        public IUnityContainer UnitTestContainer()
         {
-            return new UnityContainer().
-                RegisterType<IProductsService, ProductsService>().
-                Resolve<IProductsService>();
+            var mock = new MockRepository();
+            var container = new UnityContainer();
+            container.RegisterInstance<IUnityContainer>(container);
+            container.RegisterInstance<ProductsTableAdapter>(mock.Stub<ProductsTableAdapter>());
+            return container;
         }
 
-        public static IProductsPresenter GetProductsPresenter()
+        public IProductsService GetProductsService()
         {
-            IUnityContainer container = new UnityContainer();
+            IUnityContainer container = UnitTestContainer();
             container.RegisterType<IProductsService, ProductsService>();
             var service = container.Resolve<IProductsService>();
 
-            return new ProductsPresenter(service, container);            
+            return service;
+        }
+
+        public IProductsPresenter GetProductsPresenter()
+        {
+            IUnityContainer container = UnitTestContainer();           
+            container.RegisterType<IProductsService, ProductsService>();
+            var service = container.Resolve<IProductsService>();
+
+            return new ProductsPresenter(service, container);
         }
 
 

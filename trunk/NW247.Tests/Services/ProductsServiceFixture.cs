@@ -5,21 +5,12 @@ using NW247.Model;
 namespace NW247.Services
 {
     [TestFixture]
-    public class ProductsServiceFixture
+    public class ProductsServiceFixture : TestHelper
     {
         [Test]
-        public void GetProducts()
-        {   
-            NorthwindDataSet.ProductsDataTable table = 
-                TestHelper.GetProductsService().GetProducts();
-
-            Assert.IsTrue(table.Rows.Count > 0);
-        }
-
-        [Test]
-        [Ignore]
-        public void UpdateAll()
+        public void CanResolveProductsServiceTest()
         {
-        }
+            Assert.IsNotNull(GetProductsService());
+        }        
     }
 }
