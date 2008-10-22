@@ -1,41 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Bakopanos.NW.BusinessObjects;
-using Bakopanos.NW.DataObjects;
-using Bakopanos.NW.Facade.Products;
 using Bakopanos.NW.WinClient.ProductsModule;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
 
 namespace Bakopanos.NW.WinClient
 {
     static class Program
-    {
+    {        
+        
+        [STAThread]
         public static void Main()
         {
             Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
-            string connstring = @"Data Source=.\sqlexpress;Initial Catalog=Northwind;Integrated Security=True";
-
-            IUnityContainer container = new UnityContainer();
+            var container = new UnityContainer();
             container.RegisterInstance<IUnityContainer>(container);
+            var section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
+            section.Containers.Default.Configure(container);
 
             //set up for sqlserver...
+            string connstring = @"Data Source=.\sqlexpress;Initial Catalog=Northwind;Integrated Security=True";
             var db = new SqlDatabase(connstring);
             container.RegisterInstance<Database>(db);
-
-            //components
-            container.RegisterType<IProductsDAO, ProductsDAO>();
-            container.RegisterType<IProductsFacade, ProductsFacade>();
-
-            //model
-            container.RegisterInstance<ProductAggregate>(new ProductAggregate(), new ExternallyControlledLifetimeManager());
-
-            //services                        
             
             //main form
             Form form = container.Resolve<MainForm>();
