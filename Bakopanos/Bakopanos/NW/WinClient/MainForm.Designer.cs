@@ -1,4 +1,6 @@
-﻿namespace Bakopanos.NW.WinClient
+﻿using Bakopanos.Framework.Composite;
+
+namespace Bakopanos.NW.WinClient
 {
     partial class MainForm
     {
@@ -28,33 +30,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.workspace = new PanelWorkspace();
+            this.workspace.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // splitContainer1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(95, 53);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView1.TabIndex = 0;
+            this.workspace.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.workspace.Location = new System.Drawing.Point(0, 0);
+            this.workspace.Name = "workspace";
+            this.workspace.Size = new System.Drawing.Size(659, 427);
+            this.workspace.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(659, 427);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.workspace);
             this.Name = "MainForm";
             this.Text = "MainForm";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.workspace.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private PanelWorkspace workspace;
+
     }
 }

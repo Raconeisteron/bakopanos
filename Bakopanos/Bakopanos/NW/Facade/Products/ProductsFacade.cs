@@ -11,15 +11,16 @@ namespace Bakopanos.NW.Facade.Products
 {
     public class ProductsFacade : IProductsFacade
     {
-        [Dependency]
-        public ProductsDAO DAO
+        private IProductsDAO _DAO;
+
+        public ProductsFacade(IProductsDAO DAO)
         {
-            private get; set;
+            _DAO = DAO;
         }
 
-        public Collection<ProductBO> Products()
+        public List<ProductBO> Products()
         {
-            return new Collection<ProductBO>( DAO.GetAllProducts() );
+            return new List<ProductBO>( _DAO.GetAllProducts() );
         }
 
     }

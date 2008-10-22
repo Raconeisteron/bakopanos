@@ -6,17 +6,19 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Bakopanos.Framework.Composite;
 using Bakopanos.NW.Facade.Products;
+using Microsoft.Practices.Unity;
 
 namespace Bakopanos.NW.WinClient
 {
     public partial class MainForm : Form
     {
-        public MainForm(ProductsFacade facade)
+        public MainForm(IUnityContainer container)
         {
             InitializeComponent();
-            
-            dataGridView1.DataSource = facade.Products();
+
+            container.RegisterInstance<IWorkspace>("MainWorkspace", workspace);
         }
     }
 }
