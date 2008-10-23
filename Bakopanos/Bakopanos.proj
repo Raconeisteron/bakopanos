@@ -70,7 +70,7 @@
       AssemblyCopyright="Copyright K. Bakopanos 2008"      
       ComVisible="false"
       CLSCompliant="true"
-      Guid="d038566a-1937-478a-b5c5-b79c4afb253d"
+      Guid="d038566a-1937-478a-b5c5-b79c4afb254d"
       AssemblyVersion="$(Major).$(Minor).$(Build).$(Revision)" 
       AssemblyFileVersion="$(Major).$(Minor).$(Build).$(Revision)" 
       Condition="$(Revision) != '0' "/>
