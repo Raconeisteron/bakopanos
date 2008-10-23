@@ -32,9 +32,13 @@
     <DefaultExclude Include="**\*.txt" />
 	<DefaultExclude Include="**\*.cache" />
   </ItemGroup>
-
+     
   <ItemGroup>
-    <ZipFiles Include="**\*.*" Exclude="@(DefaultExclude)" />
+    <ZipSourceFiles Include="**\*.*" Exclude="@(DefaultExclude)" />	
+  </ItemGroup>
+  
+  <ItemGroup>    
+	<ZipFiles Include="**\Build\**" />
   </ItemGroup>
  
   <Target Name="Version">
@@ -94,8 +98,13 @@
     <Zip Files="@(ZipFiles)" 
          ZipFileName="Bakopanos.v$(Major).$(Minor).$(Build).$(Revision).zip" />
   </Target>
+  
+  <Target Name="ZipSources" DependsOnTargets="Compile">  
+    <Zip Files="@(ZipSourceFiles)" 
+         ZipFileName="Bakopanos.v$(Major).$(Minor).$(Build).$(Revision)-sources.zip" />
+  </Target>
 
-  <Target Name="Build" DependsOnTargets="Zip">
+  <Target Name="Build" DependsOnTargets="Zip;ZipSources">
     <Message Text="Build Complete"/>
   </Target>
 
