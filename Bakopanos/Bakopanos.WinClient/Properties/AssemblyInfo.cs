@@ -13,7 +13,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Bakopanos.WinClient")]
+[assembly: AssemblyTitle("Bakopanos.")]
 [assembly: AssemblyDescription("Bakopanos.WinClient")]
 [assembly: AssemblyCompany("http://code.google.com/p/bakopanos/")]
 [assembly: AssemblyProduct("Bakopanos.WinClient")]
