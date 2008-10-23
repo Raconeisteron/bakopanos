@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
+	
   <PropertyGroup>	
 	<MSBuildCommunityTasksPath>C:\bakopanos.googlecode.com\Bakopanos\MSBuildCommunityTasks</MSBuildCommunityTasksPath>
   </PropertyGroup>
@@ -77,29 +77,25 @@
 	  
   </Target>
 
- 
-
   <Target Name="Compile" DependsOnTargets="Version">
     <MSBuild Projects="Bakopanos.sln" 
              Properties="Configuration=Release" />
   </Target>
-
-  <!-- 
+  
   <Target Name="Documentation" DependsOnTargets="Compile">
-    <NDoc Documenter="MSDN" 
+    <!--<NDoc Documenter="MSDN" 
           ProjectFilePath="Documentation\Bakopanos.ndoc" />
     <Copy SourceFiles="doc\Bakopanos.chm" 
           DestinationFiles="Documentation\Bakopanos.chm" />
-    <RemoveDir Directories="doc" />
-  </Target> -->
+    <RemoveDir Directories="doc" />-->
+  </Target>
 
-  <!-- <Target Name="Zip" DependsOnTargets="Documentation">  -->
-  <Target Name="Zip" DependsOnTargets="Compile">  
+  <Target Name="Zip" DependsOnTargets="Documentation">  
     <Zip Files="@(ZipFiles)" 
          ZipFileName="Bakopanos.v$(Major).$(Minor).$(Build).$(Revision).zip" />
   </Target>
   
-  <Target Name="ZipSources" DependsOnTargets="Compile">  
+  <Target Name="ZipSources" DependsOnTargets="Documentation">  
     <Zip Files="@(ZipSourceFiles)" 
          ZipFileName="Bakopanos.v$(Major).$(Minor).$(Build).$(Revision)-sources.zip" />
   </Target>
