@@ -13,15 +13,15 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Bakopanos.")]
+[assembly: AssemblyTitle("Bakopanos.WinClient")]
 [assembly: AssemblyDescription("Bakopanos.WinClient")]
 [assembly: AssemblyCompany("http://code.google.com/p/bakopanos/")]
-[assembly: AssemblyProduct("Bakopanos.WinClient")]
+[assembly: AssemblyProduct("Bakopanos")]
 [assembly: AssemblyCopyright("Copyright K. Bakopanos 2008")]
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 [assembly: Guid("d038566a-1937-478a-b5c5-b79c4afb253d")]
-[assembly: AssemblyVersion("1.0.0.72")]
-[assembly: AssemblyFileVersion("1.0.0.72")]
+[assembly: AssemblyVersion("1.0.0.73")]
+[assembly: AssemblyFileVersion("1.0.0.73")]
 
 

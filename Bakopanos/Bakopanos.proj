@@ -36,18 +36,19 @@
   <ItemGroup>
     <ZipFiles Include="**\*.*" Exclude="@(DefaultExclude)" />
   </ItemGroup>
-
+ 
   <Target Name="Version">
     <SvnVersion LocalPath="Bakopanos">
       <Output TaskParameter="Revision" PropertyName="Revision" />
     </SvnVersion>
     <Message Text="Version: $(Major).$(Minor).$(Build).$(Revision)"/>
+	
     <AssemblyInfo CodeLanguage="CS"  
-      OutputFile="Bakopanos.WinClient\Properties\AssemblyInfo.cs" 
-      AssemblyTitle="Bakopanos.WinClient"
-      AssemblyDescription="Bakopanos.WinClient"
+      OutputFile="Bakopanos\Properties\AssemblyInfo.cs" 
+      AssemblyTitle="Bakopanos"
+      AssemblyDescription="Bakopanos"
       AssemblyCompany="http://code.google.com/p/bakopanos/"
-      AssemblyProduct="Bakopanos.WinClient"
+      AssemblyProduct="Bakopanos"
       AssemblyCopyright="Copyright K. Bakopanos 2008"      
       ComVisible="false"
       CLSCompliant="true"
@@ -55,6 +56,21 @@
       AssemblyVersion="$(Major).$(Minor).$(Build).$(Revision)" 
       AssemblyFileVersion="$(Major).$(Minor).$(Build).$(Revision)" 
       Condition="$(Revision) != '0' "/>
+	  
+	  <AssemblyInfo CodeLanguage="CS"  
+      OutputFile="Bakopanos.WinClient\Properties\AssemblyInfo.cs" 
+      AssemblyTitle="Bakopanos.WinClient"
+      AssemblyDescription="Bakopanos.WinClient"
+      AssemblyCompany="http://code.google.com/p/bakopanos/"
+      AssemblyProduct="Bakopanos"
+      AssemblyCopyright="Copyright K. Bakopanos 2008"      
+      ComVisible="false"
+      CLSCompliant="true"
+      Guid="d038566a-1937-478a-b5c5-b79c4afb253d"
+      AssemblyVersion="$(Major).$(Minor).$(Build).$(Revision)" 
+      AssemblyFileVersion="$(Major).$(Minor).$(Build).$(Revision)" 
+      Condition="$(Revision) != '0' "/>
+	  
   </Target>
 
  
@@ -64,18 +80,17 @@
              Properties="Configuration=Release" />
   </Target>
 
-<!--
+  <!-- 
   <Target Name="Documentation" DependsOnTargets="Compile">
     <NDoc Documenter="MSDN" 
           ProjectFilePath="Documentation\Bakopanos.ndoc" />
     <Copy SourceFiles="doc\Bakopanos.chm" 
           DestinationFiles="Documentation\Bakopanos.chm" />
     <RemoveDir Directories="doc" />
-  </Target>
--->
+  </Target> -->
 
-  <!--<Target Name="Zip" DependsOnTargets="Documentation">-->
-  <Target Name="Zip" >
+  <!-- <Target Name="Zip" DependsOnTargets="Documentation">  -->
+  <Target Name="Zip" DependsOnTargets="Compile">  
     <Zip Files="@(ZipFiles)" 
          ZipFileName="Bakopanos.v$(Major).$(Minor).$(Build).$(Revision).zip" />
   </Target>
