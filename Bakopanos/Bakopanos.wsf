@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<!-- 
+
+-->
+<package>
+
+<job id="IncludeExample">
+
+	<runtime>
+        <named
+            name="drive"
+            helpstring="The drive to check disk space for"
+            type="string"
+            required="true"
+        />
+    </runtime>
+	
+   <script language="JScript" src="FSO.JS"/>
+   <script language="VBScript">
+    
+	WScript.Arguments.ShowUsage()
+	
+    ' Get the free space for drive C.
+    s = GetFreeSpace("c:")
+    WScript.Echo s
+	
+   </script>
+</job>
+
+</package>
