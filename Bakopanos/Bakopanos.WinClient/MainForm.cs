@@ -18,7 +18,7 @@ namespace Bakopanos.NW.WinClient
         {
             InitializeComponent();
 
-            container.RegisterInstance<IWorkspace>("MainWorkspace", workspace);
+            container.RegisterInstance<Panel>("MainWorkspace", workspace);
         }
     }
 }

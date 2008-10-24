@@ -94,10 +94,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Framework\Composite\PanelWorkspace.cs">
-      <SubType>Component</SubType>
+    <Compile Include="Framework\Composite\WorkspaceExtensions.cs">
     </Compile>
-    <Compile Include="Framework\Composite\IWorkspace.cs" />
     <Compile Include="NW\BusinessObjects\ProductAggregate.cs" />
     <Compile Include="NW\BusinessObjects\ProductBO.cs" />
     <Compile Include="NW\DataObjects.Tests\ProductsDAOFixture.cs" />

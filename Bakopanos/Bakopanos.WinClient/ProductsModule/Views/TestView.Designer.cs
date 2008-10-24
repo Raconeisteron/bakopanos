@@ -1,16 +1,13 @@
-﻿using System.Windows.Forms;
-using Bakopanos.Framework.Composite;
-
-namespace Bakopanos.NW.WinClient
+﻿namespace Bakopanos.WinClient.ProductsModule.Views
 {
-    partial class MainForm
+    partial class TestView
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -23,42 +20,39 @@ namespace Bakopanos.NW.WinClient
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.workspace = new Panel();
-            this.workspace.SuspendLayout();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // splitContainer1
+            // button1
             // 
-            this.workspace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workspace.Location = new System.Drawing.Point(0, 0);
-            this.workspace.Name = "workspace";
-            this.workspace.Size = new System.Drawing.Size(659, 427);
-            this.workspace.TabIndex = 0;
+            this.button1.Location = new System.Drawing.Point(100, 94);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // MainForm
+            // TestView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(659, 427);
-            this.Controls.Add(this.workspace);
-            this.Name = "MainForm";
-            this.Text = "MainForm";
-            this.workspace.ResumeLayout(false);
+            this.Controls.Add(this.button1);
+            this.Name = "TestView";
+            this.Size = new System.Drawing.Size(463, 296);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Panel workspace;
-
+        private System.Windows.Forms.Button button1;
     }
 }

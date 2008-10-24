@@ -100,6 +100,13 @@
     <Compile Include="ProductsModule\Views\ProductListView.Designer.cs">
       <DependentUpon>ProductListView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductsModule\Views\TestPresenter.cs" />
+    <Compile Include="ProductsModule\Views\TestView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductsModule\Views\TestView.Designer.cs">
+      <DependentUpon>TestView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -107,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProductsModule\Views\ProductListView.resx">
       <DependentUpon>ProductListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductsModule\Views\TestView.resx">
+      <DependentUpon>TestView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -10,6 +10,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
+using Bakopanos.Framework.Composite;
 
 namespace Bakopanos.NW.WinClient
 {
@@ -24,6 +25,7 @@ namespace Bakopanos.NW.WinClient
 
             var container = new UnityContainer();
             container.RegisterInstance<IUnityContainer>(container);
+
             var section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
             section.Containers.Default.Configure(container);
 
@@ -34,12 +36,43 @@ namespace Bakopanos.NW.WinClient
             
             //main form
             Form form = container.Resolve<MainForm>();
-
-            //controllers
-            container.Resolve<ProductsController>();
+            
+            container.Resolve<IMainModule>().Run();
 
             Application.Run( form );
             
         }
     }
+
+
+    public interface IMainModule:IModule
+    {
+        IProductsController ProductsController { set; }        
+    }
+
+    public class MainModule:IMainModule
+    {
+        private IProductsController _ProductsController;
+
+        [Dependency]
+        public IProductsController ProductsController
+        {
+            set
+            {
+                _ProductsController = value;
+            }
+        }
+
+        public MainModule(IUnityContainer container)
+        {            
+            container.RegisterType<IProductsController, ProductsController>();            
+        }
+
+
+        public void Run()
+        {
+            _ProductsController.Run();
+        }
+    }
+
 }
