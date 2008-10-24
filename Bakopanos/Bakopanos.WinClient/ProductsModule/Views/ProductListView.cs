@@ -1,21 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
+using Bakopanos.BusinessObjects;
 using Bakopanos.Framework.Composite;
-using Bakopanos.NW.BusinessObjects;
 using Microsoft.Practices.Unity;
 
-namespace Bakopanos.NW.WinClient.ProductsModule.Views
+namespace Bakopanos.WinClient.ProductsModule.Views
 {
     public partial class ProductListView : UserControl, IView<IProductListPresenter>
-    {               
-        private ProductAggregate _product;
+    {
+        private readonly Dictionary<string, Control> _Placeholders =
+            new Dictionary<string, Control>();
+
         private IProductListPresenter _presenter;
+        private ProductAggregate _product;
+
+        public ProductListView()
+        {
+            InitializeComponent();
+
+            Placeholders.Add("test", tabControl1);
+        }
 
         [Dependency]
         public ProductAggregate Product
@@ -23,30 +27,21 @@ namespace Bakopanos.NW.WinClient.ProductsModule.Views
             set { _product = value; }
         }
 
+        #region IView<IProductListPresenter> Members
+
         [Dependency]
         public IProductListPresenter Presenter
         {
             set { _presenter = value; }
         }
 
-        public ProductListView()
-        {
-            InitializeComponent();
-            
-            Placeholders.Add("test", tabControl1);
-        }
-
-        public string Caption { get;set; }
-
-        private Dictionary<string, Control> _Placeholders = 
-            new Dictionary<string, Control>();
+        public string Caption { get; set; }
 
         public Dictionary<string, Control> Placeholders
         {
-            get { return _Placeholders; }            
+            get { return _Placeholders; }
         }
 
-        
 
         public void Run()
         {
@@ -54,5 +49,7 @@ namespace Bakopanos.NW.WinClient.ProductsModule.Views
 
             dataGridView1.DataSource = _product.ProductList;
         }
+
+        #endregion
     }
 }

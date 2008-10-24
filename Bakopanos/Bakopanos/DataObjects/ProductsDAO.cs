@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
+using Bakopanos.BusinessObjects;
 using Bakopanos.Framework.Data;
-using Bakopanos.NW.BusinessObjects;
-using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 
-namespace Bakopanos.NW.DataObjects
+namespace Bakopanos.DataObjects
 {
     public class ProductsDAO : DataAccessObject, IProductsDAO
-    {        
+    {
+        #region IProductsDAO Members
+
         public List<ProductBO> GetAllProducts()
         {
             var list = new List<ProductBO>();
@@ -38,7 +37,7 @@ namespace Bakopanos.NW.DataObjects
 
         public ProductBO GetSingleProduct(int ProductID)
         {
-            var list = new List<ProductBO>();            
+            var list = new List<ProductBO>();
 
             using (Database.CreateConnection())
             {
@@ -48,22 +47,24 @@ namespace Bakopanos.NW.DataObjects
                     while (reader.Read())
                     {
                         var p = new ProductBO
-                        {
-                            ProductID = (int)reader["ProductID"],
-                            ProductName = (string)reader["ProductName"],
-                            Discontinued = (bool)reader["Discontinued"]
-                        };    
+                                    {
+                                        ProductID = (int) reader["ProductID"],
+                                        ProductName = (string) reader["ProductName"],
+                                        Discontinued = (bool) reader["Discontinued"]
+                                    };
                         list.Add(p);
                     }
                 }
             }
-            
-            if (list.Count!=1)
+
+            if (list.Count != 1)
             {
-                throw new ApplicationException("Should return a single row");                
+                throw new ApplicationException("Should return a single row");
             }
 
             return list[0];
         }
+
+        #endregion
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using Bakopanos.Framework.Composite;
 
-namespace Bakopanos.NW.WinClient
+namespace Bakopanos.WinClient
 {
     partial class MainForm
     {

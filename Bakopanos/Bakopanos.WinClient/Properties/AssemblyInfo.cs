@@ -10,7 +10,6 @@
 
 using System;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Bakopanos.WinClient")]
@@ -23,5 +22,3 @@ using System.Runtime.InteropServices;
 [assembly: Guid("d038566a-1937-478a-b5c5-b79c4afb253d")]
 [assembly: AssemblyVersion("1.0.0.76")]
 [assembly: AssemblyFileVersion("1.0.0.76")]
-
-

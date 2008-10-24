@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using Bakopanos.Framework.Composite;
-using Bakopanos.NW.Facade.Products;
+﻿using System.Windows.Forms;
 using Microsoft.Practices.Unity;
 
-namespace Bakopanos.NW.WinClient
+namespace Bakopanos.WinClient
 {
     public partial class MainForm : Form
     {
@@ -18,7 +9,7 @@ namespace Bakopanos.NW.WinClient
         {
             InitializeComponent();
 
-            container.RegisterInstance<Panel>("MainWorkspace", workspace);
+            container.RegisterInstance("MainWorkspace", workspace);
         }
     }
 }

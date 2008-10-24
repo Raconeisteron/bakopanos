@@ -94,21 +94,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\Composite\Parts.cs" />
     <Compile Include="Framework\Composite\WorkspaceExtensions.cs">
     </Compile>
-    <Compile Include="NW\BusinessObjects\ProductAggregate.cs" />
-    <Compile Include="NW\BusinessObjects\ProductBO.cs" />
-    <Compile Include="NW\DataObjects.Tests\ProductsDAOFixture.cs" />
+    <Compile Include="BusinessObjects\ProductAggregate.cs" />
+    <Compile Include="BusinessObjects\ProductBO.cs" />
+    <Compile Include="DataObjects.Tests\ProductsDAOFixture.cs" />
     <Compile Include="Framework\Data\DataAccessObject.cs" />
-    <Compile Include="NW\DataObjects\IProductsDAO.cs" />
-    <Compile Include="NW\DataObjects\ProductsDAO.cs" />
-    <Compile Include="NW\Facade\Products\IProductsFacade.cs" />
-    <Compile Include="NW\Facade\Products\ProductsFacade.cs" />
+    <Compile Include="DataObjects\IProductsDAO.cs" />
+    <Compile Include="DataObjects\ProductsDAO.cs" />
+    <Compile Include="Facade\Products\IProductsFacade.cs" />
+    <Compile Include="Facade\Products\ProductsFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="NW\BusinessObjects.Tests\" />
-    <Folder Include="NW\Facade.Tests\Products\" />
+    <Folder Include="BusinessObjects.Tests\" />
+    <Folder Include="Facade.Tests\Products\" />
   </ItemGroup>
   <PropertyGroup>
     <DontImportPostSharp>True</DontImportPostSharp>

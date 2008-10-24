@@ -86,13 +86,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProductsModule\IMainModule.cs" />
+    <Compile Include="ProductsModule\MainModule.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductsModule\IProductsController.cs" />
     <Compile Include="ProductsModule\ProductsController.cs" />
+    <Compile Include="ProductsModule\Views\ITestPresenter.cs" />
+    <Compile Include="ProductsModule\Views\IProductListPresenter.cs" />
     <Compile Include="ProductsModule\Views\ProductListPresenter.cs" />
     <Compile Include="ProductsModule\Views\ProductListView.cs">
       <SubType>UserControl</SubType>

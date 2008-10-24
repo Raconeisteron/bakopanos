@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using Bakopanos.Framework.Composite;
 
-namespace Bakopanos.NW.WinClient.ProductsModule.Views
+namespace Bakopanos.WinClient.ProductsModule.Views
 {
     partial class ProductListView
     {

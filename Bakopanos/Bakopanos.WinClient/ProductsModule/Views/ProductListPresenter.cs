@@ -1,35 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Bakopanos.Framework.Composite;
-using Bakopanos.NW.BusinessObjects;
-using Bakopanos.NW.Facade.Products;
+﻿using Bakopanos.BusinessObjects;
+using Bakopanos.Facade.Products;
 using Microsoft.Practices.Unity;
 
-namespace Bakopanos.NW.WinClient.ProductsModule.Views
+namespace Bakopanos.WinClient.ProductsModule.Views
 {
-
-    public interface IProductListPresenter:IPresenter
+    public class ProductListPresenter : IProductListPresenter
     {
-        ProductAggregate Product{ set;}
-        IProductsFacade Facade { set; }
-    }
-
-    public class ProductListPresenter: IProductListPresenter
-    {
-        private ProductAggregate _product;
         private IProductsFacade _facade;
-        
+        private ProductAggregate _product;
+
+        #region IProductListPresenter Members
+
         [Dependency]
         public ProductAggregate Product
-        {            
+        {
             set { _product = value; }
         }
 
         [Dependency]
         public IProductsFacade Facade
-        {            
+        {
             set { _facade = value; }
         }
 
@@ -37,5 +27,7 @@ namespace Bakopanos.NW.WinClient.ProductsModule.Views
         {
             _product.ProductList = _facade.Products();
         }
+
+        #endregion
     }
 }
