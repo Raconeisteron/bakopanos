@@ -12,7 +12,13 @@ using Microsoft.Practices.Unity;
 namespace Bakopanos.NW.WinClient.ProductsModule
 {
 
-    public interface IProductsController : IController { }
+    public interface IProductsController : IController
+    {
+        Panel Workspace { set; }
+        ProductListView View1 { set; }
+        TestView View2 { set; }
+       
+    }
 
     public class ProductsController : IProductsController
     {        

@@ -10,7 +10,7 @@ using Bakopanos.Framework.Composite;
 using Microsoft.Practices.Unity;
 
 namespace Bakopanos.WinClient.ProductsModule.Views
-{
+{    
     public partial class TestView : UserControl, IView<ITestPresenter>
     {
         private ITestPresenter _presenter;

@@ -10,7 +10,11 @@ using Microsoft.Practices.Unity;
 namespace Bakopanos.NW.WinClient.ProductsModule.Views
 {
 
-    public interface IProductListPresenter:IPresenter{}
+    public interface IProductListPresenter:IPresenter
+    {
+        ProductAggregate Product{ set;}
+        IProductsFacade Facade { set; }
+    }
 
     public class ProductListPresenter: IProductListPresenter
     {
