@@ -401,7 +401,11 @@
     <Content Include="MobileModules\Text.ascx" />
     <Content Include="MobileModuleTitle.ascx" />
     <Content Include="PortalCfg.xml" />
-    <Content Include="PortalCfg.xsd" />
+    <Content Include="PortalCfg.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PortalCfg.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Uploads\sample.doc" />
     <Content Include="Web.config" />
     <Compile Include="admin\AccessDenied.aspx.cs">
@@ -608,8 +612,10 @@
       <DependentUpon>MobileDefault.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PortalCfg.cs">
-      <SubType>code</SubType>
+    <Compile Include="PortalCfg.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PortalCfg.xsd</DependentUpon>
     </Compile>
     <EmbeddedResource Include="admin\AccessDenied.aspx.resx">
       <DependentUpon>AccessDenied.aspx.cs</DependentUpon>
@@ -701,6 +707,14 @@
     <EmbeddedResource Include="MobileDefault.aspx.resx">
       <DependentUpon>MobileDefault.aspx.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PortalCfg.xsc">
+      <DependentUpon>PortalCfg.xsd</DependentUpon>
+    </None>
+    <None Include="PortalCfg.xss">
+      <DependentUpon>PortalCfg.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
