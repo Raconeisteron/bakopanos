@@ -4,7 +4,9 @@
 
 Add your content here.
 
-= SVN Checkout directories =
+= Details =
 
-* https://bakopanos.googlecode.com/svn/trunk
-* https://bakopanos.googlecode.com/svn/wiki
+== SVN Checkout directories ==
+
+|| Main Path || https://bakopanos.googlecode.com/svn/trunk ||
+|| Project Wiki || https://bakopanos.googlecode.com/svn/wiki ||
