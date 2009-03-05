@@ -114,21 +114,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="admin\AccessDenied.aspx" />
-    <Content Include="admin\EditAccessDenied.aspx" />
-    <Content Include="admin\Logoff.aspx" />
-    <Content Include="admin\ManageUsers.aspx" />
-    <Content Include="admin\ModuleDefinitions.aspx" />
-    <Content Include="admin\ModuleDefs.ascx" />
-    <Content Include="admin\ModuleSettings.aspx" />
-    <Content Include="admin\NotImplemented.aspx" />
-    <Content Include="admin\Register.aspx" />
-    <Content Include="admin\Roles.ascx" />
-    <Content Include="admin\SecurityRoles.aspx" />
-    <Content Include="admin\SiteSettings.ascx" />
-    <Content Include="admin\TabLayout.aspx" />
-    <Content Include="admin\Tabs.ascx" />
-    <Content Include="admin\Users.ascx" />
+    <Content Include="admin_\AccessDenied.aspx" />
+    <Content Include="admin_\EditAccessDenied.aspx" />
+    <Content Include="admin_\Logoff.aspx" />
+    <Content Include="admin_\ManageUsers.aspx" />
+    <Content Include="admin_\ModuleDefinitions.aspx" />
+    <Content Include="admin_\ModuleDefs.ascx" />
+    <Content Include="admin_\ModuleSettings.aspx" />
+    <Content Include="admin_\NotImplemented.aspx" />
+    <Content Include="admin_\Register.aspx" />
+    <Content Include="admin_\Roles.ascx" />
+    <Content Include="admin_\SecurityRoles.aspx" />
+    <Content Include="admin_\SiteSettings.ascx" />
+    <Content Include="admin_\TabLayout.aspx" />
+    <Content Include="admin_\Tabs.ascx" />
+    <Content Include="admin_\Users.ascx" />
     <Content Include="App_Data\Portal.mdf">
     </Content>
     <Content Include="App_Data\Portal_log.ldf">
@@ -413,63 +413,63 @@
     </Content>
     <Content Include="Uploads\sample.doc" />
     <Content Include="Web.config" />
-    <Compile Include="admin\AccessDenied.aspx.cs">
+    <Compile Include="admin_\AccessDenied.aspx.cs">
       <DependentUpon>AccessDenied.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\EditAccessDenied.aspx.cs">
+    <Compile Include="admin_\EditAccessDenied.aspx.cs">
       <DependentUpon>EditAccessDenied.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Logoff.aspx.cs">
+    <Compile Include="admin_\Logoff.aspx.cs">
       <DependentUpon>Logoff.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\ManageUsers.aspx.cs">
+    <Compile Include="admin_\ManageUsers.aspx.cs">
       <DependentUpon>ManageUsers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\ModuleDefinitions.aspx.cs">
+    <Compile Include="admin_\ModuleDefinitions.aspx.cs">
       <DependentUpon>ModuleDefinitions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\ModuleDefs.ascx.cs">
+    <Compile Include="admin_\ModuleDefs.ascx.cs">
       <DependentUpon>ModuleDefs.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\ModuleSettings.aspx.cs">
+    <Compile Include="admin_\ModuleSettings.aspx.cs">
       <DependentUpon>ModuleSettings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\NotImplemented.aspx.cs">
+    <Compile Include="admin_\NotImplemented.aspx.cs">
       <DependentUpon>NotImplemented.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Register.aspx.cs">
+    <Compile Include="admin_\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Roles.ascx.cs">
+    <Compile Include="admin_\Roles.ascx.cs">
       <DependentUpon>Roles.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\SecurityRoles.aspx.cs">
+    <Compile Include="admin_\SecurityRoles.aspx.cs">
       <DependentUpon>SecurityRoles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\SiteSettings.ascx.cs">
+    <Compile Include="admin_\SiteSettings.ascx.cs">
       <DependentUpon>SiteSettings.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\TabLayout.aspx.cs">
+    <Compile Include="admin_\TabLayout.aspx.cs">
       <DependentUpon>TabLayout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Tabs.ascx.cs">
+    <Compile Include="admin_\Tabs.ascx.cs">
       <DependentUpon>Tabs.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Users.ascx.cs">
+    <Compile Include="admin_\Users.ascx.cs">
       <DependentUpon>Users.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
