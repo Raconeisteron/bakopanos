@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using ASPNET.StarterKit.Portal.Components;
@@ -30,7 +30,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain the selected item from the HtmlText table
             var text = new HtmlTextDB();
-            SqlDataReader dr = text.GetHtmlText(ModuleId);
+            IDataReader dr = text.GetHtmlText(ModuleId);
 
             if (dr.Read())
             {

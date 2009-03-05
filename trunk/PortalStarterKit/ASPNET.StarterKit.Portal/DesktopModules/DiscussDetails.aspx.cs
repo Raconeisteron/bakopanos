@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -140,7 +140,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain the selected item from the Discussion table
             var discuss = new DiscussionDB();
-            SqlDataReader dr = discuss.GetSingleMessage(itemId);
+            IDataReader dr = discuss.GetSingleMessage(itemId);
 
             // Load first row from database
             dr.Read();

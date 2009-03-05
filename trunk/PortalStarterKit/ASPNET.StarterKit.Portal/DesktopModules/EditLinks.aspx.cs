@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal.Components;
@@ -68,7 +68,7 @@ namespace ASPNET.StarterKit.Portal
                 {
                     // Obtain a single row of link information
                     var links = new LinkDB();
-                    SqlDataReader dr = links.GetSingleLink(itemId);
+                    IDataReader dr = links.GetSingleLink(itemId);
 
                     // Read in first row from database
                     dr.Read();

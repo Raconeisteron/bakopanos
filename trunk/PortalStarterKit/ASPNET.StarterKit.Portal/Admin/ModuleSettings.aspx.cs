@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -95,7 +95,7 @@ namespace ASPNET.StarterKit.Portal
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
                 var rolesObj = new RolesDB();
-                SqlDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
+                IDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();
@@ -155,7 +155,7 @@ namespace ASPNET.StarterKit.Portal
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
                 var rolesObj = new RolesDB();
-                SqlDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
+                IDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();

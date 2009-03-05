@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal.Components;
@@ -47,7 +47,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 // Obtain a single row of text information
                 var text = new HtmlTextDB();
-                SqlDataReader dr = text.GetHtmlText(moduleId);
+                IDataReader dr = text.GetHtmlText(moduleId);
 
                 if (dr.Read())
                 {
