@@ -1,3 +1,0 @@
-Page Source:SecurityRoles.aspx|Admin_SecurityRoles_aspx.htm,SecurityRoles.aspx.cs|Admin_SecurityRoles_aspx_cs.htm
-Business Component:RolesDB.cs|Components_RolesDB_cs.htm
-Stored Procedures:AddUserRole|AddUserRole.htm,DeleteUserRole|DeleteUserRole.htm,GetRoleMembership|GetRoleMembership.htm
