@@ -1,0 +1,1 @@
+-> copy the database file portal.mdf into the \ASPNET.StarterKit.Portal\App_Data\ directory 

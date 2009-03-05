@@ -129,6 +129,11 @@
     <Content Include="admin\TabLayout.aspx" />
     <Content Include="admin\Tabs.ascx" />
     <Content Include="admin\Users.ascx" />
+    <Content Include="App_Data\Portal.mdf">
+    </Content>
+    <Content Include="App_Data\Portal_log.ldf">
+      <DependentUpon>Portal.mdf</DependentUpon>
+    </Content>
     <Content Include="ASPNETPortal.css" />
     <Content Include="Data\Admin.gif" />
     <Content Include="Data\config_auth_forms.gif" />
