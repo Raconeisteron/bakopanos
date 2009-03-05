@@ -1,17 +1,16 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNET.StarterKit.Portal
+{
+    public abstract class Document : PortalModuleControl
+    {
+        protected DataGrid myDataGrid;
 
-    public abstract class Document : ASPNET.StarterKit.Portal.PortalModuleControl {
-        protected System.Web.UI.WebControls.DataGrid myDataGrid;
+        public Document()
+        {
+            Init += Page_Init;
+        }
 
 
         //*******************************************************
@@ -24,11 +23,11 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
-
+        private void Page_Load(object sender, EventArgs e)
+        {
             // Obtain Document Data from Documents table
             // and bind to the datalist control
-            ASPNET.StarterKit.Portal.DocumentDB documents = new ASPNET.StarterKit.Portal.DocumentDB();
+            var documents = new DocumentDB();
 
             myDataGrid.DataSource = documents.GetDocuments(ModuleId);
             myDataGrid.DataBind();
@@ -50,41 +49,40 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected String GetBrowsePath(String url, object size, int documentId) {
-
-            if (size != DBNull.Value && (int) size > 0) {
-        
+        protected String GetBrowsePath(String url, object size, int documentId)
+        {
+            if (size != DBNull.Value && (int) size > 0)
+            {
                 // if there is content in the database, create an 
                 // url to browse it
-            
-                return "~/DesktopModules/ViewDocument.aspx?DocumentID=" + documentId.ToString();
+
+                return "~/DesktopModules/ViewDocument.aspx?DocumentID=" + documentId;
             }
-            else {
-            
+            else
+            {
                 // otherwise, return the FileNameUrl
                 return url;
             }
         }
 
-        public Document() {
-            this.Init += new System.EventHandler(Page_Init);
-        }
-
-        private void Page_Init(object sender, EventArgs e) {
+        private void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         ///		Required method for Designer support - do not modify
         ///		the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             this.Load += new System.EventHandler(this.Page_Load);
-
         }
-		#endregion
+
+        #endregion
     }
 }

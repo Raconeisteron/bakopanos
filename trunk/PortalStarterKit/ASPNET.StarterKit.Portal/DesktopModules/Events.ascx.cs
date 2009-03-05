@@ -1,17 +1,11 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 
-namespace ASPNET.StarterKit.Portal {
-
-    public abstract class Events : ASPNET.StarterKit.Portal.PortalModuleControl {
-        protected System.Web.UI.WebControls.DataList myDataList;
+namespace ASPNET.StarterKit.Portal
+{
+    public abstract class Events : PortalModuleControl
+    {
+        protected DataList myDataList;
 
         //*******************************************************
         //
@@ -23,35 +17,39 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
+        public Events()
+        {
+            Init += Page_Init;
+        }
 
+        private void Page_Load(object sender, EventArgs e)
+        {
             // Obtain the list of events from the Events table
             // and bind to the DataList Control
-            ASPNET.StarterKit.Portal.EventsDB events = new ASPNET.StarterKit.Portal.EventsDB();
+            var events = new EventsDB();
 
             myDataList.DataSource = events.GetEvents(ModuleId);
             myDataList.DataBind();
         }
 
-        public Events() {
-            this.Init += new System.EventHandler(Page_Init);
-        }
-
-        private void Page_Init(object sender, EventArgs e) {
+        private void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         ///		Required method for Designer support - do not modify
         ///		the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             this.Load += new System.EventHandler(this.Page_Load);
-
         }
-		#endregion
+
+        #endregion
     }
 }

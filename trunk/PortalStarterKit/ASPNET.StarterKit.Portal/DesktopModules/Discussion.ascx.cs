@@ -1,18 +1,17 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using System.Data.SqlClient;
+using System.Web.UI.WebControls;
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNET.StarterKit.Portal
+{
+    public abstract class Discussion : PortalModuleControl
+    {
+        protected DataList TopLevelList;
 
-    public abstract class Discussion : ASPNET.StarterKit.Portal.PortalModuleControl {
-        protected System.Web.UI.WebControls.DataList TopLevelList;
+        public Discussion()
+        {
+            Init += Page_Init;
+        }
 
 
         //*******************************************************
@@ -23,9 +22,10 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
-
-            if (Page.IsPostBack == false) {
+        private void Page_Load(object sender, EventArgs e)
+        {
+            if (Page.IsPostBack == false)
+            {
                 BindList();
             }
         }
@@ -40,11 +40,11 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void BindList() {
-
+        private void BindList()
+        {
             // Obtain a list of discussion messages for the module
             // and bind to datalist
-            ASPNET.StarterKit.Portal.DiscussionDB discuss = new ASPNET.StarterKit.Portal.DiscussionDB();
+            var discuss = new DiscussionDB();
 
             TopLevelList.DataSource = discuss.GetTopLevelMessages(ModuleId);
             TopLevelList.DataBind();
@@ -60,10 +60,10 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected SqlDataReader GetThreadMessages() {
-
+        protected SqlDataReader GetThreadMessages()
+        {
             // Obtain a list of discussion messages for the module
-            ASPNET.StarterKit.Portal.DiscussionDB discuss = new ASPNET.StarterKit.Portal.DiscussionDB();
+            var discuss = new DiscussionDB();
             SqlDataReader dr = discuss.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
 
             // Return the filtered DataView
@@ -78,18 +78,20 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void TopLevelList_Select(object Sender, DataListCommandEventArgs e) {
-
+        private void TopLevelList_Select(object Sender, DataListCommandEventArgs e)
+        {
             // Determine the command of the button (either "select" or "collapse")
-            String command = ((ImageButton)e.CommandSource).CommandName;
+            String command = ((ImageButton) e.CommandSource).CommandName;
 
             // Update asp:datalist selection index depending upon the type of command
             // and then rebind the asp:datalist with content
 
-            if (command == "collapse") {
+            if (command == "collapse")
+            {
                 TopLevelList.SelectedIndex = -1;
             }
-            else {
+            else
+            {
                 TopLevelList.SelectedIndex = e.Item.ItemIndex;
             }
 
@@ -107,8 +109,8 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected String FormatUrl(int item) {
-
+        protected String FormatUrl(int item)
+        {
             return "~/DesktopModules/DiscussDetails.aspx?ItemID=" + item + "&mid=" + ModuleId;
         }
 
@@ -122,36 +124,38 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected String NodeImage(int count) {
-
-            if (count > 0) {
+        protected String NodeImage(int count)
+        {
+            if (count > 0)
+            {
                 return "~/images/plus.gif";
             }
-            else {
+            else
+            {
                 return "~/images/node.gif";
             }
         }
 
-        public Discussion() {
-            this.Init += new System.EventHandler(Page_Init);
-        }
-
-        private void Page_Init(object sender, EventArgs e) {
+        private void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         ///		Required method for Designer support - do not modify
         ///		the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
-            this.TopLevelList.ItemCommand += new System.Web.UI.WebControls.DataListCommandEventHandler(this.TopLevelList_Select);
+        private void InitializeComponent()
+        {
+            this.TopLevelList.ItemCommand +=
+                new System.Web.UI.WebControls.DataListCommandEventHandler(this.TopLevelList_Select);
             this.Load += new System.EventHandler(this.Page_Load);
-
         }
-		#endregion
+
+        #endregion
     }
 }

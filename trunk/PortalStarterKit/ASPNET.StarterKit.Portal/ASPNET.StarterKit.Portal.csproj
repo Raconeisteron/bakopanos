@@ -622,78 +622,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PortalCfg.xsd</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="admin\AccessDenied.aspx.resx">
-      <DependentUpon>AccessDenied.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\EditAccessDenied.aspx.resx">
-      <DependentUpon>EditAccessDenied.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\Logoff.aspx.resx">
-      <DependentUpon>Logoff.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\ManageUsers.aspx.resx">
-      <DependentUpon>ManageUsers.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\ModuleDefinitions.aspx.resx">
-      <DependentUpon>ModuleDefinitions.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\ModuleDefs.ascx.resx">
-      <DependentUpon>ModuleDefs.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\ModuleSettings.aspx.resx">
-      <DependentUpon>ModuleSettings.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\NotImplemented.aspx.resx">
-      <DependentUpon>NotImplemented.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\Roles.ascx.resx">
-      <DependentUpon>Roles.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\SecurityRoles.aspx.resx">
-      <DependentUpon>SecurityRoles.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\SiteSettings.ascx.resx">
-      <DependentUpon>SiteSettings.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\TabLayout.aspx.resx">
-      <DependentUpon>TabLayout.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\Users.ascx.resx">
-      <DependentUpon>Users.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Default.aspx.resx">
-      <DependentUpon>Default.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopDefault.aspx.resx">
-      <DependentUpon>DesktopDefault.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\DiscussDetails.aspx.resx">
-      <DependentUpon>DiscussDetails.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\Discussion.ascx.resx">
-      <DependentUpon>Discussion.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\EditAnnouncements.aspx.resx">
-      <DependentUpon>EditAnnouncements.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\EditContacts.aspx.resx">
-      <DependentUpon>EditContacts.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\EditEvents.aspx.resx">
-      <DependentUpon>EditEvents.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\EditHtml.aspx.resx">
-      <DependentUpon>EditHtml.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\EditImage.aspx.resx">
-      <DependentUpon>EditImage.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\EditLinks.aspx.resx">
-      <DependentUpon>EditLinks.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\EditXml.aspx.resx">
-      <DependentUpon>EditXml.aspx.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DesktopModules\Links.ascx.resx">
       <DependentUpon>Links.ascx.cs</DependentUpon>
     </EmbeddedResource>
@@ -702,15 +630,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopModules\Signin.ascx.resx">
       <DependentUpon>Signin.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopPortalBanner.ascx.resx">
-      <DependentUpon>DesktopPortalBanner.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Global.asax.resx">
-      <DependentUpon>Global.asax.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MobileDefault.aspx.resx">
-      <DependentUpon>MobileDefault.aspx.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

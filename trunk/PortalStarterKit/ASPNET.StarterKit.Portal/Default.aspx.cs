@@ -11,9 +11,9 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal {
 
-    public class CDefault : System.Web.UI.Page {
+    public class Default : System.Web.UI.Page {
 
-        public CDefault() {
+        public Default() {
             Page.Init += new System.EventHandler(Page_Init);
         }
 

@@ -1,15 +1,18 @@
 using System;
-using System.Data;
-using System.Drawing;
-using System.Web;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 
-namespace ASPNET.StarterKit.Portal {
-    public abstract class SiteSettings : ASPNET.StarterKit.Portal.PortalModuleControl {
-        protected System.Web.UI.WebControls.TextBox siteName;
-        protected System.Web.UI.WebControls.CheckBox showEdit;
-        protected System.Web.UI.WebControls.LinkButton applyBtn;
+namespace ASPNET.StarterKit.Portal
+{
+    public abstract class SiteSettings : PortalModuleControl
+    {
+        protected LinkButton applyBtn;
+        protected CheckBox showEdit;
+        protected TextBox siteName;
+
+        public SiteSettings()
+        {
+            Init += Page_Init;
+        }
 
 
         //*******************************************************
@@ -19,19 +22,20 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
-
+        private void Page_Load(object sender, EventArgs e)
+        {
             // Verify that the current user has access to access this page
-            if (PortalSecurity.IsInRoles("Admins") == false) {
+            if (PortalSecurity.IsInRoles("Admins") == false)
+            {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
 
             // If this is the first visit to the page, populate the site data
-            if (Page.IsPostBack == false) {
-
+            if (Page.IsPostBack == false)
+            {
                 // Obtain PortalSettings from Current Context
-                PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
-			
+                var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+
                 siteName.Text = portalSettings.PortalName;
                 showEdit.Checked = portalSettings.AlwaysShowEditButton;
             }
@@ -44,39 +48,38 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void Apply_Click(Object sender, EventArgs e) {
-
+        private void Apply_Click(Object sender, EventArgs e)
+        {
             // Obtain PortalSettings from Current Context
-            PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+            var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // update Tab info in the database
-            Configuration config = new Configuration();
+            var config = new Configuration();
             config.UpdatePortalInfo(portalSettings.PortalId, siteName.Text, showEdit.Checked);
-        
+
             // Redirect to this site to refresh
-            Response.Redirect(Request.RawUrl);        
+            Response.Redirect(Request.RawUrl);
         }
 
-        public SiteSettings() {
-            this.Init += new System.EventHandler(Page_Init);
-        }
-
-        private void Page_Init(object sender, EventArgs e) {
+        private void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         ///		Required method for Designer support - do not modify
         ///		the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             this.applyBtn.Click += new System.EventHandler(this.Apply_Click);
             this.Load += new System.EventHandler(this.Page_Load);
-
         }
-		#endregion
+
+        #endregion
     }
 }

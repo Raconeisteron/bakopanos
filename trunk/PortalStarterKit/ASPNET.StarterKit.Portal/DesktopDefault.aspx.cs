@@ -1,26 +1,23 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
-using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNET.StarterKit.Portal
+{
+    public class DesktopDefault : Page
+    {
+        protected HtmlTableCell ContentPane;
+        protected HtmlTableCell LeftPane;
+        protected HtmlTableCell RightPane;
 
-    public class DesktopDefault : System.Web.UI.Page {
-        protected System.Web.UI.HtmlControls.HtmlTableCell LeftPane;
-        protected System.Web.UI.HtmlControls.HtmlTableCell ContentPane;
-        protected System.Web.UI.HtmlControls.HtmlTableCell RightPane;
-    
-        public DesktopDefault() {
-            Page.Init += new System.EventHandler(Page_Init);
+        public DesktopDefault()
+        {
+            Page.Init += Page_Init;
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        private void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -41,48 +38,50 @@ namespace ASPNET.StarterKit.Portal {
             //*********************************************************************
 
             // Obtain PortalSettings from Current Context
-            PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
-        
+            var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+
             // Ensure that the visiting user has access to the current page
-            if (PortalSecurity.IsInRoles(portalSettings.ActiveTab.AuthorizedRoles) == false) {
+            if (PortalSecurity.IsInRoles(portalSettings.ActiveTab.AuthorizedRoles) == false)
+            {
                 Response.Redirect("~/Admin/AccessDenied.aspx");
             }
 
             // Dynamically inject a signin login module into the top left-hand corner
             // of the home page if the client is not yet authenticated
-            if ((Request.IsAuthenticated == false) && (portalSettings.ActiveTab.TabIndex == 0)) {
+            if ((Request.IsAuthenticated == false) && (portalSettings.ActiveTab.TabIndex == 0))
+            {
                 LeftPane.Controls.Add(Page.LoadControl("~/DesktopModules/SignIn.ascx"));
-                LeftPane.Visible = true;             
+                LeftPane.Visible = true;
             }
 
             // Dynamically Populate the Left, Center and Right pane sections of the portal page
-            if (portalSettings.ActiveTab.Modules.Count > 0) {
-
+            if (portalSettings.ActiveTab.Modules.Count > 0)
+            {
                 // Loop through each entry in the configuration system for this tab
-                foreach (ModuleSettings _moduleSettings in portalSettings.ActiveTab.Modules) {
-                
+                foreach (ModuleSettings _moduleSettings in portalSettings.ActiveTab.Modules)
+                {
                     Control parent = Page.FindControl(_moduleSettings.PaneName);
 
                     // If no caching is specified, create the user control instance and dynamically
                     // inject it into the page.  Otherwise, create a cached module instance that
                     // may or may not optionally inject the module into the tree
 
-                    if ((_moduleSettings.CacheTime) == 0) {
+                    if ((_moduleSettings.CacheTime) == 0)
+                    {
+                        var portalModule = (PortalModuleControl) Page.LoadControl(_moduleSettings.DesktopSrc);
 
-                        PortalModuleControl portalModule = (PortalModuleControl) Page.LoadControl(_moduleSettings.DesktopSrc);
-                   
-                        portalModule.PortalId = portalSettings.PortalId;                                  
+                        portalModule.PortalId = portalSettings.PortalId;
                         portalModule.ModuleConfiguration = _moduleSettings;
-                   
+
                         parent.Controls.Add(portalModule);
                     }
-                    else {
+                    else
+                    {
+                        var portalModule = new CachedPortalModuleControl();
 
-                        CachedPortalModuleControl portalModule = new CachedPortalModuleControl();
-                   
-                        portalModule.PortalId = portalSettings.PortalId;                                 
+                        portalModule.PortalId = portalSettings.PortalId;
                         portalModule.ModuleConfiguration = _moduleSettings;
- 
+
                         parent.Controls.Add(portalModule);
                     }
 
@@ -93,16 +92,16 @@ namespace ASPNET.StarterKit.Portal {
             }
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {    
-
+        private void InitializeComponent()
+        {
         }
-		#endregion
 
-    }    
+        #endregion
+    }
 }
-

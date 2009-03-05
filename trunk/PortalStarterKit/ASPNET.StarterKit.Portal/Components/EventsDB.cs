@@ -2,10 +2,9 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using ASPNET.StarterKit.Portal;
 
-namespace ASPNET.StarterKit.Portal {
-
+namespace ASPNET.StarterKit.Portal
+{
     //*********************************************************************
     //
     // EventDB Class
@@ -15,8 +14,8 @@ namespace ASPNET.StarterKit.Portal {
     //
     //*********************************************************************
 
-    public class EventsDB {
-
+    public class EventsDB
+    {
         //*********************************************************************
         //
         // GetEvents Method
@@ -33,22 +32,22 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public DataSet GetEvents(int moduleId) {
-
+        public DataSet GetEvents(int moduleId)
+        {
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlDataAdapter myCommand = new SqlDataAdapter("Portal_GetEvents", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlDataAdapter("Portal_GetEvents", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             parameterModuleId.Value = moduleId;
             myCommand.SelectCommand.Parameters.Add(parameterModuleId);
 
             // Create and Fill the DataSet
-            DataSet myDataSet = new DataSet();
+            var myDataSet = new DataSet();
             myCommand.Fill(myDataSet);
 
             // Return the DataSet
@@ -67,24 +66,24 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleEvent(int itemId) {
-
+        public SqlDataReader GetSingleEvent(int itemId)
+        {
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_GetSingleEvent", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_GetSingleEvent", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
             parameterItemId.Value = itemId;
             myCommand.Parameters.Add(parameterItemId);
 
             // Execute the command
             myConnection.Open();
             SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-            
+
             // Return the datareader 
             return result;
         }
@@ -101,17 +100,17 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public void DeleteEvent(int itemID) {
-
+        public void DeleteEvent(int itemID)
+        {
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_DeleteEvent", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_DeleteEvent", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
             parameterItemID.Value = itemID;
             myCommand.Parameters.Add(parameterItemID);
 
@@ -133,45 +132,47 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public int AddEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate, String description, String wherewhen) {
-
-            if (userName.Length < 1) {
+        public int AddEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
+                            String description, String wherewhen)
+        {
+            if (userName.Length < 1)
+            {
                 userName = "unknown";
             }
 
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_AddEvent", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_AddEvent", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
             parameterItemID.Direction = ParameterDirection.Output;
             myCommand.Parameters.Add(parameterItemID);
 
-            SqlParameter parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             parameterModuleID.Value = moduleId;
             myCommand.Parameters.Add(parameterModuleID);
 
-            SqlParameter parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
+            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
             parameterUserName.Value = userName;
             myCommand.Parameters.Add(parameterUserName);
 
-            SqlParameter parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
+            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
             parameterTitle.Value = title;
             myCommand.Parameters.Add(parameterTitle);
 
-            SqlParameter parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
+            var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
             parameterWhereWhen.Value = wherewhen;
             myCommand.Parameters.Add(parameterWhereWhen);
 
-            SqlParameter parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
+            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
             parameterExpireDate.Value = expireDate;
             myCommand.Parameters.Add(parameterExpireDate);
 
-            SqlParameter parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
+            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
             parameterDescription.Value = description;
             myCommand.Parameters.Add(parameterDescription);
 
@@ -181,7 +182,7 @@ namespace ASPNET.StarterKit.Portal {
             myConnection.Close();
 
             // Return the new Event ItemID
-            return (int)parameterItemID.Value;
+            return (int) parameterItemID.Value;
         }
 
         //*********************************************************************
@@ -196,41 +197,43 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public void UpdateEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate, String description, String wherewhen) {
-
-            if (userName.Length < 1) {
+        public void UpdateEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
+                                String description, String wherewhen)
+        {
+            if (userName.Length < 1)
+            {
                 userName = "unknown";
             }
 
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_UpdateEvent", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_UpdateEvent", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
             parameterItemID.Value = itemId;
             myCommand.Parameters.Add(parameterItemID);
 
-            SqlParameter parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
+            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
             parameterUserName.Value = userName;
             myCommand.Parameters.Add(parameterUserName);
 
-            SqlParameter parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
+            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
             parameterTitle.Value = title;
             myCommand.Parameters.Add(parameterTitle);
 
-            SqlParameter parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
+            var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
             parameterWhereWhen.Value = wherewhen;
             myCommand.Parameters.Add(parameterWhereWhen);
 
-            SqlParameter parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
+            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
             parameterExpireDate.Value = expireDate;
             myCommand.Parameters.Add(parameterExpireDate);
 
-            SqlParameter parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
+            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
             parameterDescription.Value = description;
             myCommand.Parameters.Add(parameterDescription);
 

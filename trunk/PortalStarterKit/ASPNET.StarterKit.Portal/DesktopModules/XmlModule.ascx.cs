@@ -1,18 +1,13 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
+using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using System.IO;
 
-namespace ASPNET.StarterKit.Portal {
-
-    public abstract class XmlModule : ASPNET.StarterKit.Portal.PortalModuleControl {
-        protected System.Web.UI.WebControls.Xml xml1;
+namespace ASPNET.StarterKit.Portal
+{
+    public abstract class XmlModule : PortalModuleControl
+    {
+        protected Xml xml1;
 
 
         //*******************************************************
@@ -24,56 +19,64 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
+        public XmlModule()
+        {
+            Init += Page_Init;
+        }
 
-            String xmlsrc = (String) Settings["xmlsrc"];
+        private void Page_Load(object sender, EventArgs e)
+        {
+            var xmlsrc = (String) Settings["xmlsrc"];
 
-            if ((xmlsrc != null) && (xmlsrc != "")) {
-
-                if  (File.Exists(Server.MapPath(xmlsrc))) {
-
+            if ((xmlsrc != null) && (xmlsrc != ""))
+            {
+                if (File.Exists(Server.MapPath(xmlsrc)))
+                {
                     xml1.DocumentSource = xmlsrc;
                 }
-                else {
-
-                    Controls.Add(new LiteralControl("<" + "br" + "><" + "span class=NormalRed" + ">" + "File " + xmlsrc + " not found.<" + "br" + ">"));
+                else
+                {
+                    Controls.Add(
+                        new LiteralControl("<" + "br" + "><" + "span class=NormalRed" + ">" + "File " + xmlsrc +
+                                           " not found.<" + "br" + ">"));
                 }
             }
 
-            String xslsrc = (String) Settings["xslsrc"];
+            var xslsrc = (String) Settings["xslsrc"];
 
-            if ((xslsrc != null) && (xslsrc != "")) {
-
-                if  (File.Exists(Server.MapPath(xslsrc))) {
-
+            if ((xslsrc != null) && (xslsrc != ""))
+            {
+                if (File.Exists(Server.MapPath(xslsrc)))
+                {
                     xml1.TransformSource = xslsrc;
                 }
-                else {
-
-                    Controls.Add(new LiteralControl("<" + "br" + "><" + "span class=NormalRed>File " + xslsrc + " not found.<" + "br" +">"));
+                else
+                {
+                    Controls.Add(
+                        new LiteralControl("<" + "br" + "><" + "span class=NormalRed>File " + xslsrc + " not found.<" +
+                                           "br" + ">"));
                 }
             }
         }
-        
-        public XmlModule() {
-            this.Init += new System.EventHandler(Page_Init);
-        }
 
-        private void Page_Init(object sender, EventArgs e) {
+        private void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         ///		Required method for Designer support - do not modify
         ///		the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             this.Load += new System.EventHandler(this.Page_Load);
-
         }
-		#endregion
+
+        #endregion
     }
 }

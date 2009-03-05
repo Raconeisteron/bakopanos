@@ -2,10 +2,9 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using ASPNET.StarterKit.Portal;
 
-namespace ASPNET.StarterKit.Portal {
-
+namespace ASPNET.StarterKit.Portal
+{
     //*********************************************************************
     //
     // HtmlTextDB Class
@@ -15,9 +14,8 @@ namespace ASPNET.StarterKit.Portal {
     //
     //*********************************************************************
 
-    public class HtmlTextDB {
-
-
+    public class HtmlTextDB
+    {
         //*********************************************************************
         //
         // GetHtmlText Method
@@ -30,27 +28,27 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public SqlDataReader GetHtmlText(int moduleId) {
-
+        public SqlDataReader GetHtmlText(int moduleId)
+        {
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_GetHtmlText", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_GetHtmlText", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             parameterModuleID.Value = moduleId;
             myCommand.Parameters.Add(parameterModuleID);
 
-			// Execute the command
-			myConnection.Open();
-			SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-			
-			// Return the datareader 
-			return result;
-		}
+            // Execute the command
+            myConnection.Open();
+            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+            // Return the datareader 
+            return result;
+        }
 
 
         //*********************************************************************
@@ -65,29 +63,29 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public void UpdateHtmlText(int moduleId, String desktopHtml, String mobileSummary, String mobileDetails) {
-
+        public void UpdateHtmlText(int moduleId, String desktopHtml, String mobileSummary, String mobileDetails)
+        {
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_UpdateHtmlText", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_UpdateHtmlText", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             parameterModuleID.Value = moduleId;
             myCommand.Parameters.Add(parameterModuleID);
 
-            SqlParameter parameterDesktopHtml = new SqlParameter("@DesktopHtml", SqlDbType.NText);
+            var parameterDesktopHtml = new SqlParameter("@DesktopHtml", SqlDbType.NText);
             parameterDesktopHtml.Value = desktopHtml;
             myCommand.Parameters.Add(parameterDesktopHtml);
 
-            SqlParameter parameterMobileSummary = new SqlParameter("@MobileSummary", SqlDbType.NText);
+            var parameterMobileSummary = new SqlParameter("@MobileSummary", SqlDbType.NText);
             parameterMobileSummary.Value = mobileSummary;
             myCommand.Parameters.Add(parameterMobileSummary);
 
-            SqlParameter parameterMobileDetails = new SqlParameter("@MobileDetails", SqlDbType.NText);
+            var parameterMobileDetails = new SqlParameter("@MobileDetails", SqlDbType.NText);
             parameterMobileDetails.Value = mobileDetails;
             myCommand.Parameters.Add(parameterMobileDetails);
 
@@ -97,4 +95,3 @@ namespace ASPNET.StarterKit.Portal {
         }
     }
 }
-

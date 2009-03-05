@@ -1,28 +1,23 @@
 using System;
 using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.MobileControls;
-using System.Data.SqlClient;
+using ASPNET.StarterKit.Portal.MobileControls;
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNET.StarterKit.Portal
+{
+    public class MobileDefault : MobilePage
+    {
+        private ArrayList authorizedTabs = new ArrayList();
+        protected DeviceSpecific DeviceSpecific1;
+        protected Form Form1;
+        protected Label Label1;
+        protected TabbedPanel TabView;
 
-    public class MobileDefault : System.Web.UI.MobileControls.MobilePage {
-        protected System.Web.UI.MobileControls.Label Label1;
-        protected ASPNET.StarterKit.Portal.MobileControls.TabbedPanel TabView;
-        protected System.Web.UI.MobileControls.Form Form1;
-        protected System.Web.UI.MobileControls.DeviceSpecific DeviceSpecific1;
-
-        public MobileDefault() {
-            Page.Init += new System.EventHandler(Page_Init);
+        public MobileDefault()
+        {
+            Page.Init += Page_Init;
         }
-
-        ArrayList authorizedTabs = new ArrayList();
 
         //*********************************************************************
         //
@@ -39,7 +34,8 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        private void Page_Init(object sender, EventArgs e) {
+        private void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -49,10 +45,10 @@ namespace ASPNET.StarterKit.Portal {
             int tabID = 1;
 
             // Obtain current tab index and tab id settings
-            String tabSetting = (String)HiddenVariables["ti"];
+            var tabSetting = (String) HiddenVariables["ti"];
 
-            if (tabSetting != null) {
-
+            if (tabSetting != null)
+            {
                 int comma = tabSetting.IndexOf(',');
                 tabIndex = Int32.Parse(tabSetting.Substring(0, comma));
                 tabID = Int32.Parse(tabSetting.Substring(comma + 1));
@@ -77,21 +73,21 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        private void PopulateTabStrip() {
-
+        private void PopulateTabStrip()
+        {
             // Obtain PortalSettings from Current Context
-            PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+            var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
 
-            for (int i=0;i < portalSettings.MobileTabs.Count; i++) {
-
+            for (int i = 0; i < portalSettings.MobileTabs.Count; i++)
+            {
                 // Create a MobilePortalTab control for the tab,
                 // and add it to the tab view.
 
-                TabStripDetails tab = (TabStripDetails)portalSettings.MobileTabs[i];
+                var tab = (TabStripDetails) portalSettings.MobileTabs[i];
 
-                if (PortalSecurity.IsInRoles(tab.AuthorizedRoles)) {
-
-                    MobilePortalTab tabPanel = new MobilePortalTab();
+                if (PortalSecurity.IsInRoles(tab.AuthorizedRoles))
+                {
+                    var tabPanel = new MobilePortalTab();
                     tabPanel.Title = tab.TabName;
 
                     TabView.Panes.Add(tabPanel);
@@ -108,29 +104,30 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        private void PopulateTabView(int tabIndex) {
-
+        private void PopulateTabView(int tabIndex)
+        {
             // Obtain PortalSettings from Current Context
-            PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+            var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
 
             // Ensure that the visiting user has access to the current page
-            if (PortalSecurity.IsInRoles(portalSettings.ActiveTab.AuthorizedRoles) == false) {
+            if (PortalSecurity.IsInRoles(portalSettings.ActiveTab.AuthorizedRoles) == false)
+            {
                 Response.Redirect("~/Admin/MobileAccessDenied.aspx");
             }
 
             // Obtain reference to container mobile tab
-            MobilePortalTab view = (MobilePortalTab) TabView.Panes[tabIndex];
+            var view = (MobilePortalTab) TabView.Panes[tabIndex];
 
             // Dynamically populate the view
-            if (portalSettings.ActiveTab.Modules.Count > 0) {
-
+            if (portalSettings.ActiveTab.Modules.Count > 0)
+            {
                 // Loop through each entry in the configuration system for this tab
-                foreach (ModuleSettings _moduleSettings in portalSettings.ActiveTab.Modules) {
-
+                foreach (ModuleSettings _moduleSettings in portalSettings.ActiveTab.Modules)
+                {
                     // Only add the module if it support Mobile devices
-                    if (_moduleSettings.ShowMobile) {
-
-                        MobilePortalModuleControl moduleControl = (MobilePortalModuleControl) Page.LoadControl(_moduleSettings.MobileSrc);
+                    if (_moduleSettings.ShowMobile)
+                    {
+                        var moduleControl = (MobilePortalModuleControl) Page.LoadControl(_moduleSettings.MobileSrc);
                         moduleControl.ModuleConfiguration = _moduleSettings;
 
                         view.Panes.Add(moduleControl);
@@ -149,19 +146,21 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        private void TabView_OnTabActivate(Object sender, EventArgs e) {
-
+        private void TabView_OnTabActivate(Object sender, EventArgs e)
+        {
             // Obtain PortalSettings from Current Context
-            PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+            var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
 
             int tabIndex = TabView.ActivePaneIndex;
             int tabID = ((TabStripDetails) portalSettings.MobileTabs[tabIndex]).TabId;
 
             // Store tabindex in a hidden variable to preserve accross round trips
-            if (tabIndex != 0) {
+            if (tabIndex != 0)
+            {
                 HiddenVariables["ti"] = String.Concat(tabIndex.ToString(), ",", tabID.ToString());
             }
-            else {
+            else
+            {
                 HiddenVariables.Remove("ti");
             }
 
@@ -172,7 +171,7 @@ namespace ASPNET.StarterKit.Portal {
             PopulateTabView(tabIndex);
 
             // Set the view to summary mode, where a summary of all the modules are shown.
-            ((MobilePortalTab)TabView.ActivePane).SummaryView = true;
+            ((MobilePortalTab) TabView.ActivePane).SummaryView = true;
         }
 
         //*********************************************************************
@@ -187,27 +186,28 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        private void LoadPortalSettings(int tabIndex, int tabId) {
-
+        private void LoadPortalSettings(int tabIndex, int tabId)
+        {
             // Obtain PortalSettings from Current Context
-            PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+            var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
 
-            if ((portalSettings.ActiveTab.TabId != tabId) || (portalSettings.ActiveTab.TabIndex != tabIndex)) {
-
+            if ((portalSettings.ActiveTab.TabId != tabId) || (portalSettings.ActiveTab.TabIndex != tabIndex))
+            {
                 HttpContext.Current.Items["PortalSettings"] = new PortalSettings(tabIndex, tabId);
             }
         }
 
         #region Web Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
-
+        private void InitializeComponent()
+        {
             this.TabView.TabActivate += new System.EventHandler(this.TabView_OnTabActivate);
-
         }
+
         #endregion
     }
 }

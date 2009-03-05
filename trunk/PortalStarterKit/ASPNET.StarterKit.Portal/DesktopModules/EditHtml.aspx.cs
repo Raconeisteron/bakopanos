@@ -1,25 +1,25 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNET.StarterKit.Portal
+{
+    public class EditHtml : Page
+    {
+        protected LinkButton cancelButton;
+        protected TextBox DesktopText;
+        protected TextBox MobileDetails;
+        protected TextBox MobileSummary;
 
-    public class EditHtml : System.Web.UI.Page {
-        protected System.Web.UI.WebControls.TextBox DesktopText;
-        protected System.Web.UI.WebControls.TextBox MobileSummary;
-        protected System.Web.UI.WebControls.TextBox MobileDetails;
-        protected System.Web.UI.WebControls.LinkButton updateButton;
-        protected System.Web.UI.WebControls.LinkButton cancelButton;
-    
 
-        int moduleId = 0;
+        private int moduleId;
+        protected LinkButton updateButton;
+
+        public EditHtml()
+        {
+            Page.Init += Page_Init;
+        }
 
         //****************************************************************
         //
@@ -31,35 +31,36 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
-
+        private void Page_Load(object sender, EventArgs e)
+        {
             // Determine ModuleId of Announcements Portal Module
             moduleId = Int32.Parse(Request.Params["Mid"]);
 
             // Verify that the current user has access to edit this module
-            if (PortalSecurity.HasEditPermissions(moduleId) == false) {
+            if (PortalSecurity.HasEditPermissions(moduleId) == false)
+            {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
 
-            if (Page.IsPostBack == false) {
-
+            if (Page.IsPostBack == false)
+            {
                 // Obtain a single row of text information
-                ASPNET.StarterKit.Portal.HtmlTextDB text = new ASPNET.StarterKit.Portal.HtmlTextDB();
+                var text = new HtmlTextDB();
                 SqlDataReader dr = text.GetHtmlText(moduleId);
-            
-                if (dr.Read()) {
 
+                if (dr.Read())
+                {
                     DesktopText.Text = Server.HtmlDecode((String) dr["DesktopHtml"]);
                     MobileSummary.Text = Server.HtmlDecode((String) dr["MobileSummary"]);
                     MobileDetails.Text = Server.HtmlDecode((String) dr["MobileDetails"]);
                 }
-                else {
-            
+                else
+                {
                     DesktopText.Text = "Todo: Add Content...";
                     MobileSummary.Text = "Todo: Add Content...";
                     MobileDetails.Text = "Todo: Add Content...";
                 }
-            
+
                 dr.Close();
 
                 // Store URL Referrer to return to portal
@@ -74,13 +75,14 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        private void UpdateBtn_Click(Object sender, EventArgs e) {
-
+        private void UpdateBtn_Click(Object sender, EventArgs e)
+        {
             // Create an instance of the HtmlTextDB component
-            ASPNET.StarterKit.Portal.HtmlTextDB text = new ASPNET.StarterKit.Portal.HtmlTextDB();
-        
+            var text = new HtmlTextDB();
+
             // Update the text within the HtmlText table
-            text.UpdateHtmlText(moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text), Server.HtmlEncode(MobileDetails.Text));
+            text.UpdateHtmlText(moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text),
+                                Server.HtmlEncode(MobileDetails.Text));
 
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
@@ -94,34 +96,33 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        private void CancelBtn_Click(Object sender, EventArgs e) {
-
+        private void CancelBtn_Click(Object sender, EventArgs e)
+        {
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
-        
-        public EditHtml() {
-            Page.Init += new System.EventHandler(Page_Init);
-        }
 
-        private void Page_Init(object sender, EventArgs e) {
+        private void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {    
+        private void InitializeComponent()
+        {
             this.updateButton.Click += new System.EventHandler(this.UpdateBtn_Click);
             this.cancelButton.Click += new System.EventHandler(this.CancelBtn_Click);
             this.Load += new System.EventHandler(this.Page_Load);
-
         }
-		#endregion
+
+        #endregion
     }
 }

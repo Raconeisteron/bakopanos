@@ -1,1 +1,2 @@
-<%@ Page Language="c#" CodeBehind="ViewDocument.aspx.cs" AutoEventWireup="false" Inherits="ASPNET.StarterKit.Portal.ViewDocument" %>
+<%@ Page Language="c#" CodeBehind="ViewDocument.aspx.cs" AutoEventWireup="false" Inherits="ViewDocument" %>
+<%@ Import Namespace="ASPNET.StarterKit.Portal"%>

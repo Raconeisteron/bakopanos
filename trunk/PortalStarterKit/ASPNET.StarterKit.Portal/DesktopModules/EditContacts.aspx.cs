@@ -1,32 +1,32 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNET.StarterKit.Portal
+{
+    public class EditContacts : Page
+    {
+        protected LinkButton cancelButton;
+        protected TextBox Contact1Field;
+        protected TextBox Contact2Field;
+        protected Label CreatedBy;
+        protected Label CreatedDate;
+        protected LinkButton deleteButton;
+        protected TextBox EmailField;
 
-    public class EditContacts : System.Web.UI.Page {
-        protected System.Web.UI.WebControls.TextBox NameField;
-        protected System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        protected System.Web.UI.WebControls.TextBox RoleField;
-        protected System.Web.UI.WebControls.TextBox EmailField;
-        protected System.Web.UI.WebControls.TextBox Contact1Field;
-        protected System.Web.UI.WebControls.TextBox Contact2Field;
-        protected System.Web.UI.WebControls.LinkButton updateButton;
-        protected System.Web.UI.WebControls.LinkButton cancelButton;
-        protected System.Web.UI.WebControls.LinkButton deleteButton;
-        protected System.Web.UI.WebControls.Label CreatedBy;
-        protected System.Web.UI.WebControls.Label CreatedDate;
-    
 
-        int itemId = 0;
-        int moduleId = 0;
+        private int itemId;
+        private int moduleId;
+        protected TextBox NameField;
+        protected RequiredFieldValidator RequiredFieldValidator1;
+        protected TextBox RoleField;
+        protected LinkButton updateButton;
+
+        public EditContacts()
+        {
+            Page.Init += Page_Init;
+        }
 
         //****************************************************************
         //
@@ -38,18 +38,20 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
-
+        private void Page_Load(object sender, EventArgs e)
+        {
             // Determine ModuleId of Contacts Portal Module
             moduleId = Int32.Parse(Request.Params["Mid"]);
 
             // Verify that the current user has access to edit this module
-            if (PortalSecurity.HasEditPermissions(moduleId) == false) {
+            if (PortalSecurity.HasEditPermissions(moduleId) == false)
+            {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
 
             // Determine ItemId of Contacts to Update
-            if (Request.Params["ItemId"] != null) {
+            if (Request.Params["ItemId"] != null)
+            {
                 itemId = Int32.Parse(Request.Params["ItemId"]);
             }
 
@@ -57,24 +59,24 @@ namespace ASPNET.StarterKit.Portal {
             // contact itemId value is specified, and if so populate page
             // contents with the contact details
 
-            if (Page.IsPostBack == false) {
-
-                if (itemId != 0) {
-
+            if (Page.IsPostBack == false)
+            {
+                if (itemId != 0)
+                {
                     // Obtain a single row of contact information
-                    ASPNET.StarterKit.Portal.ContactsDB contacts = new ASPNET.StarterKit.Portal.ContactsDB();
+                    var contacts = new ContactsDB();
                     SqlDataReader dr = contacts.GetSingleContact(itemId);
-                
+
                     // Read first row from database
                     dr.Read();
 
-					// Security check.  verify that itemid is within the module.
-					int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
-					if (dbModuleID != moduleId)
-					{
-						dr.Close();
-						Response.Redirect("~/Admin/EditAccessDenied.aspx");
-					}
+                    // Security check.  verify that itemid is within the module.
+                    int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
+                    if (dbModuleID != moduleId)
+                    {
+                        dr.Close();
+                        Response.Redirect("~/Admin/EditAccessDenied.aspx");
+                    }
 
                     NameField.Text = (String) dr["Name"];
                     RoleField.Text = (String) dr["Role"];
@@ -83,7 +85,7 @@ namespace ASPNET.StarterKit.Portal {
                     Contact2Field.Text = (String) dr["Contact2"];
                     CreatedBy.Text = (String) dr["CreatedByUser"];
                     CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
-                
+
                     // Close datareader
                     dr.Close();
                 }
@@ -101,23 +103,25 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        private void UpdateBtn_Click(Object sender, EventArgs e) {
-
+        private void UpdateBtn_Click(Object sender, EventArgs e)
+        {
             // Only Update if Entered data is Valid
-            if (Page.IsValid == true) {
-
+            if (Page.IsValid)
+            {
                 // Create an instance of the ContactsDB component
-                ASPNET.StarterKit.Portal.ContactsDB contacts = new ASPNET.StarterKit.Portal.ContactsDB();
+                var contacts = new ContactsDB();
 
-                if (itemId == 0) {
-
+                if (itemId == 0)
+                {
                     // Add the contact within the contacts table
-                    contacts.AddContact( moduleId, itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text, EmailField.Text, Contact1Field.Text, Contact2Field.Text );
+                    contacts.AddContact(moduleId, itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
+                                        EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
-                else {
-
+                else
+                {
                     // Update the contact within the contacts table
-                    contacts.UpdateContact( moduleId, itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text, EmailField.Text, Contact1Field.Text, Contact2Field.Text );
+                    contacts.UpdateContact(moduleId, itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
+                                           EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
 
                 // Redirect back to the portal home page
@@ -133,14 +137,14 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        private void DeleteBtn_Click(Object sender, EventArgs e) {
-
+        private void DeleteBtn_Click(Object sender, EventArgs e)
+        {
             // Only attempt to delete the item if it is an existing item
             // (new items will have "ItemId" of 0)
 
-            if (itemId != 0) {
-
-                ASPNET.StarterKit.Portal.ContactsDB contacts = new ASPNET.StarterKit.Portal.ContactsDB();
+            if (itemId != 0)
+            {
+                var contacts = new ContactsDB();
                 contacts.DeleteContact(itemId);
             }
 
@@ -156,35 +160,34 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        private void CancelBtn_Click(Object sender, EventArgs e) {
-
+        private void CancelBtn_Click(Object sender, EventArgs e)
+        {
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
-        
-        public EditContacts() {
-            Page.Init += new System.EventHandler(Page_Init);
-        }
 
-        private void Page_Init(object sender, EventArgs e) {
+        private void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {    
+        private void InitializeComponent()
+        {
             this.updateButton.Click += new System.EventHandler(this.UpdateBtn_Click);
             this.cancelButton.Click += new System.EventHandler(this.CancelBtn_Click);
             this.deleteButton.Click += new System.EventHandler(this.DeleteBtn_Click);
             this.Load += new System.EventHandler(this.Page_Load);
-
         }
-		#endregion
+
+        #endregion
     }
 }

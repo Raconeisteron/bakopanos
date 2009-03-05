@@ -1,17 +1,20 @@
 using System;
-using System.Data;
-using System.Drawing;
-using System.Web;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 
-namespace ASPNET.StarterKit.Portal {
-    public abstract class ModuleDefs : ASPNET.StarterKit.Portal.PortalModuleControl {
-        protected System.Web.UI.WebControls.DataList defsList;
-        protected System.Web.UI.WebControls.LinkButton AddDefBtn;
+namespace ASPNET.StarterKit.Portal
+{
+    public abstract class ModuleDefs : PortalModuleControl
+    {
+        protected LinkButton AddDefBtn;
+        protected DataList defsList;
 
-        int tabIndex = 0;
-        int tabId = 0;
+        private int tabId;
+        private int tabIndex;
+
+        public ModuleDefs()
+        {
+            Init += Page_Init;
+        }
 
         //*******************************************************
         //
@@ -20,23 +23,26 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
-
+        private void Page_Load(object sender, EventArgs e)
+        {
             // Verify that the current user has access to access this page
-            if (PortalSecurity.IsInRoles("Admins") == false) {
+            if (PortalSecurity.IsInRoles("Admins") == false)
+            {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
 
-            if (Request.Params["tabid"] != null) {
+            if (Request.Params["tabid"] != null)
+            {
                 tabId = Int32.Parse(Request.Params["tabid"]);
             }
-            if (Request.Params["tabindex"] != null) {
+            if (Request.Params["tabindex"] != null)
+            {
                 tabIndex = Int32.Parse(Request.Params["tabindex"]);
             }
 
             // If this is the first visit to the page, bind the definition data to the datalist
-            if (Page.IsPostBack == false) {
-
+            if (Page.IsPostBack == false)
+            {
                 BindData();
             }
         }
@@ -48,8 +54,8 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void AddDef_Click(Object Sender, EventArgs e) {
-
+        private void AddDef_Click(Object Sender, EventArgs e)
+        {
             // redirect to edit page
             Response.Redirect("~/Admin/ModuleDefinitions.aspx?defId=-1&tabindex=" + tabIndex + "&tabid=" + tabId);
         }
@@ -62,14 +68,15 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void DefsList_ItemCommand(object sender, DataListCommandEventArgs e) {
-
-            int moduleDefId = (int) defsList.DataKeys[e.Item.ItemIndex];
+        private void DefsList_ItemCommand(object sender, DataListCommandEventArgs e)
+        {
+            var moduleDefId = (int) defsList.DataKeys[e.Item.ItemIndex];
 
             // redirect to edit page
-            Response.Redirect("~/Admin/ModuleDefinitions.aspx?defId=" + moduleDefId + "&tabindex=" + tabIndex + "&tabid=" + tabId);
+            Response.Redirect("~/Admin/ModuleDefinitions.aspx?defId=" + moduleDefId + "&tabindex=" + tabIndex +
+                              "&tabid=" + tabId);
         }
-    
+
         //*******************************************************
         //
         // The BindData helper method is used to bind the list of 
@@ -77,39 +84,39 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        void BindData() {
-
+        private void BindData()
+        {
             // Obtain PortalSettings from Current Context
-            PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
-		
+            var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+
             // Get the portal's defs from the database
-            Configuration config = new Configuration();
-        
+            var config = new Configuration();
+
             defsList.DataSource = config.GetModuleDefinitions(portalSettings.PortalId);
             defsList.DataBind();
         }
-        
-        public ModuleDefs() {
-            this.Init += new System.EventHandler(Page_Init);
-        }
 
-        private void Page_Init(object sender, EventArgs e) {
+        private void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         ///		Required method for Designer support - do not modify
         ///		the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             this.AddDefBtn.Click += new System.EventHandler(this.AddDef_Click);
-            this.defsList.ItemCommand += new System.Web.UI.WebControls.DataListCommandEventHandler(this.DefsList_ItemCommand);
+            this.defsList.ItemCommand +=
+                new System.Web.UI.WebControls.DataListCommandEventHandler(this.DefsList_ItemCommand);
             this.Load += new System.EventHandler(this.Page_Load);
-
         }
-		#endregion
+
+        #endregion
     }
 }

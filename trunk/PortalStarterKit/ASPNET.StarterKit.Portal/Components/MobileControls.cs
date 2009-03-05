@@ -1,19 +1,19 @@
 using System;
-using System.Data;
-using System.Drawing;
 using System.Collections;
-using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Web;
+using System.Drawing;
 using System.Web.UI;
 using System.Web.UI.MobileControls;
 using System.Web.UI.MobileControls.Adapters;
+using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal.MobileControls;
+using Panel=System.Web.UI.MobileControls.Panel;
+using Style=System.Web.UI.MobileControls.Style;
 
-[ assembly:TagPrefix("ASPNET.StarterKit.Portal.MobileControls", "portal") ]
+[assembly: TagPrefix("ASPNET.StarterKit.Portal.MobileControls", "portal")]
 
-namespace ASPNET.StarterKit.Portal {
-
+namespace ASPNET.StarterKit.Portal
+{
     //*********************************************************************
     //
     // MobilePortalModuleControl
@@ -25,8 +25,8 @@ namespace ASPNET.StarterKit.Portal {
     //
     //*********************************************************************
 
-    public class MobilePortalModuleControl : UserControl, IContentsPane {
-
+    public class MobilePortalModuleControl : UserControl, IContentsPane
+    {
         private ModuleSettings _moduleConfiguration;
         private Control _summaryControl;
 
@@ -38,14 +38,10 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public ModuleSettings ModuleConfiguration {
-
-            get {
-                return _moduleConfiguration;
-            }
-            set {
-                _moduleConfiguration = value;
-            }
+        public ModuleSettings ModuleConfiguration
+        {
+            get { return _moduleConfiguration; }
+            set { _moduleConfiguration = value; }
         }
 
 
@@ -57,11 +53,9 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public MobilePortalTab Tab {
-
-            get {
-                return Parent as MobilePortalTab;
-            }
+        public MobilePortalTab Tab
+        {
+            get { return Parent as MobilePortalTab; }
         }
 
 
@@ -73,12 +67,10 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        [Browsable(false),DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public String ModuleTitle {
-
-            get {
-                return _moduleConfiguration.ModuleTitle;
-            }
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public String ModuleTitle
+        {
+            get { return _moduleConfiguration.ModuleTitle; }
         }
 
         //*********************************************************************
@@ -89,12 +81,10 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        [Browsable(false),DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int ModuleId {
-
-            get {
-                return _moduleConfiguration.ModuleId;
-            }
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int ModuleId
+        {
+            get { return _moduleConfiguration.ModuleId; }
         }
 
         //*********************************************************************
@@ -106,11 +96,11 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        String IPanelPane.Title {
+        #region IContentsPane Members
 
-            get {
-                return _moduleConfiguration.ModuleTitle;
-            }
+        String IPanelPane.Title
+        {
+            get { return _moduleConfiguration.ModuleTitle; }
         }
 
         //*********************************************************************
@@ -125,10 +115,12 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        void IContentsPane.OnSetSummaryMode() {
-
+        void IContentsPane.OnSetSummaryMode()
+        {
             UpdateVisibility();
         }
+
+        #endregion
 
         //*********************************************************************
         //
@@ -141,8 +133,8 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        protected override void OnInit(EventArgs e) {
-
+        protected override void OnInit(EventArgs e)
+        {
             base.OnInit(e);
 
             // Look for a control that renders the summary.
@@ -150,11 +142,11 @@ namespace ASPNET.StarterKit.Portal {
 
             // There could be no summary control, or the summary control may be
             // an empty panel. If there's no summary UI, automatically generate one.
-            if (_summaryControl == null || (_summaryControl is Panel && !_summaryControl.HasControls())) {
-
+            if (_summaryControl == null || (_summaryControl is Panel && !_summaryControl.HasControls()))
+            {
                 // Create and initialize a new LinkCommand control
                 Command command = new LinkCommand();
-                command.Text = this.ModuleTitle;
+                command.Text = ModuleTitle;
 
                 // Set the command name to the details command, so that
                 // event bubbling can recognize it as a command to go to
@@ -162,12 +154,12 @@ namespace ASPNET.StarterKit.Portal {
                 command.CommandName = ContentsPanel.DetailsCommand;
 
                 // Add it to the appropriate place.
-                if (_summaryControl != null) {
-
+                if (_summaryControl != null)
+                {
                     _summaryControl.Controls.Add(command);
                 }
-                else {
-
+                else
+                {
                     Controls.Add(command);
                     _summaryControl = command;
                 }
@@ -184,8 +176,8 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        protected override void OnLoad(EventArgs e) {
-
+        protected override void OnLoad(EventArgs e)
+        {
             base.OnLoad(e);
             UpdateVisibility();
         }
@@ -202,15 +194,17 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        private void UpdateVisibility() {
-
+        private void UpdateVisibility()
+        {
             bool summary = Tab != null && Tab.SummaryView;
-            
-            foreach (Control child in Controls) {
+
+            foreach (Control child in Controls)
+            {
                 child.Visible = !summary;
             }
-            
-            if (_summaryControl != null) {
+
+            if (_summaryControl != null)
+            {
                 _summaryControl.Visible = summary;
             }
         }
@@ -226,12 +220,13 @@ namespace ASPNET.StarterKit.Portal {
     //
     //*********************************************************************
 
-    public class MobilePortalTab : ContentsPanel {
+    public class MobilePortalTab : ContentsPanel
+    {
     }
 }
 
-namespace ASPNET.StarterKit.Portal.MobileControls {
-
+namespace ASPNET.StarterKit.Portal.MobileControls
+{
     //*********************************************************************
     //
     // LinkCommand Class
@@ -244,7 +239,8 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
     //
     //*********************************************************************
 
-    public class LinkCommand : Command {
+    public class LinkCommand : Command
+    {
     }
 
     //*********************************************************************
@@ -258,8 +254,8 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
     //
     //*********************************************************************
 
-    public class HtmlLinkCommandAdapter : HtmlCommandAdapter {
-
+    public class HtmlLinkCommandAdapter : HtmlCommandAdapter
+    {
         //*********************************************************************
         //
         // HtmlLinkCommandAdapter.Render Method
@@ -268,7 +264,8 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public override void Render(HtmlMobileTextWriter writer) {
+        public override void Render(HtmlMobileTextWriter writer)
+        {
             // Render a postback event as an anchor.
             RenderPostBackEventAsAnchor(writer, null, Control.Text);
 
@@ -326,10 +323,11 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
     //
     //*********************************************************************
 
-    public interface IPanelPane {
+    public interface IPanelPane
+    {
         String Title { get; }
     }
-    
+
     //*********************************************************************
     //
     // IContentsPane interface
@@ -346,11 +344,11 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
     //
     //*********************************************************************
 
-    public interface IContentsPane : IPanelPane {
-
+    public interface IContentsPane : IPanelPane
+    {
         void OnSetSummaryMode();
     }
-    
+
     //*********************************************************************
     //
     // ChildPanel Class
@@ -362,7 +360,8 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
     //
     //*********************************************************************
 
-    public class ChildPanel : Panel, IPanelPane, INamingContainer {
+    public class ChildPanel : Panel, IPanelPane, INamingContainer
+    {
         //*********************************************************************
         //
         // IPanelPane.Title Property
@@ -370,12 +369,6 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         // Returns the title of the pane.
         //
         //*********************************************************************
-
-        String IPanelPane.Title {
-            get {
-                return this.Title;
-            }
-        }
 
         //*********************************************************************
         //
@@ -385,15 +378,18 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public String Title {
-            get {
+        public String Title
+        {
+            get
+            {
                 // Load the title from the ViewState property bag, 
                 // defaulting to an empty String.
-                String s = (String)ViewState["Title"];
+                var s = (String) ViewState["Title"];
                 return s != null ? s : String.Empty;
             }
 
-            set {
+            set
+            {
                 // Save the title to the ViewState property bag.
                 ViewState["Title"] = value;
             }
@@ -409,11 +405,19 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        protected override bool PaginateChildren {
-            get {
-                return true;
-            }
+        protected override bool PaginateChildren
+        {
+            get { return true; }
         }
+
+        #region IPanelPane Members
+
+        String IPanelPane.Title
+        {
+            get { return Title; }
+        }
+
+        #endregion
     }
 
     //*********************************************************************
@@ -425,10 +429,11 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
     //
     //*********************************************************************
 
-    public class MultiPanel : ChildPanel {
+    public class MultiPanel : ChildPanel
+    {
         // Collection of panes.
         private PanelPaneCollection _panes;
-    
+
         //*********************************************************************
         //
         // MultiPanel.Panes Property
@@ -437,10 +442,13 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public PanelPaneCollection Panes {
-            get {
+        public PanelPaneCollection Panes
+        {
+            get
+            {
                 // If not yet created, create the collection.
-                if (_panes == null) {
+                if (_panes == null)
+                {
                     _panes = new PanelPaneCollection(this);
                 }
                 return _panes;
@@ -455,19 +463,23 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public IPanelPane ActivePane {
-            get {
+        public IPanelPane ActivePane
+        {
+            get
+            {
                 // Get the index of the active pane, and use it to
                 // look up the active pane.
                 int index = ActivePaneIndex;
                 return (index != -1) ? Panes[index] : null;
             }
 
-            set {
+            set
+            {
                 // Find the index of the given pane, and use it to
                 // set the active pane index.
                 int index = Panes.IndexOf(value);
-                if (index == -1) {
+                if (index == -1)
+                {
                     throw new Exception("Pane not in Panes collection");
                 }
                 ActivePaneIndex = index;
@@ -482,22 +494,28 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public int ActivePaneIndex {
-            get {
+        public int ActivePaneIndex
+        {
+            get
+            {
                 // Get the index from the ViewState property bag, defaulting
                 // to the first pane if not found.
                 Object o = ViewState["ActivePaneIndex"];
-                if (o != null) {
-                    return (int)o;
+                if (o != null)
+                {
+                    return (int) o;
                 }
-                else {
+                else
+                {
                     return (Panes.Count > 0) ? 0 : -1;
                 }
             }
 
-            set {
+            set
+            {
                 // Make sure index is within range.
-                if (value < 0 || value >= Panes.Count) {
+                if (value < 0 || value >= Panes.Count)
+                {
                     throw new Exception("Active pane index out of range");
                 }
 
@@ -517,11 +535,13 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        protected override void AddParsedSubObject(Object obj) {
-            IPanelPane pane = obj as IPanelPane;
-        
+        protected override void AddParsedSubObject(Object obj)
+        {
+            var pane = obj as IPanelPane;
+
             // Only allow panes as children.
-            if (pane == null) {
+            if (pane == null)
+            {
                 throw new Exception("A MultiPanel control can only contain panes.");
             }
 
@@ -541,8 +561,9 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        protected override void OnRender(HtmlTextWriter writer) {
-            ((Control)ActivePane).RenderControl(writer);
+        protected override void OnRender(HtmlTextWriter writer)
+        {
+            ((Control) ActivePane).RenderControl(writer);
         }
 
         //*********************************************************************
@@ -555,23 +576,26 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public override void PaginateRecursive(ControlPager pager) {
-            Control activePane = (Control)ActivePane;
+        public override void PaginateRecursive(ControlPager pager)
+        {
+            var activePane = (Control) ActivePane;
 
             // Active pane may not be a mobile control (e.g. it may be
             // a user control).
-            MobileControl mobileCtl = activePane as MobileControl;
+            var mobileCtl = activePane as MobileControl;
 
-            if (mobileCtl != null) {
+            if (mobileCtl != null)
+            {
                 // Paginate the children.
                 mobileCtl.PaginateRecursive(pager);
 
                 // Set own first and last page from results of child
                 // pagination.
-                this.FirstPage = mobileCtl.FirstPage;
-                this.LastPage = pager.PageCount;
+                FirstPage = mobileCtl.FirstPage;
+                LastPage = pager.PageCount;
             }
-            else {
+            else
+            {
                 // Call the DoPaginateChildren utility method to 
                 // paginate a non-mobile child.
                 int firstAssignedPage = -1;
@@ -579,13 +603,15 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
 
                 // Set own first and last page from results of child
                 // pagination.
-                if (firstAssignedPage != -1) {
-                    this.FirstPage = firstAssignedPage;
+                if (firstAssignedPage != -1)
+                {
+                    FirstPage = firstAssignedPage;
                 }
-                else {
-                    this.FirstPage = pager.GetPage(100);
+                else
+                {
+                    FirstPage = pager.GetPage(100);
                 }
-                this.LastPage = pager.PageCount;
+                LastPage = pager.PageCount;
             }
         }
 
@@ -598,24 +624,31 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        private static void DoPaginateChildren(ControlPager pager, Control ctl, ref int firstAssignedPage) {
+        private static void DoPaginateChildren(ControlPager pager, Control ctl, ref int firstAssignedPage)
+        {
             // Search all children of the control.
-            if (ctl.HasControls()) {
-                foreach (Control child in ctl.Controls) {
-                    if (child.Visible) {
+            if (ctl.HasControls())
+            {
+                foreach (Control child in ctl.Controls)
+                {
+                    if (child.Visible)
+                    {
                         // Look for a visible mobile control.
-                        MobileControl mobileCtl = child as MobileControl;
-                        if (mobileCtl != null) {
+                        var mobileCtl = child as MobileControl;
+                        if (mobileCtl != null)
+                        {
                             // Paginate the mobile control.
                             mobileCtl.PaginateRecursive(pager);
 
                             // If this is the first control being paginated,
                             // set the first assigned page.
-                            if (firstAssignedPage == -1) {
+                            if (firstAssignedPage == -1)
+                            {
                                 firstAssignedPage = mobileCtl.FirstPage;
                             }
                         }
-                        else if (child is UserControl) {
+                        else if (child is UserControl)
+                        {
                             // Continue paginating user controls, which may contain
                             // their own mobile children.
                             DoPaginateChildren(pager, child, ref firstAssignedPage);
@@ -624,7 +657,6 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
                 }
             }
         }
-
     }
 
     //*********************************************************************
@@ -637,13 +669,15 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
     //
     //*********************************************************************
 
-    public class PanelPaneCollection : ICollection {
+    public class PanelPaneCollection : ICollection
+    {
         // Private instance variables.
-        private MultiPanel _parent;
-        private ArrayList _items = new ArrayList();
+        private readonly ArrayList _items = new ArrayList();
+        private readonly MultiPanel _parent;
 
         // Can only be instantiated by MultiPanel.
-        internal PanelPaneCollection(MultiPanel parent) {
+        internal PanelPaneCollection(MultiPanel parent)
+        {
             // Save off reference to parent control.
             _parent = parent;
         }
@@ -656,9 +690,108 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public void Add(IPanelPane pane) {
+        //*********************************************************************
+        //
+        // PanelPaneCollection.this[] Property
+        //
+        // Returns a pane by index.
+        //
+        //*********************************************************************
+
+        public IPanelPane this[int index]
+        {
+            get { return (IPanelPane) _items[index]; }
+        }
+
+        //*********************************************************************
+        //
+        // PanelPaneCollection.Count Property
+        //
+        // Returns the number of panes in the collection.
+        //
+        //*********************************************************************
+
+        //*********************************************************************
+        //
+        // PanelPaneCollection.IsReadOnly Property
+        //
+        // Returns whether the collection is read-only.
+        //
+        //*********************************************************************
+
+        public bool IsReadOnly
+        {
+            get { return _items.IsReadOnly; }
+        }
+
+        #region ICollection Members
+
+        public int Count
+        {
+            get { return _items.Count; }
+        }
+
+        //*********************************************************************
+        //
+        // PanelPaneCollection.IsSynchronized Property
+        //
+        // Returns whether the collection is synchronized.
+        //
+        //*********************************************************************
+
+        public bool IsSynchronized
+        {
+            get { return false; }
+        }
+
+        //*********************************************************************
+        //
+        // PanelPaneCollection.SyncRoot Property
+        //
+        // Returns the collection's synchronization root.
+        //
+        //*********************************************************************
+
+        public Object SyncRoot
+        {
+            get { return this; }
+        }
+
+        //*********************************************************************
+        //
+        // PanelPaneCollection.CopyTo Method
+        //
+        // Copies the contents of the collection to an array.
+        //
+        //*********************************************************************
+
+        public void CopyTo(Array array, int index)
+        {
+            foreach (Object item in _items)
+            {
+                array.SetValue(item, index++);
+            }
+        }
+
+        //*********************************************************************
+        //
+        // PanelPaneCollection.GetEnumerator Method
+        //
+        // Returns an object capable of enumerating the collection.
+        //
+        //*********************************************************************
+
+        public virtual IEnumerator GetEnumerator()
+        {
+            return _items.GetEnumerator();
+        }
+
+        #endregion
+
+        public void Add(IPanelPane pane)
+        {
             // Add the pane to the parent's child controls collection.
-            _parent.Controls.Add((Control)pane);
+            _parent.Controls.Add((Control) pane);
             _items.Add(pane);
         }
 
@@ -672,7 +805,8 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        internal void AddInternal(IPanelPane pane) {
+        internal void AddInternal(IPanelPane pane)
+        {
             _items.Add(pane);
         }
 
@@ -684,9 +818,10 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public void Remove(IPanelPane pane) {
+        public void Remove(IPanelPane pane)
+        {
             // Remove the pane from the parent's child controls collection.
-            _parent.Controls.Remove((Control)pane);
+            _parent.Controls.Remove((Control) pane);
             _items.Remove(pane);
         }
 
@@ -698,120 +833,19 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public void Clear() {
+        public void Clear()
+        {
             // Remove all child controls from the parent.
-            foreach (Control pane in _items) {
+            foreach (Control pane in _items)
+            {
                 _parent.Controls.Remove(pane);
             }
             _items.Clear();
         }
 
-        //*********************************************************************
-        //
-        // PanelPaneCollection.this[] Property
-        //
-        // Returns a pane by index.
-        //
-        //*********************************************************************
-
-        public IPanelPane this[int index] {
-            get {
-                return (IPanelPane)_items[index];
-            }
-        }
-
-        //*********************************************************************
-        //
-        // PanelPaneCollection.Count Property
-        //
-        // Returns the number of panes in the collection.
-        //
-        //*********************************************************************
-
-        public int Count {
-            get {
-                return _items.Count;
-            }
-        }
-
-        //*********************************************************************
-        //
-        // PanelPaneCollection.IndexOf Method
-        //
-        // Returns the index of a given pane.
-        //
-        //*********************************************************************
-
-        public int IndexOf(IPanelPane pane) {
+        public int IndexOf(IPanelPane pane)
+        {
             return _items.IndexOf(pane);
-        }
-
-        //*********************************************************************
-        //
-        // PanelPaneCollection.IsReadOnly Property
-        //
-        // Returns whether the collection is read-only.
-        //
-        //*********************************************************************
-
-        public bool IsReadOnly {
-            get {
-                return _items.IsReadOnly;
-            }
-        }
-
-        //*********************************************************************
-        //
-        // PanelPaneCollection.IsSynchronized Property
-        //
-        // Returns whether the collection is synchronized.
-        //
-        //*********************************************************************
-
-        public bool IsSynchronized {
-            get {
-                return false;
-            }
-        }
-
-        //*********************************************************************
-        //
-        // PanelPaneCollection.SyncRoot Property
-        //
-        // Returns the collection's synchronization root.
-        //
-        //*********************************************************************
-
-        public Object SyncRoot {
-            get {
-                return this;
-            }
-        }
-
-        //*********************************************************************
-        //
-        // PanelPaneCollection.CopyTo Method
-        //
-        // Copies the contents of the collection to an array.
-        //
-        //*********************************************************************
-
-        public void CopyTo(Array array, int index) {
-            foreach (Object item in _items) {
-                array.SetValue (item, index++);
-            }
-        }
-
-        //*********************************************************************
-        //
-        // PanelPaneCollection.GetEnumerator Method
-        //
-        // Returns an object capable of enumerating the collection.
-        //
-        //*********************************************************************
-
-        public virtual IEnumerator GetEnumerator() {
-            return _items.GetEnumerator ();
         }
     }
 
@@ -825,7 +859,8 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
     //
     //*********************************************************************
 
-    public class TabbedPanel : MultiPanel, IPostBackEventHandler {
+    public class TabbedPanel : MultiPanel, IPostBackEventHandler
+    {
         //*********************************************************************
         //
         // TabbedPanel.OnRender Method
@@ -836,10 +871,6 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        protected override void OnRender(HtmlTextWriter writer) {
-            Adapter.Render(writer);
-        }
-
         //*********************************************************************
         //
         // TabbedPanel.TabColor Property
@@ -849,15 +880,18 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public Color TabColor {
-            get {
+        public Color TabColor
+        {
+            get
+            {
                 // Get the color from the ViewState property bag, defaulting
                 // to an empty color.
                 Object o = ViewState["TabColor"];
-                return o != null ? (Color)o : Color.Empty;
+                return o != null ? (Color) o : Color.Empty;
             }
 
-            set {
+            set
+            {
                 // Save the color in the ViewState property bag.
                 ViewState["TabColor"] = value;
             }
@@ -872,15 +906,18 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public Color TabTextColor {
-            get {
+        public Color TabTextColor
+        {
+            get
+            {
                 // Get the color from the ViewState property bag, defaulting
                 // to an empty color.
                 Object o = ViewState["TabTextColor"];
-                return o != null ? (Color)o : Color.Empty;
+                return o != null ? (Color) o : Color.Empty;
             }
 
-            set {
+            set
+            {
                 // Save the color in the ViewState property bag.
                 ViewState["TabTextColor"] = value;
             }
@@ -895,15 +932,18 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public Color ActiveTabColor {
-            get {
+        public Color ActiveTabColor
+        {
+            get
+            {
                 // Get the color from the ViewState property bag, defaulting
                 // to an empty color.
                 Object o = ViewState["ActiveTabColor"];
-                return o != null ? (Color)o : Color.Empty;
+                return o != null ? (Color) o : Color.Empty;
             }
 
-            set {
+            set
+            {
                 // Save the color in the ViewState property bag.
                 ViewState["ActiveTabColor"] = value;
             }
@@ -918,15 +958,18 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public Color ActiveTabTextColor {
-            get {
+        public Color ActiveTabTextColor
+        {
+            get
+            {
                 // Get the color from the ViewState property bag, defaulting
                 // to an empty color.
                 Object o = ViewState["ActiveTabTextColor"];
-                return o != null ? (Color)o : Color.Empty;
+                return o != null ? (Color) o : Color.Empty;
             }
 
-            set {
+            set
+            {
                 // Save the color in the ViewState property bag.
                 ViewState["ActiveTabTextColor"] = value;
             }
@@ -941,15 +984,18 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public int TabsPerRow {
-            get {
+        public int TabsPerRow
+        {
+            get
+            {
                 // Get the value from the ViewState property bag, defaulting
                 // to 4.
                 Object o = ViewState["TabsPerRow"];
-                return o != null ? (int)o : 4;
+                return o != null ? (int) o : 4;
             }
 
-            set {
+            set
+            {
                 // Save the value in the ViewState property bag.
                 ViewState["TabsPerRow"] = value;
             }
@@ -965,8 +1011,11 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public virtual void RaisePostBackEvent(String eventArgument) {
-            EventArgs e = new EventArgs();
+        #region IPostBackEventHandler Members
+
+        public virtual void RaisePostBackEvent(String eventArgument)
+        {
+            var e = new EventArgs();
 
             // Call Deactivate event handler.
             OnTabDeactivate(e);
@@ -975,6 +1024,13 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
 
             // Call Activate event handler.
             OnTabActivate(e);
+        }
+
+        #endregion
+
+        protected override void OnRender(HtmlTextWriter writer)
+        {
+            Adapter.Render(writer);
         }
 
         // Public events.
@@ -990,8 +1046,10 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        protected virtual void OnTabActivate(EventArgs e) {
-            if (TabActivate != null) {
+        protected virtual void OnTabActivate(EventArgs e)
+        {
+            if (TabActivate != null)
+            {
                 TabActivate(this, e);
             }
         }
@@ -1005,8 +1063,10 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        protected virtual void OnTabDeactivate(EventArgs e) {
-            if (TabDeactivate != null) {
+        protected virtual void OnTabDeactivate(EventArgs e)
+        {
+            if (TabDeactivate != null)
+            {
                 TabDeactivate(this, e);
             }
         }
@@ -1024,7 +1084,8 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
     //
     //*********************************************************************
 
-    public class ContentsPanel : MultiPanel {
+    public class ContentsPanel : MultiPanel
+    {
         // Constants for command names that can be used for
         // event bubbling in custom UI.
         public static readonly String DetailsCommand = "details";
@@ -1039,20 +1100,24 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public bool SummaryView {
-            get {
+        public bool SummaryView
+        {
+            get
+            {
                 // Get the setting from the ViewState property bag, defaulting
                 // to true.
                 Object o = ViewState["SummaryView"];
-                return (o != null) ? (bool)o : true;
+                return (o != null) ? (bool) o : true;
             }
 
-            set {
+            set
+            {
                 // Save the setting in the ViewState property bag.
                 ViewState["SummaryView"] = value;
 
                 // Notify each child pane of the switched mode.
-                foreach (IContentsPane pane in Panes) {
+                foreach (IContentsPane pane in Panes)
+                {
                     pane.OnSetSummaryMode();
                 }
             }
@@ -1067,14 +1132,17 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        protected override void Render(HtmlTextWriter writer) {
-            if (SummaryView) {
+        protected override void Render(HtmlTextWriter writer)
+        {
+            if (SummaryView)
+            {
                 // Render all panes in Summary view.
                 RenderChildren(writer);
             }
-            else {
+            else
+            {
                 // Render only the active pane in Details view.
-                ((Control)ActivePane).RenderControl(writer);
+                ((Control) ActivePane).RenderControl(writer);
             }
         }
 
@@ -1091,21 +1159,26 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        protected override bool OnBubbleEvent(Object sender, EventArgs e) {
+        protected override bool OnBubbleEvent(Object sender, EventArgs e)
+        {
             bool handled = false;
-            System.Web.UI.WebControls.CommandEventArgs commandArgs = e as System.Web.UI.WebControls.CommandEventArgs;
-            if (commandArgs != null && commandArgs.CommandName != null) {
+            var commandArgs = e as CommandEventArgs;
+            if (commandArgs != null && commandArgs.CommandName != null)
+            {
                 String commandName = commandArgs.CommandName.ToLower();
 
                 // Look for recognized command names.
 
-                if (commandName == DetailsCommand) {
+                if (commandName == DetailsCommand)
+                {
                     // To show details, first find the child pane in which the
                     // event source is located.
-                    Control ctl = (Control)sender;
-                    while (ctl != null && ctl != this) {
-                        IPanelPane pane = ctl as IPanelPane;
-                        if (pane != null) {
+                    var ctl = (Control) sender;
+                    while (ctl != null && ctl != this)
+                    {
+                        var pane = ctl as IPanelPane;
+                        if (pane != null)
+                        {
                             // Make the pane active, and switch into Details view.
                             ActivePane = pane;
                             SummaryView = false;
@@ -1115,7 +1188,8 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
                         ctl = ctl.Parent;
                     }
                 }
-                else if (commandName == SummaryCommand) {
+                else if (commandName == SummaryCommand)
+                {
                     // Switch into Summary view.
                     SummaryView = true;
                     handled = true;
@@ -1134,7 +1208,8 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public void ShowDetails(IPanelPane pane) {
+        public void ShowDetails(IPanelPane pane)
+        {
             SummaryView = false;
             ActivePane = pane;
         }
@@ -1149,7 +1224,8 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
     //
     //*********************************************************************
 
-    public class HtmlTabbedPanelAdapter : HtmlControlAdapter {
+    public class HtmlTabbedPanelAdapter : HtmlControlAdapter
+    {
         //*********************************************************************
         //
         // HtmlTabbedPanelAdapter.Control Property
@@ -1158,10 +1234,9 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        protected new TabbedPanel Control {
-            get {
-                return (TabbedPanel)base.Control;
-            }
+        protected new TabbedPanel Control
+        {
+            get { return (TabbedPanel) base.Control; }
         }
 
         //*********************************************************************
@@ -1173,26 +1248,29 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
         //
         //*********************************************************************
 
-        public override void Render(HtmlMobileTextWriter writer) {
+        public override void Render(HtmlMobileTextWriter writer)
+        {
             IPanelPane activePane = Control.ActivePane;
             int tabsPerRow = Control.TabsPerRow;
             PanelPaneCollection panes = Control.Panes;
             int paneCount = panes.Count;
 
             // Figure out the number of visible panes.
-            int[] visiblePanes = new int[paneCount];
+            var visiblePanes = new int[paneCount];
             int visiblePaneCount = 0;
-            for (int i = 0; i < paneCount; i++) {
-                if (((Control)panes[i]).Visible) {
+            for (int i = 0; i < paneCount; i++)
+            {
+                if (((Control) panes[i]).Visible)
+                {
                     visiblePanes[visiblePaneCount++] = i;
                 }
             }
 
             // Calculate how many rows are necessary.
-            int rows = (visiblePaneCount + tabsPerRow - 1) / tabsPerRow;
+            int rows = (visiblePaneCount + tabsPerRow - 1)/tabsPerRow;
 
             // make sure tabsPerRow doesn't exceed the number of visible panes
-            tabsPerRow = (Control.TabsPerRow >  visiblePaneCount) ? visiblePaneCount : Control.TabsPerRow;
+            tabsPerRow = (Control.TabsPerRow > visiblePaneCount) ? visiblePaneCount : Control.TabsPerRow;
 
             // Open the table.
             writer.WriteBeginTag("table");
@@ -1201,17 +1279,20 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
             writer.WriteAttribute("border", "0");
             writer.WriteLine(">");
 
-            for (int row = rows - 1; row >= 0; row--) {
+            for (int row = rows - 1; row >= 0; row--)
+            {
                 writer.WriteFullBeginTag("tr");
                 writer.WriteLine();
-                for (int col = 0; col < tabsPerRow; col++) {
+                for (int col = 0; col < tabsPerRow; col++)
+                {
                     writer.WriteBeginTag("td");
                     writer.WriteAttribute("width", "0");
                     writer.Write(">");
                     writer.WriteEndTag("td");
 
-                    int i = row * tabsPerRow + col;
-                    if (row > 0 && i >= visiblePaneCount) {
+                    int i = row*tabsPerRow + col;
+                    if (row > 0 && i >= visiblePaneCount)
+                    {
                         writer.WriteFullBeginTag("td");
                         writer.WriteEndTag("td");
                         continue;
@@ -1219,7 +1300,8 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
 
                     int index = visiblePanes[i];
                     IPanelPane child = panes[index];
-                    if (child == activePane) {
+                    if (child == activePane)
+                    {
                         writer.WriteBeginTag("td");
                         writer.WriteAttribute("bgcolor", GetColorString(Control.ActiveTabColor, "#333333"));
                         writer.Write(">");
@@ -1241,7 +1323,8 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
                         writer.WriteEndTag("td");
                         writer.WriteLine();
                     }
-                    else {
+                    else
+                    {
                         writer.WriteBeginTag("td");
                         writer.WriteAttribute("bgcolor", GetColorString(Control.TabColor, "#cccccc"));
                         writer.Write(">");
@@ -1269,7 +1352,8 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
                 writer.WriteEndTag("tr");
                 writer.WriteLine();
 
-                if (row > 0) {
+                if (row > 0)
+                {
                     writer.WriteFullBeginTag("tr");
                     writer.WriteBeginTag("td");
                     writer.WriteAttribute("height", "1");
@@ -1296,90 +1380,105 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
             writer.WriteEndTag("tr");
             writer.WriteEndTag("table");
             writer.WriteBreak();
-        
-            ((Control)activePane).RenderControl(writer);
+
+            ((Control) activePane).RenderControl(writer);
         }
 
-        private static String GetColorString(Color color, String defaultColor) {
+        private static String GetColorString(Color color, String defaultColor)
+        {
             return color != Color.Empty ? ColorTranslator.ToHtml(color) : defaultColor;
         }
     }
 
-    public class WmlTabbedPanelAdapter : WmlControlAdapter {
+    public class WmlTabbedPanelAdapter : WmlControlAdapter
+    {
         private List _menu;
 
-        protected new TabbedPanel Control {
-            get {
-                return (TabbedPanel)base.Control;
-            }
+        protected new TabbedPanel Control
+        {
+            get { return (TabbedPanel) base.Control; }
         }
 
-        public override void OnInit(EventArgs e) {
+        public override void OnInit(EventArgs e)
+        {
             _menu = new List();
-            _menu.ItemCommand += new ListCommandEventHandler(OnListItemCommand);
+            _menu.ItemCommand += OnListItemCommand;
             Control.Controls.AddAt(0, _menu);
         }
 
-        public override void OnLoad(EventArgs e) {
+        public override void OnLoad(EventArgs e)
+        {
             _menu.Items.Clear();
             int index = 0;
-            foreach (IPanelPane child in Control.Panes) {
-                if (((Control)child).Visible) {
+            foreach (IPanelPane child in Control.Panes)
+            {
+                if (((Control) child).Visible)
+                {
                     _menu.Items.Add(new MobileListItem(child.Title, index.ToString()));
                 }
                 index++;
             }
         }
 
-        public override void Render(WmlMobileTextWriter writer) {
-            Style st = new Style();
-            st.Wrapping = (Wrapping)Style[Style.WrappingKey, true];
-            st.Alignment = (Alignment)Style[Style.AlignmentKey, true];
+        public override void Render(WmlMobileTextWriter writer)
+        {
+            var st = new Style();
+            st.Wrapping = (Wrapping) Style[Style.WrappingKey, true];
+            st.Alignment = (Alignment) Style[Style.AlignmentKey, true];
             writer.EnterLayout(st);
-            if (_menu.Visible) {
+            if (_menu.Visible)
+            {
                 _menu.RenderControl(writer);
             }
-            else {
-                ((Control)Control.ActivePane).RenderControl(writer);
+            else
+            {
+                ((Control) Control.ActivePane).RenderControl(writer);
             }
 
             writer.ExitLayout(st);
         }
 
-        private void OnListItemCommand(Object sender, ListCommandEventArgs e) {
+        private void OnListItemCommand(Object sender, ListCommandEventArgs e)
+        {
             _menu.Visible = false;
             Control.RaisePostBackEvent(e.ListItem.Value);
         }
     }
 
-    public class ChtmlTabbedPanelAdapter : HtmlControlAdapter {
-        protected new TabbedPanel Control {
-            get {
-                return (TabbedPanel)base.Control;
-            }
+    public class ChtmlTabbedPanelAdapter : HtmlControlAdapter
+    {
+        protected new TabbedPanel Control
+        {
+            get { return (TabbedPanel) base.Control; }
         }
 
-        public override void Render(HtmlMobileTextWriter writer) {
+        public override void Render(HtmlMobileTextWriter writer)
+        {
             writer.EnterStyle(Style);
 
             IPanelPane activePane = Control.ActivePane;
             writer.Write("[ ");
             int index = 0;
-            foreach (IPanelPane child in Control.Controls) {
-                if (!((Control)child).Visible) {
+            foreach (IPanelPane child in Control.Controls)
+            {
+                if (!((Control) child).Visible)
+                {
                     index++;
                     continue;
                 }
-                if (index > 0) {
+                if (index > 0)
+                {
                     writer.Write(" | ");
                 }
 
-                if (child == activePane) {
+                if (child == activePane)
+                {
                     writer.Write("<b>");
                     writer.WriteText(child.Title, true);
                     writer.Write("</b>");
                 }
-                else {
+                else
+                {
                     writer.WriteBeginTag("a");
                     RenderPostBackEventAsAttribute(writer, "href", index.ToString());
                     writer.Write(">");
@@ -1391,10 +1490,9 @@ namespace ASPNET.StarterKit.Portal.MobileControls {
             }
             writer.Write(" ]");
             writer.WriteBreak();
-            ((Control)activePane).RenderControl(writer);
-        
+            ((Control) activePane).RenderControl(writer);
+
             writer.ExitStyle(Style);
         }
     }
 }
-

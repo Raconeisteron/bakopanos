@@ -1,4 +1,4 @@
-<%@ Page CodeBehind="Default.aspx.cs" Language="c#" AutoEventWireup="false" Inherits="ASPNET.StarterKit.Portal.CDefault" %>
+<%@ Page CodeBehind="Default.aspx.cs" Language="c#" AutoEventWireup="false" Inherits="ASPNET.StarterKit.Portal.Default" %>
 <%--
 
    The Default.aspx page simply tests the browser type and redirects either to
