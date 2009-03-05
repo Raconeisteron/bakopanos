@@ -7,17 +7,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNET.StarterKit.Portal.Components
 {
-    //*********************************************************************
-    //
-    // PortalSecurity Class
-    //
-    // The PortalSecurity class encapsulates two helper methods that enable
-    // developers to easily check the role status of the current browser client.
-    //
-    //*********************************************************************
-
     public class PortalSecurity
     {
         //*********************************************************************
@@ -104,20 +95,6 @@ namespace ASPNET.StarterKit.Portal
                 return true;
         }
     }
-
-    //*********************************************************************
-    //
-    // UsersDB Class
-    //
-    // The UsersDB class encapsulates all data logic necessary to add/login/query
-    // users within the Portal Users database.
-    //
-    // Important Note: The UsersDB class is only used when forms-based cookie
-    // authentication is enabled within the portal.  When windows based
-    // authentication is used instead, then either the Windows SAM or Active Directory
-    // is used to store and validate all username/password credentials.
-    //
-    //*********************************************************************
 
     public class UsersDB
     {

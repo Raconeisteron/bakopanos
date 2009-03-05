@@ -8,6 +8,7 @@ using System.Web.Security;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Globalization;
+using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal {
 

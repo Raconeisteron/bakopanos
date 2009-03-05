@@ -1,3 +1,4 @@
+<%@ Import Namespace="ASPNET.StarterKit.Portal.Components"%>
 <%@ Control Language="C#" Inherits="ASPNET.StarterKit.Portal.MobilePortalModuleControl" Debug="true" %>
 <%@ Register TagPrefix="mobile" Namespace="System.Web.UI.MobileControls" Assembly="System.Web.Mobile" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Title" Src="~/MobileModuleTitle.ascx" %>
@@ -33,7 +34,7 @@
     void Page_Load(Object sender, EventArgs e) {
     
         // Obtain announcement information from Contacts table
-        ASPNET.StarterKit.Portal.ContactsDB ct = new ASPNET.StarterKit.Portal.ContactsDB();
+        ContactsDB ct = new ContactsDB();
         ds = ct.GetContacts(ModuleId);
 
         // DataBind User Control

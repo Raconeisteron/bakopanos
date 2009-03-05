@@ -1,3 +1,4 @@
+<%@ Import Namespace="ASPNET.StarterKit.Portal.Components"%>
 <%@ Control Language="C#" Inherits="ASPNET.StarterKit.Portal.MobilePortalModuleControl" %>
 <%@ Register TagPrefix="mobile" Namespace="System.Web.UI.MobileControls" Assembly="System.Web.Mobile" %>
 <%@ Register TagPrefix="ASPNETPortal" Namespace="ASPNET.StarterKit.Portal.MobileControls" Assembly="ASPNETPortal" %>
@@ -32,7 +33,7 @@
     void Page_Load(Object sender, EventArgs e) {
 
         // Obtain the selected item from the HtmlText table
-        ASPNET.StarterKit.Portal.HtmlTextDB text = new ASPNET.StarterKit.Portal.HtmlTextDB();
+        HtmlTextDB text = new HtmlTextDB();
         SqlDataReader dr = text.GetHtmlText(ModuleId);
         
         if (dr.Read()) {

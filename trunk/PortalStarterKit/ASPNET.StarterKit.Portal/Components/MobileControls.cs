@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.MobileControls;
 using System.Web.UI.MobileControls.Adapters;
 using System.Web.UI.WebControls;
+using ASPNET.StarterKit.Portal.Components;
 using ASPNET.StarterKit.Portal.MobileControls;
 using Panel=System.Web.UI.MobileControls.Panel;
 using Style=System.Web.UI.MobileControls.Style;

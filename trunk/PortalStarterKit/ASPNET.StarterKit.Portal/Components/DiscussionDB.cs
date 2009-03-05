@@ -3,17 +3,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNET.StarterKit.Portal.Components
 {
-    //*********************************************************************
-    //
-    // DiscussionDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // discussions within the Portal database.
-    //
-    //*********************************************************************
-
     public class DiscussionDB
     {
         //*******************************************************

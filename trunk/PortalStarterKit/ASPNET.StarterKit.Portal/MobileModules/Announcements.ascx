@@ -1,3 +1,4 @@
+<%@ Import Namespace="ASPNET.StarterKit.Portal.Components"%>
 <%@ Control language="c#" Inherits="ASPNET.StarterKit.Portal.MobilePortalModuleControl" %>
 <%@ Register TagPrefix="mobile" Namespace="System.Web.UI.MobileControls" Assembly="System.Web.Mobile" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Title" Src="~/MobileModuleTitle.ascx" %>
@@ -33,7 +34,7 @@
     void Page_Load(Object sender, EventArgs e) {
 
         // Obtain announcement information from Announcements table
-        ASPNET.StarterKit.Portal.AnnouncementsDB announcements = new ASPNET.StarterKit.Portal.AnnouncementsDB();
+        AnnouncementsDB announcements = new AnnouncementsDB();
         ds = announcements.GetAnnouncements(ModuleId);
 
         // DataBind the User Control

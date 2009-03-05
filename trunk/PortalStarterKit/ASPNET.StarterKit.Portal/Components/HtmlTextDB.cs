@@ -3,17 +3,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNET.StarterKit.Portal.Components
 {
-    //*********************************************************************
-    //
-    // HtmlTextDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // HTML/text within the Portal database.
-    //
-    //*********************************************************************
-
     public class HtmlTextDB
     {
         //*********************************************************************

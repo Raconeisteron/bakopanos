@@ -1,5 +1,6 @@
 using System;
 using System.Web.UI.WebControls;
+using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {

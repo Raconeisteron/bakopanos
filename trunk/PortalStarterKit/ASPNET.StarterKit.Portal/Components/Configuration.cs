@@ -6,17 +6,8 @@ using System.Data.SqlClient;
 using System.Web;
 using System.Web.Caching;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNET.StarterKit.Portal.Components
 {
-    //*********************************************************************
-    //
-    // Configuration Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // tab configuration settings, module configuration settings and module 
-    // definition configuration settings from the PortalCfg.xml file.
-    //
-    //*********************************************************************
     public class Configuration
     {
         //
@@ -780,16 +771,6 @@ namespace ASPNET.StarterKit.Portal
         }
     }
 
-    //*********************************************************************
-    //
-    // PortalSettings Class
-    //
-    // This class encapsulates all of the settings for the Portal, as well
-    // as the configuration settings required to execute the current tab
-    // view within the portal.
-    //
-    //*********************************************************************
-
     public class PortalSettings
     {
         public TabSettings ActiveTab = new TabSettings();
@@ -898,15 +879,6 @@ namespace ASPNET.StarterKit.Portal
         }
     }
 
-    //*********************************************************************
-    //
-    // TabStripDetails Class
-    //
-    // Class that encapsulates the just the tabstrip details -- TabName, TabId and TabOrder 
-    // -- for a specific Tab in the Portal
-    //
-    //*********************************************************************
-
     public class TabStripDetails
     {
         public String AuthorizedRoles;
@@ -914,15 +886,6 @@ namespace ASPNET.StarterKit.Portal
         public String TabName;
         public int TabOrder;
     }
-
-    //*********************************************************************
-    //
-    // TabSettings Class
-    //
-    // Class that encapsulates the detailed settings for a specific Tab 
-    // in the Portal
-    //
-    //*********************************************************************
 
     public class TabSettings
     {
@@ -935,17 +898,6 @@ namespace ASPNET.StarterKit.Portal
         public String TabName;
         public int TabOrder;
     }
-
-    //*********************************************************************
-    //
-    // ModuleSettings Class
-    //
-    // Class that encapsulates the detailed settings for a specific Tab 
-    // in the Portal.  ModuleSettings implements the IComparable interface 
-    // so that an ArrayList of ModuleSettings objects may be sorted by
-    // ModuleOrder, using the ArrayList's Sort() method.
-    //
-    //*********************************************************************
 
     public class ModuleSettings : IComparable
     {
@@ -978,17 +930,6 @@ namespace ASPNET.StarterKit.Portal
         #endregion
     }
 
-    //*********************************************************************
-    //
-    // ModuleItem Class
-    //
-    // This class encapsulates the basic attributes of a Module, and is used
-    // by the administration pages when manipulating modules.  ModuleItem implements 
-    // the IComparable interface so that an ArrayList of ModuleItems may be sorted
-    // by ModuleOrder, using the ArrayList's Sort() method.
-    //
-    //*********************************************************************
-
     public class ModuleItem : IComparable
     {
         public int ModuleOrder { get; set; }
@@ -1017,17 +958,6 @@ namespace ASPNET.StarterKit.Portal
 
         #endregion
     }
-
-    //*********************************************************************
-    //
-    // TabItem Class
-    //
-    // This class encapsulates the basic attributes of a Tab, and is used
-    // by the administration pages when manipulating tabs.  TabItem implements 
-    // the IComparable interface so that an ArrayList of TabItems may be sorted
-    // by TabOrder, using the ArrayList's Sort() method.
-    //
-    //*********************************************************************
 
     public class TabItem : IComparable
     {

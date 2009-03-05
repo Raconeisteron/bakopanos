@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Web;
 using System.Web.UI.MobileControls;
+using ASPNET.StarterKit.Portal.Components;
 using ASPNET.StarterKit.Portal.MobileControls;
 
 namespace ASPNET.StarterKit.Portal

@@ -1,3 +1,4 @@
+<%@ Import Namespace="ASPNET.StarterKit.Portal.Components"%>
 <%@ Control CodeBehind="DesktopPortalBanner.ascx.cs" Language="c#" AutoEventWireup="false" Inherits="ASPNET.StarterKit.Portal.DesktopPortalBanner" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 <%--

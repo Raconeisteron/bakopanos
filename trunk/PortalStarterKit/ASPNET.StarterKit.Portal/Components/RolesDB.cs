@@ -3,16 +3,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNET.StarterKit.Portal.Components
 {
-    //*********************************************************************
-    //
-    // RolesDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // Users, Roles and security settings values within the Portal database.
-    //
-    //*********************************************************************
     public class RolesDB
     {
         //*********************************************************************

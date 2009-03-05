@@ -5,20 +5,8 @@ using System.IO;
 using System.Web;
 using System.Web.UI;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNET.StarterKit.Portal.Components
 {
-    //*********************************************************************
-    //
-    // PortalModuleControl Class
-    //
-    // The PortalModuleControl class defines a custom base class inherited by all
-    // desktop portal modules within the Portal.
-    // 
-    // The PortalModuleControl class defines portal specific properties
-    // that are used by the portal framework to correctly display portal modules
-    //
-    //*********************************************************************
-
     public class PortalModuleControl : UserControl
     {
         // Private field variables
@@ -88,29 +76,6 @@ namespace ASPNET.StarterKit.Portal
             }
         }
     }
-
-    //*********************************************************************
-    //
-    // CachedPortalModuleControl Class
-    //
-    // The CachedPortalModuleControl class is a custom server control that
-    // the Portal framework uses to optionally enable output caching of 
-    // individual portal module's content.
-    //
-    // If a CacheTime value greater than 0 seconds is specified within the 
-    // ASPNET.StarterKit.Portal.Config configuration file, then the CachePortalModuleControl
-    // will automatically capture the output of the Portal Module User Control
-    // it wraps.  It will then store this captured output within the ASP.NET
-    // Cache API.  On subsequent requests (either by the same browser -- or
-    // by other browsers visiting the same portal page), the CachedPortalModuleControl
-    // will attempt to resolve the cached output out of the cache.
-    //
-    // Note: In the event that previously cached output can't be found in the
-    // ASP.NET Cache, the CachedPortalModuleControl will automatically instatiate
-    // the appropriate portal module user control and place it within the
-    // portal page.
-    //
-    //*********************************************************************
 
     public class CachedPortalModuleControl : Control
     {
