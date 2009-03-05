@@ -509,10 +509,6 @@
     <Compile Include="Components\Security.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="DesktopDefault.aspx.cs">
       <DependentUpon>DesktopDefault.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
