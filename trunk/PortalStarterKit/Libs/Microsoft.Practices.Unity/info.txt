@@ -1,0 +1,10 @@
+Unity 1.2 libraries 
+http://www.codeplex.com/unity
+Microsoft.Practices.ObjectBuilder2.dll
+Microsoft.Practices.Unity.Configuration.dll
+Microsoft.Practices.Unity.dll
+Microsoft.Practices.Unity.StaticFactory.dll
+Microsoft.Practices.Unity.Interception.Configuration.dll
+Microsoft.Practices.Unity.Interception.dll
+
+

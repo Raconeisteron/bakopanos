@@ -1,0 +1,4 @@
+
+Rhino Mocks 3.5 for .NET 3.5
+http://www.ayende.com/
+
