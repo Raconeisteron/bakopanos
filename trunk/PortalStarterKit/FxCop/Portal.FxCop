@@ -117,6 +117,19 @@
        </Message>
       </Messages>
       <Namespaces>
+       <Namespace Name="">
+        <Types>
+         <Type Name="WebUserControl1">
+          <Messages>
+           <Message TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050" Created="2009-03-06 10:04:41Z">
+            <Issue>
+             <Item>'WebUserControl1'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
        <Namespace Name="ASPNET.StarterKit.Portal">
         <Types>
          <Type Name="DesktopDefault">
@@ -3417,6 +3430,9 @@
    </Rule>
    <Rule TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011">
     <Resolution Name="Default">Consider changing the type of parameter {0} in {1} from {2} to its base type {3}. This method appears to only require base class members in its implementation. Suppress this violation if there is a compelling reason to require the more derived type in the method signature.</Resolution>
+   </Rule>
+   <Rule TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050">
+    <Resolution Name="Default">{0} should be declared inside a namespace.</Resolution>
    </Rule>
    <Rule TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214">
     <Resolution Name="Default">{0} contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: {1}</Resolution>
