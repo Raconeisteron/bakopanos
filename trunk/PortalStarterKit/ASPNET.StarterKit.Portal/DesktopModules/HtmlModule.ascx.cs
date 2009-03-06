@@ -6,10 +6,8 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public abstract class HtmlModule : PortalModuleControl
+    public partial  class HtmlModule : PortalModuleControl
     {
-        protected HtmlTableCell HtmlHolder;
-        protected HtmlTable t1;
 
         //*******************************************************
         //
@@ -26,7 +24,7 @@ namespace ASPNET.StarterKit.Portal
             Init += Page_Init;
         }
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain the selected item from the HtmlText table
             var text = new HtmlTextDB();
@@ -43,7 +41,7 @@ namespace ASPNET.StarterKit.Portal
             dr.Close();
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -58,7 +56,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

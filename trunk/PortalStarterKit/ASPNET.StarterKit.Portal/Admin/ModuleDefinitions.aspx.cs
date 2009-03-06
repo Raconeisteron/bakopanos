@@ -5,19 +5,11 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class ModuleDefinitions : Page
+    public partial class ModuleDefinitions : Page
     {
-        protected LinkButton cancelButton;
         private int defId = -1;
-        protected LinkButton deleteButton;
-        protected TextBox DesktopSrc;
-        protected TextBox FriendlyName;
-        protected TextBox MobileSrc;
-        protected RequiredFieldValidator Req1;
-        protected RequiredFieldValidator Req2;
         private int tabId;
         private int tabIndex;
-        protected LinkButton updateButton;
 
         public ModuleDefinitions()
         {
@@ -31,7 +23,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Verify that the current user has access to access this page
             if (PortalSecurity.IsInRoles("Admins") == false)
@@ -86,7 +78,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //****************************************************************
 
-        private void UpdateBtn_Click(Object sender, EventArgs e)
+        protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
@@ -120,7 +112,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //****************************************************************
 
-        private void DeleteBtn_Click(Object sender, EventArgs e)
+        protected void DeleteBtn_Click(Object sender, EventArgs e)
         {
             // delete definition
             var config = new Configuration();
@@ -138,13 +130,13 @@ namespace ASPNET.StarterKit.Portal
         //
         //****************************************************************
 
-        private void CancelBtn_Click(Object sender, EventArgs e)
+        protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
             Response.Redirect("~/DesktopDefault.aspx?tabindex=" + tabIndex + "&tabid=" + tabId);
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -160,10 +152,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.updateButton.Click += new System.EventHandler(this.UpdateBtn_Click);
-            this.cancelButton.Click += new System.EventHandler(this.CancelBtn_Click);
-            this.deleteButton.Click += new System.EventHandler(this.DeleteBtn_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

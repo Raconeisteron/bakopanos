@@ -9,27 +9,15 @@ namespace ASPNET.StarterKit.Portal
     /// <summary>
     /// Summary description for Register.
     /// </summary>
-    public class Register : Page
+    public partial class Register : Page
     {
-        protected CompareValidator CompareValidator1;
-        protected TextBox ConfirmPassword;
-        protected TextBox Email;
-        protected Label Message;
-        protected TextBox Name;
-        protected TextBox Password;
-        protected LinkButton RegisterBtn;
-        protected RegularExpressionValidator RegularExpressionValidator1;
-        protected RequiredFieldValidator RequiredFieldValidator1;
-        protected RequiredFieldValidator RequiredFieldValidator2;
-        protected RequiredFieldValidator RequiredFieldValidator3;
-        protected RequiredFieldValidator RequiredFieldValidator4;
 
         public Register()
         {
             Page.Init += Page_Init;
         }
 
-        private void RegisterBtn_Click(object sender, EventArgs e)
+        protected void RegisterBtn_Click(object sender, EventArgs e)
         {
             // Only attempt a login if all form fields on the page are valid
             if (Page.IsValid)
@@ -54,7 +42,7 @@ namespace ASPNET.StarterKit.Portal
             }
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -70,7 +58,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.RegisterBtn.Click += new System.EventHandler(this.RegisterBtn_Click);
         }
 
         #endregion

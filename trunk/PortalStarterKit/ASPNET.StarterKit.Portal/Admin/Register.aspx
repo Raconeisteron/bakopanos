@@ -1,4 +1,4 @@
-<%@ Page language="c#" CodeBehind="Register.aspx.cs" AutoEventWireup="false" Inherits="ASPNET.StarterKit.Portal.Register" %>
+<%@ Page language="c#" CodeBehind="Register.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.Register" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 
@@ -80,7 +80,7 @@
                                                     <asp:RequiredFieldValidator ControlToValidate="ConfirmPassword" Display="Dynamic" ErrorMessage="'Confirm' must not be left blank." runat="server" id="RequiredFieldValidator4" />
                                                     <asp:CompareValidator ControlToValidate="ConfirmPassword" ControlToCompare="Password" ErrorMessage="Password fields do not match." runat="server" id="CompareValidator1" />
                                                 <p>
-                                                    <asp:LinkButton class="CommandButton" Text="Register and Sign In Now" runat="server" id="RegisterBtn" />
+                                                    <asp:LinkButton class="CommandButton" Text="Register and Sign In Now" runat="server" id="RegisterBtn" onclick="RegisterBtn_Click" />
                                                     <br>
                                                     <br>
                                                 <p>

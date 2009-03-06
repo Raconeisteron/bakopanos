@@ -1,4 +1,4 @@
-<%@ Page language="c#" CodeBehind="DesktopDefault.aspx.cs" AutoEventWireup="false" Inherits="ASPNET.StarterKit.Portal.DesktopDefault" %>
+<%@ Page language="c#" CodeBehind="DesktopDefault.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.DesktopDefault" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="DesktopPortalBanner.ascx" %>
 <%--
 

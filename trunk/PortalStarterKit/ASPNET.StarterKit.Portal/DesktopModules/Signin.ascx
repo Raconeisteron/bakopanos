@@ -1,4 +1,4 @@
-<%@ Control language="c#" Inherits="ASPNET.StarterKit.Portal.Signin" CodeBehind="Signin.ascx.cs" AutoEventWireup="false" %>
+<%@ Control language="c#" Inherits="ASPNET.StarterKit.Portal.Signin" CodeBehind="Signin.ascx.cs" AutoEventWireup="True" %>
 <%--
 
    The SignIn User Control enables clients to authenticate themselves using 
@@ -33,7 +33,7 @@
 <table width="100%" cellspacing="0" cellpadding="4" border="0">
     <tr>
         <td>
-            <asp:ImageButton id="SigninBtn" ImageUrl="~/images/signin.gif" runat="server" />
+            <asp:ImageButton id="SigninBtn" ImageUrl="~/images/signin.gif" runat="server" onclick="LoginBtn_Click" />
             <br>
             <a href="Admin/Register.aspx"><img src="images/register.gif" border="0"></a>
             <asp:label id="Message" class="NormalRed" runat="server" />

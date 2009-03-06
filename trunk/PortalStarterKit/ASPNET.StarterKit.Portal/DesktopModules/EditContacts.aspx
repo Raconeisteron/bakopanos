@@ -1,4 +1,4 @@
-<%@ Page Language="c#" CodeBehind="EditContacts.aspx.cs" AutoEventWireup="false" Inherits="ASPNET.StarterKit.Portal.EditContacts" %>
+<%@ Page Language="c#" CodeBehind="EditContacts.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.EditContacts" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 
@@ -87,11 +87,11 @@
 										</tr>
 									</table>
 									<p>
-										<asp:LinkButton id="updateButton" Text="Update" runat="server" class="CommandButton" BorderStyle="none" />
+										<asp:LinkButton id="updateButton" Text="Update" runat="server" class="CommandButton" BorderStyle="none" onclick="UpdateBtn_Click" />
 										&nbsp;
-										<asp:LinkButton id="cancelButton" Text="Cancel" CausesValidation="False" runat="server" class="CommandButton" BorderStyle="none" />
+										<asp:LinkButton id="cancelButton" Text="Cancel" CausesValidation="False" runat="server" class="CommandButton" BorderStyle="none" onclick="CancelBtn_Click" />
 										&nbsp;
-										<asp:LinkButton id="deleteButton" Text="Delete this item" CausesValidation="False" runat="server" class="CommandButton" BorderStyle="none" />
+										<asp:LinkButton id="deleteButton" Text="Delete this item" CausesValidation="False" runat="server" class="CommandButton" BorderStyle="none" onclick="DeleteBtn_Click" />
 										<hr noshade size="1" width="500">
 										<span class="Normal">Created by
                                             <asp:label id="CreatedBy" runat="server" />

@@ -3,14 +3,14 @@ using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class EditAccessDenied : Page
+    public partial class EditAccessDenied : Page
     {
         public EditAccessDenied()
         {
             Page.Init += Page_Init;
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.

@@ -5,13 +5,8 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public abstract class Users : PortalModuleControl
+    public partial  class Users : PortalModuleControl
     {
-        protected LinkButton addNew;
-        protected DropDownList allUsers;
-        protected ImageButton DeleteBtn;
-        protected ImageButton EditBtn;
-        protected Literal Message;
 
         private int tabId;
         private int tabIndex;
@@ -28,7 +23,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Verify that the current user has access to access this page
             if (PortalSecurity.IsInRoles("Admins") == false)
@@ -59,7 +54,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void DeleteUser_Click(Object Sender, ImageClickEventArgs e)
+        protected void DeleteUser_Click(Object Sender, ImageClickEventArgs e)
         {
             // get user id from dropdownlist of users
             var users = new UsersDB();
@@ -118,7 +113,7 @@ namespace ASPNET.StarterKit.Portal
             allUsers.DataBind();
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -134,9 +129,7 @@ namespace ASPNET.StarterKit.Portal
         private void InitializeComponent()
         {
             this.EditBtn.Command += new System.Web.UI.WebControls.CommandEventHandler(this.EditUser_Click);
-            this.DeleteBtn.Click += new System.Web.UI.ImageClickEventHandler(this.DeleteUser_Click);
             this.addNew.Command += new System.Web.UI.WebControls.CommandEventHandler(this.EditUser_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

@@ -6,22 +6,14 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class SecurityRoles : Page
+    public partial class SecurityRoles : Page
     {
-        protected LinkButton addExisting;
-        protected LinkButton addNew;
-        protected DropDownList allUsers;
-        protected Label Message;
 
 
         private int roleId = -1;
         private String roleName = "";
-        protected LinkButton saveBtn;
         private int tabId;
         private int tabIndex;
-        protected HtmlGenericControl title;
-        protected DataList usersInRole;
-        protected TextBox windowsUserName;
 
         public SecurityRoles()
         {
@@ -35,7 +27,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Verify that the current user has access to access this page
             if (PortalSecurity.IsInRoles("Admins") == false)
@@ -76,7 +68,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Save_Click(Object Sender, EventArgs e)
+        protected void Save_Click(Object Sender, EventArgs e)
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
@@ -92,7 +84,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void AddUser_Click(Object sender, EventArgs e)
+        protected void AddUser_Click(Object sender, EventArgs e)
         {
             int userId;
 
@@ -184,7 +176,7 @@ namespace ASPNET.StarterKit.Portal
             allUsers.DataBind();
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -200,12 +192,8 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.addExisting.Click += new System.EventHandler(this.AddUser_Click);
             this.usersInRole.ItemCommand +=
                 new System.Web.UI.WebControls.DataListCommandEventHandler(this.usersInRole_ItemCommand);
-            this.saveBtn.Click += new System.EventHandler(this.Save_Click);
-            this.addNew.Click += new System.EventHandler(this.AddUser_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

@@ -6,18 +6,15 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class DesktopDefault : Page
+    public partial class DesktopDefault : Page
     {
-        protected HtmlTableCell ContentPane;
-        protected HtmlTableCell LeftPane;
-        protected HtmlTableCell RightPane;
 
         public DesktopDefault()
         {
             Page.Init += Page_Init;
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.

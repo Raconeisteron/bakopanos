@@ -1,4 +1,4 @@
-<%@ Page CodeBehind="ModuleSettings.aspx.cs" Language="c#" AutoEventWireup="false" Inherits="ASPNET.StarterKit.Portal.ModuleSettingsPage" %>
+<%@ Page CodeBehind="ModuleSettings.aspx.cs" Language="c#" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.ModuleSettingsPage" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 
@@ -100,7 +100,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="4">
-                                                <asp:LinkButton class="CommandButton" Text="Apply Module Changes" runat="server" id="ApplyButton" />
+                                                <asp:LinkButton class="CommandButton" Text="Apply Module Changes" runat="server" id="ApplyButton" onclick="ApplyChanges_Click" />
                                             </td>
                                         </tr>
                                     </table>

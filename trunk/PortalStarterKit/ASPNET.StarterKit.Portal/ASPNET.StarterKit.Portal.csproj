@@ -418,9 +418,15 @@
       <DependentUpon>AccessDenied.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin\AccessDenied.aspx.designer.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\EditAccessDenied.aspx.cs">
       <DependentUpon>EditAccessDenied.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditAccessDenied.aspx.designer.cs">
+      <DependentUpon>EditAccessDenied.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Logoff.aspx.cs">
       <DependentUpon>Logoff.aspx</DependentUpon>
@@ -430,49 +436,85 @@
       <DependentUpon>ManageUsers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin\ManageUsers.aspx.designer.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ModuleDefinitions.aspx.cs">
       <DependentUpon>ModuleDefinitions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ModuleDefinitions.aspx.designer.cs">
+      <DependentUpon>ModuleDefinitions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ModuleDefs.ascx.cs">
       <DependentUpon>ModuleDefs.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin\ModuleDefs.ascx.designer.cs">
+      <DependentUpon>ModuleDefs.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ModuleSettings.aspx.cs">
       <DependentUpon>ModuleSettings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ModuleSettings.aspx.designer.cs">
+      <DependentUpon>ModuleSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\NotImplemented.aspx.cs">
       <DependentUpon>NotImplemented.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin\NotImplemented.aspx.designer.cs">
+      <DependentUpon>NotImplemented.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Roles.ascx.cs">
       <DependentUpon>Roles.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin\Roles.ascx.designer.cs">
+      <DependentUpon>Roles.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\SecurityRoles.aspx.cs">
       <DependentUpon>SecurityRoles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SecurityRoles.aspx.designer.cs">
+      <DependentUpon>SecurityRoles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\SiteSettings.ascx.cs">
       <DependentUpon>SiteSettings.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin\SiteSettings.ascx.designer.cs">
+      <DependentUpon>SiteSettings.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\TabLayout.aspx.cs">
       <DependentUpon>TabLayout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TabLayout.aspx.designer.cs">
+      <DependentUpon>TabLayout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Tabs.ascx.cs">
       <DependentUpon>Tabs.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin\Tabs.ascx.designer.cs">
+      <DependentUpon>Tabs.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Users.ascx.cs">
       <DependentUpon>Users.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Users.ascx.designer.cs">
+      <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
     <Compile Include="Components\AnnouncementsDB.cs">
       <SubType>Code</SubType>
@@ -514,81 +556,141 @@
       <DependentUpon>DesktopDefault.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopDefault.aspx.designer.cs">
+      <DependentUpon>DesktopDefault.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\Announcements.ascx.cs">
       <DependentUpon>Announcements.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\Announcements.ascx.designer.cs">
+      <DependentUpon>Announcements.ascx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\Contacts.ascx.cs">
       <DependentUpon>Contacts.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\Contacts.ascx.designer.cs">
+      <DependentUpon>Contacts.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\DiscussDetails.aspx.cs">
       <DependentUpon>DiscussDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\DiscussDetails.aspx.designer.cs">
+      <DependentUpon>DiscussDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\Discussion.ascx.cs">
       <DependentUpon>Discussion.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\Discussion.ascx.designer.cs">
+      <DependentUpon>Discussion.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\Document.ascx.cs">
       <DependentUpon>Document.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\Document.ascx.designer.cs">
+      <DependentUpon>Document.ascx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\EditAnnouncements.aspx.cs">
       <DependentUpon>EditAnnouncements.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\EditAnnouncements.aspx.designer.cs">
+      <DependentUpon>EditAnnouncements.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\EditContacts.aspx.cs">
       <DependentUpon>EditContacts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditContacts.aspx.designer.cs">
+      <DependentUpon>EditContacts.aspx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\EditDocs.aspx.cs">
       <DependentUpon>EditDocs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\EditDocs.aspx.designer.cs">
+      <DependentUpon>EditDocs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\EditEvents.aspx.cs">
       <DependentUpon>EditEvents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditEvents.aspx.designer.cs">
+      <DependentUpon>EditEvents.aspx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\EditHtml.aspx.cs">
       <DependentUpon>EditHtml.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\EditHtml.aspx.designer.cs">
+      <DependentUpon>EditHtml.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\EditImage.aspx.cs">
       <DependentUpon>EditImage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditImage.aspx.designer.cs">
+      <DependentUpon>EditImage.aspx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\EditLinks.aspx.cs">
       <DependentUpon>EditLinks.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\EditLinks.aspx.designer.cs">
+      <DependentUpon>EditLinks.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\EditXml.aspx.cs">
       <DependentUpon>EditXml.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditXml.aspx.designer.cs">
+      <DependentUpon>EditXml.aspx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\Events.ascx.cs">
       <DependentUpon>Events.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\Events.ascx.designer.cs">
+      <DependentUpon>Events.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\HtmlModule.ascx.cs">
       <DependentUpon>HtmlModule.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\HtmlModule.ascx.designer.cs">
+      <DependentUpon>HtmlModule.ascx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\ImageModule.ascx.cs">
       <DependentUpon>ImageModule.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\ImageModule.ascx.designer.cs">
+      <DependentUpon>ImageModule.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\Links.ascx.cs">
       <DependentUpon>Links.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\Links.ascx.designer.cs">
+      <DependentUpon>Links.ascx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\QuickLinks.ascx.cs">
       <DependentUpon>QuickLinks.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\QuickLinks.ascx.designer.cs">
+      <DependentUpon>QuickLinks.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\Signin.ascx.cs">
       <DependentUpon>Signin.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\Signin.ascx.designer.cs">
+      <DependentUpon>Signin.ascx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\ViewDocument.aspx.cs">
       <DependentUpon>ViewDocument.aspx</DependentUpon>
@@ -598,13 +700,22 @@
       <DependentUpon>XmlModule.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\XmlModule.ascx.designer.cs">
+      <DependentUpon>XmlModule.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModuleTitle.ascx.cs">
       <DependentUpon>DesktopModuleTitle.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModuleTitle.ascx.designer.cs">
+      <DependentUpon>DesktopModuleTitle.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopPortalBanner.ascx.cs">
       <DependentUpon>DesktopPortalBanner.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopPortalBanner.ascx.designer.cs">
+      <DependentUpon>DesktopPortalBanner.ascx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -613,6 +724,9 @@
     <Compile Include="MobileDefault.aspx.cs">
       <DependentUpon>MobileDefault.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MobileDefault.aspx.designer.cs">
+      <DependentUpon>MobileDefault.aspx</DependentUpon>
     </Compile>
     <Compile Include="PortalCfg.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -4,11 +4,8 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public abstract class SiteSettings : PortalModuleControl
+    public partial  class SiteSettings : PortalModuleControl
     {
-        protected LinkButton applyBtn;
-        protected CheckBox showEdit;
-        protected TextBox siteName;
 
         public SiteSettings()
         {
@@ -23,7 +20,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Verify that the current user has access to access this page
             if (PortalSecurity.IsInRoles("Admins") == false)
@@ -49,7 +46,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Apply_Click(Object sender, EventArgs e)
+        protected void Apply_Click(Object sender, EventArgs e)
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
@@ -62,7 +59,7 @@ namespace ASPNET.StarterKit.Portal
             Response.Redirect(Request.RawUrl);
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -77,8 +74,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.applyBtn.Click += new System.EventHandler(this.Apply_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

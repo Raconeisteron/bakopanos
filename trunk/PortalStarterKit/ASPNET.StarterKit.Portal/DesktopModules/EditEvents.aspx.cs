@@ -6,25 +6,14 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class EditEvents : Page
+    public partial class EditEvents : Page
     {
-        protected LinkButton cancelButton;
-        protected Label CreatedBy;
-        protected Label CreatedDate;
-        protected LinkButton deleteButton;
-        protected TextBox DescriptionField;
-        protected TextBox ExpireField;
 
         private int itemId;
         private int moduleId;
-        protected RequiredFieldValidator RequiredExpireDate;
         protected RequiredFieldValidator RequiredFieldValidator1;
         protected RequiredFieldValidator RequiredFieldValidator2;
         protected RequiredFieldValidator RequiredFieldValidator3;
-        protected TextBox TitleField;
-        protected LinkButton updateButton;
-        protected CompareValidator VerifyExpireDate;
-        protected TextBox WhereWhenField;
 
         public EditEvents()
         {
@@ -41,7 +30,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //****************************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Determine ModuleId of Events Portal Module
             moduleId = Int32.Parse(Request.Params["Mid"]);
@@ -104,7 +93,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //****************************************************************
 
-        private void UpdateBtn_Click(Object sender, EventArgs e)
+        protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Only Update if the Entered Data is Valid
             if (Page.IsValid)
@@ -138,7 +127,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //****************************************************************
 
-        private void DeleteBtn_Click(Object sender, EventArgs e)
+        protected void DeleteBtn_Click(Object sender, EventArgs e)
         {
             // Only attempt to delete the item if it is an existing item
             // (new items will have "ItemId" of 0)
@@ -161,13 +150,13 @@ namespace ASPNET.StarterKit.Portal
         //
         //****************************************************************
 
-        private void CancelBtn_Click(Object sender, EventArgs e)
+        protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -183,10 +172,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.updateButton.Click += new System.EventHandler(this.UpdateBtn_Click);
-            this.cancelButton.Click += new System.EventHandler(this.CancelBtn_Click);
-            this.deleteButton.Click += new System.EventHandler(this.DeleteBtn_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

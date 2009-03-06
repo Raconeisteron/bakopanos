@@ -6,16 +6,11 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class EditHtml : Page
+    public partial class EditHtml : Page
     {
-        protected LinkButton cancelButton;
-        protected TextBox DesktopText;
-        protected TextBox MobileDetails;
-        protected TextBox MobileSummary;
 
 
         private int moduleId;
-        protected LinkButton updateButton;
 
         public EditHtml()
         {
@@ -32,7 +27,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //****************************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Determine ModuleId of Announcements Portal Module
             moduleId = Int32.Parse(Request.Params["Mid"]);
@@ -76,7 +71,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //****************************************************************
 
-        private void UpdateBtn_Click(Object sender, EventArgs e)
+        protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create an instance of the HtmlTextDB component
             var text = new HtmlTextDB();
@@ -97,13 +92,13 @@ namespace ASPNET.StarterKit.Portal
         //
         //****************************************************************
 
-        private void CancelBtn_Click(Object sender, EventArgs e)
+        protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -119,9 +114,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.updateButton.Click += new System.EventHandler(this.UpdateBtn_Click);
-            this.cancelButton.Click += new System.EventHandler(this.CancelBtn_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

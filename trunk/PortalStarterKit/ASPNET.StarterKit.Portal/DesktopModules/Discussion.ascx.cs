@@ -5,9 +5,8 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public abstract class Discussion : PortalModuleControl
+    public partial  class Discussion : PortalModuleControl
     {
-        protected DataList TopLevelList;
 
         public Discussion()
         {
@@ -23,7 +22,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             if (Page.IsPostBack == false)
             {
@@ -137,7 +136,7 @@ namespace ASPNET.StarterKit.Portal
             }
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -154,7 +153,6 @@ namespace ASPNET.StarterKit.Portal
         {
             this.TopLevelList.ItemCommand +=
                 new System.Web.UI.WebControls.DataListCommandEventHandler(this.TopLevelList_Select);
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

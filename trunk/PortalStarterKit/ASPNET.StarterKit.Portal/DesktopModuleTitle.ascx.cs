@@ -6,22 +6,20 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public abstract class DesktopModuleTitle : UserControl
+    public partial  class DesktopModuleTitle : UserControl
     {
-        protected HyperLink EditButton;
         public String EditTarget;
 
 
         public String EditText;
         public String EditUrl;
-        protected Label ModuleTitle;
 
         public DesktopModuleTitle()
         {
             Init += Page_Init;
         }
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
@@ -43,7 +41,7 @@ namespace ASPNET.StarterKit.Portal
             }
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -58,7 +56,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

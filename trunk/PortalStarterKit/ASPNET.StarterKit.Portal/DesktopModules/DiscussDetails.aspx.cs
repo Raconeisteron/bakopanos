@@ -7,23 +7,10 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class DiscussDetails : Page
+    public partial class DiscussDetails : Page
     {
-        protected Label Body;
-        protected TextBox BodyField;
-        protected Panel ButtonPanel;
-        protected LinkButton cancelButton;
-        protected Label CreatedByUser;
-        protected Label CreatedDate;
-        protected Panel EditPanel;
         private int itemId;
         private int moduleId;
-        protected HtmlAnchor nextItem;
-        protected HtmlAnchor prevItem;
-        protected LinkButton ReplyBtn;
-        protected Label Title;
-        protected TextBox TitleField;
-        protected LinkButton updateButton;
 
         public DiscussDetails()
         {
@@ -38,7 +25,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain moduleId and ItemId from QueryString
             moduleId = Int32.Parse(Request.Params["Mid"]);
@@ -81,7 +68,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void ReplyBtn_Click(Object Sender, EventArgs e)
+        protected void ReplyBtn_Click(Object Sender, EventArgs e)
         {
             EditPanel.Visible = true;
             ButtonPanel.Visible = false;
@@ -95,7 +82,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void UpdateBtn_Click(Object sender, EventArgs e)
+        protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create new discussion database component
             var discuss = new DiscussionDB();
@@ -121,7 +108,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void CancelBtn_Click(Object sender, EventArgs e)
+        protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Update visibility of page elements
             EditPanel.Visible = false;
@@ -212,7 +199,7 @@ namespace ASPNET.StarterKit.Portal
             return title;
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -228,10 +215,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.ReplyBtn.Click += new System.EventHandler(this.ReplyBtn_Click);
-            this.updateButton.Click += new System.EventHandler(this.UpdateBtn_Click);
-            this.cancelButton.Click += new System.EventHandler(this.CancelBtn_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

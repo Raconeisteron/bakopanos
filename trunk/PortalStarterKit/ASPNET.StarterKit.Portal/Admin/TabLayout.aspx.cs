@@ -8,39 +8,12 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class TabLayout : Page
+    public partial class TabLayout : Page
     {
-        protected LinkButton AddModuleBtn;
-        protected LinkButton applyBtn;
-        protected CheckBoxList authRoles;
-        protected ImageButton ContentDeleteBtn;
-        protected ImageButton ContentDownBtn;
-        protected ImageButton ContentEditBtn;
-        protected ImageButton ContentLeftBtn;
         protected ArrayList contentList;
-        protected ListBox contentPane;
-        protected ImageButton ContentRightBtn;
-        protected ImageButton ContentUpBtn;
-        protected ImageButton LeftDeleteBtn;
-        protected ImageButton LeftDownBtn;
-        protected ImageButton LeftEditBtn;
         protected ArrayList leftList;
-        protected ListBox leftPane;
-        protected ImageButton LeftRightBtn;
-        protected ImageButton LeftUpBtn;
-        protected TextBox mobileTabName;
-        protected TextBox moduleTitle;
-        protected DropDownList moduleType;
-        protected ImageButton RightDeleteBtn;
-        protected ImageButton RightDownBtn;
-        protected ImageButton RightEditBtn;
-        protected ImageButton RightLeftBtn;
         protected ArrayList rightList;
-        protected ListBox rightPane;
-        protected ImageButton RightUpBtn;
-        protected CheckBox showMobile;
         private int tabId;
-        protected TextBox tabName;
 
         public TabLayout()
         {
@@ -54,7 +27,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Verify that the current user has access to access this page
             if (PortalSecurity.IsInRoles("Admins") == false)
@@ -82,7 +55,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void AddModuleToPane_Click(Object sender, EventArgs e)
+        protected void AddModuleToPane_Click(Object sender, EventArgs e)
         {
             // All new modules go to the end of the contentpane
             var m = new ModuleItem();
@@ -122,7 +95,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void UpDown_Click(Object sender, ImageClickEventArgs e)
+        protected void UpDown_Click(Object sender, ImageClickEventArgs e)
         {
             String cmd = ((ImageButton) sender).CommandName;
             String pane = ((ImageButton) sender).CommandArgument;
@@ -178,7 +151,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void RightLeft_Click(Object sender, ImageClickEventArgs e)
+        protected void RightLeft_Click(Object sender, ImageClickEventArgs e)
         {
             String sourcePane = ((ImageButton) sender).Attributes["sourcepane"];
             String targetPane = ((ImageButton) sender).Attributes["targetpane"];
@@ -240,7 +213,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Apply_Click(Object Sender, EventArgs e)
+        protected void Apply_Click(Object Sender, EventArgs e)
         {
             // Save changes then navigate back to admin.  
             String id = ((LinkButton) Sender).ID;
@@ -267,7 +240,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void TabSettings_Change(Object sender, EventArgs e)
+        protected void TabSettings_Change(Object sender, EventArgs e)
         {
             // Ensure that settings are saved
             SaveTabData();
@@ -309,7 +282,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void EditBtn_Click(Object sender, ImageClickEventArgs e)
+        protected void EditBtn_Click(Object sender, ImageClickEventArgs e)
         {
             String pane = ((ImageButton) sender).CommandArgument;
             var _listbox = (ListBox) Page.FindControl(pane);
@@ -330,7 +303,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void DeleteBtn_Click(Object sender, ImageClickEventArgs e)
+        protected void DeleteBtn_Click(Object sender, ImageClickEventArgs e)
         {
             String pane = ((ImageButton) sender).CommandArgument;
             var _listbox = (ListBox) Page.FindControl(pane);
@@ -473,7 +446,7 @@ namespace ASPNET.StarterKit.Portal
             }
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -489,29 +462,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.AddModuleBtn.Click += new System.EventHandler(this.AddModuleToPane_Click);
-            this.LeftUpBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
-            this.LeftRightBtn.Click += new System.Web.UI.ImageClickEventHandler(this.RightLeft_Click);
-            this.LeftDownBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
-            this.LeftEditBtn.Click += new System.Web.UI.ImageClickEventHandler(this.EditBtn_Click);
-            this.LeftDeleteBtn.Click += new System.Web.UI.ImageClickEventHandler(this.DeleteBtn_Click);
-            this.ContentUpBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
-            this.ContentLeftBtn.Click += new System.Web.UI.ImageClickEventHandler(this.RightLeft_Click);
-            this.ContentRightBtn.Click += new System.Web.UI.ImageClickEventHandler(this.RightLeft_Click);
-            this.ContentDownBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
-            this.ContentEditBtn.Click += new System.Web.UI.ImageClickEventHandler(this.EditBtn_Click);
-            this.ContentDeleteBtn.Click += new System.Web.UI.ImageClickEventHandler(this.DeleteBtn_Click);
-            this.RightUpBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
-            this.RightLeftBtn.Click += new System.Web.UI.ImageClickEventHandler(this.RightLeft_Click);
-            this.RightDownBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
-            this.RightEditBtn.Click += new System.Web.UI.ImageClickEventHandler(this.EditBtn_Click);
-            this.RightDeleteBtn.Click += new System.Web.UI.ImageClickEventHandler(this.DeleteBtn_Click);
-            this.applyBtn.Click += new System.EventHandler(this.Apply_Click);
-            this.tabName.TextChanged += new System.EventHandler(this.TabSettings_Change);
-            this.authRoles.SelectedIndexChanged += new System.EventHandler(this.TabSettings_Change);
-            this.showMobile.CheckedChanged += new System.EventHandler(this.TabSettings_Change);
-            this.mobileTabName.TextChanged += new System.EventHandler(this.TabSettings_Change);
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

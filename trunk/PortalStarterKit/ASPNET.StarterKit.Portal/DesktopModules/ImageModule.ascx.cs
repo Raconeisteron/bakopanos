@@ -4,9 +4,8 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public abstract class ImageModule : PortalModuleControl
+    public partial  class ImageModule : PortalModuleControl
     {
-        protected Image Image1;
 
 
         //*******************************************************
@@ -22,7 +21,7 @@ namespace ASPNET.StarterKit.Portal
             Init += Page_Init;
         }
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             var imageSrc = (String) Settings["src"];
             var imageHeight = (String) Settings["height"];
@@ -45,7 +44,7 @@ namespace ASPNET.StarterKit.Portal
             }
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -60,7 +59,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

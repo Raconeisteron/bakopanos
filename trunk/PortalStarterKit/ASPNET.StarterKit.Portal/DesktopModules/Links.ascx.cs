@@ -4,10 +4,9 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public abstract class Links : PortalModuleControl
+    public partial  class Links : PortalModuleControl
     {
         protected String linkImage = "";
-        protected DataList myDataList;
 
         public Links()
         {
@@ -24,7 +23,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Set the link image type
             if (IsEditable)
@@ -68,7 +67,7 @@ namespace ASPNET.StarterKit.Portal
                 return desc;
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -83,7 +82,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

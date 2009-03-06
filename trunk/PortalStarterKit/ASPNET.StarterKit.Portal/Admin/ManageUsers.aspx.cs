@@ -7,25 +7,13 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class ManageUsers : Page
+    public partial class ManageUsers : Page
     {
-        protected LinkButton addExisting;
-        protected DropDownList allRoles;
-        protected CompareValidator CompareValidator1;
-        protected TextBox ConfirmPassword;
-        protected TextBox Email;
-        protected TextBox Password;
-        protected RequiredFieldValidator RequiredFieldValidator1;
-        protected RequiredFieldValidator RequiredFieldValidator2;
-        protected LinkButton saveBtn;
         private int tabId;
         private int tabIndex;
-        protected HtmlGenericControl title;
-        protected LinkButton UpdateUserBtn;
 
         private int userId = -1;
         private String userName = "";
-        protected DataList userRoles;
 
         public ManageUsers()
         {
@@ -39,7 +27,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Verify that the current user has access to access this page
             if (PortalSecurity.IsInRoles("Admins") == false)
@@ -102,7 +90,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Save_Click(Object Sender, EventArgs e)
+        protected void Save_Click(Object Sender, EventArgs e)
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
@@ -118,7 +106,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void AddRole_Click(Object sender, EventArgs e)
+        protected void AddRole_Click(Object sender, EventArgs e)
         {
             int roleId;
 
@@ -140,7 +128,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void UpdateUser_Click(Object sender, EventArgs e)
+        protected void UpdateUser_Click(Object sender, EventArgs e)
         {
             // update the user record in the database
             var users = new UsersDB();
@@ -215,7 +203,7 @@ namespace ASPNET.StarterKit.Portal
             allRoles.DataBind();
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -231,12 +219,8 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.UpdateUserBtn.Click += new System.EventHandler(this.UpdateUser_Click);
-            this.addExisting.Click += new System.EventHandler(this.AddRole_Click);
             this.userRoles.ItemCommand +=
                 new System.Web.UI.WebControls.DataListCommandEventHandler(this.UserRoles_ItemCommand);
-            this.saveBtn.Click += new System.EventHandler(this.Save_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

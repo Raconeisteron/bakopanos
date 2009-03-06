@@ -4,10 +4,8 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public abstract class Roles : PortalModuleControl
+    public partial  class Roles : PortalModuleControl
     {
-        protected LinkButton AddRoleBtn;
-        protected DataList rolesList;
 
         private int tabId;
         private int tabIndex;
@@ -24,7 +22,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Verify that the current user has access to access this page
             if (PortalSecurity.IsInRoles("Admins") == false)
@@ -55,7 +53,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void AddRole_Click(Object Sender, EventArgs e)
+        protected void AddRole_Click(Object Sender, EventArgs e)
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
@@ -148,7 +146,7 @@ namespace ASPNET.StarterKit.Portal
             rolesList.DataBind();
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -165,8 +163,6 @@ namespace ASPNET.StarterKit.Portal
         {
             this.rolesList.ItemCommand +=
                 new System.Web.UI.WebControls.DataListCommandEventHandler(this.RolesList_ItemCommand);
-            this.AddRoleBtn.Click += new System.EventHandler(this.AddRole_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

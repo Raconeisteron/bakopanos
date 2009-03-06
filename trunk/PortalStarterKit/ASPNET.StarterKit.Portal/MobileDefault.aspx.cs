@@ -7,13 +7,9 @@ using ASPNET.StarterKit.Portal.MobileControls;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class MobileDefault : MobilePage
+    public partial class MobileDefault : MobilePage
     {
         private ArrayList authorizedTabs = new ArrayList();
-        protected DeviceSpecific DeviceSpecific1;
-        protected Form Form1;
-        protected Label Label1;
-        protected TabbedPanel TabView;
 
         public MobileDefault()
         {
@@ -35,7 +31,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -147,7 +143,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        private void TabView_OnTabActivate(Object sender, EventArgs e)
+        protected void TabView_OnTabActivate(Object sender, EventArgs e)
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
@@ -206,7 +202,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.TabView.TabActivate += new System.EventHandler(this.TabView_OnTabActivate);
         }
 
         #endregion

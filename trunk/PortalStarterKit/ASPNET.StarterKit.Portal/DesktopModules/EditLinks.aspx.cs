@@ -6,25 +6,11 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class EditLinks : Page
+    public partial class EditLinks : Page
     {
-        protected LinkButton cancelButton;
-        protected Label CreatedBy;
-        protected Label CreatedDate;
-        protected LinkButton deleteButton;
-        protected TextBox DescriptionField;
 
         private int itemId;
-        protected TextBox MobileUrlField;
         private int moduleId;
-        protected RequiredFieldValidator Req1;
-        protected RequiredFieldValidator Req2;
-        protected RequiredFieldValidator RequiredViewOrder;
-        protected TextBox TitleField;
-        protected LinkButton updateButton;
-        protected TextBox UrlField;
-        protected CompareValidator VerifyViewOrder;
-        protected TextBox ViewOrderField;
 
         public EditLinks()
         {
@@ -41,7 +27,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //****************************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Determine ModuleId of Links Portal Module
             moduleId = Int32.Parse(Request.Params["Mid"]);
@@ -106,7 +92,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //****************************************************************
 
-        private void UpdateBtn_Click(Object sender, EventArgs e)
+        protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
@@ -139,7 +125,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //****************************************************************
 
-        private void DeleteBtn_Click(Object sender, EventArgs e)
+        protected void DeleteBtn_Click(Object sender, EventArgs e)
         {
             // Only attempt to delete the item if it is an existing item
             // (new items will have "ItemId" of 0)
@@ -162,13 +148,13 @@ namespace ASPNET.StarterKit.Portal
         //
         //****************************************************************
 
-        private void CancelBtn_Click(Object sender, EventArgs e)
+        protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -184,10 +170,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.updateButton.Click += new System.EventHandler(this.UpdateBtn_Click);
-            this.cancelButton.Click += new System.EventHandler(this.CancelBtn_Click);
-            this.deleteButton.Click += new System.EventHandler(this.DeleteBtn_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

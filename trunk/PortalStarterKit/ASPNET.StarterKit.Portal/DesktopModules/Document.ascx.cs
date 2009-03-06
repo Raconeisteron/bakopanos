@@ -4,9 +4,8 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public abstract class Document : PortalModuleControl
+    public partial  class Document : PortalModuleControl
     {
-        protected DataGrid myDataGrid;
 
         public Document()
         {
@@ -24,7 +23,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain Document Data from Documents table
             // and bind to the datalist control
@@ -66,7 +65,7 @@ namespace ASPNET.StarterKit.Portal
             }
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -81,7 +80,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

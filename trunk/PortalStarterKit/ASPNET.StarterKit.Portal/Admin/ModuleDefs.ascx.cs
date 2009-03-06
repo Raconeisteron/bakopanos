@@ -4,10 +4,8 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public abstract class ModuleDefs : PortalModuleControl
+    public partial  class ModuleDefs : PortalModuleControl
     {
-        protected LinkButton AddDefBtn;
-        protected DataList defsList;
 
         private int tabId;
         private int tabIndex;
@@ -24,7 +22,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Verify that the current user has access to access this page
             if (PortalSecurity.IsInRoles("Admins") == false)
@@ -55,7 +53,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void AddDef_Click(Object Sender, EventArgs e)
+        protected void AddDef_Click(Object Sender, EventArgs e)
         {
             // redirect to edit page
             Response.Redirect("~/Admin/ModuleDefinitions.aspx?defId=-1&tabindex=" + tabIndex + "&tabid=" + tabId);
@@ -97,7 +95,7 @@ namespace ASPNET.StarterKit.Portal
             defsList.DataBind();
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -112,10 +110,8 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.AddDefBtn.Click += new System.EventHandler(this.AddDef_Click);
             this.defsList.ItemCommand +=
                 new System.Web.UI.WebControls.DataListCommandEventHandler(this.DefsList_ItemCommand);
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion

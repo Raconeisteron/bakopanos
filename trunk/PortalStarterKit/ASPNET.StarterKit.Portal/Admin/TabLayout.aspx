@@ -1,4 +1,4 @@
-<%@ Page language="c#" CodeBehind="TabLayout.aspx.cs" AutoEventWireup="false" Inherits="ASPNET.StarterKit.Portal.TabLayout" %>
+<%@ Page language="c#" CodeBehind="TabLayout.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.TabLayout" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 
@@ -50,7 +50,7 @@
                                                 Tab Name:
                                             </td>
                                             <td colspan="3">
-                                                <asp:Textbox id="tabName" width="300" cssclass="NormalTextBox" runat="server" />
+                                                <asp:Textbox id="tabName" width="300" cssclass="NormalTextBox" runat="server" ontextchanged="TabSettings_Change" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -58,7 +58,7 @@
                                                 Authorized Roles:
                                             </td>
                                             <td colspan="3">
-                                                <asp:CheckBoxList id="authRoles" RepeatColumns="2" Font-Names="Verdana,Arial" Font-Size="8pt" width="300" runat="server" />
+                                                <asp:CheckBoxList id="authRoles" RepeatColumns="2" Font-Names="Verdana,Arial" Font-Size="8pt" width="300" runat="server" onselectedindexchanged="TabSettings_Change" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -74,7 +74,7 @@
                                                 Show to mobile users?:
                                             </td>
                                             <td colspan="3">
-                                                <asp:Checkbox id="showMobile" Font-Names="Verdana,Arial" Font-Size="8pt" runat="server" />
+                                                <asp:Checkbox id="showMobile" Font-Names="Verdana,Arial" Font-Size="8pt" runat="server" oncheckedchanged="TabSettings_Change" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -82,7 +82,7 @@
                                                 Mobile Tab Name:
                                             </td>
                                             <td colspan="3">
-                                                <asp:Textbox id="mobileTabName" width="300" cssclass="NormalTextBox" runat="server" />
+                                                <asp:Textbox id="mobileTabName" width="300" cssclass="NormalTextBox" runat="server" ontextchanged="TabSettings_Change" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -117,7 +117,7 @@
                                                 &nbsp;
                                             </td>
                                             <td colspan="3">
-                                                <asp:LinkButton class="CommandButton" Text='<img src="../images/dn.gif" border=0> Add to "Organize Modules" Below' runat="server" id="AddModuleBtn" />
+                                                <asp:LinkButton class="CommandButton" Text='<img src="../images/dn.gif" border=0> Add to "Organize Modules" Below' runat="server" id="AddModuleBtn" onclick="AddModuleToPane_Click" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -147,19 +147,19 @@
                                                                         <asp:ListBox id="leftPane" DataSource="<%# leftList %>" DataTextField="ModuleTitle" DataValueField="ModuleId" width="110" rows="7" runat="server" />
                                                                     </td>
                                                                     <td valign="top" nowrap>
-                                                                        <asp:ImageButton ImageUrl="~/images/up.gif" CommandName="up" CommandArgument="leftPane" AlternateText="Move selected module up in list" runat="server" id="LeftUpBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/up.gif" CommandName="up" CommandArgument="leftPane" AlternateText="Move selected module up in list" runat="server" id="LeftUpBtn" onclick="UpDown_Click" />
                                                                         <br>
-                                                                        <asp:ImageButton ImageUrl="~/images/rt.gif" CommandName="right" sourcepane="leftPane" targetpane="contentPane" AlternateText="Move selected module to the content pane" runat="server" id="LeftRightBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/rt.gif" CommandName="right" sourcepane="leftPane" targetpane="contentPane" AlternateText="Move selected module to the content pane" runat="server" id="LeftRightBtn" onclick="RightLeft_Click" />
                                                                         <br>
-                                                                        <asp:ImageButton ImageUrl="~/images/dn.gif" CommandName="down" CommandArgument="leftPane" AlternateText="Move selected module down in list" runat="server" id="LeftDownBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/dn.gif" CommandName="down" CommandArgument="leftPane" AlternateText="Move selected module down in list" runat="server" id="LeftDownBtn" onclick="UpDown_Click" />
                                                                         &nbsp;&nbsp;
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td valign="bottom" nowrap>
-                                                                        <asp:ImageButton ImageUrl="~/images/edit.gif" CommandName="edit" CommandArgument="leftPane" AlternateText="Edit this item" runat="server" id="LeftEditBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/edit.gif" CommandName="edit" CommandArgument="leftPane" AlternateText="Edit this item" runat="server" id="LeftEditBtn" onclick="EditBtn_Click" />
                                                                         <br>
-                                                                        <asp:ImageButton ImageUrl="~/images/delete.gif" CommandName="delete" CommandArgument="leftPane" AlternateText="Delete this item" runat="server" id="LeftDeleteBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/delete.gif" CommandName="delete" CommandArgument="leftPane" AlternateText="Delete this item" runat="server" id="LeftDeleteBtn" onclick="DeleteBtn_Click" />
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -182,21 +182,21 @@
                                                                         <asp:ListBox id="contentPane" DataSource="<%# contentList %>" DataTextField="ModuleTitle" DataValueField="ModuleId" width="170" rows="7" runat="server" />
                                                                     </td>
                                                                     <td valign="top" nowrap>
-                                                                        <asp:ImageButton ImageUrl="~/images/up.gif" CommandName="up" CommandArgument="contentPane" AlternateText="Move selected module up in list" runat="server" id="ContentUpBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/up.gif" CommandName="up" CommandArgument="contentPane" AlternateText="Move selected module up in list" runat="server" id="ContentUpBtn" onclick="UpDown_Click" />
                                                                         <br>
-                                                                        <asp:ImageButton ImageUrl="~/images/lt.gif" sourcepane="contentPane" targetpane="leftPane" AlternateText="Move selected module to the left pane" runat="server" id="ContentLeftBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/lt.gif" sourcepane="contentPane" targetpane="leftPane" AlternateText="Move selected module to the left pane" runat="server" id="ContentLeftBtn" onclick="RightLeft_Click" />
                                                                         <br>
-                                                                        <asp:ImageButton ImageUrl="~/images/rt.gif" sourcepane="contentPane" targetpane="rightPane" AlternateText="Move selected module to the right pane" runat="server" id="ContentRightBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/rt.gif" sourcepane="contentPane" targetpane="rightPane" AlternateText="Move selected module to the right pane" runat="server" id="ContentRightBtn" onclick="RightLeft_Click" />
                                                                         <br>
-                                                                        <asp:ImageButton ImageUrl="~/images/dn.gif" CommandName="down" CommandArgument="contentPane" AlternateText="Move selected module down in list" runat="server" id="ContentDownBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/dn.gif" CommandName="down" CommandArgument="contentPane" AlternateText="Move selected module down in list" runat="server" id="ContentDownBtn" onclick="UpDown_Click" />
                                                                         &nbsp;&nbsp;
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td valign="bottom" nowrap>
-                                                                        <asp:ImageButton ImageUrl="~/images/edit.gif" CommandName="edit" CommandArgument="contentPane" AlternateText="Edit this item" runat="server" id="ContentEditBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/edit.gif" CommandName="edit" CommandArgument="contentPane" AlternateText="Edit this item" runat="server" id="ContentEditBtn" onclick="EditBtn_Click" />
                                                                         <br>
-                                                                        <asp:ImageButton ImageUrl="~/images/delete.gif" CommandName="delete" CommandArgument="contentPane" AlternateText="Delete this item" runat="server" id="ContentDeleteBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/delete.gif" CommandName="delete" CommandArgument="contentPane" AlternateText="Delete this item" runat="server" id="ContentDeleteBtn" onclick="DeleteBtn_Click" />
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -219,18 +219,18 @@
                                                                         <asp:ListBox id="rightPane" DataSource="<%# rightList %>" DataTextField="ModuleTitle" DataValueField="ModuleId" width="110" rows="7" runat="server" />
                                                                     </td>
                                                                     <td valign="top" nowrap>
-                                                                        <asp:ImageButton ImageUrl="~/images/up.gif" CommandName="up" CommandArgument="rightPane" AlternateText="Move selected module up in list" runat="server" id="RightUpBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/up.gif" CommandName="up" CommandArgument="rightPane" AlternateText="Move selected module up in list" runat="server" id="RightUpBtn" onclick="UpDown_Click" />
                                                                         <br>
-                                                                        <asp:ImageButton ImageUrl="~/images/lt.gif" sourcepane="rightPane" targetpane="contentPane" AlternateText="Move selected module to the left pane" runat="server" id="RightLeftBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/lt.gif" sourcepane="rightPane" targetpane="contentPane" AlternateText="Move selected module to the left pane" runat="server" id="RightLeftBtn" onclick="RightLeft_Click" />
                                                                         <br>
-                                                                        <asp:ImageButton ImageUrl="~/images/dn.gif" CommandName="down" CommandArgument="rightPane" AlternateText="Move selected module down in list" runat="server" id="RightDownBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/dn.gif" CommandName="down" CommandArgument="rightPane" AlternateText="Move selected module down in list" runat="server" id="RightDownBtn" onclick="UpDown_Click" />
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td valign="bottom" nowrap>
-                                                                        <asp:ImageButton ImageUrl="~/images/edit.gif" CommandName="edit" CommandArgument="rightPane" AlternateText="Edit this item" runat="server" id="RightEditBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/edit.gif" CommandName="edit" CommandArgument="rightPane" AlternateText="Edit this item" runat="server" id="RightEditBtn" onclick="EditBtn_Click" />
                                                                         <br>
-                                                                        <asp:ImageButton ImageUrl="~/images/delete.gif" CommandName="delete" CommandArgument="rightPane" AlternateText="Delete this item" runat="server" id="RightDeleteBtn" />
+                                                                        <asp:ImageButton ImageUrl="~/images/delete.gif" CommandName="delete" CommandArgument="rightPane" AlternateText="Delete this item" runat="server" id="RightDeleteBtn" onclick="DeleteBtn_Click" />
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -246,7 +246,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="4">
-                                                <asp:LinkButton id="applyBtn" class="CommandButton" Text="Apply Changes" runat="server" />
+                                                <asp:LinkButton id="applyBtn" class="CommandButton" Text="Apply Changes" runat="server" onclick="Apply_Click" />
                                             </td>
                                         </tr>
                                     </table>

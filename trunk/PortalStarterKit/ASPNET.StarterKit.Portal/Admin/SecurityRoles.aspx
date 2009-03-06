@@ -1,4 +1,4 @@
-<%@ Page language="c#" CodeBehind="SecurityRoles.aspx.cs" AutoEventWireup="false" Inherits="ASPNET.StarterKit.Portal.SecurityRoles" %>
+<%@ Page language="c#" CodeBehind="SecurityRoles.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.SecurityRoles" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 
@@ -57,7 +57,7 @@
                                                             <asp:TextBox id="windowsUserName" Text="DOMAIN\username" Visible="False" runat="server" />
                                                         </td>
                                                         <td class="Normal">
-                                                            <asp:LinkButton id="addNew" cssclass="CommandButton" Text="Create new user and add to role" Visible="False" runat="server" />
+                                                            <asp:LinkButton id="addNew" cssclass="CommandButton" Text="Create new user and add to role" Visible="False" runat="server" onclick="AddUser_Click" />
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -65,7 +65,7 @@
                                                             <asp:DropDownList id="allUsers" DataTextField="Email" DataValueField="UserID" runat="server" />
                                                         </td>
                                                         <td>
-                                                            <asp:LinkButton id="addExisting" cssclass="CommandButton" Text="Add existing user to role" runat="server" />
+                                                            <asp:LinkButton id="addExisting" cssclass="CommandButton" Text="Add existing user to role" runat="server" onclick="AddUser_Click" />
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -93,7 +93,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2">
-                                                <asp:LinkButton id="saveBtn" class="CommandButton" Text="Save Role Changes" runat="server" />
+                                                <asp:LinkButton id="saveBtn" class="CommandButton" Text="Save Role Changes" runat="server" onclick="Save_Click" />
                                             </td>
                                         </tr>
                                     </table>

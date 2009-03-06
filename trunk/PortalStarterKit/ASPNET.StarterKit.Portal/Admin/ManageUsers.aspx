@@ -1,4 +1,4 @@
-<%@ Page language="c#" CodeBehind="ManageUsers.aspx.cs" AutoEventWireup="false" Inherits="ASPNET.StarterKit.Portal.ManageUsers" %>
+<%@ Page language="c#" CodeBehind="ManageUsers.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.ManageUsers" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 <HTML>
@@ -69,7 +69,7 @@
 							</tr>
 							<tr>
 								<td colspan="3">
-									<asp:LinkButton Text="Apply Name and Password Changes" cssclass="CommandButton" runat="server" ID="UpdateUserBtn" />
+									<asp:LinkButton Text="Apply Name and Password Changes" cssclass="CommandButton" runat="server" ID="UpdateUserBtn" onclick="UpdateUser_Click" />
 									<br>
 									<br>
 								</td>
@@ -77,7 +77,7 @@
 							<tr>
 								<td colspan="2">
 									<asp:DropDownList id="allRoles" DataTextField="RoleName" DataValueField="RoleID" runat="server" />
-									&nbsp;<asp:LinkButton id="addExisting" cssclass="CommandButton" Text="Add user to this role" runat="server" CausesValidation="False">
+									&nbsp;<asp:LinkButton id="addExisting" cssclass="CommandButton" Text="Add user to this role" runat="server" CausesValidation="False" onclick="AddRole_Click">
 								Add user to this role</asp:LinkButton>
 								</td>
 							</tr>
@@ -103,7 +103,7 @@
 							</tr>
 							<tr>
 								<td colspan="2">
-									<asp:LinkButton id="saveBtn" class="CommandButton" Text="Save User Changes" runat="server" CausesValidation="False">
+									<asp:LinkButton id="saveBtn" class="CommandButton" Text="Save User Changes" runat="server" CausesValidation="False" onclick="Save_Click">
 								Save User Changes</asp:LinkButton>
 								</td>
 							</tr>

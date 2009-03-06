@@ -6,20 +6,15 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public abstract class Signin : PortalModuleControl
+    public partial  class Signin : PortalModuleControl
     {
-        protected TextBox email;
-        protected Label Message;
-        protected TextBox password;
-        protected CheckBox RememberCheckbox;
-        protected ImageButton SigninBtn;
 
         public Signin()
         {
             Init += Page_Init;
         }
 
-        private void LoginBtn_Click(Object sender, ImageClickEventArgs e)
+        protected void LoginBtn_Click(Object sender, ImageClickEventArgs e)
         {
             // Attempt to Validate User Credentials using UsersDB
             var accountSystem = new UsersDB();
@@ -39,7 +34,7 @@ namespace ASPNET.StarterKit.Portal
             }
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -54,7 +49,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.SigninBtn.Click += new System.Web.UI.ImageClickEventHandler(this.LoginBtn_Click);
         }
 
         #endregion

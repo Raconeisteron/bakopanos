@@ -7,15 +7,10 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class ModuleSettingsPage : Page
+    public partial class ModuleSettingsPage : Page
     {
-        protected LinkButton ApplyButton;
-        protected CheckBoxList authEditRoles;
-        protected TextBox cacheTime;
 
         private int moduleId;
-        protected TextBox moduleTitle;
-        protected CheckBox showMobile;
         private int tabId;
 
         public ModuleSettingsPage()
@@ -30,7 +25,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             // Verify that the current user has access to access this page
             if (PortalSecurity.IsInRoles("Admins") == false)
@@ -62,7 +57,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void ApplyChanges_Click(Object Sender, EventArgs e)
+        protected void ApplyChanges_Click(Object Sender, EventArgs e)
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
@@ -200,7 +195,7 @@ namespace ASPNET.StarterKit.Portal
             return null;
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
@@ -216,8 +211,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         private void InitializeComponent()
         {
-            this.ApplyButton.Click += new System.EventHandler(this.ApplyChanges_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 
         #endregion
