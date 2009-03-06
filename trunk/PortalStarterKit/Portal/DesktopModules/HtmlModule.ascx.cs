@@ -5,7 +5,7 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {
-    public partial class HtmlModule : PortalModuleControl
+    public partial class HtmlModule : PortalModuleControl<HtmlModule>
     {
         //*******************************************************
         //

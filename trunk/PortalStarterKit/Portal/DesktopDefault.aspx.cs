@@ -64,12 +64,12 @@ namespace ASPNET.StarterKit.Portal
 
                     if ((_moduleSettings.CacheTime) == 0)
                     {
-                        var portalModule = (PortalModuleControl) Page.LoadControl(_moduleSettings.DesktopSrc);
+                        var portalModule = (IPortalModuleControl) Page.LoadControl(_moduleSettings.DesktopSrc);
 
                         portalModule.PortalId = portalSettings.PortalId;
                         portalModule.ModuleConfiguration = _moduleSettings;
 
-                        parent.Controls.Add(portalModule);
+                        parent.Controls.Add(portalModule as UserControl);
                     }
                     else
                     {

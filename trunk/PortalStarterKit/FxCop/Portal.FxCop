@@ -21,6 +21,8 @@
   <IgnoreGeneratedCode>False</IgnoreGeneratedCode>
  </ProjectOptions>
  <Targets>
+  <Target Name="$(ProjectDir)/../Portal/bin/Portal.Common.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/../Portal/bin/Portal.Components.dll" Analyze="True" AnalyzeAllChildren="True" />
   <Target Name="$(ProjectDir)/../Portal/bin/Portal.dll" Analyze="True" AnalyzeAllChildren="True" />
  </Targets>
  <Rules>
@@ -106,6 +108,271 @@
    </Namespace>
   </Namespaces>
   <Targets>
+   <Target Name="$(ProjectDir)/../Portal/bin/Portal.Common.dll">
+    <Modules>
+     <Module Name="portal.common.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2009-03-06 11:30:13Z">
+        <Issue Name="NoStrongName">
+         <Item>'Portal.Common.dll'</Item>
+        </Issue>
+       </Message>
+      </Messages>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/../Portal/bin/Portal.Components.dll">
+    <Modules>
+     <Module Name="portal.components.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2009-03-06 11:30:13Z">
+        <Issue Name="NoStrongName">
+         <Item>'Portal.Components.dll'</Item>
+        </Issue>
+       </Message>
+       <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Created="2009-03-06 11:30:13Z">
+        <Issue>
+         <Item>'Portal.Components.dll'</Item>
+        </Issue>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="ASPNET.StarterKit.Portal.Components">
+        <Types>
+         <Type Name="AnnouncementsDB">
+          <Members>
+           <Member Name="#GetAnnouncements(System.Int32)">
+            <Messages>
+             <Message TypeName="SetLocaleForDataTypes" Category="Microsoft.Globalization" CheckId="CA1306" Created="2009-03-06 11:30:13Z">
+              <Issue>
+               <Item>DataSet</Item>
+               <Item>'AnnouncementsDB.GetAnnouncements(int)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ContactsDB">
+          <Members>
+           <Member Name="#GetContacts(System.Int32)">
+            <Messages>
+             <Message TypeName="SetLocaleForDataTypes" Category="Microsoft.Globalization" CheckId="CA1306" Created="2009-03-06 11:30:13Z">
+              <Issue>
+               <Item>DataSet</Item>
+               <Item>'ContactsDB.GetContacts(int)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="EventsDB">
+          <Members>
+           <Member Name="#GetEvents(System.Int32)">
+            <Messages>
+             <Message TypeName="SetLocaleForDataTypes" Category="Microsoft.Globalization" CheckId="CA1306" Created="2009-03-06 11:30:13Z">
+              <Issue>
+               <Item>DataSet</Item>
+               <Item>'EventsDB.GetEvents(int)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="IAnnouncementsDB">
+          <Members>
+           <Member Name="#DeleteAnnouncement(System.Int32)">
+            <Messages>
+             <Message Id="ID" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 11:30:13Z">
+              <Issue Name="MemberParameterAbbreviation">
+               <Item>'IAnnouncementsDB.DeleteAnnouncement(int)'</Item>
+               <Item>ID</Item>
+               <Item>'itemID'</Item>
+               <Item>Id</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="IContactsDB">
+          <Members>
+           <Member Name="#DeleteContact(System.Int32)">
+            <Messages>
+             <Message Id="ID" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 11:30:13Z">
+              <Issue Name="MemberParameterAbbreviation">
+               <Item>'IContactsDB.DeleteContact(int)'</Item>
+               <Item>ID</Item>
+               <Item>'itemID'</Item>
+               <Item>Id</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="IDocumentDB">
+          <Members>
+           <Member Name="#DeleteDocument(System.Int32)">
+            <Messages>
+             <Message Id="ID" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 11:30:13Z">
+              <Issue Name="MemberParameterAbbreviation">
+               <Item>'IDocumentDB.DeleteDocument(int)'</Item>
+               <Item>ID</Item>
+               <Item>'itemID'</Item>
+               <Item>Id</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#UpdateDocument(System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.Byte[],System.Int32,System.String)">
+            <Messages>
+             <Message Id="4#" TypeName="UriParametersShouldNotBeStrings" Category="Microsoft.Design" CheckId="CA1054" Created="2009-03-06 11:30:13Z">
+              <Issue>
+               <Item>'url'</Item>
+               <Item>'IDocumentDB.UpdateDocument(int, int, string, string, string, string, byte[], int, string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="IEventsDB">
+          <Members>
+           <Member Name="#AddEvent(System.Int32,System.Int32,System.String,System.String,System.DateTime,System.String,System.String)">
+            <Messages>
+             <Message Id="wherewhen" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 11:30:13Z">
+              <Issue Name="MemberParameter">
+               <Item>'IEventsDB.AddEvent(int, int, string, string, DateTime, string, string)'</Item>
+               <Item>wherewhen</Item>
+               <Item>'wherewhen'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#DeleteEvent(System.Int32)">
+            <Messages>
+             <Message Id="ID" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 11:30:13Z">
+              <Issue Name="MemberParameterAbbreviation">
+               <Item>'IEventsDB.DeleteEvent(int)'</Item>
+               <Item>ID</Item>
+               <Item>'itemID'</Item>
+               <Item>Id</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#UpdateEvent(System.Int32,System.Int32,System.String,System.String,System.DateTime,System.String,System.String)">
+            <Messages>
+             <Message Id="wherewhen" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 11:30:13Z">
+              <Issue Name="MemberParameter">
+               <Item>'IEventsDB.UpdateEvent(int, int, string, string, DateTime, string, string)'</Item>
+               <Item>wherewhen</Item>
+               <Item>'wherewhen'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ILinkDB">
+          <Members>
+           <Member Name="#AddLink(System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.Int32,System.String)">
+            <Messages>
+             <Message Id="4#" TypeName="UriParametersShouldNotBeStrings" Category="Microsoft.Design" CheckId="CA1054" Created="2009-03-06 11:30:13Z">
+              <Issue>
+               <Item>'url'</Item>
+               <Item>'ILinkDB.AddLink(int, int, string, string, string, string, int, string)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="5#" TypeName="UriParametersShouldNotBeStrings" Category="Microsoft.Design" CheckId="CA1054" Created="2009-03-06 11:30:13Z">
+              <Issue>
+               <Item>'mobileUrl'</Item>
+               <Item>'ILinkDB.AddLink(int, int, string, string, string, string, int, string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#DeleteLink(System.Int32)">
+            <Messages>
+             <Message Id="ID" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 11:30:13Z">
+              <Issue Name="MemberParameterAbbreviation">
+               <Item>'ILinkDB.DeleteLink(int)'</Item>
+               <Item>ID</Item>
+               <Item>'itemID'</Item>
+               <Item>Id</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#UpdateLink(System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.Int32,System.String)">
+            <Messages>
+             <Message Id="4#" TypeName="UriParametersShouldNotBeStrings" Category="Microsoft.Design" CheckId="CA1054" Created="2009-03-06 11:30:13Z">
+              <Issue>
+               <Item>'url'</Item>
+               <Item>'ILinkDB.UpdateLink(int, int, string, string, string, string, int, string)'</Item>
+              </Issue>
+             </Message>
+             <Message Id="5#" TypeName="UriParametersShouldNotBeStrings" Category="Microsoft.Design" CheckId="CA1054" Created="2009-03-06 11:30:13Z">
+              <Issue>
+               <Item>'mobileUrl'</Item>
+               <Item>'ILinkDB.UpdateLink(int, int, string, string, string, string, int, string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="IRolesDB">
+          <Members>
+           <Member Name="#GetUsers()">
+            <Messages>
+             <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Created="2009-03-06 11:30:13Z">
+              <Issue Certainty="50">
+               <Item>'IRolesDB.GetUsers()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="IUsersDB">
+          <Members>
+           <Member Name="#Login(System.String,System.String)">
+            <Messages>
+             <Message Id="Login" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Created="2009-03-06 11:30:13Z">
+              <Issue Name="Member">
+               <Item>Login</Item>
+               <Item>'IUsersDB.Login(string, string)'</Item>
+               <Item>LogOn</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="UsersDB">
+          <Members>
+           <Member Name="#AddUser(System.String,System.String,System.String)">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2009-03-06 11:30:13Z">
+              <Issue>
+               <Item>'UsersDB.AddUser(string, string, string)'</Item>
+               <Item>'object'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
    <Target Name="$(ProjectDir)/../Portal/bin/Portal.dll">
     <Modules>
      <Module Name="portal.dll">
@@ -222,6 +489,34 @@
                <Item>'int.Parse(string)'</Item>
                <Item>'Global.Application_BeginRequest(object, EventArgs)'</Item>
                <Item>'int.Parse(string, IFormatProvider)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Application_End(System.Object,System.EventArgs)">
+            <Messages>
+             <Message TypeName="ReviewVisibleEventHandlers" Category="Microsoft.Security" CheckId="CA2109" Created="2009-03-06 11:30:13Z">
+              <Issue>
+               <Item>'Global.Application_End(object, EventArgs)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Application_Start(System.Object,System.EventArgs)">
+            <Messages>
+             <Message TypeName="ReviewVisibleEventHandlers" Category="Microsoft.Security" CheckId="CA2109" Created="2009-03-06 11:30:13Z">
+              <Issue>
+               <Item>'Global.Application_Start(object, EventArgs)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#BuildItemWithCurrentContext`1(System.Web.UI.Control)">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2009-03-06 11:30:13Z">
+              <Issue>
+               <Item>'Global.BuildItemWithCurrentContext&lt;T&gt;(Control)'</Item>
+               <Item>'T'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -2041,20 +2336,6 @@
        </Namespace>
        <Namespace Name="ASPNET.StarterKit.Portal.Components">
         <Types>
-         <Type Name="AnnouncementsDB">
-          <Members>
-           <Member Name="#GetAnnouncements(System.Int32)">
-            <Messages>
-             <Message TypeName="SetLocaleForDataTypes" Category="Microsoft.Globalization" CheckId="CA1306" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>DataSet</Item>
-               <Item>'AnnouncementsDB.GetAnnouncements(int)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
          <Type Name="CachedPortalModuleControl">
           <Members>
            <Member Name="#Render(System.Web.UI.HtmlTextWriter)">
@@ -2072,206 +2353,6 @@
                <Item>'StringWriter.StringWriter()'</Item>
                <Item>'CachedPortalModuleControl.Render(HtmlTextWriter)'</Item>
                <Item>'StringWriter.StringWriter(IFormatProvider)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="ContactsDB">
-          <Members>
-           <Member Name="#GetContacts(System.Int32)">
-            <Messages>
-             <Message TypeName="SetLocaleForDataTypes" Category="Microsoft.Globalization" CheckId="CA1306" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>DataSet</Item>
-               <Item>'ContactsDB.GetContacts(int)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="EventsDB">
-          <Members>
-           <Member Name="#GetEvents(System.Int32)">
-            <Messages>
-             <Message TypeName="SetLocaleForDataTypes" Category="Microsoft.Globalization" CheckId="CA1306" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>DataSet</Item>
-               <Item>'EventsDB.GetEvents(int)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="IAnnouncementsDB">
-          <Members>
-           <Member Name="#DeleteAnnouncement(System.Int32)">
-            <Messages>
-             <Message Id="ID" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 08:30:06Z">
-              <Issue Name="MemberParameterAbbreviation">
-               <Item>'IAnnouncementsDB.DeleteAnnouncement(int)'</Item>
-               <Item>ID</Item>
-               <Item>'itemID'</Item>
-               <Item>Id</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="IContactsDB">
-          <Members>
-           <Member Name="#DeleteContact(System.Int32)">
-            <Messages>
-             <Message Id="ID" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 08:30:06Z">
-              <Issue Name="MemberParameterAbbreviation">
-               <Item>'IContactsDB.DeleteContact(int)'</Item>
-               <Item>ID</Item>
-               <Item>'itemID'</Item>
-               <Item>Id</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="IDocumentDB">
-          <Members>
-           <Member Name="#DeleteDocument(System.Int32)">
-            <Messages>
-             <Message Id="ID" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 08:30:06Z">
-              <Issue Name="MemberParameterAbbreviation">
-               <Item>'IDocumentDB.DeleteDocument(int)'</Item>
-               <Item>ID</Item>
-               <Item>'itemID'</Item>
-               <Item>Id</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#UpdateDocument(System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.Byte[],System.Int32,System.String)">
-            <Messages>
-             <Message Id="4#" TypeName="UriParametersShouldNotBeStrings" Category="Microsoft.Design" CheckId="CA1054" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'url'</Item>
-               <Item>'IDocumentDB.UpdateDocument(int, int, string, string, string, string, byte[], int, string)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="IEventsDB">
-          <Members>
-           <Member Name="#AddEvent(System.Int32,System.Int32,System.String,System.String,System.DateTime,System.String,System.String)">
-            <Messages>
-             <Message Id="wherewhen" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="MemberParameter">
-               <Item>'IEventsDB.AddEvent(int, int, string, string, DateTime, string, string)'</Item>
-               <Item>wherewhen</Item>
-               <Item>'wherewhen'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#DeleteEvent(System.Int32)">
-            <Messages>
-             <Message Id="ID" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 08:30:06Z">
-              <Issue Name="MemberParameterAbbreviation">
-               <Item>'IEventsDB.DeleteEvent(int)'</Item>
-               <Item>ID</Item>
-               <Item>'itemID'</Item>
-               <Item>Id</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#UpdateEvent(System.Int32,System.Int32,System.String,System.String,System.DateTime,System.String,System.String)">
-            <Messages>
-             <Message Id="wherewhen" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="MemberParameter">
-               <Item>'IEventsDB.UpdateEvent(int, int, string, string, DateTime, string, string)'</Item>
-               <Item>wherewhen</Item>
-               <Item>'wherewhen'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="ILinkDB">
-          <Members>
-           <Member Name="#AddLink(System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.Int32,System.String)">
-            <Messages>
-             <Message Id="4#" TypeName="UriParametersShouldNotBeStrings" Category="Microsoft.Design" CheckId="CA1054" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'url'</Item>
-               <Item>'ILinkDB.AddLink(int, int, string, string, string, string, int, string)'</Item>
-              </Issue>
-             </Message>
-             <Message Id="5#" TypeName="UriParametersShouldNotBeStrings" Category="Microsoft.Design" CheckId="CA1054" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'mobileUrl'</Item>
-               <Item>'ILinkDB.AddLink(int, int, string, string, string, string, int, string)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#DeleteLink(System.Int32)">
-            <Messages>
-             <Message Id="ID" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 08:30:06Z">
-              <Issue Name="MemberParameterAbbreviation">
-               <Item>'ILinkDB.DeleteLink(int)'</Item>
-               <Item>ID</Item>
-               <Item>'itemID'</Item>
-               <Item>Id</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#UpdateLink(System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.Int32,System.String)">
-            <Messages>
-             <Message Id="4#" TypeName="UriParametersShouldNotBeStrings" Category="Microsoft.Design" CheckId="CA1054" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'url'</Item>
-               <Item>'ILinkDB.UpdateLink(int, int, string, string, string, string, int, string)'</Item>
-              </Issue>
-             </Message>
-             <Message Id="5#" TypeName="UriParametersShouldNotBeStrings" Category="Microsoft.Design" CheckId="CA1054" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'mobileUrl'</Item>
-               <Item>'ILinkDB.UpdateLink(int, int, string, string, string, string, int, string)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="IRolesDB">
-          <Members>
-           <Member Name="#GetUsers()">
-            <Messages>
-             <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Created="2009-03-06 08:30:06Z">
-              <Issue Certainty="50">
-               <Item>'IRolesDB.GetUsers()'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="IUsersDB">
-          <Members>
-           <Member Name="#Login(System.String,System.String)">
-            <Messages>
-             <Message Id="Login" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Login</Item>
-               <Item>'IUsersDB.Login(string, string)'</Item>
-               <Item>LogOn</Item>
               </Issue>
              </Message>
             </Messages>
@@ -2596,26 +2677,21 @@
            </Member>
           </Members>
          </Type>
-         <Type Name="UsersDB">
-          <Members>
-           <Member Name="#AddUser(System.String,System.String,System.String)">
-            <Messages>
-             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'UsersDB.AddUser(string, string, string)'</Item>
-               <Item>'object'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
         </Types>
        </Namespace>
        <Namespace Name="ASPNET.StarterKit.Portal.DesktopModules">
         <Types>
          <Type Name="Announcements">
           <Members>
+           <Member Name="#DBAnnouncements">
+            <Messages>
+             <Message TypeName="PropertiesShouldNotBeWriteOnly" Category="Microsoft.Design" CheckId="CA1044" Created="2009-03-06 11:30:13Z">
+              <Issue Name="MakeMoreAccessible">
+               <Item>'Announcements.DBAnnouncements'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
            <Member Name="#InitializeComponent()">
             <Messages>
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2009-03-06 08:30:06Z" FixCategory="NonBreaking">
@@ -2786,6 +2862,15 @@
          </Type>
          <Type Name="EditAnnouncements">
           <Members>
+           <Member Name="#DBAnnouncements">
+            <Messages>
+             <Message TypeName="PropertiesShouldNotBeWriteOnly" Category="Microsoft.Design" CheckId="CA1044" Created="2009-03-06 11:30:13Z">
+              <Issue Name="MakeMoreAccessible">
+               <Item>'EditAnnouncements.DBAnnouncements'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
            <Member Name="#InitializeComponent()">
             <Messages>
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2009-03-06 08:30:06Z" FixCategory="NonBreaking">
@@ -3449,6 +3534,9 @@
    <Rule TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065">
     <Resolution Name="PropertyGetter">{0} creates an exception of type {1}, an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Resolution>
    </Rule>
+   <Rule TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004">
+    <Resolution Name="Default">Consider a design where {0} doesn't require explicit type parameter {1} in any call to it.</Resolution>
+   </Rule>
    <Rule TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709">
     <Resolution Name="Member">Correct the casing of '{0}' in member name {1} by changing it to '{2}'.</Resolution>
     <Resolution Name="MemberParameter">In member {0}, correct the casing of '{1}' in parameter name {2} by changing it to '{3}'.</Resolution>
@@ -3473,6 +3561,9 @@
    <Rule TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240">
     <Resolution Name="Default">Add an implementation of GetObjectData to type {0}.</Resolution>
    </Rule>
+   <Rule TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014">
+    <Resolution Name="Default">Mark {0} with CLSCompliant(true) because it exposes externally visible types.</Resolution>
+   </Rule>
    <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
     <Resolution Name="Default">The 'this' parameter (or 'Me' in Visual Basic) of {0} is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Resolution>
    </Rule>
@@ -3485,6 +3576,9 @@
    </Rule>
    <Rule TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725">
     <Resolution Name="Default">In member {0}, change parameter name {1} to {2} in order to match the identifier as it has been declared in {3}.</Resolution>
+   </Rule>
+   <Rule TypeName="PropertiesShouldNotBeWriteOnly" Category="Microsoft.Design" CheckId="CA1044">
+    <Resolution Name="MakeMoreAccessible">Because the property getter for {0} is less visible than its setter, either increase the accessibility of its getter or decrease the accessibility of its setter.</Resolution>
    </Rule>
    <Rule TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200">
     <Resolution Name="Default">{0} rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Resolution>

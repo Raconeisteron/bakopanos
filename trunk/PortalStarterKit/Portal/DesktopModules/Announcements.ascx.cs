@@ -1,10 +1,17 @@
 using System;
 using ASPNET.StarterKit.Portal.Components;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {
-    public partial class Announcements : PortalModuleControl
+    public partial class Announcements : PortalModuleControl<Announcements>
     {
+        /// <summary>
+        /// announcement information from Announcements table 
+        /// </summary>
+        [Dependency]
+        public IAnnouncementsDB DBAnnouncements { private get; set; }        
+        
         //*******************************************************
         //
         // The Page_Load event handler on this User Control is used to
@@ -21,13 +28,9 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {
-            // Obtain announcement information from Announcements table
-            // and bind to the datalist control
-            IAnnouncementsDB announcements = new AnnouncementsDB();
-
+        {            
             // DataBind Announcements to DataList Control
-            myDataList.DataSource = announcements.GetAnnouncements(ModuleId);
+            myDataList.DataSource = DBAnnouncements.GetAnnouncements(ModuleId);
             myDataList.DataBind();
         }
 

@@ -2,11 +2,18 @@ using System;
 using System.Data;
 using System.Web.UI;
 using ASPNET.StarterKit.Portal.Components;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {
-    public partial class EditAnnouncements : Page
+    public partial class EditAnnouncements : BasePage<EditAnnouncements>
     {
+        /// <summary>
+        /// announcement information from Announcements table 
+        /// </summary>
+        [Dependency]
+        public IAnnouncementsDB DBAnnouncements { private get; set; } 
+
         private int itemId;
         private int moduleId;
 
@@ -50,9 +57,8 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
             {
                 if (itemId != 0)
                 {
-                    // Obtain a single row of announcement information
-                    IAnnouncementsDB announcementDB = new AnnouncementsDB();
-                    IDataReader dr = announcementDB.GetSingleAnnouncement(itemId);
+                    // Obtain a single row of announcement information                    
+                    IDataReader dr = DBAnnouncements.GetSingleAnnouncement(itemId);
 
                     // Load first row into DataReader
                     dr.Read();

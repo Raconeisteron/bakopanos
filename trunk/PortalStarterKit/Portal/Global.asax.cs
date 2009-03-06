@@ -1,16 +1,69 @@
 using System;
 using System.Collections;
+using System.Configuration;
 using System.Globalization;
 using System.Security.Principal;
 using System.Threading;
 using System.Web;
 using System.Web.Security;
+using System.Web.UI;
 using ASPNET.StarterKit.Portal.Components;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class Global : HttpApplication
+    public interface IContainerAccessor
     {
+        IUnityContainer Container { get; }
+    }
+
+    public class Global : HttpApplication, IContainerAccessor
+    {
+        protected void Application_Start(object sender, EventArgs e)
+        {
+            IUnityContainer container = new UnityContainer();
+            //configure
+            var section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
+            section.Containers.Default.Configure(container);
+            container.RegisterInstance(ConfigurationManager.ConnectionStrings["ConnectionString"]);
+            // Register the relevant types for the 
+            // container here through classes or configuration
+            // register the container in the container property
+            Container = container;
+        }
+
+        protected void Application_End(object sender, EventArgs e)
+        {
+            if (Container != null)
+            {
+                Container.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Returns the Unity container of the application 
+        /// </summary>
+        IUnityContainer IContainerAccessor.Container
+        {
+            get { return Container; }
+        }
+
+        /// <summary>
+        /// The Unity container for the current application
+        /// </summary>
+        public static IUnityContainer Container
+        {
+            get;
+            set;
+        }
+
+        public static void BuildItemWithCurrentContext<T>(Control ctrl)
+        {
+            Container.BuildUp(typeof(T), ctrl);
+        }
+
+
         //*********************************************************************
         //
         // Application_BeginRequest Event

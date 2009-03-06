@@ -3,7 +3,7 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal.Admin
 {
-    public partial class SiteSettings : PortalModuleControl
+    public partial class SiteSettings : PortalModuleControl<SiteSettings>
     {
         public SiteSettings()
         {

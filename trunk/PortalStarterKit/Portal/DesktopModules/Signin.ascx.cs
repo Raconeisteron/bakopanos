@@ -5,7 +5,7 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {
-    public partial class Signin : PortalModuleControl
+    public partial class Signin : PortalModuleControl<Signin>
     {
         public Signin()
         {

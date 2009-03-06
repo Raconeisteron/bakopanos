@@ -77,6 +77,14 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Microsoft.Practices.Unity\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Microsoft.Practices.Unity\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -509,47 +517,16 @@
     <Compile Include="Admin\Users.ascx.designer.cs">
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Components\AnnouncementsDB.cs">
-      <SubType>Code</SubType>
+    <Compile Include="Components\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Components\PortalConfiguration.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Components\ContactsDB.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Components\UsersDB.cs" />
     <Compile Include="Components\DesktopControls.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Components\DiscussionDB.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Components\DocumentDB.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Components\EventsDB.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Components\HtmlTextDB.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Components\IAnnouncementsDB.cs" />
-    <Compile Include="Components\IContactsDB.cs" />
-    <Compile Include="Components\IDiscussionDB.cs" />
-    <Compile Include="Components\IDocumentDB.cs" />
-    <Compile Include="Components\IEventsDB.cs" />
-    <Compile Include="Components\IHtmlTextDB.cs" />
-    <Compile Include="Components\ILinkDB.cs" />
-    <Compile Include="Components\IRolesDB.cs" />
-    <Compile Include="Components\IUsersDB.cs" />
-    <Compile Include="Components\LinksDB.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Components\MobileControls.cs">
-    </Compile>
-    <Compile Include="Components\RolesDB.cs">
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Components\PortalSecurity.cs">
       <SubType>Code</SubType>
@@ -756,6 +733,16 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Portal.Common\Portal.Common.csproj">
+      <Project>{F6A542B1-6738-4B22-B9C9-6EA823363511}</Project>
+      <Name>Portal.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Portal.Components\Portal.Components.csproj">
+      <Project>{4B756C88-6AA2-47E7-B5B4-BA568B5E0682}</Project>
+      <Name>Portal.Components</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

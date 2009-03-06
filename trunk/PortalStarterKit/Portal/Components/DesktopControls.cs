@@ -7,8 +7,30 @@ using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal.Components
 {
-    public class PortalModuleControl : UserControl
+    public interface IPortalModuleControl
     {
+        int ModuleId { get; }
+
+        int PortalId { get; set; }
+
+        bool IsEditable { get; }
+
+        ModuleSettings ModuleConfiguration { get; set; }
+
+        Hashtable Settings { get; }
+
+    }
+
+    public class PortalModuleControl<T> : UserControl, IPortalModuleControl 
+        where T : class 
+    {
+        // Methods
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+            Global.BuildItemWithCurrentContext<T>(this);
+        }
+
         // Private field variables
 
         private int _isEditable;
@@ -148,12 +170,12 @@ namespace ASPNET.StarterKit.Portal.Components
             {
                 base.CreateChildControls();
 
-                var module = (PortalModuleControl) Page.LoadControl(_moduleConfiguration.DesktopSrc);
+                var module = (IPortalModuleControl) Page.LoadControl(_moduleConfiguration.DesktopSrc);
 
                 module.ModuleConfiguration = ModuleConfiguration;
                 module.PortalId = PortalId;
 
-                Controls.Add(module);
+                Controls.Add(module as UserControl);
             }
         }
 

@@ -3,7 +3,7 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {
-    public partial class Contacts : PortalModuleControl
+    public partial class Contacts : PortalModuleControl<Contacts>
     {
         //*******************************************************
         //

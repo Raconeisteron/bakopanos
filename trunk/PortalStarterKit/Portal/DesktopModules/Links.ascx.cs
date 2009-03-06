@@ -3,7 +3,7 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {
-    public partial class Links : PortalModuleControl
+    public partial class Links : PortalModuleControl<Links>
     {
         protected String linkImage = "";
 
