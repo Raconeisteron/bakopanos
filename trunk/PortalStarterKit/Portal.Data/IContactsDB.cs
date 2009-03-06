@@ -2,7 +2,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal.Components
+namespace ASPNET.StarterKit.Portal.Data
 {
     public interface IContactsDB
     {

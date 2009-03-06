@@ -1,4 +1,5 @@
 <%@ Page Language="c#" AutoEventWireup="true" %>
+<%@ Import Namespace="ASPNET.StarterKit.Portal.Data.SqlClient"%>
 <%@ Import Namespace="System.Data"%>
 <%@ Import Namespace="ASPNET.StarterKit.Portal.Components"%>
 <%@ Import Namespace="ASPNET.StarterKit.Portal"%>

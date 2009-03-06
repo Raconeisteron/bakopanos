@@ -3,66 +3,69 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal.Components
+namespace ASPNET.StarterKit.Portal.Data.SqlClient
 {
-    public class LinkDB : ILinkDB
+    internal class ContactsDB : IContactsDB
     {
         //*********************************************************************
         //
-        // GetLinks Method
+        // GetContacts Method
         //
-        // The GetLinks method returns a SqlDataReader containing all of the
-        // links for a specific portal module from the announcements
+        // The GetContacts method returns a DataSet containing all of the
+        // contacts for a specific portal module from the contacts
         // database.
         //
+        // NOTE: A DataSet is returned from this method to allow this method to support
+        // both desktop and mobile Web UI.
+        //
         // Other relevant sources:
-        //     + <a href="GetLinks.htm" style="color:green">GetLinks Stored Procedure</a>
+        //     + <a href="GetContacts.htm" style="color:green">GetContacts Stored Procedure</a>
         //
         //*********************************************************************
 
-        #region ILinkDB Members
+        #region IContactsDB Members
 
-        public SqlDataReader GetLinks(int moduleId)
+        public DataSet GetContacts(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
                 new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetLinks", myConnection);
+            var myCommand = new SqlDataAdapter("Portal_GetContacts", myConnection);
 
             // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             parameterModuleId.Value = moduleId;
-            myCommand.Parameters.Add(parameterModuleId);
+            myCommand.SelectCommand.Parameters.Add(parameterModuleId);
 
-            // Execute the command
-            myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            // Create and Fill the DataSet
+            var myDataSet = new DataSet();
+            myCommand.Fill(myDataSet);
 
-            // Return the datareader 
-            return result;
+            // Return the DataSet
+            return myDataSet;
         }
 
         //*********************************************************************
         //
-        // GetSingleLink Method
+        // GetSingleContact Method
         //
-        // The GetSingleLink method returns a SqlDataReader containing details
-        // about a specific link from the Links database table.
+        // The GetSingleContact method returns a SqlDataReader containing details
+        // about a specific contact from the Contacts database table.
         //
         // Other relevant sources:
-        //     + <a href="GetSingleLink.htm" style="color:green">GetSingleLink Stored Procedure</a>
+        //     + <a href="GetSingleContact.htm" style="color:green">GetSingleContact Stored Procedure</a>
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleLink(int itemId)
+        public SqlDataReader GetSingleContact(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
                 new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetSingleLink", myConnection);
+            var myCommand = new SqlCommand("Portal_GetSingleContact", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
@@ -82,22 +85,22 @@ namespace ASPNET.StarterKit.Portal.Components
 
         //*********************************************************************
         //
-        // DeleteLink Method
+        // DeleteContact Method
         //
-        // The DeleteLink method deletes a specified link from
-        // the Links database table.
+        // The DeleteContact method deletes the specified contact from
+        // the Contacts database table.
         //
         // Other relevant sources:
-        //     + <a href="DeleteLink.htm" style="color:green">DeleteLink Stored Procedure</a>
+        //     + <a href="DeleteContact.htm" style="color:green">DeleteContact Stored Procedure</a>
         //
         //*********************************************************************
 
-        public void DeleteLink(int itemID)
+        public void DeleteContact(int itemID)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
                 new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_DeleteLink", myConnection);
+            var myCommand = new SqlCommand("Portal_DeleteContact", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
@@ -114,18 +117,18 @@ namespace ASPNET.StarterKit.Portal.Components
 
         //*********************************************************************
         //
-        // AddLink Method
+        // AddContact Method
         //
-        // The AddLink method adds a new link within the
-        // links database table, and returns ItemID value as a result.
+        // The AddContact method adds a new contact to the Contacts
+        // database table, and returns the ItemId value as a result.
         //
         // Other relevant sources:
-        //     + <a href="AddLink.htm" style="color:green">AddLink Stored Procedure</a>
+        //     + <a href="AddContact.htm" style="color:green">AddContact Stored Procedure</a>
         //
         //*********************************************************************
 
-        public int AddLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
-                           int viewOrder, String description)
+        public int AddContact(int moduleId, int itemId, String userName, String name, String role, String email,
+                              String contact1, String contact2)
         {
             if (userName.Length < 1)
             {
@@ -135,7 +138,7 @@ namespace ASPNET.StarterKit.Portal.Components
             // Create Instance of Connection and Command Object
             var myConnection =
                 new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_AddLink", myConnection);
+            var myCommand = new SqlCommand("Portal_AddContact", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
@@ -153,25 +156,25 @@ namespace ASPNET.StarterKit.Portal.Components
             parameterUserName.Value = userName;
             myCommand.Parameters.Add(parameterUserName);
 
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
-            parameterTitle.Value = title;
-            myCommand.Parameters.Add(parameterTitle);
+            var parameterName = new SqlParameter("@Name", SqlDbType.NVarChar, 100);
+            parameterName.Value = name;
+            myCommand.Parameters.Add(parameterName);
 
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100);
-            parameterDescription.Value = description;
-            myCommand.Parameters.Add(parameterDescription);
+            var parameterRole = new SqlParameter("@Role", SqlDbType.NVarChar, 100);
+            parameterRole.Value = role;
+            myCommand.Parameters.Add(parameterRole);
 
-            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
-            parameterUrl.Value = url;
-            myCommand.Parameters.Add(parameterUrl);
+            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            parameterEmail.Value = email;
+            myCommand.Parameters.Add(parameterEmail);
 
-            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100);
-            parameterMobileUrl.Value = mobileUrl;
-            myCommand.Parameters.Add(parameterMobileUrl);
+            var parameterContact1 = new SqlParameter("@Contact1", SqlDbType.NVarChar, 100);
+            parameterContact1.Value = contact1;
+            myCommand.Parameters.Add(parameterContact1);
 
-            var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4);
-            parameterViewOrder.Value = viewOrder;
-            myCommand.Parameters.Add(parameterViewOrder);
+            var parameterContact2 = new SqlParameter("@Contact2", SqlDbType.NVarChar, 100);
+            parameterContact2.Value = contact2;
+            myCommand.Parameters.Add(parameterContact2);
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();
@@ -182,18 +185,18 @@ namespace ASPNET.StarterKit.Portal.Components
 
         //*********************************************************************
         //
-        // UpdateLink Method
+        // UpdateContact Method
         //
-        // The UpdateLink method updates a specified link within
-        // the Links database table.
+        // The UpdateContact method updates the specified contact within
+        // the Contacts database table.
         //
         // Other relevant sources:
-        //     + <a href="UpdateLink.htm" style="color:green">UpdateLink Stored Procedure</a>
+        //     + <a href="UpdateContact.htm" style="color:green">UpdateContact Stored Procedure</a>
         //
         //*********************************************************************
 
-        public void UpdateLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
-                               int viewOrder, String description)
+        public void UpdateContact(int moduleId, int itemId, String userName, String name, String role, String email,
+                                  String contact1, String contact2)
         {
             if (userName.Length < 1)
             {
@@ -203,7 +206,7 @@ namespace ASPNET.StarterKit.Portal.Components
             // Create Instance of Connection and Command Object
             var myConnection =
                 new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_UpdateLink", myConnection);
+            var myCommand = new SqlCommand("Portal_UpdateContact", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
@@ -217,25 +220,25 @@ namespace ASPNET.StarterKit.Portal.Components
             parameterUserName.Value = userName;
             myCommand.Parameters.Add(parameterUserName);
 
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
-            parameterTitle.Value = title;
-            myCommand.Parameters.Add(parameterTitle);
+            var parameterName = new SqlParameter("@Name", SqlDbType.NVarChar, 100);
+            parameterName.Value = name;
+            myCommand.Parameters.Add(parameterName);
 
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100);
-            parameterDescription.Value = description;
-            myCommand.Parameters.Add(parameterDescription);
+            var parameterRole = new SqlParameter("@Role", SqlDbType.NVarChar, 100);
+            parameterRole.Value = role;
+            myCommand.Parameters.Add(parameterRole);
 
-            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
-            parameterUrl.Value = url;
-            myCommand.Parameters.Add(parameterUrl);
+            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            parameterEmail.Value = email;
+            myCommand.Parameters.Add(parameterEmail);
 
-            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100);
-            parameterMobileUrl.Value = mobileUrl;
-            myCommand.Parameters.Add(parameterMobileUrl);
+            var parameterContact1 = new SqlParameter("@Contact1", SqlDbType.NVarChar, 100);
+            parameterContact1.Value = contact1;
+            myCommand.Parameters.Add(parameterContact1);
 
-            var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4);
-            parameterViewOrder.Value = viewOrder;
-            myCommand.Parameters.Add(parameterViewOrder);
+            var parameterContact2 = new SqlParameter("@Contact2", SqlDbType.NVarChar, 100);
+            parameterContact2.Value = contact2;
+            myCommand.Parameters.Add(parameterContact2);
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();

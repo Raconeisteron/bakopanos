@@ -1,10 +1,20 @@
 using System;
 using ASPNET.StarterKit.Portal.Components;
+using ASPNET.StarterKit.Portal.Data;
+using ASPNET.StarterKit.Portal.Data.SqlClient;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {
     public partial class Contacts : PortalModuleControl<Contacts>
     {
+        /// <summary>
+        /// announcement information from Announcements table 
+        /// </summary>
+        [Dependency]
+        public IContactsDB DBContacts { private get; set; }        
+        
+
         //*******************************************************
         //
         // The Page_Load event handler on this User Control is used to
@@ -25,9 +35,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         {
             // Obtain contact information from Contacts table
             // and bind to the DataGrid Control
-            IContactsDB contacts = new ContactsDB();
-
-            myDataGrid.DataSource = contacts.GetContacts(ModuleId);
+            myDataGrid.DataSource = DBContacts.GetContacts(ModuleId);
             myDataGrid.DataBind();
         }
 

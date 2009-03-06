@@ -5,18 +5,18 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F6A542B1-6738-4B22-B9C9-6EA823363511}</ProjectGuid>
+    <ProjectGuid>{3F5C032D-2E86-4299-8BEE-82E7B8B8544B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASPNET.StarterKit.Portal</RootNamespace>
-    <AssemblyName>Portal.Common</AssemblyName>
+    <RootNamespace>ASPNET.StarterKit.Portal.Data</RootNamespace>
+    <AssemblyName>Portal.Data</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -49,7 +50,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAnnouncementsDB.cs" />
+    <Compile Include="IContactsDB.cs" />
+    <Compile Include="IDiscussionDB.cs" />
+    <Compile Include="IDocumentDB.cs" />
+    <Compile Include="IEventsDB.cs" />
+    <Compile Include="IHtmlTextDB.cs" />
+    <Compile Include="ILinkDB.cs" />
+    <Compile Include="IRolesDB.cs" />
+    <Compile Include="IUsersDB.cs" />
+    <Compile Include="SqlClient\AnnouncementsDB.cs" />
+    <Compile Include="SqlClient\ContactsDB.cs" />
+    <Compile Include="SqlClient\DiscussionDB.cs" />
+    <Compile Include="SqlClient\DocumentDB.cs" />
+    <Compile Include="SqlClient\EventsDB.cs" />
+    <Compile Include="SqlClient\HtmlTextDB.cs" />
+    <Compile Include="SqlClient\LinksDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlClient\RolesDB.cs" />
+    <Compile Include="SqlClient\UsersDB.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

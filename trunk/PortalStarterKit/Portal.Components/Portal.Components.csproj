@@ -35,11 +35,16 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Microsoft.Practices.Unity\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -50,31 +55,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnnouncementsDB.cs" />
-    <Compile Include="ContactsDB.cs" />
-    <Compile Include="DiscussionDB.cs" />
-    <Compile Include="DocumentDB.cs" />
-    <Compile Include="EventsDB.cs" />
-    <Compile Include="HtmlTextDB.cs" />
-    <Compile Include="IAnnouncementsDB.cs" />
-    <Compile Include="IContactsDB.cs" />
-    <Compile Include="IDiscussionDB.cs" />
-    <Compile Include="IDocumentDB.cs" />
-    <Compile Include="IEventsDB.cs" />
-    <Compile Include="IHtmlTextDB.cs" />
-    <Compile Include="ILinkDB.cs" />
-    <Compile Include="IRolesDB.cs" />
-    <Compile Include="IUsersDB.cs" />
-    <Compile Include="LinksDB.cs" />
+    <Compile Include="BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IContainerAccessor.cs" />
+    <Compile Include="MobileControls.cs" />
+    <Compile Include="PortalCfg.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PortalCfg.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PortalConfiguration.cs" />
+    <Compile Include="PortalSecurity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RolesDB.cs" />
-    <Compile Include="UsersDB.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Portal.Common\Portal.Common.csproj">
-      <Project>{F6A542B1-6738-4B22-B9C9-6EA823363511}</Project>
-      <Name>Portal.Common</Name>
-    </ProjectReference>
+    <Content Include="PortalCfg.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PortalCfg.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PortalCfg.xsc">
+      <DependentUpon>PortalCfg.xsd</DependentUpon>
+    </None>
+    <None Include="PortalCfg.xss">
+      <DependentUpon>PortalCfg.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,69 +3,66 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal.Components
+namespace ASPNET.StarterKit.Portal.Data.SqlClient
 {
-    public class EventsDB : IEventsDB
+    public class LinkDB : ILinkDB
     {
         //*********************************************************************
         //
-        // GetEvents Method
+        // GetLinks Method
         //
-        // The GetEvents method returns a DataSet containing all of the
-        // events for a specific portal module from the events
+        // The GetLinks method returns a SqlDataReader containing all of the
+        // links for a specific portal module from the announcements
         // database.
         //
-        // NOTE: A DataSet is returned from this method to allow this method to support
-        // both desktop and mobile Web UI.
-        //
         // Other relevant sources:
-        //     + <a href="GetEvents.htm" style="color:green">GetEvents Stored Procedure</a>
+        //     + <a href="GetLinks.htm" style="color:green">GetLinks Stored Procedure</a>
         //
         //*********************************************************************
 
-        #region IEventsDB Members
+        #region ILinkDB Members
 
-        public DataSet GetEvents(int moduleId)
+        public SqlDataReader GetLinks(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
                 new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlDataAdapter("Portal_GetEvents", myConnection);
+            var myCommand = new SqlCommand("Portal_GetLinks", myConnection);
 
             // Mark the Command as a SPROC
-            myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             parameterModuleId.Value = moduleId;
-            myCommand.SelectCommand.Parameters.Add(parameterModuleId);
+            myCommand.Parameters.Add(parameterModuleId);
 
-            // Create and Fill the DataSet
-            var myDataSet = new DataSet();
-            myCommand.Fill(myDataSet);
+            // Execute the command
+            myConnection.Open();
+            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
-            // Return the DataSet
-            return myDataSet;
+            // Return the datareader 
+            return result;
         }
 
         //*********************************************************************
         //
-        // GetSingleEvent Method
+        // GetSingleLink Method
         //
-        // The GetSingleEvent method returns a SqlDataReader containing details
-        // about a specific event from the events database.
+        // The GetSingleLink method returns a SqlDataReader containing details
+        // about a specific link from the Links database table.
         //
         // Other relevant sources:
-        //     + <a href="GetSingleEvent.htm" style="color:green">GetSingleEvent Stored Procedure</a>
+        //     + <a href="GetSingleLink.htm" style="color:green">GetSingleLink Stored Procedure</a>
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleEvent(int itemId)
+        public SqlDataReader GetSingleLink(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
                 new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetSingleEvent", myConnection);
+            var myCommand = new SqlCommand("Portal_GetSingleLink", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
@@ -85,22 +82,22 @@ namespace ASPNET.StarterKit.Portal.Components
 
         //*********************************************************************
         //
-        // DeleteEvent Method
+        // DeleteLink Method
         //
-        // The DeleteEvent method deletes a specified event from
-        // the events database.
+        // The DeleteLink method deletes a specified link from
+        // the Links database table.
         //
         // Other relevant sources:
-        //     + <a href="DeleteEvent.htm" style="color:green">DeleteEvent Stored Procedure</a>
+        //     + <a href="DeleteLink.htm" style="color:green">DeleteLink Stored Procedure</a>
         //
         //*********************************************************************
 
-        public void DeleteEvent(int itemID)
+        public void DeleteLink(int itemID)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
                 new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_DeleteEvent", myConnection);
+            var myCommand = new SqlCommand("Portal_DeleteLink", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
@@ -110,7 +107,6 @@ namespace ASPNET.StarterKit.Portal.Components
             parameterItemID.Value = itemID;
             myCommand.Parameters.Add(parameterItemID);
 
-            // Open the database connection and execute SQL Command
             myConnection.Open();
             myCommand.ExecuteNonQuery();
             myConnection.Close();
@@ -118,18 +114,18 @@ namespace ASPNET.StarterKit.Portal.Components
 
         //*********************************************************************
         //
-        // AddEvent Method
+        // AddLink Method
         //
-        // The AddEvent method adds a new event within the Events database table, 
-        // and returns the ItemID value as a result.
+        // The AddLink method adds a new link within the
+        // links database table, and returns ItemID value as a result.
         //
         // Other relevant sources:
-        //     + <a href="AddEvent.htm" style="color:green">AddEvent Stored Procedure</a>
+        //     + <a href="AddLink.htm" style="color:green">AddLink Stored Procedure</a>
         //
         //*********************************************************************
 
-        public int AddEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
-                            String description, String wherewhen)
+        public int AddLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
+                           int viewOrder, String description)
         {
             if (userName.Length < 1)
             {
@@ -139,7 +135,7 @@ namespace ASPNET.StarterKit.Portal.Components
             // Create Instance of Connection and Command Object
             var myConnection =
                 new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_AddEvent", myConnection);
+            var myCommand = new SqlCommand("Portal_AddLink", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
@@ -161,41 +157,43 @@ namespace ASPNET.StarterKit.Portal.Components
             parameterTitle.Value = title;
             myCommand.Parameters.Add(parameterTitle);
 
-            var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
-            parameterWhereWhen.Value = wherewhen;
-            myCommand.Parameters.Add(parameterWhereWhen);
-
-            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
-            parameterExpireDate.Value = expireDate;
-            myCommand.Parameters.Add(parameterExpireDate);
-
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
+            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100);
             parameterDescription.Value = description;
             myCommand.Parameters.Add(parameterDescription);
 
-            // Open the database connection and execute SQL Command
+            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
+            parameterUrl.Value = url;
+            myCommand.Parameters.Add(parameterUrl);
+
+            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100);
+            parameterMobileUrl.Value = mobileUrl;
+            myCommand.Parameters.Add(parameterMobileUrl);
+
+            var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4);
+            parameterViewOrder.Value = viewOrder;
+            myCommand.Parameters.Add(parameterViewOrder);
+
             myConnection.Open();
             myCommand.ExecuteNonQuery();
             myConnection.Close();
 
-            // Return the new Event ItemID
             return (int) parameterItemID.Value;
         }
 
         //*********************************************************************
         //
-        // UpdateEvent Method
+        // UpdateLink Method
         //
-        // The UpdateEvent method updates the specified event within
-        // the Events database table.
+        // The UpdateLink method updates a specified link within
+        // the Links database table.
         //
         // Other relevant sources:
-        //     + <a href="UpdateEvent.htm" style="color:green">UpdateEvent Stored Procedure</a>
+        //     + <a href="UpdateLink.htm" style="color:green">UpdateLink Stored Procedure</a>
         //
         //*********************************************************************
 
-        public void UpdateEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
-                                String description, String wherewhen)
+        public void UpdateLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
+                               int viewOrder, String description)
         {
             if (userName.Length < 1)
             {
@@ -205,7 +203,7 @@ namespace ASPNET.StarterKit.Portal.Components
             // Create Instance of Connection and Command Object
             var myConnection =
                 new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_UpdateEvent", myConnection);
+            var myCommand = new SqlCommand("Portal_UpdateLink", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
@@ -223,17 +221,21 @@ namespace ASPNET.StarterKit.Portal.Components
             parameterTitle.Value = title;
             myCommand.Parameters.Add(parameterTitle);
 
-            var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
-            parameterWhereWhen.Value = wherewhen;
-            myCommand.Parameters.Add(parameterWhereWhen);
-
-            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
-            parameterExpireDate.Value = expireDate;
-            myCommand.Parameters.Add(parameterExpireDate);
-
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
+            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100);
             parameterDescription.Value = description;
             myCommand.Parameters.Add(parameterDescription);
+
+            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
+            parameterUrl.Value = url;
+            myCommand.Parameters.Add(parameterUrl);
+
+            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100);
+            parameterMobileUrl.Value = mobileUrl;
+            myCommand.Parameters.Add(parameterMobileUrl);
+
+            var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4);
+            parameterViewOrder.Value = viewOrder;
+            myCommand.Parameters.Add(parameterViewOrder);
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();

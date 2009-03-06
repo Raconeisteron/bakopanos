@@ -2,6 +2,8 @@ using System;
 using System.Data;
 using System.Web.UI;
 using ASPNET.StarterKit.Portal.Components;
+using ASPNET.StarterKit.Portal.Data;
+using ASPNET.StarterKit.Portal.Data.SqlClient;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
@@ -100,21 +102,18 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         {
             // Only Update if the Entered Data is Valid
             if (Page.IsValid)
-            {
-                // Create an instance of the Announcement DB component
-                IAnnouncementsDB announcementDB = new AnnouncementsDB();
-
+            {                
                 if (itemId == 0)
                 {
                     // Add the announcement within the Announcements table
-                    announcementDB.AddAnnouncement(moduleId, itemId, Context.User.Identity.Name, TitleField.Text,
+                    DBAnnouncements.AddAnnouncement(moduleId, itemId, Context.User.Identity.Name, TitleField.Text,
                                                    DateTime.Parse(ExpireField.Text), DescriptionField.Text,
                                                    MoreLinkField.Text, MobileMoreField.Text);
                 }
                 else
                 {
                     // Update the announcement within the Announcements table
-                    announcementDB.UpdateAnnouncement(moduleId, itemId, Context.User.Identity.Name, TitleField.Text,
+                    DBAnnouncements.UpdateAnnouncement(moduleId, itemId, Context.User.Identity.Name, TitleField.Text,
                                                       DateTime.Parse(ExpireField.Text), DescriptionField.Text,
                                                       MoreLinkField.Text, MobileMoreField.Text);
                 }
@@ -139,8 +138,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
 
             if (itemId != 0)
             {
-                IAnnouncementsDB announcementDB = new AnnouncementsDB();
-                announcementDB.DeleteAnnouncement(itemId);
+                DBAnnouncements.DeleteAnnouncement(itemId);
             }
 
             // Redirect back to the portal home page

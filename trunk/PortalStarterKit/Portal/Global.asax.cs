@@ -8,16 +8,13 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using ASPNET.StarterKit.Portal.Components;
+using ASPNET.StarterKit.Portal.Data.SqlClient;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public interface IContainerAccessor
-    {
-        IUnityContainer Container { get; }
-    }
-
+   
     public class Global : HttpApplication, IContainerAccessor
     {
         protected void Application_Start(object sender, EventArgs e)

@@ -2,6 +2,7 @@ using System;
 using System.Web.Security;
 using System.Web.UI;
 using ASPNET.StarterKit.Portal.Components;
+using ASPNET.StarterKit.Portal.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.Admin
 {

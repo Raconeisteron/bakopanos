@@ -410,11 +410,6 @@
     <Content Include="MobileModules\Events.ascx" />
     <Content Include="MobileModules\Text.ascx" />
     <Content Include="PortalCfg.xml" />
-    <Content Include="PortalCfg.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>PortalCfg.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Uploads\sample.doc" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
@@ -517,19 +512,8 @@
     <Compile Include="Admin\Users.ascx.designer.cs">
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Components\BasePage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Components\PortalConfiguration.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Components\DesktopControls.cs">
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Components\MobileControls.cs">
-    </Compile>
-    <Compile Include="Components\PortalSecurity.cs">
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="DesktopDefault.aspx.cs">
       <DependentUpon>DesktopDefault.aspx</DependentUpon>
@@ -696,11 +680,6 @@
       <DependentUpon>Global.asax</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PortalCfg.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PortalCfg.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -723,25 +702,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="PortalCfg.xsc">
-      <DependentUpon>PortalCfg.xsd</DependentUpon>
-    </None>
-    <None Include="PortalCfg.xss">
-      <DependentUpon>PortalCfg.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Portal.Common\Portal.Common.csproj">
-      <Project>{F6A542B1-6738-4B22-B9C9-6EA823363511}</Project>
-      <Name>Portal.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Portal.Components\Portal.Components.csproj">
       <Project>{4B756C88-6AA2-47E7-B5B4-BA568B5E0682}</Project>
       <Name>Portal.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Portal.Data\Portal.Data.csproj">
+      <Project>{3F5C032D-2E86-4299-8BEE-82E7B8B8544B}</Project>
+      <Name>Portal.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

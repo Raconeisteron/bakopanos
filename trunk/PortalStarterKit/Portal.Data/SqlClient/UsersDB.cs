@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal.Components
+namespace ASPNET.StarterKit.Portal.Data.SqlClient
 {
     public class UsersDB : IUsersDB
     {

@@ -1,5 +1,7 @@
 using System;
 using ASPNET.StarterKit.Portal.Components;
+using ASPNET.StarterKit.Portal.Data;
+using ASPNET.StarterKit.Portal.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {

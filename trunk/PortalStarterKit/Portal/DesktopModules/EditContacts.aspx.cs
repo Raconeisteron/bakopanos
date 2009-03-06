@@ -2,11 +2,20 @@ using System;
 using System.Data;
 using System.Web.UI;
 using ASPNET.StarterKit.Portal.Components;
+using ASPNET.StarterKit.Portal.Data;
+using ASPNET.StarterKit.Portal.Data.SqlClient;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {
     public partial class EditContacts : Page
     {
+        /// <summary>
+        /// announcement information from Announcements table 
+        /// </summary>
+        [Dependency]
+        public IContactsDB DBContacts { private get; set; }        
+        
         private int itemId;
         private int moduleId;
 
@@ -50,9 +59,8 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
             {
                 if (itemId != 0)
                 {
-                    // Obtain a single row of contact information
-                    IContactsDB contacts = new ContactsDB();
-                    IDataReader dr = contacts.GetSingleContact(itemId);
+                    // Obtain a single row of contact information                    
+                    IDataReader dr = DBContacts.GetSingleContact(itemId);
 
                     // Read first row from database
                     dr.Read();
@@ -95,19 +103,17 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
             // Only Update if Entered data is Valid
             if (Page.IsValid)
             {
-                // Create an instance of the ContactsDB component
-                IContactsDB contacts = new ContactsDB();
-
+                // Create an instance of the ContactsDB component                
                 if (itemId == 0)
                 {
                     // Add the contact within the contacts table
-                    contacts.AddContact(moduleId, itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
+                    DBContacts.AddContact(moduleId, itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
                                         EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
                 else
                 {
                     // Update the contact within the contacts table
-                    contacts.UpdateContact(moduleId, itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
+                    DBContacts.UpdateContact(moduleId, itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
                                            EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
 
@@ -131,8 +137,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
 
             if (itemId != 0)
             {
-                IContactsDB contacts = new ContactsDB();
-                contacts.DeleteContact(itemId);
+                DBContacts.DeleteContact(itemId);
             }
 
             // Redirect back to the portal home page
