@@ -131,11 +131,6 @@
     <Content Include="Admin\TabLayout.aspx" />
     <Content Include="Admin\Tabs.ascx" />
     <Content Include="Admin\Users.ascx" />
-    <Content Include="App_Data\Portal.mdf">
-    </Content>
-    <Content Include="App_Data\Portal_log.ldf">
-      <DependentUpon>Portal.mdf</DependentUpon>
-    </Content>
     <Content Include="ASPNETPortal.css" />
     <Content Include="Data\Admin.gif" />
     <Content Include="Data\config_auth_forms.gif" />
@@ -406,7 +401,6 @@
     <Content Include="MobileModules\Contacts.ascx" />
     <Content Include="MobileModules\Events.ascx" />
     <Content Include="MobileModules\Text.ascx" />
-    <Content Include="MobileModuleTitle.ascx" />
     <Content Include="PortalCfg.xml" />
     <Content Include="PortalCfg.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -553,7 +547,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Components\MobileControls.cs">
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Components\RolesDB.cs">
       <SubType>Code</SubType>
@@ -726,13 +719,6 @@
       <DependentUpon>Global.asax</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MobileDefault.aspx.cs">
-      <DependentUpon>MobileDefault.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MobileDefault.aspx.designer.cs">
-      <DependentUpon>MobileDefault.aspx</DependentUpon>
-    </Compile>
     <Compile Include="PortalCfg.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -770,6 +756,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
