@@ -8,8 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ASPNET.StarterKit.Portal.DesktopModules
-{
+namespace ASPNET.StarterKit.Portal.DesktopModules {
+    
+    
     public partial class DiscussDetails {
         
         /// <summary>
@@ -103,13 +104,13 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         protected global::System.Web.UI.WebControls.LinkButton cancelButton;
         
         /// <summary>
-        /// Title control.
+        /// TitleLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Title;
+        protected global::System.Web.UI.WebControls.Label TitleLabel;
         
         /// <summary>
         /// CreatedByUser control.

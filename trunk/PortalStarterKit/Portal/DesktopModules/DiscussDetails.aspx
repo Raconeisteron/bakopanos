@@ -86,7 +86,7 @@
                             <tr vAlign="top">
                                 <td class="Message" align="left">
                                     <b>Subject: </b>
-                                    <asp:label id="Title" runat="server"></asp:label>
+                                    <asp:label id="TitleLabel" runat="server"></asp:label>
                                     <br>
                                     <b>Author: </b>
                                     <asp:label id="CreatedByUser" runat="server"></asp:label>

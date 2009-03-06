@@ -42,56 +42,81 @@
   <Namespaces>
    <Namespace Name="ASPNET.StarterKit.Portal">
     <Messages>
-     <Message Id="ASPNET" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 07:57:34Z">
+     <Message Id="ASPNET" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2009-03-06 07:57:34Z">
       <Issue Name="Namespace">
        <Item>ASPNET</Item>
        <Item>ASPNET.StarterKit.Portal</Item>
        <Item>Aspnet</Item>
       </Issue>
+      <Notes>
+       <User Name="11cbakopanos">
+        <Note Id="3" />
+       </User>
+      </Notes>
      </Message>
     </Messages>
    </Namespace>
    <Namespace Name="ASPNET.StarterKit.Portal.Admin">
     <Messages>
-     <Message Id="ASPNET" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 07:57:34Z">
+     <Message Id="ASPNET" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2009-03-06 07:57:34Z">
       <Issue Name="Namespace">
        <Item>ASPNET</Item>
        <Item>ASPNET.StarterKit.Portal.Admin</Item>
        <Item>Aspnet</Item>
       </Issue>
+      <Notes>
+       <User Name="11cbakopanos">
+        <Note Id="4" />
+       </User>
+      </Notes>
      </Message>
     </Messages>
    </Namespace>
    <Namespace Name="ASPNET.StarterKit.Portal.Components">
     <Messages>
-     <Message Id="ASPNET" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 07:57:34Z">
+     <Message Id="ASPNET" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2009-03-06 07:57:34Z">
       <Issue Name="Namespace">
        <Item>ASPNET</Item>
        <Item>ASPNET.StarterKit.Portal.Components</Item>
        <Item>Aspnet</Item>
       </Issue>
+      <Notes>
+       <User Name="11cbakopanos">
+        <Note Id="0" />
+       </User>
+      </Notes>
      </Message>
     </Messages>
    </Namespace>
    <Namespace Name="ASPNET.StarterKit.Portal.DesktopModules">
     <Messages>
-     <Message Id="ASPNET" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 07:57:34Z">
+     <Message Id="ASPNET" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2009-03-06 07:57:34Z">
       <Issue Name="Namespace">
        <Item>ASPNET</Item>
        <Item>ASPNET.StarterKit.Portal.DesktopModules</Item>
        <Item>Aspnet</Item>
       </Issue>
+      <Notes>
+       <User Name="11cbakopanos">
+        <Note Id="1" />
+       </User>
+      </Notes>
      </Message>
     </Messages>
    </Namespace>
    <Namespace Name="ASPNET.StarterKit.Portal.MobileControls">
     <Messages>
-     <Message Id="ASPNET" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 07:57:34Z">
+     <Message Id="ASPNET" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Excluded" Created="2009-03-06 07:57:34Z">
       <Issue Name="Namespace">
        <Item>ASPNET</Item>
        <Item>ASPNET.StarterKit.Portal.MobileControls</Item>
        <Item>Aspnet</Item>
       </Issue>
+      <Notes>
+       <User Name="11cbakopanos">
+        <Note Id="2" />
+       </User>
+      </Notes>
      </Message>
     </Messages>
    </Namespace>
@@ -106,34 +131,11 @@
          <Item>'Portal.dll'</Item>
         </Issue>
        </Message>
-       <Message TypeName="MarkAssembliesWithAssemblyVersion" Category="Microsoft.Design" CheckId="CA1016" Created="2009-03-06 08:30:06Z">
-        <Issue>
-         <Item>'Portal.dll'</Item>
-        </Issue>
-       </Message>
-       <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Created="2009-03-06 08:30:06Z">
-        <Issue>
-         <Item>'Portal.dll'</Item>
-        </Issue>
-       </Message>
-       <Message TypeName="MarkAssembliesWithComVisible" Category="Microsoft.Design" CheckId="CA1017" Created="2009-03-06 08:30:06Z">
-        <Issue Name="NoAttribute" Level="CriticalError">
-         <Item>'Portal.dll'</Item>
-        </Issue>
-       </Message>
       </Messages>
       <Namespaces>
        <Namespace Name="ASPNET.StarterKit.Portal">
         <Types>
          <Type Name="DesktopDefault">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'DesktopDefault'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#InitializeComponent()">
             <Messages>
@@ -147,14 +149,6 @@
           </Members>
          </Type>
          <Type Name="DesktopModuleTitle">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'DesktopModuleTitle'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#InitializeComponent()">
             <Messages>
@@ -168,14 +162,6 @@
           </Members>
          </Type>
          <Type Name="DesktopPortalBanner">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'DesktopPortalBanner'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#InitializeComponent()">
             <Messages>
@@ -200,14 +186,6 @@
           </Members>
          </Type>
          <Type Name="Global">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'Global'</Item>
-             <Item> System.Web.HttpApplication</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#Application_AuthenticateRequest(System.Object,System.EventArgs)">
             <Messages>
@@ -229,14 +207,7 @@
              <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2009-03-06 08:30:06Z">
               <Issue>
                <Item>'Global.Application_BeginRequest(object, EventArgs)'</Item>
-               <Item>'Exception'</Item>
-              </Issue>
-             </Message>
-             <Message Id="ex" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'Global.Application_BeginRequest(object, EventArgs)'</Item>
-               <Item>'ex'</Item>
-               <Item>'Exception'</Item>
+               <Item>'object'</Item>
               </Issue>
              </Message>
              <Message TypeName="ReviewVisibleEventHandlers" Category="Microsoft.Security" CheckId="CA2109" Created="2009-03-06 08:30:06Z">
@@ -270,14 +241,6 @@
           </Members>
          </Type>
          <Type Name="MobileDefault">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'MobileDefault'</Item>
-             <Item> System.Web.UI.MobileControls.MobilePage, System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#authorizedTabs">
             <Messages>
@@ -341,14 +304,6 @@
           </Members>
          </Type>
          <Type Name="MobilePortalModuleControl">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'MobilePortalModuleControl'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#ASPNET.StarterKit.Portal.MobileControls.IContentsPane.OnSetSummaryMode()">
             <Messages>
@@ -376,24 +331,8 @@
            </Member>
           </Members>
          </Type>
-         <Type Name="MobilePortalTab">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'MobilePortalTab'</Item>
-             <Item> System.Web.UI.MobileControls.Panel, System.Web.UI.MobileControls.MobileControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
          <Type Name="SiteConfiguration">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'SiteConfiguration'</Item>
-             <Item> System.Data.DataSet</Item>
-            </Issue>
-           </Message>
            <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2009-03-06 08:30:06Z">
             <Issue>
              <Item>'SiteConfiguration'</Item>
@@ -430,12 +369,6 @@
          </Type>
          <Type Name="SiteConfiguration+GlobalDataTable">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'SiteConfiguration.GlobalDataTable'</Item>
-             <Item> System.Data.TypedTableBase`1&lt;ASPNET.StarterKit.Portal.SiteConfiguration+GlobalRow&gt;, System.Data.DataTable</Item>
-            </Issue>
-           </Message>
            <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2009-03-06 08:30:06Z">
             <Issue>
              <Item>'SiteConfiguration.GlobalDataTable'</Item>
@@ -510,12 +443,6 @@
          </Type>
          <Type Name="SiteConfiguration+GlobalRow">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'SiteConfiguration.GlobalRow'</Item>
-             <Item> System.Data.DataRow</Item>
-            </Issue>
-           </Message>
            <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2009-03-06 08:30:06Z">
             <Issue>
              <Item>'SiteConfiguration.GlobalRow'</Item>
@@ -584,12 +511,6 @@
          </Type>
          <Type Name="SiteConfiguration+ModuleDataTable">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'SiteConfiguration.ModuleDataTable'</Item>
-             <Item> System.Data.TypedTableBase`1&lt;ASPNET.StarterKit.Portal.SiteConfiguration+ModuleRow&gt;, System.Data.DataTable</Item>
-            </Issue>
-           </Message>
            <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2009-03-06 08:30:06Z">
             <Issue>
              <Item>'SiteConfiguration.ModuleDataTable'</Item>
@@ -714,12 +635,6 @@
          </Type>
          <Type Name="SiteConfiguration+ModuleDefinitionDataTable">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'SiteConfiguration.ModuleDefinitionDataTable'</Item>
-             <Item> System.Data.TypedTableBase`1&lt;ASPNET.StarterKit.Portal.SiteConfiguration+ModuleDefinitionRow&gt;, System.Data.DataTable</Item>
-            </Issue>
-           </Message>
            <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2009-03-06 08:30:06Z">
             <Issue>
              <Item>'SiteConfiguration.ModuleDefinitionDataTable'</Item>
@@ -804,12 +719,6 @@
          </Type>
          <Type Name="SiteConfiguration+ModuleDefinitionRow">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'SiteConfiguration.ModuleDefinitionRow'</Item>
-             <Item> System.Data.DataRow</Item>
-            </Issue>
-           </Message>
            <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2009-03-06 08:30:06Z">
             <Issue>
              <Item>'SiteConfiguration.ModuleDefinitionRow'</Item>
@@ -892,12 +801,6 @@
          </Type>
          <Type Name="SiteConfiguration+ModuleRow">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'SiteConfiguration.ModuleRow'</Item>
-             <Item> System.Data.DataRow</Item>
-            </Issue>
-           </Message>
            <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2009-03-06 08:30:06Z">
             <Issue>
              <Item>'SiteConfiguration.ModuleRow'</Item>
@@ -1050,12 +953,6 @@
          </Type>
          <Type Name="SiteConfiguration+SettingDataTable">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'SiteConfiguration.SettingDataTable'</Item>
-             <Item> System.Data.TypedTableBase`1&lt;ASPNET.StarterKit.Portal.SiteConfiguration+SettingRow&gt;, System.Data.DataTable</Item>
-            </Issue>
-           </Message>
            <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2009-03-06 08:30:06Z">
             <Issue>
              <Item>'SiteConfiguration.SettingDataTable'</Item>
@@ -1148,12 +1045,6 @@
          </Type>
          <Type Name="SiteConfiguration+SettingRow">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'SiteConfiguration.SettingRow'</Item>
-             <Item> System.Data.DataRow</Item>
-            </Issue>
-           </Message>
            <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2009-03-06 08:30:06Z">
             <Issue>
              <Item>'SiteConfiguration.SettingRow'</Item>
@@ -1286,12 +1177,6 @@
          </Type>
          <Type Name="SiteConfiguration+SettingsDataTable">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'SiteConfiguration.SettingsDataTable'</Item>
-             <Item> System.Data.TypedTableBase`1&lt;ASPNET.StarterKit.Portal.SiteConfiguration+SettingsRow&gt;, System.Data.DataTable</Item>
-            </Issue>
-           </Message>
            <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2009-03-06 08:30:06Z">
             <Issue>
              <Item>'SiteConfiguration.SettingsDataTable'</Item>
@@ -1355,12 +1240,6 @@
          </Type>
          <Type Name="SiteConfiguration+SettingsRow">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'SiteConfiguration.SettingsRow'</Item>
-             <Item> System.Data.DataRow</Item>
-            </Issue>
-           </Message>
            <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2009-03-06 08:30:06Z">
             <Issue>
              <Item>'SiteConfiguration.SettingsRow'</Item>
@@ -1424,12 +1303,6 @@
          </Type>
          <Type Name="SiteConfiguration+TabDataTable">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'SiteConfiguration.TabDataTable'</Item>
-             <Item> System.Data.TypedTableBase`1&lt;ASPNET.StarterKit.Portal.SiteConfiguration+TabRow&gt;, System.Data.DataTable</Item>
-            </Issue>
-           </Message>
            <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2009-03-06 08:30:06Z">
             <Issue>
              <Item>'SiteConfiguration.TabDataTable'</Item>
@@ -1526,12 +1399,6 @@
          </Type>
          <Type Name="SiteConfiguration+TabRow">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'SiteConfiguration.TabRow'</Item>
-             <Item> System.Data.DataRow</Item>
-            </Issue>
-           </Message>
            <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2009-03-06 08:30:06Z">
             <Issue>
              <Item>'SiteConfiguration.TabRow'</Item>
@@ -1644,36 +1511,7 @@
        </Namespace>
        <Namespace Name="ASPNET.StarterKit.Portal.Admin">
         <Types>
-         <Type Name="AccessDeniedPage">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'AccessDeniedPage'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
-          <Members>
-           <Member Name="#InitializeComponent()">
-            <Messages>
-             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2009-03-06 08:30:06Z" FixCategory="NonBreaking">
-              <Issue>
-               <Item>'AccessDeniedPage.InitializeComponent()'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
          <Type Name="EditAccessDenied">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'EditAccessDenied'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#InitializeComponent()">
             <Messages>
@@ -1687,14 +1525,6 @@
           </Members>
          </Type>
          <Type Name="ManageUsers">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'ManageUsers'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#AddRole_Click(System.Object,System.EventArgs)">
             <Messages>
@@ -1754,92 +1584,17 @@
                <Item>sender</Item>
               </Issue>
              </Message>
-             <Message Id="portalSettings" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'ManageUsers.Save_Click(object, EventArgs)'</Item>
-               <Item>'portalSettings'</Item>
-               <Item>'PortalSettings'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#saveBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'ManageUsers.saveBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#UpdateUserBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'ManageUsers.UpdateUserBtn'</Item>
-              </Issue>
-             </Message>
             </Messages>
            </Member>
           </Members>
          </Type>
          <Type Name="ModuleDefinitions">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'ModuleDefinitions'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name="#CancelBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'ModuleDefinitions.CancelBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#DeleteBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'ModuleDefinitions.DeleteBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#DesktopSrc">
-            <Messages>
-             <Message Id="Src" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Src</Item>
-               <Item>'ModuleDefinitions.DesktopSrc'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#InitializeComponent()">
             <Messages>
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2009-03-06 08:30:06Z" FixCategory="NonBreaking">
               <Issue>
                <Item>'ModuleDefinitions.InitializeComponent()'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#MobileSrc">
-            <Messages>
-             <Message Id="Src" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Src</Item>
-               <Item>'ModuleDefinitions.MobileSrc'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -1885,26 +1640,10 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#UpdateBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'ModuleDefinitions.UpdateBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
           </Members>
          </Type>
          <Type Name="ModuleDefs">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'ModuleDefs'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
            <Message Id="Defs" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
             <Issue Name="Type">
              <Item>Defs</Item>
@@ -1921,16 +1660,6 @@
                <Item>Sender</Item>
                <Item>'Sender'</Item>
                <Item>sender</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#AddDefBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'ModuleDefs.AddDefBtn'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -1964,14 +1693,6 @@
           </Members>
          </Type>
          <Type Name="ModuleSettingsPage">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'ModuleSettingsPage'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#ApplyChanges_Click(System.Object,System.EventArgs)">
             <Messages>
@@ -2082,14 +1803,6 @@
           </Members>
          </Type>
          <Type Name="NotImplemented">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'NotImplemented'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#InitializeComponent()">
             <Messages>
@@ -2103,14 +1816,6 @@
           </Members>
          </Type>
          <Type Name="Register">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'Register'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#InitializeComponent()">
             <Messages>
@@ -2121,37 +1826,9 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#RegisterBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'Register.RegisterBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#RegisterBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'Register.RegisterBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
           </Members>
          </Type>
          <Type Name="Roles">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'Roles'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#AddRole_Click(System.Object,System.EventArgs)">
             <Messages>
@@ -2161,16 +1838,6 @@
                <Item>Sender</Item>
                <Item>'Sender'</Item>
                <Item>sender</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#AddRoleBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'Roles.AddRoleBtn'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -2194,14 +1861,6 @@
           </Members>
          </Type>
          <Type Name="SecurityRoles">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'SecurityRoles'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#AddUser_Click(System.Object,System.EventArgs)">
             <Messages>
@@ -2255,47 +1914,12 @@
                <Item>sender</Item>
               </Issue>
              </Message>
-             <Message Id="portalSettings" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'SecurityRoles.Save_Click(object, EventArgs)'</Item>
-               <Item>'portalSettings'</Item>
-               <Item>'PortalSettings'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#saveBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'SecurityRoles.saveBtn'</Item>
-              </Issue>
-             </Message>
             </Messages>
            </Member>
           </Members>
          </Type>
          <Type Name="SiteSettings">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'SiteSettings'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name="#applyBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'SiteSettings.applyBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#InitializeComponent()">
             <Messages>
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2009-03-06 08:30:06Z" FixCategory="NonBreaking">
@@ -2308,25 +1932,7 @@
           </Members>
          </Type>
          <Type Name="TabLayout">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'TabLayout'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name="#AddModuleBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.AddModuleBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#AddModuleToPane_Click(System.Object,System.EventArgs)">
             <Messages>
              <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-03-06 08:30:06Z">
@@ -2346,23 +1952,6 @@
                <Item>Sender</Item>
                <Item>'Sender'</Item>
                <Item>sender</Item>
-              </Issue>
-             </Message>
-             <Message Id="id" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'TabLayout.Apply_Click(object, EventArgs)'</Item>
-               <Item>'id'</Item>
-               <Item>'string'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#applyBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.applyBtn'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -2393,84 +1982,8 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#ContentDeleteBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.ContentDeleteBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#ContentDownBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.ContentDownBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#ContentEditBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.ContentEditBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#ContentLeftBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.ContentLeftBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#ContentRightBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.ContentRightBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#ContentUpBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.ContentUpBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#DeleteBtn_Click(System.Object,System.Web.UI.ImageClickEventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.DeleteBtn_Click(object, ImageClickEventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#EditBtn_Click(System.Object,System.Web.UI.ImageClickEventArgs)">
             <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.EditBtn_Click(object, ImageClickEventArgs)'</Item>
-              </Issue>
-             </Message>
              <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-03-06 08:30:06Z">
               <Issue>
                <Item>'int.Parse(string)'</Item>
@@ -2505,56 +2018,6 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#LeftDeleteBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.LeftDeleteBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#LeftDownBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.LeftDownBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#LeftEditBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.LeftEditBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#LeftRightBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.LeftRightBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#LeftUpBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.LeftUpBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#OrderModules(System.Collections.ArrayList)">
             <Messages>
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2009-03-06 08:30:06Z" FixCategory="NonBreaking">
@@ -2575,116 +2038,10 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#RightDeleteBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.RightDeleteBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#RightDownBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.RightDownBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#RightEditBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.RightEditBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#RightLeft_Click(System.Object,System.Web.UI.ImageClickEventArgs)">
-            <Messages>
-             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Parameter">
-               <Item>'sender'</Item>
-               <Item>'ImageButton'</Item>
-               <Item>'TabLayout.RightLeft_Click(object, ImageClickEventArgs)'</Item>
-               <Item>castclass</Item>
-              </Issue>
-             </Message>
-             <Message Id="targetBox" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'TabLayout.RightLeft_Click(object, ImageClickEventArgs)'</Item>
-               <Item>'targetBox'</Item>
-               <Item>'ListBox'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#RightLeftBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.RightLeftBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#RightUpBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'TabLayout.RightUpBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#UpDown_Click(System.Object,System.Web.UI.ImageClickEventArgs)">
-            <Messages>
-             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Parameter">
-               <Item>'sender'</Item>
-               <Item>'ImageButton'</Item>
-               <Item>'TabLayout.UpDown_Click(object, ImageClickEventArgs)'</Item>
-               <Item>castclass</Item>
-              </Issue>
-             </Message>
-             <Message Id="selection" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'TabLayout.UpDown_Click(object, ImageClickEventArgs)'</Item>
-               <Item>'selection'</Item>
-               <Item>'int'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
           </Members>
          </Type>
          <Type Name="Tabs">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'Tabs'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name="#addBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'Tabs.addBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#AddTab_Click(System.Object,System.EventArgs)">
             <Messages>
              <Message Id="Sender" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 08:30:06Z">
@@ -2693,56 +2050,6 @@
                <Item>Sender</Item>
                <Item>'Sender'</Item>
                <Item>sender</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#deleteBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'Tabs.deleteBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#DeleteBtn_Click(System.Object,System.Web.UI.ImageClickEventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'Tabs.DeleteBtn_Click(object, ImageClickEventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#downBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'Tabs.downBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#editBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'Tabs.editBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#EditBtn_Click(System.Object,System.Web.UI.ImageClickEventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'Tabs.EditBtn_Click(object, ImageClickEventArgs)'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -2772,38 +2079,10 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#upBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'Tabs.upBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
           </Members>
          </Type>
          <Type Name="Users">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'Users'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name="#DeleteBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'Users.DeleteBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#DeleteUser_Click(System.Object,System.Web.UI.ImageClickEventArgs)">
             <Messages>
              <Message Id="Sender" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 08:30:06Z">
@@ -2819,16 +2098,6 @@
                <Item>'int.Parse(string)'</Item>
                <Item>'Users.DeleteUser_Click(object, ImageClickEventArgs)'</Item>
                <Item>'int.Parse(string, IFormatProvider)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#EditBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'Users.EditBtn'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -2881,14 +2150,6 @@
           </Members>
          </Type>
          <Type Name="CachedPortalModuleControl">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'CachedPortalModuleControl'</Item>
-             <Item> System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#Render(System.Web.UI.HtmlTextWriter)">
             <Messages>
@@ -3175,24 +2436,6 @@
            </Message>
           </Messages>
           <Members>
-           <Member Name="#AuthorizedEditRoles">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'ModuleSettings.AuthorizedEditRoles'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#CacheTime">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'ModuleSettings.CacheTime'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#CompareTo(System.Object)">
             <Messages>
              <Message Id="0#" TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725" Created="2009-03-06 08:30:06Z">
@@ -3205,117 +2448,12 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#DesktopSrc">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'ModuleSettings.DesktopSrc'</Item>
-              </Issue>
-             </Message>
-             <Message Id="Src" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Src</Item>
-               <Item>'ModuleSettings.DesktopSrc'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#MobileSrc">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'ModuleSettings.MobileSrc'</Item>
-              </Issue>
-             </Message>
-             <Message Id="Src" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Src</Item>
-               <Item>'ModuleSettings.MobileSrc'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#ModuleDefId">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'ModuleSettings.ModuleDefId'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#ModuleId">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'ModuleSettings.ModuleId'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#ModuleOrder">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'ModuleSettings.ModuleOrder'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#ModuleTitle">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'ModuleSettings.ModuleTitle'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#PaneName">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'ModuleSettings.PaneName'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#ShowMobile">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'ModuleSettings.ShowMobile'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#TabId">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'ModuleSettings.TabId'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
           </Members>
          </Type>
          <Type Name="PortalConfiguration">
           <Members>
            <Member Name="#AddModuleDefinition(System.Int32,System.String,System.String,System.String)">
             <Messages>
-             <Message Id="Src" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="MemberParameter">
-               <Item>'PortalConfiguration.AddModuleDefinition(int, string, string, string)'</Item>
-               <Item>Src</Item>
-               <Item>'desktopSrc'</Item>
-              </Issue>
-              <Issue Name="MemberParameter">
-               <Item>'PortalConfiguration.AddModuleDefinition(int, string, string, string)'</Item>
-               <Item>Src</Item>
-               <Item>'mobileSrc'</Item>
-              </Issue>
-             </Message>
              <Message Id="portalId" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2009-03-06 08:30:06Z" FixCategory="DependsOnFix">
               <Issue>
                <Item>'portalId'</Item>
@@ -3376,22 +2514,6 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#UpdateModuleDefinition(System.Int32,System.String,System.String,System.String)">
-            <Messages>
-             <Message Id="Src" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="MemberParameter">
-               <Item>'PortalConfiguration.UpdateModuleDefinition(int, string, string, string)'</Item>
-               <Item>Src</Item>
-               <Item>'desktopSrc'</Item>
-              </Issue>
-              <Issue Name="MemberParameter">
-               <Item>'PortalConfiguration.UpdateModuleDefinition(int, string, string, string)'</Item>
-               <Item>Src</Item>
-               <Item>'mobileSrc'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#UpdateModuleOrder(System.Int32,System.Int32,System.String)">
             <Messages>
              <Message Id="Module" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 08:30:06Z">
@@ -3447,16 +2569,6 @@
            </Member>
           </Members>
          </Type>
-         <Type Name="PortalModuleControl">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'PortalModuleControl'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
          <Type Name="PortalSecurity">
           <Messages>
            <Message TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053" Created="2009-03-06 08:30:06Z">
@@ -3506,15 +2618,6 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#AlwaysShowEditButton">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'PortalSettings.AlwaysShowEditButton'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#DesktopTabs">
             <Messages>
              <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
@@ -3529,24 +2632,6 @@
              <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
               <Issue>
                <Item>'PortalSettings.MobileTabs'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#PortalId">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'PortalSettings.PortalId'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#PortalName">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'PortalSettings.PortalName'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -3594,114 +2679,11 @@
          </Type>
          <Type Name="TabSettings">
           <Members>
-           <Member Name="#AuthorizedRoles">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'TabSettings.AuthorizedRoles'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#MobileTabName">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'TabSettings.MobileTabName'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#Modules">
             <Messages>
              <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
               <Issue>
                <Item>'TabSettings.Modules'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#ShowMobile">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'TabSettings.ShowMobile'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#TabId">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'TabSettings.TabId'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#TabIndex">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'TabSettings.TabIndex'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#TabName">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'TabSettings.TabName'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#TabOrder">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'TabSettings.TabOrder'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="TabStripDetails">
-          <Members>
-           <Member Name="#AuthorizedRoles">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'TabStripDetails.AuthorizedRoles'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#TabId">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'TabStripDetails.TabId'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#TabName">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'TabStripDetails.TabName'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#TabOrder">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2009-03-06 08:30:06Z">
-              <Issue>
-               <Item>'TabStripDetails.TabOrder'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -3727,14 +2709,6 @@
        <Namespace Name="ASPNET.StarterKit.Portal.DesktopModules">
         <Types>
          <Type Name="Announcements">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'Announcements'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#InitializeComponent()">
             <Messages>
@@ -3748,14 +2722,6 @@
           </Members>
          </Type>
          <Type Name="Contacts">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'Contacts'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#InitializeComponent()">
             <Messages>
@@ -3769,14 +2735,6 @@
           </Members>
          </Type>
          <Type Name="DiscussDetails">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'DiscussDetails'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#BindData()">
             <Messages>
@@ -3792,16 +2750,6 @@
                <Item>'string.Format(string, object)'</Item>
                <Item>'DiscussDetails.BindData()'</Item>
                <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#CancelBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'DiscussDetails.CancelBtn_Click(object, EventArgs)'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -3841,16 +2789,6 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#ReplyBtn">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'DiscussDetails.ReplyBtn'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#ReplyBtn_Click(System.Object,System.EventArgs)">
             <Messages>
              <Message Id="Sender" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2009-03-06 08:30:06Z">
@@ -3859,12 +2797,6 @@
                <Item>Sender</Item>
                <Item>'Sender'</Item>
                <Item>sender</Item>
-              </Issue>
-             </Message>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'DiscussDetails.ReplyBtn_Click(object, EventArgs)'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -3885,27 +2817,9 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#UpdateBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'DiscussDetails.UpdateBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
           </Members>
          </Type>
          <Type Name="Discussion">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'Discussion'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#FormatUrl(System.Int32)">
             <Messages>
@@ -3937,14 +2851,6 @@
           </Members>
          </Type>
          <Type Name="Document">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'Document'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#GetBrowsePath(System.String,System.Object,System.Int32)">
             <Messages>
@@ -3973,35 +2879,7 @@
           </Members>
          </Type>
          <Type Name="EditAnnouncements">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'EditAnnouncements'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name="#CancelBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditAnnouncements.CancelBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#DeleteBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditAnnouncements.DeleteBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#InitializeComponent()">
             <Messages>
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2009-03-06 08:30:06Z" FixCategory="NonBreaking">
@@ -4056,12 +2934,6 @@
            </Member>
            <Member Name="#UpdateBtn_Click(System.Object,System.EventArgs)">
             <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditAnnouncements.UpdateBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
              <Message Id="System.DateTime.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-03-06 08:30:06Z">
               <Issue>
                <Item>'DateTime.Parse(string)'</Item>
@@ -4079,35 +2951,7 @@
           </Members>
          </Type>
          <Type Name="EditContacts">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'EditContacts'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name="#CancelBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditContacts.CancelBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#DeleteBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditContacts.DeleteBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#InitializeComponent()">
             <Messages>
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2009-03-06 08:30:06Z" FixCategory="NonBreaking">
@@ -4140,48 +2984,10 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#UpdateBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditContacts.UpdateBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
           </Members>
          </Type>
          <Type Name="EditDocs">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'EditDocs'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name="#CancelBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditDocs.CancelBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#DeleteBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditDocs.DeleteBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#InitializeComponent()">
             <Messages>
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2009-03-06 08:30:06Z" FixCategory="NonBreaking">
@@ -4214,48 +3020,10 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#UpdateBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditDocs.UpdateBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
           </Members>
          </Type>
          <Type Name="EditEvents">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'EditEvents'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name="#CancelBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditEvents.CancelBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#DeleteBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditEvents.DeleteBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#InitializeComponent()">
             <Messages>
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2009-03-06 08:30:06Z" FixCategory="NonBreaking">
@@ -4290,12 +3058,6 @@
            </Member>
            <Member Name="#UpdateBtn_Click(System.Object,System.EventArgs)">
             <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditEvents.UpdateBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
              <Message Id="System.DateTime.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-03-06 08:30:06Z">
               <Issue>
                <Item>'DateTime.Parse(string)'</Item>
@@ -4313,25 +3075,7 @@
           </Members>
          </Type>
          <Type Name="EditHtml">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'EditHtml'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name="#CancelBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditHtml.CancelBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#InitializeComponent()">
             <Messages>
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2009-03-06 08:30:06Z" FixCategory="NonBreaking">
@@ -4352,38 +3096,10 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#UpdateBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditHtml.UpdateBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
           </Members>
          </Type>
          <Type Name="EditImage">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'EditImage'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name="#CancelBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditImage.CancelBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#InitializeComponent()">
             <Messages>
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2009-03-06 08:30:06Z" FixCategory="NonBreaking">
@@ -4404,58 +3120,10 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#Src">
-            <Messages>
-             <Message Id="Src" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Src</Item>
-               <Item>'EditImage.Src'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#UpdateBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditImage.UpdateBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
           </Members>
          </Type>
          <Type Name="EditLinks">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'EditLinks'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name="#CancelBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditLinks.CancelBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#DeleteBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditLinks.DeleteBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#InitializeComponent()">
             <Messages>
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2009-03-06 08:30:06Z" FixCategory="NonBreaking">
@@ -4510,12 +3178,6 @@
            </Member>
            <Member Name="#UpdateBtn_Click(System.Object,System.EventArgs)">
             <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditLinks.UpdateBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
              <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-03-06 08:30:06Z">
               <Issue>
                <Item>'int.Parse(string)'</Item>
@@ -4533,25 +3195,7 @@
           </Members>
          </Type>
          <Type Name="EditXml">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'EditXml'</Item>
-             <Item> System.Web.UI.Page, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name="#CancelBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditXml.CancelBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#InitializeComponent()">
             <Messages>
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2009-03-06 08:30:06Z" FixCategory="NonBreaking">
@@ -4572,47 +3216,9 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#UpdateBtn_Click(System.Object,System.EventArgs)">
-            <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'EditXml.UpdateBtn_Click(object, EventArgs)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#XmlDataSrc">
-            <Messages>
-             <Message Id="Src" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Src</Item>
-               <Item>'EditXml.XmlDataSrc'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#XslTransformSrc">
-            <Messages>
-             <Message Id="Src" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Src</Item>
-               <Item>'EditXml.XslTransformSrc'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
           </Members>
          </Type>
          <Type Name="Events">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'Events'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#InitializeComponent()">
             <Messages>
@@ -4626,14 +3232,6 @@
           </Members>
          </Type>
          <Type Name="HtmlModule">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'HtmlModule'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#InitializeComponent()">
             <Messages>
@@ -4647,14 +3245,6 @@
           </Members>
          </Type>
          <Type Name="ImageModule">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'ImageModule'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#InitializeComponent()">
             <Messages>
@@ -4698,14 +3288,6 @@
           </Members>
          </Type>
          <Type Name="Links">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'Links'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#ChooseTip(System.String)">
             <Messages>
@@ -4772,14 +3354,6 @@
           </Members>
          </Type>
          <Type Name="QuickLinks">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'QuickLinks'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#ChooseURL(System.String,System.String,System.String)">
             <Messages>
@@ -4836,12 +3410,6 @@
          </Type>
          <Type Name="Signin">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'Signin'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
            <Message Id="Signin" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2009-03-06 08:30:06Z">
             <Issue Name="TypeShouldBeCompoundWord">
              <Item>Signin</Item>
@@ -4862,12 +3430,6 @@
            </Member>
            <Member Name="#LoginBtn_Click(System.Object,System.Web.UI.ImageClickEventArgs)">
             <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'Signin.LoginBtn_Click(object, ImageClickEventArgs)'</Item>
-              </Issue>
-             </Message>
              <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Created="2009-03-06 08:30:06Z">
               <Issue Name="IsNullOrEmpty">
                <Item>'string.operator !=(string, string)'</Item>
@@ -4903,25 +3465,11 @@
                <Item>SignIn</Item>
               </Issue>
              </Message>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2009-03-06 08:30:06Z">
-              <Issue Name="Member">
-               <Item>Btn</Item>
-               <Item>'Signin.SigninBtn'</Item>
-              </Issue>
-             </Message>
             </Messages>
            </Member>
           </Members>
          </Type>
          <Type Name="XmlModule">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'XmlModule'</Item>
-             <Item> System.Web.UI.UserControl, System.Web.UI.TemplateControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#InitializeComponent()">
             <Messages>
@@ -4952,25 +3500,7 @@
        </Namespace>
        <Namespace Name="ASPNET.StarterKit.Portal.MobileControls">
         <Types>
-         <Type Name="ChildPanel">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'ChildPanel'</Item>
-             <Item> System.Web.UI.MobileControls.Panel, System.Web.UI.MobileControls.MobileControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
          <Type Name="ChtmlTabbedPanelAdapter">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'ChtmlTabbedPanelAdapter'</Item>
-             <Item> System.Web.UI.MobileControls.Adapters.HtmlControlAdapter, System.Web.UI.MobileControls.Adapters.ControlAdapter</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#Render(System.Web.UI.MobileControls.Adapters.HtmlMobileTextWriter)">
             <Messages>
@@ -4986,14 +3516,6 @@
           </Members>
          </Type>
          <Type Name="ContentsPanel">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'ContentsPanel'</Item>
-             <Item> System.Web.UI.MobileControls.Panel, System.Web.UI.MobileControls.MobileControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#OnBubbleEvent(System.Object,System.EventArgs)">
             <Messages>
@@ -5024,25 +3546,7 @@
            </Member>
           </Members>
          </Type>
-         <Type Name="HtmlLinkCommandAdapter">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'HtmlLinkCommandAdapter'</Item>
-             <Item> System.Web.UI.MobileControls.Adapters.HtmlCommandAdapter, System.Web.UI.MobileControls.Adapters.HtmlControlAdapter, System.Web.UI.MobileControls.Adapters.ControlAdapter</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
          <Type Name="HtmlTabbedPanelAdapter">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'HtmlTabbedPanelAdapter'</Item>
-             <Item> System.Web.UI.MobileControls.Adapters.HtmlControlAdapter, System.Web.UI.MobileControls.Adapters.ControlAdapter</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#Render(System.Web.UI.MobileControls.Adapters.HtmlMobileTextWriter)">
             <Messages>
@@ -5057,24 +3561,8 @@
            </Member>
           </Members>
          </Type>
-         <Type Name="LinkCommand">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'LinkCommand'</Item>
-             <Item> System.Web.UI.MobileControls.Command, System.Web.UI.MobileControls.TextControl, System.Web.UI.MobileControls.MobileControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
          <Type Name="MultiPanel">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'MultiPanel'</Item>
-             <Item> System.Web.UI.MobileControls.Panel, System.Web.UI.MobileControls.MobileControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
            <Message Id="MultiPanel" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2009-03-06 08:30:06Z">
             <Issue Name="TypeShouldBeDiscreteTerm">
              <Item>MultiPanel</Item>
@@ -5140,14 +3628,6 @@
           </Messages>
          </Type>
          <Type Name="TabbedPanel">
-          <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'TabbedPanel'</Item>
-             <Item> System.Web.UI.MobileControls.Panel, System.Web.UI.MobileControls.MobileControl, System.Web.UI.Control</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#RaisePostBackEvent(System.String)">
             <Messages>
@@ -5164,12 +3644,6 @@
          </Type>
          <Type Name="WmlTabbedPanelAdapter">
           <Messages>
-           <Message TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405" Created="2009-03-06 08:30:06Z">
-            <Issue>
-             <Item>'WmlTabbedPanelAdapter'</Item>
-             <Item> System.Web.UI.MobileControls.Adapters.WmlControlAdapter, System.Web.UI.MobileControls.Adapters.ControlAdapter</Item>
-            </Issue>
-           </Message>
            <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Created="2009-03-06 08:30:06Z" FixCategory="DependsOnFix">
             <Issue Name="DependsOnFix">
              <Item>'WmlTabbedPanelAdapter'</Item>
@@ -5198,6 +3672,15 @@
     </Modules>
    </Target>
   </Targets>
+  <Notes>
+   <User Name="11cbakopanos">
+    <Note Id="0" Modified="2009-03-06 08:44:01Z">ASPNET.StarterKit.Portal</Note>
+    <Note Id="1" Modified="2009-03-06 08:44:08Z">ASPNET.StarterKit.Portal</Note>
+    <Note Id="2" Modified="2009-03-06 08:44:14Z">ASPNET.StarterKit.Portal</Note>
+    <Note Id="3" Modified="2009-03-06 08:44:29Z">ASPNET.StarterKit.Portal</Note>
+    <Note Id="4" Modified="2009-03-06 08:44:34Z">ASPNET.StarterKit.Portal</Note>
+   </User>
+  </Notes>
   <Rules>
    <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
     <Resolution Name="NoStrongName">Sign {0} with a strong name key.</Resolution>
@@ -5207,9 +3690,6 @@
    </Rule>
    <Rule TypeName="CallBaseClassMethodsOnISerializableTypes" Category="Microsoft.Usage" CheckId="CA2236">
     <Resolution Name="Default">Method {0} should be modified to call its base class implementation.</Resolution>
-   </Rule>
-   <Rule TypeName="ComVisibleTypeBaseTypesShouldBeComVisible" Category="Microsoft.Interoperability" CheckId="CA1405">
-    <Resolution Name="Default">{0} is marked ComVisible(true) but has the following ComVisible(false) types in its object hierarchy: {1}</Resolution>
    </Rule>
    <Rule TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702">
     <Resolution Name="MemberShouldBeCompoundWord">The discrete term '{0}' in member name {1} should be expressed as a compound word, '{2}'.</Resolution>
@@ -5221,9 +3701,6 @@
    </Rule>
    <Rule TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214">
     <Resolution Name="Default">{0} contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: {1}</Resolution>
-   </Rule>
-   <Rule TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800">
-    <Resolution Name="Parameter">{0}, a parameter, is cast to type {1} multiple times in method {2}. Cache the result of the 'as' operator or direct cast in order to eliminate the redundant {3} instruction.</Resolution>
    </Rule>
    <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
     <Resolution Name="Default">Modify {0} to catch a more specific exception than {1} or rethrow the exception.</Resolution>
@@ -5270,15 +3747,6 @@
    <Rule TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033">
     <Resolution Name="Default">Make {0} sealed (a breaking change if this class has previously shipped), implement the method non-explicitly, or implement a new method that exposes the functionality of {1} and is visible to derived classes.</Resolution>
    </Rule>
-   <Rule TypeName="MarkAssembliesWithAssemblyVersion" Category="Microsoft.Design" CheckId="CA1016">
-    <Resolution Name="Default">Add an AssemblyVersion attribute to {0}.</Resolution>
-   </Rule>
-   <Rule TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014">
-    <Resolution Name="Default">Mark {0} with CLSCompliant(true) because it exposes externally visible types.</Resolution>
-   </Rule>
-   <Rule TypeName="MarkAssembliesWithComVisible" Category="Microsoft.Design" CheckId="CA1017">
-    <Resolution Name="NoAttribute">Because {0} exposes externally visible types, mark it with ComVisible(false) at the assembly level and then mark all types within the assembly that should be exposed to COM clients with ComVisible(true).</Resolution>
-   </Rule>
    <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
     <Resolution Name="Default">The 'this' parameter (or 'Me' in Visual Basic) of {0} is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Resolution>
    </Rule>
@@ -5291,9 +3759,6 @@
    </Rule>
    <Rule TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725">
     <Resolution Name="Default">In member {0}, change parameter name {1} to {2} in order to match the identifier as it has been declared in {3}.</Resolution>
-   </Rule>
-   <Rule TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804">
-    <Resolution Name="Default">{0} declares a variable, {1}, of type {2}, which is never used or is only assigned to. Use this variable or remove it.</Resolution>
    </Rule>
    <Rule TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200">
     <Resolution Name="Default">{0} rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Resolution>

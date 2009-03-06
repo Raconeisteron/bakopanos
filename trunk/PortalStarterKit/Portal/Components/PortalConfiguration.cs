@@ -774,11 +774,11 @@ namespace ASPNET.StarterKit.Portal.Components
     public class PortalSettings
     {
         public TabSettings ActiveTab = new TabSettings();
-        public bool AlwaysShowEditButton;
+        public bool AlwaysShowEditButton { get; set; }
         public ArrayList DesktopTabs = new ArrayList();
         public ArrayList MobileTabs = new ArrayList();
-        public int PortalId;
-        public String PortalName;
+        public int PortalId { get; set; }
+        public String PortalName { get; set; }
 
         //*********************************************************************
         //
@@ -881,37 +881,37 @@ namespace ASPNET.StarterKit.Portal.Components
 
     public class TabStripDetails
     {
-        public String AuthorizedRoles;
-        public int TabId;
-        public String TabName;
-        public int TabOrder;
+        public String AuthorizedRoles { get; set; }
+        public int TabId { get; set; }
+        public String TabName { get; set; }
+        public int TabOrder { get; set; }
     }
 
     public class TabSettings
     {
-        public String AuthorizedRoles;
-        public String MobileTabName;
+        public String AuthorizedRoles { get; set; }
+        public String MobileTabName { get; set; }
         public ArrayList Modules = new ArrayList();
-        public bool ShowMobile;
-        public int TabId;
-        public int TabIndex;
-        public String TabName;
-        public int TabOrder;
+        public bool ShowMobile { get; set; }
+        public int TabId { get; set; }
+        public int TabIndex { get; set; }
+        public String TabName { get; set; }
+        public int TabOrder { get; set; }
     }
 
     public class ModuleSettings : IComparable
     {
-        public String AuthorizedEditRoles;
-        public int CacheTime;
-        public String DesktopSrc;
-        public String MobileSrc;
-        public int ModuleDefId;
-        public int ModuleId;
-        public int ModuleOrder;
-        public String ModuleTitle;
-        public String PaneName;
-        public bool ShowMobile;
-        public int TabId;
+        public String AuthorizedEditRoles { get; set; }
+        public int CacheTime { get; set; }
+        public String DesktopSrc { get; set; }
+        public String MobileSrc { get; set; }
+        public int ModuleDefId { get; set; }
+        public int ModuleId { get; set; }
+        public int ModuleOrder { get; set; }
+        public String ModuleTitle { get; set; }
+        public String PaneName { get; set; }
+        public bool ShowMobile { get; set; }
+        public int TabId { get; set; }
 
         #region IComparable Members
 

@@ -97,8 +97,10 @@ namespace ASPNET.StarterKit.Portal.Admin
 
         protected void UpDown_Click(Object sender, ImageClickEventArgs e)
         {
-            String cmd = ((ImageButton) sender).CommandName;
-            String pane = ((ImageButton) sender).CommandArgument;
+            var imageButton = (ImageButton)sender;
+            String cmd = imageButton.CommandName;
+            String pane = imageButton.CommandArgument;
+
             var _listbox = (ListBox) Page.FindControl(pane);
 
             ArrayList modules = GetModules(pane);
@@ -153,8 +155,10 @@ namespace ASPNET.StarterKit.Portal.Admin
 
         protected void RightLeft_Click(Object sender, ImageClickEventArgs e)
         {
-            String sourcePane = ((ImageButton) sender).Attributes["sourcepane"];
-            String targetPane = ((ImageButton) sender).Attributes["targetpane"];
+            var imageButton = (ImageButton) sender;
+            String sourcePane = imageButton.Attributes["sourcepane"];
+            String targetPane = imageButton.Attributes["targetpane"];
+
             var sourceBox = (ListBox) Page.FindControl(sourcePane);
             var targetBox = (ListBox) Page.FindControl(targetPane);
 

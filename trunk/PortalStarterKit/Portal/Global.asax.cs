@@ -60,7 +60,7 @@ namespace ASPNET.StarterKit.Portal {
 
 				Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 			}
-			catch (Exception ex)
+			catch /*(Exception ex)*/
 			{
 				Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
 			}

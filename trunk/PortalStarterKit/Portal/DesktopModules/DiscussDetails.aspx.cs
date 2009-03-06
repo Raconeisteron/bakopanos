@@ -141,11 +141,11 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
             }
 
             // Update labels with message contents
-            Title.Text = (String) dr["Title"];
+            TitleLabel.Text = (String) dr["Title"];
             Body.Text = (String) dr["Body"];
             CreatedByUser.Text = (String) dr["CreatedByUser"];
             CreatedDate.Text = String.Format("{0:d}", dr["CreatedDate"]);
-            TitleField.Text = ReTitle(Title.Text);
+            TitleField.Text = ReTitle(TitleLabel.Text);
 
             int prevId = 0;
             int nextId = 0;
