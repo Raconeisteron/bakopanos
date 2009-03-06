@@ -1,12 +1,11 @@
 using System;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial  class DesktopModuleTitle : UserControl
+    public partial class DesktopModuleTitle : UserControl
     {
         public String EditTarget;
 

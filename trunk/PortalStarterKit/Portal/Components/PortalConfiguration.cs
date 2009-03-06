@@ -176,7 +176,8 @@ namespace ASPNET.StarterKit.Portal.Components
             //
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
 
             // Mark the Command as a SPROC
@@ -341,7 +342,8 @@ namespace ASPNET.StarterKit.Portal.Components
             //
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
 
             // Mark the Command as a SPROC
@@ -606,7 +608,8 @@ namespace ASPNET.StarterKit.Portal.Components
             //
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
 
             // Mark the Command as a SPROC
@@ -774,26 +777,8 @@ namespace ASPNET.StarterKit.Portal.Components
     public class PortalSettings
     {
         public TabSettings ActiveTab = new TabSettings();
-        public bool AlwaysShowEditButton { get; set; }
         public ArrayList DesktopTabs = new ArrayList();
         public ArrayList MobileTabs = new ArrayList();
-        public int PortalId { get; set; }
-        public String PortalName { get; set; }
-
-        //*********************************************************************
-        //
-        // PortalSettings Constructor
-        //
-        // The PortalSettings Constructor encapsulates all of the logic
-        // necessary to obtain configuration settings necessary to render
-        // a Portal Tab view for a given request.
-        //
-        // These Portal Settings are stored within PortalCFG.xml, and are
-        // fetched below by calling config.GetSiteSettings().
-        // The method config.GetSiteSettings() fills the SiteConfiguration
-        // class, derived from a DataSet, which PortalSettings accesses.
-        //       
-        //*********************************************************************
 
         public PortalSettings(int tabIndex, int tabId)
         {
@@ -877,6 +862,26 @@ namespace ASPNET.StarterKit.Portal.Components
             ActiveTab.TabName = activeTab.TabName;
             ActiveTab.ShowMobile = activeTab.ShowMobile;
         }
+
+        public bool AlwaysShowEditButton { get; set; }
+
+        public int PortalId { get; set; }
+        public String PortalName { get; set; }
+
+        //*********************************************************************
+        //
+        // PortalSettings Constructor
+        //
+        // The PortalSettings Constructor encapsulates all of the logic
+        // necessary to obtain configuration settings necessary to render
+        // a Portal Tab view for a given request.
+        //
+        // These Portal Settings are stored within PortalCFG.xml, and are
+        // fetched below by calling config.GetSiteSettings().
+        // The method config.GetSiteSettings() fills the SiteConfiguration
+        // class, derived from a DataSet, which PortalSettings accesses.
+        //       
+        //*********************************************************************
     }
 
     public class TabStripDetails
@@ -889,9 +894,9 @@ namespace ASPNET.StarterKit.Portal.Components
 
     public class TabSettings
     {
+        public ArrayList Modules = new ArrayList();
         public String AuthorizedRoles { get; set; }
         public String MobileTabName { get; set; }
-        public ArrayList Modules = new ArrayList();
         public bool ShowMobile { get; set; }
         public int TabId { get; set; }
         public int TabIndex { get; set; }

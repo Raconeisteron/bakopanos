@@ -1,12 +1,10 @@
 using System;
-using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal.Admin
 {
-    public partial  class SiteSettings : PortalModuleControl
+    public partial class SiteSettings : PortalModuleControl
     {
-
         public SiteSettings()
         {
             Init += Page_Init;

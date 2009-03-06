@@ -1,12 +1,10 @@
 using System;
-using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {
-    public partial  class Document : PortalModuleControl
+    public partial class Document : PortalModuleControl
     {
-
         public Document()
         {
             Init += Page_Init;

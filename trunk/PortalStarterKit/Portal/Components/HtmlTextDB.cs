@@ -19,10 +19,13 @@ namespace ASPNET.StarterKit.Portal.Components
         //
         //*********************************************************************
 
+        #region IHtmlTextDB Members
+
         public SqlDataReader GetHtmlText(int moduleId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_GetHtmlText", myConnection);
 
             // Mark the Command as a SPROC
@@ -57,7 +60,8 @@ namespace ASPNET.StarterKit.Portal.Components
         public void UpdateHtmlText(int moduleId, String desktopHtml, String mobileSummary, String mobileDetails)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_UpdateHtmlText", myConnection);
 
             // Mark the Command as a SPROC
@@ -84,5 +88,7 @@ namespace ASPNET.StarterKit.Portal.Components
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
+
+        #endregion
     }
 }

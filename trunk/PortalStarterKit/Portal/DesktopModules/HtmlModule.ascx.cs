@@ -1,14 +1,12 @@
 using System;
 using System.Data;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {
-    public partial  class HtmlModule : PortalModuleControl
+    public partial class HtmlModule : PortalModuleControl
     {
-
         //*******************************************************
         //
         // The Page_Load event handler on this User Control is

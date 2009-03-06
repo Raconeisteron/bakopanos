@@ -1,4 +1,3 @@
-
 namespace ASPNET.StarterKit.Portal.Components
 {
     //*********************************************************************
@@ -10,5 +9,7 @@ namespace ASPNET.StarterKit.Portal.Components
     //
     //*********************************************************************
 
-    public class MobilePortalModuleControl { }
+    public class MobilePortalModuleControl
+    {
+    }
 }

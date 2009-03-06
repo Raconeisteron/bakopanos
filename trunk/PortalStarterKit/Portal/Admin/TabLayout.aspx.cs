@@ -97,7 +97,7 @@ namespace ASPNET.StarterKit.Portal.Admin
 
         protected void UpDown_Click(Object sender, ImageClickEventArgs e)
         {
-            var imageButton = (ImageButton)sender;
+            var imageButton = (ImageButton) sender;
             String cmd = imageButton.CommandName;
             String pane = imageButton.CommandArgument;
 

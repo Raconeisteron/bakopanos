@@ -8,9 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ASPNET.StarterKit.Portal {
-    
-    
-    public partial class WebUserControl1 {
-    }
+
+
+public partial class WebUserControl1 {
 }

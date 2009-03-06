@@ -7,7 +7,7 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal.Admin
 {
-    public partial  class Tabs : PortalModuleControl
+    public partial class Tabs : PortalModuleControl
     {
         protected ArrayList portalTabs;
         private int tabId;

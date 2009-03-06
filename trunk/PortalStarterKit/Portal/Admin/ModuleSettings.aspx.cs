@@ -9,7 +9,6 @@ namespace ASPNET.StarterKit.Portal.Admin
 {
     public partial class ModuleSettingsPage : Page
     {
-
         private int moduleId;
         private int tabId;
 

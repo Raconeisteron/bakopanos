@@ -9,16 +9,16 @@
 
 <script runat="server">
 
-    void Page_Load(object sender, EventArgs e)
-    {
-        if (Request.Browser["IsMobileDevice"] == "true")
+        private void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("MobileDefault.aspx");
+            if (Request.Browser["IsMobileDevice"] == "true")
+            {
+                Response.Redirect("MobileDefault.aspx");
+            }
+            else
+            {
+                Response.Redirect("DesktopDefault.aspx");
+            }
         }
-        else
-        {
-            Response.Redirect("DesktopDefault.aspx");
-        }
-    }
 
 </script>

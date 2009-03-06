@@ -2,12 +2,11 @@ using System;
 using System.Collections;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial  class DesktopPortalBanner : UserControl
+    public partial class DesktopPortalBanner : UserControl
     {
         protected String LogoffLink = "";
         public bool ShowTabs = true;

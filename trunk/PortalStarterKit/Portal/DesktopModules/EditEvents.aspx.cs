@@ -8,7 +8,6 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
 {
     public partial class EditEvents : Page
     {
-
         private int itemId;
         private int moduleId;
         protected RequiredFieldValidator RequiredFieldValidator1;

@@ -1,13 +1,10 @@
 using System;
-using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {
-    public partial  class QuickLinks : PortalModuleControl
+    public partial class QuickLinks : PortalModuleControl
     {
-
-
         protected String linkImage = "";
 
         public QuickLinks()

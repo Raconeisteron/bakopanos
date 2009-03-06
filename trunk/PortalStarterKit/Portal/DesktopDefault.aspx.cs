@@ -1,14 +1,12 @@
 using System;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class DesktopDefault : Page
     {
-
         public DesktopDefault()
         {
             Page.Init += Page_Init;

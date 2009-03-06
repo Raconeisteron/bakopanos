@@ -5,9 +5,8 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {
-    public partial  class Discussion : PortalModuleControl
+    public partial class Discussion : PortalModuleControl
     {
-
         public Discussion()
         {
             Init += Page_Init;

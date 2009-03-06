@@ -1,12 +1,10 @@
 using System;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 
 namespace ASPNET.StarterKit.Portal.Admin
 {
     public partial class NotImplemented : Page
     {
-
         //****************************************************************
         //
         // The Page_Load event on this Page is used to obtain the title

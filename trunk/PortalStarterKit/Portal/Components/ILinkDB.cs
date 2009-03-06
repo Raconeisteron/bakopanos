@@ -10,9 +10,9 @@ namespace ASPNET.StarterKit.Portal.Components
         void DeleteLink(int itemID);
 
         int AddLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
-                                    int viewOrder, String description);
+                    int viewOrder, String description);
 
         void UpdateLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
-                                        int viewOrder, String description);
+                        int viewOrder, String description);
     }
 }

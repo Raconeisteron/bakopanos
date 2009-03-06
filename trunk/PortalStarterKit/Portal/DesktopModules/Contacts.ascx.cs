@@ -1,12 +1,10 @@
 using System;
-using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {
-    public partial  class Contacts : PortalModuleControl
+    public partial class Contacts : PortalModuleControl
     {
-
         //*******************************************************
         //
         // The Page_Load event handler on this User Control is used to

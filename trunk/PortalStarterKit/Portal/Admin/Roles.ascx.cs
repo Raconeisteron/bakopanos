@@ -4,9 +4,8 @@ using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal.Admin
 {
-    public partial  class Roles : PortalModuleControl
+    public partial class Roles : PortalModuleControl
     {
-
         private int tabId;
         private int tabIndex;
 

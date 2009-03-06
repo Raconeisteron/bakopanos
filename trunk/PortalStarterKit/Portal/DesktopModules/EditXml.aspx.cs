@@ -1,14 +1,12 @@
 using System;
 using System.Collections;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {
     public partial class EditXml : Page
     {
-
         private int moduleId;
 
         public EditXml()

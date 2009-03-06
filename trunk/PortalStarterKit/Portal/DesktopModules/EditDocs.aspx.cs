@@ -2,15 +2,12 @@ using System;
 using System.Data;
 using System.IO;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal.Components;
 
 namespace ASPNET.StarterKit.Portal.DesktopModules
 {
     public partial class EditDocs : Page
     {
-
         private int itemId;
         private int moduleId;
 

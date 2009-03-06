@@ -1,6 +1,5 @@
 using System;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal.Components;
 
@@ -8,8 +7,6 @@ namespace ASPNET.StarterKit.Portal.Admin
 {
     public partial class SecurityRoles : Page
     {
-
-
         private int roleId = -1;
         private String roleName = "";
         private int tabId;
