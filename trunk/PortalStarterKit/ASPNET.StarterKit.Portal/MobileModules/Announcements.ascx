@@ -34,7 +34,7 @@
     void Page_Load(Object sender, EventArgs e) {
 
         // Obtain announcement information from Announcements table
-        AnnouncementsDB announcements = new AnnouncementsDB();
+        IAnnouncementsDB announcements = new AnnouncementsDB();
         ds = announcements.GetAnnouncements(ModuleId);
 
         // DataBind the User Control

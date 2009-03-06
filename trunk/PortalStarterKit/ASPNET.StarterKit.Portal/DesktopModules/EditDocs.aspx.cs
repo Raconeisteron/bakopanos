@@ -55,7 +55,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
                 if (itemId != 0)
                 {
                     // Obtain a single row of document information
-                    var documents = new DocumentDB();
+                    IDocumentDB documents = new DocumentDB();
                     IDataReader dr = documents.GetSingleDocument(itemId);
 
                     // Load first row into Datareader
@@ -97,7 +97,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
             if (Page.IsValid)
             {
                 // Create an instance of the Document DB component
-                var documents = new DocumentDB();
+                IDocumentDB documents = new DocumentDB();
 
                 // Determine whether a file was uploaded
 
@@ -154,7 +154,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
 
             if (itemId != 0)
             {
-                var documents = new DocumentDB();
+                IDocumentDB documents = new DocumentDB();
                 documents.DeleteDocument(itemId);
             }
 

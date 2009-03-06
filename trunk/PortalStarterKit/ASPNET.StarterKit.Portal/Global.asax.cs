@@ -48,7 +48,7 @@ namespace ASPNET.StarterKit.Portal {
             Context.Items.Add("PortalSettings", new PortalSettings(tabIndex, tabId));
 			
 			// Retrieve and add the SiteConfiguration DataSet to the current Context
-			HttpContext.Current.Items.Add("SiteSettings", Configuration.GetSiteSettings());
+			HttpContext.Current.Items.Add("SiteSettings", PortalConfiguration.GetSiteSettings());
 
 			try
 			{

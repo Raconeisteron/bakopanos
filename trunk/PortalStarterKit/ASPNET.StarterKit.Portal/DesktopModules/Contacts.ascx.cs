@@ -27,7 +27,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         {
             // Obtain contact information from Contacts table
             // and bind to the DataGrid Control
-            var contacts = new ContactsDB();
+            IContactsDB contacts = new ContactsDB();
 
             myDataGrid.DataSource = contacts.GetContacts(ModuleId);
             myDataGrid.DataBind();

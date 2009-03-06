@@ -44,7 +44,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
                     Hashtable settings;
 
                     // Get settings from the database
-                    settings = Configuration.GetModuleSettings(moduleId);
+                    settings = PortalConfiguration.GetModuleSettings(moduleId);
 
                     Src.Text = (String) settings["src"];
                     Width.Text = (String) settings["width"];
@@ -68,7 +68,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Update settings in the database
-            var config = new Configuration();
+            var config = new PortalConfiguration();
 
             config.UpdateModuleSetting(moduleId, "src", Src.Text);
             config.UpdateModuleSetting(moduleId, "height", Height.Text);

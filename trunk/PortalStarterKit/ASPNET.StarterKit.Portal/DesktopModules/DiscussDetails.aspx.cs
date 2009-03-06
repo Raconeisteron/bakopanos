@@ -85,7 +85,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create new discussion database component
-            var discuss = new DiscussionDB();
+            IDiscussionDB discuss = new DiscussionDB();
 
             // Add new message (updating the "itemId" on the page)
             itemId = discuss.AddMessage(moduleId, itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),

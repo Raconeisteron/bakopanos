@@ -27,7 +27,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         {
             // Obtain Document Data from Documents table
             // and bind to the datalist control
-            var documents = new DocumentDB();
+            IDocumentDB documents = new DocumentDB();
 
             myDataGrid.DataSource = documents.GetDocuments(ModuleId);
             myDataGrid.DataBind();

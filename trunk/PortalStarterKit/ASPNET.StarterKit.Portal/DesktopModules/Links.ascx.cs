@@ -37,7 +37,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
 
             // Obtain links information from the Links table
             // and bind to the datalist control
-            var links = new LinkDB();
+            ILinkDB links = new LinkDB();
 
             myDataList.DataSource = links.GetLinks(ModuleId);
             myDataList.DataBind();

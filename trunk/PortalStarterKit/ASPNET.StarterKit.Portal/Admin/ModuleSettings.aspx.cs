@@ -79,7 +79,7 @@ namespace ASPNET.StarterKit.Portal.Admin
                 }
 
                 // update module
-                var config = new Configuration();
+                var config = new PortalConfiguration();
                 config.UpdateModule(moduleId, m.ModuleOrder, m.PaneName, moduleTitle.Text, Int32.Parse(cacheTime.Text),
                                     editRoles, showMobile.Checked);
 

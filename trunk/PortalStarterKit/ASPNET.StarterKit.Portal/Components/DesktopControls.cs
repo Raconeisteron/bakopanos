@@ -69,7 +69,7 @@ namespace ASPNET.StarterKit.Portal.Components
             {
                 if (_settings == null)
                 {
-                    _settings = Configuration.GetModuleSettings(ModuleId);
+                    _settings = PortalConfiguration.GetModuleSettings(ModuleId);
                 }
 
                 return _settings;

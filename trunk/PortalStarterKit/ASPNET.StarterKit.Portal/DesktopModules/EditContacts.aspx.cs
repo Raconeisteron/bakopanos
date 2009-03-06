@@ -54,7 +54,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
                 if (itemId != 0)
                 {
                     // Obtain a single row of contact information
-                    var contacts = new ContactsDB();
+                    IContactsDB contacts = new ContactsDB();
                     IDataReader dr = contacts.GetSingleContact(itemId);
 
                     // Read first row from database
@@ -99,7 +99,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
             if (Page.IsValid)
             {
                 // Create an instance of the ContactsDB component
-                var contacts = new ContactsDB();
+                IContactsDB contacts = new ContactsDB();
 
                 if (itemId == 0)
                 {
@@ -134,7 +134,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
 
             if (itemId != 0)
             {
-                var contacts = new ContactsDB();
+                IContactsDB contacts = new ContactsDB();
                 contacts.DeleteContact(itemId);
             }
 

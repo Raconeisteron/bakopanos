@@ -59,7 +59,7 @@ namespace ASPNET.StarterKit.Portal.Admin
                 else
                 {
                     // Obtain the module definition to edit from the database
-                    var config = new Configuration();
+                    var config = new PortalConfiguration();
                     SiteConfiguration.ModuleDefinitionRow modDefRow = config.GetSingleModuleDefinition(defId);
 
                     // Read in information
@@ -82,7 +82,7 @@ namespace ASPNET.StarterKit.Portal.Admin
         {
             if (Page.IsValid)
             {
-                var config = new Configuration();
+                var config = new PortalConfiguration();
 
                 if (defId == -1)
                 {
@@ -115,7 +115,7 @@ namespace ASPNET.StarterKit.Portal.Admin
         protected void DeleteBtn_Click(Object sender, EventArgs e)
         {
             // delete definition
-            var config = new Configuration();
+            var config = new PortalConfiguration();
             config.DeleteModuleDefinition(defId);
 
             // Redirect back to the portal admin page

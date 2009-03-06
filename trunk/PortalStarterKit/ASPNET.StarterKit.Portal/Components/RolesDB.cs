@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.Components
 {
-    public class RolesDB
+    public class RolesDB : IRolesDB
     {
         //*********************************************************************
         //

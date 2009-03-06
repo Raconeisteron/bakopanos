@@ -120,7 +120,7 @@ namespace ASPNET.StarterKit.Portal.Admin
             {
                 // must delete from database too
                 var t = (TabItem) portalTabs[tabList.SelectedIndex];
-                var config = new Configuration();
+                var config = new PortalConfiguration();
                 config.DeleteTab(t.TabId);
 
                 // remove item from list
@@ -155,7 +155,7 @@ namespace ASPNET.StarterKit.Portal.Admin
             portalTabs.Add(t);
 
             // write tab to database
-            var config = new Configuration();
+            var config = new PortalConfiguration();
             t.TabId = config.AddTab(portalSettings.PortalId, t.TabName, t.TabOrder);
 
             // reload the _portalSettings from the database
@@ -210,7 +210,7 @@ namespace ASPNET.StarterKit.Portal.Admin
                 i += 2;
 
                 // rewrite tab to database
-                var config = new Configuration();
+                var config = new PortalConfiguration();
                 config.UpdateTabOrder(t.TabId, t.TabOrder);
             }
         }

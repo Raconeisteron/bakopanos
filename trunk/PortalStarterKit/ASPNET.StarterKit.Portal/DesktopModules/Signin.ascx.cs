@@ -17,7 +17,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         protected void LoginBtn_Click(Object sender, ImageClickEventArgs e)
         {
             // Attempt to Validate User Credentials using UsersDB
-            var accountSystem = new UsersDB();
+            IUsersDB accountSystem = new UsersDB();
             String userId = accountSystem.Login(email.Text, PortalSecurity.Encrypt(password.Text));
 
             if ((userId != null) && (userId != ""))

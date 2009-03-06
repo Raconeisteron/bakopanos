@@ -26,7 +26,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         {
             // Obtain the list of events from the Events table
             // and bind to the DataList Control
-            var events = new EventsDB();
+            IEventsDB events = new EventsDB();
 
             myDataList.DataSource = events.GetEvents(ModuleId);
             myDataList.DataBind();

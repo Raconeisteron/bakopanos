@@ -44,7 +44,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         {
             // Obtain a list of discussion messages for the module
             // and bind to datalist
-            var discuss = new DiscussionDB();
+            IDiscussionDB discuss = new DiscussionDB();
 
             TopLevelList.DataSource = discuss.GetTopLevelMessages(ModuleId);
             TopLevelList.DataBind();
@@ -63,7 +63,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         protected IDataReader GetThreadMessages()
         {
             // Obtain a list of discussion messages for the module
-            var discuss = new DiscussionDB();
+            IDiscussionDB discuss = new DiscussionDB();
             IDataReader dr = discuss.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
 
             // Return the filtered DataView

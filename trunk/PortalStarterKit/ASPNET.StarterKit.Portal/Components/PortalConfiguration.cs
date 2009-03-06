@@ -8,7 +8,7 @@ using System.Web.Caching;
 
 namespace ASPNET.StarterKit.Portal.Components
 {
-    public class Configuration
+    public class PortalConfiguration
     {
         //
         // PORTAL
@@ -798,7 +798,7 @@ namespace ASPNET.StarterKit.Portal.Components
         public PortalSettings(int tabIndex, int tabId)
         {
             // Get the configuration data
-            SiteConfiguration siteSettings = Configuration.GetSiteSettings();
+            SiteConfiguration siteSettings = PortalConfiguration.GetSiteSettings();
 
             // Read the Desktop Tab Information, and sort by Tab Order
             foreach (SiteConfiguration.TabRow tRow in siteSettings.Tab.Select("", "TabOrder"))

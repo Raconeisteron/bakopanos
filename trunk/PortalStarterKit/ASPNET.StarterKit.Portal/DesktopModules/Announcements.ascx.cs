@@ -27,7 +27,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         {
             // Obtain announcement information from Announcements table
             // and bind to the datalist control
-            var announcements = new AnnouncementsDB();
+            IAnnouncementsDB announcements = new AnnouncementsDB();
 
             // DataBind Announcements to DataList Control
             myDataList.DataSource = announcements.GetAnnouncements(ModuleId);

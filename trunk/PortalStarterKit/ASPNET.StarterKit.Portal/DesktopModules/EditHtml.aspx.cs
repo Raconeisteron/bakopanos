@@ -41,7 +41,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
             if (Page.IsPostBack == false)
             {
                 // Obtain a single row of text information
-                var text = new HtmlTextDB();
+                IHtmlTextDB text = new HtmlTextDB();
                 IDataReader dr = text.GetHtmlText(moduleId);
 
                 if (dr.Read())
@@ -74,7 +74,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create an instance of the HtmlTextDB component
-            var text = new HtmlTextDB();
+            IHtmlTextDB text = new HtmlTextDB();
 
             // Update the text within the HtmlText table
             text.UpdateHtmlText(moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text),

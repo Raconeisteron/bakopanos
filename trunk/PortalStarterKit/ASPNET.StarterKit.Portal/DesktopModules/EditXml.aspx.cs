@@ -42,7 +42,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
                 if (moduleId > 0)
                 {
                     // Get settings from the database
-                    Hashtable settings = Configuration.GetModuleSettings(moduleId);
+                    Hashtable settings = PortalConfiguration.GetModuleSettings(moduleId);
 
                     XmlDataSrc.Text = (String) settings["xmlsrc"];
                     XslTransformSrc.Text = (String) settings["xslsrc"];
@@ -63,7 +63,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Update settings in the database
-            var config = new Configuration();
+            var config = new PortalConfiguration();
 
             config.UpdateModuleSetting(moduleId, "xmlsrc", XmlDataSrc.Text);
             config.UpdateModuleSetting(moduleId, "xslsrc", XslTransformSrc.Text);

@@ -27,7 +27,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
         protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain the selected item from the HtmlText table
-            var text = new HtmlTextDB();
+            IHtmlTextDB text = new HtmlTextDB();
             IDataReader dr = text.GetHtmlText(ModuleId);
 
             if (dr.Read())

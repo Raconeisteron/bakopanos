@@ -54,7 +54,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
                 if (itemId != 0)
                 {
                     // Obtain a single row of announcement information
-                    var announcementDB = new AnnouncementsDB();
+                    IAnnouncementsDB announcementDB = new AnnouncementsDB();
                     IDataReader dr = announcementDB.GetSingleAnnouncement(itemId);
 
                     // Load first row into DataReader
@@ -99,7 +99,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
             if (Page.IsValid)
             {
                 // Create an instance of the Announcement DB component
-                var announcementDB = new AnnouncementsDB();
+                IAnnouncementsDB announcementDB = new AnnouncementsDB();
 
                 if (itemId == 0)
                 {
@@ -136,7 +136,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
 
             if (itemId != 0)
             {
-                var announcementDB = new AnnouncementsDB();
+                IAnnouncementsDB announcementDB = new AnnouncementsDB();
                 announcementDB.DeleteAnnouncement(itemId);
             }
 

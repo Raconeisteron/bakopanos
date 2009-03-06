@@ -64,7 +64,7 @@ namespace ASPNET.StarterKit.Portal.Admin
             m.ModuleOrder = 999;
 
             // save to database
-            var config = new Configuration();
+            var config = new PortalConfiguration();
             m.ModuleId = config.AddModule(tabId, m.ModuleOrder, "ContentPane", m.ModuleTitle, m.ModuleDefId, 0, "Admins",
                                           false);
 
@@ -132,7 +132,7 @@ namespace ASPNET.StarterKit.Portal.Admin
                 OrderModules(modules);
 
                 // resave the order
-                var config = new Configuration();
+                var config = new PortalConfiguration();
                 foreach (ModuleItem item in modules)
                 {
                     config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, pane);
@@ -168,7 +168,7 @@ namespace ASPNET.StarterKit.Portal.Admin
                 var m = (ModuleItem) sourceList[sourceBox.SelectedIndex];
 
                 // add it to the database
-                var config = new Configuration();
+                var config = new PortalConfiguration();
                 config.UpdateModuleOrder(m.ModuleId, 998, targetPane);
 
                 // delete it from the source list
@@ -270,7 +270,7 @@ namespace ASPNET.StarterKit.Portal.Admin
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // update Tab info in the database
-            var config = new Configuration();
+            var config = new PortalConfiguration();
             config.UpdateTab(portalSettings.PortalId, tabId, tabName.Text, portalSettings.ActiveTab.TabOrder,
                              authorizedRoles, mobileTabName.Text, showMobile.Checked);
         }
@@ -315,7 +315,7 @@ namespace ASPNET.StarterKit.Portal.Admin
                 if (m.ModuleId > -1)
                 {
                     // must delete from database too
-                    var config = new Configuration();
+                    var config = new PortalConfiguration();
                     config.DeleteModule(m.ModuleId);
                 }
             }
@@ -376,7 +376,7 @@ namespace ASPNET.StarterKit.Portal.Admin
             }
 
             // Populate the "Add Module" Data
-            var config = new Configuration();
+            var config = new PortalConfiguration();
             moduleType.DataSource = config.GetModuleDefinitions(portalSettings.PortalId);
             moduleType.DataBind();
 

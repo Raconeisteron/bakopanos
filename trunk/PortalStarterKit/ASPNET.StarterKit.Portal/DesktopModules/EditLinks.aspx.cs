@@ -53,7 +53,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
                 if (itemId != 0)
                 {
                     // Obtain a single row of link information
-                    var links = new LinkDB();
+                    ILinkDB links = new LinkDB();
                     IDataReader dr = links.GetSingleLink(itemId);
 
                     // Read in first row from database
@@ -97,7 +97,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
             if (Page.IsValid)
             {
                 // Create an instance of the Link DB component
-                var links = new LinkDB();
+                ILinkDB links = new LinkDB();
 
                 if (itemId == 0)
                 {
@@ -132,7 +132,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
 
             if (itemId != 0)
             {
-                var links = new LinkDB();
+                ILinkDB links = new LinkDB();
                 links.DeleteLink(itemId);
             }
 

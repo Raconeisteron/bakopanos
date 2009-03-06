@@ -56,7 +56,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
                 if (itemId != 0)
                 {
                     // Obtain a single row of event information
-                    var events = new EventsDB();
+                    IEventsDB events = new EventsDB();
                     IDataReader dr = events.GetSingleEvent(itemId);
 
                     // Read first row from database
@@ -99,7 +99,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
             if (Page.IsValid)
             {
                 // Create an instance of the Event DB component
-                var events = new EventsDB();
+                IEventsDB events = new EventsDB();
 
                 if (itemId == 0)
                 {
@@ -134,7 +134,7 @@ namespace ASPNET.StarterKit.Portal.DesktopModules
 
             if (itemId != 0)
             {
-                var events = new EventsDB();
+                IEventsDB events = new EventsDB();
                 events.DeleteEvent(itemId);
             }
 
