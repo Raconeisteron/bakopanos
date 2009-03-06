@@ -1,4 +1,5 @@
-<%@ Control Language="c#" Inherits="ASPNET.StarterKit.Portal.Announcements" CodeBehind="Announcements.ascx.cs" AutoEventWireup="True" %>
+<%@ Import Namespace="ASPNET.StarterKit.Portal.DesktopModules"%>
+<%@ Control Language="c#" Inherits="ASPNET.StarterKit.Portal.DesktopModules.Announcements" CodeBehind="Announcements.ascx.cs" AutoEventWireup="True" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Title" Src="~/DesktopModuleTitle.ascx"%>
 
 <ASPNETPortal:title EditText="Add New Announcement" EditUrl="~/DesktopModules/EditAnnouncements.aspx" runat="server" id=Title1 />

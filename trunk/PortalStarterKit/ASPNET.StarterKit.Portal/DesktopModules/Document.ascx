@@ -1,4 +1,5 @@
-<%@ Control language="c#" Inherits="ASPNET.StarterKit.Portal.Document" CodeBehind="Document.ascx.cs" AutoEventWireup="True" %>
+<%@ Import Namespace="ASPNET.StarterKit.Portal.DesktopModules"%>
+<%@ Control language="c#" Inherits="ASPNET.StarterKit.Portal.DesktopModules.Document" CodeBehind="Document.ascx.cs" AutoEventWireup="True" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Title" Src="~/DesktopModuleTitle.ascx"%>
 
 <ASPNETPortal:title EditText="Add New Document" EditUrl="~/DesktopModules/EditDocs.aspx" runat="server" id=Title1 />

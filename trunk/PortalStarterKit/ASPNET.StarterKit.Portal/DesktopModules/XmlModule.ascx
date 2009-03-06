@@ -1,4 +1,5 @@
-<%@ Control language="c#" Inherits="ASPNET.StarterKit.Portal.XmlModule" CodeBehind="XmlModule.ascx.cs" AutoEventWireup="True" %>
+<%@ Import Namespace="ASPNET.StarterKit.Portal.DesktopModules"%>
+<%@ Control language="c#" Inherits="ASPNET.StarterKit.Portal.DesktopModules.XmlModule" CodeBehind="XmlModule.ascx.cs" AutoEventWireup="True" %>
 <%@ Register TagPrefix="Portal" TagName="Title" Src="~/DesktopModuleTitle.ascx"%>
 
 <portal:title EditText="Edit" EditUrl="~/DesktopModules/EditXml.aspx" runat="server" id=Title1 />

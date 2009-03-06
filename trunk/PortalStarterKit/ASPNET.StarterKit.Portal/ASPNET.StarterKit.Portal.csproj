@@ -428,10 +428,6 @@
     <Compile Include="Admin\EditAccessDenied.aspx.designer.cs">
       <DependentUpon>EditAccessDenied.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Logoff.aspx.cs">
-      <DependentUpon>Logoff.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Admin\ManageUsers.aspx.cs">
       <DependentUpon>ManageUsers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -692,10 +688,6 @@
     <Compile Include="DesktopModules\Signin.ascx.designer.cs">
       <DependentUpon>Signin.ascx</DependentUpon>
     </Compile>
-    <Compile Include="DesktopModules\ViewDocument.aspx.cs">
-      <DependentUpon>ViewDocument.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="DesktopModules\XmlModule.ascx.cs">
       <DependentUpon>XmlModule.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -733,15 +725,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PortalCfg.xsd</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DesktopModules\Links.ascx.resx">
-      <DependentUpon>Links.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\QuickLinks.ascx.resx">
-      <DependentUpon>QuickLinks.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\Signin.ascx.resx">
-      <DependentUpon>Signin.ascx.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="PortalCfg.xsc">

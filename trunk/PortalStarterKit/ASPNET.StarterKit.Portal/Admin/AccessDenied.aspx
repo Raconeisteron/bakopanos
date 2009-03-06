@@ -1,4 +1,5 @@
-<%@ Page CodeBehind="AccessDenied.aspx.cs" Language="c#" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.AccessDeniedPage" %>
+<%@ Page CodeBehind="AccessDenied.aspx.cs" Language="c#" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.Admin.AccessDeniedPage" %>
+<%@ Import Namespace="ASPNET.StarterKit.Portal.Admin"%>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%@ OutputCache Duration="36000" VaryByParam="none" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>

@@ -1,4 +1,5 @@
-<%@ Control language="c#" Inherits="ASPNET.StarterKit.Portal.Contacts" CodeBehind="Contacts.ascx.cs" AutoEventWireup="True" %>
+<%@ Import Namespace="ASPNET.StarterKit.Portal.DesktopModules"%>
+<%@ Control language="c#" Inherits="ASPNET.StarterKit.Portal.DesktopModules.Contacts" CodeBehind="Contacts.ascx.cs" AutoEventWireup="True" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Title" Src="~/DesktopModuleTitle.ascx"%>
 
 <ASPNETPortal:title EditText="Add New Contact" EditUrl="~/DesktopModules/EditContacts.aspx" runat="server" id=Title1 />

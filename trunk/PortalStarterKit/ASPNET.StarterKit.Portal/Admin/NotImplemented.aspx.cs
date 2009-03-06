@@ -2,7 +2,7 @@ using System;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNET.StarterKit.Portal.Admin
 {
     public partial class NotImplemented : Page
     {

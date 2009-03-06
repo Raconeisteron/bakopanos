@@ -1,4 +1,5 @@
-<%@ Page language="c#" CodeBehind="SecurityRoles.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.SecurityRoles" %>
+<%@ Page language="c#" CodeBehind="SecurityRoles.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.Admin.SecurityRoles" %>
+<%@ Import Namespace="ASPNET.StarterKit.Portal.Admin"%>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 

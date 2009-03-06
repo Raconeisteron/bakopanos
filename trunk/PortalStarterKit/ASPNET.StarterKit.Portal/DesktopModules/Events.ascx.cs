@@ -2,7 +2,7 @@ using System;
 using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal.Components;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNET.StarterKit.Portal.DesktopModules
 {
     public partial  class Events : PortalModuleControl
     {

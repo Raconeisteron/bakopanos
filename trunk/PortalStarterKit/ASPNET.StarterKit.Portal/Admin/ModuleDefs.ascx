@@ -1,4 +1,5 @@
-<%@ Control Inherits="ASPNET.StarterKit.Portal.ModuleDefs" CodeBehind="ModuleDefs.ascx.cs" Language="c#" AutoEventWireup="True" %>
+<%@ Import Namespace="ASPNET.StarterKit.Portal.Admin"%>
+<%@ Control Inherits="ASPNET.StarterKit.Portal.Admin.ModuleDefs" CodeBehind="ModuleDefs.ascx.cs" Language="c#" AutoEventWireup="True" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Title" Src="~/DesktopModuleTitle.ascx"%>
 
 <ASPNETPortal:title runat="server" id="Title1" />

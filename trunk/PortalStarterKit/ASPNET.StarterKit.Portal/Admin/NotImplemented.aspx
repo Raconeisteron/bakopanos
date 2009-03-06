@@ -1,4 +1,5 @@
-<%@ Page CodeBehind="NotImplemented.aspx.cs" Language="c#" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.NotImplemented" %>
+<%@ Page CodeBehind="NotImplemented.aspx.cs" Language="c#" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.Admin.NotImplemented" %>
+<%@ Import Namespace="ASPNET.StarterKit.Portal.Admin"%>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%@ OutputCache Duration="600" VaryByParam="title" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>

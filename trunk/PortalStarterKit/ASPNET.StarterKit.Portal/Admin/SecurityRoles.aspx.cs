@@ -4,7 +4,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal.Components;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNET.StarterKit.Portal.Admin
 {
     public partial class SecurityRoles : Page
     {
