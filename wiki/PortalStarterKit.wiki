@@ -8,5 +8,4 @@ Add your content here.
 
 == SVN Checkout directories ==
 
-|| Main Path || https://bakopanos.googlecode.com/svn/trunk ||
-|| Project Wiki || https://bakopanos.googlecode.com/svn/wiki ||
+|| Main Path || https://bakopanos.googlecode.com/svn/spikes/PortalStarterKit ||
