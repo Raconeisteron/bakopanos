@@ -17,19 +17,18 @@ namespace Evolutil.Domain.Postsharp
         [Test]
         public void CanRollbackTest()
         {
-            var cust = new Customer();
+            var p = new ProductBO();
 
-            cust.FirstName = "test";
-            cust.LastName = "test";
+            p.ProductID = 1;
+            p.ProductName = "test";
 
             //can rollback
-            Post.Cast<Customer, IEditableObject>(cust).BeginEdit();
-            cust.FirstName = "test2";
-            cust.LastName = "test20";
-            Post.Cast<Customer, IEditableObject>(cust).CancelEdit();
-            Assert.AreEqual(cust.FirstName, "test");
-            Assert.AreEqual(cust.LastName, "test");
-
+            Post.Cast<ProductBO, IEditableObject>(p).BeginEdit();
+            p.ProductName = "test2";
+            
+            Post.Cast<ProductBO, IEditableObject>(p).CancelEdit();
+            Assert.AreEqual(p.ProductName, "test");
+            
         }
 
         /// <summary>
@@ -38,23 +37,16 @@ namespace Evolutil.Domain.Postsharp
         [Test]
         public void CanCommitTest()
         {
-            var cust = new Customer();
+            var p = new ProductBO();
 
-            cust.FirstName = "test";           
+            p.ProductName = "test";           
 
             //can save
-            Post.Cast<Customer, IEditableObject>(cust).BeginEdit();
-            cust.FirstName = "test1";
-            Post.Cast<Customer, IEditableObject>(cust).EndEdit();
-            Assert.AreEqual(cust.FirstName, "test1");
+            Post.Cast<ProductBO, IEditableObject>(p).BeginEdit();
+            p.ProductName = "test1";
+            Post.Cast<ProductBO, IEditableObject>(p).EndEdit();
+            Assert.AreEqual(p.ProductName, "test1");
 
-        }
-
-        [EditableObjectAspect]
-        class Customer
-        {
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
         }
     }
 }

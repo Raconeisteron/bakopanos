@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -66,10 +66,6 @@
     <ProjectReference Include="..\Evolutil.Library.Log\Evolutil.Library.Log.csproj">
       <Project>{1E286DDC-B329-4660-B355-5EDF0328B058}</Project>
       <Name>Evolutil.Library.Log</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Evolutil.Library\Evolutil.Library.csproj">
-      <Project>{287698FC-14C0-4C6A-AD80-C185B800FDC4}</Project>
-      <Name>Evolutil.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -18,14 +18,14 @@ namespace Evolutil.Domain.Postsharp
         [Test]
         public void NotifyPropertyChangedTest()
         {
-            var customer = new Customer();
+            var p = new ProductBO();
 
             // Get the INotifyPropertyChanged interface for the new customer.
             // Note the post-compilation cast.           
             //this is due to the fact that the Customer type do not directly derive from INotifyPropertyChanged
             //the following statement is equal to the traditional
             //INotifyPropertyChanged observable = (INotifyPropertyChanged)customer;
-            INotifyPropertyChanged observable = Post.Cast<Customer, INotifyPropertyChanged>(customer);
+            INotifyPropertyChanged observable = Post.Cast<ProductBO, INotifyPropertyChanged>(p);
 
             // Now that we have INotifyPropertyChanged, we can register our PropertyChanged event handler.
             //We register an event handler for the PropertyChanged event, 
@@ -36,17 +36,12 @@ namespace Evolutil.Domain.Postsharp
             Assert.IsFalse(flag);//should be false
 
             //We initialize the customer name to 'Sylvestre' 
-            customer.FirstName = "Sylvestre";
+            p.ProductName = "Sylvestre";
 
             Assert.IsTrue(flag);
 
-            Console.WriteLine( customer.FirstName );
+            Console.WriteLine( p.ProductName );
         }
-
-        [NotifyPropertyChangedAspect]
-        class Customer
-        {                        
-            public string FirstName { get; set; }            
-        }
+      
     }
 }

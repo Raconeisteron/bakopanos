@@ -7,9 +7,9 @@ using Evolutil.Domain.Postsharp;
 
 namespace Evolutil.Domain
 {
+    [DataContract]
     [NotifyPropertyChangedAspect]
     [EditableObjectAspect]
-    [DataContract]
     public class ProductBO
     {
         [DataMember]

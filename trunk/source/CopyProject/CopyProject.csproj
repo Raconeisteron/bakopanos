@@ -5,66 +5,67 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7DFCB357-D971-4120-8E3F-75685DD22E31}</ProjectGuid>
+    <ProjectGuid>{45D79516-1A46-42D0-930D-F6D8AD3699BC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Evolutil.Services</RootNamespace>
-    <AssemblyName>Evolutil.Services</AssemblyName>
+    <RootNamespace>CopyProject</RootNamespace>
+    <AssemblyName>CopyProject</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>..\..\bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\Microsoft.Practices.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="PostSharp.Laos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\PostSharp\PostSharp.Laos.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ModuleBuilder.cs" />
-    <Compile Include="ProductService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Evolutil.Data.AdoNet\Evolutil.Data.AdoNet.csproj">
+      <Project>{50DBF856-44B8-467F-BC03-F3B59F7FECA3}</Project>
+      <Name>Evolutil.Data.AdoNet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolutil.Data.Linq\Evolutil.Data.Linq.csproj">
+      <Project>{BFA181FF-E382-4C4D-8E18-5A3880979F7D}</Project>
+      <Name>Evolutil.Data.Linq</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Evolutil.Data\Evolutil.Data.csproj">
       <Project>{F241FAAA-0F0E-42B1-91E6-443D3417A8E0}</Project>
       <Name>Evolutil.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Evolutil.Domain.UnitTests\Evolutil.Domain.UnitTests.csproj">
+      <Project>{CB0BEBA3-E3A2-471D-98E1-1FCF8C2981E1}</Project>
+      <Name>Evolutil.Domain.UnitTests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Evolutil.Domain\Evolutil.Domain.csproj">
       <Project>{A99C7F14-9BA0-4989-9DE9-749F2325543D}</Project>
       <Name>Evolutil.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evolutil.Library.Log\Evolutil.Library.Log.csproj">
+      <Project>{1E286DDC-B329-4660-B355-5EDF0328B058}</Project>
+      <Name>Evolutil.Library.Log</Name>
     </ProjectReference>
     <ProjectReference Include="..\Evolutil.Library\Evolutil.Library.csproj">
       <Project>{287698FC-14C0-4C6A-AD80-C185B800FDC4}</Project>
@@ -74,17 +75,13 @@
       <Project>{E410F0EB-CB4D-4125-BEE6-78DAE5AEA033}</Project>
       <Name>Evolutil.ServiceContracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Evolutil.Services\Evolutil.Services.csproj">
+      <Project>{7DFCB357-D971-4120-8E3F-75685DD22E31}</Project>
+      <Name>Evolutil.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Evolutil\Evolutil.csproj">
       <Project>{6CE4D8E5-F812-4F51-8650-08F27BAD7422}</Project>
       <Name>Evolutil</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

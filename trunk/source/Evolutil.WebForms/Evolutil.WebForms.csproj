@@ -42,6 +42,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libs\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
+    <Reference Include="PostSharp.Laos, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PostSharp\PostSharp.Laos.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -61,7 +65,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
@@ -84,17 +87,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Evolutil.Data.AdoNet\Evolutil.Data.AdoNet.csproj">
-      <Project>{50DBF856-44B8-467F-BC03-F3B59F7FECA3}</Project>
-      <Name>Evolutil.Data.AdoNet</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Evolutil.Data.Linq\Evolutil.Data.Linq.csproj">
-      <Project>{BFA181FF-E382-4C4D-8E18-5A3880979F7D}</Project>
-      <Name>Evolutil.Data.Linq</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Evolutil.Data\Evolutil.Data.csproj">
-      <Project>{F241FAAA-0F0E-42B1-91E6-443D3417A8E0}</Project>
-      <Name>Evolutil.Data</Name>
+    <Content Include="unity.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CopyProject\CopyProject.csproj">
+      <Project>{45D79516-1A46-42D0-930D-F6D8AD3699BC}</Project>
+      <Name>CopyProject</Name>
     </ProjectReference>
     <ProjectReference Include="..\Evolutil.Domain\Evolutil.Domain.csproj">
       <Project>{A99C7F14-9BA0-4989-9DE9-749F2325543D}</Project>
@@ -108,25 +106,14 @@
       <Project>{287698FC-14C0-4C6A-AD80-C185B800FDC4}</Project>
       <Name>Evolutil.Library</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Evolutil.ServiceClient\Evolutil.ServiceClient.csproj">
-      <Project>{5F0001E5-B57F-4493-B253-2780ECB95D4C}</Project>
-      <Name>Evolutil.ServiceClient</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Evolutil.ServiceContracts\Evolutil.ServiceContracts.csproj">
       <Project>{E410F0EB-CB4D-4125-BEE6-78DAE5AEA033}</Project>
       <Name>Evolutil.ServiceContracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Evolutil.Services\Evolutil.Services.csproj">
-      <Project>{7DFCB357-D971-4120-8E3F-75685DD22E31}</Project>
-      <Name>Evolutil.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\Evolutil\Evolutil.csproj">
       <Project>{6CE4D8E5-F812-4F51-8650-08F27BAD7422}</Project>
       <Name>Evolutil</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="unity.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

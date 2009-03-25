@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -48,17 +48,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Postsharp\EditableObjectAspect.cs" />
-    <Compile Include="Postsharp\IFirePropertyChanged.cs" />
-    <Compile Include="Postsharp\NotifyPropertyChangedAspect.cs" />
     <Compile Include="ProductBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <PropertyGroup>
-    <DontImportPostSharp>True</DontImportPostSharp>
-  </PropertyGroup>
-  <Import Project="..\..\PostSharp\PostSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Evolutil.Library.Postsharp\Evolutil.Library.Postsharp.csproj">
+      <Project>{C57B9B89-A95E-460F-BFEC-E60EA1B03C5A}</Project>
+      <Name>Evolutil.Library.Postsharp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
