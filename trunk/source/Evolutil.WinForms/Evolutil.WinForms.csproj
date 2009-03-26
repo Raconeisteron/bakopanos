@@ -85,10 +85,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="..\Evolutil.WebForms\unity.config">
+    <Content Include="..\CopyProject\unity.config">
       <Link>unity.config</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -101,6 +101,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CopyProject\CopyProject.csproj">
+      <Project>{45D79516-1A46-42D0-930D-F6D8AD3699BC}</Project>
+      <Name>CopyProject</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Evolutil.Domain\Evolutil.Domain.csproj">
       <Project>{A99C7F14-9BA0-4989-9DE9-749F2325543D}</Project>
       <Name>Evolutil.Domain</Name>

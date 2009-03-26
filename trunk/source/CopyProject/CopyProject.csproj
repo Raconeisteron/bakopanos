@@ -51,37 +51,12 @@
       <Project>{BFA181FF-E382-4C4D-8E18-5A3880979F7D}</Project>
       <Name>Evolutil.Data.Linq</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Evolutil.Data\Evolutil.Data.csproj">
-      <Project>{F241FAAA-0F0E-42B1-91E6-443D3417A8E0}</Project>
-      <Name>Evolutil.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Evolutil.Domain.UnitTests\Evolutil.Domain.UnitTests.csproj">
-      <Project>{CB0BEBA3-E3A2-471D-98E1-1FCF8C2981E1}</Project>
-      <Name>Evolutil.Domain.UnitTests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Evolutil.Domain\Evolutil.Domain.csproj">
-      <Project>{A99C7F14-9BA0-4989-9DE9-749F2325543D}</Project>
-      <Name>Evolutil.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Evolutil.Library.Log\Evolutil.Library.Log.csproj">
-      <Project>{1E286DDC-B329-4660-B355-5EDF0328B058}</Project>
-      <Name>Evolutil.Library.Log</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Evolutil.Library\Evolutil.Library.csproj">
-      <Project>{287698FC-14C0-4C6A-AD80-C185B800FDC4}</Project>
-      <Name>Evolutil.Library</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Evolutil.ServiceContracts\Evolutil.ServiceContracts.csproj">
-      <Project>{E410F0EB-CB4D-4125-BEE6-78DAE5AEA033}</Project>
-      <Name>Evolutil.ServiceContracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Evolutil.Services\Evolutil.Services.csproj">
       <Project>{7DFCB357-D971-4120-8E3F-75685DD22E31}</Project>
       <Name>Evolutil.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Evolutil\Evolutil.csproj">
-      <Project>{6CE4D8E5-F812-4F51-8650-08F27BAD7422}</Project>
-      <Name>Evolutil</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="unity.config" />
   </ItemGroup>
 </Project>

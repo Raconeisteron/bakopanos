@@ -87,9 +87,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="unity.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\CopyProject\CopyProject.csproj">
       <Project>{45D79516-1A46-42D0-930D-F6D8AD3699BC}</Project>
       <Name>CopyProject</Name>
@@ -102,10 +99,6 @@
       <Project>{1E286DDC-B329-4660-B355-5EDF0328B058}</Project>
       <Name>Evolutil.Library.Log</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Evolutil.Library\Evolutil.Library.csproj">
-      <Project>{287698FC-14C0-4C6A-AD80-C185B800FDC4}</Project>
-      <Name>Evolutil.Library</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Evolutil.ServiceContracts\Evolutil.ServiceContracts.csproj">
       <Project>{E410F0EB-CB4D-4125-BEE6-78DAE5AEA033}</Project>
       <Name>Evolutil.ServiceContracts</Name>
@@ -114,6 +107,12 @@
       <Project>{6CE4D8E5-F812-4F51-8650-08F27BAD7422}</Project>
       <Name>Evolutil</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\CopyProject\unity.config">
+      <Link>unity.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
