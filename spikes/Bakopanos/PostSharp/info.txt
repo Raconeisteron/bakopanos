@@ -1,7 +1,0 @@
-http://www.postsharp.org/
-
-version 1.0 revision 431
-
-only copy to the lib the two referenced assemblies (laos and public)
-
-copy and install the complete PostSharp platform is under C:\Program Files\PostSharp\1.0\

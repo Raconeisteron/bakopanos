@@ -1,9 +1,0 @@
-
-
-NUnit 2.4.6
-http://www.nunit.org/index.php
-
-Note that only the nunit.framework.dll is needed. 
-The rest you need to install locally.
-
-NUnitForms.dll needed for SswStudio testing.
