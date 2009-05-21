@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ComparableConstraint.PriorityQueue&lt;TE, TP&gt;" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="1.5" Width="2" />
+    <NestedTypes>
+      <Struct Name="ComparableConstraint.PriorityQueue&lt;TE, TP&gt;.KeyValuePair&lt;TK, TV&gt;" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Program.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAQAAAAAAAAAg=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
