@@ -16,17 +16,8 @@ namespace GangOfFour.FactoryMethod
         /// </summary>
         static void Main()
         {
-            List<Title> list;
-            using(var conn = new SqlCeConnection(@"Data Source=Database1.sdf"))
-            {
-                conn.Open();
-                using(var command = new SqlCeCommand("select * from titles",conn))
-                {
-                    list = new TitleDataFactory().Map(
-                        command.ExecuteReader(CommandBehavior.CloseConnection));
-                }
-            }
-
+            List<Title> list = new TitleDataFactory().List();
+                        
             foreach (var title in list)
             {
                 Console.WriteLine(title.Name);
@@ -38,9 +29,30 @@ namespace GangOfFour.FactoryMethod
     }   
 
     public abstract class DataFactory<T>
+        where T : class, new()
     {
-        protected List<T> Items = new List<T>();
-        public abstract List<T> Map(IDataReader reader);
+        public abstract List<T> List();
+
+        protected List<T> List(string cmd)
+        {            
+            var items = new List<T>();
+            
+            using (var conn = new SqlCeConnection(@"Data Source=Database1.sdf"))
+            {
+                conn.Open();
+                using (var command = new SqlCeCommand(cmd, conn))
+                {
+                    var reader=command.ExecuteReader(CommandBehavior.CloseConnection);
+                    while (reader.Read())
+                    {
+                        items.Add(Map(reader));
+                    }
+                }
+            }
+            return items;
+        }
+
+        public abstract T Map(IDataRecord reader);            
     }
 
     public class Title
@@ -51,16 +63,18 @@ namespace GangOfFour.FactoryMethod
 
     public class TitleDataFactory : DataFactory<Title>
     {
-        public override List<Title> Map(IDataReader reader)
-        {            
-            while (reader.Read())
-            {
-                int id = (int)reader["id"];
-                string name = reader["name"] as string;
-                var item = new Title {Id = id, Name = name};
-                Items.Add(item);
-            }
-            return Items;
+        public override List<Title> List()
+        {
+            return List("select * from titles");
+        }
+
+        public override Title Map(IDataRecord reader)            
+        {
+            int id = (int) reader["id"];
+            string name = reader["name"] as string;
+            var item = new Title {Id = id, Name = name};
+
+            return item;
         }
     }
 
