@@ -8,7 +8,7 @@ namespace ASPNET.StarterKit.Portal
     {
         public Signin()
         {
-            Init += new EventHandler(Page_Init);
+            Init += Page_Init;
         }
 
         protected void LoginBtn_Click(Object sender, ImageClickEventArgs e)

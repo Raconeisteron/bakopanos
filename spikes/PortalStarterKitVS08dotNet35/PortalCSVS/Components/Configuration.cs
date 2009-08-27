@@ -991,41 +991,15 @@ namespace ASPNET.StarterKit.Portal
 
     public class ModuleItem : IComparable
     {
-        private int _defId;
-        private int _id;
-        private int _moduleOrder;
-        private String _pane;
-        private String _title;
+        public int ModuleOrder { get; set; }
 
-        public int ModuleOrder
-        {
-            get { return _moduleOrder; }
-            set { _moduleOrder = value; }
-        }
+        public String ModuleTitle { get; set; }
 
-        public String ModuleTitle
-        {
-            get { return _title; }
-            set { _title = value; }
-        }
+        public String PaneName { get; set; }
 
-        public String PaneName
-        {
-            get { return _pane; }
-            set { _pane = value; }
-        }
+        public int ModuleId { get; set; }
 
-        public int ModuleId
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
-
-        public int ModuleDefId
-        {
-            get { return _defId; }
-            set { _defId = value; }
-        }
+        public int ModuleDefId { get; set; }
 
         #region IComparable Members
 
@@ -1057,27 +1031,11 @@ namespace ASPNET.StarterKit.Portal
 
     public class TabItem : IComparable
     {
-        private int _id;
-        private String _name;
-        private int _tabOrder;
+        public int TabOrder { get; set; }
 
-        public int TabOrder
-        {
-            get { return _tabOrder; }
-            set { _tabOrder = value; }
-        }
+        public String TabName { get; set; }
 
-        public String TabName
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
-
-        public int TabId
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
+        public int TabId { get; set; }
 
         #region IComparable Members
 

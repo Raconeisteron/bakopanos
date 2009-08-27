@@ -8,7 +8,7 @@ namespace ASPNET.StarterKit.Portal
 
         public QuickLinks()
         {
-            Init += new EventHandler(Page_Init);
+            Init += Page_Init;
         }
 
         //*******************************************************
@@ -44,14 +44,14 @@ namespace ASPNET.StarterKit.Portal
             if (PortalSecurity.IsInRoles(ModuleConfiguration.AuthorizedEditRoles))
             {
                 EditButton.Text = "Add Link";
-                EditButton.NavigateUrl = "~/DesktopModules/EditLinks.aspx?mid=" + ModuleId.ToString();
+                EditButton.NavigateUrl = "~/DesktopModules/EditLinks.aspx?mid=" + ModuleId;
             }
         }
 
         protected string ChooseURL(string itemID, string modID, string URL)
         {
             if (IsEditable)
-                return "~/DesktopModules/EditLinks.aspx?ItemID=" + itemID.ToString() + "&mid=" + modID;
+                return "~/DesktopModules/EditLinks.aspx?ItemID=" + itemID + "&mid=" + modID;
             else
                 return URL;
         }

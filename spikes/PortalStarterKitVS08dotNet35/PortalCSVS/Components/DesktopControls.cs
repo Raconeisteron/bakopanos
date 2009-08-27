@@ -23,9 +23,8 @@ namespace ASPNET.StarterKit.Portal
     {
         // Private field variables
 
-        private int _isEditable = 0;
+        private int _isEditable;
         private ModuleSettings _moduleConfiguration;
-        private int _portalId = 0;
         private Hashtable _settings;
 
         // Public property accessors
@@ -33,15 +32,11 @@ namespace ASPNET.StarterKit.Portal
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int ModuleId
         {
-            get { return (int) _moduleConfiguration.ModuleId; }
+            get { return _moduleConfiguration.ModuleId; }
         }
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int PortalId
-        {
-            get { return _portalId; }
-            set { _portalId = value; }
-        }
+        public int PortalId { get; set; }
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsEditable
@@ -57,7 +52,7 @@ namespace ASPNET.StarterKit.Portal
 
                     var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
 
-                    if (portalSettings.AlwaysShowEditButton == true ||
+                    if (portalSettings.AlwaysShowEditButton ||
                         PortalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles))
                     {
                         _isEditable = 1;
@@ -123,7 +118,6 @@ namespace ASPNET.StarterKit.Portal
 
         private String _cachedOutput = "";
         private ModuleSettings _moduleConfiguration;
-        private int _portalId = 0;
 
 
         // Public property accessors
@@ -139,11 +133,7 @@ namespace ASPNET.StarterKit.Portal
             get { return _moduleConfiguration.ModuleId; }
         }
 
-        public int PortalId
-        {
-            get { return _portalId; }
-            set { _portalId = value; }
-        }
+        public int PortalId { get; set; }
 
         //*********************************************************************
         //
@@ -159,7 +149,7 @@ namespace ASPNET.StarterKit.Portal
         {
             get
             {
-                return "Key:" + GetType().ToString() + ModuleId +
+                return "Key:" + GetType() + ModuleId +
                        PortalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles);
             }
         }

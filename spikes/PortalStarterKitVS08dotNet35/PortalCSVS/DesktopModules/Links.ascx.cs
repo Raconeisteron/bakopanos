@@ -8,7 +8,7 @@ namespace ASPNET.StarterKit.Portal
 
         public Links()
         {
-            Init += new EventHandler(Page_Init);
+            Init += Page_Init;
         }
 
         //*******************************************************
@@ -44,7 +44,7 @@ namespace ASPNET.StarterKit.Portal
         protected string ChooseURL(string itemID, string modID, string URL)
         {
             if (IsEditable)
-                return "~/DesktopModules/EditLinks.aspx?ItemID=" + itemID.ToString() + "&mid=" + modID;
+                return "~/DesktopModules/EditLinks.aspx?ItemID=" + itemID + "&mid=" + modID;
             else
                 return URL;
         }

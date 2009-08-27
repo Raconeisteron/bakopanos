@@ -6,12 +6,12 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class Users : PortalModuleControl
     {
-        private int tabId = 0;
-        private int tabIndex = 0;
+        private int tabId;
+        private int tabIndex;
 
         public Users()
         {
-            Init += new EventHandler(Page_Init);
+            Init += Page_Init;
         }
 
         //*******************************************************

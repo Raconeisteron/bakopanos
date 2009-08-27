@@ -16,7 +16,7 @@ namespace ASPNET.StarterKit.Portal
 
         public Discussion()
         {
-            Init += new EventHandler(Page_Init);
+            Init += Page_Init;
         }
 
         protected void Page_Load(object sender, EventArgs e)

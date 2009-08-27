@@ -21,9 +21,9 @@ using System.Xml.Schema;
 
 namespace ASPNET.StarterKit.Portal
 {
-    [Serializable()]
+    [Serializable]
     [DesignerCategory("code")]
-    [DebuggerStepThrough()]
+    [DebuggerStepThrough]
     [ToolboxItem(true)]
     public class SiteConfiguration : DataSet
     {
@@ -278,10 +278,10 @@ namespace ASPNET.StarterKit.Portal
             tableModuleDefinition = new ModuleDefinitionDataTable();
             Tables.Add(tableModuleDefinition);
             ForeignKeyConstraint fkc;
-            fkc = new ForeignKeyConstraint("Tab_Module", new DataColumn[]
+            fkc = new ForeignKeyConstraint("Tab_Module", new[]
                                                              {
                                                                  tableTab.TabIdColumn
-                                                             }, new DataColumn[]
+                                                             }, new[]
                                                                     {
                                                                         tableModule.TabIdColumn
                                                                     });
@@ -289,10 +289,10 @@ namespace ASPNET.StarterKit.Portal
             fkc.AcceptRejectRule = AcceptRejectRule.None;
             fkc.DeleteRule = Rule.Cascade;
             fkc.UpdateRule = Rule.Cascade;
-            fkc = new ForeignKeyConstraint("Module_Settings", new DataColumn[]
+            fkc = new ForeignKeyConstraint("Module_Settings", new[]
                                                                   {
                                                                       tableModule.ModuleIdColumn
-                                                                  }, new DataColumn[]
+                                                                  }, new[]
                                                                          {
                                                                              tableSettings.ModuleIdColumn
                                                                          });
@@ -300,10 +300,10 @@ namespace ASPNET.StarterKit.Portal
             fkc.AcceptRejectRule = AcceptRejectRule.None;
             fkc.DeleteRule = Rule.Cascade;
             fkc.UpdateRule = Rule.Cascade;
-            fkc = new ForeignKeyConstraint("Settings_Setting", new DataColumn[]
+            fkc = new ForeignKeyConstraint("Settings_Setting", new[]
                                                                    {
                                                                        tableSettings.Settings_IdColumn
-                                                                   }, new DataColumn[]
+                                                                   }, new[]
                                                                           {
                                                                               tableSetting.Settings_IdColumn
                                                                           });
@@ -311,29 +311,29 @@ namespace ASPNET.StarterKit.Portal
             fkc.AcceptRejectRule = AcceptRejectRule.None;
             fkc.DeleteRule = Rule.Cascade;
             fkc.UpdateRule = Rule.Cascade;
-            relationSettings_Setting = new DataRelation("Settings_Setting", new DataColumn[]
+            relationSettings_Setting = new DataRelation("Settings_Setting", new[]
                                                                                 {
                                                                                     tableSettings.Settings_IdColumn
-                                                                                }, new DataColumn[]
+                                                                                }, new[]
                                                                                        {
                                                                                            tableSetting.
                                                                                                Settings_IdColumn
                                                                                        }, false);
             relationSettings_Setting.Nested = true;
             Relations.Add(relationSettings_Setting);
-            relationModule_Settings = new DataRelation("Module_Settings", new DataColumn[]
+            relationModule_Settings = new DataRelation("Module_Settings", new[]
                                                                               {
                                                                                   tableModule.ModuleIdColumn
-                                                                              }, new DataColumn[]
+                                                                              }, new[]
                                                                                      {
                                                                                          tableSettings.ModuleIdColumn
                                                                                      }, false);
             relationModule_Settings.Nested = true;
             Relations.Add(relationModule_Settings);
-            relationTab_Module = new DataRelation("Tab_Module", new DataColumn[]
+            relationTab_Module = new DataRelation("Tab_Module", new[]
                                                                     {
                                                                         tableTab.TabIdColumn
-                                                                    }, new DataColumn[]
+                                                                    }, new[]
                                                                            {
                                                                                tableModule.TabIdColumn
                                                                            }, false);
@@ -381,7 +381,7 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: GlobalDataTable
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class GlobalDataTable : DataTable, IEnumerable
         {
             private DataColumn columnAlwaysShowEditButton;
@@ -512,7 +512,7 @@ namespace ASPNET.StarterKit.Portal
                 columnAlwaysShowEditButton = new DataColumn("AlwaysShowEditButton", typeof (bool), null,
                                                             MappingType.Attribute);
                 Columns.Add(columnAlwaysShowEditButton);
-                Constraints.Add(new UniqueConstraint("GlobalKey", new DataColumn[]
+                Constraints.Add(new UniqueConstraint("GlobalKey", new[]
                                                                       {
                                                                           columnPortalId
                                                                       }, true));
@@ -584,10 +584,10 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: GlobalRow
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class GlobalRow : DataRow
         {
-            private GlobalDataTable tableGlobal;
+            private readonly GlobalDataTable tableGlobal;
 
             internal GlobalRow(DataRowBuilder rb) :
                 base(rb)
@@ -658,11 +658,11 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: GlobalRowChangeEvent
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class GlobalRowChangeEvent : EventArgs
         {
-            private DataRowAction eventAction;
-            private GlobalRow eventRow;
+            private readonly DataRowAction eventAction;
+            private readonly GlobalRow eventRow;
 
             public GlobalRowChangeEvent(GlobalRow row, DataRowAction action)
             {
@@ -685,7 +685,7 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: ModuleDataTable
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class ModuleDataTable : DataTable, IEnumerable
         {
             private DataColumn columnCacheTimeout;
@@ -811,7 +811,7 @@ namespace ASPNET.StarterKit.Portal
                                           TabRow parentTabRowByTab_Module)
             {
                 var rowModuleRow = ((ModuleRow) (NewRow()));
-                rowModuleRow.ItemArray = new object[]
+                rowModuleRow.ItemArray = new[]
                                              {
                                                  ModuleId,
                                                  ModuleTitle,
@@ -880,7 +880,7 @@ namespace ASPNET.StarterKit.Portal
                 Columns.Add(columnShowMobile);
                 columnTabId = new DataColumn("TabId", typeof (int), null, MappingType.Hidden);
                 Columns.Add(columnTabId);
-                Constraints.Add(new UniqueConstraint("ModuleKey", new DataColumn[]
+                Constraints.Add(new UniqueConstraint("ModuleKey", new[]
                                                                       {
                                                                           columnModuleId
                                                                       }, true));
@@ -957,7 +957,7 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: ModuleDefinitionDataTable
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class ModuleDefinitionDataTable : DataTable, IEnumerable
         {
             private DataColumn columnDesktopSourceFile;
@@ -1100,7 +1100,7 @@ namespace ASPNET.StarterKit.Portal
                 Columns.Add(columnDesktopSourceFile);
                 columnModuleDefId = new DataColumn("ModuleDefId", typeof (int), null, MappingType.Attribute);
                 Columns.Add(columnModuleDefId);
-                Constraints.Add(new UniqueConstraint("ModDefKey", new DataColumn[]
+                Constraints.Add(new UniqueConstraint("ModDefKey", new[]
                                                                       {
                                                                           columnModuleDefId
                                                                       }, true));
@@ -1181,10 +1181,10 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: ModuleDefinitionRow
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class ModuleDefinitionRow : DataRow
         {
-            private ModuleDefinitionDataTable tableModuleDefinition;
+            private readonly ModuleDefinitionDataTable tableModuleDefinition;
 
             internal ModuleDefinitionRow(DataRowBuilder rb) :
                 base(rb)
@@ -1281,11 +1281,11 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: ModuleDefinitionRowChangeEvent
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class ModuleDefinitionRowChangeEvent : EventArgs
         {
-            private DataRowAction eventAction;
-            private ModuleDefinitionRow eventRow;
+            private readonly DataRowAction eventAction;
+            private readonly ModuleDefinitionRow eventRow;
 
             public ModuleDefinitionRowChangeEvent(ModuleDefinitionRow row, DataRowAction action)
             {
@@ -1308,10 +1308,10 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: ModuleRow
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class ModuleRow : DataRow
         {
-            private ModuleDataTable tableModule;
+            private readonly ModuleDataTable tableModule;
 
             internal ModuleRow(DataRowBuilder rb) :
                 base(rb)
@@ -1523,11 +1523,11 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: ModuleRowChangeEvent
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class ModuleRowChangeEvent : EventArgs
         {
-            private DataRowAction eventAction;
-            private ModuleRow eventRow;
+            private readonly DataRowAction eventAction;
+            private readonly ModuleRow eventRow;
 
             public ModuleRowChangeEvent(ModuleRow row, DataRowAction action)
             {
@@ -1550,7 +1550,7 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: SettingDataTable
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class SettingDataTable : DataTable, IEnumerable
         {
             private DataColumn columnName;
@@ -1637,7 +1637,7 @@ namespace ASPNET.StarterKit.Portal
                                             SettingsRow parentSettingsRowBySettings_Setting)
             {
                 var rowSettingRow = ((SettingRow) (NewRow()));
-                rowSettingRow.ItemArray = new object[]
+                rowSettingRow.ItemArray = new[]
                                               {
                                                   Name,
                                                   Setting_Text,
@@ -1738,10 +1738,10 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: SettingRow
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class SettingRow : DataRow
         {
-            private SettingDataTable tableSetting;
+            private readonly SettingDataTable tableSetting;
 
             internal SettingRow(DataRowBuilder rb) :
                 base(rb)
@@ -1812,11 +1812,11 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: SettingRowChangeEvent
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class SettingRowChangeEvent : EventArgs
         {
-            private DataRowAction eventAction;
-            private SettingRow eventRow;
+            private readonly DataRowAction eventAction;
+            private readonly SettingRow eventRow;
 
             public SettingRowChangeEvent(SettingRow row, DataRowAction action)
             {
@@ -1839,7 +1839,7 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: SettingsDataTable
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class SettingsDataTable : DataTable, IEnumerable
         {
             private DataColumn columnModuleId;
@@ -1917,7 +1917,7 @@ namespace ASPNET.StarterKit.Portal
             public SettingsRow AddSettingsRow(ModuleRow parentModuleRowByModule_Settings)
             {
                 var rowSettingsRow = ((SettingsRow) (NewRow()));
-                rowSettingsRow.ItemArray = new object[]
+                rowSettingsRow.ItemArray = new[]
                                                {
                                                    null,
                                                    parentModuleRowByModule_Settings[0]
@@ -1950,7 +1950,7 @@ namespace ASPNET.StarterKit.Portal
                 Columns.Add(columnSettings_Id);
                 columnModuleId = new DataColumn("ModuleId", typeof (int), null, MappingType.Hidden);
                 Columns.Add(columnModuleId);
-                Constraints.Add(new UniqueConstraint("Constraint1", new DataColumn[]
+                Constraints.Add(new UniqueConstraint("Constraint1", new[]
                                                                         {
                                                                             columnSettings_Id
                                                                         }, true));
@@ -2020,7 +2020,7 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: SettingsRow
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class SettingsRow : DataRow
         {
             private SettingsDataTable tableSettings;
@@ -2047,11 +2047,11 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: SettingsRowChangeEvent
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class SettingsRowChangeEvent : EventArgs
         {
-            private DataRowAction eventAction;
-            private SettingsRow eventRow;
+            private readonly DataRowAction eventAction;
+            private readonly SettingsRow eventRow;
 
             public SettingsRowChangeEvent(SettingsRow row, DataRowAction action)
             {
@@ -2074,7 +2074,7 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: TabDataTable
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class TabDataTable : DataTable, IEnumerable
         {
             private DataColumn columnAccessRoles;
@@ -2236,7 +2236,7 @@ namespace ASPNET.StarterKit.Portal
                 Columns.Add(columnShowMobile);
                 columnMobileTabName = new DataColumn("MobileTabName", typeof (string), null, MappingType.Attribute);
                 Columns.Add(columnMobileTabName);
-                Constraints.Add(new UniqueConstraint("TabKey", new DataColumn[]
+                Constraints.Add(new UniqueConstraint("TabKey", new[]
                                                                    {
                                                                        columnTabId
                                                                    }, true));
@@ -2311,10 +2311,10 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: TabRow
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class TabRow : DataRow
         {
-            private TabDataTable tableTab;
+            private readonly TabDataTable tableTab;
 
             internal TabRow(DataRowBuilder rb) :
                 base(rb)
@@ -2468,11 +2468,11 @@ namespace ASPNET.StarterKit.Portal
 
         #region Nested type: TabRowChangeEvent
 
-        [DebuggerStepThrough()]
+        [DebuggerStepThrough]
         public class TabRowChangeEvent : EventArgs
         {
-            private DataRowAction eventAction;
-            private TabRow eventRow;
+            private readonly DataRowAction eventAction;
+            private readonly TabRow eventRow;
 
             public TabRowChangeEvent(TabRow row, DataRowAction action)
             {

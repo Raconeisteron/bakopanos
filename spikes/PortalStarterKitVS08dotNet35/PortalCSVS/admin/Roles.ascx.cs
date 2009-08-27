@@ -5,12 +5,12 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class Roles : PortalModuleControl
     {
-        private int tabId = 0;
-        private int tabIndex = 0;
+        private int tabId;
+        private int tabIndex;
 
         public Roles()
         {
-            Init += new EventHandler(Page_Init);
+            Init += Page_Init;
         }
 
         //*******************************************************

@@ -16,7 +16,7 @@ namespace ASPNET.StarterKit.Portal
 
         public Document()
         {
-            Init += new EventHandler(Page_Init);
+            Init += Page_Init;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -52,7 +52,7 @@ namespace ASPNET.StarterKit.Portal
                 // if there is content in the database, create an 
                 // url to browse it
 
-                return "~/DesktopModules/ViewDocument.aspx?DocumentID=" + documentId.ToString();
+                return "~/DesktopModules/ViewDocument.aspx?DocumentID=" + documentId;
             }
             else
             {

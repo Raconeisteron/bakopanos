@@ -13,7 +13,7 @@ namespace ASPNET.StarterKit.Portal
 
         public DesktopPortalBanner()
         {
-            Init += new EventHandler(Page_Init);
+            Init += Page_Init;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -25,7 +25,7 @@ namespace ASPNET.StarterKit.Portal
             siteName.Text = portalSettings.PortalName;
 
             // If user logged in, customize welcome message
-            if (Request.IsAuthenticated == true)
+            if (Request.IsAuthenticated)
             {
                 WelcomeMessage.Text = "Welcome " + Context.User.Identity.Name + "! <" + "span class=Accent" + ">|<" +
                                       "/span" + ">";
@@ -40,7 +40,7 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Dynamically render portal tab strip
-            if (ShowTabs == true)
+            if (ShowTabs)
             {
                 tabIndex = portalSettings.ActiveTab.TabIndex;
 

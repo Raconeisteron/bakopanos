@@ -6,13 +6,13 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class DesktopModuleTitle : UserControl
     {
-        public String EditTarget = null;
-        public String EditText = null;
-        public String EditUrl = null;
+        public String EditTarget;
+        public String EditText;
+        public String EditUrl;
 
         public DesktopModuleTitle()
         {
-            Init += new EventHandler(Page_Init);
+            Init += Page_Init;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -28,11 +28,11 @@ namespace ASPNET.StarterKit.Portal
 
             // Display the Edit button if the parent portalmodule has configured the PortalModuleTitle User Control
             // to display it -- and the current client has edit access permissions
-            if ((portalSettings.AlwaysShowEditButton == true) ||
+            if (portalSettings.AlwaysShowEditButton ||
                 (PortalSecurity.IsInRoles(portalModule.ModuleConfiguration.AuthorizedEditRoles)) && (EditText != null))
             {
                 EditButton.Text = EditText;
-                EditButton.NavigateUrl = EditUrl + "?mid=" + portalModule.ModuleId.ToString();
+                EditButton.NavigateUrl = EditUrl + "?mid=" + portalModule.ModuleId;
                 EditButton.Target = EditTarget;
             }
         }

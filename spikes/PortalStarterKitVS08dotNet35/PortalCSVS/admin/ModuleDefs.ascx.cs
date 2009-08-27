@@ -5,12 +5,12 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class ModuleDefs : PortalModuleControl
     {
-        private int tabId = 0;
-        private int tabIndex = 0;
+        private int tabId;
+        private int tabIndex;
 
         public ModuleDefs()
         {
-            Init += new EventHandler(Page_Init);
+            Init += Page_Init;
         }
 
         //*******************************************************

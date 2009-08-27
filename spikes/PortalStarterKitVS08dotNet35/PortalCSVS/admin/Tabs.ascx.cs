@@ -9,12 +9,12 @@ namespace ASPNET.StarterKit.Portal
     public partial class Tabs : PortalModuleControl
     {
         protected ArrayList portalTabs;
-        private int tabId = 0;
-        private int tabIndex = 0;
+        private int tabId;
+        private int tabIndex;
 
         public Tabs()
         {
-            Init += new EventHandler(Page_Init);
+            Init += Page_Init;
         }
 
         //*******************************************************
@@ -101,7 +101,7 @@ namespace ASPNET.StarterKit.Portal
                 OrderTabs();
 
                 // Redirect to this site to refresh
-                Response.Redirect("~/DesktopDefault.aspx?tabindex=" + (portalTabs.Count - 1).ToString() + "&tabid=" +
+                Response.Redirect("~/DesktopDefault.aspx?tabindex=" + (portalTabs.Count - 1) + "&tabid=" +
                                   tabId);
             }
         }
