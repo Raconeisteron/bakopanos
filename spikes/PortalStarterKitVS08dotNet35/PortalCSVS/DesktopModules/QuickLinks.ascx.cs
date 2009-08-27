@@ -1,19 +1,15 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 
-namespace ASPNET.StarterKit.Portal {
-
-    public partial  class QuickLinks : ASPNET.StarterKit.Portal.PortalModuleControl {
-
-
+namespace ASPNET.StarterKit.Portal
+{
+    public partial class QuickLinks : PortalModuleControl
+    {
         protected String linkImage = "";
+
+        public QuickLinks()
+        {
+            Init += new EventHandler(Page_Init);
+        }
 
         //*******************************************************
         //
@@ -25,57 +21,58 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected void Page_Load(object sender, System.EventArgs e) {
-
+        protected void Page_Load(object sender, EventArgs e)
+        {
             // Set the link image type
-            if (IsEditable) {
+            if (IsEditable)
+            {
                 linkImage = "~/images/edit.gif";
             }
-            else {
+            else
+            {
                 linkImage = "~/images/navlink.gif";
             }
 
             // Obtain links information from the Links table
             // and bind to the list control
-            ASPNET.StarterKit.Portal.LinkDB links = new ASPNET.StarterKit.Portal.LinkDB();
+            var links = new LinkDB();
 
             myDataList.DataSource = links.GetLinks(ModuleId);
             myDataList.DataBind();
-        
-            // Ensure that only users in role may add links
-            if (PortalSecurity.IsInRoles(ModuleConfiguration.AuthorizedEditRoles)) {
 
-                EditButton.Text="Add Link";
+            // Ensure that only users in role may add links
+            if (PortalSecurity.IsInRoles(ModuleConfiguration.AuthorizedEditRoles))
+            {
+                EditButton.Text = "Add Link";
                 EditButton.NavigateUrl = "~/DesktopModules/EditLinks.aspx?mid=" + ModuleId.ToString();
             }
         }
-        
-		protected string ChooseURL(string itemID, string modID, string URL)
-		{
-			if(IsEditable)
-				return "~/DesktopModules/EditLinks.aspx?ItemID=" + itemID.ToString() + "&mid=" + modID;
-			else
-				return URL;
-		}
 
-        public QuickLinks() {
-            this.Init += new System.EventHandler(Page_Init);
+        protected string ChooseURL(string itemID, string modID, string URL)
+        {
+            if (IsEditable)
+                return "~/DesktopModules/EditLinks.aspx?ItemID=" + itemID.ToString() + "&mid=" + modID;
+            else
+                return URL;
         }
 
-        protected void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         ///		Required method for Designer support - do not modify
         ///		the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
-
+        private void InitializeComponent()
+        {
         }
-		#endregion
+
+        #endregion
     }
 }

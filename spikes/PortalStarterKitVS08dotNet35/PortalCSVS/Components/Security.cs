@@ -3,13 +3,12 @@ using System.Collections;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.RegularExpressions;
+using System.Web;
 
-namespace ASPNET.StarterKit.Portal {
-
+namespace ASPNET.StarterKit.Portal
+{
     //*********************************************************************
     //
     // PortalSecurity Class
@@ -19,23 +18,23 @@ namespace ASPNET.StarterKit.Portal {
     //
     //*********************************************************************
 
-    public class PortalSecurity {
+    public class PortalSecurity
+    {
+        //*********************************************************************
+        //
+        // Security.Encrypt() Method
+        //
+        // The Encrypt method encrypts a clean string into a hashed string
+        //
+        //*********************************************************************
 
-		//*********************************************************************
-		//
-		// Security.Encrypt() Method
-		//
-		// The Encrypt method encrypts a clean string into a hashed string
-		//
-		//*********************************************************************
+        public static string Encrypt(string cleanString)
+        {
+            Byte[] clearBytes = new UnicodeEncoding().GetBytes(cleanString);
+            Byte[] hashedBytes = ((HashAlgorithm) CryptoConfig.CreateFromName("MD5")).ComputeHash(clearBytes);
 
-		public static string Encrypt(string cleanString)
-		{
-			Byte[] clearBytes = new UnicodeEncoding().GetBytes(cleanString);
-			Byte[] hashedBytes = ((HashAlgorithm) CryptoConfig.CreateFromName("MD5")).ComputeHash(clearBytes);
-			
-			return BitConverter.ToString(hashedBytes);
-		}
+            return BitConverter.ToString(hashedBytes);
+        }
 
         //*********************************************************************
         //
@@ -46,8 +45,8 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public static bool IsInRole(String role) {
-
+        public static bool IsInRole(String role)
+        {
             return HttpContext.Current.User.IsInRole(role);
         }
 
@@ -60,13 +59,14 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public static bool IsInRoles(String roles) {
-
+        public static bool IsInRoles(String roles)
+        {
             HttpContext context = HttpContext.Current;
 
-            foreach (String role in roles.Split( new char[] {';'} )) {
-            
-                if (role != "" && role != null && ((role == "All Users") || (context.User.IsInRole(role)))) {
+            foreach (String role in roles.Split(new[] {';'}))
+            {
+                if (role != "" && role != null && ((role == "All Users") || (context.User.IsInRole(role))))
+                {
                     return true;
                 }
             }
@@ -84,24 +84,24 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public static bool HasEditPermissions(int moduleId) 
-		{
-			string accessRoles;
-			string editRoles;
+        public static bool HasEditPermissions(int moduleId)
+        {
+            string accessRoles;
+            string editRoles;
 
-			// Obtain SiteSettings from Current Context
-			SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            // Obtain SiteSettings from Current Context
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
-			// Find the appropriate Module in the Module table
-			SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
+            // Find the appropriate Module in the Module table
+            SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
 
-			editRoles = moduleRow.EditRoles;
-			accessRoles = moduleRow.TabRow.AccessRoles;
+            editRoles = moduleRow.EditRoles;
+            accessRoles = moduleRow.TabRow.AccessRoles;
 
-			if(PortalSecurity.IsInRoles(accessRoles) == false || PortalSecurity.IsInRoles(editRoles) == false)
-				return false;
-			else
-				return true;
+            if (IsInRoles(accessRoles) == false || IsInRoles(editRoles) == false)
+                return false;
+            else
+                return true;
         }
     }
 
@@ -119,8 +119,8 @@ namespace ASPNET.StarterKit.Portal {
     //
     //*********************************************************************
 
-    public class UsersDB {
-
+    public class UsersDB
+    {
         //*********************************************************************
         //
         // UsersDB.AddUser() Method <a name="AddUser"></a>
@@ -132,48 +132,46 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public int AddUser(String fullName, String email, String password) {
-
+        public int AddUser(String fullName, String email, String password)
+        {
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_AddUser", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_AddUser", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterFullName = new SqlParameter("@Name", SqlDbType.NVarChar, 50);
+            var parameterFullName = new SqlParameter("@Name", SqlDbType.NVarChar, 50);
             parameterFullName.Value = fullName;
             myCommand.Parameters.Add(parameterFullName);
 
-            SqlParameter parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
             myCommand.Parameters.Add(parameterEmail);
 
-            SqlParameter parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
+            var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
             myCommand.Parameters.Add(parameterPassword);
 
-            SqlParameter parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
+            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
             parameterUserId.Direction = ParameterDirection.Output;
             myCommand.Parameters.Add(parameterUserId);
 
             // Execute the command in a try/catch to catch duplicate username errors
-            try 
+            try
             {
                 // Open the connection and execute the Command
                 myConnection.Open();
                 myCommand.ExecuteNonQuery();
             }
-            catch 
+            catch
             {
-
                 // failed to create a new user
                 return -1;
             }
-            finally 
+            finally
             {
-
                 // Close the Connection
                 if (myConnection.State == ConnectionState.Open)
                     myConnection.Close();
@@ -193,17 +191,16 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public void DeleteUser(int userId) 
+        public void DeleteUser(int userId)
         {
-
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_DeleteUser", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_DeleteUser", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
+            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
             parameterUserId.Value = userId;
             myCommand.Parameters.Add(parameterUserId);
 
@@ -224,25 +221,24 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public void UpdateUser(int userId, String email, String password) 
+        public void UpdateUser(int userId, String email, String password)
         {
-
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_UpdateUser", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_UpdateUser", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
+            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
             parameterUserId.Value = userId;
             myCommand.Parameters.Add(parameterUserId);
 
-            SqlParameter parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
             myCommand.Parameters.Add(parameterEmail);
 
-            SqlParameter parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
+            var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
             myCommand.Parameters.Add(parameterPassword);
 
@@ -263,17 +259,16 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public SqlDataReader GetRolesByUser(String email) 
+        public SqlDataReader GetRolesByUser(String email)
         {
-
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_GetRolesByUser", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_GetRolesByUser", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
             myCommand.Parameters.Add(parameterEmail);
 
@@ -294,18 +289,17 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleUser(String email) 
+        public SqlDataReader GetSingleUser(String email)
         {
-
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_GetSingleUser", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_GetSingleUser", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
             myCommand.Parameters.Add(parameterEmail);
 
@@ -316,6 +310,7 @@ namespace ASPNET.StarterKit.Portal {
             // Return the datareader
             return dr;
         }
+
         //*********************************************************************
         //
         // GetRoles() Method <a name="GetRoles"></a>
@@ -327,18 +322,17 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public String[] GetRoles(String email) 
+        public String[] GetRoles(String email)
         {
-
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_GetRolesByUser", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_GetRolesByUser", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
             myCommand.Parameters.Add(parameterEmail);
 
@@ -349,16 +343,17 @@ namespace ASPNET.StarterKit.Portal {
             dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // create a String array from the data
-            ArrayList userRoles = new ArrayList();
+            var userRoles = new ArrayList();
 
-            while (dr.Read()) {
+            while (dr.Read())
+            {
                 userRoles.Add(dr["RoleName"]);
             }
 
             dr.Close();
 
             // Return the String array of roles
-            return (String[]) userRoles.ToArray(typeof(String));
+            return (String[]) userRoles.ToArray(typeof (String));
         }
 
         //*********************************************************************
@@ -374,25 +369,25 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public String Login(String email, String password) {
-
+        public String Login(String email, String password)
+        {
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_UserLogin", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_UserLogin", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
             myCommand.Parameters.Add(parameterEmail);
 
-            SqlParameter parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
+            var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
             myCommand.Parameters.Add(parameterPassword);
 
-            SqlParameter parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
+            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
             parameterUserName.Direction = ParameterDirection.Output;
             myCommand.Parameters.Add(parameterUserName);
 
@@ -401,10 +396,12 @@ namespace ASPNET.StarterKit.Portal {
             myCommand.ExecuteNonQuery();
             myConnection.Close();
 
-            if ((parameterUserName.Value != null) && (parameterUserName.Value != System.DBNull.Value)) {
-                return ((String)parameterUserName.Value).Trim();
+            if ((parameterUserName.Value != null) && (parameterUserName.Value != DBNull.Value))
+            {
+                return ((String) parameterUserName.Value).Trim();
             }
-            else {
+            else
+            {
                 return String.Empty;
             }
         }

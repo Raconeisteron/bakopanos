@@ -1,19 +1,12 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using System.Data.SqlClient;
+using System.Web.UI;
 
-namespace ASPNET.StarterKit.Portal {
-
-    public partial class ViewDocument : System.Web.UI.Page {
-
-        int documentId = -1;
+namespace ASPNET.StarterKit.Portal
+{
+    public partial class ViewDocument : Page
+    {
+        private int documentId = -1;
 
         //*******************************************************
         //
@@ -27,27 +20,33 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected void Page_Load(object sender, System.EventArgs e) {
+        public ViewDocument()
+        {
+            Page.Init += Page_Init;
+        }
 
-            if (Request.Params["DocumentId"] != null) {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Request.Params["DocumentId"] != null)
+            {
                 documentId = Int32.Parse(Request.Params["DocumentId"]);
             }
 
-            if (documentId != -1) {
-        
+            if (documentId != -1)
+            {
                 // Obtain Document Data from Documents table
-                ASPNET.StarterKit.Portal.DocumentDB documents = new ASPNET.StarterKit.Portal.DocumentDB();
-            
+                var documents = new DocumentDB();
+
                 SqlDataReader dBContent = documents.GetDocumentContent(documentId);
                 dBContent.Read();
 
                 // Serve up the file by name
-                Response.AppendHeader("content-disposition","filename=" + (String)dBContent["FileName"]);          
-            
+                Response.AppendHeader("content-disposition", "filename=" + (String) dBContent["FileName"]);
+
                 // set the content type for the Response to that of the 
                 // document to display.  For example. "application/msword"
                 Response.ContentType = (String) dBContent["ContentType"];
-            
+
                 // output the actual document contents to the response output stream
                 Response.OutputStream.Write((byte[]) dBContent["Content"], 0, (int) dBContent["ContentSize"]);
 
@@ -56,24 +55,24 @@ namespace ASPNET.StarterKit.Portal {
             }
         }
 
-        public ViewDocument() {
-            Page.Init += new System.EventHandler(Page_Init);
-        }
-
-        protected void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {    
+        private void InitializeComponent()
+        {
         }
-		#endregion
+
+        #endregion
     }
 }

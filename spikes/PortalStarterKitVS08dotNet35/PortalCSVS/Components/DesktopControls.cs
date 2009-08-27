@@ -1,14 +1,12 @@
 using System;
-using System.IO;
-using System.ComponentModel;
-using System.Configuration;
 using System.Collections;
+using System.ComponentModel;
+using System.IO;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
-namespace ASPNET.StarterKit.Portal {
-
+namespace ASPNET.StarterKit.Portal
+{
     //*********************************************************************
     //
     // PortalModuleControl Class
@@ -21,54 +19,51 @@ namespace ASPNET.StarterKit.Portal {
     //
     //*********************************************************************
 
-    public class PortalModuleControl : UserControl {
-
+    public class PortalModuleControl : UserControl
+    {
         // Private field variables
 
-        private ModuleSettings  _moduleConfiguration;
-        private int             _isEditable = 0;
-        private int             _portalId = 0;
-        private Hashtable       _settings;
+        private int _isEditable = 0;
+        private ModuleSettings _moduleConfiguration;
+        private int _portalId = 0;
+        private Hashtable _settings;
 
         // Public property accessors
 
-        [Browsable(false),DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int ModuleId {
-
-            get {
-                return (int) _moduleConfiguration.ModuleId;
-            }
-        }    
-
-        [Browsable(false),DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int PortalId {
-
-            get {
-                return _portalId;
-            }
-            set {
-                _portalId = value;
-            }
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int ModuleId
+        {
+            get { return (int) _moduleConfiguration.ModuleId; }
         }
-        
-        [Browsable(false),DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public bool IsEditable {
-            
-            get {
 
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int PortalId
+        {
+            get { return _portalId; }
+            set { _portalId = value; }
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool IsEditable
+        {
+            get
+            {
                 // Perform tri-state switch check to avoid having to perform a security
                 // role lookup on every property access (instead caching the result)
 
-                if (_isEditable == 0) {
-                    
+                if (_isEditable == 0)
+                {
                     // Obtain PortalSettings from Current Context
 
-                    PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+                    var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
 
-                    if (portalSettings.AlwaysShowEditButton == true || PortalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles)) {
+                    if (portalSettings.AlwaysShowEditButton == true ||
+                        PortalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles))
+                    {
                         _isEditable = 1;
                     }
-                    else {
+                    else
+                    {
                         _isEditable = 2;
                     }
                 }
@@ -77,32 +72,28 @@ namespace ASPNET.StarterKit.Portal {
             }
         }
 
-        [Browsable(false),DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public ModuleSettings ModuleConfiguration {
-
-            get {
-                return _moduleConfiguration;
-            }
-            set {
-                _moduleConfiguration = value;
-            }
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public ModuleSettings ModuleConfiguration
+        {
+            get { return _moduleConfiguration; }
+            set { _moduleConfiguration = value; }
         }
 
-        [Browsable(false),DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Hashtable Settings {
-
-            get {
-
-                if (_settings == null) {
-
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Hashtable Settings
+        {
+            get
+            {
+                if (_settings == null)
+                {
                     _settings = Configuration.GetModuleSettings(ModuleId);
                 }
 
                 return _settings;
             }
-         }
+        }
     }
-    
+
     //*********************************************************************
     //
     // CachedPortalModuleControl Class
@@ -126,42 +117,32 @@ namespace ASPNET.StarterKit.Portal {
     //
     //*********************************************************************
 
-    public class CachedPortalModuleControl : Control {
-
+    public class CachedPortalModuleControl : Control
+    {
         // Private field variables
 
-        private ModuleSettings  _moduleConfiguration;
-        private String          _cachedOutput = "";
-        private int             _portalId = 0;
+        private String _cachedOutput = "";
+        private ModuleSettings _moduleConfiguration;
+        private int _portalId = 0;
 
 
         // Public property accessors
 
-        public ModuleSettings ModuleConfiguration {
-
-            get {
-                return _moduleConfiguration;
-            }
-            set {
-                _moduleConfiguration = value;
-            }
+        public ModuleSettings ModuleConfiguration
+        {
+            get { return _moduleConfiguration; }
+            set { _moduleConfiguration = value; }
         }
 
-        public int ModuleId {
-
-            get {
-                return _moduleConfiguration.ModuleId;
-            }
+        public int ModuleId
+        {
+            get { return _moduleConfiguration.ModuleId; }
         }
 
-        public int PortalId {
-
-            get {
-                return _portalId;
-            }
-            set {
-                _portalId = value;
-            }
+        public int PortalId
+        {
+            get { return _portalId; }
+            set { _portalId = value; }
         }
 
         //*********************************************************************
@@ -174,10 +155,12 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public String CacheKey {
-
-            get {
-                return "Key:" + this.GetType().ToString() + this.ModuleId + PortalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles);
+        public String CacheKey
+        {
+            get
+            {
+                return "Key:" + GetType().ToString() + ModuleId +
+                       PortalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles);
             }
         }
 
@@ -198,27 +181,28 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        protected override void CreateChildControls() {
-
+        protected override void CreateChildControls()
+        {
             // Attempt to resolve previously cached content from the ASP.NET Cache
 
-            if (_moduleConfiguration.CacheTime > 0) {
+            if (_moduleConfiguration.CacheTime > 0)
+            {
                 _cachedOutput = (String) Context.Cache[CacheKey];
             }
 
             // If no cached content is found, then instantiate and add the portal
             // module user control into the portal's page server control tree
 
-            if (_cachedOutput == null) {
-
+            if (_cachedOutput == null)
+            {
                 base.CreateChildControls();
 
-                PortalModuleControl module = (PortalModuleControl) Page.LoadControl(_moduleConfiguration.DesktopSrc);
-                
-                module.ModuleConfiguration = this.ModuleConfiguration;
-                module.PortalId = this.PortalId;
+                var module = (PortalModuleControl) Page.LoadControl(_moduleConfiguration.DesktopSrc);
 
-                this.Controls.Add(module);
+                module.ModuleConfiguration = ModuleConfiguration;
+                module.PortalId = PortalId;
+
+                Controls.Add(module);
             }
         }
 
@@ -235,11 +219,12 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        protected override void Render(HtmlTextWriter output) {
-
+        protected override void Render(HtmlTextWriter output)
+        {
             // If no caching is specified, render the child tree and return 
 
-            if (_moduleConfiguration.CacheTime == 0) {
+            if (_moduleConfiguration.CacheTime == 0)
+            {
                 base.Render(output);
                 return;
             }
@@ -248,13 +233,14 @@ namespace ASPNET.StarterKit.Portal {
             // child controls into a TextWriter, and then cache the results
             // in the ASP.NET Cache for future requests.
 
-            if (_cachedOutput == null) {
-
+            if (_cachedOutput == null)
+            {
                 TextWriter tempWriter = new StringWriter();
                 base.Render(new HtmlTextWriter(tempWriter));
                 _cachedOutput = tempWriter.ToString();
 
-                Context.Cache.Insert(CacheKey, _cachedOutput, null, DateTime.Now.AddSeconds(_moduleConfiguration.CacheTime), TimeSpan.Zero);
+                Context.Cache.Insert(CacheKey, _cachedOutput, null,
+                                     DateTime.Now.AddSeconds(_moduleConfiguration.CacheTime), TimeSpan.Zero);
             }
 
             // Output the user control's content

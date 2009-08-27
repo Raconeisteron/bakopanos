@@ -1,20 +1,20 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Data.SqlClient;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNET.StarterKit.Portal
+{
+    public partial class ModuleSettingsPage : Page
+    {
+        private int moduleId;
+        private int tabId;
 
-    public partial class ModuleSettingsPage : System.Web.UI.Page {
-    
-        int moduleId = 0;
-        int tabId = 0;
+        public ModuleSettingsPage()
+        {
+            Page.Init += Page_Init;
+        }
 
         //*******************************************************
         //
@@ -23,23 +23,27 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected void Page_Load(object sender, System.EventArgs e) {
-
+        protected void Page_Load(object sender, EventArgs e)
+        {
             // Verify that the current user has access to access this page
-            if (PortalSecurity.IsInRoles("Admins") == false) {
+            if (PortalSecurity.IsInRoles("Admins") == false)
+            {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
 
             // Determine Module to Edit
-            if (Request.Params["mid"] != null) {
+            if (Request.Params["mid"] != null)
+            {
                 moduleId = Int32.Parse(Request.Params["mid"]);
             }
             // Determine Tab to Edit
-            if (Request.Params["tabid"] != null) {
+            if (Request.Params["tabid"] != null)
+            {
                 tabId = Int32.Parse(Request.Params["tabid"]);
             }
 
-            if (Page.IsPostBack == false) {
+            if (Page.IsPostBack == false)
+            {
                 BindData();
             }
         }
@@ -51,29 +55,31 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected void ApplyChanges_Click(Object Sender, EventArgs e) {
-    
+        protected void ApplyChanges_Click(Object Sender, EventArgs e)
+        {
             // Obtain PortalSettings from Current Context
-            PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+            var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
 
             object value = GetModule();
-            if (value != null) {
-            
-                ModuleSettings m = (ModuleSettings) value;
-            
+            if (value != null)
+            {
+                var m = (ModuleSettings) value;
+
                 // Construct Authorized User Roles String
                 String editRoles = "";
 
-                foreach(ListItem item in authEditRoles.Items) {
-
-                    if (item.Selected == true) {
+                foreach (ListItem item in authEditRoles.Items)
+                {
+                    if (item.Selected)
+                    {
                         editRoles = editRoles + item.Text + ";";
                     }
                 }
-            
+
                 // update module
-                Configuration config = new Configuration();
-                config.UpdateModule(moduleId, m.ModuleOrder, m.PaneName, moduleTitle.Text, Int32.Parse(cacheTime.Text), editRoles, showMobile.Checked);
+                var config = new Configuration();
+                config.UpdateModule(moduleId, m.ModuleOrder, m.PaneName, moduleTitle.Text, Int32.Parse(cacheTime.Text),
+                                    editRoles, showMobile.Checked);
 
                 // Update Textbox Settings
                 moduleTitle.Text = m.ModuleTitle;
@@ -81,28 +87,30 @@ namespace ASPNET.StarterKit.Portal {
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-				RolesDB rolesObj = new RolesDB();
+                var rolesObj = new RolesDB();
                 SqlDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();
 
-                ListItem allItem = new ListItem();
+                var allItem = new ListItem();
                 allItem.Text = "All Users";
 
-                if (m.AuthorizedEditRoles.LastIndexOf("All Users") > -1) {
+                if (m.AuthorizedEditRoles.LastIndexOf("All Users") > -1)
+                {
                     allItem.Selected = true;
                 }
 
                 authEditRoles.Items.Add(allItem);
 
-                while(roles.Read()) {
-
-                    ListItem item = new ListItem();
+                while (roles.Read())
+                {
+                    var item = new ListItem();
                     item.Text = (String) roles["RoleName"];
                     item.Value = roles["RoleID"].ToString();
 
-                    if ((m.AuthorizedEditRoles.LastIndexOf(item.Text)) > -1) {
+                    if ((m.AuthorizedEditRoles.LastIndexOf(item.Text)) > -1)
+                    {
                         item.Selected = true;
                     }
 
@@ -122,16 +130,16 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void BindData() {
-
+        private void BindData()
+        {
             // Obtain PortalSettings from Current Context
-            PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+            var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
 
             object value = GetModule();
-            if (value != null) {
-            
-                ModuleSettings m = (ModuleSettings) value;
-            
+            if (value != null)
+            {
+                var m = (ModuleSettings) value;
+
                 // Update Textbox Settings
                 moduleTitle.Text = m.ModuleTitle;
                 cacheTime.Text = m.CacheTime.ToString();
@@ -139,28 +147,30 @@ namespace ASPNET.StarterKit.Portal {
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                RolesDB rolesObj = new RolesDB();
+                var rolesObj = new RolesDB();
                 SqlDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();
 
-                ListItem allItem = new ListItem();
+                var allItem = new ListItem();
                 allItem.Text = "All Users";
 
-                if (m.AuthorizedEditRoles.LastIndexOf("All Users") > -1) {
+                if (m.AuthorizedEditRoles.LastIndexOf("All Users") > -1)
+                {
                     allItem.Selected = true;
                 }
 
                 authEditRoles.Items.Add(allItem);
 
-                while(roles.Read()) {
-
-                    ListItem item = new ListItem();
+                while (roles.Read())
+                {
+                    var item = new ListItem();
                     item.Text = (String) roles["RoleName"];
                     item.Value = roles["RoleID"].ToString();
 
-                    if ((m.AuthorizedEditRoles.LastIndexOf(item.Text)) > -1) {
+                    if ((m.AuthorizedEditRoles.LastIndexOf(item.Text)) > -1)
+                    {
                         item.Selected = true;
                     }
 
@@ -169,39 +179,38 @@ namespace ASPNET.StarterKit.Portal {
             }
         }
 
-        private ModuleSettings GetModule() {
-    
+        private ModuleSettings GetModule()
+        {
             // Obtain PortalSettings for this tab
-            PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+            var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
 
             // Obtain selected module data
-            foreach (ModuleSettings _module in portalSettings.ActiveTab.Modules) {
-            
+            foreach (ModuleSettings _module in portalSettings.ActiveTab.Modules)
+            {
                 if (_module.ModuleId == moduleId)
                     return _module;
             }
             return null;
         }
-        
-        public ModuleSettingsPage() {
-            Page.Init += new System.EventHandler(Page_Init);
-        }
 
-        protected void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {    
-
+        private void InitializeComponent()
+        {
         }
-		#endregion
+
+        #endregion
     }
 }

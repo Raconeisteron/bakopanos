@@ -1,18 +1,17 @@
 using System;
 using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNET.StarterKit.Portal
+{
+    public partial class EditImage : Page
+    {
+        private int moduleId;
 
-    public partial class EditImage : System.Web.UI.Page {
-    
-        int moduleId = 0;
+        public EditImage()
+        {
+            Page.Init += Page_Init;
+        }
 
         //****************************************************************
         //
@@ -24,30 +23,31 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void Page_Load(object sender, System.EventArgs e) {
-
+        protected void Page_Load(object sender, EventArgs e)
+        {
             // Determine ModuleId of Announcements Portal Module
             moduleId = Int32.Parse(Request.Params["Mid"]);
 
             // Verify that the current user has access to edit this module
-            if (PortalSecurity.HasEditPermissions(moduleId) == false) {
+            if (PortalSecurity.HasEditPermissions(moduleId) == false)
+            {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
 
-            if (Page.IsPostBack == false) {
-
-                if (moduleId > 0) {
-            
+            if (Page.IsPostBack == false)
+            {
+                if (moduleId > 0)
+                {
                     Hashtable settings;
-                
+
                     // Get settings from the database
                     settings = Configuration.GetModuleSettings(moduleId);
-                
+
                     Src.Text = (String) settings["src"];
                     Width.Text = (String) settings["width"];
                     Height.Text = (String) settings["height"];
                 }
-            
+
                 // Store URL Referrer to return to portal
                 ViewState["UrlReferrer"] = Request.UrlReferrer.ToString();
             }
@@ -62,11 +62,11 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void UpdateBtn_Click(Object sender, EventArgs e) {
-
+        protected void UpdateBtn_Click(Object sender, EventArgs e)
+        {
             // Update settings in the database
-            Configuration config = new Configuration();
-        
+            var config = new Configuration();
+
             config.UpdateModuleSetting(moduleId, "src", Src.Text);
             config.UpdateModuleSetting(moduleId, "height", Height.Text);
             config.UpdateModuleSetting(moduleId, "width", Width.Text);
@@ -83,31 +83,30 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void CancelBtn_Click(Object sender, EventArgs e) {
-
+        protected void CancelBtn_Click(Object sender, EventArgs e)
+        {
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
-        
-        public EditImage() {
-            Page.Init += new System.EventHandler(Page_Init);
-        }
 
-        protected void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {    
-
+        private void InitializeComponent()
+        {
         }
-		#endregion
+
+        #endregion
     }
 }

@@ -20,6 +20,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -152,12 +155,6 @@
     <Content Include="images\sm_dotnet.gif" />
     <Content Include="images\spacer.gif" />
     <Content Include="images\up.gif" />
-    <Content Include="MobileDefault.aspx" />
-    <Content Include="MobileModules\Announcements.ascx" />
-    <Content Include="MobileModules\Contacts.ascx" />
-    <Content Include="MobileModules\Events.ascx" />
-    <Content Include="MobileModules\Text.ascx" />
-    <Content Include="MobileModuleTitle.ascx" />
     <Content Include="PortalCfg.xml" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -278,9 +275,6 @@
     <Compile Include="Components\EventsDB.cs" />
     <Compile Include="Components\HtmlTextDB.cs" />
     <Compile Include="Components\LinksDB.cs" />
-    <Compile Include="Components\MobileControls.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Components\RolesDB.cs" />
     <Compile Include="Components\Security.cs" />
     <Compile Include="Default.aspx.cs">
@@ -461,15 +455,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MobileDefault.aspx.cs">
-      <DependentUpon>MobileDefault.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MobileDefault.aspx.designer.cs">
-      <DependentUpon>MobileDefault.aspx</DependentUpon>
-    </Compile>
     <Compile Include="PortalCfg.cs">
       <DependentUpon>PortalCfg.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

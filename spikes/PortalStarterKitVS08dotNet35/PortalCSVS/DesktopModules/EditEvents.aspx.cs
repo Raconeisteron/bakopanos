@@ -1,23 +1,22 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNET.StarterKit.Portal
+{
+    public partial class EditEvents : Page
+    {
+        private int itemId;
+        private int moduleId;
+        protected RequiredFieldValidator RequiredFieldValidator1;
+        protected RequiredFieldValidator RequiredFieldValidator2;
+        protected RequiredFieldValidator RequiredFieldValidator3;
 
-    public partial class EditEvents : System.Web.UI.Page {
-        protected System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        protected System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-        protected System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
-    
-        int itemId = 0;
-        int moduleId = 0;
+        public EditEvents()
+        {
+            Page.Init += Page_Init;
+        }
 
         //****************************************************************
         //
@@ -29,18 +28,20 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void Page_Load(object sender, System.EventArgs e) {
-
+        protected void Page_Load(object sender, EventArgs e)
+        {
             // Determine ModuleId of Events Portal Module
             moduleId = Int32.Parse(Request.Params["Mid"]);
 
             // Verify that the current user has access to edit this module
-            if (PortalSecurity.HasEditPermissions(moduleId) == false) {
+            if (PortalSecurity.HasEditPermissions(moduleId) == false)
+            {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
 
             // Determine ItemId of Events to Update
-            if (Request.Params["ItemId"] != null) {
+            if (Request.Params["ItemId"] != null)
+            {
                 itemId = Int32.Parse(Request.Params["ItemId"]);
             }
 
@@ -48,24 +49,24 @@ namespace ASPNET.StarterKit.Portal {
             // event itemId value is specified, and if so populate page
             // contents with the event details
 
-            if (Page.IsPostBack == false) {
-
-                if (itemId != 0) {
-
+            if (Page.IsPostBack == false)
+            {
+                if (itemId != 0)
+                {
                     // Obtain a single row of event information
-                    ASPNET.StarterKit.Portal.EventsDB events = new ASPNET.StarterKit.Portal.EventsDB();
+                    var events = new EventsDB();
                     SqlDataReader dr = events.GetSingleEvent(itemId);
-                
+
                     // Read first row from database
                     dr.Read();
 
-					// Security check.  verify that itemid is within the module.
-					int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
-					if (dbModuleID != moduleId)
-					{
-						dr.Close();
-						Response.Redirect("~/Admin/EditAccessDenied.aspx");
-					}
+                    // Security check.  verify that itemid is within the module.
+                    int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
+                    if (dbModuleID != moduleId)
+                    {
+                        dr.Close();
+                        Response.Redirect("~/Admin/EditAccessDenied.aspx");
+                    }
 
                     TitleField.Text = (String) dr["Title"];
                     DescriptionField.Text = (String) dr["Description"];
@@ -73,7 +74,7 @@ namespace ASPNET.StarterKit.Portal {
                     CreatedBy.Text = (String) dr["CreatedByUser"];
                     WhereWhenField.Text = (String) dr["WhereWhen"];
                     CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
-                
+
                     dr.Close();
                 }
 
@@ -90,23 +91,25 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void UpdateBtn_Click(Object sender, EventArgs e) {
-
+        protected void UpdateBtn_Click(Object sender, EventArgs e)
+        {
             // Only Update if the Entered Data is Valid
-            if (Page.IsValid == true) {
-
+            if (Page.IsValid)
+            {
                 // Create an instance of the Event DB component
-                ASPNET.StarterKit.Portal.EventsDB events = new ASPNET.StarterKit.Portal.EventsDB();
+                var events = new EventsDB();
 
-                if (itemId == 0) {
-
+                if (itemId == 0)
+                {
                     // Add the event within the Events table
-                    events.AddEvent( moduleId, itemId, Context.User.Identity.Name, TitleField.Text, DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text );
+                    events.AddEvent(moduleId, itemId, Context.User.Identity.Name, TitleField.Text,
+                                    DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
                 }
-                else {
-
+                else
+                {
                     // Update the event within the Events table
-                    events.UpdateEvent( moduleId, itemId, Context.User.Identity.Name, TitleField.Text, DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text );
+                    events.UpdateEvent(moduleId, itemId, Context.User.Identity.Name, TitleField.Text,
+                                       DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
                 }
 
                 // Redirect back to the portal home page
@@ -122,14 +125,14 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void DeleteBtn_Click(Object sender, EventArgs e) {
-
+        protected void DeleteBtn_Click(Object sender, EventArgs e)
+        {
             // Only attempt to delete the item if it is an existing item
             // (new items will have "ItemId" of 0)
 
-            if (itemId != 0) {
-
-                ASPNET.StarterKit.Portal.EventsDB events = new ASPNET.StarterKit.Portal.EventsDB();
+            if (itemId != 0)
+            {
+                var events = new EventsDB();
                 events.DeleteEvent(itemId);
             }
 
@@ -145,34 +148,30 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void CancelBtn_Click(Object sender, EventArgs e) {
-
+        protected void CancelBtn_Click(Object sender, EventArgs e)
+        {
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
-        
-        public EditEvents() {
 
-            Page.Init += new System.EventHandler(Page_Init);
-        }
-
-        protected void Page_Init(object sender, EventArgs e) {
-
+        protected void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {    
-
+        private void InitializeComponent()
+        {
         }
-		#endregion
 
+        #endregion
     }
 }

@@ -1,22 +1,21 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNET.StarterKit.Portal
+{
+    public partial class ManageUsers : Page
+    {
+        private int tabId;
+        private int tabIndex;
+        private int userId = -1;
+        private String userName = "";
 
-    public partial class ManageUsers : System.Web.UI.Page {
-
-        int    userId   = -1;
-        String userName = "";
-        int tabIndex = 0;
-        int tabId = 0;
+        public ManageUsers()
+        {
+            Page.Init += Page_Init;
+        }
 
         //*******************************************************
         //
@@ -25,50 +24,56 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected void Page_Load(object sender, System.EventArgs e) {
-
+        protected void Page_Load(object sender, EventArgs e)
+        {
             // Verify that the current user has access to access this page
-            if (PortalSecurity.IsInRoles("Admins") == false) {
+            if (PortalSecurity.IsInRoles("Admins") == false)
+            {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
 
             // Calculate userid
-            if (Request.Params["userid"] != null) {
+            if (Request.Params["userid"] != null)
+            {
                 userId = Int32.Parse(Request.Params["userid"]);
             }
-            if (Request.Params["username"] != null) {
-                userName = (String)Request.Params["username"];
+            if (Request.Params["username"] != null)
+            {
+                userName = Request.Params["username"];
             }
-            if (Request.Params["tabid"] != null) {
+            if (Request.Params["tabid"] != null)
+            {
                 tabId = Int32.Parse(Request.Params["tabid"]);
             }
-            if (Request.Params["tabindex"] != null) {
+            if (Request.Params["tabindex"] != null)
+            {
                 tabIndex = Int32.Parse(Request.Params["tabindex"]);
             }
 
 
             // If this is the first visit to the page, bind the role data to the datalist
-            if (Page.IsPostBack == false) {
-
+            if (Page.IsPostBack == false)
+            {
                 // new user?
-                if (userName == "") {
-
-                    UsersDB users = new UsersDB();
+                if (userName == "")
+                {
+                    var users = new UsersDB();
 
                     // make a unique new user record
                     int uid = -1;
                     int i = 0;
 
-                    while (uid == -1) {
-
-                        String friendlyName = "New User created " + DateTime.Now.ToString();
-                        userName = "New User" + i.ToString();
+                    while (uid == -1)
+                    {
+                        String friendlyName = "New User created " + DateTime.Now;
+                        userName = "New User" + i;
                         uid = users.AddUser(friendlyName, userName, "");
                         i++;
                     }
 
                     // redirect to this page with the corrected querystring args
-                    Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + uid + "&username=" + userName + "&tabindex=" + tabIndex + "&tabid=" + tabId);
+                    Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + uid + "&username=" + userName + "&tabindex=" +
+                                      tabIndex + "&tabid=" + tabId);
                 }
 
                 BindData();
@@ -82,10 +87,10 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected void Save_Click(Object Sender, EventArgs e) {
-
+        protected void Save_Click(Object Sender, EventArgs e)
+        {
             // Obtain PortalSettings from Current Context
-            PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+            var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Navigate back to admin page
             Response.Redirect("~/DesktopDefault.aspx?tabindex=" + tabIndex + "&tabid=" + tabId);
@@ -98,15 +103,15 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected void AddRole_Click(Object sender, EventArgs e) {
-
+        protected void AddRole_Click(Object sender, EventArgs e)
+        {
             int roleId;
 
             //get user id from dropdownlist of existing users
             roleId = Int32.Parse(allRoles.SelectedItem.Value);
 
             // Add a new userRole to the database
-            RolesDB roles = new RolesDB();
+            var roles = new RolesDB();
             roles.AddUserRole(roleId, userId);
 
             // Rebind list
@@ -120,14 +125,15 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected void UpdateUser_Click(Object sender, EventArgs e) {
-
+        protected void UpdateUser_Click(Object sender, EventArgs e)
+        {
             // update the user record in the database
-            UsersDB users = new UsersDB();
+            var users = new UsersDB();
             users.UpdateUser(userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
 
             // redirect to this page with the corrected querystring args
-            Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + userId + "&username=" + Email.Text + "&tabindex=" + tabIndex + "&tabid=" + tabId);
+            Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + userId + "&username=" + Email.Text + "&tabindex=" +
+                              tabIndex + "&tabid=" + tabId);
         }
 
         //*******************************************************
@@ -138,10 +144,10 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void UserRoles_ItemCommand(object sender, DataListCommandEventArgs e) {
-
-            RolesDB roles = new RolesDB();
-            int roleId = (int) userRoles.DataKeys[e.Item.ItemIndex];
+        private void UserRoles_ItemCommand(object sender, DataListCommandEventArgs e)
+        {
+            var roles = new RolesDB();
+            var roleId = (int) userRoles.DataKeys[e.Item.ItemIndex];
 
             // update database
             roles.DeleteUserRole(roleId, userId);
@@ -160,10 +166,10 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void BindData() {
-
+        private void BindData()
+        {
             // Bind the Email and Password
-            UsersDB users = new UsersDB();
+            var users = new UsersDB();
             SqlDataReader dr = users.GetSingleUser(userName);
 
             // Read first row from database
@@ -174,8 +180,8 @@ namespace ASPNET.StarterKit.Portal {
             dr.Close();
 
             // add the user name to the title
-            if (userName != "") {
-
+            if (userName != "")
+            {
                 title.InnerText = "Manage User: " + userName;
             }
 
@@ -184,21 +190,18 @@ namespace ASPNET.StarterKit.Portal {
             userRoles.DataBind();
 
             // Obtain PortalSettings from Current Context
-            PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+            var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Get the portal's roles from the database
-            RolesDB roles = new RolesDB();
+            var roles = new RolesDB();
 
             // bind all portal roles to dropdownlist
             allRoles.DataSource = roles.GetPortalRoles(portalSettings.PortalId);
             allRoles.DataBind();
         }
 
-        public ManageUsers() {
-            Page.Init += new System.EventHandler(Page_Init);
-        }
-
-        protected void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -206,14 +209,17 @@ namespace ASPNET.StarterKit.Portal {
         }
 
         #region Web Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
-			this.userRoles.ItemCommand += new System.Web.UI.WebControls.DataListCommandEventHandler(this.UserRoles_ItemCommand);
+        private void InitializeComponent()
+        {
+            this.userRoles.ItemCommand +=
+                new System.Web.UI.WebControls.DataListCommandEventHandler(this.UserRoles_ItemCommand);
+        }
 
-		}
         #endregion
     }
 }

@@ -1,21 +1,18 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using System.Data.SqlClient;
+using System.Web.UI;
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNET.StarterKit.Portal
+{
+    public partial class EditAnnouncements : Page
+    {
+        private int itemId;
+        private int moduleId;
 
-    public partial class EditAnnouncements : System.Web.UI.Page {
-    
-
-        int itemId = 0;
-        int moduleId = 0;
+        public EditAnnouncements()
+        {
+            Page.Init += Page_Init;
+        }
 
         //****************************************************************
         //
@@ -27,18 +24,20 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void Page_Load(object sender, System.EventArgs e) {
-
+        protected void Page_Load(object sender, EventArgs e)
+        {
             // Determine ModuleId of Announcements Portal Module
             moduleId = Int32.Parse(Request.Params["Mid"]);
 
             // Verify that the current user has access to edit this module
-            if (PortalSecurity.HasEditPermissions(moduleId) == false) {
+            if (PortalSecurity.HasEditPermissions(moduleId) == false)
+            {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
 
             // Determine ItemId of Announcement to Update
-            if (Request.Params["ItemId"] != null) {
+            if (Request.Params["ItemId"] != null)
+            {
                 itemId = Int32.Parse(Request.Params["ItemId"]);
             }
 
@@ -46,24 +45,24 @@ namespace ASPNET.StarterKit.Portal {
             // announcement itemId value is specified, and if so populate page
             // contents with the announcement details
 
-            if (Page.IsPostBack == false) {
-
-                if (itemId != 0) {
-
+            if (Page.IsPostBack == false)
+            {
+                if (itemId != 0)
+                {
                     // Obtain a single row of announcement information
-                    ASPNET.StarterKit.Portal.AnnouncementsDB announcementDB = new ASPNET.StarterKit.Portal.AnnouncementsDB();
+                    var announcementDB = new AnnouncementsDB();
                     SqlDataReader dr = announcementDB.GetSingleAnnouncement(itemId);
-                
+
                     // Load first row into DataReader
                     dr.Read();
-                
-					// Security check.  verify that itemid is within the module.
-					int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
-					if (dbModuleID != moduleId)
-					{
-						dr.Close();
-						Response.Redirect("~/Admin/EditAccessDenied.aspx");
-					}
+
+                    // Security check.  verify that itemid is within the module.
+                    int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
+                    if (dbModuleID != moduleId)
+                    {
+                        dr.Close();
+                        Response.Redirect("~/Admin/EditAccessDenied.aspx");
+                    }
 
                     TitleField.Text = (String) dr["Title"];
                     MoreLinkField.Text = (String) dr["MoreLink"];
@@ -72,7 +71,7 @@ namespace ASPNET.StarterKit.Portal {
                     ExpireField.Text = ((DateTime) dr["ExpireDate"]).ToShortDateString();
                     CreatedBy.Text = (String) dr["CreatedByUser"];
                     CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
-                
+
                     // Close the datareader
                     dr.Close();
                 }
@@ -90,23 +89,27 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void UpdateBtn_Click(Object sender, EventArgs e) {
-
+        protected void UpdateBtn_Click(Object sender, EventArgs e)
+        {
             // Only Update if the Entered Data is Valid
-            if (Page.IsValid == true) {
-
+            if (Page.IsValid)
+            {
                 // Create an instance of the Announcement DB component
-                ASPNET.StarterKit.Portal.AnnouncementsDB announcementDB = new ASPNET.StarterKit.Portal.AnnouncementsDB();
+                var announcementDB = new AnnouncementsDB();
 
-                if (itemId == 0) {
-
+                if (itemId == 0)
+                {
                     // Add the announcement within the Announcements table
-                    announcementDB.AddAnnouncement( moduleId, itemId, Context.User.Identity.Name, TitleField.Text, DateTime.Parse(ExpireField.Text), DescriptionField.Text, MoreLinkField.Text, MobileMoreField.Text);
+                    announcementDB.AddAnnouncement(moduleId, itemId, Context.User.Identity.Name, TitleField.Text,
+                                                   DateTime.Parse(ExpireField.Text), DescriptionField.Text,
+                                                   MoreLinkField.Text, MobileMoreField.Text);
                 }
-                else {
-
+                else
+                {
                     // Update the announcement within the Announcements table
-                    announcementDB.UpdateAnnouncement( moduleId, itemId, Context.User.Identity.Name, TitleField.Text, DateTime.Parse(ExpireField.Text), DescriptionField.Text, MoreLinkField.Text, MobileMoreField.Text);
+                    announcementDB.UpdateAnnouncement(moduleId, itemId, Context.User.Identity.Name, TitleField.Text,
+                                                      DateTime.Parse(ExpireField.Text), DescriptionField.Text,
+                                                      MoreLinkField.Text, MobileMoreField.Text);
                 }
 
                 // Redirect back to the portal home page
@@ -122,14 +125,14 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void DeleteBtn_Click(Object sender, EventArgs e) {
-
+        protected void DeleteBtn_Click(Object sender, EventArgs e)
+        {
             // Only attempt to delete the item if it is an existing item
             // (new items will have "ItemId" of 0)
 
-            if (itemId != 0) {
-
-                ASPNET.StarterKit.Portal.AnnouncementsDB announcementDB = new ASPNET.StarterKit.Portal.AnnouncementsDB();
+            if (itemId != 0)
+            {
+                var announcementDB = new AnnouncementsDB();
                 announcementDB.DeleteAnnouncement(itemId);
             }
 
@@ -145,31 +148,30 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void CancelBtn_Click(Object sender, EventArgs e) {
-
+        protected void CancelBtn_Click(Object sender, EventArgs e)
+        {
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
-        
-        public EditAnnouncements() {
-            Page.Init += new System.EventHandler(Page_Init);
-        }
 
-        protected void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {    
-
+        private void InitializeComponent()
+        {
         }
-		#endregion
+
+        #endregion
     }
 }
