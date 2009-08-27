@@ -11,17 +11,14 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal {
 
-    public abstract class DesktopPortalBanner : System.Web.UI.UserControl {
-        protected System.Web.UI.WebControls.Label WelcomeMessage;
-        protected System.Web.UI.WebControls.Label siteName;
-        protected System.Web.UI.WebControls.DataList tabs;
+    public partial  class DesktopPortalBanner : System.Web.UI.UserControl {
 
 
         public int          tabIndex;
         public bool         ShowTabs = true;
         protected String    LogoffLink = "";
 
-        private void Page_Load(object sender, System.EventArgs e) {
+        protected void Page_Load(object sender, System.EventArgs e) {
 
             // Obtain PortalSettings from Current Context
             PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
@@ -74,7 +71,7 @@ namespace ASPNET.StarterKit.Portal {
             this.Init += new System.EventHandler(Page_Init);
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -86,7 +83,6 @@ namespace ASPNET.StarterKit.Portal {
         ///		the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.Load += new System.EventHandler(this.Page_Load);
 
         }
 		#endregion

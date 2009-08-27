@@ -11,8 +11,7 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal {
 
-    public abstract class Discussion : ASPNET.StarterKit.Portal.PortalModuleControl {
-        protected System.Web.UI.WebControls.DataList TopLevelList;
+    public partial  class Discussion : ASPNET.StarterKit.Portal.PortalModuleControl {
 
 
         //*******************************************************
@@ -23,7 +22,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
+        protected void Page_Load(object sender, System.EventArgs e) {
 
             if (Page.IsPostBack == false) {
                 BindList();
@@ -136,7 +135,7 @@ namespace ASPNET.StarterKit.Portal {
             this.Init += new System.EventHandler(Page_Init);
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -149,7 +148,6 @@ namespace ASPNET.StarterKit.Portal {
         /// </summary>
         private void InitializeComponent() {
             this.TopLevelList.ItemCommand += new System.Web.UI.WebControls.DataListCommandEventHandler(this.TopLevelList_Select);
-            this.Load += new System.EventHandler(this.Page_Load);
 
         }
 		#endregion

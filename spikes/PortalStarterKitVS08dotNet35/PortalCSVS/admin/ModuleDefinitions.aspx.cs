@@ -12,15 +12,7 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal {
 
-    public class ModuleDefinitions : System.Web.UI.Page {
-        protected System.Web.UI.WebControls.TextBox FriendlyName;
-        protected System.Web.UI.WebControls.RequiredFieldValidator Req1;
-        protected System.Web.UI.WebControls.TextBox DesktopSrc;
-        protected System.Web.UI.WebControls.RequiredFieldValidator Req2;
-        protected System.Web.UI.WebControls.TextBox MobileSrc;
-        protected System.Web.UI.WebControls.LinkButton updateButton;
-        protected System.Web.UI.WebControls.LinkButton cancelButton;
-        protected System.Web.UI.WebControls.LinkButton deleteButton;
+    public partial class ModuleDefinitions : System.Web.UI.Page {
     
 
         int defId   = -1;
@@ -34,7 +26,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
+        protected void Page_Load(object sender, System.EventArgs e) {
 
             // Verify that the current user has access to access this page
             if (PortalSecurity.IsInRoles("Admins") == false) {
@@ -85,7 +77,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        private void UpdateBtn_Click(Object sender, EventArgs e) {
+        protected void UpdateBtn_Click(Object sender, EventArgs e) {
 
             if (Page.IsValid == true) {
 
@@ -118,7 +110,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        private void DeleteBtn_Click(Object sender, EventArgs e) {
+        protected void DeleteBtn_Click(Object sender, EventArgs e) {
 
             // delete definition
             Configuration config = new Configuration();
@@ -136,7 +128,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        private void CancelBtn_Click(Object sender, EventArgs e) {
+        protected void CancelBtn_Click(Object sender, EventArgs e) {
 
             // Redirect back to the portal home page
             Response.Redirect("~/DesktopDefault.aspx?tabindex=" + tabIndex + "&tabid=" + tabId);
@@ -146,7 +138,7 @@ namespace ASPNET.StarterKit.Portal {
             Page.Init += new System.EventHandler(Page_Init);
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -159,10 +151,6 @@ namespace ASPNET.StarterKit.Portal {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {    
-            this.updateButton.Click += new System.EventHandler(this.UpdateBtn_Click);
-            this.cancelButton.Click += new System.EventHandler(this.CancelBtn_Click);
-            this.deleteButton.Click += new System.EventHandler(this.DeleteBtn_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
 
         }
 		#endregion

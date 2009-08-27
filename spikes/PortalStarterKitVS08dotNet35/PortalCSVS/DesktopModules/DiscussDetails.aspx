@@ -1,4 +1,4 @@
-<%@ Page language="c#" CodeBehind="DiscussDetails.aspx.cs" AutoEventWireup="false" Inherits="ASPNET.StarterKit.Portal.DiscussDetails" %>
+<%@ Page language="c#" CodeBehind="DiscussDetails.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.DiscussDetails" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 
@@ -29,7 +29,7 @@
                                 <td align="right">
                                     <asp:panel id="ButtonPanel" runat="server"><A class="CommandButton" id="prevItem" title="Previous Message" runat="server">
                                             <IMG src='<%=Global.GetApplicationPath(Request) + "/images/rew.gif"  %>' border="0"></A>&nbsp; <A class="CommandButton" id="nextItem" title="Next Message" runat="server"><IMG src='<%=Global.GetApplicationPath(Request) + "/images/fwd.gif"  %>' border="0"></A>&nbsp; 
-                                            <asp:LinkButton id="ReplyBtn" runat="server" EnableViewState="false" Cssclass="CommandButton" Text="Reply to this Message"></asp:LinkButton>
+                                            <asp:LinkButton id="ReplyBtn" runat="server" EnableViewState="false" Cssclass="CommandButton" Text="Reply to this Message" onclick="ReplyBtn_Click"></asp:LinkButton>
                                     </asp:panel>
                                 </td>
                             </tr>
@@ -65,9 +65,9 @@
                                         &nbsp;
                                     </TD>
                                     <TD>
-                                        <asp:LinkButton class="CommandButton" id="updateButton" runat="server" Text="Submit"></asp:LinkButton>
+                                        <asp:LinkButton class="CommandButton" id="updateButton" runat="server" Text="Submit" onclick="UpdateBtn_Click"></asp:LinkButton>
                                         &nbsp;
-                                        <asp:LinkButton class="CommandButton" id="cancelButton" runat="server" Text="Cancel" CausesValidation="False"></asp:LinkButton>
+                                        <asp:LinkButton class="CommandButton" id="cancelButton" runat="server" Text="Cancel" CausesValidation="False" onclick="CancelBtn_Click"></asp:LinkButton>
                                         &nbsp;
                                     </TD>
                                 </TR>

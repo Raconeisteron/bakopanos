@@ -1,4 +1,4 @@
-<%@ Page language="c#" CodeBehind="EditXml.aspx.cs" AutoEventWireup="false" Inherits="ASPNET.StarterKit.Portal.EditXml" %>
+<%@ Page language="c#" CodeBehind="EditXml.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.EditXml" %>
 <%@ Register TagPrefix="portal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 
@@ -60,9 +60,9 @@
                                         </tr>
                                     </table>
                                     <p>
-                                        <asp:LinkButton id="updateButton" Text="Update" runat="server" class="CommandButton" BorderStyle="none" />
+                                        <asp:LinkButton id="updateButton" Text="Update" runat="server" class="CommandButton" BorderStyle="none" onclick="UpdateBtn_Click" />
                                         &nbsp;
-                                        <asp:LinkButton id="cancelButton" Text="Cancel" CausesValidation="False" runat="server" class="CommandButton" BorderStyle="none" />
+                                        <asp:LinkButton id="cancelButton" Text="Cancel" CausesValidation="False" runat="server" class="CommandButton" BorderStyle="none" onclick="CancelBtn_Click" />
                                     </p>
                                 </td>
                             </tr>

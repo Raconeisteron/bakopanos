@@ -11,8 +11,7 @@ using System.Web.UI.HtmlControls;
 
 namespace ASPNET.StarterKit.Portal {
 
-    public class NotImplemented : System.Web.UI.Page {
-        protected System.Web.UI.HtmlControls.HtmlGenericControl title;
+    public partial class NotImplemented : System.Web.UI.Page {
     
         //****************************************************************
         //
@@ -21,7 +20,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
+        protected void Page_Load(object sender, System.EventArgs e) {
 
             if (Request.Params["title"] != null) {
                 title.InnerHtml = Request.Params["title"].ToString();
@@ -32,7 +31,7 @@ namespace ASPNET.StarterKit.Portal {
             Page.Init += new System.EventHandler(Page_Init);
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -45,7 +44,6 @@ namespace ASPNET.StarterKit.Portal {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {    
-            this.Load += new System.EventHandler(this.Page_Load);
 
         }
 		#endregion

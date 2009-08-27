@@ -12,21 +12,9 @@ namespace ASPNET.StarterKit.Portal {
     /// <summary>
     /// Summary description for Register.
     /// </summary>
-    public class Register : System.Web.UI.Page {
-        protected System.Web.UI.WebControls.TextBox Name;
-        protected System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        protected System.Web.UI.WebControls.TextBox Email;
-        protected System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
-        protected System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-        protected System.Web.UI.WebControls.TextBox Password;
-        protected System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
-        protected System.Web.UI.WebControls.TextBox ConfirmPassword;
-        protected System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
-        protected System.Web.UI.WebControls.CompareValidator CompareValidator1;
-        protected System.Web.UI.WebControls.LinkButton RegisterBtn;
-        protected System.Web.UI.WebControls.Label Message;
+    public partial class Register : System.Web.UI.Page {
     
-        private void RegisterBtn_Click(object sender, System.EventArgs e) {
+        protected void RegisterBtn_Click(object sender, System.EventArgs e) {
 
             // Only attempt a login if all form fields on the page are valid
             if (Page.IsValid == true) {
@@ -52,7 +40,7 @@ namespace ASPNET.StarterKit.Portal {
             Page.Init += new System.EventHandler(Page_Init);
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -65,7 +53,6 @@ namespace ASPNET.StarterKit.Portal {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {    
-            this.RegisterBtn.Click += new System.EventHandler(this.RegisterBtn_Click);
 
         }
 		#endregion

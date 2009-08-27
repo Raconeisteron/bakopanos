@@ -1,4 +1,4 @@
-<%@ Control Inherits="ASPNET.StarterKit.Portal.SiteSettings" CodeBehind="SiteSettings.ascx.cs" Language="c#" AutoEventWireup="false" %>
+<%@ Control Inherits="ASPNET.StarterKit.Portal.SiteSettings" CodeBehind="SiteSettings.ascx.cs" Language="c#" AutoEventWireup="True" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Title" Src="~/DesktopModuleTitle.ascx"%>
 
 <ASPNETPortal:title runat="server" id=Title1 />
@@ -24,7 +24,7 @@
             &nbsp;
         </td>
         <td colspan="2">
-            <asp:LinkButton id="applyBtn" class="CommandButton" Text="Apply Changes" runat="server" />
+            <asp:LinkButton id="applyBtn" class="CommandButton" Text="Apply Changes" runat="server" onclick="Apply_Click" />
         </td>
     </tr>
 </table>

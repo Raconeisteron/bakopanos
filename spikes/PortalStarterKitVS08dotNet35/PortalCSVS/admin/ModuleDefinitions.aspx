@@ -1,4 +1,4 @@
-<%@ Page language="c#" CodeBehind="ModuleDefinitions.aspx.cs" AutoEventWireup="false" Inherits="ASPNET.StarterKit.Portal.ModuleDefinitions" %>
+<%@ Page language="c#" CodeBehind="ModuleDefinitions.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.ModuleDefinitions" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 
@@ -82,11 +82,11 @@
                                         </tr>
                                     </table>
                                     <p>
-                                        <asp:LinkButton id="updateButton" Text="Update" runat="server" class="CommandButton" BorderStyle="none" />
+                                        <asp:LinkButton id="updateButton" Text="Update" runat="server" class="CommandButton" BorderStyle="none" onclick="UpdateBtn_Click" />
                                         &nbsp;
-                                        <asp:LinkButton id="cancelButton" Text="Cancel" CausesValidation="False" runat="server" class="CommandButton" BorderStyle="none" />
+                                        <asp:LinkButton id="cancelButton" Text="Cancel" CausesValidation="False" runat="server" class="CommandButton" BorderStyle="none" onclick="CancelBtn_Click" />
                                         &nbsp;
-                                        <asp:LinkButton id="deleteButton" Text="Delete this module type" CausesValidation="False" runat="server" class="CommandButton" BorderStyle="none" />
+                                        <asp:LinkButton id="deleteButton" Text="Delete this module type" CausesValidation="False" runat="server" class="CommandButton" BorderStyle="none" onclick="DeleteBtn_Click" />
                                     </p>
                                 </td>
                             </tr>

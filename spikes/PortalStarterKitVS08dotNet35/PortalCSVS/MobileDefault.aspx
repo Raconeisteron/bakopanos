@@ -1,4 +1,4 @@
-<%@ Page Language="c#" Inherits="ASPNET.StarterKit.Portal.MobileDefault" CodeBehind="MobileDefault.aspx.cs" AutoEventWireup="false" %>
+<%@ Page Language="c#" Inherits="ASPNET.StarterKit.Portal.MobileDefault" CodeBehind="MobileDefault.aspx.cs" AutoEventWireup="True" %>
 <%@ Register TagPrefix="mobile" Namespace="System.Web.UI.MobileControls" Assembly="System.Web.Mobile" %>
 <%@ Register TagPrefix="ASPNETPortal" Namespace="ASPNET.StarterKit.Portal.MobileControls" Assembly="ASPNETPortal" %>
 <%--
@@ -44,6 +44,6 @@
             </HeaderTemplate>
         </Choice>
     </mobile:DeviceSpecific>
-    <ASPNETPortal:TabbedPanel id="TabView" runat="server" ActiveTabTextColor="#ffffff" ActiveTabColor="#000000" TabTextColor="#000000" TabColor="#bbbb9a">
+    <ASPNETPortal:TabbedPanel id="TabView" runat="server" ActiveTabTextColor="#ffffff" ActiveTabColor="#000000" TabTextColor="#000000" TabColor="#bbbb9a" ontabactivate="TabView_OnTabActivate">
     </ASPNETPortal:TabbedPanel>
 </mobile:Form>

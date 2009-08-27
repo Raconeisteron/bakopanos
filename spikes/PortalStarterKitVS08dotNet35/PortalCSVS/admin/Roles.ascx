@@ -1,4 +1,4 @@
-<%@ Control Inherits="ASPNET.StarterKit.Portal.Roles" CodeBehind="Roles.ascx.cs" Language="c#" AutoEventWireup="false" %>
+<%@ Control Inherits="ASPNET.StarterKit.Portal.Roles" CodeBehind="Roles.ascx.cs" Language="c#" AutoEventWireup="True" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Title" Src="~/DesktopModuleTitle.ascx"%>
 
 <ASPNETPortal:title runat="server" id="Title1" />
@@ -31,7 +31,7 @@
             &nbsp;
         </td>
         <td>
-            <asp:LinkButton cssclass="CommandButton" Text="Add New Role" runat="server" id="AddRoleBtn">
+            <asp:LinkButton cssclass="CommandButton" Text="Add New Role" runat="server" id="AddRoleBtn" onclick="AddRole_Click">
                 Add New Role</asp:LinkButton>
         </td>
     </tr>

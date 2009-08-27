@@ -11,16 +11,13 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal {
 
-    public class DesktopDefault : System.Web.UI.Page {
-        protected System.Web.UI.HtmlControls.HtmlTableCell LeftPane;
-        protected System.Web.UI.HtmlControls.HtmlTableCell ContentPane;
-        protected System.Web.UI.HtmlControls.HtmlTableCell RightPane;
+    public partial class DesktopDefault : System.Web.UI.Page {
     
         public DesktopDefault() {
             Page.Init += new System.EventHandler(Page_Init);
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //

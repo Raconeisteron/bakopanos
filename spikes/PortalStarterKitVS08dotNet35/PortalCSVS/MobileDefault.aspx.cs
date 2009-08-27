@@ -12,11 +12,7 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal {
 
-    public class MobileDefault : System.Web.UI.MobileControls.MobilePage {
-        protected System.Web.UI.MobileControls.Label Label1;
-        protected ASPNET.StarterKit.Portal.MobileControls.TabbedPanel TabView;
-        protected System.Web.UI.MobileControls.Form Form1;
-        protected System.Web.UI.MobileControls.DeviceSpecific DeviceSpecific1;
+    public partial class MobileDefault : System.Web.UI.MobileControls.MobilePage {
 
         public MobileDefault() {
             Page.Init += new System.EventHandler(Page_Init);
@@ -39,7 +35,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -149,7 +145,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        private void TabView_OnTabActivate(Object sender, EventArgs e) {
+        protected void TabView_OnTabActivate(Object sender, EventArgs e) {
 
             // Obtain PortalSettings from Current Context
             PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
@@ -204,8 +200,6 @@ namespace ASPNET.StarterKit.Portal {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-
-            this.TabView.TabActivate += new System.EventHandler(this.TabView_OnTabActivate);
 
         }
         #endregion

@@ -11,13 +11,13 @@ using System.Web.Security;
 
 namespace ASPNET.StarterKit.Portal {
 
-    public class Logoff : System.Web.UI.Page {
+    public partial class Logoff : System.Web.UI.Page {
 
         public Logoff() {
             Page.Init += new System.EventHandler(Page_Init);
         }
 
-        private void Page_Load(object sender, System.EventArgs e) {
+        protected void Page_Load(object sender, System.EventArgs e) {
 
             // Log User Off from Cookie Authentication System
             FormsAuthentication.SignOut();
@@ -31,7 +31,7 @@ namespace ASPNET.StarterKit.Portal {
             Response.Redirect(Global.GetApplicationPath(Request));
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -44,7 +44,6 @@ namespace ASPNET.StarterKit.Portal {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {    
-            this.Load += new System.EventHandler(this.Page_Load);
         }
 		#endregion
     }

@@ -10,12 +10,7 @@ using System.Web.UI.HtmlControls;
 
 namespace ASPNET.StarterKit.Portal {
 
-    public class EditImage : System.Web.UI.Page {
-        protected System.Web.UI.WebControls.TextBox Src;
-        protected System.Web.UI.WebControls.TextBox Width;
-        protected System.Web.UI.WebControls.TextBox Height;
-        protected System.Web.UI.WebControls.LinkButton updateButton;
-        protected System.Web.UI.WebControls.LinkButton cancelButton;
+    public partial class EditImage : System.Web.UI.Page {
     
         int moduleId = 0;
 
@@ -29,7 +24,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
+        protected void Page_Load(object sender, System.EventArgs e) {
 
             // Determine ModuleId of Announcements Portal Module
             moduleId = Int32.Parse(Request.Params["Mid"]);
@@ -67,7 +62,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        private void UpdateBtn_Click(Object sender, EventArgs e) {
+        protected void UpdateBtn_Click(Object sender, EventArgs e) {
 
             // Update settings in the database
             Configuration config = new Configuration();
@@ -88,7 +83,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        private void CancelBtn_Click(Object sender, EventArgs e) {
+        protected void CancelBtn_Click(Object sender, EventArgs e) {
 
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
@@ -98,7 +93,7 @@ namespace ASPNET.StarterKit.Portal {
             Page.Init += new System.EventHandler(Page_Init);
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -111,9 +106,6 @@ namespace ASPNET.StarterKit.Portal {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {    
-            this.updateButton.Click += new System.EventHandler(this.UpdateBtn_Click);
-            this.cancelButton.Click += new System.EventHandler(this.CancelBtn_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
 
         }
 		#endregion

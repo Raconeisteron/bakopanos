@@ -9,13 +9,7 @@ using System.Web.UI.HtmlControls;
 
 namespace ASPNET.StarterKit.Portal {
         
-    public abstract class Tabs : ASPNET.StarterKit.Portal.PortalModuleControl {
-        protected System.Web.UI.WebControls.LinkButton addBtn;
-        protected System.Web.UI.WebControls.ListBox tabList;
-        protected System.Web.UI.WebControls.ImageButton upBtn;
-        protected System.Web.UI.WebControls.ImageButton downBtn;
-        protected System.Web.UI.WebControls.ImageButton editBtn;
-        protected System.Web.UI.WebControls.ImageButton deleteBtn;
+    public partial  class Tabs : ASPNET.StarterKit.Portal.PortalModuleControl {
 
 
         int tabIndex = 0;
@@ -29,7 +23,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
+        protected void Page_Load(object sender, System.EventArgs e) {
 
             // Verify that the current user has access to access this page
             if (PortalSecurity.IsInRoles("Admins") == false) {
@@ -75,7 +69,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void UpDown_Click(Object sender, ImageClickEventArgs e) {
+        protected void UpDown_Click(Object sender, ImageClickEventArgs e) {
 
             String cmd = ((ImageButton)sender).CommandName;
         
@@ -114,7 +108,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void DeleteBtn_Click(Object sender, ImageClickEventArgs e) {
+        protected void DeleteBtn_Click(Object sender, ImageClickEventArgs e) {
 
             if (tabList.SelectedIndex != -1) {
 
@@ -142,7 +136,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void AddTab_Click(Object Sender, EventArgs e) {
+        protected void AddTab_Click(Object Sender, EventArgs e) {
 
             // Obtain PortalSettings from Current Context
             PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
@@ -176,7 +170,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void EditBtn_Click(Object sender, ImageClickEventArgs e) {
+        protected void EditBtn_Click(Object sender, ImageClickEventArgs e) {
 
             // Redirect to edit page of currently selected tab
             if (tabList.SelectedIndex != -1) {
@@ -220,7 +214,7 @@ namespace ASPNET.StarterKit.Portal {
             this.Init += new System.EventHandler(Page_Init);
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -232,12 +226,6 @@ namespace ASPNET.StarterKit.Portal {
         ///		the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.addBtn.Click += new System.EventHandler(this.AddTab_Click);
-            this.upBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
-            this.downBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
-            this.editBtn.Click += new System.Web.UI.ImageClickEventHandler(this.EditBtn_Click);
-            this.deleteBtn.Click += new System.Web.UI.ImageClickEventHandler(this.DeleteBtn_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
 
         }
 		#endregion

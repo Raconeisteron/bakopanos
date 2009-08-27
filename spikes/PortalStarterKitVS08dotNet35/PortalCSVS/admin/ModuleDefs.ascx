@@ -1,4 +1,4 @@
-<%@ Control Inherits="ASPNET.StarterKit.Portal.ModuleDefs" CodeBehind="ModuleDefs.ascx.cs" Language="c#" AutoEventWireup="false" %>
+<%@ Control Inherits="ASPNET.StarterKit.Portal.ModuleDefs" CodeBehind="ModuleDefs.ascx.cs" Language="c#" AutoEventWireup="True" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Title" Src="~/DesktopModuleTitle.ascx"%>
 
 <ASPNETPortal:title runat="server" id="Title1" />
@@ -16,7 +16,7 @@
     </tr>
     <tr>
         <td>
-            <asp:LinkButton cssclass="CommandButton" Text="Add New Module Type" runat="server" id="AddDefBtn" />
+            <asp:LinkButton cssclass="CommandButton" Text="Add New Module Type" runat="server" id="AddDefBtn" onclick="AddDef_Click" />
         </td>
     </tr>
 </table>

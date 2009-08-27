@@ -6,9 +6,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
 namespace ASPNET.StarterKit.Portal {
-    public abstract class Roles : ASPNET.StarterKit.Portal.PortalModuleControl {
-        protected System.Web.UI.WebControls.DataList rolesList;
-        protected System.Web.UI.WebControls.LinkButton AddRoleBtn;
+    public partial  class Roles : ASPNET.StarterKit.Portal.PortalModuleControl {
 
         int tabIndex = 0;
         int tabId = 0;
@@ -20,7 +18,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
+        protected void Page_Load(object sender, System.EventArgs e) {
 
             // Verify that the current user has access to access this page
             if (PortalSecurity.IsInRoles("Admins") == false) {
@@ -48,7 +46,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void AddRole_Click(Object Sender, EventArgs e) {
+        protected void AddRole_Click(Object Sender, EventArgs e) {
 
             // Obtain PortalSettings from Current Context
             PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
@@ -144,7 +142,7 @@ namespace ASPNET.StarterKit.Portal {
             this.Init += new System.EventHandler(Page_Init);
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -157,8 +155,6 @@ namespace ASPNET.StarterKit.Portal {
         /// </summary>
         private void InitializeComponent() {
             this.rolesList.ItemCommand += new System.Web.UI.WebControls.DataListCommandEventHandler(this.RolesList_ItemCommand);
-            this.AddRoleBtn.Click += new System.EventHandler(this.AddRole_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
 
         }
 		#endregion

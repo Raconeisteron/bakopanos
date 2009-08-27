@@ -1,4 +1,4 @@
-<%@ Control Inherits="ASPNET.StarterKit.Portal.Users" CodeBehind="Users.ascx.cs" Language="c#" AutoEventWireup="false" %>
+<%@ Control Inherits="ASPNET.StarterKit.Portal.Users" CodeBehind="Users.ascx.cs" Language="c#" AutoEventWireup="True" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Title" Src="~/DesktopModuleTitle.ascx"%>
 
 <ASPNETPortal:title runat="server" id="Title1" />
@@ -21,7 +21,7 @@
             <asp:DropDownList id="allUsers" DataTextField="Email" DataValueField="UserID" runat="server" />
             &nbsp;
             <asp:ImageButton ImageUrl="~/images/edit.gif" CommandName="edit" AlternateText="Edit this user" runat="server" ID="EditBtn" />
-            <asp:ImageButton ImageUrl="~/images/delete.gif" AlternateText="Delete this user" runat="server" ID="DeleteBtn" />
+            <asp:ImageButton ImageUrl="~/images/delete.gif" AlternateText="Delete this user" runat="server" ID="DeleteBtn" onclick="DeleteUser_Click" />
             &nbsp;
             <asp:LinkButton id="addNew" cssclass="CommandButton" CommandName="Add" Text="Add New User" runat="server" />
         </td>

@@ -10,13 +10,13 @@ using System.Web.UI.HtmlControls;
 
 namespace ASPNET.StarterKit.Portal {
 
-    public class AccessDeniedPage : System.Web.UI.Page {
+    public partial class AccessDeniedPage : System.Web.UI.Page {
 
         public AccessDeniedPage() {
             Page.Init += new System.EventHandler(Page_Init);
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //

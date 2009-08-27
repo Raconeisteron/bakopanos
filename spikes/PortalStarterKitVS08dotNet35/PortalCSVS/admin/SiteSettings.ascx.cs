@@ -6,10 +6,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
 namespace ASPNET.StarterKit.Portal {
-    public abstract class SiteSettings : ASPNET.StarterKit.Portal.PortalModuleControl {
-        protected System.Web.UI.WebControls.TextBox siteName;
-        protected System.Web.UI.WebControls.CheckBox showEdit;
-        protected System.Web.UI.WebControls.LinkButton applyBtn;
+    public partial  class SiteSettings : ASPNET.StarterKit.Portal.PortalModuleControl {
 
 
         //*******************************************************
@@ -19,7 +16,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
+        protected void Page_Load(object sender, System.EventArgs e) {
 
             // Verify that the current user has access to access this page
             if (PortalSecurity.IsInRoles("Admins") == false) {
@@ -44,7 +41,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void Apply_Click(Object sender, EventArgs e) {
+        protected void Apply_Click(Object sender, EventArgs e) {
 
             // Obtain PortalSettings from Current Context
             PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
@@ -61,7 +58,7 @@ namespace ASPNET.StarterKit.Portal {
             this.Init += new System.EventHandler(Page_Init);
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -73,8 +70,6 @@ namespace ASPNET.StarterKit.Portal {
         ///		the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.applyBtn.Click += new System.EventHandler(this.Apply_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
 
         }
 		#endregion

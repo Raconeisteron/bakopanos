@@ -129,187 +129,6 @@
     <Content Include="DesktopModules\XmlModule.ascx" />
     <Content Include="DesktopModuleTitle.ascx" />
     <Content Include="DesktopPortalBanner.ascx" />
-    <Content Include="Docs\AddAnnouncement.htm" />
-    <Content Include="Docs\AddContact.htm" />
-    <Content Include="Docs\AddEvent.htm" />
-    <Content Include="Docs\AddLink.htm" />
-    <Content Include="Docs\AddMessage.htm" />
-    <Content Include="Docs\AddRole.htm" />
-    <Content Include="Docs\AddUser.htm" />
-    <Content Include="Docs\AddUserRole.htm" />
-    <Content Include="Docs\Admin_AccessDenied_aspx.htm" />
-    <Content Include="Docs\Admin_AccessDenied_aspx_cs.htm" />
-    <Content Include="Docs\Admin_EditAccessDenied_aspx.htm" />
-    <Content Include="Docs\Admin_EditAccessDenied_aspx_cs.htm" />
-    <Content Include="Docs\Admin_Logoff_aspx.htm" />
-    <Content Include="Docs\Admin_Logoff_aspx_cs.htm" />
-    <Content Include="Docs\Admin_ManageUsers_aspx.htm" />
-    <Content Include="Docs\Admin_ManageUsers_aspx_cs.htm" />
-    <Content Include="Docs\Admin_MobileAccessDenied_aspx.htm" />
-    <Content Include="Docs\Admin_ModuleDefinitions_aspx.htm" />
-    <Content Include="Docs\Admin_ModuleDefinitions_aspx_cs.htm" />
-    <Content Include="Docs\Admin_ModuleDefs_ascx.htm" />
-    <Content Include="Docs\Admin_ModuleDefs_ascx_cs.htm" />
-    <Content Include="Docs\Admin_ModuleSettings_aspx.htm" />
-    <Content Include="Docs\Admin_ModuleSettings_aspx_cs.htm" />
-    <Content Include="Docs\Admin_NotImplemented_aspx.htm" />
-    <Content Include="Docs\Admin_NotImplemented_aspx_cs.htm" />
-    <Content Include="Docs\Admin_Register_aspx.htm" />
-    <Content Include="Docs\Admin_Register_aspx_cs.htm" />
-    <Content Include="Docs\Admin_Roles_ascx.htm" />
-    <Content Include="Docs\Admin_Roles_ascx_cs.htm" />
-    <Content Include="Docs\Admin_SecurityRoles_aspx.htm" />
-    <Content Include="Docs\Admin_SecurityRoles_aspx_cs.htm" />
-    <Content Include="Docs\Admin_SiteSettings_ascx.htm" />
-    <Content Include="Docs\Admin_SiteSettings_ascx_cs.htm" />
-    <Content Include="Docs\Admin_TabLayout_aspx.htm" />
-    <Content Include="Docs\Admin_TabLayout_aspx_cs.htm" />
-    <Content Include="Docs\Admin_Tabs_ascx.htm" />
-    <Content Include="Docs\Admin_Tabs_ascx_cs.htm" />
-    <Content Include="Docs\Admin_Users_ascx.htm" />
-    <Content Include="Docs\Admin_Users_ascx_cs.htm" />
-    <Content Include="Docs\ASPNETPortal_css.htm" />
-    <Content Include="Docs\Components_AdminDB_cs.htm" />
-    <Content Include="Docs\Components_AnnouncementsDB_cs.htm" />
-    <Content Include="Docs\Components_Configuration_cs.htm" />
-    <Content Include="Docs\Components_ContactsDB_cs.htm" />
-    <Content Include="Docs\Components_DesktopControls_cs.htm" />
-    <Content Include="Docs\Components_DiscussionDB_cs.htm" />
-    <Content Include="Docs\Components_DocumentDB_cs.htm" />
-    <Content Include="Docs\Components_EventsDB_cs.htm" />
-    <Content Include="Docs\Components_HtmlTextDB_cs.htm" />
-    <Content Include="Docs\Components_LinksDB_cs.htm" />
-    <Content Include="Docs\Components_MobileControls_cs.htm" />
-    <Content Include="Docs\Components_RolesDB_cs.htm" />
-    <Content Include="Docs\Components_Security_cs.htm" />
-    <Content Include="Docs\custommodules.htm" />
-    <Content Include="Docs\Default_aspx.htm" />
-    <Content Include="Docs\Default_aspx_cs.htm" />
-    <Content Include="Docs\DeleteAnnouncement.htm" />
-    <Content Include="Docs\DeleteContact.htm" />
-    <Content Include="Docs\DeleteDocument.htm" />
-    <Content Include="Docs\DeleteEvent.htm" />
-    <Content Include="Docs\DeleteLink.htm" />
-    <Content Include="Docs\DeleteModule.htm" />
-    <Content Include="Docs\DeleteRole.htm" />
-    <Content Include="Docs\DeleteUserRole.htm" />
-    <Content Include="Docs\DesktopDefault_aspx.htm" />
-    <Content Include="Docs\DesktopDefault_aspx_cs.htm" />
-    <Content Include="Docs\DesktopModules_Announcements_ascx.htm" />
-    <Content Include="Docs\DesktopModules_Announcements_ascx_cs.htm" />
-    <Content Include="Docs\DesktopModules_Contacts_ascx.htm" />
-    <Content Include="Docs\DesktopModules_Contacts_ascx_cs.htm" />
-    <Content Include="Docs\DesktopModules_DiscussDetails_aspx.htm" />
-    <Content Include="Docs\DesktopModules_DiscussDetails_aspx_cs.htm" />
-    <Content Include="Docs\DesktopModules_Discussion_ascx.htm" />
-    <Content Include="Docs\DesktopModules_Discussion_ascx_cs.htm" />
-    <Content Include="Docs\DesktopModules_Document_ascx.htm" />
-    <Content Include="Docs\DesktopModules_Document_ascx_cs.htm" />
-    <Content Include="Docs\DesktopModules_EditAnnouncements_aspx.htm" />
-    <Content Include="Docs\DesktopModules_EditAnnouncements_aspx_cs.htm" />
-    <Content Include="Docs\DesktopModules_EditContacts_aspx.htm" />
-    <Content Include="Docs\DesktopModules_EditContacts_aspx_cs.htm" />
-    <Content Include="Docs\DesktopModules_EditDocs_aspx.htm" />
-    <Content Include="Docs\DesktopModules_EditDocs_aspx_cs.htm" />
-    <Content Include="Docs\DesktopModules_EditEvents_aspx.htm" />
-    <Content Include="Docs\DesktopModules_EditEvents_aspx_cs.htm" />
-    <Content Include="Docs\DesktopModules_EditHtml_aspx.htm" />
-    <Content Include="Docs\DesktopModules_EditHtml_aspx_cs.htm" />
-    <Content Include="Docs\DesktopModules_EditImage_aspx.htm" />
-    <Content Include="Docs\DesktopModules_EditImage_aspx_cs.htm" />
-    <Content Include="Docs\DesktopModules_EditLinks_aspx.htm" />
-    <Content Include="Docs\DesktopModules_EditLinks_aspx_cs.htm" />
-    <Content Include="Docs\DesktopModules_EditXml_aspx.htm" />
-    <Content Include="Docs\DesktopModules_EditXml_aspx_cs.htm" />
-    <Content Include="Docs\DesktopModules_Events_ascx.htm" />
-    <Content Include="Docs\DesktopModules_Events_ascx_cs.htm" />
-    <Content Include="Docs\DesktopModules_HtmlModule_ascx.htm" />
-    <Content Include="Docs\DesktopModules_HtmlModule_ascx_cs.htm" />
-    <Content Include="Docs\DesktopModules_ImageModule_ascx.htm" />
-    <Content Include="Docs\DesktopModules_ImageModule_ascx_cs.htm" />
-    <Content Include="Docs\DesktopModules_Links_ascx.htm" />
-    <Content Include="Docs\DesktopModules_Links_ascx_cs.htm" />
-    <Content Include="Docs\DesktopModules_QuickLinks_ascx.htm" />
-    <Content Include="Docs\DesktopModules_QuickLinks_ascx_cs.htm" />
-    <Content Include="Docs\DesktopModules_Signin_ascx.htm" />
-    <Content Include="Docs\DesktopModules_SignIn_ascx_cs.htm" />
-    <Content Include="Docs\DesktopModules_ViewDocument_aspx.htm" />
-    <Content Include="Docs\DesktopModules_ViewDocument_aspx_cs.htm" />
-    <Content Include="Docs\DesktopModules_XmlModule_ascx.htm" />
-    <Content Include="Docs\DesktopModules_XmlModule_ascx_cs.htm" />
-    <Content Include="Docs\DesktopModuleTitle_ascx.htm" />
-    <Content Include="Docs\DesktopModuleTitle_ascx_cs.htm" />
-    <Content Include="Docs\DesktopPortalBanner_ascx.htm" />
-    <Content Include="Docs\DesktopPortalBanner_ascx_cs.htm" />
-    <Content Include="Docs\Docs.htm" />
-    <Content Include="Docs\GetAnnouncements.htm" />
-    <Content Include="Docs\GetAuthRoles.htm" />
-    <Content Include="Docs\GetContacts.htm" />
-    <Content Include="Docs\GetDocumentContent.htm" />
-    <Content Include="Docs\GetDocuments.htm" />
-    <Content Include="Docs\GetEvents.htm" />
-    <Content Include="Docs\GetHtmlText.htm" />
-    <Content Include="Docs\GetLinks.htm" />
-    <Content Include="Docs\GetNextMessageId.htm" />
-    <Content Include="Docs\GetPortalRoles.htm" />
-    <Content Include="Docs\GetPrevMessageId.htm" />
-    <Content Include="Docs\GetRoleMembership.htm" />
-    <Content Include="Docs\GetRolesByUser.htm" />
-    <Content Include="Docs\GetSingleAnnouncement.htm" />
-    <Content Include="Docs\GetSingleContact.htm" />
-    <Content Include="Docs\GetSingleDocument.htm" />
-    <Content Include="Docs\GetSingleEvent.htm" />
-    <Content Include="Docs\GetSingleLink.htm" />
-    <Content Include="Docs\GetSingleMessage.htm" />
-    <Content Include="Docs\getthreadmessages.htm" />
-    <Content Include="Docs\gettoplevelmessages.htm" />
-    <Content Include="Docs\GetUsers.htm" />
-    <Content Include="Docs\Global_asax.htm" />
-    <Content Include="Docs\Global_asax_cs.htm" />
-    <Content Include="Docs\images\1x1.gif" />
-    <Content Include="Docs\images\announcements.jpg" />
-    <Content Include="Docs\images\code-behind.gif" />
-    <Content Include="Docs\images\contacts.jpg" />
-    <Content Include="Docs\images\designerverbs.gif" />
-    <Content Include="Docs\images\discussion.jpg" />
-    <Content Include="Docs\images\documents.jpg" />
-    <Content Include="Docs\images\events.jpg" />
-    <Content Include="Docs\images\helloworld1.gif" />
-    <Content Include="Docs\images\helloworld2.gif" />
-    <Content Include="Docs\images\helloworld3.gif" />
-    <Content Include="Docs\images\helloworld4.gif" />
-    <Content Include="Docs\images\htmltext.jpg" />
-    <Content Include="Docs\images\links.jpg" />
-    <Content Include="Docs\images\moduledefinitions.jpg" />
-    <Content Include="Docs\images\modules.jpg" />
-    <Content Include="Docs\images\modulesettings.jpg" />
-    <Content Include="Docs\images\portal.jpg" />
-    <Content Include="Docs\images\roles.jpg" />
-    <Content Include="Docs\images\tabs.jpg" />
-    <Content Include="Docs\images\tenmost.gif" />
-    <Content Include="Docs\images\userroles.jpg" />
-    <Content Include="Docs\images\users.jpg" />
-    <Content Include="Docs\MobileDefault_aspx.htm" />
-    <Content Include="Docs\MobileDefault_aspx_cs.htm" />
-    <Content Include="Docs\MobileModules_Announcements_ascx.htm" />
-    <Content Include="Docs\MobileModules_Contacts_ascx.htm" />
-    <Content Include="Docs\MobileModules_Events_ascx.htm" />
-    <Content Include="Docs\MobileModules_Text_ascx.htm" />
-    <Content Include="Docs\MobileModuleTitle_ascx.htm" />
-    <Content Include="Docs\PortalCfg_cs.htm" />
-    <Content Include="Docs\PortalCfg_xml.htm" />
-    <Content Include="Docs\style.css" />
-    <Content Include="Docs\UpdateAnnouncement.htm" />
-    <Content Include="Docs\UpdateContact.htm" />
-    <Content Include="Docs\UpdateDocument.htm" />
-    <Content Include="Docs\UpdateEvent.htm" />
-    <Content Include="Docs\UpdateHtmlText.htm" />
-    <Content Include="Docs\UpdateLink.htm" />
-    <Content Include="Docs\UpdateRole.htm" />
-    <Content Include="Docs\UpdateUser.htm" />
-    <Content Include="Docs\UserLogin.htm" />
-    <Content Include="Docs\visualstudio_project_notes.htm" />
-    <Content Include="Docs\Web_config.htm" />
     <Content Include="Global.asax" />
     <Content Include="images\1x1.gif" />
     <Content Include="images\aspnet.gif" />
@@ -340,11 +159,6 @@
     <Content Include="MobileModules\Text.ascx" />
     <Content Include="MobileModuleTitle.ascx" />
     <Content Include="PortalCfg.xml" />
-    <Content Include="SourceViewer\1x1.gif" />
-    <Content Include="SourceViewer\grid_background.gif" />
-    <Content Include="SourceViewer\srcview.aspx" />
-    <Content Include="SourceViewer\style.css" />
-    <Content Include="SourceViewer\tabview.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -352,61 +166,106 @@
       <DependentUpon>AccessDenied.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="admin\AccessDenied.aspx.designer.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\EditAccessDenied.aspx.cs">
       <DependentUpon>EditAccessDenied.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\EditAccessDenied.aspx.designer.cs">
+      <DependentUpon>EditAccessDenied.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\Logoff.aspx.cs">
       <DependentUpon>Logoff.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="admin\Logoff.aspx.designer.cs">
+      <DependentUpon>Logoff.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\ManageUsers.aspx.cs">
       <DependentUpon>ManageUsers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ManageUsers.aspx.designer.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\ModuleDefinitions.aspx.cs">
       <DependentUpon>ModuleDefinitions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="admin\ModuleDefinitions.aspx.designer.cs">
+      <DependentUpon>ModuleDefinitions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\ModuleDefs.ascx.cs">
       <DependentUpon>ModuleDefs.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ModuleDefs.ascx.designer.cs">
+      <DependentUpon>ModuleDefs.ascx</DependentUpon>
     </Compile>
     <Compile Include="admin\ModuleSettings.aspx.cs">
       <DependentUpon>ModuleSettings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="admin\ModuleSettings.aspx.designer.cs">
+      <DependentUpon>ModuleSettings.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\NotImplemented.aspx.cs">
       <DependentUpon>NotImplemented.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\NotImplemented.aspx.designer.cs">
+      <DependentUpon>NotImplemented.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="admin\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\Roles.ascx.cs">
       <DependentUpon>Roles.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Roles.ascx.designer.cs">
+      <DependentUpon>Roles.ascx</DependentUpon>
     </Compile>
     <Compile Include="admin\SecurityRoles.aspx.cs">
       <DependentUpon>SecurityRoles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="admin\SecurityRoles.aspx.designer.cs">
+      <DependentUpon>SecurityRoles.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\SiteSettings.ascx.cs">
       <DependentUpon>SiteSettings.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\SiteSettings.ascx.designer.cs">
+      <DependentUpon>SiteSettings.ascx</DependentUpon>
     </Compile>
     <Compile Include="admin\TabLayout.aspx.cs">
       <DependentUpon>TabLayout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="admin\TabLayout.aspx.designer.cs">
+      <DependentUpon>TabLayout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\Tabs.ascx.cs">
       <DependentUpon>Tabs.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="admin\Tabs.ascx.designer.cs">
+      <DependentUpon>Tabs.ascx</DependentUpon>
+    </Compile>
     <Compile Include="admin\Users.ascx.cs">
       <DependentUpon>Users.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Users.ascx.designer.cs">
+      <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
     <Compile Include="Components\AnnouncementsDB.cs" />
     <Compile Include="Components\Configuration.cs" />
@@ -428,101 +287,176 @@
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopDefault.aspx.cs">
       <DependentUpon>DesktopDefault.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopDefault.aspx.designer.cs">
+      <DependentUpon>DesktopDefault.aspx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\Announcements.ascx.cs">
       <DependentUpon>Announcements.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\Announcements.ascx.designer.cs">
+      <DependentUpon>Announcements.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\Contacts.ascx.cs">
       <DependentUpon>Contacts.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\Contacts.ascx.designer.cs">
+      <DependentUpon>Contacts.ascx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\DiscussDetails.aspx.cs">
       <DependentUpon>DiscussDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\DiscussDetails.aspx.designer.cs">
+      <DependentUpon>DiscussDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\Discussion.ascx.cs">
       <DependentUpon>Discussion.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\Discussion.ascx.designer.cs">
+      <DependentUpon>Discussion.ascx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\Document.ascx.cs">
       <DependentUpon>Document.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\Document.ascx.designer.cs">
+      <DependentUpon>Document.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\EditAnnouncements.aspx.cs">
       <DependentUpon>EditAnnouncements.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditAnnouncements.aspx.designer.cs">
+      <DependentUpon>EditAnnouncements.aspx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\EditContacts.aspx.cs">
       <DependentUpon>EditContacts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\EditContacts.aspx.designer.cs">
+      <DependentUpon>EditContacts.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\EditDocs.aspx.cs">
       <DependentUpon>EditDocs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditDocs.aspx.designer.cs">
+      <DependentUpon>EditDocs.aspx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\EditEvents.aspx.cs">
       <DependentUpon>EditEvents.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\EditEvents.aspx.designer.cs">
+      <DependentUpon>EditEvents.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\EditHtml.aspx.cs">
       <DependentUpon>EditHtml.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditHtml.aspx.designer.cs">
+      <DependentUpon>EditHtml.aspx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\EditImage.aspx.cs">
       <DependentUpon>EditImage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\EditImage.aspx.designer.cs">
+      <DependentUpon>EditImage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\EditLinks.aspx.cs">
       <DependentUpon>EditLinks.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditLinks.aspx.designer.cs">
+      <DependentUpon>EditLinks.aspx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\EditXml.aspx.cs">
       <DependentUpon>EditXml.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\EditXml.aspx.designer.cs">
+      <DependentUpon>EditXml.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\Events.ascx.cs">
       <DependentUpon>Events.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\Events.ascx.designer.cs">
+      <DependentUpon>Events.ascx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\HtmlModule.ascx.cs">
       <DependentUpon>HtmlModule.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\HtmlModule.ascx.designer.cs">
+      <DependentUpon>HtmlModule.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\ImageModule.ascx.cs">
       <DependentUpon>ImageModule.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\ImageModule.ascx.designer.cs">
+      <DependentUpon>ImageModule.ascx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\Links.ascx.cs">
       <DependentUpon>Links.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\Links.ascx.designer.cs">
+      <DependentUpon>Links.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\QuickLinks.ascx.cs">
       <DependentUpon>QuickLinks.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\QuickLinks.ascx.designer.cs">
+      <DependentUpon>QuickLinks.ascx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\Signin.ascx.cs">
       <DependentUpon>Signin.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\Signin.ascx.designer.cs">
+      <DependentUpon>Signin.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\ViewDocument.aspx.cs">
       <DependentUpon>ViewDocument.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\ViewDocument.aspx.designer.cs">
+      <DependentUpon>ViewDocument.aspx</DependentUpon>
     </Compile>
     <Compile Include="DesktopModules\XmlModule.ascx.cs">
       <DependentUpon>XmlModule.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModules\XmlModule.ascx.designer.cs">
+      <DependentUpon>XmlModule.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModuleTitle.ascx.cs">
       <DependentUpon>DesktopModuleTitle.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="DesktopModuleTitle.ascx.designer.cs">
+      <DependentUpon>DesktopModuleTitle.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopPortalBanner.ascx.cs">
       <DependentUpon>DesktopPortalBanner.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopPortalBanner.ascx.designer.cs">
+      <DependentUpon>DesktopPortalBanner.ascx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -531,101 +465,17 @@
       <DependentUpon>MobileDefault.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="MobileDefault.aspx.designer.cs">
+      <DependentUpon>MobileDefault.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PortalCfg.cs">
       <DependentUpon>PortalCfg.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="admin\AccessDenied.aspx.resx">
-      <DependentUpon>AccessDenied.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\EditAccessDenied.aspx.resx">
-      <DependentUpon>EditAccessDenied.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\Logoff.aspx.resx">
-      <DependentUpon>Logoff.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\ManageUsers.aspx.resx">
-      <DependentUpon>ManageUsers.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\ModuleDefinitions.aspx.resx">
-      <DependentUpon>ModuleDefinitions.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\ModuleDefs.ascx.resx">
-      <DependentUpon>ModuleDefs.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\ModuleSettings.aspx.resx">
-      <DependentUpon>ModuleSettings.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\NotImplemented.aspx.resx">
-      <DependentUpon>NotImplemented.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\Roles.ascx.resx">
-      <DependentUpon>Roles.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\SecurityRoles.aspx.resx">
-      <DependentUpon>SecurityRoles.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\SiteSettings.ascx.resx">
-      <DependentUpon>SiteSettings.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\TabLayout.aspx.resx">
-      <DependentUpon>TabLayout.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\Users.ascx.resx">
-      <DependentUpon>Users.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Default.aspx.resx">
-      <DependentUpon>Default.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopDefault.aspx.resx">
-      <DependentUpon>DesktopDefault.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\DiscussDetails.aspx.resx">
-      <DependentUpon>DiscussDetails.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\Discussion.ascx.resx">
-      <DependentUpon>Discussion.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\EditAnnouncements.aspx.resx">
-      <DependentUpon>EditAnnouncements.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\EditContacts.aspx.resx">
-      <DependentUpon>EditContacts.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\EditEvents.aspx.resx">
-      <DependentUpon>EditEvents.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\EditHtml.aspx.resx">
-      <DependentUpon>EditHtml.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\EditImage.aspx.resx">
-      <DependentUpon>EditImage.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\EditLinks.aspx.resx">
-      <DependentUpon>EditLinks.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\EditXml.aspx.resx">
-      <DependentUpon>EditXml.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\Links.ascx.resx">
-      <DependentUpon>Links.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\QuickLinks.ascx.resx">
-      <DependentUpon>QuickLinks.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopModules\Signin.ascx.resx">
-      <DependentUpon>Signin.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopPortalBanner.ascx.resx">
-      <DependentUpon>DesktopPortalBanner.ascx.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Global.asax.resx">
       <DependentUpon>Global.asax.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MobileDefault.aspx.resx">
-      <DependentUpon>MobileDefault.aspx.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -638,40 +488,6 @@
     <None Include="PortalCfg.xss">
       <DependentUpon>PortalCfg.xsd</DependentUpon>
     </None>
-    <None Include="SourceViewer\admin.src" />
-    <None Include="SourceViewer\AdminDB.src" />
-    <None Include="SourceViewer\announcements.src" />
-    <None Include="SourceViewer\configuration.src" />
-    <None Include="SourceViewer\contacts.src" />
-    <None Include="SourceViewer\Default.src" />
-    <None Include="SourceViewer\desktopcontrols.src" />
-    <None Include="SourceViewer\DesktopDefault.src" />
-    <None Include="SourceViewer\discussion.src" />
-    <None Include="SourceViewer\documents.src" />
-    <None Include="SourceViewer\events.src" />
-    <None Include="SourceViewer\globalasax.src" />
-    <None Include="SourceViewer\htmldocument.src" />
-    <None Include="SourceViewer\image.src" />
-    <None Include="SourceViewer\links.src" />
-    <None Include="SourceViewer\logoff.src" />
-    <None Include="SourceViewer\manageusers.src" />
-    <None Include="SourceViewer\MobileControls.src" />
-    <None Include="SourceViewer\MobileDefault.src" />
-    <None Include="SourceViewer\ModuleDefinitions.src" />
-    <None Include="SourceViewer\ModuleSettings.src" />
-    <None Include="SourceViewer\portalconfig.src" />
-    <None Include="SourceViewer\portalcss.src" />
-    <None Include="SourceViewer\quicklinks.src" />
-    <None Include="SourceViewer\register.src" />
-    <None Include="SourceViewer\RolesDB.src" />
-    <None Include="SourceViewer\security.src" />
-    <None Include="SourceViewer\SecurityRoles.src" />
-    <None Include="SourceViewer\signin.src" />
-    <None Include="SourceViewer\TabLayout.src" />
-    <None Include="SourceViewer\useradd.src" />
-    <None Include="SourceViewer\userlogin.src" />
-    <None Include="SourceViewer\webconfig.src" />
-    <None Include="SourceViewer\xmlxsl.src" />
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
   <ItemGroup>

@@ -6,9 +6,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
 namespace ASPNET.StarterKit.Portal {
-    public abstract class ModuleDefs : ASPNET.StarterKit.Portal.PortalModuleControl {
-        protected System.Web.UI.WebControls.DataList defsList;
-        protected System.Web.UI.WebControls.LinkButton AddDefBtn;
+    public partial  class ModuleDefs : ASPNET.StarterKit.Portal.PortalModuleControl {
 
         int tabIndex = 0;
         int tabId = 0;
@@ -20,7 +18,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
+        protected void Page_Load(object sender, System.EventArgs e) {
 
             // Verify that the current user has access to access this page
             if (PortalSecurity.IsInRoles("Admins") == false) {
@@ -48,7 +46,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void AddDef_Click(Object Sender, EventArgs e) {
+        protected void AddDef_Click(Object Sender, EventArgs e) {
 
             // redirect to edit page
             Response.Redirect("~/Admin/ModuleDefinitions.aspx?defId=-1&tabindex=" + tabIndex + "&tabid=" + tabId);
@@ -93,7 +91,7 @@ namespace ASPNET.StarterKit.Portal {
             this.Init += new System.EventHandler(Page_Init);
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -105,9 +103,7 @@ namespace ASPNET.StarterKit.Portal {
         ///		the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.AddDefBtn.Click += new System.EventHandler(this.AddDef_Click);
             this.defsList.ItemCommand += new System.Web.UI.WebControls.DataListCommandEventHandler(this.DefsList_ItemCommand);
-            this.Load += new System.EventHandler(this.Page_Load);
 
         }
 		#endregion

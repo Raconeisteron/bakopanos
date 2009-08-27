@@ -11,12 +11,7 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal {
 
-    public class ModuleSettingsPage : System.Web.UI.Page {
-        protected System.Web.UI.WebControls.TextBox moduleTitle;
-        protected System.Web.UI.WebControls.TextBox cacheTime;
-        protected System.Web.UI.WebControls.CheckBoxList authEditRoles;
-        protected System.Web.UI.WebControls.CheckBox showMobile;
-        protected System.Web.UI.WebControls.LinkButton ApplyButton;
+    public partial class ModuleSettingsPage : System.Web.UI.Page {
     
         int moduleId = 0;
         int tabId = 0;
@@ -28,7 +23,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void Page_Load(object sender, System.EventArgs e) {
+        protected void Page_Load(object sender, System.EventArgs e) {
 
             // Verify that the current user has access to access this page
             if (PortalSecurity.IsInRoles("Admins") == false) {
@@ -56,7 +51,7 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        private void ApplyChanges_Click(Object Sender, EventArgs e) {
+        protected void ApplyChanges_Click(Object Sender, EventArgs e) {
     
             // Obtain PortalSettings from Current Context
             PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
@@ -192,7 +187,7 @@ namespace ASPNET.StarterKit.Portal {
             Page.Init += new System.EventHandler(Page_Init);
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -205,8 +200,6 @@ namespace ASPNET.StarterKit.Portal {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {    
-            this.ApplyButton.Click += new System.EventHandler(this.ApplyChanges_Click);
-            this.Load += new System.EventHandler(this.Page_Load);
 
         }
 		#endregion

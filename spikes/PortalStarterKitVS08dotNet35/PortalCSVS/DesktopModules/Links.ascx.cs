@@ -10,9 +10,8 @@ using System.Web.UI.HtmlControls;
 
 namespace ASPNET.StarterKit.Portal {
 
-	public abstract class Links : ASPNET.StarterKit.Portal.PortalModuleControl 
+	public partial  class Links : ASPNET.StarterKit.Portal.PortalModuleControl 
 	{
-		protected System.Web.UI.WebControls.DataList myDataList;
 
 
 		protected String linkImage = "";
@@ -27,7 +26,7 @@ namespace ASPNET.StarterKit.Portal {
 		//
 		//*******************************************************
 
-		private void Page_Load(object sender, System.EventArgs e) 
+		protected void Page_Load(object sender, System.EventArgs e) 
 		{
 
 			// Set the link image type
@@ -76,7 +75,7 @@ namespace ASPNET.StarterKit.Portal {
             this.Init += new System.EventHandler(Page_Init);
         }
 
-        private void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e) {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
@@ -88,7 +87,6 @@ namespace ASPNET.StarterKit.Portal {
         ///		the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.Load += new System.EventHandler(this.Page_Load);
 
         }
 		#endregion

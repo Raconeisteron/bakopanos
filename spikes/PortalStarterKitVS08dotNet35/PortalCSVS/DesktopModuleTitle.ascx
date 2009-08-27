@@ -1,4 +1,4 @@
-<%@ Control CodeBehind="DesktopModuleTitle.ascx.cs" Language="c#" AutoEventWireup="false" Inherits="ASPNET.StarterKit.Portal.DesktopModuleTitle" %>
+<%@ Control CodeBehind="DesktopModuleTitle.ascx.cs" Language="c#" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.DesktopModuleTitle" %>
 
 <%--
 
