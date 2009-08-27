@@ -1,7 +1,7 @@
 using System;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -25,7 +25,7 @@ namespace ASPNET.StarterKit.Portal
         protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain the selected item from the HtmlText table
-            var text = new HtmlTextDB();
+            IHtmlTextDB text = DbFactory.Instance.GetHtmlTextDB();
             DbDataReader dr = text.GetHtmlText(ModuleId);
 
             if (dr.Read())

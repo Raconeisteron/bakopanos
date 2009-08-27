@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -345,7 +345,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Populate checkbox list with all security roles for this portal
             // and "check" the ones already configured for this tab
-            var rolesObj = new RolesDB();
+            IRolesDB rolesObj = DbFactory.Instance.GetRolesDB();
             DbDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
 
             // Clear existing items in checkboxlist

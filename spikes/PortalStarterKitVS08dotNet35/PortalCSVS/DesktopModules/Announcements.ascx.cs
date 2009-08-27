@@ -1,4 +1,5 @@
 using System;
+using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -23,7 +24,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain announcement information from Announcements table
             // and bind to the datalist control
-            var announcements = new AnnouncementsDB();
+            IAnnouncementsDB announcements = DbFactory.Instance.GetAnnouncementsDB();
 
             // DataBind Announcements to DataList Control
             myDataList.DataSource = announcements.GetAnnouncements(ModuleId);

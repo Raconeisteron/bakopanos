@@ -1,7 +1,7 @@
 using System;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -51,7 +51,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of contact information
-                    var contacts = new ContactsDB();
+                    IContactsDB contacts = DbFactory.Instance.GetContactsDB();
                     DbDataReader dr = contacts.GetSingleContact(itemId);
 
                     // Read first row from database
@@ -96,7 +96,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the ContactsDB component
-                var contacts = new ContactsDB();
+                IContactsDB contacts = DbFactory.Instance.GetContactsDB();
 
                 if (itemId == 0)
                 {
@@ -131,7 +131,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                var contacts = new ContactsDB();
+                IContactsDB contacts = DbFactory.Instance.GetContactsDB();
                 contacts.DeleteContact(itemId);
             }
 

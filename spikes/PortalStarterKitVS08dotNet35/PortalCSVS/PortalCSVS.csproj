@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ASPNET.StarterKit.Portal</RootNamespace>
-    <AssemblyName>ASPNET.StarterKit.Portal</AssemblyName>
+    <AssemblyName>PortalCSVS</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -264,30 +264,21 @@
     <Compile Include="admin\Users.ascx.designer.cs">
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Components\AnnouncementsDB.cs" />
     <Compile Include="Components\Configuration.cs" />
-    <Compile Include="Components\ContactsDB.cs" />
-    <Compile Include="Components\IRolesDB.cs" />
-    <Compile Include="Components\IUsersDB.cs" />
-    <Compile Include="Components\UsersDB.cs" />
     <Compile Include="Components\DesktopControls.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Components\DiscussionDB.cs">
-    </Compile>
-    <Compile Include="Components\DocumentDB.cs" />
-    <Compile Include="Components\EventsDB.cs" />
-    <Compile Include="Components\HtmlTextDB.cs" />
-    <Compile Include="Components\IAnnouncementsDB.cs" />
-    <Compile Include="Components\IContactsDB.cs" />
-    <Compile Include="Components\IDiscussionDB.cs" />
-    <Compile Include="Components\IDocumentDB.cs" />
-    <Compile Include="Components\IEventsDB.cs" />
-    <Compile Include="Components\IHtmlTextDB.cs" />
-    <Compile Include="Components\ILinkDB.cs" />
-    <Compile Include="Components\LinksDB.cs" />
-    <Compile Include="Components\RolesDB.cs" />
     <Compile Include="Components\Security.cs" />
+    <Compile Include="Db\DbFactory.cs" />
+    <Compile Include="Db\IAnnouncementsDB.cs" />
+    <Compile Include="Db\IContactsDB.cs" />
+    <Compile Include="Db\IDiscussionDB.cs" />
+    <Compile Include="Db\IDocumentDB.cs" />
+    <Compile Include="Db\IEventsDB.cs" />
+    <Compile Include="Db\IHtmlTextDB.cs" />
+    <Compile Include="Db\ILinkDB.cs" />
+    <Compile Include="Db\IRolesDB.cs" />
+    <Compile Include="Db\IUsersDB.cs" />
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>

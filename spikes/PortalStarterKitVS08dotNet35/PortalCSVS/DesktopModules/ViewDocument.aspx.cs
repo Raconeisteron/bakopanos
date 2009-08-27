@@ -1,7 +1,7 @@
 using System;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -36,7 +36,7 @@ namespace ASPNET.StarterKit.Portal
             if (documentId != -1)
             {
                 // Obtain Document Data from Documents table
-                var documents = new DocumentDB();
+                IDocumentDB documents = DbFactory.Instance.GetDocumentDB();
 
                 DbDataReader dBContent = documents.GetDocumentContent(documentId);
                 dBContent.Read();

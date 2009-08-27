@@ -1,7 +1,7 @@
 using System;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Web.UI.WebControls;
+using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -42,7 +42,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain a list of discussion messages for the module
             // and bind to datalist
-            var discuss = new DiscussionDB();
+            IDiscussionDB discuss = DbFactory.Instance.GetDiscussionDB();
 
             TopLevelList.DataSource = discuss.GetTopLevelMessages(ModuleId);
             TopLevelList.DataBind();
@@ -61,7 +61,7 @@ namespace ASPNET.StarterKit.Portal
         protected DbDataReader GetThreadMessages()
         {
             // Obtain a list of discussion messages for the module
-            var discuss = new DiscussionDB();
+            IDiscussionDB discuss = DbFactory.Instance.GetDiscussionDB();
             DbDataReader dr = discuss.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
 
             // Return the filtered DataView

@@ -1,5 +1,6 @@
 using System;
 using System.Web.UI.WebControls;
+using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -57,7 +58,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Add a new role to the database
-            var roles = new RolesDB();
+            IRolesDB roles = DbFactory.Instance.GetRolesDB();
             roles.AddRole(portalSettings.PortalId, "New Role");
 
             // set the edit item index to the last item
@@ -77,7 +78,7 @@ namespace ASPNET.StarterKit.Portal
 
         private void RolesList_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            var roles = new RolesDB();
+            IRolesDB roles = DbFactory.Instance.GetRolesDB();
             var roleId = (int) rolesList.DataKeys[e.Item.ItemIndex];
 
             if (e.CommandName == "edit")
@@ -138,7 +139,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Get the portal's roles from the database
-            var roles = new RolesDB();
+            IRolesDB roles = DbFactory.Instance.GetRolesDB();
 
             rolesList.DataSource = roles.GetPortalRoles(portalSettings.PortalId);
             rolesList.DataBind();
