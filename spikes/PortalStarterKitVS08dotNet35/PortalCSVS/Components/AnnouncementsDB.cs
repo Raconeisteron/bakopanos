@@ -45,6 +45,8 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
+        #region IAnnouncementsDB Members
+
         public DataSet GetAnnouncements(int moduleId)
         {
             // Create Instance of Connection and Command Object
@@ -256,5 +258,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
+
+        #endregion
     }
 }

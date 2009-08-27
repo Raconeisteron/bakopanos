@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-
     public class EventItem
     {
         public int ModuleId { get; set; }
@@ -44,6 +43,8 @@ namespace ASPNET.StarterKit.Portal
         //     + <a href="GetEvents.htm" style="color:green">GetEvents Stored Procedure</a>
         //
         //*********************************************************************
+
+        #region IEventsDB Members
 
         public DataSet GetEvents(int moduleId)
         {
@@ -254,5 +255,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
+
+        #endregion
     }
 }

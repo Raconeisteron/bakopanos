@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-
     public class HtmlTextItem
     {
         public int ModuleId { get; set; }
@@ -37,6 +36,8 @@ namespace ASPNET.StarterKit.Portal
         //     + <a href="GetHtmlText.htm" style="color:green">GetHtmlText Stored Procedure</a>
         //
         //*********************************************************************
+
+        #region IHtmlTextDB Members
 
         public DbDataReader GetHtmlText(int moduleId)
         {
@@ -103,5 +104,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
+
+        #endregion
     }
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Data.Common;
-using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -12,6 +11,6 @@ namespace ASPNET.StarterKit.Portal
         void DeleteDocument(int itemID);
 
         void UpdateDocument(int moduleId, int itemId, String userName, String name, String url, String category,
-                                            byte[] content, int size, String contentType);
+                            byte[] content, int size, String contentType);
     }
 }

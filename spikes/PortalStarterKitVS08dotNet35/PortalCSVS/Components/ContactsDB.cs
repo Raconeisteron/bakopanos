@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-
     public class ContactItem
     {
         public int ModuleId { get; set; }
@@ -46,6 +45,8 @@ namespace ASPNET.StarterKit.Portal
         //     + <a href="GetContacts.htm" style="color:green">GetContacts Stored Procedure</a>
         //
         //*********************************************************************
+
+        #region IContactsDB Members
 
         public DataSet GetContacts(int moduleId)
         {
@@ -261,5 +262,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
+
+        #endregion
     }
 }

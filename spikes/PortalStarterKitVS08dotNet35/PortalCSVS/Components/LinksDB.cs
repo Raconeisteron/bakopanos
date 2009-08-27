@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-
     public class LinkItem
     {
         public int ModuleId { get; set; }
@@ -42,6 +41,8 @@ namespace ASPNET.StarterKit.Portal
         //     + <a href="GetLinks.htm" style="color:green">GetLinks Stored Procedure</a>
         //
         //*********************************************************************
+
+        #region ILinkDB Members
 
         public DbDataReader GetLinks(int moduleId)
         {
@@ -257,5 +258,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
+
+        #endregion
     }
 }

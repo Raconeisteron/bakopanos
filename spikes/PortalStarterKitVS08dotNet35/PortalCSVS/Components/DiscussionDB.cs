@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-
     public class DiscussionItem
     {
         public int ModuleId { get; set; }
@@ -38,6 +37,8 @@ namespace ASPNET.StarterKit.Portal
         //     + <a href="GetTopLevelMessages.htm" style="color:green">GetTopLevelMessages Stored Procedure</a>
         //
         //*******************************************************
+
+        #region IDiscussionDB Members
 
         public DbDataReader GetTopLevelMessages(int moduleId)
         {
@@ -185,5 +186,7 @@ namespace ASPNET.StarterKit.Portal
 
             return (int) parameterItemID.Value;
         }
+
+        #endregion
     }
 }

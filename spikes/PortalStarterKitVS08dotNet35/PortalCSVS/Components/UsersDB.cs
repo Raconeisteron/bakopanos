@@ -4,13 +4,9 @@ using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Security.Cryptography;
-using System.Text;
-using System.Web;
 
 namespace ASPNET.StarterKit.Portal
-{    
-
+{
     public class UserItem
     {
         public String FullName { get; set; }
@@ -44,6 +40,8 @@ namespace ASPNET.StarterKit.Portal
         //     + <a href="AddUser.htm" style="color:green">AddUser Stored Procedure</a>
         //
         //*********************************************************************
+
+        #region IUsersDB Members
 
         public int AddUser(String fullName, String email, String password)
         {
@@ -313,10 +311,9 @@ namespace ASPNET.StarterKit.Portal
             {
                 return ((String) parameterUserName.Value).Trim();
             }
-            else
-            {
-                return String.Empty;
-            }
+            return String.Empty;
         }
+
+        #endregion
     }
 }

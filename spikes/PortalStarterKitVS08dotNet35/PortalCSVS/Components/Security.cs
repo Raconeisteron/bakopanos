@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -65,7 +61,7 @@ namespace ASPNET.StarterKit.Portal
 
             foreach (String role in roles.Split(new[] {';'}))
             {
-                if (role != "" && role != null && ((role == "All Users") || (context.User.IsInRole(role))))
+                if (!string.IsNullOrEmpty(role) && ((role == "All Users") || (context.User.IsInRole(role))))
                 {
                     return true;
                 }
@@ -86,22 +82,18 @@ namespace ASPNET.StarterKit.Portal
 
         public static bool HasEditPermissions(int moduleId)
         {
-            string accessRoles;
-            string editRoles;
-
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
             // Find the appropriate Module in the Module table
             SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
 
-            editRoles = moduleRow.EditRoles;
-            accessRoles = moduleRow.TabRow.AccessRoles;
+            string editRoles = moduleRow.EditRoles;
+            string accessRoles = moduleRow.TabRow.AccessRoles;
 
             if (IsInRoles(accessRoles) == false || IsInRoles(editRoles) == false)
                 return false;
-            else
-                return true;
+            return true;
         }
-    }   
+    }
 }

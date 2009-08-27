@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-
     public class DocumentItem
     {
         public int ModuleId { get; set; }
@@ -43,6 +42,8 @@ namespace ASPNET.StarterKit.Portal
         //     + <a href="GetDocuments.htm" style="color:green">GetDocuments Stored Procedure</a>
         //
         //*********************************************************************
+
+        #region IDocumentDB Members
 
         public DbDataReader GetDocuments(int moduleId)
         {
@@ -235,5 +236,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
+
+        #endregion
     }
 }
