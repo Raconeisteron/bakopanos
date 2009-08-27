@@ -1,10 +1,25 @@
 using System;
 using System.Configuration;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
+
+    public class DocumentItem
+    {
+        public int ModuleId { get; set; }
+        public int ItemId { get; set; }
+        public String UserName { get; set; }
+        public String Name { get; set; }
+        public String Url { get; set; }
+        public String Category { get; set; }
+        public byte[] Content { get; set; }
+        public int Size { get; set; }
+        public String ContentType { get; set; }
+    }
+
     //*********************************************************************
     //
     // DocumentDB Class
@@ -14,7 +29,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class DocumentDB
+    public class DocumentDB : IDocumentDB
     {
         //*********************************************************************
         //
@@ -29,7 +44,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetDocuments(int moduleId)
+        public DbDataReader GetDocuments(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
@@ -63,7 +78,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleDocument(int itemId)
+        public DbDataReader GetSingleDocument(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
@@ -97,7 +112,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetDocumentContent(int itemId)
+        public DbDataReader GetDocumentContent(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);

@@ -1,10 +1,23 @@
 using System;
 using System.Configuration;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
+
+    public class EventItem
+    {
+        public int ModuleId { get; set; }
+        public int ItemId { get; set; }
+        public String UserName { get; set; }
+        public String Title { get; set; }
+        public DateTime ExpireDate { get; set; }
+        public String Description { get; set; }
+        public String Wherewhen { get; set; }
+    }
+
     //*********************************************************************
     //
     // EventDB Class
@@ -14,7 +27,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class EventsDB
+    public class EventsDB : IEventsDB
     {
         //*********************************************************************
         //
@@ -66,7 +79,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleEvent(int itemId)
+        public DbDataReader GetSingleEvent(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);

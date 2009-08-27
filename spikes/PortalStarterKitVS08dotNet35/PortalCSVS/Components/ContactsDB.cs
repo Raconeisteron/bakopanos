@@ -1,10 +1,25 @@
 using System;
 using System.Configuration;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
+
+    public class ContactItem
+    {
+        public int ModuleId { get; set; }
+        public int ItemId { get; set; }
+        public String UserName { get; set; }
+        public String Name { get; set; }
+        public String Role { get; set; }
+        public String Email { get; set; }
+        public String Contact1 { get; set; }
+        public String Contact2 { get; set; }
+    }
+
+
     //*********************************************************************
     //
     // ContactDB Class
@@ -14,7 +29,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class ContactsDB
+    public class ContactsDB : IContactsDB
     {
         //*********************************************************************
         //
@@ -66,7 +81,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleContact(int itemId)
+        public DbDataReader GetSingleContact(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);

@@ -1,4 +1,5 @@
 using System;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -55,7 +56,7 @@ namespace ASPNET.StarterKit.Portal
                 {
                     // Obtain a single row of event information
                     var events = new EventsDB();
-                    SqlDataReader dr = events.GetSingleEvent(itemId);
+                    DbDataReader dr = events.GetSingleEvent(itemId);
 
                     // Read first row from database
                     dr.Read();

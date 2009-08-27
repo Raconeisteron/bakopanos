@@ -1,10 +1,20 @@
 using System;
 using System.Configuration;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
+
+    public class HtmlTextItem
+    {
+        public int ModuleId { get; set; }
+        public String DesktopHtml { get; set; }
+        public String MobileSummary { get; set; }
+        public String MobileDetails { get; set; }
+    }
+
     //*********************************************************************
     //
     // HtmlTextDB Class
@@ -14,7 +24,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class HtmlTextDB
+    public class HtmlTextDB : IHtmlTextDB
     {
         //*********************************************************************
         //
@@ -28,7 +38,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetHtmlText(int moduleId)
+        public DbDataReader GetHtmlText(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);

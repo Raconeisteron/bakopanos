@@ -1,10 +1,24 @@
 using System;
 using System.Configuration;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
+
+    public class LinkItem
+    {
+        public int ModuleId { get; set; }
+        public int ItemId { get; set; }
+        public String UserName { get; set; }
+        public String Title { get; set; }
+        public String Url { get; set; }
+        public String MobileUrl { get; set; }
+        public int ViewOrder { get; set; }
+        public String Description { get; set; }
+    }
+
     //*********************************************************************
     //
     // LinkDB Class
@@ -14,7 +28,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class LinkDB
+    public class LinkDB : ILinkDB
     {
         //*********************************************************************
         //
@@ -29,7 +43,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetLinks(int moduleId)
+        public DbDataReader GetLinks(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
@@ -63,7 +77,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleLink(int itemId)
+        public DbDataReader GetSingleLink(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);

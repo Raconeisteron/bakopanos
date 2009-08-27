@@ -1,4 +1,5 @@
 using System;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.IO;
 using System.Web.UI;
@@ -52,7 +53,7 @@ namespace ASPNET.StarterKit.Portal
                 {
                     // Obtain a single row of document information
                     var documents = new DocumentDB();
-                    SqlDataReader dr = documents.GetSingleDocument(itemId);
+                    DbDataReader dr = documents.GetSingleDocument(itemId);
 
                     // Load first row into Datareader
                     dr.Read();

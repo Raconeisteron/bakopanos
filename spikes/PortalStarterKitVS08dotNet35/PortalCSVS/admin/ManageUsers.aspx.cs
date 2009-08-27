@@ -1,4 +1,5 @@
 using System;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -170,7 +171,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Bind the Email and Password
             var users = new UsersDB();
-            SqlDataReader dr = users.GetSingleUser(userName);
+            DbDataReader dr = users.GetSingleUser(userName);
 
             // Read first row from database
             dr.Read();

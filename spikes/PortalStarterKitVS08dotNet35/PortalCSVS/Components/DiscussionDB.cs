@@ -1,10 +1,22 @@
 using System;
 using System.Configuration;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
+
+    public class DiscussionItem
+    {
+        public int ModuleId { get; set; }
+        public int ParentId { get; set; }
+        public String UserName { get; set; }
+        public String Title { get; set; }
+        public String Body { get; set; }
+    }
+
+
     //*********************************************************************
     //
     // DiscussionDB Class
@@ -14,7 +26,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class DiscussionDB
+    public class DiscussionDB : IDiscussionDB
     {
         //*******************************************************
         //
@@ -27,7 +39,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        public SqlDataReader GetTopLevelMessages(int moduleId)
+        public DbDataReader GetTopLevelMessages(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
@@ -60,7 +72,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        public SqlDataReader GetThreadMessages(String parent)
+        public DbDataReader GetThreadMessages(String parent)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
@@ -94,7 +106,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        public SqlDataReader GetSingleMessage(int itemId)
+        public DbDataReader GetSingleMessage(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);

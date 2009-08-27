@@ -1,4 +1,5 @@
 using System;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Web.UI.WebControls;
 
@@ -57,11 +58,11 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        protected SqlDataReader GetThreadMessages()
+        protected DbDataReader GetThreadMessages()
         {
             // Obtain a list of discussion messages for the module
             var discuss = new DiscussionDB();
-            SqlDataReader dr = discuss.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
+            DbDataReader dr = discuss.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
 
             // Return the filtered DataView
             return dr;

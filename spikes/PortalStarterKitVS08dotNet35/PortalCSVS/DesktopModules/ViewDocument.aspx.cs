@@ -1,4 +1,5 @@
 using System;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Web.UI;
 
@@ -37,7 +38,7 @@ namespace ASPNET.StarterKit.Portal
                 // Obtain Document Data from Documents table
                 var documents = new DocumentDB();
 
-                SqlDataReader dBContent = documents.GetDocumentContent(documentId);
+                DbDataReader dBContent = documents.GetDocumentContent(documentId);
                 dBContent.Read();
 
                 // Serve up the file by name

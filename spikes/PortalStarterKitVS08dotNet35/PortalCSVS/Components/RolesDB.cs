@@ -1,10 +1,18 @@
 using System;
 using System.Configuration;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
+
+    public class RoleItem
+    {
+        public int PortalId { get; set; }
+        public String RoleName { get; set; }
+    }
+
     //*********************************************************************
     //
     // RolesDB Class
@@ -13,7 +21,7 @@ namespace ASPNET.StarterKit.Portal
     // Users, Roles and security settings values within the Portal database.
     //
     //*********************************************************************
-    public class RolesDB
+    public class RolesDB : IRolesDB
     {
         //*********************************************************************
         //
@@ -27,7 +35,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetPortalRoles(int portalId)
+        public DbDataReader GetPortalRoles(int portalId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
@@ -175,7 +183,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetRoleMembers(int roleId)
+        public DbDataReader GetRoleMembers(int roleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
@@ -283,7 +291,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetUsers()
+        public DbDataReader GetUsers()
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
