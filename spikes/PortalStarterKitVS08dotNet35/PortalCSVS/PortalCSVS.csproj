@@ -286,6 +286,12 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Components\Security.cs" />
+    <Compile Include="Domain\AnnouncementItem.cs" />
+    <Compile Include="Domain\ContactItem.cs" />
+    <Compile Include="Domain\DiscussionItem.cs" />
+    <Compile Include="Domain\DocumentItem.cs" />
+    <Compile Include="Domain\EventItem.cs" />
+    <Compile Include="Domain\HtmlTextItem.cs" />
     <Compile Include="Db\IAnnouncementsDB.cs" />
     <Compile Include="Db\IConfigurationDB.cs" />
     <Compile Include="Db\IContactsDB.cs" />
@@ -296,6 +302,9 @@
     <Compile Include="Db\ILinkDB.cs" />
     <Compile Include="Db\IRolesDB.cs" />
     <Compile Include="Db\IUsersDB.cs" />
+    <Compile Include="Domain\LinkItem.cs" />
+    <Compile Include="Domain\RoleItem.cs" />
+    <Compile Include="Domain\UserItem.cs" />
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>

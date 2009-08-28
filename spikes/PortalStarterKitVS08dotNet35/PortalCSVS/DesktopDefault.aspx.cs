@@ -1,8 +1,6 @@
 using System;
 using System.Web;
 using System.Web.UI;
-using ASPNET.StarterKit.Portal.Framework;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {

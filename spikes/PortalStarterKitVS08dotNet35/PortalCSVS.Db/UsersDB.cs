@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
-using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
-using ASPNET.StarterKit.Portal.Framework;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal

@@ -1,5 +1,4 @@
-﻿using ASPNET.StarterKit.Portal.Framework;
-using Microsoft.Practices.Unity;
+﻿using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {

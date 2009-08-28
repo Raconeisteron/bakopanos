@@ -1,10 +1,6 @@
-using System;
-using System.Configuration;
-using System.Web;
-using System.Web.UI;
-using Microsoft.Practices.Unity;
 
-namespace ASPNET.StarterKit.Portal.Framework
+
+namespace ASPNET.StarterKit.Portal
 {
     public interface IDatabaseConfiguration
     {        
