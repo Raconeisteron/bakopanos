@@ -10,7 +10,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class ConfigurationDB : IConfigurationDB
+    public class ConfigurationDb : IConfigurationDb
     {
         [Dependency]
         public IDatabaseConfiguration DatabaseConfiguration

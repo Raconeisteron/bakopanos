@@ -8,16 +8,16 @@ namespace ASPNET.StarterKit.Portal
         {            
             container.RegisterInstance<IDatabaseConfiguration>(this);
 
-            container.RegisterType<IAnnouncementsDB,AnnouncementsDB>();
-            container.RegisterType<IContactsDB,ContactsDB>();
-            container.RegisterType<IDiscussionDB,DiscussionDB>();
-            container.RegisterType<IDocumentDB,DocumentDB>();
-            container.RegisterType<IEventsDB,EventsDB>();
-            container.RegisterType<IHtmlTextDB,HtmlTextDB>();
-            container.RegisterType<ILinkDB,LinkDB>();
-            container.RegisterType<IRolesDB,RolesDB>();
-            container.RegisterType<IUsersDB,UsersDB>();
-            container.RegisterType<IConfigurationDB,ConfigurationDB>();            
+            container.RegisterType<IAnnouncementsDb,AnnouncementsDb>();
+            container.RegisterType<IContactsDb,ContactsDb>();
+            container.RegisterType<IDiscussionDb,DiscussionDb>();
+            container.RegisterType<IDocumentDb,DocumentDb>();
+            container.RegisterType<IEventsDb,EventsDb>();
+            container.RegisterType<IHtmlTextDb,HtmlTextDb>();
+            container.RegisterType<ILinkDb,LinkDb>();
+            container.RegisterType<IRolesDb,RolesDb>();
+            container.RegisterType<IUsersDb,UsersDb>();
+            container.RegisterType<IConfigurationDb,ConfigurationDb>();            
         }        
     }
 }

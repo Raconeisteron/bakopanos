@@ -4,10 +4,10 @@ using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public interface IAnnouncementsDB
+    public interface IAnnouncementsDb
     {
         DataSet GetAnnouncements(int moduleId);
-        DbDataReader GetSingleAnnouncement(int itemId);
+        AnnouncementItem GetSingleAnnouncement(int itemId);
         void DeleteAnnouncement(int itemID);
 
         int AddAnnouncement(int moduleId, int itemId, String userName, String title, DateTime expireDate,

@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Web;
 using System.Web.Caching;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -18,6 +19,13 @@ namespace ASPNET.StarterKit.Portal
     //*********************************************************************
     public class Configuration
     {
+        [Dependency]
+        public IConfigurationDb ConfigurationDb
+        {
+            get;
+            set;
+        }
+
         //
         // PORTAL
         //
@@ -184,7 +192,7 @@ namespace ASPNET.StarterKit.Portal
             //
             foreach (SiteConfiguration.ModuleRow moduleRow in tabRow.GetModuleRows())
             {
-                Global.Container.Resolve<IConfigurationDB>().DeletePortalModule(moduleRow.ModuleId);                                
+                ConfigurationDb.DeletePortalModule(moduleRow.ModuleId);                                
             }
 
             // Finish removing the Tab row from the Xml file
@@ -327,7 +335,7 @@ namespace ASPNET.StarterKit.Portal
             //
             // Delete information in the Database relating to Module being deleted
             //
-            Global.Container.Resolve<IConfigurationDB>().DeletePortalModule(moduleId);
+            ConfigurationDb.DeletePortalModule(moduleId);
 
             // Finish removing Module
             siteSettings.Module.RemoveModuleRow(siteSettings.Module.FindByModuleId(moduleId));
@@ -579,7 +587,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 if (moduleRow.ModuleDefId == defId)
                 {
-                    Global.Container.Resolve<IConfigurationDB>().DeletePortalModule(moduleRow.ModuleId);
+                    ConfigurationDb.DeletePortalModule(moduleRow.ModuleId);
                     
                     // Delete the xml module associated with the ModuleDef
                     // in the configuration file

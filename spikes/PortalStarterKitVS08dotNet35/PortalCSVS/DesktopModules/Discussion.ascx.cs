@@ -1,11 +1,19 @@
 using System;
 using System.Data.Common;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class Discussion : PortalModuleControl<Discussion>
     {
+        [Dependency]
+        public IDiscussionDb DiscussionDb
+        {
+            get;
+            set;
+        }
+
         //*******************************************************
         //
         // The Page_Load server event handler on this User Control is used
@@ -41,9 +49,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain a list of discussion messages for the module
             // and bind to datalist
-            IDiscussionDB discuss = Global.Container.Resolve<IDiscussionDB>();
-
-            TopLevelList.DataSource = discuss.GetTopLevelMessages(ModuleId);
+            TopLevelList.DataSource = DiscussionDb.GetTopLevelMessages(ModuleId);
             TopLevelList.DataBind();
         }
 
@@ -60,8 +66,7 @@ namespace ASPNET.StarterKit.Portal
         protected DbDataReader GetThreadMessages()
         {
             // Obtain a list of discussion messages for the module
-            IDiscussionDB discuss = Global.Container.Resolve<IDiscussionDB>();
-            DbDataReader dr = discuss.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
+            DbDataReader dr = DiscussionDb.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
 
             // Return the filtered DataView
             return dr;

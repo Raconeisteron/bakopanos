@@ -1,11 +1,19 @@
 using System;
 using System.Data.Common;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditHtml : Page
     {
+        [Dependency]
+        public IHtmlTextDb HtmlTextDb
+        {
+            get;
+            set;
+        }
+
         private int moduleId;
 
         public EditHtml()
@@ -37,8 +45,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsPostBack == false)
             {
                 // Obtain a single row of text information
-                IHtmlTextDB text = Global.Container.Resolve<IHtmlTextDB>();
-                DbDataReader dr = text.GetHtmlText(moduleId);
+                DbDataReader dr = HtmlTextDb.GetHtmlText(moduleId);
 
                 if (dr.Read())
                 {
@@ -70,10 +77,8 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create an instance of the HtmlTextDB component
-            IHtmlTextDB text = Global.Container.Resolve<IHtmlTextDB>();
-
             // Update the text within the HtmlText table
-            text.UpdateHtmlText(moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text),
+            HtmlTextDb.UpdateHtmlText(moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text),
                                 Server.HtmlEncode(MobileDetails.Text));
 
             // Redirect back to the portal home page

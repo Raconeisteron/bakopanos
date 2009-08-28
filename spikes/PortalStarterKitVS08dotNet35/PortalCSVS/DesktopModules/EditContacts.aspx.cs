@@ -1,11 +1,19 @@
 using System;
 using System.Data.Common;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditContacts : Page
     {
+        [Dependency]
+        public IContactsDb ContactsDb
+        {
+            get;
+            set;
+        }
+
         private int itemId;
         private int moduleId;
 
@@ -50,8 +58,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of contact information
-                    IContactsDB contacts = Global.Container.Resolve<IContactsDB>();
-                    DbDataReader dr = contacts.GetSingleContact(itemId);
+                    DbDataReader dr = ContactsDb.GetSingleContact(itemId);
 
                     // Read first row from database
                     dr.Read();
@@ -95,18 +102,16 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the ContactsDB component
-                IContactsDB contacts = Global.Container.Resolve<IContactsDB>();
-
                 if (itemId == 0)
                 {
                     // Add the contact within the contacts table
-                    contacts.AddContact(moduleId, itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
+                    ContactsDb.AddContact(moduleId, itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
                                         EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
                 else
                 {
                     // Update the contact within the contacts table
-                    contacts.UpdateContact(moduleId, itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
+                    ContactsDb.UpdateContact(moduleId, itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
                                            EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
 
@@ -130,8 +135,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                IContactsDB contacts = Global.Container.Resolve<IContactsDB>();
-                contacts.DeleteContact(itemId);
+                ContactsDb.DeleteContact(itemId);
             }
 
             // Redirect back to the portal home page

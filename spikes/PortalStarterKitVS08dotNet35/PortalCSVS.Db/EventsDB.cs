@@ -5,18 +5,7 @@ using System.Data.SqlClient;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
-{
-    public class EventItem
-    {
-        public int ModuleId { get; set; }
-        public int ItemId { get; set; }
-        public String UserName { get; set; }
-        public String Title { get; set; }
-        public DateTime ExpireDate { get; set; }
-        public String Description { get; set; }
-        public String Wherewhen { get; set; }
-    }
-
+{   
     //*********************************************************************
     //
     // EventDB Class
@@ -26,7 +15,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class EventsDB : IEventsDB
+    public class EventsDb : IEventsDb
     {
         [Dependency]
         public IDatabaseConfiguration DatabaseConfiguration
@@ -50,7 +39,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        #region IEventsDB Members
+        #region IEventsDb Members
 
         public DataSet GetEvents(int moduleId)
         {

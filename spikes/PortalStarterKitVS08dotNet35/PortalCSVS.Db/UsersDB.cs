@@ -6,29 +6,22 @@ using System.Data.SqlClient;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
-{
-    public class UserItem
-    {
-        public String FullName { get; set; }
-        public String Email { get; set; }
-        public String Password { get; set; }
-    }
-
+{   
     //*********************************************************************
     //
-    // UsersDB Class
+    // UsersDb Class
     //
-    // The UsersDB class encapsulates all data logic necessary to add/login/query
+    // The UsersDb class encapsulates all data logic necessary to add/login/query
     // users within the Portal Users database.
     //
-    // Important Note: The UsersDB class is only used when forms-based cookie
+    // Important Note: The UsersDb class is only used when forms-based cookie
     // authentication is enabled within the portal.  When windows based
     // authentication is used instead, then either the Windows SAM or Active Directory
     // is used to store and validate all username/password credentials.
     //
     //*********************************************************************
 
-    public class UsersDB : IUsersDB
+    public class UsersDb : IUsersDb
     {
         [Dependency]
         public IDatabaseConfiguration DatabaseConfiguration
@@ -39,7 +32,7 @@ namespace ASPNET.StarterKit.Portal
 
         //*********************************************************************
         //
-        // UsersDB.AddUser() Method <a name="AddUser"></a>
+        // UsersDb.AddUser() Method <a name="AddUser"></a>
         //
         // The AddUser method inserts a new user record into the "Users" database table.
         //
@@ -48,7 +41,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        #region IUsersDB Members
+        #region IUsersDb Members
 
         public int AddUser(String fullName, String email, String password)
         {
@@ -100,7 +93,7 @@ namespace ASPNET.StarterKit.Portal
 
         //*********************************************************************
         //
-        // UsersDB.DeleteUser() Method <a name="DeleteUser"></a>
+        // UsersDb.DeleteUser() Method <a name="DeleteUser"></a>
         //
         // The DeleteUser method deleted a  user record from the "Users" database table.
         //
@@ -130,7 +123,7 @@ namespace ASPNET.StarterKit.Portal
 
         //*********************************************************************
         //
-        // UsersDB.UpdateUser() Method <a name="DeleteUser"></a>
+        // UsersDb.UpdateUser() Method <a name="DeleteUser"></a>
         //
         // The UpdateUser method deleted a  user record from the "Users" database table.
         //
@@ -168,7 +161,7 @@ namespace ASPNET.StarterKit.Portal
 
         //*********************************************************************
         //
-        // UsersDB.GetRolesByUser() Method <a name="GetRolesByUser"></a>
+        // UsersDb.GetRolesByUser() Method <a name="GetRolesByUser"></a>
         //
         // The DeleteUser method deleted a  user record from the "Users" database table.
         //
@@ -276,7 +269,7 @@ namespace ASPNET.StarterKit.Portal
 
         //*********************************************************************
         //
-        // UsersDB.Login() Method <a name="Login"></a>
+        // UsersDb.Login() Method <a name="Login"></a>
         //
         // The Login method validates a email/password pair against credentials
         // stored in the users database.  If the email/password pair is valid,

@@ -2,11 +2,19 @@ using System;
 using System.Data.Common;
 using System.IO;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditDocs : Page
     {
+        [Dependency]
+        public IDocumentDb DocumentDb
+        {
+            get;
+            set;
+        }
+
         private int itemId;
         private int moduleId;
 
@@ -51,8 +59,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of document information
-                    IDocumentDB documents = Global.Container.Resolve<IDocumentDB>();
-                    DbDataReader dr = documents.GetSingleDocument(itemId);
+                    DbDataReader dr = DocumentDb.GetSingleDocument(itemId);
 
                     // Load first row into Datareader
                     dr.Read();
@@ -93,8 +100,6 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Document DB component
-                IDocumentDB documents = Global.Container.Resolve<IDocumentDB>();
-
                 // Determine whether a file was uploaded
 
                 if (storeInDatabase.Checked && (FileUpload.PostedFile != null))
@@ -107,7 +112,7 @@ namespace ASPNET.StarterKit.Portal
                     FileUpload.PostedFile.InputStream.Read(content, 0, length);
 
                     // Update the document within the Documents table
-                    documents.UpdateDocument(moduleId, itemId, Context.User.Identity.Name, NameField.Text,
+                    DocumentDb.UpdateDocument(moduleId, itemId, Context.User.Identity.Name, NameField.Text,
                                              PathField.Text, CategoryField.Text, content, length, contentType);
                 }
                 else
@@ -126,7 +131,7 @@ namespace ASPNET.StarterKit.Portal
                         // Update PathFile with uploaded virtual file location
                         PathField.Text = virtualPath;
                     }
-                    documents.UpdateDocument(moduleId, itemId, Context.User.Identity.Name, NameField.Text,
+                    DocumentDb.UpdateDocument(moduleId, itemId, Context.User.Identity.Name, NameField.Text,
                                              PathField.Text, CategoryField.Text, new byte[0], 0, "");
                 }
 
@@ -150,8 +155,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                IDocumentDB documents = Global.Container.Resolve<IDocumentDB>();
-                documents.DeleteDocument(itemId);
+                DocumentDb.DeleteDocument(itemId);
             }
 
             // Redirect back to the portal home page

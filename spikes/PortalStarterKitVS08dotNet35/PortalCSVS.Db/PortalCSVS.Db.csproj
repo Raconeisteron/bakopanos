@@ -62,6 +62,7 @@
     <Compile Include="ContactsDB.cs" />
     <Compile Include="ConfigurationDB.cs" />
     <Compile Include="ContainerConfigurator.cs" />
+    <Compile Include="DbDataReaderExtensions.cs" />
     <Compile Include="DiscussionDB.cs" />
     <Compile Include="DocumentDB.cs" />
     <Compile Include="EventsDB.cs" />

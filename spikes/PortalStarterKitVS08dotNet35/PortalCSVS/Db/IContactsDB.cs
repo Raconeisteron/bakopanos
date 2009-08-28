@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public interface IContactsDB
+    public interface IContactsDb
     {
         DataSet GetContacts(int moduleId);
         DbDataReader GetSingleContact(int itemId);

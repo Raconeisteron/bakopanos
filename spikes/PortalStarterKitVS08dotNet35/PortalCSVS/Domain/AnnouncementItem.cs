@@ -12,5 +12,7 @@ namespace ASPNET.StarterKit.Portal
         public String Description { get; set; }
         public String MoreLink { get; set; }
         public String MobileMoreLink { get; set; }
+        public string CreatedByUser { get; set; }
+        public DateTime CreatedDate{ get; set;}
     }  
 }

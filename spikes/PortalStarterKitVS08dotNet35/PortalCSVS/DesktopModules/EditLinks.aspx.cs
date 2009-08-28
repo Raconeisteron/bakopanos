@@ -1,11 +1,19 @@
 using System;
 using System.Data.Common;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditLinks : Page
     {
+        [Dependency]
+        public ILinkDb LinkDb
+        {
+            get;
+            set;
+        }
+
         private int itemId;
         private int moduleId;
 
@@ -50,8 +58,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of link information
-                    ILinkDB links = Global.Container.Resolve<ILinkDB>();
-                    DbDataReader dr = links.GetSingleLink(itemId);
+                    DbDataReader dr = LinkDb.GetSingleLink(itemId);
 
                     // Read in first row from database
                     dr.Read();
@@ -94,18 +101,16 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Link DB component
-                ILinkDB links = Global.Container.Resolve<ILinkDB>();
-
                 if (itemId == 0)
                 {
                     // Add the link within the Links table
-                    links.AddLink(moduleId, itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    LinkDb.AddLink(moduleId, itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                   MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
                 else
                 {
                     // Update the link within the Links table
-                    links.UpdateLink(moduleId, itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    LinkDb.UpdateLink(moduleId, itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                      MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
 
@@ -129,8 +134,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                ILinkDB links = Global.Container.Resolve<ILinkDB>();
-                links.DeleteLink(itemId);
+                LinkDb.DeleteLink(itemId);
             }
 
             // Redirect back to the portal home page

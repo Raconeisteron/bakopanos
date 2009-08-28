@@ -1,6 +1,7 @@
 using System;
 using System.Web.Security;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -9,6 +10,13 @@ namespace ASPNET.StarterKit.Portal
     /// </summary>
     public partial class Register : Page
     {
+        [Dependency]
+        public IUsersDb UsersDb
+        {
+            get;
+            set;
+        }
+
         public Register()
         {
             Page.Init += Page_Init;
@@ -20,9 +28,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Add New User to Portal User Database
-                IUsersDB accountSystem = Global.Container.Resolve<IUsersDB>();
-
-                if ((accountSystem.AddUser(Name.Text, Email.Text, PortalSecurity.Encrypt(Password.Text))) > -1)
+                if ((UsersDb.AddUser(Name.Text, Email.Text, PortalSecurity.Encrypt(Password.Text))) > -1)
                 {
                     // Set the user's authentication name to the userId
                     FormsAuthentication.SetAuthCookie(Email.Text, false);

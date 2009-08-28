@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public interface IRolesDB
+    public interface IRolesDb
     {
         DbDataReader GetPortalRoles(int portalId);
         int AddRole(int portalId, String roleName);

@@ -1,9 +1,17 @@
 using System;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class Document : PortalModuleControl<Document>
     {
+        [Dependency]
+        public IDocumentDb DocumentDb
+        {
+            get;
+            set;
+        }
+
         //*******************************************************
         //
         // The Page_Load event handler on this User Control is used to
@@ -23,9 +31,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain Document Data from Documents table
             // and bind to the datalist control
-            IDocumentDB documents = Global.Container.Resolve<IDocumentDB>();
-
-            myDataGrid.DataSource = documents.GetDocuments(ModuleId);
+            myDataGrid.DataSource = DocumentDb.GetDocuments(ModuleId);
             myDataGrid.DataBind();
         }
 

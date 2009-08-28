@@ -2,11 +2,26 @@ using System;
 using System.Data.Common;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class ManageUsers : Page
     {
+        [Dependency]
+        public IUsersDb UsersDb
+        {
+            get;
+            set;
+        }
+
+        [Dependency]
+        public IRolesDb RolesDb
+        {
+            get;
+            set;
+        }
+
         private int tabId;
         private int tabIndex;
         private int userId = -1;
@@ -57,8 +72,6 @@ namespace ASPNET.StarterKit.Portal
                 // new user?
                 if (userName == "")
                 {
-                    IUsersDB users = Global.Container.Resolve<IUsersDB>();
-
                     // make a unique new user record
                     int uid = -1;
                     int i = 0;
@@ -67,7 +80,7 @@ namespace ASPNET.StarterKit.Portal
                     {
                         String friendlyName = "New User created " + DateTime.Now;
                         userName = "New User" + i;
-                        uid = users.AddUser(friendlyName, userName, "");
+                        uid = UsersDb.AddUser(friendlyName, userName, "");
                         i++;
                     }
 
@@ -111,8 +124,7 @@ namespace ASPNET.StarterKit.Portal
             roleId = Int32.Parse(allRoles.SelectedItem.Value);
 
             // Add a new userRole to the database
-            IRolesDB roles = Global.Container.Resolve<IRolesDB>();
-            roles.AddUserRole(roleId, userId);
+            RolesDb.AddUserRole(roleId, userId);
 
             // Rebind list
             BindData();
@@ -128,8 +140,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateUser_Click(Object sender, EventArgs e)
         {
             // update the user record in the database
-            IUsersDB users = Global.Container.Resolve<IUsersDB>();
-            users.UpdateUser(userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
+            UsersDb.UpdateUser(userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
 
             // redirect to this page with the corrected querystring args
             Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + userId + "&username=" + Email.Text + "&tabindex=" +
@@ -146,11 +157,10 @@ namespace ASPNET.StarterKit.Portal
 
         private void UserRoles_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            IRolesDB roles = Global.Container.Resolve<IRolesDB>();
             var roleId = (int) userRoles.DataKeys[e.Item.ItemIndex];
 
             // update database
-            roles.DeleteUserRole(roleId, userId);
+            RolesDb.DeleteUserRole(roleId, userId);
 
             // Ensure that item is not editable
             userRoles.EditItemIndex = -1;
@@ -169,8 +179,7 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Bind the Email and Password
-            IUsersDB users = Global.Container.Resolve<IUsersDB>();
-            DbDataReader dr = users.GetSingleUser(userName);
+            DbDataReader dr = UsersDb.GetSingleUser(userName);
 
             // Read first row from database
             dr.Read();
@@ -186,17 +195,15 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // bind users in role to DataList
-            userRoles.DataSource = users.GetRolesByUser(userName);
+            userRoles.DataSource = UsersDb.GetRolesByUser(userName);
             userRoles.DataBind();
 
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Get the portal's roles from the database
-            IRolesDB roles = Global.Container.Resolve<IRolesDB>();
-
             // bind all portal roles to dropdownlist
-            allRoles.DataSource = roles.GetPortalRoles(portalSettings.PortalId);
+            allRoles.DataSource = RolesDb.GetPortalRoles(portalSettings.PortalId);
             allRoles.DataBind();
         }
 

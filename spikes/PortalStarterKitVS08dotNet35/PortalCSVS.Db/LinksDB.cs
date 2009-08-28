@@ -5,29 +5,17 @@ using System.Data.SqlClient;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
-{
-    public class LinkItem
-    {
-        public int ModuleId { get; set; }
-        public int ItemId { get; set; }
-        public String UserName { get; set; }
-        public String Title { get; set; }
-        public String Url { get; set; }
-        public String MobileUrl { get; set; }
-        public int ViewOrder { get; set; }
-        public String Description { get; set; }
-    }
-
+{   
     //*********************************************************************
     //
-    // LinkDB Class
+    // LinkDb Class
     //
     // Class that encapsulates all data logic necessary to add/query/delete
     // links within the Portal database.
     //
     //*********************************************************************
 
-    public class LinkDB : ILinkDB
+    public class LinkDb : ILinkDb
     {
         [Dependency]
         public IDatabaseConfiguration DatabaseConfiguration
@@ -48,7 +36,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        #region ILinkDB Members
+        #region ILinkDb Members
 
         public DbDataReader GetLinks(int moduleId)
         {

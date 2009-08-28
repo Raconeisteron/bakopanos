@@ -1,9 +1,17 @@
 using System;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class Announcements : PortalModuleControl<Announcements>
     {
+        [Dependency]
+        public IAnnouncementsDb AnnouncementsDb
+        {
+            get;
+            set;
+        }
+
         //*******************************************************
         //
         // The Page_Load event handler on this User Control is used to
@@ -23,10 +31,8 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain announcement information from Announcements table
             // and bind to the datalist control
-            IAnnouncementsDB announcements = Global.Container.Resolve<IAnnouncementsDB>();
-
             // DataBind Announcements to DataList Control
-            myDataList.DataSource = announcements.GetAnnouncements(ModuleId);
+            myDataList.DataSource = AnnouncementsDb.GetAnnouncements(ModuleId);
             myDataList.DataBind();
         }
 

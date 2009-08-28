@@ -1,11 +1,26 @@
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class SecurityRoles : Page
     {
+        [Dependency]
+        public IUsersDb UsersDb
+        {
+            get;
+            set;
+        }
+
+        [Dependency]
+        public IRolesDb RolesDb
+        {
+            get;
+            set;
+        }
+
         private int roleId = -1;
         private String roleName = "";
         private int tabId;
@@ -87,8 +102,7 @@ namespace ASPNET.StarterKit.Portal
             if (((LinkButton) sender).ID == "addNew")
             {
                 // add new user to users table
-                IUsersDB users = Global.Container.Resolve<IUsersDB>();
-                if ((userId = users.AddUser(windowsUserName.Text, windowsUserName.Text, "acme")) == -1)
+                if ((userId = UsersDb.AddUser(windowsUserName.Text, windowsUserName.Text, "acme")) == -1)
                 {
                     Message.Text = "Add New Failed!  There is already an entry for <" + "u" + ">" + windowsUserName.Text +
                                    "<" + "/u" + "> in the Users database." + "<" + "br" + ">" +
@@ -104,8 +118,7 @@ namespace ASPNET.StarterKit.Portal
             if (userId != -1)
             {
                 // Add a new userRole to the database
-                IRolesDB roles = Global.Container.Resolve<IRolesDB>();
-                roles.AddUserRole(roleId, userId);
+                RolesDb.AddUserRole(roleId, userId);
             }
 
             // Rebind list
@@ -122,13 +135,12 @@ namespace ASPNET.StarterKit.Portal
 
         private void usersInRole_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            IRolesDB roles = Global.Container.Resolve<IRolesDB>();
             var userId = (int) usersInRole.DataKeys[e.Item.ItemIndex];
 
             if (e.CommandName == "delete")
             {
                 // update database
-                roles.DeleteUserRole(roleId, userId);
+                RolesDb.DeleteUserRole(roleId, userId);
 
                 // Ensure that item is not editable
                 usersInRole.EditItemIndex = -1;
@@ -161,14 +173,12 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Get the portal's roles from the database
-            IRolesDB roles = Global.Container.Resolve<IRolesDB>();
-
             // bind users in role to DataList
-            usersInRole.DataSource = roles.GetRoleMembers(roleId);
+            usersInRole.DataSource = RolesDb.GetRoleMembers(roleId);
             usersInRole.DataBind();
 
             // bind all portal users to dropdownlist
-            allUsers.DataSource = roles.GetUsers();
+            allUsers.DataSource = RolesDb.GetUsers();
             allUsers.DataBind();
         }
 

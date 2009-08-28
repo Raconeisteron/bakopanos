@@ -21,10 +21,7 @@ namespace ASPNET.StarterKit.Portal
             get { return Container; }
         }
 
-        /// <summary>
-        /// The Unity container for the current application
-        /// </summary>
-        public static IUnityContainer Container
+        private static IUnityContainer Container
         {
             get;
             set;
@@ -124,7 +121,7 @@ namespace ASPNET.StarterKit.Portal
                 if ((Request.Cookies["portalroles"] == null) || (Request.Cookies["portalroles"].Value == ""))
                 {
                     // Get roles from UserRoles table, and add to cookie
-                    IUsersDB user = Container.Resolve<IUsersDB>();
+                    IUsersDb user = Container.Resolve<IUsersDb>();
                     roles = user.GetRoles(User.Identity.Name);
 
                     // Create a string to persist the roles

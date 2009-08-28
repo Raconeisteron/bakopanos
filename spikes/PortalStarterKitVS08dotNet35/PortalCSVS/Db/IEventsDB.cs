@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public interface IEventsDB
+    public interface IEventsDb
     {
         DataSet GetEvents(int moduleId);
         DbDataReader GetSingleEvent(int itemId);

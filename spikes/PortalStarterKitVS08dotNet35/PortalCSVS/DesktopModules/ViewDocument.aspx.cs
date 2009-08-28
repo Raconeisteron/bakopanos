@@ -1,11 +1,19 @@
 using System;
 using System.Data.Common;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class ViewDocument : Page
     {
+        [Dependency]
+        public IDocumentDb DocumentDb
+        {
+            get;
+            set;
+        }
+
         private int documentId = -1;
 
         //*******************************************************
@@ -35,9 +43,7 @@ namespace ASPNET.StarterKit.Portal
             if (documentId != -1)
             {
                 // Obtain Document Data from Documents table
-                IDocumentDB documents = Global.Container.Resolve<IDocumentDB>();
-
-                DbDataReader dBContent = documents.GetDocumentContent(documentId);
+                DbDataReader dBContent = DocumentDb.GetDocumentContent(documentId);
                 dBContent.Read();
 
                 // Serve up the file by name

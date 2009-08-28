@@ -1,11 +1,19 @@
 using System;
 using System.Data.Common;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class DiscussDetails : Page
     {
+        [Dependency]
+        public IDiscussionDb DiscussionDb
+        {
+            get;
+            set;
+        }
+
         private int itemId;
         private int moduleId;
 
@@ -82,10 +90,8 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create new discussion database component
-            IDiscussionDB discuss = Global.Container.Resolve<IDiscussionDB>();
-
             // Add new message (updating the "itemId" on the page)
-            itemId = discuss.AddMessage(moduleId, itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
+            itemId = DiscussionDb.AddMessage(moduleId, itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
                                         Server.HtmlEncode(BodyField.Text));
 
             // Update visibility of page elements
@@ -123,8 +129,7 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Obtain the selected item from the Discussion table
-            IDiscussionDB discuss = Global.Container.Resolve<IDiscussionDB>();
-            DbDataReader dr = discuss.GetSingleMessage(itemId);
+            DbDataReader dr = DiscussionDb.GetSingleMessage(itemId);
 
             // Load first row from database
             dr.Read();

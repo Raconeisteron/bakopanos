@@ -6,29 +6,16 @@ using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class DocumentItem
-    {
-        public int ModuleId { get; set; }
-        public int ItemId { get; set; }
-        public String UserName { get; set; }
-        public String Name { get; set; }
-        public String Url { get; set; }
-        public String Category { get; set; }
-        public byte[] Content { get; set; }
-        public int Size { get; set; }
-        public String ContentType { get; set; }
-    }
-
     //*********************************************************************
     //
-    // DocumentDB Class
+    // DocumentDb Class
     //
     // Class that encapsulates all data logic necessary to add/query/delete
     // documents within the Portal database.
     //
     //*********************************************************************
 
-    public class DocumentDB : IDocumentDB
+    public class DocumentDb : IDocumentDb
     {
         [Dependency]
         public IDatabaseConfiguration DatabaseConfiguration
@@ -50,7 +37,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        #region IDocumentDB Members
+        #region IDocumentDb Members
 
         public DbDataReader GetDocuments(int moduleId)
         {

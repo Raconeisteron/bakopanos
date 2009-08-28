@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public interface ILinkDB
+    public interface ILinkDb
     {
         DbDataReader GetLinks(int moduleId);
         DbDataReader GetSingleLink(int itemId);

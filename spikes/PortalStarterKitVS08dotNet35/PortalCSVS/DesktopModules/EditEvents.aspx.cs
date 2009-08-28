@@ -2,11 +2,19 @@ using System;
 using System.Data.Common;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditEvents : Page
     {
+        [Dependency]
+        public IEventsDb EventsDb
+        {
+            get;
+            set;
+        }
+
         private int itemId;
         private int moduleId;
         protected RequiredFieldValidator RequiredFieldValidator1;
@@ -54,8 +62,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of event information
-                    IEventsDB events = Global.Container.Resolve<IEventsDB>();
-                    DbDataReader dr = events.GetSingleEvent(itemId);
+                    DbDataReader dr = EventsDb.GetSingleEvent(itemId);
 
                     // Read first row from database
                     dr.Read();
@@ -97,18 +104,16 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Event DB component
-                IEventsDB events = Global.Container.Resolve<IEventsDB>();
-
                 if (itemId == 0)
                 {
                     // Add the event within the Events table
-                    events.AddEvent(moduleId, itemId, Context.User.Identity.Name, TitleField.Text,
+                    EventsDb.AddEvent(moduleId, itemId, Context.User.Identity.Name, TitleField.Text,
                                     DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
                 }
                 else
                 {
                     // Update the event within the Events table
-                    events.UpdateEvent(moduleId, itemId, Context.User.Identity.Name, TitleField.Text,
+                    EventsDb.UpdateEvent(moduleId, itemId, Context.User.Identity.Name, TitleField.Text,
                                        DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
                 }
 
@@ -132,8 +137,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                IEventsDB events = Global.Container.Resolve<IEventsDB>();
-                events.DeleteEvent(itemId);
+                EventsDb.DeleteEvent(itemId);
             }
 
             // Redirect back to the portal home page

@@ -5,25 +5,17 @@ using System.Data.SqlClient;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
-{
-    public class HtmlTextItem
-    {
-        public int ModuleId { get; set; }
-        public String DesktopHtml { get; set; }
-        public String MobileSummary { get; set; }
-        public String MobileDetails { get; set; }
-    }
-
+{   
     //*********************************************************************
     //
-    // HtmlTextDB Class
+    // HtmlTextDb Class
     //
     // Class that encapsulates all data logic necessary to add/query/delete
     // HTML/text within the Portal database.
     //
     //*********************************************************************
 
-    public class HtmlTextDB : IHtmlTextDB
+    public class HtmlTextDb : IHtmlTextDb
     {
         [Dependency]
         public IDatabaseConfiguration DatabaseConfiguration
@@ -43,7 +35,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        #region IHtmlTextDB Members
+        #region IHtmlTextDb Members
 
         public DbDataReader GetHtmlText(int moduleId)
         {

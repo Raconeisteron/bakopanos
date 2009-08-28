@@ -1,6 +1,6 @@
 namespace ASPNET.StarterKit.Portal
 {
-    public interface IConfigurationDB
+    public interface IConfigurationDb
     {        
         void DeletePortalModule(int moduleId);        
     }

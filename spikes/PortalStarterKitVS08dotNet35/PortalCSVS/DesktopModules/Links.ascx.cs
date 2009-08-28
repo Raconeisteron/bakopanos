@@ -1,9 +1,17 @@
 using System;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class Links : PortalModuleControl<Links>
     {
+        [Dependency]
+        public ILinkDb LinkDb
+        {
+            get;
+            set;
+        }
+
         protected String linkImage = "";
 
         public Links()
@@ -35,9 +43,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the datalist control
-            ILinkDB links = Global.Container.Resolve<ILinkDB>();
-
-            myDataList.DataSource = links.GetLinks(ModuleId);
+            myDataList.DataSource = LinkDb.GetLinks(ModuleId);
             myDataList.DataBind();
         }
 

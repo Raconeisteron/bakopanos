@@ -3,11 +3,19 @@ using System.Data.Common;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class ModuleSettingsPage : Page
     {
+        [Dependency]
+        public IRolesDb RolesDb
+        {
+            get;
+            set;
+        }
+
         private int moduleId;
         private int tabId;
 
@@ -87,8 +95,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                IRolesDB rolesObj = Global.Container.Resolve<IRolesDB>();
-                DbDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
+                DbDataReader roles = RolesDb.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();
@@ -147,8 +154,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                IRolesDB rolesObj = Global.Container.Resolve<IRolesDB>();
-                DbDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
+                DbDataReader roles = RolesDb.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();

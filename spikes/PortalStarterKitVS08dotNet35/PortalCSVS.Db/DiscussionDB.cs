@@ -5,27 +5,17 @@ using System.Data.SqlClient;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
-{
-    public class DiscussionItem
-    {
-        public int ModuleId { get; set; }
-        public int ParentId { get; set; }
-        public String UserName { get; set; }
-        public String Title { get; set; }
-        public String Body { get; set; }
-    }
-
-
+{   
     //*********************************************************************
     //
-    // DiscussionDB Class
+    // DiscussionDb Class
     //
     // Class that encapsulates all data logic necessary to add/query/delete
     // discussions within the Portal database.
     //
     //*********************************************************************
 
-    public class DiscussionDB : IDiscussionDB
+    public class DiscussionDb : IDiscussionDb
     {
         [Dependency]
         public IDatabaseConfiguration DatabaseConfiguration
@@ -45,7 +35,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        #region IDiscussionDB Members
+        #region IDiscussionDb Members
 
         public DbDataReader GetTopLevelMessages(int moduleId)
         {

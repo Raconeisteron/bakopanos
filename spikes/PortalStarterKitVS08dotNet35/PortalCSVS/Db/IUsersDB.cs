@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public interface IUsersDB
+    public interface IUsersDb
     {
         int AddUser(String fullName, String email, String password);
         void DeleteUser(int userId);

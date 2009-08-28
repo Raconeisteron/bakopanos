@@ -5,19 +5,7 @@ using System.Data.SqlClient;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
-{
-    public class AnnouncementItem
-    {
-        public int ModuleId { get; set; }
-        public int ItemId { get; set; }
-        public String UserName { get; set; }
-        public String Title { get; set; }
-        public DateTime ExpireDate { get; set; }
-        public String Description { get; set; }
-        public String MoreLink { get; set; }
-        public String MobileMoreLink { get; set; }
-    }
-
+{   
     //*********************************************************************
     //
     // AnnounceDB Class
@@ -27,7 +15,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class AnnouncementsDB : IAnnouncementsDB
+    public class AnnouncementsDb : IAnnouncementsDb
     {
         [Dependency]
         public IDatabaseConfiguration DatabaseConfiguration
@@ -52,7 +40,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        #region IAnnouncementsDB Members
+        #region IAnnouncementsDb Members
 
         public DataSet GetAnnouncements(int moduleId)
         {
@@ -88,7 +76,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public DbDataReader GetSingleAnnouncement(int itemId)
+        public AnnouncementItem GetSingleAnnouncement(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
@@ -104,10 +92,10 @@ namespace ASPNET.StarterKit.Portal
 
             // Execute the command
             myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            var item = myCommand.ExecuteReader(CommandBehavior.CloseConnection).ToAnnouncement();
 
-            // Return the datareader 
-            return result;
+            // Return the item
+            return item;
         }
 
         //*********************************************************************

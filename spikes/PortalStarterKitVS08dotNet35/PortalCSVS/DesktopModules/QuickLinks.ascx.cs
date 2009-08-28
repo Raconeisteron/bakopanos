@@ -1,9 +1,16 @@
 using System;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class QuickLinks : PortalModuleControl<QuickLinks>
     {
+        [Dependency]
+        public ILinkDb LinkDb
+        {
+            get; set;
+        }
+
         protected String linkImage = "";
 
         public QuickLinks()
@@ -35,9 +42,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the list control
-            ILinkDB links = Global.Container.Resolve<ILinkDB>(); ;
-
-            myDataList.DataSource = links.GetLinks(ModuleId);
+            myDataList.DataSource = LinkDb.GetLinks(ModuleId);
             myDataList.DataBind();
 
             // Ensure that only users in role may add links

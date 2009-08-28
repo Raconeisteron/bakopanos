@@ -5,22 +5,16 @@ using System.Data.SqlClient;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
-{
-    public class RoleItem
-    {
-        public int PortalId { get; set; }
-        public String RoleName { get; set; }
-    }
-
+{    
     //*********************************************************************
     //
-    // RolesDB Class
+    // RolesDb Class
     //
     // Class that encapsulates all data logic necessary to add/query/delete
     // Users, Roles and security settings values within the Portal database.
     //
     //*********************************************************************
-    public class RolesDB : IRolesDB
+    public class RolesDb : IRolesDb
     {
         [Dependency]
         public IDatabaseConfiguration DatabaseConfiguration
@@ -41,7 +35,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        #region IRolesDB Members
+        #region IRolesDb Members
 
         public DbDataReader GetPortalRoles(int portalId)
         {

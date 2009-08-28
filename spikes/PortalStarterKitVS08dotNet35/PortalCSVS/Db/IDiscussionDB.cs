@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public interface IDiscussionDB
+    public interface IDiscussionDb
     {
         DbDataReader GetTopLevelMessages(int moduleId);
         DbDataReader GetThreadMessages(String parent);
