@@ -76,7 +76,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public DbDataReader GetSingleContact(int itemId)
+        public ContactItem GetSingleContact(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
@@ -92,10 +92,8 @@ namespace ASPNET.StarterKit.Portal
 
             // Execute the command
             myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader 
-            return result;
+            // Return the item
+            return myCommand.ExecuteReader(CommandBehavior.CloseConnection).ToContactItem();
         }
 
         //*********************************************************************

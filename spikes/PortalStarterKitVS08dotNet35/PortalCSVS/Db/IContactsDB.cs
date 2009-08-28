@@ -1,13 +1,12 @@
 using System;
 using System.Data;
-using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal
 {
     public interface IContactsDb
     {
         DataSet GetContacts(int moduleId);
-        DbDataReader GetSingleContact(int itemId);
+        ContactItem GetSingleContact(int itemId);
         void DeleteContact(int itemID);
 
         int AddContact(int moduleId, int itemId, String userName, String name, String role, String email,

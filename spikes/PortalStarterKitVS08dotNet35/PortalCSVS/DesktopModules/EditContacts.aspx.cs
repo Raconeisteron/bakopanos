@@ -1,5 +1,4 @@
 using System;
-using System.Data.Common;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 
@@ -58,29 +57,22 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of contact information
-                    DbDataReader dr = ContactsDb.GetSingleContact(itemId);
-
-                    // Read first row from database
-                    dr.Read();
+                    ContactItem item = ContactsDb.GetSingleContact(itemId);
 
                     // Security check.  verify that itemid is within the module.
-                    int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
+                    int dbModuleID = item.ModuleId;
                     if (dbModuleID != moduleId)
                     {
-                        dr.Close();
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
                     }
 
-                    NameField.Text = (String) dr["Name"];
-                    RoleField.Text = (String) dr["Role"];
-                    EmailField.Text = (String) dr["Email"];
-                    Contact1Field.Text = (String) dr["Contact1"];
-                    Contact2Field.Text = (String) dr["Contact2"];
-                    CreatedBy.Text = (String) dr["CreatedByUser"];
-                    CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
-
-                    // Close datareader
-                    dr.Close();
+                    NameField.Text = item.Name;
+                    RoleField.Text = item.Role;
+                    EmailField.Text = item.Email;
+                    Contact1Field.Text = item.Contact1;
+                    Contact2Field.Text = item.Contact2;
+                    CreatedBy.Text = item.CreatedByUser;
+                    CreatedDate.Text = item.CreatedDate.ToShortDateString();                    
                 }
 
                 // Store URL Referrer to return to portal

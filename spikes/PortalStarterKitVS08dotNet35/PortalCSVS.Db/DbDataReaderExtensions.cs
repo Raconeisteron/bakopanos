@@ -20,5 +20,19 @@ namespace ASPNET.StarterKit.Portal
             item.CreatedDate = ((DateTime)dr["CreatedDate"]);
             return item;
         }
+
+        public static ContactItem ToContactItem(this DbDataReader dr)
+        {
+            var item = new ContactItem();
+            item.Name = (String)dr["Name"];
+            item.Role = (String)dr["Role"];
+            item.Email = (String)dr["Email"];
+            item.Contact1 = (String)dr["Contact1"];
+            item.Contact2 = (String)dr["Contact2"];
+            item.CreatedByUser = (String)dr["CreatedByUser"];
+            item.CreatedDate = ((DateTime)dr["CreatedDate"]);
+            return item;
+        }
+
     }
 }
