@@ -3,7 +3,7 @@ using System.Web.UI.WebControls;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class ModuleDefs : PortalModuleControl
+    public partial class ModuleDefs : PortalModuleControl<ModuleDefs>
     {
         private int tabId;
         private int tabIndex;

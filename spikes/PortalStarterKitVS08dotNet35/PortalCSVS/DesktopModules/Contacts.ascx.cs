@@ -1,9 +1,8 @@
 using System;
-using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Contacts : PortalModuleControl
+    public partial class Contacts : PortalModuleControl<Contacts>
     {
         //*******************************************************
         //
@@ -25,7 +24,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain contact information from Contacts table
             // and bind to the DataGrid Control
-            IContactsDB contacts = DbFactory.Instance.GetContactsDB();
+            IContactsDB contacts = Global.Container.Resolve<IContactsDB>();
 
             myDataGrid.DataSource = contacts.GetContacts(ModuleId);
             myDataGrid.DataBind();

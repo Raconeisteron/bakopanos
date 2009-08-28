@@ -3,6 +3,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using ASPNET.StarterKit.Portal.Framework;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -28,6 +30,12 @@ namespace ASPNET.StarterKit.Portal
 
     public class EventsDB : IEventsDB
     {
+        [Dependency]
+        public IDatabaseConfiguration DatabaseConfiguration
+        {
+            private get;
+            set;
+        }
         //*********************************************************************
         //
         // GetEvents Method
@@ -49,7 +57,7 @@ namespace ASPNET.StarterKit.Portal
         public DataSet GetEvents(int moduleId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlDataAdapter("Portal_GetEvents", myConnection);
 
             // Mark the Command as a SPROC
@@ -83,7 +91,7 @@ namespace ASPNET.StarterKit.Portal
         public DbDataReader GetSingleEvent(int itemId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlCommand("Portal_GetSingleEvent", myConnection);
 
             // Mark the Command as a SPROC
@@ -117,7 +125,7 @@ namespace ASPNET.StarterKit.Portal
         public void DeleteEvent(int itemID)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlCommand("Portal_DeleteEvent", myConnection);
 
             // Mark the Command as a SPROC
@@ -155,7 +163,7 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlCommand("Portal_AddEvent", myConnection);
 
             // Mark the Command as a SPROC
@@ -220,7 +228,7 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlCommand("Portal_UpdateEvent", myConnection);
 
             // Mark the Command as a SPROC

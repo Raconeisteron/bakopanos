@@ -2,7 +2,6 @@ using System;
 using System.Data.Common;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -58,7 +57,7 @@ namespace ASPNET.StarterKit.Portal
                 // new user?
                 if (userName == "")
                 {
-                    IUsersDB users = DbFactory.Instance.GetUsersDB();
+                    IUsersDB users = Global.Container.Resolve<IUsersDB>();
 
                     // make a unique new user record
                     int uid = -1;
@@ -112,7 +111,7 @@ namespace ASPNET.StarterKit.Portal
             roleId = Int32.Parse(allRoles.SelectedItem.Value);
 
             // Add a new userRole to the database
-            IRolesDB roles = DbFactory.Instance.GetRolesDB();
+            IRolesDB roles = Global.Container.Resolve<IRolesDB>();
             roles.AddUserRole(roleId, userId);
 
             // Rebind list
@@ -129,7 +128,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateUser_Click(Object sender, EventArgs e)
         {
             // update the user record in the database
-            IUsersDB users = DbFactory.Instance.GetUsersDB();
+            IUsersDB users = Global.Container.Resolve<IUsersDB>();
             users.UpdateUser(userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
 
             // redirect to this page with the corrected querystring args
@@ -147,7 +146,7 @@ namespace ASPNET.StarterKit.Portal
 
         private void UserRoles_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            IRolesDB roles = DbFactory.Instance.GetRolesDB();
+            IRolesDB roles = Global.Container.Resolve<IRolesDB>();
             var roleId = (int) userRoles.DataKeys[e.Item.ItemIndex];
 
             // update database
@@ -170,7 +169,7 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Bind the Email and Password
-            IUsersDB users = DbFactory.Instance.GetUsersDB();
+            IUsersDB users = Global.Container.Resolve<IUsersDB>();
             DbDataReader dr = users.GetSingleUser(userName);
 
             // Read first row from database
@@ -194,7 +193,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Get the portal's roles from the database
-            IRolesDB roles = DbFactory.Instance.GetRolesDB();
+            IRolesDB roles = Global.Container.Resolve<IRolesDB>();
 
             // bind all portal roles to dropdownlist
             allRoles.DataSource = roles.GetPortalRoles(portalSettings.PortalId);

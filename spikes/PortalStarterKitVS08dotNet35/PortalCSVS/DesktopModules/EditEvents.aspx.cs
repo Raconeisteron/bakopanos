@@ -2,7 +2,6 @@ using System;
 using System.Data.Common;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -55,7 +54,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of event information
-                    IEventsDB events = DbFactory.Instance.GetEventsDB();
+                    IEventsDB events = Global.Container.Resolve<IEventsDB>();
                     DbDataReader dr = events.GetSingleEvent(itemId);
 
                     // Read first row from database
@@ -98,7 +97,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Event DB component
-                IEventsDB events = DbFactory.Instance.GetEventsDB();
+                IEventsDB events = Global.Container.Resolve<IEventsDB>();
 
                 if (itemId == 0)
                 {
@@ -133,7 +132,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                IEventsDB events = DbFactory.Instance.GetEventsDB();
+                IEventsDB events = Global.Container.Resolve<IEventsDB>();
                 events.DeleteEvent(itemId);
             }
 

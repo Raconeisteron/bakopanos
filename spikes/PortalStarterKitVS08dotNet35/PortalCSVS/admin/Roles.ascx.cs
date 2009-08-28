@@ -1,10 +1,9 @@
 using System;
 using System.Web.UI.WebControls;
-using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Roles : PortalModuleControl
+    public partial class Roles : PortalModuleControl<Roles>
     {
         private int tabId;
         private int tabIndex;
@@ -58,7 +57,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Add a new role to the database
-            IRolesDB roles = DbFactory.Instance.GetRolesDB();
+            IRolesDB roles = Global.Container.Resolve<IRolesDB>();
             roles.AddRole(portalSettings.PortalId, "New Role");
 
             // set the edit item index to the last item
@@ -78,7 +77,7 @@ namespace ASPNET.StarterKit.Portal
 
         private void RolesList_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            IRolesDB roles = DbFactory.Instance.GetRolesDB();
+            IRolesDB roles = Global.Container.Resolve<IRolesDB>();
             var roleId = (int) rolesList.DataKeys[e.Item.ItemIndex];
 
             if (e.CommandName == "edit")
@@ -139,7 +138,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Get the portal's roles from the database
-            IRolesDB roles = DbFactory.Instance.GetRolesDB();
+            IRolesDB roles = Global.Container.Resolve<IRolesDB>();
 
             rolesList.DataSource = roles.GetPortalRoles(portalSettings.PortalId);
             rolesList.DataBind();

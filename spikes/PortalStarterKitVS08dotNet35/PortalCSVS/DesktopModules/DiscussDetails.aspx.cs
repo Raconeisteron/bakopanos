@@ -1,7 +1,6 @@
 using System;
 using System.Data.Common;
 using System.Web.UI;
-using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -83,7 +82,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create new discussion database component
-            IDiscussionDB discuss = DbFactory.Instance.GetDiscussionDB();
+            IDiscussionDB discuss = Global.Container.Resolve<IDiscussionDB>();
 
             // Add new message (updating the "itemId" on the page)
             itemId = discuss.AddMessage(moduleId, itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
@@ -124,7 +123,7 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Obtain the selected item from the Discussion table
-            IDiscussionDB discuss = DbFactory.Instance.GetDiscussionDB();
+            IDiscussionDB discuss = Global.Container.Resolve<IDiscussionDB>();
             DbDataReader dr = discuss.GetSingleMessage(itemId);
 
             // Load first row from database

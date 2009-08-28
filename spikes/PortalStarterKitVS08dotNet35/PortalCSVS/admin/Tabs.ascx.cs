@@ -6,7 +6,7 @@ using System.Web.UI.WebControls;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Tabs : PortalModuleControl
+    public partial class Tabs : PortalModuleControl<Tabs>
     {
         protected ArrayList portalTabs;
         private int tabId;

@@ -3,6 +3,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using ASPNET.StarterKit.Portal.Framework;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -30,6 +32,13 @@ namespace ASPNET.StarterKit.Portal
 
     public class DocumentDB : IDocumentDB
     {
+        [Dependency]
+        public IDatabaseConfiguration DatabaseConfiguration
+        {
+            private get;
+            set;
+        }
+
         //*********************************************************************
         //
         // GetDocuments Method
@@ -48,7 +57,7 @@ namespace ASPNET.StarterKit.Portal
         public DbDataReader GetDocuments(int moduleId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlCommand("Portal_GetDocuments", myConnection);
 
             // Mark the Command as a SPROC
@@ -82,7 +91,7 @@ namespace ASPNET.StarterKit.Portal
         public DbDataReader GetSingleDocument(int itemId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlCommand("Portal_GetSingleDocument", myConnection);
 
             // Mark the Command as a SPROC
@@ -116,7 +125,7 @@ namespace ASPNET.StarterKit.Portal
         public DbDataReader GetDocumentContent(int itemId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlCommand("Portal_GetDocumentContent", myConnection);
 
             // Mark the Command as a SPROC
@@ -151,7 +160,7 @@ namespace ASPNET.StarterKit.Portal
         public void DeleteDocument(int itemID)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlCommand("Portal_DeleteDocument", myConnection);
 
             // Mark the Command as a SPROC
@@ -189,7 +198,7 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlCommand("Portal_UpdateDocument", myConnection);
 
             // Mark the Command as a SPROC

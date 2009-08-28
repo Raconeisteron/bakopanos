@@ -1,9 +1,8 @@
 using System;
-using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Links : PortalModuleControl
+    public partial class Links : PortalModuleControl<Links>
     {
         protected String linkImage = "";
 
@@ -36,7 +35,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the datalist control
-            ILinkDB links = DbFactory.Instance.GetLinkDB();
+            ILinkDB links = Global.Container.Resolve<ILinkDB>();
 
             myDataList.DataSource = links.GetLinks(ModuleId);
             myDataList.DataBind();

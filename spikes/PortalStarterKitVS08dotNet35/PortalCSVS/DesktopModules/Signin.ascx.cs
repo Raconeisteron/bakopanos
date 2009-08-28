@@ -1,11 +1,10 @@
 using System;
 using System.Web.Security;
 using System.Web.UI;
-using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Signin : PortalModuleControl
+    public partial class Signin : PortalModuleControl<Signin>
     {
         public Signin()
         {
@@ -15,7 +14,7 @@ namespace ASPNET.StarterKit.Portal
         protected void LoginBtn_Click(Object sender, ImageClickEventArgs e)
         {
             // Attempt to Validate User Credentials using UsersDB
-            IUsersDB accountSystem = DbFactory.Instance.GetUsersDB();
+            IUsersDB accountSystem = Global.Container.Resolve<IUsersDB>(); 
             String userId = accountSystem.Login(email.Text, PortalSecurity.Encrypt(password.Text));
 
             if ((userId != null) && (userId != ""))

@@ -21,7 +21,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
 
             // Obtain reference to parent portal module
-            var portalModule = (PortalModuleControl) Parent;
+            var portalModule = (IPortalModuleControl) Parent;
 
             // Display Modular Title Text and Edit Buttons
             ModuleTitle.Text = portalModule.ModuleConfiguration.ModuleTitle;

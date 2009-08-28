@@ -2,7 +2,7 @@ using System;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class ImageModule : PortalModuleControl
+    public partial class ImageModule : PortalModuleControl<ImageModule>
     {
         //*******************************************************
         //

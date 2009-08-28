@@ -7,6 +7,26 @@ using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
 {
+
+    public interface IPortalModuleControl
+    {
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        int ModuleId { get; }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        int PortalId { get; set; }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        bool IsEditable { get; }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        ModuleSettings ModuleConfiguration { get; set; }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        Hashtable Settings { get; }
+    }
+
+
     //*********************************************************************
     //
     // PortalModuleControl Class
@@ -19,8 +39,15 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class PortalModuleControl : UserControl
+    public class PortalModuleControl<T> : UserControl, IPortalModuleControl        
     {
+        // Methods
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+            Global.BuildItemWithCurrentContext<T>(this);
+        }
+
         // Private field variables
 
         private int _isEditable;
@@ -187,12 +214,12 @@ namespace ASPNET.StarterKit.Portal
             {
                 base.CreateChildControls();
 
-                var module = (PortalModuleControl) Page.LoadControl(_moduleConfiguration.DesktopSrc);
+                var module = (IPortalModuleControl) Page.LoadControl(_moduleConfiguration.DesktopSrc);
 
                 module.ModuleConfiguration = ModuleConfiguration;
                 module.PortalId = PortalId;
 
-                Controls.Add(module);
+                Controls.Add(module as UserControl);
             }
         }
 

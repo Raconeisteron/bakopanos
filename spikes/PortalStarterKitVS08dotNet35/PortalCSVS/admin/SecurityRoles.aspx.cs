@@ -1,7 +1,6 @@
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -88,7 +87,7 @@ namespace ASPNET.StarterKit.Portal
             if (((LinkButton) sender).ID == "addNew")
             {
                 // add new user to users table
-                IUsersDB users = DbFactory.Instance.GetUsersDB();
+                IUsersDB users = Global.Container.Resolve<IUsersDB>();
                 if ((userId = users.AddUser(windowsUserName.Text, windowsUserName.Text, "acme")) == -1)
                 {
                     Message.Text = "Add New Failed!  There is already an entry for <" + "u" + ">" + windowsUserName.Text +
@@ -105,7 +104,7 @@ namespace ASPNET.StarterKit.Portal
             if (userId != -1)
             {
                 // Add a new userRole to the database
-                IRolesDB roles = DbFactory.Instance.GetRolesDB();
+                IRolesDB roles = Global.Container.Resolve<IRolesDB>();
                 roles.AddUserRole(roleId, userId);
             }
 
@@ -123,7 +122,7 @@ namespace ASPNET.StarterKit.Portal
 
         private void usersInRole_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            IRolesDB roles = DbFactory.Instance.GetRolesDB();
+            IRolesDB roles = Global.Container.Resolve<IRolesDB>();
             var userId = (int) usersInRole.DataKeys[e.Item.ItemIndex];
 
             if (e.CommandName == "delete")
@@ -162,7 +161,7 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Get the portal's roles from the database
-            IRolesDB roles = DbFactory.Instance.GetRolesDB();
+            IRolesDB roles = Global.Container.Resolve<IRolesDB>();
 
             // bind users in role to DataList
             usersInRole.DataSource = roles.GetRoleMembers(roleId);

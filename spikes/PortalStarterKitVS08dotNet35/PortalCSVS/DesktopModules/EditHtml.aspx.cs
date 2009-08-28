@@ -1,7 +1,6 @@
 using System;
 using System.Data.Common;
 using System.Web.UI;
-using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -38,7 +37,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsPostBack == false)
             {
                 // Obtain a single row of text information
-                IHtmlTextDB text = DbFactory.Instance.GetHtmlTextDB();
+                IHtmlTextDB text = Global.Container.Resolve<IHtmlTextDB>();
                 DbDataReader dr = text.GetHtmlText(moduleId);
 
                 if (dr.Read())
@@ -71,7 +70,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create an instance of the HtmlTextDB component
-            IHtmlTextDB text = DbFactory.Instance.GetHtmlTextDB();
+            IHtmlTextDB text = Global.Container.Resolve<IHtmlTextDB>();
 
             // Update the text within the HtmlText table
             text.UpdateHtmlText(moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text),

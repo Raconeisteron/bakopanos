@@ -1,8 +1,9 @@
 using System;
-using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using ASPNET.StarterKit.Portal.Framework;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -29,6 +30,13 @@ namespace ASPNET.StarterKit.Portal
 
     public class AnnouncementsDB : IAnnouncementsDB
     {
+        [Dependency]
+        public IDatabaseConfiguration DatabaseConfiguration
+        {
+            private get;
+            set;
+        }
+
         //*********************************************************************
         //
         // GetAnnouncements Method
@@ -50,7 +58,7 @@ namespace ASPNET.StarterKit.Portal
         public DataSet GetAnnouncements(int moduleId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlDataAdapter("Portal_GetAnnouncements", myConnection);
 
             // Mark the Command as a SPROC
@@ -84,7 +92,7 @@ namespace ASPNET.StarterKit.Portal
         public DbDataReader GetSingleAnnouncement(int itemId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlCommand("Portal_GetSingleAnnouncement", myConnection);
 
             // Mark the Command as a SPROC
@@ -118,7 +126,7 @@ namespace ASPNET.StarterKit.Portal
         public void DeleteAnnouncement(int itemID)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlCommand("Portal_DeleteAnnouncement", myConnection);
 
             // Mark the Command as a SPROC
@@ -155,7 +163,7 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlCommand("Portal_AddAnnouncement", myConnection);
 
             // Mark the Command as a SPROC
@@ -219,7 +227,7 @@ namespace ASPNET.StarterKit.Portal
             if (userName.Length < 1) userName = "unknown";
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlCommand("Portal_UpdateAnnouncement", myConnection);
 
             // Mark the Command as a SPROC

@@ -1,9 +1,8 @@
 using System;
-using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Announcements : PortalModuleControl
+    public partial class Announcements : PortalModuleControl<Announcements>
     {
         //*******************************************************
         //
@@ -24,7 +23,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain announcement information from Announcements table
             // and bind to the datalist control
-            IAnnouncementsDB announcements = DbFactory.Instance.GetAnnouncementsDB();
+            IAnnouncementsDB announcements = Global.Container.Resolve<IAnnouncementsDB>();
 
             // DataBind Announcements to DataList Control
             myDataList.DataSource = announcements.GetAnnouncements(ModuleId);

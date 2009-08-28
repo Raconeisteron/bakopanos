@@ -1,9 +1,8 @@
 using System;
-using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Events : PortalModuleControl
+    public partial class Events : PortalModuleControl<Events>
     {
         //*******************************************************
         //
@@ -24,7 +23,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain the list of events from the Events table
             // and bind to the DataList Control
-            IEventsDB events = DbFactory.Instance.GetEventsDB();
+            IEventsDB events = Global.Container.Resolve<IEventsDB>();
 
             myDataList.DataSource = events.GetEvents(ModuleId);
             myDataList.DataBind();

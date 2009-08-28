@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalCSVS", "PortalCSVS\Po
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalCSVS.Db", "PortalCSVS.Db\PortalCSVS.Db.csproj", "{1702A077-1615-4BEB-B9BA-907006B6B625}"
 EndProject
+Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "PortalCSVSDatabase", "PortalCSVSDatabase\PortalCSVSDatabase.dbp", "{57FE863E-D37D-4B96-A484-A1116FBCA86C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -1,8 +1,9 @@
 using System;
-using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using ASPNET.StarterKit.Portal.Framework;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -25,6 +26,12 @@ namespace ASPNET.StarterKit.Portal
 
     public class HtmlTextDB : IHtmlTextDB
     {
+        [Dependency]
+        public IDatabaseConfiguration DatabaseConfiguration
+        {
+            private get; set;
+        }
+
         //*********************************************************************
         //
         // GetHtmlText Method
@@ -42,7 +49,7 @@ namespace ASPNET.StarterKit.Portal
         public DbDataReader GetHtmlText(int moduleId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlCommand("Portal_GetHtmlText", myConnection);
 
             // Mark the Command as a SPROC
@@ -77,7 +84,7 @@ namespace ASPNET.StarterKit.Portal
         public void UpdateHtmlText(int moduleId, String desktopHtml, String mobileSummary, String mobileDetails)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
             var myCommand = new SqlCommand("Portal_UpdateHtmlText", myConnection);
 
             // Mark the Command as a SPROC

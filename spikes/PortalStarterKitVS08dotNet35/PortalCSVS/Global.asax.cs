@@ -1,16 +1,49 @@
 using System;
 using System.Collections;
+using System.Configuration;
 using System.Globalization;
 using System.Security.Principal;
 using System.Threading;
 using System.Web;
 using System.Web.Security;
-using ASPNET.StarterKit.Portal.Db;
+using System.Web.UI;
+using ASPNET.StarterKit.Portal.Framework;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class Global : HttpApplication
+    public class Global : HttpApplication, IContainerAccessor
     {
+        /// <summary>
+        /// Returns the Unity container of the application 
+        /// </summary>
+        IUnityContainer IContainerAccessor.Container
+        {
+            get { return Container; }
+        }
+
+        /// <summary>
+        /// The Unity container for the current application
+        /// </summary>
+        public static IUnityContainer Container
+        {
+            get;
+            set;
+        }
+
+        public static void BuildItemWithCurrentContext<T>(Control ctrl)
+        {
+            Container.BuildUp(typeof(T), ctrl);
+        }
+
+        protected void Application_Start(Object sender, EventArgs e)
+        {
+            Container = new UnityContainer();
+
+            var section = (IContainerConfigurator)ConfigurationManager.GetSection("Database");
+            section.Configure(Container);
+        }
+        
         //*********************************************************************
         //
         // Application_BeginRequest Event
@@ -92,7 +125,7 @@ namespace ASPNET.StarterKit.Portal
                 if ((Request.Cookies["portalroles"] == null) || (Request.Cookies["portalroles"].Value == ""))
                 {
                     // Get roles from UserRoles table, and add to cookie
-                    IUsersDB user = DbFactory.Instance.GetUsersDB();
+                    IUsersDB user = Container.Resolve<IUsersDB>();
                     roles = user.GetRoles(User.Identity.Name);
 
                     // Create a string to persist the roles

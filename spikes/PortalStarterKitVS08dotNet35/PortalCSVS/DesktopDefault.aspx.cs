@@ -1,10 +1,12 @@
 using System;
 using System.Web;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.Framework;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class DesktopDefault : Page
+    public partial class DesktopDefault : ContainerPage<DesktopDefault>
     {
         public DesktopDefault()
         {
@@ -63,12 +65,12 @@ namespace ASPNET.StarterKit.Portal
 
                     if ((_moduleSettings.CacheTime) == 0)
                     {
-                        var portalModule = (PortalModuleControl) Page.LoadControl(_moduleSettings.DesktopSrc);
+                        var portalModule = (IPortalModuleControl) Page.LoadControl(_moduleSettings.DesktopSrc);
 
                         portalModule.PortalId = portalSettings.PortalId;
                         portalModule.ModuleConfiguration = _moduleSettings;
 
-                        parent.Controls.Add(portalModule);
+                        parent.Controls.Add(portalModule as UserControl);
                     }
                     else
                     {

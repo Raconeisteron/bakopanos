@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Web;
 using System.Web.Caching;
 
@@ -183,30 +182,10 @@ namespace ASPNET.StarterKit.Portal
             //
             // Delete information in the Database relating to each Module being deleted
             //
-
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
-            var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            myConnection.Open();
-
             foreach (SiteConfiguration.ModuleRow moduleRow in tabRow.GetModuleRows())
             {
-                myCommand.Parameters.Clear();
-                parameterModuleID.Value = moduleRow.ModuleId;
-                myCommand.Parameters.Add(parameterModuleID);
-
-                // Open the database connection and execute the command
-                myCommand.ExecuteNonQuery();
+                Global.Container.Resolve<IConfigurationDB>().DeletePortalModule(moduleRow.ModuleId);                                
             }
-
-            // Close the connection
-            myConnection.Close();
 
             // Finish removing the Tab row from the Xml file
             tabTable.RemoveTabRow(tabRow);
@@ -348,24 +327,7 @@ namespace ASPNET.StarterKit.Portal
             //
             // Delete information in the Database relating to Module being deleted
             //
-
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
-            var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            myConnection.Open();
-
-            parameterModuleID.Value = moduleId;
-            myCommand.Parameters.Add(parameterModuleID);
-
-            // Open the database connection and execute the command
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            Global.Container.Resolve<IConfigurationDB>().DeletePortalModule(moduleId);
 
             // Finish removing Module
             siteSettings.Module.RemoveModuleRow(siteSettings.Module.FindByModuleId(moduleId));
@@ -613,36 +575,17 @@ namespace ASPNET.StarterKit.Portal
             //
             // Delete information in the Database relating to each Module being deleted
             //
-
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
-            var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            myConnection.Open();
-
             foreach (SiteConfiguration.ModuleRow moduleRow in siteSettings.Module.Select())
             {
                 if (moduleRow.ModuleDefId == defId)
                 {
-                    myCommand.Parameters.Clear();
-                    parameterModuleID.Value = moduleRow.ModuleId;
-                    myCommand.Parameters.Add(parameterModuleID);
-
+                    Global.Container.Resolve<IConfigurationDB>().DeletePortalModule(moduleRow.ModuleId);
+                    
                     // Delete the xml module associated with the ModuleDef
                     // in the configuration file
-                    siteSettings.Module.RemoveModuleRow(moduleRow);
-
-                    // Open the database connection and execute the command
-                    myCommand.ExecuteNonQuery();
+                    siteSettings.Module.RemoveModuleRow(moduleRow);                    
                 }
             }
-
-            myConnection.Close();
 
             // Finish removing Module Definition
             siteSettings.ModuleDefinition.RemoveModuleDefinitionRow(

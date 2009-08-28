@@ -1,9 +1,8 @@
 using System;
-using ASPNET.StarterKit.Portal.Db;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Document : PortalModuleControl
+    public partial class Document : PortalModuleControl<Document>
     {
         //*******************************************************
         //
@@ -24,7 +23,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain Document Data from Documents table
             // and bind to the datalist control
-            IDocumentDB documents = DbFactory.Instance.GetDocumentDB();
+            IDocumentDB documents = Global.Container.Resolve<IDocumentDB>();
 
             myDataGrid.DataSource = documents.GetDocuments(ModuleId);
             myDataGrid.DataBind();

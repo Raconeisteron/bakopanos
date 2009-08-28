@@ -4,7 +4,7 @@ using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class XmlModule : PortalModuleControl
+    public partial class XmlModule : PortalModuleControl<XmlModule>
     {
         //*******************************************************
         //

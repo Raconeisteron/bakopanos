@@ -2,7 +2,7 @@ using System;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class SiteSettings : PortalModuleControl
+    public partial class SiteSettings : PortalModuleControl<SiteSettings>
     {
         //*******************************************************
         //

@@ -1,12 +1,20 @@
 using System;
 using System.Data.Common;
 using System.Web.UI;
-using ASPNET.StarterKit.Portal.Db;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class HtmlModule : PortalModuleControl
+    public partial class HtmlModule : PortalModuleControl<HtmlModule>
     {
+        [Dependency]
+        public IHtmlTextDB HtmlTextDB
+        {
+            private get;
+            set;
+        }
+
+
         //*******************************************************
         //
         // The Page_Load event handler on this User Control is
@@ -18,15 +26,14 @@ namespace ASPNET.StarterKit.Portal
         //*******************************************************
 
         public HtmlModule()
-        {
+        {            
             Init += Page_Init;
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Obtain the selected item from the HtmlText table
-            IHtmlTextDB text = DbFactory.Instance.GetHtmlTextDB();
-            DbDataReader dr = text.GetHtmlText(ModuleId);
+            // Obtain the selected item from the HtmlText table            
+            DbDataReader dr = HtmlTextDB.GetHtmlText(ModuleId);
 
             if (dr.Read())
             {
