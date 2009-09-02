@@ -1,0 +1,10 @@
+C:\Users\cbakopanos\Desktop\EasyLog\bin\Debug\EasyLog.dll
+C:\Users\cbakopanos\Desktop\EasyLog\bin\Debug\EasyLog.pdb
+C:\Users\cbakopanos\Desktop\EasyLog\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\cbakopanos\Desktop\EasyLog\obj\Debug\EasyLog.dll
+C:\Users\cbakopanos\Desktop\EasyLog\obj\Debug\EasyLog.pdb
+C:\EasyLog\EasyLog\bin\Debug\EasyLog.dll
+C:\EasyLog\EasyLog\bin\Debug\EasyLog.pdb
+C:\EasyLog\EasyLog\obj\Debug\ResolveAssemblyReference.cache
+C:\EasyLog\EasyLog\obj\Debug\EasyLog.dll
+C:\EasyLog\EasyLog\obj\Debug\EasyLog.pdb

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyLog", "EasyLog.csproj", "{09C53720-C84B-4462-A2C1-604E9DD0FCBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyLog.Tests", "..\EasyLog.Tests\EasyLog.Tests.csproj", "{ED269F0E-FD52-4895-8F31-C6A6DA9B2AC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09C53720-C84B-4462-A2C1-604E9DD0FCBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09C53720-C84B-4462-A2C1-604E9DD0FCBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09C53720-C84B-4462-A2C1-604E9DD0FCBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09C53720-C84B-4462-A2C1-604E9DD0FCBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED269F0E-FD52-4895-8F31-C6A6DA9B2AC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED269F0E-FD52-4895-8F31-C6A6DA9B2AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED269F0E-FD52-4895-8F31-C6A6DA9B2AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED269F0E-FD52-4895-8F31-C6A6DA9B2AC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
