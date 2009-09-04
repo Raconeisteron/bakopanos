@@ -64,7 +64,7 @@ if( ( (@@microsoftversion / power(2, 24) = 8) and (@@microsoftversion & 0xffff >
 	exec sp_dboption N'Portal', N'db chaining', N'false'
 GO
 
-use [Portal]
+use [PortalDb]
 GO
 
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[FK_UserRoles_Roles]') and OBJECTPROPERTY(id, N'IsForeignKey') = 1)
@@ -1925,9 +1925,7 @@ CREATE PROCEDURE Portal_GetSingleUser
 AS
 
 SELECT
-    Email,
-    Password,
-    Name
+    *
 
 FROM Portal_Users
 

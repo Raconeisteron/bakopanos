@@ -70,7 +70,7 @@ namespace ASPNET.StarterKit.Portal
                     MobileMoreField.Text = item.MobileMoreLink;
                     DescriptionField.Text = item.Description;
                     ExpireField.Text = item.ExpireDate.Value.ToShortDateString();
-                    CreatedBy.Text = item.CreatedByUser;
+                    CreatedBy.Text = item.CreatedByUser.Email;
                     CreatedDate.Text = item.CreatedDate.Value.ToShortDateString();
                 }
 

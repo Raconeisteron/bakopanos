@@ -8,7 +8,7 @@ namespace ASPNET.StarterKit.Portal
 
         public int ModuleID { get; set; }
 
-        public string CreatedByUser { get; set; }
+        public PortalUser CreatedByUser { get; set; }
 
         public DateTime? CreatedDate { get; set; }
 

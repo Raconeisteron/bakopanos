@@ -200,7 +200,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public DbDataReader GetSingleUser(String email)
+        public PortalUser GetSingleUser(String email)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
@@ -218,8 +218,16 @@ namespace ASPNET.StarterKit.Portal
             myConnection.Open();
             SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
-            // Return the datareader
-            return dr;
+            var item = new PortalUser();
+            if (dr.Read())
+            {
+                item.UserID = (int) dr["UserID"];
+                item.Name = (string) dr["Name"];
+                item.Email = (string) dr["Email"];
+                item.Password = (string) dr["Password"];
+            }
+            // Return the item
+            return item;
         }
 
         //*********************************************************************

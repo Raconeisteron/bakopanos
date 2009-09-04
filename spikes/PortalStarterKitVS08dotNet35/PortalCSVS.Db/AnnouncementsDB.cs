@@ -24,6 +24,13 @@ namespace ASPNET.StarterKit.Portal
             set;
         }
 
+        [Dependency]
+        public IUsersDb UsersDb
+        {
+            private get;
+            set;
+        }
+
         //*********************************************************************
         //
         // GetAnnouncements Method
@@ -102,7 +109,7 @@ namespace ASPNET.StarterKit.Portal
                 item.MobileMoreLink = (String) dr["MobileMoreLink"];
                 item.Description = (String) dr["Description"];
                 item.ExpireDate = ((DateTime) dr["ExpireDate"]);
-                item.CreatedByUser = (String) dr["CreatedByUser"];
+                item.CreatedByUser = UsersDb.GetSingleUser((String)dr["CreatedByUser"]);
                 item.CreatedDate = ((DateTime) dr["CreatedDate"]);
             }
             // Return the item

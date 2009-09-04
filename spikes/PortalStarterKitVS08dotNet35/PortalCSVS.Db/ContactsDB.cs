@@ -24,6 +24,13 @@ namespace ASPNET.StarterKit.Portal
             set;
         }
 
+        [Dependency]
+        public IUsersDb UsersDb
+        {
+            private get;
+            set;
+        }
+
         //*********************************************************************
         //
         // GetContacts Method
@@ -95,14 +102,16 @@ namespace ASPNET.StarterKit.Portal
             // Return the item
             var dr= myCommand.ExecuteReader(CommandBehavior.CloseConnection);
             var item = new PortalContact();
-            item.Name = (String)dr["Name"];
-            item.Role = (String)dr["Role"];
-            item.Email = (String)dr["Email"];
-            item.Contact1 = (String)dr["Contact1"];
-            item.Contact2 = (String)dr["Contact2"];
-            item.CreatedByUser = (String)dr["CreatedByUser"];
-            item.CreatedDate = ((DateTime)dr["CreatedDate"]);
-
+            if (dr.Read())
+            {                
+                item.Name = (String) dr["Name"];
+                item.Role = (String) dr["Role"];
+                item.Email = (String) dr["Email"];
+                item.Contact1 = (String) dr["Contact1"];
+                item.Contact2 = (String) dr["Contact2"];
+                item.CreatedByUser = UsersDb.GetSingleUser((String) dr["CreatedByUser"]);
+                item.CreatedDate = ((DateTime) dr["CreatedDate"]);
+            }
             return item;
         }
 

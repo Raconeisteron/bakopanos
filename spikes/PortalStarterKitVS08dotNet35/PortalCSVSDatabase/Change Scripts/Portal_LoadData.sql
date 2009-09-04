@@ -11,7 +11,7 @@
 -- =======================================================
 
 -- point to proper DB 
-use [Portal]
+use [PortalDb]
 GO
 SET QUOTED_IDENTIFIER OFF 
 GO

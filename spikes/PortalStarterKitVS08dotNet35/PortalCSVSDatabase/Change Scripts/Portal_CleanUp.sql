@@ -1,4 +1,4 @@
-USE [Portal]
+USE [PortalDb]
 
 DELETE Portal_Announcements
 DELETE Portal_Contacts

@@ -71,7 +71,7 @@ namespace ASPNET.StarterKit.Portal
                     EmailField.Text = item.Email;
                     Contact1Field.Text = item.Contact1;
                     Contact2Field.Text = item.Contact2;
-                    CreatedBy.Text = item.CreatedByUser;
+                    CreatedBy.Text = item.CreatedByUser.Email;
                     CreatedDate.Text = item.CreatedDate.Value.ToShortDateString();                    
                 }
 

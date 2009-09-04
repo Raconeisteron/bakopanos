@@ -16,7 +16,7 @@ namespace ASPNET.StarterKit.Portal
 
         public string DisplayOrder { get; set; }
 
-        public string CreatedByUser { get; set; }
+        public PortalUser CreatedByUser { get; set; }
 
     }
 }
