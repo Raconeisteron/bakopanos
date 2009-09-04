@@ -5,10 +5,10 @@ using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class ViewDocument : Page
+    public partial class ViewDocument : ContainerPage<ViewDocument>
     {
         [Dependency]
-        public IDocumentDb DocumentDb
+        public IDocumentsDb DocumentDb
         {
             get;
             set;

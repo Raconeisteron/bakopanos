@@ -6,7 +6,7 @@ namespace ASPNET.StarterKit.Portal
     public partial class QuickLinks : PortalModuleControl<QuickLinks>
     {
         [Dependency]
-        public ILinkDb LinkDb
+        public ILinksDb LinkDb
         {
             get; set;
         }

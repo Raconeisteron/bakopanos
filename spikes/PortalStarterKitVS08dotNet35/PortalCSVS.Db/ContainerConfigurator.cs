@@ -10,11 +10,11 @@ namespace ASPNET.StarterKit.Portal
 
             container.RegisterType<IAnnouncementsDb,AnnouncementsDb>();
             container.RegisterType<IContactsDb,ContactsDb>();
-            container.RegisterType<IDiscussionDb,DiscussionDb>();
-            container.RegisterType<IDocumentDb,DocumentDb>();
+            container.RegisterType<IDiscussionsDb,DiscussionsDb>();
+            container.RegisterType<IDocumentsDb,DocumentsDb>();
             container.RegisterType<IEventsDb,EventsDb>();
-            container.RegisterType<IHtmlTextDb,HtmlTextDb>();
-            container.RegisterType<ILinkDb,LinkDb>();
+            container.RegisterType<IHtmlTextsDb,HtmlTextsDb>();
+            container.RegisterType<ILinksDb,LinksDb>();
             container.RegisterType<IRolesDb,RolesDb>();
             container.RegisterType<IUsersDb,UsersDb>();
             container.RegisterType<IConfigurationDb,ConfigurationDb>();            

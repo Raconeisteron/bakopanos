@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public interface IDocumentDb
+    public interface IDocumentsDb
     {
         DbDataReader GetDocuments(int moduleId);
         DbDataReader GetSingleDocument(int itemId);

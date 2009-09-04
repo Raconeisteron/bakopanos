@@ -4,7 +4,7 @@ using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class EditContacts : Page
+    public partial class EditContacts : ContainerPage<EditContacts>
     {
         [Dependency]
         public IContactsDb ContactsDb
@@ -57,10 +57,10 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of contact information
-                    ContactItem item = ContactsDb.GetSingleContact(itemId);
+                    PortalContact item = ContactsDb.GetSingleContact(itemId);
 
                     // Security check.  verify that itemid is within the module.
-                    int dbModuleID = item.ModuleId;
+                    int dbModuleID = item.ModuleID;
                     if (dbModuleID != moduleId)
                     {
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
@@ -72,7 +72,7 @@ namespace ASPNET.StarterKit.Portal
                     Contact1Field.Text = item.Contact1;
                     Contact2Field.Text = item.Contact2;
                     CreatedBy.Text = item.CreatedByUser;
-                    CreatedDate.Text = item.CreatedDate.ToShortDateString();                    
+                    CreatedDate.Text = item.CreatedDate.Value.ToShortDateString();                    
                 }
 
                 // Store URL Referrer to return to portal

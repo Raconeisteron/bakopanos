@@ -5,7 +5,7 @@ using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class SecurityRoles : Page
+    public partial class SecurityRoles : ContainerPage<SecurityRoles>
     {
         [Dependency]
         public IUsersDb UsersDb

@@ -6,7 +6,7 @@ namespace ASPNET.StarterKit.Portal
     public partial class Document : PortalModuleControl<Document>
     {
         [Dependency]
-        public IDocumentDb DocumentDb
+        public IDocumentsDb DocumentDb
         {
             get;
             set;

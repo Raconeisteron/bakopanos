@@ -8,7 +8,7 @@ namespace ASPNET.StarterKit.Portal
     public partial class HtmlModule : PortalModuleControl<HtmlModule>
     {
         [Dependency]
-        public IHtmlTextDb HtmlTextDB
+        public IHtmlTextsDb HtmlTextDB
         {
             private get;
             set;

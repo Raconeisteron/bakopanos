@@ -15,7 +15,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class DocumentDb : IDocumentDb
+    public class DocumentsDb : IDocumentsDb
     {
         [Dependency]
         public IDatabaseConfiguration DatabaseConfiguration

@@ -6,7 +6,7 @@ using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class EditEvents : Page
+    public partial class EditEvents : ContainerPage<EditEvents>
     {
         [Dependency]
         public IEventsDb EventsDb

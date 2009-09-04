@@ -5,10 +5,10 @@ using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class DiscussDetails : Page
+    public partial class DiscussDetails : ContainerPage<DiscussDetails>
     {
         [Dependency]
-        public IDiscussionDb DiscussionDb
+        public IDiscussionsDb DiscussionDb
         {
             get;
             set;

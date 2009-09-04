@@ -5,10 +5,10 @@ using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class EditLinks : Page
+    public partial class EditLinks : ContainerPage<EditLinks>
     {
         [Dependency]
-        public ILinkDb LinkDb
+        public ILinksDb LinkDb
         {
             get;
             set;

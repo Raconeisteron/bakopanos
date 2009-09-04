@@ -15,7 +15,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class LinkDb : ILinkDb
+    public class LinksDb : ILinksDb
     {
         [Dependency]
         public IDatabaseConfiguration DatabaseConfiguration

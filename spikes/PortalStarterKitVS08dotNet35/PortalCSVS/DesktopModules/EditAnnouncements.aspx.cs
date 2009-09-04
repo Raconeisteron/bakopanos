@@ -4,7 +4,7 @@ using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class EditAnnouncements : Page
+    public partial class EditAnnouncements : ContainerPage<EditAnnouncements>
     {
         [Dependency]
         public IAnnouncementsDb AnnouncementsDb
@@ -57,11 +57,10 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of announcement information
-                    AnnouncementItem item = AnnouncementsDb.GetSingleAnnouncement(itemId);
+                    PortalAnnouncement item = AnnouncementsDb.GetSingleAnnouncement(itemId);
                     
                     // Security check.  verify that itemid is within the module.
-                    int dbModuleID = item.ModuleId;
-                    if (dbModuleID != moduleId)
+                    if (item.ModuleID != moduleId)
                     {                       
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
                     }
@@ -70,9 +69,9 @@ namespace ASPNET.StarterKit.Portal
                     MoreLinkField.Text = item.MoreLink;
                     MobileMoreField.Text = item.MobileMoreLink;
                     DescriptionField.Text = item.Description;
-                    ExpireField.Text = item.ExpireDate.ToShortDateString();
+                    ExpireField.Text = item.ExpireDate.Value.ToShortDateString();
                     CreatedBy.Text = item.CreatedByUser;
-                    CreatedDate.Text = item.CreatedDate.ToShortDateString();
+                    CreatedDate.Text = item.CreatedDate.Value.ToShortDateString();
                 }
 
                 // Store URL Referrer to return to portal

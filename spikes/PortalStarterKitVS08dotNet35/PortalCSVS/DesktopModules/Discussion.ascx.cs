@@ -8,7 +8,7 @@ namespace ASPNET.StarterKit.Portal
     public partial class Discussion : PortalModuleControl<Discussion>
     {
         [Dependency]
-        public IDiscussionDb DiscussionDb
+        public IDiscussionsDb DiscussionDb
         {
             get;
             set;

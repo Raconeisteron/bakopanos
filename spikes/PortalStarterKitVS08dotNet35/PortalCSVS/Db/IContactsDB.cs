@@ -6,7 +6,7 @@ namespace ASPNET.StarterKit.Portal
     public interface IContactsDb
     {
         DataSet GetContacts(int moduleId);
-        ContactItem GetSingleContact(int itemId);
+        PortalContact GetSingleContact(int itemId);
         void DeleteContact(int itemID);
 
         int AddContact(int moduleId, int itemId, String userName, String name, String role, String email,

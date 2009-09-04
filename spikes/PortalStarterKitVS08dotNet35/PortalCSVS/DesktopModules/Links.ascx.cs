@@ -6,7 +6,7 @@ namespace ASPNET.StarterKit.Portal
     public partial class Links : PortalModuleControl<Links>
     {
         [Dependency]
-        public ILinkDb LinkDb
+        public ILinksDb LinkDb
         {
             get;
             set;

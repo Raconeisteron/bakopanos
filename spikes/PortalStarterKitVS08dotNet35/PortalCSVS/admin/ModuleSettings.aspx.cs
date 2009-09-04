@@ -7,7 +7,7 @@ using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class ModuleSettingsPage : Page
+    public partial class ModuleSettingsPage : ContainerPage<ModuleSettingsPage>
     {
         [Dependency]
         public IRolesDb RolesDb

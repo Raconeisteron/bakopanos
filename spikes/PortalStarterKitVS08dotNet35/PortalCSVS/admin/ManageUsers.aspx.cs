@@ -6,7 +6,7 @@ using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class ManageUsers : Page
+    public partial class ManageUsers : ContainerPage<ManageUsers>
     {
         [Dependency]
         public IUsersDb UsersDb

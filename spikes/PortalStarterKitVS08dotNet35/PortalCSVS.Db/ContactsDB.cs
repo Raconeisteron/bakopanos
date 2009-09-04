@@ -76,7 +76,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public ContactItem GetSingleContact(int itemId)
+        public PortalContact GetSingleContact(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
@@ -93,7 +93,17 @@ namespace ASPNET.StarterKit.Portal
             // Execute the command
             myConnection.Open();
             // Return the item
-            return myCommand.ExecuteReader(CommandBehavior.CloseConnection).ToContactItem();
+            var dr= myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            var item = new PortalContact();
+            item.Name = (String)dr["Name"];
+            item.Role = (String)dr["Role"];
+            item.Email = (String)dr["Email"];
+            item.Contact1 = (String)dr["Contact1"];
+            item.Contact2 = (String)dr["Contact2"];
+            item.CreatedByUser = (String)dr["CreatedByUser"];
+            item.CreatedDate = ((DateTime)dr["CreatedDate"]);
+
+            return item;
         }
 
         //*********************************************************************

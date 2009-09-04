@@ -286,25 +286,26 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Components\Security.cs" />
-    <Compile Include="Domain\AnnouncementItem.cs" />
-    <Compile Include="Domain\ContactItem.cs" />
-    <Compile Include="Domain\DiscussionItem.cs" />
-    <Compile Include="Domain\DocumentItem.cs" />
-    <Compile Include="Domain\EventItem.cs" />
-    <Compile Include="Domain\HtmlTextItem.cs" />
+    <Compile Include="Domain\PortalAnnouncement.cs" />
+    <Compile Include="Domain\PortalContact.cs" />
+    <Compile Include="Domain\PortalDiscussion.cs" />
+    <Compile Include="Domain\PortalDocument.cs" />
+    <Compile Include="Domain\PortalEvent.cs" />
+    <Compile Include="Domain\PortalHtmlText.cs" />
     <Compile Include="Db\IAnnouncementsDB.cs" />
     <Compile Include="Db\IConfigurationDB.cs" />
     <Compile Include="Db\IContactsDB.cs" />
-    <Compile Include="Db\IDiscussionDB.cs" />
-    <Compile Include="Db\IDocumentDB.cs" />
+    <Compile Include="Db\IDiscussionsDB.cs" />
+    <Compile Include="Db\IDocumentsDb.cs" />
     <Compile Include="Db\IEventsDB.cs" />
-    <Compile Include="Db\IHtmlTextDB.cs" />
-    <Compile Include="Db\ILinkDB.cs" />
+    <Compile Include="Db\IHtmlTextsDb.cs" />
+    <Compile Include="Db\ILinksDb.cs" />
     <Compile Include="Db\IRolesDB.cs" />
     <Compile Include="Db\IUsersDB.cs" />
-    <Compile Include="Domain\LinkItem.cs" />
-    <Compile Include="Domain\RoleItem.cs" />
-    <Compile Include="Domain\UserItem.cs" />
+    <Compile Include="Domain\PortalLink.cs" />
+    <Compile Include="Domain\PortalUserRole.cs" />
+    <Compile Include="Domain\PortalRole.cs" />
+    <Compile Include="Domain\PortalUser.cs" />
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -480,7 +481,7 @@
     <Compile Include="DesktopPortalBanner.ascx.designer.cs">
       <DependentUpon>DesktopPortalBanner.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Framework\ContainerPage.cs">
+    <Compile Include="Components\ContainerPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Framework\IContainerAccessor.cs">
@@ -501,6 +502,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Domain\PortalUserRole.cd" />
     <None Include="PortalCfg.xsc">
       <DependentUpon>PortalCfg.xsd</DependentUpon>
     </None>

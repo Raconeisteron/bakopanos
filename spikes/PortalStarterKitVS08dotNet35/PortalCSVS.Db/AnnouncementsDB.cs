@@ -76,7 +76,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public AnnouncementItem GetSingleAnnouncement(int itemId)
+        public PortalAnnouncement GetSingleAnnouncement(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
@@ -92,8 +92,19 @@ namespace ASPNET.StarterKit.Portal
 
             // Execute the command
             myConnection.Open();
-            var item = myCommand.ExecuteReader(CommandBehavior.CloseConnection).ToAnnouncement();
-
+            var dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            var item = new PortalAnnouncement();
+            if (dr.Read())
+            {
+                item.Title = (String)dr["Title"];
+                item.ModuleID = (int)dr["ModuleID"];
+                item.MoreLink = (String) dr["MoreLink"];
+                item.MobileMoreLink = (String) dr["MobileMoreLink"];
+                item.Description = (String) dr["Description"];
+                item.ExpireDate = ((DateTime) dr["ExpireDate"]);
+                item.CreatedByUser = (String) dr["CreatedByUser"];
+                item.CreatedDate = ((DateTime) dr["CreatedDate"]);
+            }
             // Return the item
             return item;
         }

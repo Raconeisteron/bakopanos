@@ -4,7 +4,7 @@ using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class EditImage : Page
+    public partial class EditImage : ContainerPage<EditImage>
     {
         private int moduleId;
 

@@ -8,7 +8,7 @@ namespace ASPNET.StarterKit.Portal
     /// <summary>
     /// Summary description for Register.
     /// </summary>
-    public partial class Register : Page
+    public partial class Register : ContainerPage<Register>
     {
         [Dependency]
         public IUsersDb UsersDb

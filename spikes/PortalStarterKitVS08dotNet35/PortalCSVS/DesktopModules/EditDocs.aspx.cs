@@ -6,10 +6,10 @@ using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class EditDocs : Page
+    public partial class EditDocs : ContainerPage<EditDocs>
     {
         [Dependency]
-        public IDocumentDb DocumentDb
+        public IDocumentsDb DocumentDb
         {
             get;
             set;

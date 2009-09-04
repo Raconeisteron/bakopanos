@@ -8,7 +8,7 @@ using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class TabLayout : Page
+    public partial class TabLayout : ContainerPage<TabLayout>
     {
         [Dependency]
         public IRolesDb RolesDb

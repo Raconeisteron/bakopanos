@@ -5,10 +5,10 @@ using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class EditHtml : Page
+    public partial class EditHtml : ContainerPage<EditHtml>
     {
         [Dependency]
-        public IHtmlTextDb HtmlTextDb
+        public IHtmlTextsDb HtmlTextDb
         {
             get;
             set;

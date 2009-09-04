@@ -15,7 +15,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class DiscussionDb : IDiscussionDb
+    public class DiscussionsDb : IDiscussionsDb
     {
         [Dependency]
         public IDatabaseConfiguration DatabaseConfiguration

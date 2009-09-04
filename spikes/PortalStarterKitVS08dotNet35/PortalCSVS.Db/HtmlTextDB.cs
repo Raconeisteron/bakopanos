@@ -15,7 +15,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class HtmlTextDb : IHtmlTextDb
+    public class HtmlTextsDb : IHtmlTextsDb
     {
         [Dependency]
         public IDatabaseConfiguration DatabaseConfiguration
