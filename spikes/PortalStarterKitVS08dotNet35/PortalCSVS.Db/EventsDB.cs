@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
 using Microsoft.Practices.Unity;
 
@@ -23,6 +22,14 @@ namespace ASPNET.StarterKit.Portal
             private get;
             set;
         }
+
+        [Dependency]
+        public IUsersDb UsersDb
+        {
+            private get;
+            set;
+        }
+
         //*********************************************************************
         //
         // GetEvents Method
@@ -75,7 +82,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public DbDataReader GetSingleEvent(int itemId)
+        public PortalEvent GetSingleEvent(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(DatabaseConfiguration.ConnectionString);
@@ -93,8 +100,22 @@ namespace ASPNET.StarterKit.Portal
             myConnection.Open();
             SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
-            // Return the datareader 
-            return result;
+            if (result.Read())
+            {
+                var item = new PortalEvent();
+                item.ItemID = (int)result["ItemID"];
+                item.ModuleID = (int)result["ModuleID"];
+                item.CreatedByUser = UsersDb.GetSingleUser((String)result["CreatedByUser"]); 
+                item.CreatedDate = (DateTime)result["CreatedDate"];
+                item.Description = (string)result["Description"];
+                item.ExpireDate = (DateTime)result["ExpireDate"];
+                item.Title = (string)result["Title"];
+                item.WhereWhen = (string)result["WhereWhen"];
+                
+                // Return the item 
+                return item;
+            }
+            return default(PortalEvent);
         }
 
         //*********************************************************************

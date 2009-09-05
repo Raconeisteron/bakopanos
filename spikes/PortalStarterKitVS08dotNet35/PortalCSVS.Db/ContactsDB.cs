@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
 using Microsoft.Practices.Unity;
 
@@ -101,9 +100,9 @@ namespace ASPNET.StarterKit.Portal
             myConnection.Open();
             // Return the item
             var dr= myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-            var item = new PortalContact();
             if (dr.Read())
-            {                
+            {
+                var item = new PortalContact();   
                 item.Name = (String) dr["Name"];
                 item.Role = (String) dr["Role"];
                 item.Email = (String) dr["Email"];
@@ -111,8 +110,9 @@ namespace ASPNET.StarterKit.Portal
                 item.Contact2 = (String) dr["Contact2"];
                 item.CreatedByUser = UsersDb.GetSingleUser((String) dr["CreatedByUser"]);
                 item.CreatedDate = ((DateTime) dr["CreatedDate"]);
+                return item;
             }
-            return item;
+            return default(PortalContact);
         }
 
         //*********************************************************************

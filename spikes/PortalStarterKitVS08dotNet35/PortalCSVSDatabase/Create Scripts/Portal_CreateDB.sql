@@ -1777,13 +1777,7 @@ CREATE  PROCEDURE Portal_GetSingleEvent
 AS
 
 SELECT
-    CreatedByUser,
-    CreatedDate,
-    ModuleID,
-    Title,
-    ExpireDate,
-    Description,
-    WhereWhen
+    *
 
 FROM Portal_Events
 

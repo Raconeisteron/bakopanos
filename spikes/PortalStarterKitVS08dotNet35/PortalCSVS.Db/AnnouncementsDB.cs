@@ -100,9 +100,10 @@ namespace ASPNET.StarterKit.Portal
             // Execute the command
             myConnection.Open();
             var dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-            var item = new PortalAnnouncement();
             if (dr.Read())
             {
+                var item = new PortalAnnouncement();
+
                 item.Title = (String)dr["Title"];
                 item.ModuleID = (int)dr["ModuleID"];
                 item.MoreLink = (String) dr["MoreLink"];
@@ -111,9 +112,10 @@ namespace ASPNET.StarterKit.Portal
                 item.ExpireDate = ((DateTime) dr["ExpireDate"]);
                 item.CreatedByUser = UsersDb.GetSingleUser((String)dr["CreatedByUser"]);
                 item.CreatedDate = ((DateTime) dr["CreatedDate"]);
+                // Return the item
+                return item;
             }
-            // Return the item
-            return item;
+            return default(PortalAnnouncement);
         }
 
         //*********************************************************************
