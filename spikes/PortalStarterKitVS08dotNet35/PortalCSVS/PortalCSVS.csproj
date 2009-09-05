@@ -71,11 +71,6 @@
     <Content Include="admin\TabLayout.aspx" />
     <Content Include="admin\Tabs.ascx" />
     <Content Include="admin\Users.ascx" />
-    <Content Include="App_Data\PortalDb.mdf">
-    </Content>
-    <Content Include="App_Data\PortalDb_log.LDF">
-      <DependentUpon>PortalDb.mdf</DependentUpon>
-    </Content>
     <Content Include="ASPNETPortal.css" />
     <Content Include="Data\Admin.gif" />
     <Content Include="Data\config_auth_forms.gif" />
@@ -513,6 +508,9 @@
       <DependentUpon>PortalCfg.xsd</DependentUpon>
     </None>
     <None Include="Uploads\sample.doc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

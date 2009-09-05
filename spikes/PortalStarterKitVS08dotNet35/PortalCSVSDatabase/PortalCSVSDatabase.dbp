@@ -1,7 +1,7 @@
 # Microsoft Developer Studio Project File - Database Project
 Begin DataProject = "PortalCSVSDatabase"
    MSDTVersion = "80"
-   DefDBRef = "PortalDb.mdf"
+   DefDBRef = "bakopanos-9150.PortalDb.dbo"
    Begin Folder = "Change Scripts"
       Script = "Portal_CleanUp.sql"
       Script = "Portal_LoadData.sql"
@@ -10,8 +10,8 @@ Begin DataProject = "PortalCSVSDatabase"
       Script = "Portal_CreateDB.sql"
    End
    Begin DBRefFolder = "Database References"
-      Begin DBRefNode = "PortalDb.mdf"
-         ConnectStr = "Data Source=.\SQLEXPRESS;AttachDbFilename=C:\PortalStarterKitVS08dotNet35\PortalCSVS\App_Data\PortalDb.mdf;Integrated Security=True;User Instance=True"
+      Begin DBRefNode = "bakopanos-9150.PortalDb.dbo"
+         ConnectStr = "Data Source=.;Initial Catalog=PortalDb;Integrated Security=True"
          Provider = "{91510608-8809-4020-8897-FBA057E22D54}"
          Colorizer = 6
       End
