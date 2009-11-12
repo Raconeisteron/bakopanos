@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SampleDataProvider.WpfTestApplication")]
+[assembly: AssemblyTitle("DotNetDataProviderTemplate.WpfTestApplication")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Sonova")]
-[assembly: AssemblyProduct("SampleDataProvider.WpfTestApplication")]
+[assembly: AssemblyProduct("DotNetDataProviderTemplate.WpfTestApplication")]
 [assembly: AssemblyCopyright("Copyright © Sonova 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

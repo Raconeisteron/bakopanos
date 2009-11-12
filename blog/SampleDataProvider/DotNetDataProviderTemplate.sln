@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleDataProvider", "SampleDataProvider\SampleDataProvider.csproj", "{89C818B2-8752-4A1A-92D6-7547DF066D90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDataProviderTemplate", "SampleDataProvider\DotNetDataProviderTemplate.csproj", "{89C818B2-8752-4A1A-92D6-7547DF066D90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleDataProvider.WpfTestApplication", "SampleDataProvider.WpfTestApplication\SampleDataProvider.WpfTestApplication.csproj", "{B439F03F-D73D-4E55-B2C0-4FBE29CC953C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDataProviderTemplate.WpfTestApplication", "SampleDataProvider.WpfTestApplication\DotNetDataProviderTemplate.WpfTestApplication.csproj", "{B439F03F-D73D-4E55-B2C0-4FBE29CC953C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

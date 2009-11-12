@@ -8,8 +8,8 @@
     <ProjectGuid>{89C818B2-8752-4A1A-92D6-7547DF066D90}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SampleDataProvider</RootNamespace>
-    <AssemblyName>SampleDataProvider</AssemblyName>
+    <RootNamespace>DotNetDataProviderTemplate</RootNamespace>
+    <AssemblyName>DotNetDataProviderTemplate</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

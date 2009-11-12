@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SampleDataProvider")]
+[assembly: AssemblyTitle("DotNetDataProviderTemplate")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Sonova")]
-[assembly: AssemblyProduct("SampleDataProvider")]
+[assembly: AssemblyProduct("DotNetDataProviderTemplate")]
 [assembly: AssemblyCopyright("Copyright © Sonova 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
