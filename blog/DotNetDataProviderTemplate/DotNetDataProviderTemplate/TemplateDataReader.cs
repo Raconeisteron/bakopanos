@@ -7,20 +7,20 @@ namespace DotNetDataProviderTemplate
     public class TemplateDataReader : IDataReader
     {
         // The DataReader should always be open when returned to the user.
-        private bool m_fOpen = true;
+        private bool _open = true;
 
         // Keep track of the results and position
         // within the resultset (starts prior to first record).
-        private SampleDbResultSet m_resultset;
-        private static int m_STARTPOS = -1;
-        private int m_nPos = m_STARTPOS;
+        private SampleDbResultSet _resultset;
+        private static int _startPos = -1;
+        private int _pos = _startPos;
 
         /* 
          * Keep track of the connection in order to implement the
          * CommandBehavior.CloseConnection flag. A null reference means
          * normal behavior (do not automatically close).
          */
-        private TemplateConnection m_connection = null;
+        private TemplateConnection _connection = null;
 
         /*
          * Because the user should not be able to directly create a 
@@ -29,13 +29,13 @@ namespace DotNetDataProviderTemplate
          */
         internal TemplateDataReader(SampleDbResultSet resultset)
         {
-            m_resultset = resultset;
+            _resultset = resultset;
         }
 
         internal TemplateDataReader(SampleDbResultSet resultset, TemplateConnection connection)
         {
-            m_resultset = resultset;
-            m_connection = connection;
+            _resultset = resultset;
+            _connection = connection;
         }
 
         /****
@@ -55,7 +55,7 @@ namespace DotNetDataProviderTemplate
              * Keep track of the reader state - some methods should be
              * disallowed if the reader is closed.
              */
-            get { return !m_fOpen; }
+            get { return !_open; }
         }
 
         public int RecordsAffected
@@ -77,7 +77,7 @@ namespace DotNetDataProviderTemplate
              * cleaning up any resources waiting for data to be
              * returned by the server.
              */
-            m_fOpen = false;
+            _open = false;
         }
 
         public bool NextResult()
@@ -92,7 +92,7 @@ namespace DotNetDataProviderTemplate
             // Return true if it is possible to advance and if you are still positioned
             // on a valid row. Because the data array in the resultset
             // is two-dimensional, you must divide by the number of columns.
-            if (++m_nPos >= m_resultset.data.Length / m_resultset.metaData.Length)
+            if (++_pos >= _resultset.data.Length / _resultset.metaData.Length)
                 return false;
             else
                 return true;
@@ -112,12 +112,12 @@ namespace DotNetDataProviderTemplate
             // Return the count of the number of columns, which in
             // this case is the size of the column metadata
             // array.
-            get { return m_resultset.metaData.Length; }
+            get { return _resultset.metaData.Length; }
         }
 
         public String GetName(int i)
         {
-            return m_resultset.metaData[i].name;
+            return _resultset.metaData[i].name;
         }
 
         public String GetDataTypeName(int i)
@@ -127,26 +127,26 @@ namespace DotNetDataProviderTemplate
              * as used on the back end, for example 'smallint' or 'varchar'.
              * The sample returns the simple name of the .NET Framework type.
              */
-            return m_resultset.metaData[i].type.Name;
+            return _resultset.metaData[i].type.Name;
         }
 
         public Type GetFieldType(int i)
         {
             // Return the actual Type class for the data type.
-            return m_resultset.metaData[i].type;
+            return _resultset.metaData[i].type;
         }
 
         public Object GetValue(int i)
         {
-            return m_resultset.data[m_nPos, i];
+            return _resultset.data[_pos, i];
         }
 
         public int GetValues(object[] values)
         {
             int i = 0, j = 0;
-            for (; i < values.Length && j < m_resultset.metaData.Length; i++, j++)
+            for (; i < values.Length && j < _resultset.metaData.Length; i++, j++)
             {
-                values[i] = m_resultset.data[m_nPos, j];
+                values[i] = _resultset.data[_pos, j];
             }
 
             return i;
@@ -155,9 +155,9 @@ namespace DotNetDataProviderTemplate
         public int GetOrdinal(string name)
         {
             // Look for the ordinal of the column with the same name and return it.
-            for (int i = 0; i < m_resultset.metaData.Length; i++)
+            for (int i = 0; i < _resultset.metaData.Length; i++)
             {
-                if (0 == _cultureAwareCompare(name, m_resultset.metaData[i].name))
+                if (0 == _cultureAwareCompare(name, _resultset.metaData[i].name))
                 {
                     return i;
                 }
@@ -169,7 +169,7 @@ namespace DotNetDataProviderTemplate
 
         public object this[int i]
         {
-            get { return m_resultset.data[m_nPos, i]; }
+            get { return _resultset.data[_pos, i]; }
         }
 
         public object this[String name]
@@ -185,7 +185,7 @@ namespace DotNetDataProviderTemplate
              * Force the cast to return the type. InvalidCastException
              * should be thrown if the data is not already of the correct type.
              */
-            return (bool)m_resultset.data[m_nPos, i];
+            return (bool)_resultset.data[_pos, i];
         }
 
         public byte GetByte(int i)
@@ -194,7 +194,7 @@ namespace DotNetDataProviderTemplate
              * Force the cast to return the type. InvalidCastException
              * should be thrown if the data is not already of the correct type.
              */
-            return (byte)m_resultset.data[m_nPos, i];
+            return (byte)_resultset.data[_pos, i];
         }
 
         public long GetBytes(int i, long fieldOffset, byte[] buffer, int bufferoffset, int length)
@@ -209,7 +209,7 @@ namespace DotNetDataProviderTemplate
              * Force the cast to return the type. InvalidCastException
              * should be thrown if the data is not already of the correct type.
              */
-            return (char)m_resultset.data[m_nPos, i];
+            return (char)_resultset.data[_pos, i];
         }
 
         public long GetChars(int i, long fieldoffset, char[] buffer, int bufferoffset, int length)
@@ -224,7 +224,7 @@ namespace DotNetDataProviderTemplate
              * Force the cast to return the type. InvalidCastException
              * should be thrown if the data is not already of the correct type.
              */
-            return (Guid)m_resultset.data[m_nPos, i];
+            return (Guid)_resultset.data[_pos, i];
         }
 
         public Int16 GetInt16(int i)
@@ -233,7 +233,7 @@ namespace DotNetDataProviderTemplate
              * Force the cast to return the type. InvalidCastException
              * should be thrown if the data is not already of the correct type.
              */
-            return (Int16)m_resultset.data[m_nPos, i];
+            return (Int16)_resultset.data[_pos, i];
         }
 
         public Int32 GetInt32(int i)
@@ -242,7 +242,7 @@ namespace DotNetDataProviderTemplate
              * Force the cast to return the type. InvalidCastException
              * should be thrown if the data is not already of the correct type.
              */
-            return (Int32)m_resultset.data[m_nPos, i];
+            return (Int32)_resultset.data[_pos, i];
         }
 
         public Int64 GetInt64(int i)
@@ -251,7 +251,7 @@ namespace DotNetDataProviderTemplate
              * Force the cast to return the type. InvalidCastException
              * should be thrown if the data is not already of the correct type.
              */
-            return (Int64)m_resultset.data[m_nPos, i];
+            return (Int64)_resultset.data[_pos, i];
         }
 
         public float GetFloat(int i)
@@ -260,7 +260,7 @@ namespace DotNetDataProviderTemplate
              * Force the cast to return the type. InvalidCastException
              * should be thrown if the data is not already of the correct type.
              */
-            return (float)m_resultset.data[m_nPos, i];
+            return (float)_resultset.data[_pos, i];
         }
 
         public double GetDouble(int i)
@@ -269,7 +269,7 @@ namespace DotNetDataProviderTemplate
              * Force the cast to return the type. InvalidCastException
              * should be thrown if the data is not already of the correct type.
              */
-            return (double)m_resultset.data[m_nPos, i];
+            return (double)_resultset.data[_pos, i];
         }
 
         public String GetString(int i)
@@ -278,7 +278,7 @@ namespace DotNetDataProviderTemplate
              * Force the cast to return the type. InvalidCastException
              * should be thrown if the data is not already of the correct type.
              */
-            return (String)m_resultset.data[m_nPos, i];
+            return (String)_resultset.data[_pos, i];
         }
 
         public Decimal GetDecimal(int i)
@@ -287,7 +287,7 @@ namespace DotNetDataProviderTemplate
              * Force the cast to return the type. InvalidCastException
              * should be thrown if the data is not already of the correct type.
              */
-            return (Decimal)m_resultset.data[m_nPos, i];
+            return (Decimal)_resultset.data[_pos, i];
         }
 
         public DateTime GetDateTime(int i)
@@ -296,7 +296,7 @@ namespace DotNetDataProviderTemplate
              * Force the cast to return the type. InvalidCastException
              * should be thrown if the data is not already of the correct type.
             */
-            return (DateTime)m_resultset.data[m_nPos, i];
+            return (DateTime)_resultset.data[_pos, i];
         }
 
         public IDataReader GetData(int i)
@@ -311,7 +311,7 @@ namespace DotNetDataProviderTemplate
 
         public bool IsDBNull(int i)
         {
-            return m_resultset.data[m_nPos, i] == DBNull.Value;
+            return _resultset.data[_pos, i] == DBNull.Value;
         }
 
         /*

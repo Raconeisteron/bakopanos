@@ -5,31 +5,31 @@ namespace DotNetDataProviderTemplate
 {
     public class TemplateConnection : IDbConnection
     {
-        private ConnectionState m_state;
-        private string m_sConnString;
+        private ConnectionState _state;
+        private string _connString;
 
         // Use the "SampleDb" class to simulate a database connection.
-        SampleDb m_sampleDb;
+        SampleDb _sampleDb;
 
         // Always have a default constructor.
         public TemplateConnection()
         {
             // Initialize the connection object into the closed state.
-            m_state = ConnectionState.Closed;
+            _state = ConnectionState.Closed;
 
             /*
              * Obtain a connection to the database. In this case,
              * use the SampleDb class to simulate a connection to 
              * a real database.
              */
-            m_sampleDb = new SampleDb();
+            _sampleDb = new SampleDb();
         }
 
         // Have a constructor that takes a connection string.
         public TemplateConnection(string sConnString)
         {
             // Initialize the connection object into a closed state.
-            m_state = ConnectionState.Closed;
+            _state = ConnectionState.Closed;
         }
 
         /****
@@ -41,11 +41,11 @@ namespace DotNetDataProviderTemplate
             {
                 // Always return exactly what the user set.
                 // Security-sensitive information may be removed.
-                return m_sConnString;
+                return _connString;
             }
             set
             {
-                m_sConnString = value;
+                _connString = value;
             }
         }
 
@@ -71,7 +71,7 @@ namespace DotNetDataProviderTemplate
 
         public ConnectionState State
         {
-            get { return m_state; }
+            get { return _state; }
         }
 
         /****
@@ -108,7 +108,7 @@ namespace DotNetDataProviderTemplate
              * If the provider also supports automatic enlistment in 
              * distributed transactions, it should enlist during Open().
              */
-            m_state = ConnectionState.Open;
+            _state = ConnectionState.Open;
         }
 
         public void Close()
@@ -118,7 +118,7 @@ namespace DotNetDataProviderTemplate
              * property. If the underlying connection to the server is
              * being pooled, Close() will release it back to the pool.
              */
-            m_state = ConnectionState.Closed;
+            _state = ConnectionState.Closed;
         }
 
         public IDbCommand CreateCommand()
@@ -132,7 +132,7 @@ namespace DotNetDataProviderTemplate
          */
         internal SampleDb SampleDb
         {
-            get { return m_sampleDb; }
+            get { return _sampleDb; }
         }
 
         void IDisposable.Dispose()
@@ -147,7 +147,7 @@ namespace DotNetDataProviderTemplate
              * Dispose of the object and perform any cleanup.
              */
 
-            if (m_state == ConnectionState.Open)
+            if (_state == ConnectionState.Open)
                 this.Close();
         }
 

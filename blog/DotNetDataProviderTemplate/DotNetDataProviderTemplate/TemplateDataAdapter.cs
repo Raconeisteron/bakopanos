@@ -6,10 +6,10 @@ namespace DotNetDataProviderTemplate
 {
     public class TemplateDataAdapter : DbDataAdapter, IDbDataAdapter
     {
-        private TemplateCommand m_selectCommand;
-        private TemplateCommand m_insertCommand;
-        private TemplateCommand m_updateCommand;
-        private TemplateCommand m_deleteCommand;
+        private TemplateCommand _selectCommand;
+        private TemplateCommand _insertCommand;
+        private TemplateCommand _updateCommand;
+        private TemplateCommand _deleteCommand;
 
         /*
          * Inherit from Component through DbDataAdapter. The event
@@ -18,58 +18,54 @@ namespace DotNetDataProviderTemplate
          * events in the components list of events.
          */
         static private readonly object EventRowUpdated = new object();
-        static private readonly object EventRowUpdating = new object();
-
-        public TemplateDataAdapter()
-        {
-        }
+        static private readonly object EventRowUpdating = new object();        
 
         public TemplateCommand SelectCommand
         {
-            get { return m_selectCommand; }
-            set { m_selectCommand = value; }
+            get { return _selectCommand; }
+            set { _selectCommand = value; }
         }
 
         IDbCommand IDbDataAdapter.SelectCommand
         {
-            get { return m_selectCommand; }
-            set { m_selectCommand = (TemplateCommand)value; }
+            get { return _selectCommand; }
+            set { _selectCommand = (TemplateCommand)value; }
         }
 
         public TemplateCommand InsertCommand
         {
-            get { return m_insertCommand; }
-            set { m_insertCommand = value; }
+            get { return _insertCommand; }
+            set { _insertCommand = value; }
         }
 
         IDbCommand IDbDataAdapter.InsertCommand
         {
-            get { return m_insertCommand; }
-            set { m_insertCommand = (TemplateCommand)value; }
+            get { return _insertCommand; }
+            set { _insertCommand = (TemplateCommand)value; }
         }
 
         public TemplateCommand UpdateCommand
         {
-            get { return m_updateCommand; }
-            set { m_updateCommand = value; }
+            get { return _updateCommand; }
+            set { _updateCommand = value; }
         }
 
         IDbCommand IDbDataAdapter.UpdateCommand
         {
-            get { return m_updateCommand; }
-            set { m_updateCommand = (TemplateCommand)value; }
+            get { return _updateCommand; }
+            set { _updateCommand = (TemplateCommand)value; }
         }
 
         public TemplateCommand DeleteCommand
         {
-            get { return m_deleteCommand; }
-            set { m_deleteCommand = value; }
+            get { return _deleteCommand; }
+            set { _deleteCommand = value; }
         }
 
         IDbCommand IDbDataAdapter.DeleteCommand
         {
-            get { return m_deleteCommand; }
-            set { m_deleteCommand = (TemplateCommand)value; }
+            get { return _deleteCommand; }
+            set { _deleteCommand = (TemplateCommand)value; }
         }
 
         /*
