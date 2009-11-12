@@ -5,11 +5,11 @@ namespace DotNetDataProviderTemplate
 {
     public class TemplateCommand : IDbCommand
     {
-        TemplateConnection m_connection;
-        TemplateTransaction m_txn;
-        string m_sCmdText;
-        UpdateRowSource m_updatedRowSource = UpdateRowSource.None;
-        TemplateParameterCollection m_parameters = new TemplateParameterCollection();
+        TemplateConnection _connection;
+        TemplateTransaction _txn;
+        string _cmdText;
+        UpdateRowSource _updatedRowSource = UpdateRowSource.None;
+        TemplateParameterCollection _parameters = new TemplateParameterCollection();
 
         // Implement the default constructor here.
         public TemplateCommand()
@@ -19,20 +19,20 @@ namespace DotNetDataProviderTemplate
         // Implement other constructors here.
         public TemplateCommand(string cmdText)
         {
-            m_sCmdText = cmdText;
+            _cmdText = cmdText;
         }
 
         public TemplateCommand(string cmdText, TemplateConnection connection)
         {
-            m_sCmdText = cmdText;
-            m_connection = connection;
+            _cmdText = cmdText;
+            _connection = connection;
         }
 
         public TemplateCommand(string cmdText, TemplateConnection connection, TemplateTransaction txn)
         {
-            m_sCmdText = cmdText;
-            m_connection = connection;
-            m_txn = txn;
+            _cmdText = cmdText;
+            _connection = connection;
+            _txn = txn;
         }
 
         /****
@@ -40,8 +40,8 @@ namespace DotNetDataProviderTemplate
          ****/
         public string CommandText
         {
-            get { return m_sCmdText; }
-            set { m_sCmdText = value; }
+            get { return _cmdText; }
+            set { _cmdText = value; }
         }
 
         public int CommandTimeout
@@ -70,7 +70,7 @@ namespace DotNetDataProviderTemplate
              * The user should be able to set or change the connection at 
              * any time.
              */
-            get { return m_connection; }
+            get { return _connection; }
             set
             {
                 /*
@@ -78,21 +78,21 @@ namespace DotNetDataProviderTemplate
                  * so set the transaction object to return a null reference if the connection 
                  * is reset.
                  */
-                if (m_connection != value)
+                if (_connection != value)
                     this.Transaction = null;
 
-                m_connection = (TemplateConnection)value;
+                _connection = (TemplateConnection)value;
             }
         }
 
         public TemplateParameterCollection Parameters
         {
-            get { return m_parameters; }
+            get { return _parameters; }
         }
 
         IDataParameterCollection IDbCommand.Parameters
         {
-            get { return m_parameters; }
+            get { return _parameters; }
         }
 
         public IDbTransaction Transaction
@@ -101,14 +101,14 @@ namespace DotNetDataProviderTemplate
              * Set the transaction. Consider additional steps to ensure that the transaction
              * is compatible with the connection, because the two are usually linked.
              */
-            get { return m_txn; }
-            set { m_txn = (TemplateTransaction)value; }
+            get { return _txn; }
+            set { _txn = (TemplateTransaction)value; }
         }
 
         public UpdateRowSource UpdatedRowSource
         {
-            get { return m_updatedRowSource; }
-            set { m_updatedRowSource = value; }
+            get { return _updatedRowSource; }
+            set { _updatedRowSource = value; }
         }
 
         /****
@@ -135,12 +135,12 @@ namespace DotNetDataProviderTemplate
              */
 
             // There must be a valid and open connection.
-            if (m_connection == null || m_connection.State != ConnectionState.Open)
+            if (_connection == null || _connection.State != ConnectionState.Open)
                 throw new InvalidOperationException("Connection must valid and open");
 
             // Execute the command.
             SampleDbResultSet resultset;
-            m_connection.SampleDb.Execute(m_sCmdText, out resultset);
+            _connection.SampleDb.Execute(_cmdText, out resultset);
 
             // Return the number of records affected.
             return resultset.recordsAffected;
@@ -154,12 +154,12 @@ namespace DotNetDataProviderTemplate
              * the results.
              */
             // There must be a valid and open connection.
-            if (m_connection == null || m_connection.State != ConnectionState.Open)
+            if (_connection == null || _connection.State != ConnectionState.Open)
                 throw new InvalidOperationException("Connection must valid and open");
 
             // Execute the command.
             SampleDbResultSet resultset;
-            m_connection.SampleDb.Execute(m_sCmdText, out resultset);
+            _connection.SampleDb.Execute(_cmdText, out resultset);
 
             return new TemplateDataReader(resultset);
         }
@@ -173,12 +173,12 @@ namespace DotNetDataProviderTemplate
              */
 
             // There must be a valid and open connection.
-            if (m_connection == null || m_connection.State != ConnectionState.Open)
+            if (_connection == null || _connection.State != ConnectionState.Open)
                 throw new InvalidOperationException("Connection must valid and open");
 
             // Execute the command.
             SampleDbResultSet resultset;
-            m_connection.SampleDb.Execute(m_sCmdText, out resultset);
+            _connection.SampleDb.Execute(_cmdText, out resultset);
 
             /*
              * The only CommandBehavior option supported by this
@@ -186,7 +186,7 @@ namespace DotNetDataProviderTemplate
              * when the user is done with the reader.
              */
             if (behavior == CommandBehavior.CloseConnection)
-                return new TemplateDataReader(resultset, m_connection);
+                return new TemplateDataReader(resultset, _connection);
             else
                 return new TemplateDataReader(resultset);
         }
@@ -200,12 +200,12 @@ namespace DotNetDataProviderTemplate
              */
 
             // There must be a valid and open connection.
-            if (m_connection == null || m_connection.State != ConnectionState.Open)
+            if (_connection == null || _connection.State != ConnectionState.Open)
                 throw new InvalidOperationException("Connection must valid and open");
 
             // Execute the command.
             SampleDbResultSet resultset;
-            m_connection.SampleDb.Execute(m_sCmdText, out resultset);
+            _connection.SampleDb.Execute(_cmdText, out resultset);
 
             // Return the first column of the first row.
             // Return a null reference if there is no data.

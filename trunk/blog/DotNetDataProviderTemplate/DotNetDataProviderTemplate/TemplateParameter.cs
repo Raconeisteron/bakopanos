@@ -5,13 +5,13 @@ namespace DotNetDataProviderTemplate
 {
     public class TemplateParameter : IDataParameter
     {
-        DbType m_dbType = DbType.Object;
-        ParameterDirection m_direction = ParameterDirection.Input;
-        bool m_fNullable = false;
-        string m_sParamName;
-        string m_sSourceColumn;
-        DataRowVersion m_sourceVersion = DataRowVersion.Current;
-        object m_value;
+        DbType _dbType = DbType.Object;
+        ParameterDirection _direction = ParameterDirection.Input;
+        bool _nullable = false;
+        string _paramName;
+        string _sourceColumn;
+        DataRowVersion _sourceVersion = DataRowVersion.Current;
+        object _value;
 
         public TemplateParameter()
         {
@@ -19,69 +19,69 @@ namespace DotNetDataProviderTemplate
 
         public TemplateParameter(string parameterName, DbType type)
         {
-            m_sParamName = parameterName;
-            m_dbType = type;
+            _paramName = parameterName;
+            _dbType = type;
         }
 
         public TemplateParameter(string parameterName, object value)
         {
-            m_sParamName = parameterName;
+            _paramName = parameterName;
             this.Value = value;
             // Setting the value also infers the type.
         }
 
         public TemplateParameter(string parameterName, DbType dbType, string sourceColumn)
         {
-            m_sParamName = parameterName;
-            m_dbType = dbType;
-            m_sSourceColumn = sourceColumn;
+            _paramName = parameterName;
+            _dbType = dbType;
+            _sourceColumn = sourceColumn;
         }
 
         public DbType DbType
         {
-            get { return m_dbType; }
-            set { m_dbType = value; }
+            get { return _dbType; }
+            set { _dbType = value; }
         }
 
         public ParameterDirection Direction
         {
-            get { return m_direction; }
-            set { m_direction = value; }
+            get { return _direction; }
+            set { _direction = value; }
         }
 
         public Boolean IsNullable
         {
-            get { return m_fNullable; }
+            get { return _nullable; }
         }
 
         public String ParameterName
         {
-            get { return m_sParamName; }
-            set { m_sParamName = value; }
+            get { return _paramName; }
+            set { _paramName = value; }
         }
 
         public String SourceColumn
         {
-            get { return m_sSourceColumn; }
-            set { m_sSourceColumn = value; }
+            get { return _sourceColumn; }
+            set { _sourceColumn = value; }
         }
 
         public DataRowVersion SourceVersion
         {
-            get { return m_sourceVersion; }
-            set { m_sourceVersion = value; }
+            get { return _sourceVersion; }
+            set { _sourceVersion = value; }
         }
 
         public object Value
         {
             get
             {
-                return m_value;
+                return _value;
             }
             set
             {
-                m_value = value;
-                m_dbType = _inferType(value);
+                _value = value;
+                _dbType = _inferType(value);
             }
         }
 
