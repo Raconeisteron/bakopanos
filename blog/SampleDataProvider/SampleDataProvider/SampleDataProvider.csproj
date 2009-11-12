@@ -40,8 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="SampleDbResultSet.cs" />
+    <Compile Include="SampleDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateCommand.cs" />
+    <Compile Include="TemplateConnection.cs" />
+    <Compile Include="TemplateDataAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TemplateDataReader.cs" />
+    <Compile Include="TemplateParameter.cs" />
+    <Compile Include="TemplateParameterCollection.cs" />
+    <Compile Include="TemplateTransaction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
