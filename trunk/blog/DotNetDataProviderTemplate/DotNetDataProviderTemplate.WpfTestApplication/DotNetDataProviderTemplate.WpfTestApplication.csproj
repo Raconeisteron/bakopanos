@@ -93,7 +93,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SampleDataProvider\DotNetDataProviderTemplate.csproj">
+    <ProjectReference Include="..\DotNetDataProviderTemplate\DotNetDataProviderTemplate.csproj">
       <Project>{89C818B2-8752-4A1A-92D6-7547DF066D90}</Project>
       <Name>DotNetDataProviderTemplate</Name>
     </ProjectReference>
