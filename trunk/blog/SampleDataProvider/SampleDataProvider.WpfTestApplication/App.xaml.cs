@@ -6,7 +6,7 @@ using System.Linq;
 using System.Windows;
 using DotNetDataProviderTemplate;
 
-namespace SampleDataProvider.WpfTestApplication
+namespace DotNetDataProviderTemplate.WpfTestApplication
 {
     /// <summary>
     /// Interaction logic for App.xaml

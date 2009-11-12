@@ -8,8 +8,8 @@
     <ProjectGuid>{B439F03F-D73D-4E55-B2C0-4FBE29CC953C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SampleDataProvider.WpfTestApplication</RootNamespace>
-    <AssemblyName>SampleDataProvider.WpfTestApplication</AssemblyName>
+    <RootNamespace>DotNetDataProviderTemplate.WpfTestApplication</RootNamespace>
+    <AssemblyName>DotNetDataProviderTemplate.WpfTestApplication</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -93,9 +93,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SampleDataProvider\SampleDataProvider.csproj">
+    <ProjectReference Include="..\SampleDataProvider\DotNetDataProviderTemplate.csproj">
       <Project>{89C818B2-8752-4A1A-92D6-7547DF066D90}</Project>
-      <Name>SampleDataProvider</Name>
+      <Name>DotNetDataProviderTemplate</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
