@@ -1,0 +1,635 @@
+IRGACURE 1850        *** 10002A/msds_generator/49706/4/0/0/1/0/0/+EU/EN
+&0header0;=
+&0header1;=Safety Data Sheet according to Directive 91/155/EEC
+&0disclaimer;=
+&system;=
+&0header2;=IRGACURE 1850
+&0header4;=Revision
+&0header3;=21.01.2003
+&0footer5;=Print Date
+&0footer1;=10002 A
+&0footer2;=+EU
+&0footer3;=E
+&0footer4;=4
+Start generating chapter 1 at 09:44:34 
+&1t;=Identification of the Substance/Preparation and the Company/Undertaking
+&&1p;=Product name
+&&1w;=IRGACURE 1850
+&&&1w;
+&&1p;=Chemical identification
+&&1w;=Photoinitiator preparation
+&&&1w;
+&&1p;=CAS Number
+&&1w;=Preparation
+&&&1w;
+&&1p;=Use
+&&1w;=Photochemical
+&&&1w;
+&&1p;= 
+&&1w;= 
+&&&1w;
+V_SUBTITLE_COUNT 3
+&&1p;= 
+&&1w;= 
+&&&1w;
+&&1p;=Producer/Supplier
+&&1w;=CIBA SPEZIALITÄTENCHEMIE AG
+&&1w;=KLYBECKSTRASSE 141
+&&1w;=POSTFACH
+&&1w;=4002 BASEL
+&&1w;=SWITZERLAND
+&&&1w;
+&&1p;=Phone Number
+&&1w;=+41 (61) 6361111
+&&&1w;
+&&1p;=Telefax
+&&1w;=+41 (61) 6361212
+&&&1w;
+&&1p;=
+&&1w;=
+&&&1w;
+&&1p;=Information
+&&1w;=Product Safety and Regulatory Affairs
+&&&1w;
+&&1p;=Telefax
+&&1w;=+41 (61) 6368601
+&&&1w;
+&&&1p;
+&1bez_nottel;=Emergency Phone Number (24h)
+&1nottel;=+41 (61) 6965151
+&1bez_nottel_national;=
+&1nottel_national;=
+Start generating chapter 2 at 09:44:34 
+&2t;=Composition/Information on Ingredients
+&&&2p;
+&&2s;=Substances presenting a health or environmental hazard
+&2kgs;=
+&2s0;=EC-Number
+&2s1;=CAS Number
+&2s1a;=Chemical Name
+&2s1b;=Content
+&2s2;=Symbol(s)
+&2s3;=R-Phrase(s)
+&&2p;=412-010-6
+&2cas;=145052-34-2
+&2w;=Bis(2,6-dimethoxybenzoyl)-2,4,4-trimethylpentylphosphinoxide
+&2g;=40 - 60 %
+&&2gs;=Xi - N
+&&&2gs;
+&&2rs;=R43 - R50/53
+&&&2rs;
+&&&2p;
+&&&2s;
+&2inft;=
+&2inf;=
+Start generating chapter 3 at 09:44:37 
+&3t;=Hazards Identification
+&&3w;=Classified as hazardous according to the EU directives.
+&&3w;=N Dangerous for the environment
+&&3w;=Very toxic to aquatic organisms, may cause long-term adverse effects in the aquatic environment.
+&&&3w;
+Start generating chapter 4 at 09:44:37 
+&4t;=First Aid Measures
+&&4s;=
+&&4p;=Skin contact
+&&4w;=Wash off with soap and plenty of water. 
+&&4w;=Do not use organic solvents. 
+&&4w;=In case of dermatitis, seek medical attention. 
+&&&4w;
+&&&4p;
+&&4s;=
+&&4p;=Eye contact
+&&4w;=Rinse immediately with plenty of water for at least 15 minutes. 
+&&4w;=In case of eye irritation, seek medical attention. 
+&&&4w;
+&&&4p;
+&&4s;=
+&&4p;=Inhalation
+&&4w;=Move to fresh air. 
+&&4w;=In case of prolonged exposure, seek medical attention. 
+&&4w;=In case of indisposition, seek medical attention. 
+&&4w;=In case of irritation of respiratory system or mucous membranes, seek medical attention. 
+&&&4w;
+&&&4p;
+&&4s;=
+&&4p;=Ingestion
+&&4w;=Immediately give plenty (> 500 ml) of water (if possible charcoal slurry). 
+&&4w;=In case of spontaneous vomiting be sure that vomitus can freely drain due to danger of suffocation. 
+&&4w;=Give water repeatedly. 
+&&4w;=Artificial induction of vomiting should be restricted to first aid staff. 
+&&4w;=Give nothing by mouth in cases of unconsciousness or convulsion. 
+&&4w;=Seek medical advice. 
+&&&4w;
+&&&4p;
+&&&4s;
+Start generating chapter 5 at 09:44:37 
+&5t;=Fire-Fighting Measures
+&&5s;=
+&&5p;=Suitable extinguishing media
+&&5w1;=Water spray
+&&5w1;=, Carbon dioxide (CO2)
+&&5w1;=, Foam
+&&5w1;=, Dry powder
+&&&5w1;
+&&&5p;
+&&5s;=
+&&5p;=Extinguishing media which must not be used for safety reasons
+&&5w1;=High volume water jet
+&&&5w1;
+&&&5p;
+&&5s;=
+&&5p;=Exposure hazards
+&&5w1;=Contaminated water from fire hoses or sprinklers, etc., must be prevented from draining into watercourses, sewers, or the ground water.
+&&5w1;= Sufficient measures must be taken to retain water used for extinguishing.
+&&5w1;= Contaminated water and soil must be disposed of in conformity with local regulations.
+&&&5w1;
+&&&5p;
+&&5s;=
+&&5p;=Special protective equipment for firefighters
+&&5w1;=Wear full protective clothing.
+&&5w1;= Wear self-contained breathing apparatus.
+&&&5w1;
+&&&5p;
+&&5s;=
+&&5p;=Combustion products
+&&5w1;=Oxides of carbon
+&&5w1;=; Oxides of phosphorus
+&&5w1;=; Toxic gases/vapours
+&&&5w1;
+&&&5p;
+&&&5s;
+Start generating chapter 6 at 09:44:37 
+&6t;=Accidental Release Measures
+&&6s;=
+&&6p;=Personal precautions
+&&6w;=Do not breathe vapours/dust. 
+&&6w;=Remove all sources of ignition. 
+&&6w;=Avoid contact with skin, eyes and clothing. 
+&&&6w;
+&&&6p;
+&&6s;=
+&&6p;=Environmental precautions
+&&6w;=Do not flush into surface water, sanitary sewer or ground water system. 
+&&&6w;
+&&&6p;
+&&6s;=
+&&6p;=Methods for cleaning up
+&&6w;=Use mechanical handling equipment. 
+&&6w;=Collect the spilled product into suitable containers, which must be tightly sealed and properly labelled. 
+&&6w;=Avoid dust formation. 
+&&&6w;
+&&&6p;
+&&&6s;
+Start generating chapter 7 at 09:44:37 
+&7t;=Handling and Storage
+&&7ss;=
+&&7sp;=Handling
+&&7sw;=Handle and open container with care.
+&&7sw;=Avoid dust formation and ignition sources. Ensure good local exhaust ventilation. Do not eat, drink or smoke at the workplace.
+&&&7sw;
+&&&7sp;
+&&7ss;=
+&&7sp;=Storage
+&&7sw;=Keep away from food and drink.
+&&7sw;=Store in the original container securely closed.
+&&&7sw;
+&&&7sp;
+&&7ss;=
+&&7sp;=
+&&7sw;=Protect from light and heat.
+&&7sw;=Danger! Explosion risk.
+&&7sw;=Risk of explosion if an air-dust mixture forms.
+&&7sw;=Avoid creating dusty conditions.
+&&7sw;=If container is larger than 2000 liter in volume, or when flammable solvents are present inert container or use a system otherwise designed to prevent or contain an explosion -- seek expert advice.
+&&7sw;=
+&&&7sw;
+&&&7sp;
+&&&7ss;
+Start generating chapter 8 at 09:44:38 
+&8t;=Exposure Controls / Personal Protection
+&&8op;=Exposure limit(s)
+&&8ob;=CIEL-TWA Ciba internal exposure limit (8 hour time weighted average) \par Bis(2,6-dimethoxybenzoyl)-2,4,4-trimethylpentylphosphinoxide
+&&&8ob;
+&&8up;=
+&8uw;=1.0 mg/m3
+&&8upb;= 
+&&&8upb;
+&8om;=
+&&8up;=
+&8uw;=Skin sensitization observed in animal study
+&&8upb;= 
+&&&8upb;
+&8om;=
+&&&8up;
+&&&8op;
+&&8p;=Technical measures/Precautions
+&&8w;=Exposure limit(s) should be monitored using suitable analytical equipments. 
+&&&8w;
+&&8p;=Respiratory protection
+&&8w;=Effective dust mask. 
+&&&8w;
+&&8p;=Hand protection
+&&8w;=Protective gloves 
+&&&8w;
+&&8p;=Eye protection
+&&8w;=Suitable goggles or face protection 
+&&&8w;
+&&8p;=Skin and body protection
+&&8w;=Working clothes 
+&&8w;=, Closed footwear 
+&&&8w;
+&&&8p;
+Start generating chapter 9 at 09:44:38 
+&9t;=Physical and Chemical Properties
+&&9p;=Form
+&&9b;= 
+&&&9b;
+&9w;=powder 
+&9om;=
+&9uk;=
+&&9p;=Colour
+&&9b;= 
+&&&9b;
+&9w;=light yellow 
+&9om;=
+&9uk;=
+&&9p;=Odour
+&&9b;= 
+&&&9b;
+&9w;=typical 
+&9om;=
+&9uk;=
+&&9p;=Melting/freezing temperature
+&&9b;= 
+&&&9b;
+&9w;=>= 45 °C 
+&9om;=
+&9uk;=
+&&9p;=Boiling point/range
+&&9b;= 
+&&&9b;
+&9w;=not tested
+&9om;=
+&9uk;=
+&&9p;=Relative density
+&&9b;= 
+&&&9b;
+&9w;=not tested
+&9om;=
+&9uk;=
+&&9p;=Flash point
+&&9b;= 
+&&&9b;
+&9w;=not tested
+&9om;=
+&9uk;=
+&&9p;=Flammability
+&&9b;= 
+&&&9b;
+&9w;=not tested
+&9om;=
+&9uk;=
+&&9p;=Ignition Temperature
+&&9b;= 
+&&&9b;
+&9w;=370 °C 
+&9om;=BAM
+&9uk;=
+&&9p;=Oxidising properties
+&&9b;= 
+&&&9b;
+&9w;=not tested
+&9om;=
+&9uk;=
+&&9p;=Self-ignition temperature
+&&9b;= 
+&&&9b;
+&9w;=not tested
+&9om;=
+&9uk;=
+&&9p;=Assessment for water solubility
+&&9b;= 
+&&&9b;
+&9w;=insoluble 
+&9om;=
+&9uk;=
+&&9p;=Solubility
+&&9b;= 
+&&&9b;
+&9w;=not tested
+&9om;=
+&9uk;=
+&&9p;=Vapour pressure
+&&9b;= 
+&&&9b;
+&9w;=not tested
+&9om;=
+&9uk;=
+&&9p;=Partition coefficient; Log Pow
+&&9b;= 
+&&&9b;
+&9w;=not tested
+&9om;=
+&9uk;=
+&&9p;=pH-value
+&&9b;= 
+&&&9b;
+&9w;=not tested
+&9om;=
+&9uk;=
+&&9p;=Explosive properties
+&&9b;= 
+&&&9b;
+&9w;=not tested
+&9om;=
+&9uk;=
+&&9p;=Evaporation rate
+&&9b;= 
+&&&9b;
+&9w;=not tested
+&9om;=
+&9uk;=
+&&&9p;
+Start generating chapter 10 at 09:44:39 
+&10t;=Stability and Reactivity
+&&10s;=
+&&10p;=Decomposition temperature
+&&10w1;=not tested
+&&&10w1;
+&10om;=
+&10uk;=
+&&&10p;
+&&10s;=
+&&10p;=Conditions to avoid
+&&10w1;=Keep away from light.
+&&10w1;= Static discharges.
+&&&10w1;
+&10om;=
+&10uk;=
+&&&10p;
+&&10s;=
+&&10p;=Materials to avoid
+&&10w1;=Strong acids, strong bases and strong oxidising agents.
+&&&10w1;
+&10om;=
+&10uk;=
+&&&10p;
+&&10s;=
+&&10p;=Hazardous decomposition products
+&&10w1;=No hazardous decomposition products known
+&&&10w1;
+&10om;=
+&10uk;=
+&&&10p;
+&&&10s;
+Start generating chapter 11 at 09:44:39 
+&11t;=Toxicological Information
+&&11op;=Acute oral toxicity
+&&11ob;=Rat 
+&&&11ob;
+&&11up;=
+&&11upb;=LD50 
+&&&11upb;
+&11uw;=> 2000 mg/kg
+&11om;=EEC 88/379 conventional method
+&11uk;=
+&&&11up;
+&&11op;=Acute dermal toxicity
+&&11ob;= 
+&&&11ob;
+&&11up;=
+&&11upb;= 
+&&&11upb;
+&11uw;=not tested
+&11om;=
+&11uk;=
+&&&11up;
+&&11op;=Acute Inhalation Toxicity
+&&11ob;= 
+&&&11ob;
+&&11up;=
+&&11upb;= 
+&&&11upb;
+&11uw;=not tested
+&11om;=
+&11uk;=
+&&&11up;
+&&11op;=Acute eye irritation/corrosion
+&&11ob;=Rabbit 
+&&&11ob;
+&&11up;=
+&&11upb;= 
+&&&11upb;
+&11uw;=not irritant
+&11om;=EEC 88/379 conventional method
+&11uk;=
+&&&11up;
+&&11op;=Acute dermal irritation/corrosion
+&&11ob;=Rabbit 
+&&&11ob;
+&&11up;=
+&&11upb;= 
+&&&11upb;
+&11uw;=not irritant
+&11om;=EEC 88/379 conventional method
+&11uk;=
+&&&11up;
+&&11op;=Acute skin sensitisation
+&&11ob;=Guinea pig 
+&&&11ob;
+&&11up;=
+&&11upb;= 
+&&&11upb;
+&11uw;=not sensitising
+&11om;=By analogy to similar products
+&11uk;=Tested as preparation
+&&&11up;
+&&&11op;
+&&11s;=
+&&11p;=
+&&11w;=
+&&&11w;
+&&&11p;
+&&&11s;
+Start generating chapter 12 at 09:44:39 
+&12t;=Ecological Information
+&&12op;=Acute toxicity to fish
+&&12ob;= 
+&&&12ob;
+&&12up;=
+&&12ub;= 
+&&&12ub;
+&12uw;=not tested
+&12om;=
+&12uk;=
+&&&12up;
+&&12op;=Acute toxicity to daphnia
+&&12ob;= 
+&&&12ob;
+&&12up;=
+&&12ub;= 
+&&&12ub;
+&12uw;=not tested
+&12om;=
+&12uk;=
+&&&12up;
+&&12op;=Acute toxicity to bacteria
+&&12ob;= 
+&&&12ob;
+&&12up;=
+&&12ub;= 
+&&&12ub;
+&12uw;=not tested
+&12om;=
+&12uk;=
+&&&12up;
+&&12op;=Acute toxicity to algae
+&&12ob;= 
+&&&12ob;
+&&12up;=
+&&12ub;= 
+&&&12ub;
+&12uw;=not tested
+&12om;=
+&12uk;=
+&&&12up;
+&&12op;=Biodegradability
+&&12ob;= 
+&&&12ob;
+&&12up;=
+&&12ub;= 
+&&&12ub;
+&12uw;=not tested
+&12om;=
+&12uk;=
+&&&12up;
+&&&12op;
+&&12s;=
+&&12p;=Ecotoxic effects
+&&12w;=Do not discharge product uncontrolled into the environment. 
+&&&12w;
+&&12p;=Information on classification
+&&12w;=This preparation is classified relating to its environmental hazards applying the conventional method described in EU Directive 1999/45/EC, Annex III. 
+&&&12w;
+&&&12p;
+&&&12s;
+Start generating chapter 13 at 09:44:39 
+&13t;=Disposal Considerations
+&&13s;=
+&&13p;=Waste from residues / unused products
+&&13w;=Residual chemical should be disposed by incineration or by other modes of disposal in compliance with local legislation. 
+&&&13w;
+&&&13p;
+&&13s;=
+&&13p;=Contaminated packaging
+&&13w;=Contaminated packaging material should be treated equivalent to residual chemical. Clean packaging material should be subjected to waste management schemes (recovery recycling, reuse) according to local legislation. 
+&&&13w;
+&&&13p;
+&&&13s;
+Start generating chapter 14 at 09:44:40 
+&14t;=Transport Information
+&&14p;=Flash point
+&&14w;=not tested
+&&&14w;
+&&14p;=ADR/RID
+&&14w;=Class: 9
+&&14w;=UN No.: 3077
+&&14w;=Packaging group: III
+&&14w;=Proper shipping name: ENVIRONMENTALLY HAZARDOUS SUBSTANCE, SOLID, N.O.S.
+&&14w;=Additional Information: (BIS-(2,6-DIMETHOXYBENZOYL)TRIMETHYLPENTYL PHOSPHINE OXIDE)
+&&&14w;
+&&14p;=IMO
+&&14w;=Class: 9
+&&14w;=UN No.: 3077
+&&14w;=Packaging group: III
+&&14w;=Proper Shipping Name: ENVIRONMENTALLY HAZARDOUS SUBSTANCE, SOLID, N.O.S.
+&&14w;=Additional Information: (BIS-(2,6-DIMETHOXYBENZOYL)TRIMETHYLPENTYL PHOSPHINE OXIDE)
+&&&14w;
+&&14p;=ICAO
+&&14w;=Class: 9
+&&14w;=UN No.: 3077
+&&14w;=Packaging group: III
+&&14w;=Proper Shipping Name: ENVIRONMENTALLY HAZARDOUS SUBSTANCE, SOLID, N.O.S.
+&&14w;=Additional Information: (BIS-(2,6-DIMETHOXYBENZOYL)TRIMETHYLPENTYL PHOSPHINE OXIDE)
+&&&14w;
+&&&14p;
+Start generating chapter 15 at 09:44:40 
+&15t;=Regulatory Information
+&&15ss;=
+&&15sp;=Classification
+&&15sw;=Self-classification
+&&&15sw;
+&15om;=
+&&&15sp;
+&&15ss;=
+&&15sp;=Symbol(s)
+&&15sw;=N Dangerous for the environment
+&&&15sw;
+&15om;=
+&&&15sp;
+&&15ss;=
+&&15sp;=R-Phrase(s)
+&&15sw;=R50/53 Very toxic to aquatic organisms, may cause long-term adverse effects in the aquatic environment.
+&&&15sw;
+&15om;=
+&&&15sp;
+&&15ss;=
+&&15sp;=S-Phrase(s)
+&&15sw;=S60 This material and/or its container must be disposed of as hazardous waste.
+&&15sw;=S61 Avoid release to the environment. Refer to special instructions/Safety data sheets.
+&&&15sw;
+&15om;=
+&&&15sp;
+&&15ss;=
+&&15sp;=Additional labeling information
+&&15sw;=Contains Bis(2,6-dimethoxybenzoyl)-2,4,4-trimethylpentylphosphinoxide. May cause allergic reaction.
+&&&15sw;
+&15om;=
+&&&15sp;
+&&&15ss;
+Start generating chapter 16 at 09:45:11 
+&16t;=Other Information
+&&16rs;=R-phrases from chapter 2
+&&16rw;=R43 May cause sensitization by skin contact.
+&&16rw;=R50/53 Very toxic to aquatic organisms, may cause long-term adverse effects in the aquatic environment.
+&&&16rw;
+&&&16rs;
+&&16p;= \par \par Essential changes
+&&16w;=Section 1
+&&16w;=;Section 2
+&&16w;=;Section 3
+&&16w;=;Section 8
+&&16w;=;Section 11
+&&16w;=;Section 12
+&&16w;=;Section 14
+&&16w;=;Section 15
+&&&16w;
+&&16p;= \par \par IRGACURE is a registered trademark.
+&&16w;=
+&&&16w;
+&&&16p;
+&0et;=Important
+&&0ew;=THIS MATERIAL IS NOT INTENDED FOR USE IN PRODUCTS FOR WHICH PROLONGED CONTACT WITH MUCOUS MEMBRANES, BODY FLUIDS OR ABRADED SKIN, OR IMPLANTATION WITHIN THE HUMAN BODY,
+&&0ew;=IS SPECIFICALLY INTENDED, UNLESS THE FINISHED PRODUCT HAS BEEN TESTED IN ACCORDANCE WITH NATIONALLY AND INTERNATIONALLY APPLICABLE SAFETY TESTING REQUIREMENTS.
+&&0ew;=BECAUSE OF THE WIDE RANGE OF SUCH POTENTIAL USES, CIBA IS NOT ABLE TO RECOMMEND THIS MATERIAL AS SAFE AND EFFECTIVE FOR SUCH USES AND ASSUMES NO LIABILITY FOR SUCH USES.
+&&&0ew;
+&&0fw;=This product should be stored, handled and used in accordance with good industrial hygiene practices and in conformity with any legal regulation.
+&&0fw;=The information contained herein is based on the present state of our knowledge and is intended to describe our products from the point of view of safety requirements.
+&&0fw;=It should not therefore be construed as guaranteeing specific properties.
+&&&0fw;
+&trans;=
+Start: 09:45:11 &&2p &&2p
+Start: 09:45:11 &&3wr &&3wr
+Start: 09:45:11 &&4s &&4s
+Start: 09:45:11 &&5s &&5s
+Start: 09:45:11 &&6s &&6s
+Start: 09:45:11 &&7ss &&7ss
+Start: 09:45:11 &&8p &&8p
+Start: 09:45:11 &&11up &&11op
+Start: 09:45:11 &&11p &&11s
+Start: 09:45:11 &&11s &&11s
+Start: 09:45:11 &&12up &&12op
+Start: 09:45:11 &&12p &&12s
+Start: 09:45:11 &&12s &&12s
+Start: 09:45:11 &&13s &&13s
+Start: 09:45:12 &&15ss &&15ss
