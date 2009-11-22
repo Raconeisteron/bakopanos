@@ -214,7 +214,7 @@ namespace Ciba.Utils.GenDocu
 			en.End     = mToken.Text.Length;
 			mInfo.Add(en);
 
-			PrintList("d:\\list.txt");
+			PrintList("list.txt");
 			return true;
 		}
 
