@@ -96,10 +96,16 @@
       <SubType>Form</SubType>
     </Compile>
     <Content Include="App.ico" />
+    <Content Include="param.txt" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <Folder Include="bin" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="template.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
