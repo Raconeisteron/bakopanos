@@ -22,7 +22,7 @@ namespace ExcelWithOleDb
         {
             OleDbConnection connection = new OleDbConnection(GetConnectionString());
             connection.Open();
-            string cmdText = "Select * From [Persons$]";
+            string cmdText = "Select p.id, fname, lname, jobdesc From [Persons$] as p,[Jobs$] as j Where p.jobid=j.id";
             OleDbCommand command = new OleDbCommand(cmdText, connection);
             OleDbDataAdapter adapter = new OleDbDataAdapter(command);
             DataSet ds = new DataSet();
