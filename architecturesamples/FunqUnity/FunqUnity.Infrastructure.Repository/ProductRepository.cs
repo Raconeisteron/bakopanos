@@ -21,8 +21,7 @@ namespace FunqUnity.Infrastructure.Repository
 
         public List<Product> GetProducts()
         {
-            IDbCommand command = _command("select * from Products");
-            command.Connection.Open();            
+            IDbCommand command = _command("select * from Products");            
             IDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
 
             var list = new List<Product>();

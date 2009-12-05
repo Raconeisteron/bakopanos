@@ -16,7 +16,13 @@ namespace FunqUnity.Infrastructure.Repository
             //deal with db specific technology here only...
             container.RegisterInstance<Func<IDbConnection>>(() => new SqlCeConnection(ConnectionString));
             container.RegisterInstance<Func<string, IDbCommand>>(
-                cmd => new SqlCeCommand(cmd, (SqlCeConnection) container.Resolve<Func<IDbConnection>>()()));
+                delegate(string cmd)
+                {
+                    IDbConnection connection = container.Resolve<Func<IDbConnection>>()();
+                    connection.Open();
+                    return new SqlCeCommand(cmd, (SqlCeConnection)connection);
+                }
+                );
 
             return container;
         }
