@@ -12,13 +12,19 @@ namespace FunqUnity.Infrastructure.Repository
     {
         public override IUnityContainer Configure(IUnityContainer container)
         {
-            container.RegisterType<IProductRepository, ProductRepository>(new ContainerControlledLifetimeManager());
-            //deal with db specific technology here only...
-            container.RegisterInstance<Func<IDbConnection>>(() => new SqlCeConnection(ConnectionString));
-            container.RegisterInstance<Func<string, IDbCommand>>(
+            //isolate data layer in child container
+            IUnityContainer childContainer = container.CreateChildContainer();
+
+            //use lambda to pull services from the child container
+            childContainer.RegisterType<IProductRepository, ProductRepository>(new ContainerControlledLifetimeManager());
+            container.RegisterInstance<Func<IProductRepository>>(() => childContainer.Resolve<IProductRepository>());
+
+            //deal with db specific technology only here...
+            childContainer.RegisterInstance<Func<IDbConnection>>(() => new SqlCeConnection(ConnectionString));
+            childContainer.RegisterInstance<Func<string, IDbCommand>>(
                 delegate(string cmd)
                 {
-                    IDbConnection connection = container.Resolve<Func<IDbConnection>>()();
+                    IDbConnection connection = childContainer.Resolve<Func<IDbConnection>>()();
                     connection.Open();
                     return new SqlCeCommand(cmd, (SqlCeConnection)connection);
                 }
