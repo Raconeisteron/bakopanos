@@ -11,7 +11,11 @@ namespace FunqUnity.Application
     {
         public override IUnityContainer Configure(IUnityContainer container)
         {
-            container.RegisterType<IProductService, ProductService>(new ContainerControlledLifetimeManager());
+
+            IUnityContainer childContainer = container.CreateChildContainer();
+
+            childContainer.RegisterType<IProductService, ProductService>(new ContainerControlledLifetimeManager());
+            container.RegisterInstance<Func<IProductService>>(() => childContainer.Resolve<IProductService>());
             
             return container;
         }        

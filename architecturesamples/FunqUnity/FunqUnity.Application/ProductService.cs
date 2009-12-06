@@ -14,12 +14,24 @@ namespace FunqUnity.Application
 
     internal class ProductService : IProductService
     {
+        private IProductRepository _repo;
+
         [Dependency]
-        public IProductRepository _repo { get; set; }         
+        public Func<IProductRepository> Repo 
+        {
+            set
+            {
+                //use lambda but cache the instance
+                _repo = value();
+            }
+        }         
 
         public IEnumerable<Product> GetProducts(string name)
-        {            
-            return from p in _repo.GetProducts() where p.Name.Contains(name) select p;
+        {
+            List<Product> products = _repo.GetProducts();
+            return from p in products 
+                   where p.Name.Contains(name) 
+                   select p;
         }
 
         [InjectionMethod]

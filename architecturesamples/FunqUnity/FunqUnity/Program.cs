@@ -10,17 +10,18 @@ namespace FunqUnity
     {
         static void Main(string[] args)
         {
-
+            //Bootstrapper
             IUnityContainer container = new UnityContainer().
-                Configure(ConfigurationManager.AppSettings["ContainerConfiguration"].Split(';'));      
+                Configure(ConfigurationManager.AppSettings["ContainerConfiguration"].Split(';'));
 
-            var products = container.Resolve<IProductService>();
-
+            //show something
+            var products = container.Resolve<Func<IProductService>>()();
             foreach (var s in products.GetProducts("a"))
             {
                 Console.WriteLine(s.Name);
             }
 
+            //exit
             Console.ReadLine();
         }
 
