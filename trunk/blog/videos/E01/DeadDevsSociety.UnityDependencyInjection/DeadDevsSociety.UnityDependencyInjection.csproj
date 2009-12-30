@@ -6,7 +6,7 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E4123C40-32EF-4AC6-A836-263CFC683C13}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DeadDevsSociety.UnityDependencyInjection</RootNamespace>
     <AssemblyName>DeadDevsSociety.UnityDependencyInjection</AssemblyName>
@@ -27,6 +27,8 @@
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,52 +64,12 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessObjects\ProductBo.cs" />
-    <Compile Include="Business\ProductsFacade.cs" />
-    <Compile Include="Data\DataFactory.cs" />
-    <Compile Include="Gui\View.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Gui\Presenter.cs" />
-    <Compile Include="Gui\ProductModel.cs" />
-    <Compile Include="Gui\ProductsView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Gui\ProductsView.Designer.cs">
-      <DependentUpon>ProductsView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Data\ProductsDao.cs" />
-    <Compile Include="Gui\ProductsPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Gui\ProductsView.resx">
-      <DependentUpon>ProductsView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="App.config" />
-    <None Include="Properties\DataSources\DeadDevsSociety.UnityDependencyInjection.Gui.ProductModel.datasource" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database\Database1.sdf">
