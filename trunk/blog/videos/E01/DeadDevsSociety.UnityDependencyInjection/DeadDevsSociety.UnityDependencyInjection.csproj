@@ -67,21 +67,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\ProductBo.cs" />
+    <Compile Include="BusinessObjects\ProductBo.cs" />
     <Compile Include="Business\ProductsFacade.cs" />
     <Compile Include="Data\DataFactory.cs" />
-    <Compile Include="Gui\ProductModel.cs" />
-    <Compile Include="Gui\ProductsForm.cs">
+    <Compile Include="Gui\View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gui\ProductsForm.Designer.cs">
-      <DependentUpon>ProductsForm.cs</DependentUpon>
+    <Compile Include="Gui\Presenter.cs" />
+    <Compile Include="Gui\ProductModel.cs" />
+    <Compile Include="Gui\ProductsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\ProductsView.Designer.cs">
+      <DependentUpon>ProductsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\ProductsDao.cs" />
+    <Compile Include="Gui\ProductsPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Gui\ProductsForm.resx">
-      <DependentUpon>ProductsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Gui\ProductsView.resx">
+      <DependentUpon>ProductsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
