@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
+using DeadDevsSociety.UnityDependencyInjection.Gui;
 
 namespace DeadDevsSociety.UnityDependencyInjection
 {
@@ -15,7 +14,7 @@ namespace DeadDevsSociety.UnityDependencyInjection
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new ProductsForm());
         }
     }
 }
