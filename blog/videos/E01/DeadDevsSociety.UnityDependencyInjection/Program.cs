@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
-using DeadDevsSociety.UnityDependencyInjection.Gui;
 
 namespace DeadDevsSociety.UnityDependencyInjection
 {
@@ -12,10 +10,8 @@ namespace DeadDevsSociety.UnityDependencyInjection
         [STAThread]
         private static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            
-            Application.Run(new ProductsPresenter().View);
+
+            Console.ReadLine();
         }
     }
 }
