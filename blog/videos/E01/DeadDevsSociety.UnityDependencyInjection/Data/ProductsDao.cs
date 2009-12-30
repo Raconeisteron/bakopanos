@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Data.SqlServerCe;
-using DeadDevsSociety.UnityDependencyInjection.Business;
+using DeadDevsSociety.UnityDependencyInjection.BusinessObjects;
 
 namespace DeadDevsSociety.UnityDependencyInjection.Data
 {

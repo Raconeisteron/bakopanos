@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 
 namespace DeadDevsSociety.UnityDependencyInjection.Data
@@ -22,8 +21,8 @@ namespace DeadDevsSociety.UnityDependencyInjection.Data
 
             while (reader.Read())
             {
-                var item = Map(reader);                
-                list.Add(item);                
+                T item = Map(reader);
+                list.Add(item);
             }
 
             return list;

@@ -1,4 +1,4 @@
-﻿using DeadDevsSociety.UnityDependencyInjection.Business;
+﻿using DeadDevsSociety.UnityDependencyInjection.BusinessObjects;
 
 namespace DeadDevsSociety.UnityDependencyInjection.Gui
 {
@@ -20,5 +20,4 @@ namespace DeadDevsSociety.UnityDependencyInjection.Gui
             return model;
         }
     }
-
 }

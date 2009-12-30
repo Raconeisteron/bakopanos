@@ -1,6 +1,6 @@
 ﻿namespace DeadDevsSociety.UnityDependencyInjection.Gui
 {
-    partial class ProductsForm
+    partial class ProductsView
     {
         /// <summary>
         /// Required designer variable.
@@ -43,7 +43,6 @@
             this.buttonGetProducts.TabIndex = 0;
             this.buttonGetProducts.Text = "GetProducts";
             this.buttonGetProducts.UseVisualStyleBackColor = true;
-            this.buttonGetProducts.Click += new System.EventHandler(this.buttonGetProducts_Click);
             // 
             // listBoxProducts
             // 
@@ -60,15 +59,15 @@
             // 
             this.productModelBindingSource.DataSource = typeof(DeadDevsSociety.UnityDependencyInjection.Gui.ProductModel);
             // 
-            // ProductsForm
+            // ProductsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(248, 321);
             this.Controls.Add(this.listBoxProducts);
             this.Controls.Add(this.buttonGetProducts);
-            this.Name = "ProductsForm";
-            this.Text = "ProductsForm";
+            this.Name = "ProductsView";
+            this.Text = "ProductsView";
             ((System.ComponentModel.ISupportInitialize)(this.productModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 

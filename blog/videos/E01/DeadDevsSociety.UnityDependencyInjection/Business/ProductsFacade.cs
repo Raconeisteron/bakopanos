@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DeadDevsSociety.UnityDependencyInjection.BusinessObjects;
 using DeadDevsSociety.UnityDependencyInjection.Data;
-using DeadDevsSociety.UnityDependencyInjection.Gui;
 
 namespace DeadDevsSociety.UnityDependencyInjection.Business
 {
     public class ProductsFacade
     {
-        public IEnumerable<ProductModel> GetProducts(string filter)
+        public IEnumerable<ProductBo> GetProducts(string filter)
         {
-            var query  = from item in new ProductsDao().List()
-                     select item.ToModel();
+            IEnumerable<ProductBo> query = from item in new ProductsDao().List()
+                                           select item;
             return query;
         }
     }
