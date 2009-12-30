@@ -8,7 +8,7 @@ namespace DeadDevsSociety.UnityDependencyInjection
 {
     internal static class Program
     {
-        private static readonly Presentation _presentation = new Presentation();
+        private static readonly ProductView _presentation = new ProductView();
 
         /// <summary>
         /// The main entry point for the application.
@@ -22,31 +22,36 @@ namespace DeadDevsSociety.UnityDependencyInjection
         }
     }
 
-    public class Presentation
+    #region Presentation
+    public class ProductView
     {
-        private readonly AppServices _appServices = new AppServices();
+        private readonly ProductServices _appServices = new ProductServices();
 
         public void Show()
         {
             foreach (Product item in _appServices.Products("."))
             {
-                Console.WriteLine("{0}, {1}",item.FirstName, item.LastName);
+                Console.WriteLine("{0}, {1}", item.FirstName, item.LastName);
             }
         }
-    }
+    }    
+    #endregion
 
-
-    public class AppServices
+    #region Application
+    public class ProductServices
     {
-        private readonly Repository _repository = new Repository();
+        private readonly ProductRepository _repository = new ProductRepository();
 
         public IEnumerable<Product> Products(string filter)
         {
             return _repository.List();
         }
     }
+    
+    #endregion
 
-    public class Repository : DataFactory<Product>
+    #region Infrastructure
+    public class ProductRepository : DataFactory<Product>
     {
         protected override IDbCommand Command()
         {
@@ -63,14 +68,18 @@ namespace DeadDevsSociety.UnityDependencyInjection
                            };
             return item;
         }
-    }
+    }    
+    #endregion
 
+    #region Domain
     public class Product
     {
-        public string FirstName{ get; set;}
-        public string LastName{ get; set;}
-    }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    } 
+    #endregion
 
+    #region Library
     public class Logger
     {
         public void Information(string message)
@@ -80,7 +89,7 @@ namespace DeadDevsSociety.UnityDependencyInjection
     }
 
     public abstract class DataFactory<T>
-        where T:class,new()
+        where T : class, new()
     {
         protected abstract IDbCommand Command();
 
@@ -91,12 +100,13 @@ namespace DeadDevsSociety.UnityDependencyInjection
             command.Connection.Open();
             IDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             while (reader.Read())
-            {                               
+            {
                 list.Add(Mapp(reader));
             }
             return list;
         }
 
         protected abstract T Mapp(IDataRecord record);
-    }
+    } 
+    #endregion
 }
