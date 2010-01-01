@@ -67,10 +67,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\ProductRepository.cs" />
+    <Compile Include="Domain\Product.cs" />
+    <Compile Include="Facade\ProductServices.cs" />
+    <Compile Include="Library\ILogger.cs" />
+    <Compile Include="Library\Logger.cs" />
+    <Compile Include="Library\DataFactory.cs" />
+    <Compile Include="Library\LoggerSingleton.cs" />
+    <Compile Include="Presentation\ProductView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database\Database1.sdf">
