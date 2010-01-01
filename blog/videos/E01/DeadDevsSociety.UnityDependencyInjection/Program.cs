@@ -1,7 +1,7 @@
 ﻿using System;
 using DeadDevsSociety.UnityDependencyInjection.Presentation;
 
-namespace DeadDevsSociety.UnityDependencyInjection
+namespace DeadDevsSociety.UnityDependencyInjection.Launcher
 {
     internal static class Program
     {
