@@ -8,8 +8,8 @@
     <ProjectGuid>{E4123C40-32EF-4AC6-A836-263CFC683C13}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DeadDevsSociety.UnityDependencyInjection</RootNamespace>
-    <AssemblyName>DeadDevsSociety.UnityDependencyInjection</AssemblyName>
+    <RootNamespace>DeadDevsSociety.UnityDependencyInjection.Launcher</RootNamespace>
+    <AssemblyName>Launcher</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>http://localhost/DeadDevsSociety.UnityDependencyInjection/</PublishUrl>
@@ -55,11 +55,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
@@ -67,14 +63,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\ProductsRepository.cs" />
-    <Compile Include="Domain\Product.cs" />
-    <Compile Include="Facade\ProductsService.cs" />
-    <Compile Include="Library\ILogger.cs" />
-    <Compile Include="Library\Logger.cs" />
-    <Compile Include="Library\DataFactory.cs" />
-    <Compile Include="Library\LoggerSingleton.cs" />
-    <Compile Include="Presentation\ProductsView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="App.config" />
@@ -122,6 +110,16 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeadDevsSociety.UnityDependencyInjection.Library\Library.csproj">
+      <Project>{2996BE4D-01AC-4F91-8719-7BC3FC21F57E}</Project>
+      <Name>Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeadDevsSociety.UnityDependencyInjection.Presentation\Presentation.csproj">
+      <Project>{64BD1189-0044-42C2-981F-1B9669E2BB44}</Project>
+      <Name>Presentation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
