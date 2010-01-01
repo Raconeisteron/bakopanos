@@ -12,6 +12,7 @@ namespace DeadDevsSociety.UnityDependencyInjection.Library
         protected DataFactory(IDbCommand command)
         {
             _command = command;
+            LoggerSingleton.Instance.Information("CommandText=" + command.CommandText, "DataFactory");
         }
 
         public IList<T> List()

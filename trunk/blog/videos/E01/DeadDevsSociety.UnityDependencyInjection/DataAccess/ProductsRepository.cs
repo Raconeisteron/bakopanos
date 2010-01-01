@@ -6,9 +6,9 @@ using DeadDevsSociety.UnityDependencyInjection.Library;
 
 namespace DeadDevsSociety.UnityDependencyInjection.DataAccess
 {
-    public class ProductRepository : DataFactory<Product>
+    public class ProductsRepository : DataFactory<Product>
     {        
-        public ProductRepository() :
+        public ProductsRepository() :
             base(new SqlCeCommand("select * from products", 
                 new SqlCeConnection(@"Data Source=Database\Database1.sdf")))
         {
@@ -22,9 +22,7 @@ namespace DeadDevsSociety.UnityDependencyInjection.DataAccess
         private const string DateOfBirth = "DateOfBirth";
 
         protected override Product Mapp(IDataRecord record)
-        {
-            LoggerSingleton.Instance.Information("mapp", "ProductRepository");
-
+        {            
             var item = new Product
                            {
                                //required allow null == false
@@ -32,6 +30,8 @@ namespace DeadDevsSociety.UnityDependencyInjection.DataAccess
                                FirstName = record[FirstName] as string,
                                LastName = record[LastName] as string                 
                            };
+            LoggerSingleton.Instance.Information(Id + " " + item.Id, "ProductRepository");
+
             //optional allow null == true
             if (record[DateOfBirth] != DBNull.Value)
             {

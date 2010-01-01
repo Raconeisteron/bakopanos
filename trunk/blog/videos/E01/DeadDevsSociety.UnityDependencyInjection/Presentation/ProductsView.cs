@@ -1,15 +1,18 @@
 ﻿using System;
 using DeadDevsSociety.UnityDependencyInjection.Domain;
 using DeadDevsSociety.UnityDependencyInjection.Facade;
+using DeadDevsSociety.UnityDependencyInjection.Library;
 
 namespace DeadDevsSociety.UnityDependencyInjection.Presentation
 {   
-    public class ProductView
+    public class ProductsView
     {
-        private readonly ProductServices _appServices = new ProductServices();
+        private readonly ProductsService _appServices = new ProductsService();
 
         public void Show()
         {
+            LoggerSingleton.Instance.Information("Show ProductsView", "ProductView");
+
             foreach (Product item in _appServices.Products("."))
             {
                 if (item.DateOfBirth.HasValue)
