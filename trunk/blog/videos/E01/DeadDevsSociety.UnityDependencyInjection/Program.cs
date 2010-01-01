@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlServerCe;
-using System.Diagnostics;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace DeadDevsSociety.UnityDependencyInjection
 {
     internal static class Program
     {
-        private static readonly ProductView _presentation = new ProductView();
 
         /// <summary>
         /// The main entry point for the application.
@@ -16,13 +16,14 @@ namespace DeadDevsSociety.UnityDependencyInjection
         [STAThread]
         private static void Main()
         {
-            _presentation.Show();
+            var presentation = new ProductView();
+
+            presentation.Show();
 
             Console.ReadLine();
         }
     }
-
-    #region Presentation
+    
     public class ProductView
     {
         private readonly ProductServices _appServices = new ProductServices();
@@ -31,55 +32,73 @@ namespace DeadDevsSociety.UnityDependencyInjection
         {
             foreach (Product item in _appServices.Products("."))
             {
-                Console.WriteLine("{0}, {1}", item.FirstName, item.LastName);
+                if (item.DateOfBirth.HasValue)
+                {
+                    Console.WriteLine("{0}, {1} ({2})", 
+                        item.FirstName, item.LastName, item.DateOfBirth.Value.ToShortDateString());                   
+                }
+                else
+                {
+                    Console.WriteLine("{0}, {1}", 
+                        item.FirstName, item.LastName);                    
+                }
             }
         }
     }    
-    #endregion
 
-    #region Application
     public class ProductServices
     {
         private readonly ProductRepository _repository = new ProductRepository();
 
         public IEnumerable<Product> Products(string filter)
         {
-            return _repository.List();
+            return from item in _repository.List()
+                   where (Regex.IsMatch(item.FirstName, filter) | 
+                        Regex.IsMatch(item.LastName, filter))
+                   select item;
         }
     }
     
-    #endregion
-
-    #region Infrastructure
     public class ProductRepository : DataFactory<Product>
-    {
-        protected override IDbCommand Command()
+    {        
+        public ProductRepository() :
+            base(new SqlCeCommand("select * from products", 
+                new SqlCeConnection(@"Data Source=Database\Database1.sdf")))
         {
-            var connection = new SqlCeConnection(@"Data Source=Database\Database1.sdf");
-            return new SqlCeCommand("select * from products", connection);
         }
+
+        private const string Id = "Id";
+        private const string FirstName = "FirstName";
+        private const string LastName = "LastName";
+        private const string DateOfBirth = "DateOfBirth";
 
         protected override Product Mapp(IDataRecord record)
         {
             var item = new Product
                            {
-                               FirstName = record["FirstName"] as string,
-                               LastName = record["LastName"] as string
+                               //required allow null == false
+                               Id = (int) record[Id],
+                               FirstName = record[FirstName] as string,
+                               LastName = record[LastName] as string                 
                            };
+            //optional allow null == true
+            if (record[DateOfBirth] != DBNull.Value)
+            {
+                item.DateOfBirth = Convert.ToDateTime(record[DateOfBirth]);
+            }
             return item;
         }
     }    
-    #endregion
-
-    #region Domain
+    
     public class Product
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public DateTime? DateOfBirth { get; set; }
     } 
-    #endregion
+    
 
-    #region Library
     public class Logger
     {
         public void Information(string message)
@@ -91,14 +110,18 @@ namespace DeadDevsSociety.UnityDependencyInjection
     public abstract class DataFactory<T>
         where T : class, new()
     {
-        protected abstract IDbCommand Command();
+        private readonly IDbCommand _command;
+
+        protected DataFactory(IDbCommand command)
+        {
+            _command = command;
+        }
 
         public IList<T> List()
         {
-            var command = Command();
             IList<T> list = new List<T>();
-            command.Connection.Open();
-            IDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            _command.Connection.Open();
+            IDataReader reader = _command.ExecuteReader(CommandBehavior.CloseConnection);
             while (reader.Read())
             {
                 list.Add(Mapp(reader));
@@ -108,5 +131,5 @@ namespace DeadDevsSociety.UnityDependencyInjection
 
         protected abstract T Mapp(IDataRecord record);
     } 
-    #endregion
+
 }
