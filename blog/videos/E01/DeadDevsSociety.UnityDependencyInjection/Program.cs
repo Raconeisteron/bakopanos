@@ -12,7 +12,7 @@ namespace DeadDevsSociety.UnityDependencyInjection
         [STAThread]
         private static void Main()
         {
-            var presentation = new ProductView();
+            var presentation = new ProductsView();
 
             presentation.Show();
 

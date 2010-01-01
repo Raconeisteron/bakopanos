@@ -4,28 +4,49 @@ namespace DeadDevsSociety.UnityDependencyInjection.Library
 {
     public class Logger : ILogger
     {
-        private static TraceSwitch _traceSwitch;
+        protected Logger()
+        {
+        }
 
         public Logger(TraceSwitch traceSwitch)
         {
-            _traceSwitch = traceSwitch;            
+            TraceSwitch = traceSwitch;             
+        }
+
+        public TraceSwitch TraceSwitch
+        {
+            get; private set;
+        }
+
+        public void Verbose(string message, string category)
+        {
+            if (TraceSwitch.TraceVerbose)
+            {
+                Trace.WriteLine(message, category);
+            }
+        }
+        
+        public void Warning(string message, string category)
+        {
+            if (TraceSwitch.TraceWarning)
+            {
+                Trace.WriteLine(message, category);
+            }
         }
 
         public void Information(string message, string category)
         {
-            if (_traceSwitch.TraceInfo)
+            if (TraceSwitch.TraceInfo)
             {               
-                Trace.WriteLine(message, category);
-                Debug.WriteLine(message, category);                
+                Trace.WriteLine(message, category);                     
             }
         }
 
         public void Error(string message, string category)
         {
-            if (_traceSwitch.TraceError)
+            if (TraceSwitch.TraceError)
             {
-                Trace.WriteLine(message, category);
-                Debug.WriteLine(message, category);
+                Trace.WriteLine(message, category);                
             }
         }
     }

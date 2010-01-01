@@ -12,8 +12,8 @@ namespace DeadDevsSociety.UnityDependencyInjection.Library
 
         static LoggerSingleton()
         {
-            //setup listeners
-            //Debug.Listeners.Add(new ConsoleTraceListener());            
+            //setup listeners            
+            Debug.Listeners.Add(new ConsoleTraceListener());            
             string file = Path.GetTempFileName();
             Trace.Listeners.Add(new TextWriterTraceListener(file));
             Trace.AutoFlush = true;
