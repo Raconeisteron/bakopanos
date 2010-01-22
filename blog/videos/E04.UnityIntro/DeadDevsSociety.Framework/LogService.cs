@@ -25,7 +25,7 @@ namespace DeadDevsSociety.Framework
     {
        public void WriteLine(string message)
        {
-           Debug.WriteLine(message);
+           Trace.WriteLine(message);
        }
     }
 }
