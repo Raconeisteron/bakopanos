@@ -21,13 +21,13 @@ namespace DeadDevsSociety.DataLayer
 
     internal class ProductsData : IProductsData
     {
-        private readonly LogService _logService;
-        private const string ConnectionString = "Data Source=UnityIntro.sdf";
-        private readonly SqlCeConnection _connection = new SqlCeConnection(ConnectionString);
-
-        public ProductsData(LogService logService)
+        private readonly LogService _logService;        
+        private readonly SqlCeConnection _connection; 
+        
+        public ProductsData(LogService logService,IDataLayerConfiguration configuration)
         {
             _logService = logService;
+            _connection = new SqlCeConnection(configuration.ConnectionString);
         }
 
         public IList<ProductEntity> GetAllProducts()

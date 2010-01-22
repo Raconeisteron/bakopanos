@@ -13,9 +13,7 @@ namespace DeadDevsSociety.UnityIntro
     class Program
     {
         static void Main(string[] args)
-        {
-            Trace.Listeners.Add(new ConsoleTraceListener());
-
+        {            
             IUnityContainer container = new UnityContainer();
             container.RegisterType<LogService, LogService>(new ContainerControlledLifetimeManager());
 
@@ -23,15 +21,14 @@ namespace DeadDevsSociety.UnityIntro
             //(ConfigurationManager.GetSection("business") as IModule).Configure(container);
             //(ConfigurationManager.GetSection("data") as IModule).Configure(container);
 
-            object presentation = ConfigurationManager.GetSection("presentation");
-            object business = ConfigurationManager.GetSection("business");
-            object data = ConfigurationManager.GetSection("data");
+            string[] modules = ConfigurationManager.AppSettings["modules"].Split(',');
 
-            object[] parameters = new object[] { container };
-
-            presentation.GetType().GetMethod("Configure").Invoke(presentation, parameters);
-            business.GetType().GetMethod("Configure").Invoke(business, parameters);
-            data.GetType().GetMethod("Configure").Invoke(data, parameters);
+            foreach (string section in modules)
+            {                
+                object instance = ConfigurationManager.GetSection(section);
+                var parameters = new object[] { container };
+                instance.GetType().GetMethod("Configure").Invoke(instance, parameters);                
+            }
 
             container.Resolve<IProductsView>();
 
