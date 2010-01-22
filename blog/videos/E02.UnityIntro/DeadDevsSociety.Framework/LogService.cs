@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DeadDevsSociety.Framework
 {
-    public class LogServiceSingleton
+    /*public class LogServiceSingleton
     {
         private static readonly LogService _logService = new LogService();
         private LogServiceSingleton(){}
@@ -19,7 +19,7 @@ namespace DeadDevsSociety.Framework
             }
         }
 
-    }
+    }*/
 
     public class LogService
     {

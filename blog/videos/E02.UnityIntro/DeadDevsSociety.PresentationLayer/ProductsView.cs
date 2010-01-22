@@ -4,16 +4,29 @@ using System.Linq;
 using System.Text;
 using DeadDevsSociety.BusinessLayer;
 using DeadDevsSociety.Framework;
+using Microsoft.Practices.Unity;
 
 namespace DeadDevsSociety.PresentationLayer
 {
-    public class ProductsView
+    public interface IProductsView
     {
-        private ProductsFacade _facade = new ProductsFacade();
+    }
+
+    internal class ProductsView : IProductsView
+    {
+        private readonly IProductsFacade _facade;
+        private readonly LogService _logService;       
+
+        public ProductsView(IProductsFacade facade, LogService logService)
+        {
+            _facade = facade;
+            _logService = logService;
+        }
         
+        [InjectionMethod]
         public void Show()
         {          
-            LogServiceSingleton.LogService.WriteLine("presentation:show");
+            _logService.WriteLine("presentation:show");
             foreach (Product item in _facade.GetProductByName("."))//all for now...
             {
                 Console.WriteLine("{0}: {1}",item.Id,item.ProductName);
