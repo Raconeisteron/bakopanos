@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -16,21 +17,21 @@ namespace DeadDevsSociety.UnityIntro
             Trace.Listeners.Add(new ConsoleTraceListener());
 
             IUnityContainer container = new UnityContainer();
-
             container.RegisterType<LogService, LogService>(new ContainerControlledLifetimeManager());
 
-            container.RegisterType(
-                Type.GetType("DeadDevsSociety.DataLayer.IProductsData,DeadDevsSociety.DataLayer"), 
-                Type.GetType("DeadDevsSociety.DataLayer.ProductsData,DeadDevsSociety.DataLayer"));
+            //(ConfigurationManager.GetSection("presentation") as IModule).Configure(container);
+            //(ConfigurationManager.GetSection("business") as IModule).Configure(container);
+            //(ConfigurationManager.GetSection("data") as IModule).Configure(container);
 
-            container.RegisterType(
-                Type.GetType("DeadDevsSociety.BusinessLayer.IProductsFacade,DeadDevsSociety.BusinessLayer"),
-                Type.GetType("DeadDevsSociety.BusinessLayer.ProductsFacade,DeadDevsSociety.BusinessLayer"));
+            object presentation = ConfigurationManager.GetSection("presentation");
+            object business = ConfigurationManager.GetSection("business");
+            object data = ConfigurationManager.GetSection("data");
 
-            container.RegisterType(
-                typeof(IProductsView),
-                Type.GetType("DeadDevsSociety.PresentationLayer.ProductsView,DeadDevsSociety.PresentationLayer"));
+            object[] parameters = new object[] { container };
 
+            presentation.GetType().GetMethod("Configure").Invoke(presentation, parameters);
+            business.GetType().GetMethod("Configure").Invoke(business, parameters);
+            data.GetType().GetMethod("Configure").Invoke(data, parameters);
 
             container.Resolve<IProductsView>();
 
