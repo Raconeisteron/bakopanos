@@ -14,14 +14,25 @@ namespace DeadDevsSociety.DataLayer
         public string ProductName { get; set; }
     }
 
-    public class ProductsData
+    public interface IProductsData
     {
+        IList<ProductEntity> GetAllProducts();
+    }
+
+    internal class ProductsData : IProductsData
+    {
+        private readonly LogService _logService;
         private const string ConnectionString = "Data Source=UnityIntro.sdf";
         private readonly SqlCeConnection _connection = new SqlCeConnection(ConnectionString);
 
+        public ProductsData(LogService logService)
+        {
+            _logService = logService;
+        }
+
         public IList<ProductEntity> GetAllProducts()
         {
-            LogServiceSingleton.LogService.WriteLine("data:get");
+            _logService.WriteLine("data:get");
 
             IList<ProductEntity> list = new List<ProductEntity>();
             _connection.Open();

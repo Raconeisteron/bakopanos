@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using DeadDevsSociety.DataLayer;
 using DeadDevsSociety.Framework;
+using Microsoft.Practices.Unity;
 
 namespace DeadDevsSociety.BusinessLayer
 {
@@ -27,15 +28,30 @@ namespace DeadDevsSociety.BusinessLayer
         public string ProductName { get; set; }
     }
 
-    public class ProductsFacade
+    public interface IProductsFacade
     {
-        private readonly ProductsData _data = new ProductsData();
+        IEnumerable<Product> GetProductByName(string name);
+    }
+
+    internal class ProductsFacade : IProductsFacade
+    {
+        private readonly LogService _logService;
+        public ProductsFacade(LogService logService)
+        {
+            _logService = logService;
+        }
+
+        [Dependency]
+        public IProductsData Data
+        {
+            private get; set;
+        }
 
         public IEnumerable<Product> GetProductByName(string name)
         {
-            LogServiceSingleton.LogService.WriteLine("business:get");
+            _logService.WriteLine("business:get");
             var regex = new Regex(name);
-            return from item in _data.GetAllProducts()
+            return from item in Data.GetAllProducts()
                    where regex.IsMatch(item.ProductName)  
                    select item.Map();
         }
