@@ -1,9 +1,9 @@
 3-Tier Pattern Architecture with Unity
 
-E01 UnityIntro 
+UnityIntro 
 
-Part 1: set up the sample application
-Part 2: object management (Unity)
-Part 3: component management/modularity (Unity)
-Part 4: configurability (Unity)
-Part 5: testing/mocking
+E01 : set up the sample application
+E02 : object management (Unity)
+E03 : component management/modularity (Unity)
+E04 : configurability (Unity)
+E05 : testing/mocking 
