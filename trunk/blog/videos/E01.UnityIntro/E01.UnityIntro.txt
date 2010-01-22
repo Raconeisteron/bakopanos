@@ -1,20 +1,3 @@
-### Contents ###
-Requirements to follow the code	
-	Create a console app in Visual Studio 2008 and add the following references:
-		Microsoft.Practices.ObjectBuilder2.dll
-		Microsoft.Practices.Unity.dll
-	You can download the assemblies under: http://www.codeplex.com/unity 
-	The current release used in this document is Unity 1.2	
 
-"New up" an object using the container	
-Constructor Injection	
-Property Injection	
-Method Injection	
-Service Location Pattern (Injecting the Container)	
-Registering types	
-Late Binding	
-Managing Object Lifetimes	
-Registering singleton instances	
-Registering named instances	
-Singleton Pattern	
+3-Tier Pattern Architecture with Unity
 
