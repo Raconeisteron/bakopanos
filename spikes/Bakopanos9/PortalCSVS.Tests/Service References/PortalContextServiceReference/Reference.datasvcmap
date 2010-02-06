@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b3d7289b-c004-4bc1-be0a-9f4366d558a8" xmlns="urn:schemas-microsoft-com:xml-dataservicemap">
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:2873/Services/PortalWebDataService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.edmx" MetadataType="Edmx" ID="fecf4f6f-5c57-4e97-883d-03b1fe916909" SourceId="1" SourceUrl="http://localhost:2873/Services/PortalWebDataService.svc" />
+  </Metadata>
+  <Extensions />
+</ReferenceGroup>

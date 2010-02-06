@@ -1,0 +1,67 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices>
+    <Schema Namespace="ASPNET.StarterKit.Portal" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+      <EntityType Name="PortalAnnouncement">
+        <Key>
+          <PropertyRef Name="ItemId" />
+        </Key>
+        <Property Name="ModuleId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ItemId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CreatedByUser" Type="Edm.String" Nullable="true" />
+        <Property Name="ExpireDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="CreatedDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="Title" Type="Edm.String" Nullable="true" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" />
+        <Property Name="MoreLink" Type="Edm.String" Nullable="true" />
+        <Property Name="MobileMoreLink" Type="Edm.String" Nullable="true" />
+      </EntityType>
+      <EntityType Name="PortalContact">
+        <Key>
+          <PropertyRef Name="ItemId" />
+        </Key>
+        <Property Name="ModuleId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ItemId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CreatedByUser" Type="Edm.String" Nullable="true" />
+        <Property Name="CreatedDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" />
+        <Property Name="Role" Type="Edm.String" Nullable="true" />
+        <Property Name="Email" Type="Edm.String" Nullable="true" />
+        <Property Name="Contact1" Type="Edm.String" Nullable="true" />
+        <Property Name="Contact2" Type="Edm.String" Nullable="true" />
+      </EntityType>
+      <EntityType Name="PortalEvent">
+        <Key>
+          <PropertyRef Name="ItemId" />
+        </Key>
+        <Property Name="ModuleId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ItemId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CreatedByUser" Type="Edm.String" Nullable="true" />
+        <Property Name="CreatedDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="ExpireDate" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="Title" Type="Edm.String" Nullable="true" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" />
+        <Property Name="WhereWhen" Type="Edm.String" Nullable="true" />
+      </EntityType>
+      <EntityType Name="PortalLink">
+        <Key>
+          <PropertyRef Name="ItemId" />
+        </Key>
+        <Property Name="ModuleId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ItemId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CreatedByUser" Type="Edm.String" Nullable="true" />
+        <Property Name="CreatedDate" Type="Edm.DateTime" Nullable="true" />
+        <Property Name="Title" Type="Edm.String" Nullable="true" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" />
+        <Property Name="Url" Type="Edm.String" Nullable="true" />
+        <Property Name="MobileUrl" Type="Edm.String" Nullable="true" />
+        <Property Name="ViewOrder" Type="Edm.Int32" Nullable="true" />
+      </EntityType>
+      <EntityContainer Name="PortalContext" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="Announcements" EntityType="ASPNET.StarterKit.Portal.PortalAnnouncement" />
+        <EntitySet Name="Contacts" EntityType="ASPNET.StarterKit.Portal.PortalContact" />
+        <EntitySet Name="Events" EntityType="ASPNET.StarterKit.Portal.PortalEvent" />
+        <EntitySet Name="Links" EntityType="ASPNET.StarterKit.Portal.PortalLink" />
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

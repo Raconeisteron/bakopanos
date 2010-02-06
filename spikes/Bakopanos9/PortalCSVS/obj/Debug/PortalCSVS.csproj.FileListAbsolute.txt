@@ -1,0 +1,10 @@
+C:\Bakopanos9\PortalCSVS\bin\PortalCSVS.dll
+C:\Bakopanos9\PortalCSVS\bin\PortalCSVS.pdb
+C:\Bakopanos9\PortalCSVS\obj\Debug\ResolveAssemblyReference.cache
+C:\Bakopanos9\PortalCSVS\obj\Debug\PortalCSVS.dll
+C:\Bakopanos9\PortalCSVS\obj\Debug\PortalCSVS.pdb
+C:\Bakopanos9\PortalCSVS\bin\PortalCSVS.Components.dll
+C:\Bakopanos9\PortalCSVS\bin\PortalCSVS.Components.pdb
+C:\Bakopanos9\PortalCSVS\bin\Microsoft.Practices.ObjectBuilder2.dll
+C:\Bakopanos9\PortalCSVS\bin\Microsoft.Practices.Unity.dll
+C:\Bakopanos9\PortalCSVS\bin\Microsoft.Practices.Unity.Configuration.dll
