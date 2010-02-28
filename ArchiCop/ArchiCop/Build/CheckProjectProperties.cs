@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Build.Utilities;
+﻿using System.Collections.Generic;
 using Microsoft.Build.Framework;
 using System.Text.RegularExpressions;
-using System.Data.OleDb;
-using System.Data;
+
 namespace ArchiCop.Build
 {
     public class ProjectPropertyRule
@@ -26,24 +21,27 @@ namespace ArchiCop.Build
         [Required]
         public string Table { get; set; }
 
+        private List<ProjectPropertyRule> _rules;
+
+        public override void Init()
+        {
+            string cmdText = "Select PropertyName, PropertyPattern From " + Table + "";
+            _rules = DataHelper.GetData<ProjectPropertyRule>(ProviderName, ConnectionString, cmdText);           
+        }
+
         public override void CheckProject(VisualStudioProject project)
         {
-            string cmdText = "Select PropertyName, PropertyPattern From [" + Table + "]";
-            List<ProjectPropertyRule> rules = 
-                DataHelper.GetData<ProjectPropertyRule>(ProviderName, ConnectionString, cmdText);
-            
-            foreach (ProjectPropertyRule rule in rules)
+            foreach (ProjectPropertyRule rule in _rules)
             {
-                string name = rule.PropertyName;
-                string pattern = rule.PropertyPattern;
+                string nameValue = DataMapper.GetPropertyValue(project, rule.PropertyName).ToString();
+                string patternValue = DataMapper.GetPropertyValue(project, rule.PropertyName).ToString();
 
-                string value = DataMapper.GetPropertyValue(project, name).ToString();
-                bool retValue = Regex.IsMatch(value, pattern);
+                bool retValue = Regex.IsMatch(nameValue, rule.PropertyPattern);
                 if (retValue == false)
                 {
-                    Log.LogError("{0} doesn't match regex pattern {1}", name, pattern);
-                }                      
-            }            
+                    Log.LogError("{0} doesn't match regex pattern {1}", rule.PropertyName, rule.PropertyPattern);
+                }
+            }
         }
 
     }

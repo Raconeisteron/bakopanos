@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Build.Utilities;
 using Microsoft.Build.Framework;
 
@@ -15,6 +12,7 @@ namespace ArchiCop.Build
         public override bool Execute()
         {
             Log.LogMessage(ToString());
+            Init();
             try
             {
                 VisualStudioProjects projects = ProjectHandler.LoadVisualStudioProjectList(DumpFile);
@@ -30,6 +28,7 @@ namespace ArchiCop.Build
             }
         }
 
+        public abstract void Init();
         public abstract void CheckProject(VisualStudioProject project);
 
     }
