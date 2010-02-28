@@ -48,6 +48,7 @@
     <Compile Include="Build\CheckVisualStudioProjectList.cs" />
     <Compile Include="Build\CheckProjectProperties.cs" />
     <Compile Include="Build\DumpVisualStudioProjectList.cs" />
+    <Compile Include="DataHelper.cs" />
     <Compile Include="DataMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualStudioProject.cs" />
@@ -56,6 +57,9 @@
     <Content Include="ArchiCop.Build.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+    </Content>
+    <Content Include="template.sdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

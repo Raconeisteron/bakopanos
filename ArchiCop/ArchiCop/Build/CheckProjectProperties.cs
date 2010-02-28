@@ -7,9 +7,14 @@ using Microsoft.Build.Framework;
 using System.Text.RegularExpressions;
 using System.Data.OleDb;
 using System.Data;
-
 namespace ArchiCop.Build
 {
+    public class ProjectPropertyRule
+    {
+        public string PropertyName { get; set; }
+        public string PropertyPattern { get; set; }
+    }
+
     public class CheckProjectProperties : CheckVisualStudioProjectList
     {
         [Required]
@@ -22,21 +27,15 @@ namespace ArchiCop.Build
         public string Table { get; set; }
 
         public override void CheckProject(VisualStudioProject project)
-        {            
-            DataSet ds = new DataSet(); 
-
-            OleDbConnection connection = new OleDbConnection(ConnectionString);
-            connection.Open();
-            string cmdText = "Select PropertyName, PropertyPattern From [" + Table + "$]";
-            OleDbCommand command = new OleDbCommand(cmdText, connection);
-            OleDbDataAdapter adapter = new OleDbDataAdapter(command);
-            adapter.Fill(ds);            
-            connection.Close();
-
-            foreach (DataRow row in ds.Tables[0].Rows)
+        {
+            string cmdText = "Select PropertyName, PropertyPattern From [" + Table + "]";
+            List<ProjectPropertyRule> rules = 
+                DataHelper.GetData<ProjectPropertyRule>(ProviderName, ConnectionString, cmdText);
+            
+            foreach (ProjectPropertyRule rule in rules)
             {
-                string name = row["PropertyName"] as string;
-                string pattern = row["PropertyPattern"] as string;
+                string name = rule.PropertyName;
+                string pattern = rule.PropertyPattern;
 
                 string value = DataMapper.GetPropertyValue(project, name).ToString();
                 bool retValue = Regex.IsMatch(value, pattern);
