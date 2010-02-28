@@ -17,17 +17,17 @@
 
       <CheckProjectProperties
        DumpFile="..\..\..\archicop.xml"
-       ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=template.xls;Extended Properties='Excel 8.0';HDR=YES;"
+       ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=template.xls;Extended Properties='Excel 8.0;HDR=YES;'"
        ProviderName="System.Data.OleDb"
-       Table="Check$"
+       Table="[Check$]"
       />
      
-      <CheckProjectProperties
+      <!--<CheckProjectProperties
       DumpFile="..\..\..\archicop.xml"
       ConnectionString="Data Source=template.sdf"
-      ProviderName="System.Data.SqlServerCe"
+      ProviderName="Microsoft.SqlServerCe.Client"
       Table="Check"
-      />
+      />-->
       
     </Target>
 </Project>

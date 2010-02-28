@@ -16,6 +16,16 @@ namespace ArchiCop
         public static List<T> GetData<T>(string providerName, string connectionString, string cmdText)
             where T : new()
         {
+            //bool isProviderAvailable = (from item in DbProviderFactories.GetFactoryClasses().AsEnumerable()
+            //         where item.Field<string>("InvariantName")==providerName
+            //         select item).Count()==1;
+
+            //if (isProviderAvailable==false)
+            //{
+            //    string message = string.Format("{0} is not installed.", providerName);
+            //    throw new ApplicationException(message);
+            //}
+
             var list = new List<T>();
             var ds = new DataSet();
             DbProviderFactory factory = DbProviderFactories.GetFactory(providerName);

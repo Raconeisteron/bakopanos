@@ -20,12 +20,12 @@ namespace ArchiCop
         /// <summary>
         /// Gets an object's property value        
         /// </summary>
-        /// <param name="target">Object containing the property to get.</param>
+        /// <param name="source">Object containing the property to get.</param>
         /// <param name="propertyName">Name of the property to set.</param>        
         public static object GetPropertyValue(object source, string propertyName)
         {
             PropertyInfo propertyInfo =
-                source.GetType().GetProperty(propertyName);
+                source.GetType().GetProperty(propertyName.Replace("$", "").Replace("{", "").Replace("}", ""));
             return propertyInfo.GetValue(source, new object[] { });
         }
 
@@ -40,7 +40,7 @@ namespace ArchiCop
             object target, string propertyName, object value)
         {
             PropertyInfo propertyInfo =
-                target.GetType().GetProperty(propertyName);
+                target.GetType().GetProperty(propertyName.Replace("$", "").Replace("{", "").Replace("}", ""));
             if (value == null)
                 propertyInfo.SetValue(target, value, null);
             else
