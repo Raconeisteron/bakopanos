@@ -19,7 +19,7 @@ namespace ArchiCop.Build
             {
                 VisualStudioProjects projects = ProjectHandler.LoadVisualStudioProjectList(DumpFile);
 
-                projects.ForEach((p) => CheckProject(p));
+                projects.ForEach(CheckProject);
 
                 return true;
             }
