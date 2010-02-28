@@ -8,22 +8,22 @@
   
   <Target Name="Dump">
     <DumpVisualStudioProjectList
-      RootPath="C:\Chinook2\source"
-      DumpFile="C:\Chinook2\source\archicop.xml"
+      RootPath="..\..\.."
+      DumpFile="..\..\..\archicop.xml"
       />
     </Target>
   
     <Target Name="Check">
 
-      <!--<CheckProjectProperties
-       DumpFile="C:\Chinook2\source\archicop.xml"
+      <CheckProjectProperties
+       DumpFile="..\..\..\archicop.xml"
        ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=template.xls;Extended Properties='Excel 8.0';HDR=YES;"
        ProviderName="System.Data.OleDb"
        Table="Check$"
-      />-->
+      />
      
       <CheckProjectProperties
-      DumpFile="C:\Chinook2\source\archicop.xml"
+      DumpFile="..\..\..\archicop.xml"
       ConnectionString="Data Source=template.sdf"
       ProviderName="System.Data.SqlServerCe"
       Table="Check"

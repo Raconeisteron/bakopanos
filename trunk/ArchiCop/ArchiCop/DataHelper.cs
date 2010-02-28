@@ -16,8 +16,8 @@ namespace ArchiCop
         public static List<T> GetData<T>(string providerName, string connectionString, string cmdText)
             where T : new()
         {
-            List<T> list = new List<T>();
-            DataSet ds = new DataSet();
+            var list = new List<T>();
+            var ds = new DataSet();
             DbProviderFactory factory = DbProviderFactories.GetFactory(providerName);
             DbConnection connection = factory.CreateConnection();
             connection.ConnectionString = connectionString;
