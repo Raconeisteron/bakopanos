@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace ArchiCop.Rules
 {
-    public class CheckProjectProperties : ArchiCopRule
+    public class CheckProjectPropertiesRule : ArchiCopRule
     {        
         private List<ProjectPropertyRule> _rules;
 
