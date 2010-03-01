@@ -29,7 +29,7 @@
         DumpFile="$(DumpFile)"
         ConnectionString="$(ConnectionString)"
         ProviderName="$(ProviderName)"
-        Rules="ArchiCop.Rules.CheckProjectProperties,ArchiCop.Rules"
+        Rules="ArchiCop.Rules.CheckProjectPropertiesRule,ArchiCop.Rules"
         Table="[Check$]"
       />
       
