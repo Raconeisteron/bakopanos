@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CheckProjectPropertiesRule.cs" />
+    <Compile Include="LogHelpers.cs" />
+    <Compile Include="ProjectProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

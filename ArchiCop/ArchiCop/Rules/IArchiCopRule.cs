@@ -1,7 +1,9 @@
 ﻿using Microsoft.Build.Utilities;
 
 namespace ArchiCop.Rules
-{   
+{
+    public enum ArchiCopRuleType { Invalid, Valid, Warning, Exclude }
+
     public interface IArchiCopRule
     {
         TaskLoggingHelper Log { get; set; }        
