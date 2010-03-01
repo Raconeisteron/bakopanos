@@ -1,24 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Microsoft.Build.Utilities;
 using Microsoft.Build.Framework;
 
-namespace ArchiCop.Build
+namespace ArchiCop.Tasks
 {
-    public abstract class CheckVisualStudioProjectList : Task
-    {        
+    public class ArchiCopDump : Task
+    {
+        [Required]
+        public string RootPath { get; set; }
+
         [Required]
         public string DumpFile { get; set; }
 
         public override bool Execute()
         {
             Log.LogMessage(ToString());
-            Init();
             try
             {
-                VisualStudioProjects projects = ProjectHandler.LoadVisualStudioProjectList(DumpFile);
-
-                projects.ForEach(CheckProject);
-
+                ProjectHandler.DumpVisualStudioProjectList(RootPath, DumpFile);
                 return true;
             }
             catch (Exception error)
@@ -27,9 +29,5 @@ namespace ArchiCop.Build
                 return false;
             }
         }
-
-        public abstract void Init();
-        public abstract void CheckProject(VisualStudioProject project);
-
     }
 }

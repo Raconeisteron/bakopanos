@@ -25,7 +25,7 @@ namespace ArchiCop
         public static object GetPropertyValue(object source, string propertyName)
         {
             PropertyInfo propertyInfo =
-                source.GetType().GetProperty(propertyName.Replace("$", "").Replace("{", "").Replace("}", ""));
+                source.GetType().GetProperty(propertyName);
             return propertyInfo.GetValue(source, new object[] { });
         }
 
@@ -40,7 +40,7 @@ namespace ArchiCop
             object target, string propertyName, object value)
         {
             PropertyInfo propertyInfo =
-                target.GetType().GetProperty(propertyName.Replace("$", "").Replace("{", "").Replace("}", ""));
+                target.GetType().GetProperty(propertyName);
             if (value == null)
                 propertyInfo.SetValue(target, value, null);
             else

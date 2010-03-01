@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <UsingTask TaskName="ArchiCopDump"
+    AssemblyFile="ArchiCop.dll" />
+  <UsingTask TaskName="ArchiCopCheck"
+    AssemblyFile="ArchiCop.dll" />
+
+  <PropertyGroup>
+    <RootPath>..\..\..</RootPath>
+    <DumpFile>$(RootPath)\archicop.xml</DumpFile>
+    <ConnectionString>Provider=Microsoft.Jet.OLEDB.4.0;Data Source=template.xls;Extended Properties='Excel 8.0;HDR=YES;'</ConnectionString>
+    <ProviderName>System.Data.OleDb</ProviderName>
+  </PropertyGroup>
+  
+    <Target Name="Dump">
+
+      <ArchiCopDump
+        RootPath="$(RootPath)"
+        DumpFile="$(DumpFile)"
+      />
+      
+    </Target>
+  
+    <Target Name="Check">
+
+      <ArchiCopCheck
+        DumpFile="$(DumpFile)"
+        ConnectionString="$(ConnectionString)"
+        ProviderName="$(ProviderName)"
+        Rules="ArchiCop.Rules.CheckProjectProperties,ArchiCop.Rules"
+        Table="[Check$]"
+      />
+      
+    </Target>
+  
+</Project>
