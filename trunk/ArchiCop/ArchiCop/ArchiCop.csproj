@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Rules\ArchiCopRule.cs" />
-    <Compile Include="Rules\ProjectPropertyRule.cs" />
     <Compile Include="Rules\IArchiCopRule.cs" />
     <Compile Include="Tasks\ArchiCopCheck.cs" />
     <Compile Include="Tasks\ArchiCopDump.cs" />
