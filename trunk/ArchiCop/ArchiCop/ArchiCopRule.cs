@@ -1,7 +1,7 @@
 ﻿using Microsoft.Build.Utilities;
 
-namespace ArchiCop.Rules
-{    
+namespace ArchiCop
+{
     public abstract class ArchiCopRule : IArchiCopRule
     {
         public TaskLoggingHelper Log { get; set; }        

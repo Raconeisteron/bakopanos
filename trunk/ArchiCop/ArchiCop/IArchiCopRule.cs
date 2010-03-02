@@ -1,6 +1,6 @@
 ﻿using Microsoft.Build.Utilities;
 
-namespace ArchiCop.Rules
+namespace ArchiCop
 {
     public enum ArchiCopRuleType { Invalid, Valid, Warning, Exclude }
 

@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.Common;
-using System.Data;
 using System.Reflection;
 using System.ComponentModel;
-using System.Configuration;
 
-namespace ArchiCop
-{   
+namespace ArchiCop.Library
+{
     /// <summary>
     /// Map data from a source into a target object
     /// by copying public property values.

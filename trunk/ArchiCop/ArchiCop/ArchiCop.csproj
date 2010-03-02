@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -45,12 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Rules\ArchiCopRule.cs" />
-    <Compile Include="Rules\IArchiCopRule.cs" />
+    <Compile Include="ArchiCopTask.cs" />
+    <Compile Include="ProjectHandler.cs" />
+    <Compile Include="IArchiCopTask.cs" />
+    <Compile Include="ArchiCopRule.cs" />
+    <Compile Include="Rules\CheckProjectPropertiesRule.cs" />
+    <Compile Include="IArchiCopRule.cs" />
+    <Compile Include="Library\LogHelpers.cs" />
+    <Compile Include="Rules\ProjectProperty.cs" />
     <Compile Include="Tasks\ArchiCopCheck.cs" />
     <Compile Include="Tasks\ArchiCopDump.cs" />
-    <Compile Include="DataHelper.cs" />
-    <Compile Include="DataMapper.cs" />
+    <Compile Include="Library\DataHelper.cs" />
+    <Compile Include="Library\DataMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualStudioProject.cs" />
   </ItemGroup>

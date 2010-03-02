@@ -1,14 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  
-  <UsingTask TaskName="ArchiCopDump"
-    AssemblyFile="ArchiCop.dll" />
-  <UsingTask TaskName="ArchiCopCheck"
-    AssemblyFile="ArchiCop.dll" />
 
-  <PropertyGroup>
-    <!--<RootPath>..\..\..</RootPath>-->
+  <Import Project="ArchiCop.Build.tasks"/>
+
+  <PropertyGroup>    
     <RootPath>C:\svn\chinook2.trunk\source</RootPath>
     <DumpFile>$(RootPath)\archicop.xml</DumpFile>
     <ConnectionString>Provider=Microsoft.Jet.OLEDB.4.0;Data Source=template.xls;Extended Properties='Excel 8.0;HDR=YES;'</ConnectionString>
@@ -30,7 +26,7 @@
         DumpFile="$(DumpFile)"
         ConnectionString="$(ConnectionString)"
         ProviderName="$(ProviderName)"
-        Rules="ArchiCop.Rules.CheckProjectPropertiesRule,ArchiCop.Rules"
+        Rules="ArchiCop.Rules.CheckProjectPropertiesRule,ArchiCop"
         Table="[Check$]"
       />
       
