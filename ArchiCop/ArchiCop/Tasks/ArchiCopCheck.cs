@@ -1,11 +1,10 @@
 ﻿using System;
-using ArchiCop.Rules;
 using Microsoft.Build.Utilities;
 using Microsoft.Build.Framework;
 
 namespace ArchiCop.Tasks
 {
-    public class ArchiCopCheck : Task
+    public class ArchiCopCheck : ArchiCopTask
     {        
         [Required]
         public string DumpFile { get; set; }

@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Data.Common;
 using System.Data;
 using System.Reflection;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data.OleDb;
 
-namespace ArchiCop
-{       
+namespace ArchiCop.Library
+{
     public static class DataHelper
     {
         public static List<T> GetData<T>(string providerName, string connectionString, string cmdText)

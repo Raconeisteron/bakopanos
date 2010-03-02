@@ -7,7 +7,7 @@ using Microsoft.Build.Framework;
 
 namespace ArchiCop.Tasks
 {
-    public class ArchiCopDump : Task
+    public class ArchiCopDump : ArchiCopTask
     {
         [Required]
         public string RootPath { get; set; }

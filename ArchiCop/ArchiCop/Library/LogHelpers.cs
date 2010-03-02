@@ -1,6 +1,7 @@
-﻿using Microsoft.Build.Utilities;
+﻿using ArchiCop.Rules;
+using Microsoft.Build.Utilities;
 
-namespace ArchiCop.Rules
+namespace ArchiCop.Library
 {
     public static class LogHelpers
     {
@@ -27,5 +28,4 @@ namespace ArchiCop.Rules
             }            
         }
     }
-    
 }
