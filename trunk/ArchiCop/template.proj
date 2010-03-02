@@ -2,10 +2,10 @@
 
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <Import Project="ArchiCop.Build.tasks"/>
+  <Import Project="ArchiCop.tasks"/>
 
   <PropertyGroup>    
-    <RootPath>C:\svn\chinook2.trunk\source</RootPath>
+    <RootPath>.\source</RootPath>
     <DumpFile>$(RootPath)\archicop.xml</DumpFile>
     <ConnectionString>Provider=Microsoft.Jet.OLEDB.4.0;Data Source=template.xls;Extended Properties='Excel 8.0;HDR=YES;'</ConnectionString>
     <ProviderName>System.Data.OleDb</ProviderName>

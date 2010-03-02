@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiCop", "ArchiCop\ArchiCop.csproj", "{EEB3AE62-96D7-4FB5-B8D1-63DF31927E99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiCop", "source\ArchiCop\ArchiCop.csproj", "{EEB3AE62-96D7-4FB5-B8D1-63DF31927E99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiCop.Tests", "ArchiCop.Tests\ArchiCop.Tests.csproj", "{1610D798-2275-48BD-8368-5247FD0CFEB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiCop.Tests", "source\ArchiCop.Tests\ArchiCop.Tests.csproj", "{1610D798-2275-48BD-8368-5247FD0CFEB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiCop.RegexPad", "ArchiCop.RegexPad\ArchiCop.RegexPad.csproj", "{4D0AE3C0-114D-4EB0-BD8A-9BD7EF4D2DE9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiCop.RegexPad", "source\ArchiCop.RegexPad\ArchiCop.RegexPad.csproj", "{4D0AE3C0-114D-4EB0-BD8A-9BD7EF4D2DE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
