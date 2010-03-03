@@ -5,7 +5,7 @@ using Microsoft.Build.Framework;
 
 namespace ArchiCop.Tasks
 {
-    public class ArchiCopCheck : ArchiCopTask
+    public class ForEachVsProject : ArchiCopTask
     {        
         [Required]
         public string DumpFile { get; set; }
