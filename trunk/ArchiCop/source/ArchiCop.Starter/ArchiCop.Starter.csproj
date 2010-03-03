@@ -92,7 +92,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\source\ArchiCop\ArchiCop.csproj">
+    <ProjectReference Include="..\ArchiCop\ArchiCop.csproj">
       <Project>{EEB3AE62-96D7-4FB5-B8D1-63DF31927E99}</Project>
       <Name>ArchiCop</Name>
     </ProjectReference>
