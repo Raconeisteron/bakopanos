@@ -1,9 +1,10 @@
-﻿using Microsoft.Build.Utilities;
+﻿using System.Diagnostics;
+using Microsoft.Build.Utilities;
 
 namespace ArchiCop
 {
     public abstract class ArchiCopTask : Task, IArchiCopTask
     {
-        
+
     }
 }

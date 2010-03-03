@@ -1,0 +1,23 @@
+﻿<Window x:Class="ArchiCop.Starter.ShellWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="ArchiCop MsBuild Task Starter"  
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    Height="300" Width="300">
+    <StackPanel>
+        <ListView Name="TargetsView" ItemsSource="{Binding MsBuildTargets}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Project Name" 
+                                    DisplayMemberBinding="{Binding ProjectName}"  />
+                    <GridViewColumn Header="Target Name" 
+                                    DisplayMemberBinding="{Binding TargetName}"  />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button HorizontalAlignment="Right" Margin="5,5,5,5" 
+                Content="Execute MsBuild Target" Click="ExecuteTarget_Click" />
+        <CheckBox HorizontalAlignment="Right" Margin="5,5,5,5" 
+            Name="DebugCheckBox" Content="Debug"/>
+    </StackPanel>
+</Window>

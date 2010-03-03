@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Build.Utilities;
+using System.Diagnostics;
+using ArchiCop.Library;
 using Microsoft.Build.Framework;
 
 namespace ArchiCop.Tasks
@@ -17,6 +15,12 @@ namespace ArchiCop.Tasks
 
         public override bool Execute()
         {
+
+#if DEBUG            
+            //do break
+            Debugger.Launch();
+#endif        
+            
             Log.LogMessage(ToString());
             try
             {

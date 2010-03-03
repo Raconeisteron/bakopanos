@@ -1,5 +1,6 @@
 ﻿using System;
-using Microsoft.Build.Utilities;
+using System.Diagnostics;
+using ArchiCop.Library;
 using Microsoft.Build.Framework;
 
 namespace ArchiCop.Tasks
@@ -23,6 +24,11 @@ namespace ArchiCop.Tasks
 
         public override bool Execute()
         {
+#if DEBUG
+            //do break
+            Debugger.Launch();
+#endif        
+
             foreach (string rule in Rules)
             {                
                 Type type = Type.GetType(rule);
