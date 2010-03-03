@@ -53,8 +53,8 @@
     <Compile Include="IArchiCopRule.cs" />
     <Compile Include="Library\LogHelpers.cs" />
     <Compile Include="Rules\ProjectProperty.cs" />
-    <Compile Include="Tasks\ArchiCopCheck.cs" />
-    <Compile Include="Tasks\ArchiCopDump.cs" />
+    <Compile Include="Tasks\ForEachVsProject.cs" />
+    <Compile Include="Tasks\DumpVsProjects.cs" />
     <Compile Include="Library\DataHelper.cs" />
     <Compile Include="Library\DataMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

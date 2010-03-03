@@ -2,10 +2,10 @@
 
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   
-  <UsingTask TaskName="ArchiCopDump"
+  <UsingTask TaskName="DumpVsProjects"
     AssemblyFile="ArchiCop.dll" />
   
-  <UsingTask TaskName="ArchiCopCheck"
+  <UsingTask TaskName="ForEachVsProject"
     AssemblyFile="ArchiCop.dll" />
  
 </Project>
