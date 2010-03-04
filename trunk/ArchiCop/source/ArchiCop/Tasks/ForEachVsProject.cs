@@ -6,12 +6,9 @@ using Microsoft.Build.Framework;
 namespace ArchiCop.Tasks
 {
     public class ForEachVsProject : ArchiCopTask
-    {        
+    {
         [Required]
         public string DumpFile { get; set; }
-
-        [Required]
-        public string[] Rules { get; set; }
 
         [Required]
         public string ConnectionString { get; set; }
@@ -22,20 +19,29 @@ namespace ArchiCop.Tasks
         [Required]
         public string Table { get; set; }
 
+        [Required]
+        public string RuleCategory { get; set; }
+
         public override bool Execute()
         {
 #if DEBUG
             //do break
             Debugger.Launch();
-#endif        
+#endif
+            string cmdText = "Select RuleCategory, RuleType, ConnectionString, ProviderName, Table From " + Table + " Where RuleCategory='" + RuleCategory+"'";
+            var parameters = DataHelper.GetData<ArchiCopRuleParams>(ProviderName, ConnectionString, cmdText);
 
-            foreach (string rule in Rules)
-            {                
-                Type type = Type.GetType(rule);
-                var instance = (IArchiCopRule)Activator.CreateInstance(type, new object[] {  });
+            foreach (ArchiCopRuleParams parameter in parameters)
+            {
+                Type type = Type.GetType(parameter.RuleType);
+                var instance = (IArchiCopRule)Activator.CreateInstance(type, new object[] { });
                 instance.Log = Log;
-                instance.Init(Table, ProviderName, ConnectionString);
-
+                instance.Init(new ArchiCopRuleParams
+                                  {
+                                      Table = parameter.Table,
+                                      ProviderName = parameter.ProviderName,
+                                      ConnectionString = parameter.ConnectionString
+                                  });
                 Log.LogMessage(ToString());
 
                 try
@@ -45,9 +51,10 @@ namespace ArchiCop.Tasks
                 }
                 catch (Exception error)
                 {
-                    Log.LogErrorFromException(error, true);                    
-                }                
+                    Log.LogErrorFromException(error, true);
+                }
             }
+
             return true;
         }
     }

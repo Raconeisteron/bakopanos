@@ -25,9 +25,9 @@
       <ForEachVsProject
         DumpFile="$(DumpFile)"
         ConnectionString="$(ConnectionString)"
-        ProviderName="$(ProviderName)"
-        Rules="ArchiCop.Rules.CheckProjectPropertiesRule,ArchiCop"
-        Table="[Check$]"
+        ProviderName="$(ProviderName)"        
+        Table="[Rules$]"
+		RuleCategory="vsprops"
       />
       
     </Target>

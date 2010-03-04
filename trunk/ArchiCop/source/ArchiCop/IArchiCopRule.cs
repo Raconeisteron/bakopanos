@@ -7,7 +7,7 @@ namespace ArchiCop
     public interface IArchiCopRule
     {
         TaskLoggingHelper Log { get; set; }        
-        void Init(string table,string providerName, string connectionString);
+        void Init(ArchiCopRuleParams parameters);
         void CheckProject(VsProject project);
     }
 }
