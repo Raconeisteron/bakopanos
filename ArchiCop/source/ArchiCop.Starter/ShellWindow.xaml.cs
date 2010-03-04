@@ -21,7 +21,7 @@ namespace ArchiCop.Starter
         
         public ShellWindow()
         {
-            const string location = @"C:\ArchiCop";
+            string location = Environment.CurrentDirectory;
 
             var targets = new MsBuildTargetList(location);
             _msBuildTargets = new ObservableCollection<MsBuildTarget>(targets);

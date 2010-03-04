@@ -9,10 +9,10 @@ namespace ArchiCop.Rules
     {
         private List<ProjectProperty> _rules;
 
-        public override void Init(string table, string providerName, string connectionString)
+        public override void Init(ArchiCopRuleParams parameters)
         {
-            string cmdText = "Select PropertyName, PropertyPattern, RuleType, Message From " + table + "";
-            _rules = DataHelper.GetData<ProjectProperty>(providerName, connectionString, cmdText);
+            string cmdText = "Select PropertyName, PropertyPattern, RuleType, Message From " + parameters.Table + "";
+            _rules = DataHelper.GetData<ProjectProperty>(parameters.ProviderName, parameters.ConnectionString, cmdText);
         }
 
         public override void CheckProject(VsProject project)
