@@ -4,28 +4,28 @@ using ArchiCop.Library;
 
 namespace ArchiCop
 {
-    public static class VisualStudioProjectHandler
+    public static class VsProjectHandler
     {
-        public static VisualStudioProjectList DumpVisualStudioProjectList(string root, string file)
+        public static VsProjectList DumpVisualStudioProjectList(string root, string file)
         {
             if (!Directory.Exists(root))
             {
                 throw new DirectoryNotFoundException(root);
             }
             
-            var projects = new VisualStudioProjectList();
+            var projects = new VsProjectList();
 
             foreach (string projectFileName in Directory.GetFiles(root, "*.csproj", SearchOption.AllDirectories))
             {
-                projects.Add(new VisualStudioProject(projectFileName));
+                projects.Add(new VsProject(projectFileName));
             }
 
             return projects.Write(file);            
         }
 
-        public static VisualStudioProjectList LoadVisualStudioProjectList(string file)
+        public static VsProjectList LoadVisualStudioProjectList(string file)
         {            
-            var projects = XmlSerializerHelpers.Read<VisualStudioProjectList>(file);
+            var projects = XmlSerializerHelpers.Read<VsProjectList>(file);
             return projects;
         }
     }    

@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace ArchiCop
 {   
-    public class VisualStudioProject 
+    public class VsProject 
     {
         private static readonly Func<XDocument, string, string> _getElementOrEmpty =
             delegate(XDocument xDocument, string elementName)
@@ -24,8 +24,8 @@ namespace ArchiCop
 
         private static readonly XNamespace XNameSpace = "http://schemas.microsoft.com/developer/msbuild/2003";
 
-        public VisualStudioProject() { }
-        public VisualStudioProject(string projectFile) 
+        public VsProject() { }
+        public VsProject(string projectFile) 
         {
             if (!File.Exists(projectFile))
             {

@@ -15,7 +15,7 @@ namespace ArchiCop.Rules
             _rules = DataHelper.GetData<ProjectProperty>(providerName, connectionString, cmdText);
         }
 
-        public override void CheckProject(VisualStudioProject project)
+        public override void CheckProject(VsProject project)
         {
             var propertyNames = (from item in _rules
                                  select item.PropertyName).Distinct();

@@ -8,6 +8,6 @@ namespace ArchiCop
     {
         TaskLoggingHelper Log { get; set; }        
         void Init(string table,string providerName, string connectionString);
-        void CheckProject(VisualStudioProject project);
+        void CheckProject(VsProject project);
     }
 }

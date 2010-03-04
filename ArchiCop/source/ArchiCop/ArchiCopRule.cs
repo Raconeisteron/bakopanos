@@ -8,6 +8,6 @@ namespace ArchiCop
 
         public abstract void Init(string table, string providerName, string connectionString);
 
-        public abstract void CheckProject(VisualStudioProject project);
+        public abstract void CheckProject(VsProject project);
     }
 }

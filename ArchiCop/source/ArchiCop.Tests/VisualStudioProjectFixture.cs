@@ -17,8 +17,8 @@ namespace ArchiCop
         {
             string path = @"..\..\..";
             
-            var list1 = VisualStudioProjectHandler.DumpVisualStudioProjectList(path, "test.xml");
-            var list2 = VisualStudioProjectHandler.LoadVisualStudioProjectList("test.xml");
+            var list1 = VsProjectHandler.DumpVisualStudioProjectList(path, "test.xml");
+            var list2 = VsProjectHandler.LoadVisualStudioProjectList("test.xml");
 
             Assert.IsTrue(list1.Count() == list2.Count());
             Console.WriteLine("{0} projects dumped!", list1.Count());
@@ -28,9 +28,9 @@ namespace ArchiCop
         {
             string path = @"..\..\ArchiCop.Tests.csproj";
 
-            VisualStudioProject project = new VisualStudioProject(path);
+            VsProject project = new VsProject(path);
 
-            foreach (PropertyInfo item in DataMapper.GetSourceProperties(typeof(VisualStudioProject)))
+            foreach (PropertyInfo item in DataMapper.GetSourceProperties(typeof(VsProject)))
             {
                 Console.WriteLine("{0}: {1}", item.Name, DataMapper.GetPropertyValue(project, item.Name));
             }
