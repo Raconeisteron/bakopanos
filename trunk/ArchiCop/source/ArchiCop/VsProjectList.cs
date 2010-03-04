@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace ArchiCop
 {   
     [XmlRoot(ElementName = "VisualStudioProjects")]
-    public class VisualStudioProjectList : List<VisualStudioProject>
+    public class VsProjectList : List<VsProject>
     {
     }
 

@@ -24,7 +24,7 @@ namespace ArchiCop.Tasks
             Log.LogMessage(ToString());
             try
             {
-                VisualStudioProjectHandler.DumpVisualStudioProjectList(RootPath, DumpFile);
+                VsProjectHandler.DumpVisualStudioProjectList(RootPath, DumpFile);
                 return true;
             }
             catch (Exception error)

@@ -47,9 +47,9 @@
   <ItemGroup>
     <Compile Include="ArchiCopTask.cs" />
     <Compile Include="MsBuildTargetList.cs" />
-    <Compile Include="VisualStudioProjectList.cs" />
+    <Compile Include="VsProjectList.cs" />
     <Compile Include="MsBuildTarget.cs" />
-    <Compile Include="VisualStudioProjectHandler.cs" />
+    <Compile Include="VsProjectHandler.cs" />
     <Compile Include="IArchiCopTask.cs" />
     <Compile Include="ArchiCopRule.cs" />
     <Compile Include="Rules\CheckProjectPropertiesRule.cs" />
@@ -61,7 +61,7 @@
     <Compile Include="Library\DataHelper.cs" />
     <Compile Include="Library\DataMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VisualStudioProject.cs" />
+    <Compile Include="VsProject.cs" />
     <Compile Include="Library\XmlSerializerHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
