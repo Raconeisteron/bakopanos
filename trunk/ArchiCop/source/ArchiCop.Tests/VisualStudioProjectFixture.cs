@@ -17,8 +17,8 @@ namespace ArchiCop
         {
             string path = @"..\..\..";
             
-            var list1 = ProjectHandler.DumpVisualStudioProjectList(path, "test.xml");
-            var list2 = ProjectHandler.LoadVisualStudioProjectList("test.xml");
+            var list1 = VisualStudioProjectHandler.DumpVisualStudioProjectList(path, "test.xml");
+            var list2 = VisualStudioProjectHandler.LoadVisualStudioProjectList("test.xml");
 
             Assert.IsTrue(list1.Count() == list2.Count());
             Console.WriteLine("{0} projects dumped!", list1.Count());
