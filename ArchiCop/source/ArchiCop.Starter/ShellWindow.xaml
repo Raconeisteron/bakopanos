@@ -17,7 +17,7 @@
         </ListView>
         <Button HorizontalAlignment="Right" Margin="5,5,5,5" 
                 Content="Execute MsBuild Target" Click="ExecuteTarget_Click" />
-        <CheckBox HorizontalAlignment="Right" Margin="5,5,5,5" 
-            Name="DebugCheckBox" Content="Debug"/>
+        <!--<CheckBox HorizontalAlignment="Right" Margin="5,5,5,5" 
+            Name="DebugCheckBox" Content="Debug"/>-->
     </StackPanel>
 </Window>

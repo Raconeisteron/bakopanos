@@ -40,7 +40,7 @@ namespace ArchiCop.Tasks
 
                 try
                 {
-                    VisualStudioProjects projects = ProjectHandler.LoadVisualStudioProjectList(DumpFile);
+                    VisualStudioProjectList projects = VisualStudioProjectHandler.LoadVisualStudioProjectList(DumpFile);
                     projects.ForEach(instance.CheckProject);
                 }
                 catch (Exception error)

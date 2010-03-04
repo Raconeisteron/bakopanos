@@ -15,41 +15,21 @@ namespace ArchiCop.Starter
     /// </summary>
     public partial class ShellWindow : Window
     {
-        private readonly ObservableCollection<MsBuildTargetData> _msBuildTargets =
-            new ObservableCollection<MsBuildTargetData>();
+        private readonly ObservableCollection<MsBuildTarget> _msBuildTargets;
                 
-        private static readonly Func<XDocument, string, IEnumerable<XElement>> _getElements =
-            (xDocument, elementName) => (from e in xDocument.Descendants(XNameSpace + elementName)
-                                         select e);
-
-        private static readonly XNamespace XNameSpace = "http://schemas.microsoft.com/developer/msbuild/2003";
         private const string MsBuildPath = @"c:\WINDOWS\Microsoft.NET\Framework\v3.5\msbuild.exe";
         
         public ShellWindow()
         {
             const string location = @"C:\ArchiCop";
-            string[] projectFiles = Directory.GetFiles(location,"*.proj");
 
-            foreach (string file in projectFiles)
-            {                
-                XDocument xdoc = XDocument.Load(file);
-
-                IEnumerable<XElement> targets = _getElements(xdoc, "Target");//
-
-                foreach (XElement target in targets)
-                {
-                    _msBuildTargets.Add(new MsBuildTargetData
-                    {                        
-                        ProjectName = file,
-                        TargetName = target.Attribute("Name").Value
-                    });               
-                }                
-            }
+            var targets = new MsBuildTargetList(location);
+            _msBuildTargets = new ObservableCollection<MsBuildTarget>(targets);
 
             InitializeComponent();
         }
 
-        public ObservableCollection<MsBuildTargetData> MsBuildTargets
+        public ObservableCollection<MsBuildTarget> MsBuildTargets
         {
             get
             {
@@ -61,7 +41,7 @@ namespace ArchiCop.Starter
         {
             //
             //execute
-            var selected = (MsBuildTargetData) TargetsView.SelectedItem;
+            var selected = (MsBuildTarget) TargetsView.SelectedItem;
             string arguments = string.Format("{0} /t:{1}", selected.ProjectName,selected.TargetName);
 
             var psi = new ProcessStartInfo
@@ -81,10 +61,6 @@ namespace ArchiCop.Starter
         }
     }
 
-    public class MsBuildTargetData
-    {        
-        public string ProjectName { get; set; }
-        public string TargetName { get; set; }        
-    }
+    
 
 }

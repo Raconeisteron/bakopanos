@@ -8,15 +8,6 @@ using System.Xml.Serialization;
 
 namespace ArchiCop
 {   
-    [XmlRoot(ElementName = "VisualStudioProjects")]
-    public class VisualStudioProjects : List<VisualStudioProject>
-    {
-    }
-
-    public enum VisualStudioProjectType { csproj }
-
-    public enum OutputType { Library, Exe, WinExe }
-    
     public class VisualStudioProject 
     {
         private static readonly Func<XDocument, string, string> _getElementOrEmpty =
