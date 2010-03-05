@@ -1,8 +1,0 @@
-﻿<Application x:Class="ArchiCop.Starter.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    StartupUri="ShellWindow.xaml">
-    <Application.Resources>
-         
-    </Application.Resources>
-</Application>
