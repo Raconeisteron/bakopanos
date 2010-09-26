@@ -9,7 +9,7 @@
         Property on the EmployeesPresentationModel, because it's 2 way databound. When this value changes, the 
         EmployeeController will use this value.
         -->
-		<ContentControl x:Name="SelectionPanel" cal:RegionManager.RegionName="{x:Static local:RegionNames.SelectionRegion}" cal:RegionManager.RegionContext="{Binding Path=SelectedEmployee, Mode=TwoWay}" /> 
+		<ContentControl x:Name="SelectionPanel" cal:RegionManager.RegionName="{x:Static local:RegionNames.SelectionRegion}" /> 
         
         
 		<!--The DetailsRegion will get the EmployeeDetails view pushed in. We are still a push based model here

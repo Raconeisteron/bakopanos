@@ -107,7 +107,6 @@
     <Compile Include="Views\EmployeesListView.xaml.cs">
       <DependentUpon>EmployeesListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EmployeesViewModel.cs" />
     <Compile Include="Views\EmployeesView.xaml.cs">
       <DependentUpon>EmployeesView.xaml</DependentUpon>
     </Compile>

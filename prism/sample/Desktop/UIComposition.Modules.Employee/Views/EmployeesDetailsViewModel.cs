@@ -16,14 +16,25 @@
 //===================================================================================
 using System.Globalization;
 using UIComposition.BusinessEntities;
+using UIComposition.Modules.Employee.Controllers;
 
 namespace UIComposition.Modules.Employee.Views
 {
     public class EmployeesDetailsViewModel
     {
+        private readonly IEmployeesController _employeeController;
+        public EmployeesDetailsViewModel(IEmployeesController employeeController)
+        {
+            _employeeController=employeeController;
+        }
+
         private const string mapUrlFormat = "http://maps.msn.com/home.aspx?strt1={0}&city1={1}&stnm1={2}";
 
-        public EmployeeItem SelectedEmployee { get; set; }
+        public EmployeeItem SelectedEmployee
+        {
+            get { return _employeeController.SelectedEmployee; }
+            set { _employeeController.SelectedEmployee = value; }
+        }
 
         public string AddressMapUrl
         {
@@ -39,9 +50,5 @@ namespace UIComposition.Modules.Employee.Views
             }
         }
 
-        public void SetSelectedEmployee(EmployeeItem employee)
-        {
-            SelectedEmployee = employee;
-        }
     }
 }
