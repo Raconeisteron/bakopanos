@@ -16,20 +16,27 @@
 //===================================================================================
 using System.Collections.ObjectModel;
 using UIComposition.BusinessEntities;
+using UIComposition.Modules.Employee.Controllers;
 using UIComposition.Services;
 
 namespace UIComposition.Modules.Employee.Views
 {
     public class EmployeesListViewModel
     {
-        public EmployeesListViewModel(IEmployeeService employeeService)
+        private readonly IEmployeesController _employeeController;
+        
+        public EmployeesListViewModel(IEmployeeService employeeService, IEmployeesController employeeController)
         {
+            _employeeController = employeeController;
             Employees = employeeService.RetrieveEmployees();
-            
         }
 
         public ObservableCollection<EmployeeItem> Employees { get; set; }
 
-
+        public EmployeeItem SelectedEmployee
+        {
+            get { return _employeeController.SelectedEmployee; }
+            set{ _employeeController.SelectedEmployee = value;}
+        }
     }
 }

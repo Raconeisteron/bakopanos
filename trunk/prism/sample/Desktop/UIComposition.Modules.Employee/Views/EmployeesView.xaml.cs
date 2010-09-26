@@ -23,10 +23,9 @@ namespace UIComposition.Modules.Employee.Views
     /// </summary>
     public partial class EmployeesView : UserControl
     {
-        public EmployeesView(EmployeesViewModel viewModel)
+        public EmployeesView()
         {
             InitializeComponent();
-            DataContext = viewModel;
         }
     }
 }

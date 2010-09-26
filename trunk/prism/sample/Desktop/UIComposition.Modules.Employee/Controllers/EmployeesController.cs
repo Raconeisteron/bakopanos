@@ -24,6 +24,7 @@ namespace UIComposition.Modules.Employee.Controllers
 {
     public class EmployeesController : IEmployeesController
     {
+        private EmployeeItem _selectedEmployee;
         private readonly IRegionManager _regionManager;
         private readonly IUnityService _unityService;
         private readonly ILogService _logService;
@@ -36,8 +37,20 @@ namespace UIComposition.Modules.Employee.Controllers
         }
 
         #region IEmployeesController Members
+        public EmployeeItem SelectedEmployee
+        {
+            get { return _selectedEmployee; }
+            set
+            {
+                if (_selectedEmployee == value) return;
+                _selectedEmployee = value;
 
-        public virtual void OnEmployeeSelected(EmployeeItem employee)
+                OnEmployeeSelected(SelectedEmployee);
+            }
+        }
+        #endregion
+        
+        private void OnEmployeeSelected(EmployeeItem employee)
         {
             _logService.WriteInfo("EmployeesController::OnEmployeeSelected");
             // We are still using Push based composition here, to show the usage of scoped regionmanagers. 
@@ -54,8 +67,7 @@ namespace UIComposition.Modules.Employee.Controllers
             {
                 // the view does not exist yet. Create it and push it into the region
                 var detailsView = _unityService.Resolve<EmployeesDetailsView>();
-                ((EmployeesDetailsViewModel) detailsView.DataContext).SetSelectedEmployee(employee);
-
+               
                 // the details view should receive it's own scoped region manager, therefore Add overload using 'true' (see notes below).
                 detailsRegion.Add(detailsView, employee.EmployeeId.ToString(CultureInfo.InvariantCulture),
                                   true);
@@ -89,7 +101,5 @@ namespace UIComposition.Modules.Employee.Controllers
             // you want to add views to a particular region, but at the expense of more complexity.
             //************************************************************************************************
         }
-
-        #endregion
     }
 }

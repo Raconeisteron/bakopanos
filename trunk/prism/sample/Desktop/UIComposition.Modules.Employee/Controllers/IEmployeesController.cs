@@ -20,6 +20,9 @@ namespace UIComposition.Modules.Employee.Controllers
 {
     public interface IEmployeesController
     {
-        void OnEmployeeSelected(EmployeeItem employee);
+        EmployeeItem SelectedEmployee
+        {
+            get; set;
+        }
     }
 }
