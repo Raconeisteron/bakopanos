@@ -15,6 +15,8 @@
 // places, or events is intended or should be inferred.
 //===================================================================================
 using System;
+using System.IO;
+using System.Reflection;
 using System.Windows;
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.UnityExtensions;
@@ -31,25 +33,12 @@ namespace UIComposition
             return shell;
         }
 
-        protected override void InitializeModules()
+        protected override IModuleCatalog GetModuleCatalog()
         {
             Type infrastructureModuleType = Type.GetType("UIComposition.Infrastructure.InfrastructureModule,UIComposition.Infrastructure");
-            var infrastructureModule = (IModule)Container.Resolve(infrastructureModuleType);
-            infrastructureModule.Initialize();
-
-            Type servicesModuleType = Type.GetType("UIComposition.Services.ServicesModule,UIComposition.Services");
-            var servicesModule = (IModule)Container.Resolve(servicesModuleType);
-            servicesModule.Initialize();
-
-            Type employeeModuleType =
-                Type.GetType("UIComposition.Modules.Employee.EmployeeModule,UIComposition.Modules.Employee");
-            var employeeModule = (IModule)Container.Resolve(employeeModuleType);
-            employeeModule.Initialize();
-
-            Type projectModuleType =
-                Type.GetType("UIComposition.Modules.Project.ProjectModule,UIComposition.Modules.Project");
-            var projectModule = (IModule)Container.Resolve(projectModuleType);
-            projectModule.Initialize();
+           
+            var catalog = new DirectoryModuleCatalog { ModulePath = @"." }.AddModule(infrastructureModuleType);
+            return catalog;
         }
     }
 }

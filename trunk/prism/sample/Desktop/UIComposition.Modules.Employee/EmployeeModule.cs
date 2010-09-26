@@ -22,6 +22,8 @@ using UIComposition.Modules.Employee.Views;
 
 namespace UIComposition.Modules.Employee
 {
+    [Module(ModuleName = "Modules.Employee")]
+    [ModuleDependency("Services")]
     public class EmployeeModule : IModule
     {
         private readonly IRegionManager _regionManager;

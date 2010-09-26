@@ -21,6 +21,8 @@ using UIComposition.Modules.Project.Views;
 
 namespace UIComposition.Modules.Project
 {
+    [Module(ModuleName = "Modules.Project")]
+    [ModuleDependency("Services")]
     public class ProjectModule : IModule
     {
         private readonly IRegionViewRegistry _regionViewRegistry;
