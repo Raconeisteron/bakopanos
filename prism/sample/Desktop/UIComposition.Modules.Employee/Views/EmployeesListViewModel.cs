@@ -25,8 +25,11 @@ namespace UIComposition.Modules.Employee.Views
         public EmployeesListViewModel(IEmployeeService employeeService)
         {
             Employees = employeeService.RetrieveEmployees();
+            
         }
 
         public ObservableCollection<EmployeeItem> Employees { get; set; }
+
+
     }
 }
