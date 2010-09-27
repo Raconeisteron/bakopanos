@@ -22,19 +22,10 @@ namespace UIComposition.Modules.Project.Views
 {
     public partial class ProjectsListView : UserControl
     {
-        private readonly ProjectsListViewModel _viewModel;
-
         public ProjectsListView(ProjectsListViewModel viewModel)
         {
-            InitializeComponent();
-            _viewModel = viewModel;
-            DataContext = _viewModel;
-            RegionContext.GetObservableContext(this).PropertyChanged += RegionContextChanged;
-        }
-
-        private void RegionContextChanged(object sender, PropertyChangedEventArgs e)
-        {
-            _viewModel.EmployeeId = (int) RegionContext.GetObservableContext(this).Value;
-        }
+            InitializeComponent();            
+            DataContext = viewModel;            
+        }        
     }
 }

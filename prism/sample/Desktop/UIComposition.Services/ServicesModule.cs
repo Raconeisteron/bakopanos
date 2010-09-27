@@ -4,8 +4,7 @@ using UIComposition.Services.Employee;
 using UIComposition.Services.Project;
 
 namespace UIComposition.Services
-{
-    [Module(ModuleName = "Services")]
+{    
     public class ServicesModule : IModule
     {
         private readonly IUnityService _unityService;
