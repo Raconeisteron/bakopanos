@@ -19,11 +19,10 @@ using Microsoft.Practices.Composite.Regions;
 using UIComposition.Infrastructure.Services;
 using UIComposition.Modules.Employee.Controllers;
 using UIComposition.Modules.Employee.Views;
+using UIComposition.Services;
 
 namespace UIComposition.Modules.Employee
 {
-    [Module(ModuleName = "Modules.Employee")]
-    [ModuleDependency("Services")]
     public class EmployeeModule : IModule
     {
         private readonly IRegionManager _regionManager;
@@ -60,6 +59,7 @@ namespace UIComposition.Modules.Employee
         protected void RegisterTypesAndServices()
         {
             _unityService.RegisterSingleton<IEmployeesController, EmployeesController>();
+            _unityService.RegisterSingleton<IEmployeeContext, EmployeesController>();
         }
     }
 }

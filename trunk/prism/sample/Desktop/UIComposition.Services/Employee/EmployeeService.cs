@@ -21,8 +21,7 @@ namespace UIComposition.Services.Employee
 {
     internal class EmployeeService : IEmployeeService
     {
-        #region IEmployeeService Members
-
+        
         public ObservableCollection<EmployeeItem> RetrieveEmployees()
         {
             var employees = new ObservableCollection<EmployeeItem>
@@ -51,7 +50,6 @@ namespace UIComposition.Services.Employee
 
             return employees;
         }
-
-        #endregion
+       
     }
 }

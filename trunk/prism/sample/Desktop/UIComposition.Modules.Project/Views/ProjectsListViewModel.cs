@@ -15,64 +15,30 @@
 // places, or events is intended or should be inferred.
 //===================================================================================
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using UIComposition.BusinessEntities;
 using UIComposition.Services;
-using UIComposition.Services.Project;
 
 namespace UIComposition.Modules.Project.Views
 {
-    public class ProjectsListViewModel : INotifyPropertyChanged
+    public class ProjectsListViewModel 
     {
         private readonly IProjectService _projectService;
-        private int _employeeId;
-        private ObservableCollection<ProjectItem> _projects;
-
-        public ProjectsListViewModel(IProjectService projectService)
+        private readonly IEmployeeContext _employeeContext;
+        
+        public ProjectsListViewModel(IProjectService projectService, IEmployeeContext employeeContext)
         {
-            _projectService = projectService;
+           _projectService = projectService;
+            _employeeContext = employeeContext;            
         }
-
+        
         public ObservableCollection<ProjectItem> Projects
         {
-            get { return _projects; }
-            set
-            {
-                if (_projects != value)
-                {
-                    _projects = value;
-                    OnPropertyChanged("Projects");
-                }
-            }
-        }
-
-        public int EmployeeId
-        {
-            get { return _employeeId; }
-            set
-            {
-                if (_employeeId == value) return;
-                _employeeId = value;
-                Projects = _projectService.RetrieveProjects(EmployeeId);
-                OnPropertyChanged("EmployeeId");
-            }
+            get { return _projectService.RetrieveProjects(_employeeContext.SelectedEmployee.EmployeeId); }            
         }
 
         public static string HeaderInfo
         {
             get { return "Current Projects"; }
-        }
-
-        #region INotifyPropertyChanged Members
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
-        }
+        }        
     }
 }
