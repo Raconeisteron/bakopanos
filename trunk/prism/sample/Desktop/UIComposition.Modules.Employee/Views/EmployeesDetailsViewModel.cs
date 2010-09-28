@@ -21,12 +21,12 @@ namespace UIComposition.Modules.Employee.Views
 {
     public class EmployeesDetailsViewModel 
     {
-        public EmployeesDetailsViewModel(ISelectedEmployeeContext employeeContext)
+        public EmployeesDetailsViewModel(ISelectedEmployeeWorkItem selectedEmployee)
         {
-            EmployeeContext = employeeContext;
+            SelectedEmployee = selectedEmployee;
         }
 
-        public ISelectedEmployeeContext EmployeeContext
+        public ISelectedEmployeeWorkItem SelectedEmployee
         {
             get; set;
         }

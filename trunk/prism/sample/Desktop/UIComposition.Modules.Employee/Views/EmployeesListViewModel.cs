@@ -22,15 +22,15 @@ namespace UIComposition.Modules.Employee.Views
 {
     public class EmployeesListViewModel
     {
-        public EmployeesListViewModel(IEmployeeService employeeService, ISelectedEmployeeContext employeeContext)
+        public EmployeesListViewModel(IEmployeeService employeeService, ISelectedEmployeeWorkItem selectedEmployee)
         {
-            EmployeeContext = employeeContext;
+            SelectedEmployee = selectedEmployee;
             Employees = employeeService.RetrieveEmployees();
         }
 
         public ObservableCollection<EmployeeItem> Employees { get; set; }
 
-        public ISelectedEmployeeContext EmployeeContext
+        public ISelectedEmployeeWorkItem SelectedEmployee
         {
             get; set;
         }
