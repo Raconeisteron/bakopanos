@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InfrastructureModule.cs" />
+    <Compile Include="ViewModelExtensions.cs" />
     <Compile Include="Services\ILogService.cs" />
     <Compile Include="Services\IUnityService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

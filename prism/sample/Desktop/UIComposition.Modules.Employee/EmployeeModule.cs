@@ -19,7 +19,6 @@ using Microsoft.Practices.Composite.Regions;
 using UIComposition.Infrastructure.Services;
 using UIComposition.Modules.Employee.Controllers;
 using UIComposition.Modules.Employee.Views;
-using UIComposition.Services;
 
 namespace UIComposition.Modules.Employee
 {
@@ -41,7 +40,7 @@ namespace UIComposition.Modules.Employee
 
         public void Initialize()
         {
-            RegisterTypesAndServices();
+            _unityService.RegisterSingleton<IEmployeesController, EmployeesController>();
 
             RegisterViewsWithRegions();
         }
@@ -54,12 +53,8 @@ namespace UIComposition.Modules.Employee
                                                        _unityService.ResolveLazy<EmployeesListView>());
             _regionManager.RegisterViewWithRegion(Infrastructure.RegionNames.MainRegion,
                                                   _unityService.ResolveLazy<EmployeesView>());
+            _unityService.Resolve<IEmployeesController>();
         }
 
-        protected void RegisterTypesAndServices()
-        {
-            _unityService.RegisterSingleton<IEmployeesController, EmployeesController>();
-            _unityService.RegisterSingleton<IEmployeeContext, EmployeesController>();
-        }
     }
 }

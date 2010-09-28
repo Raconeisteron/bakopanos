@@ -15,30 +15,26 @@
 // places, or events is intended or should be inferred.
 //===================================================================================
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using UIComposition.BusinessEntities;
 using UIComposition.Services;
 
 namespace UIComposition.Modules.Project.Views
 {
-    public class ProjectsListViewModel 
+    public class ProjectsListViewModel
     {
-        private readonly IProjectService _projectService;
-        private readonly IEmployeeContext _employeeContext;
         
-        public ProjectsListViewModel(IProjectService projectService, IEmployeeContext employeeContext)
+        public ProjectsListViewModel(ISelectedEmployeeContext employeeContext)
         {
-           _projectService = projectService;
-            _employeeContext = employeeContext;            
-        }
-        
-        public ObservableCollection<ProjectItem> Projects
-        {
-            get { return _projectService.RetrieveProjects(_employeeContext.SelectedEmployee.EmployeeId); }            
+           EmployeeContext = employeeContext;            
         }
 
-        public static string HeaderInfo
+        public ISelectedEmployeeContext EmployeeContext { get; private set; }
+
+        public string HeaderInfo
         {
             get { return "Current Projects"; }
-        }        
+        }
+
     }
 }
