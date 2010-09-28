@@ -11,6 +11,6 @@ namespace UIComposition.Contracts
     public interface IEmployeeService
     {
         [OperationContract]
-        ObservableCollection<EmployeeItem> RetrieveEmployees();
+        ObservableCollection<Employee> RetrieveEmployees();
     }
 }

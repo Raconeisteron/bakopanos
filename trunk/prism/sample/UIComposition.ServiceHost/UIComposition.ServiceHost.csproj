@@ -62,12 +62,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\EmployeeItem.cs" />
+    <Compile Include="Contracts\Employee.cs" />
     <Compile Include="Services\FakeEmployeeService.cs" />
     <Compile Include="Services\FakeProjectService.cs" />
     <Compile Include="Contracts\IEmployeeService.cs" />
     <Compile Include="Contracts\IProjectService.cs" />
-    <Compile Include="Contracts\ProjectItem.cs" />
+    <Compile Include="Contracts\Project.cs" />
     <Compile Include="DataService.svc.cs">
       <DependentUpon>DataService.svc</DependentUpon>
     </Compile>

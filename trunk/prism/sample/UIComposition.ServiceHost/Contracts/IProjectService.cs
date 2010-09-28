@@ -11,6 +11,6 @@ namespace UIComposition.Contracts
     public interface IProjectService
     {
         [OperationContract]
-        ObservableCollection<ProjectItem> RetrieveProjects(int employeeId);
+        ObservableCollection<Project> RetrieveProjects(int employeeId);
     }
 }

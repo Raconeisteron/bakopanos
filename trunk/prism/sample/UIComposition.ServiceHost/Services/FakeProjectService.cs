@@ -10,40 +10,40 @@ namespace UIComposition.Services
 {
     internal class FakeProjectService : IProjectService
     {
-        private readonly Dictionary<int, ObservableCollection<ProjectItem>> _projects;
+        private readonly Dictionary<int, ObservableCollection<Project>> _projects;
 
         public FakeProjectService()
         {
-            _projects = new Dictionary<int, ObservableCollection<ProjectItem>>();
+            _projects = new Dictionary<int, ObservableCollection<Project>>();
 
-            var projectsEmployee1 = new ObservableCollection<ProjectItem>();
+            var projectsEmployee1 = new ObservableCollection<Project>();
 
-            var project1 = new ProjectItem {ProjectName = "Project 1", Role = "Architect"};
-            var project2 = new ProjectItem {ProjectName = "Project 2", Role = "Developer"};
+            var project1 = new Project {ProjectName = "Project 1", Role = "Architect"};
+            var project2 = new Project {ProjectName = "Project 2", Role = "Developer"};
 
             projectsEmployee1.Add(project1);
             projectsEmployee1.Add(project2);
 
             _projects.Add(1, projectsEmployee1);
 
-            var projectsEmployee2 = new ObservableCollection<ProjectItem>
+            var projectsEmployee2 = new ObservableCollection<Project>
                                         {
                                             project1,
                                             project2,
-                                            new ProjectItem
+                                            new Project
                                                 {ProjectName = "Project 3", Role = "Dev Lead"}
                                         };
 
             _projects.Add(2, projectsEmployee2);
 
-            var projectsEmployee3 = new ObservableCollection<ProjectItem>();
+            var projectsEmployee3 = new ObservableCollection<Project>();
 
             _projects.Add(3, projectsEmployee3);
         }
 
         #region IProjectService Members
 
-        public ObservableCollection<ProjectItem> RetrieveProjects(int employeeId)
+        public ObservableCollection<Project> RetrieveProjects(int employeeId)
         {
             return _projects.ContainsKey(employeeId) ? _projects[employeeId] : null;
         }

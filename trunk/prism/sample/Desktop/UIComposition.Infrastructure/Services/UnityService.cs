@@ -2,7 +2,6 @@
 // Bakopanos Konstantinos
 // http://www.deaddevssociety.com
 // ===================================================================================
-using System;
 using Microsoft.Practices.Unity;
 
 namespace UIComposition.Infrastructure.Services
