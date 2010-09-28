@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+// ===================================================================================
+// Bakopanos Konstantinos
+// http://www.deaddevssociety.com
+// ===================================================================================
 namespace UIComposition.Infrastructure.Services
 {
     public interface ILogService

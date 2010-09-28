@@ -1,5 +1,7 @@
-﻿using System;
-
+// ===================================================================================
+// Bakopanos Konstantinos
+// http://www.deaddevssociety.com
+// ===================================================================================
 namespace UIComposition.Infrastructure.Services
 {
     public interface IUnityService

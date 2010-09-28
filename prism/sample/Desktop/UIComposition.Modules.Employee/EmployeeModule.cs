@@ -1,19 +1,7 @@
-//===================================================================================
-// Microsoft patterns & practices
-// Composite Application Guidance for Windows Presentation Foundation and Silverlight
-//===================================================================================
-// Copyright (c) Microsoft Corporation.  All rights reserved.
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
-// OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
-// LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-// FITNESS FOR A PARTICULAR PURPOSE.
-//===================================================================================
-// The example companies, organizations, products, domain names,
-// e-mail addresses, logos, people, places, and events depicted
-// herein are fictitious.  No association with any real company,
-// organization, product, domain name, email address, logo, person,
-// places, or events is intended or should be inferred.
-//===================================================================================
+// ===================================================================================
+// Bakopanos Konstantinos
+// http://www.deaddevssociety.com
+// ===================================================================================
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.Regions;
 using UIComposition.Infrastructure.Services;
@@ -50,13 +38,14 @@ namespace UIComposition.Modules.Employee
         private void RegisterViewsWithRegions()
         {
             _regionViewRegistry.RegisterViewWithRegion(RegionNames.SelectionRegion,
-                                                       () =>new EmployeesListView(_unityService.Resolve<EmployeesListViewModel>()));
+                                                       () =>
+                                                       new EmployeesListView(
+                                                           _unityService.Resolve<EmployeesListViewModel>()));
 
-            _regionManager.RegisterViewWithRegion(Infrastructure.RegionNames.MainRegion, 
-                () => new EmployeesView());
+            _regionManager.RegisterViewWithRegion(Infrastructure.RegionNames.MainRegion,
+                                                  () => new EmployeesView());
 
             _unityService.Resolve<IEmployeesController>();
         }
-
     }
 }
