@@ -8,6 +8,5 @@ namespace UIComposition.Infrastructure.Services
             where TFrom : TTo;
 
         T Resolve<T>();
-        Func<T> ResolveLazy<T>();
     }
 }

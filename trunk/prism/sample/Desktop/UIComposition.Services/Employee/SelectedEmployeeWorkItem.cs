@@ -37,12 +37,13 @@ namespace UIComposition.Services.Employee
             get { return _selectedEmployeeProjects; }
             set
             {
-                _selectedEmployeeProjects = value;
+                _selectedEmployeeProjects = value;                
                 PropertyChanged.OnPropertyChanged(this, "Projects");
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+       
     }
 }
