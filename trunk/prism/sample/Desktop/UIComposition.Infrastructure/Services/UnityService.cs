@@ -35,10 +35,5 @@ namespace UIComposition.Infrastructure.Services
         }
 
         #endregion
-
-        public Func<T> ResolveLazy<T>()
-        {
-            return () => _container.Resolve<T>();
-        }
     }
 }
