@@ -18,7 +18,7 @@ namespace UIComposition.Services
         {
             _unityService.RegisterSingleton<IEmployeeService, EmployeeService>();
             _unityService.RegisterSingleton<IProjectService, ProjectService>();
-            _unityService.RegisterSingleton<ISelectedEmployeeContext, SelectedEmployeeContext>();
+            _unityService.RegisterSingleton<ISelectedEmployeeWorkItem, SelectedEmployeeWorkItem>();
         }
     }
 }

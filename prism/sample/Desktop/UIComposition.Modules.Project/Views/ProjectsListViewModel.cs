@@ -24,12 +24,12 @@ namespace UIComposition.Modules.Project.Views
     public class ProjectsListViewModel
     {
         
-        public ProjectsListViewModel(ISelectedEmployeeContext employeeContext)
+        public ProjectsListViewModel(ISelectedEmployeeWorkItem selectedEmployee)
         {
-           EmployeeContext = employeeContext;            
+            SelectedEmployee = selectedEmployee;            
         }
 
-        public ISelectedEmployeeContext EmployeeContext { get; private set; }
+        public ISelectedEmployeeWorkItem SelectedEmployee { get; private set; }
 
         public string HeaderInfo
         {

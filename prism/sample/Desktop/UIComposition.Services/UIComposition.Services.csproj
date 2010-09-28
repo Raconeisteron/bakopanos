@@ -48,8 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Employee\SelectedEmployeeContext.cs" />
-    <Compile Include="ISelectedEmployeeContext.cs" />
+    <Compile Include="Employee\SelectedEmployeeWorkItem.cs" />
+    <Compile Include="ISelectedEmployeeWorkItem.cs" />
     <Compile Include="SelectedEmployeeEvent.cs" />
     <Compile Include="ServicesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

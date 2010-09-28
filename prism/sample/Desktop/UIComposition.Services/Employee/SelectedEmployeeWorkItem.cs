@@ -6,14 +6,14 @@ using UIComposition.Infrastructure;
 
 namespace UIComposition.Services.Employee
 {
-    internal class SelectedEmployeeContext : ISelectedEmployeeContext
+    internal class SelectedEmployeeWorkItem : ISelectedEmployeeWorkItem
     {
         private EmployeeItem _selectedEmployee;
         private ObservableCollection<ProjectItem> _selectedEmployeeProjects;
         private readonly IEventAggregator _eventAggregator;
         private readonly IProjectService _projectService;
 
-        public SelectedEmployeeContext(IEventAggregator eventAggregator, IProjectService projectService)
+        public SelectedEmployeeWorkItem(IEventAggregator eventAggregator, IProjectService projectService)
         {
             _eventAggregator = eventAggregator;
             _projectService = projectService;

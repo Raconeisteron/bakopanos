@@ -4,7 +4,7 @@ using UIComposition.BusinessEntities;
 
 namespace UIComposition.Services
 {
-    public interface ISelectedEmployeeContext : INotifyPropertyChanged
+    public interface ISelectedEmployeeWorkItem : INotifyPropertyChanged
     {
        
         EmployeeItem Employee
