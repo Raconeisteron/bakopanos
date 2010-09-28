@@ -50,9 +50,11 @@ namespace UIComposition.Modules.Employee
         private void RegisterViewsWithRegions()
         {
             _regionViewRegistry.RegisterViewWithRegion(RegionNames.SelectionRegion,
-                                                       _unityService.ResolveLazy<EmployeesListView>());
-            _regionManager.RegisterViewWithRegion(Infrastructure.RegionNames.MainRegion,
-                                                  _unityService.ResolveLazy<EmployeesView>());
+                                                       () =>new EmployeesListView(_unityService.Resolve<EmployeesListViewModel>()));
+
+            _regionManager.RegisterViewWithRegion(Infrastructure.RegionNames.MainRegion, 
+                () => new EmployeesView());
+
             _unityService.Resolve<IEmployeesController>();
         }
 

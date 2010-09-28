@@ -14,33 +14,14 @@
 // organization, product, domain name, email address, logo, person,
 // places, or events is intended or should be inferred.
 //===================================================================================
-using Microsoft.Practices.Composite.Modularity;
-using Microsoft.Practices.Composite.Regions;
-using UIComposition.Infrastructure;
-using UIComposition.Infrastructure.Services;
-using UIComposition.Modules.Project.Views;
-
 namespace UIComposition.Modules.Project
 {
-    public class ProjectModule : IModule
+    public sealed class RegionNames : Infrastructure.RegionNames
     {
-        private readonly IRegionViewRegistry _regionViewRegistry;
-        private readonly IUnityService _unityService;
+        public const string TabRegion = "TabRegion";
 
-        public ProjectModule(IUnityService unityService, IRegionViewRegistry regionViewRegistry)
+        private RegionNames()
         {
-            _unityService = unityService;
-            _regionViewRegistry = regionViewRegistry;
         }
-
-        #region IModule Members
-
-        public void Initialize()
-        {
-            // Register a type for pull based based composition. 
-            _regionViewRegistry.RegisterViewWithRegion(RegionNames.TabRegion, () => new ProjectsListView(_unityService.Resolve<ProjectsListViewModel>()));
-        }
-
-        #endregion
     }
 }
