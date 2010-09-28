@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="UIComposition.ServiceHost.DataService" CodeBehind="DataService.svc.cs" %>

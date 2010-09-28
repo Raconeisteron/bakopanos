@@ -3,9 +3,9 @@
 // http://www.deaddevssociety.com
 // ===================================================================================
 using System.Collections.ObjectModel;
-using UIComposition.BusinessEntities;
+using UIComposition.Contracts;
 
-namespace UIComposition.Services.Employee
+namespace UIComposition.Services
 {
     internal class FakeEmployeeService : IEmployeeService
     {
