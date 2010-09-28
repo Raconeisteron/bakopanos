@@ -29,6 +29,11 @@ namespace UIComposition.Infrastructure.Services
             return _container.Resolve<T>();
         }
 
+        public void RegisterInstance<T>(T instance)
+        {
+            _container.RegisterInstance(instance);
+        }
+
         #endregion
 
         public Func<T> ResolveLazy<T>()

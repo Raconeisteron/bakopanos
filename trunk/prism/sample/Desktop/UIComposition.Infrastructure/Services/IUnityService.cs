@@ -10,5 +10,7 @@ namespace UIComposition.Infrastructure.Services
             where TFrom : TTo;
 
         T Resolve<T>();
+
+        void RegisterInstance<T>(T instance);
     }
 }

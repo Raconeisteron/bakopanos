@@ -6,12 +6,7 @@ namespace UIComposition.BusinessEntities
 {
     public class EmployeeItem
     {
-        public EmployeeItem(int employeeId)
-        {
-            EmployeeId = employeeId;
-        }
-
-        public int EmployeeId { get; private set; }
+        public int EmployeeId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
