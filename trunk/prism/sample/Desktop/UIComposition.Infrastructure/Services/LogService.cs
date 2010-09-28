@@ -23,8 +23,8 @@ namespace UIComposition.Infrastructure.Services
                  "Category: {category}{newline}");
 
             //Create the Trace listeners
-            var logFileListener = new FlatFileTraceListener(@"C:\temp\temp.log", "====HEADER====",
-                                                            "====FOOTER====", formatter);
+            var logFileListener = new FlatFileTraceListener(@"C:\temp\temp.log", "",
+                                                            "", formatter);
 
             //Add the trace listeners to the source
             var mainLogSource =
