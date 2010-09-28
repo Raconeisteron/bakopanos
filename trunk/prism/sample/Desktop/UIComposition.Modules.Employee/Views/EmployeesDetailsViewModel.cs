@@ -14,40 +14,21 @@
 // organization, product, domain name, email address, logo, person,
 // places, or events is intended or should be inferred.
 //===================================================================================
-using System.Globalization;
-using UIComposition.BusinessEntities;
-using UIComposition.Modules.Employee.Controllers;
+
+using UIComposition.Services;
 
 namespace UIComposition.Modules.Employee.Views
 {
-    public class EmployeesDetailsViewModel
+    public class EmployeesDetailsViewModel 
     {
-        private readonly IEmployeesController _employeeController;
-        public EmployeesDetailsViewModel(IEmployeesController employeeController)
+        public EmployeesDetailsViewModel(ISelectedEmployeeContext employeeContext)
         {
-            _employeeController=employeeController;
+            EmployeeContext = employeeContext;
         }
 
-        private const string mapUrlFormat = "http://maps.msn.com/home.aspx?strt1={0}&city1={1}&stnm1={2}";
-
-        public EmployeeItem SelectedEmployee
+        public ISelectedEmployeeContext EmployeeContext
         {
-            get { return _employeeController.SelectedEmployee; }
-            set { _employeeController.SelectedEmployee = value; }
-        }
-
-        public string AddressMapUrl
-        {
-            get
-            {
-                if (SelectedEmployee != null)
-                {
-                    return string.Format(CultureInfo.InvariantCulture, mapUrlFormat, SelectedEmployee.Address,
-                                         SelectedEmployee.City, SelectedEmployee.State);
-                }
-
-                return string.Empty;
-            }
+            get; set;
         }
 
     }

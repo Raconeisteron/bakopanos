@@ -31,17 +31,5 @@ namespace UIComposition.Modules.Employee.Views
             DataContext = viewModel;
         }
 
-        private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e)
-        {
-            ErrorText.Visibility = Visibility.Visible;
-            ErrorText.Text = e.Exception.Message;
-            e.Handled = true;
-        }
-
-        private void Frame_Navigated(object sender, NavigationEventArgs e)
-        {
-            ErrorText.Visibility = Visibility.Hidden;
-            ErrorText.Text = string.Empty;
-        }
     }
 }

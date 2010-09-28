@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Microsoft.Practices.Composite.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Composite.Presentation, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Microsoft.Practices.Composite.Presentation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IEmployeeContext.cs" />
+    <Compile Include="Employee\SelectedEmployeeContext.cs" />
+    <Compile Include="ISelectedEmployeeContext.cs" />
+    <Compile Include="SelectedEmployeeEvent.cs" />
     <Compile Include="ServicesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IProjectService.cs" />

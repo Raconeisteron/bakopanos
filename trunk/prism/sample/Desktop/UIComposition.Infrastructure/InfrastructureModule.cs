@@ -20,7 +20,7 @@ using UIComposition.Infrastructure.Services;
 
 namespace UIComposition.Infrastructure
 {
-    public class InfrastructureModule : IModule
+    internal class InfrastructureModule : IModule
     {
         private readonly IUnityContainer _container;
 
@@ -29,7 +29,7 @@ namespace UIComposition.Infrastructure
             _container = container;
         }
 
-        #region IModule Members
+       
 
         public void Initialize()
         {
@@ -37,6 +37,6 @@ namespace UIComposition.Infrastructure
             _container.RegisterSingleton<ILogService, LogService>();
         }
 
-        #endregion
+       
     }
 }

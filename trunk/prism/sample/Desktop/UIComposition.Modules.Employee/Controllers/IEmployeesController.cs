@@ -14,15 +14,11 @@
 // organization, product, domain name, email address, logo, person,
 // places, or events is intended or should be inferred.
 //===================================================================================
-using UIComposition.BusinessEntities;
 
 namespace UIComposition.Modules.Employee.Controllers
 {
     public interface IEmployeesController
     {
-        EmployeeItem SelectedEmployee
-        {
-            get; set;
-        }
+        
     }
 }
