@@ -15,8 +15,9 @@ namespace UIComposition.Services.Employee
         {
             var employees = new ObservableCollection<EmployeeItem>
                                 {
-                                    new EmployeeItem(1)
+                                    new EmployeeItem
                                         {
+                                            EmployeeId = 1,
                                             FirstName = "John",
                                             LastName = "Smith",
                                             Phone = "+1 (425) 555-0101",
@@ -25,8 +26,9 @@ namespace UIComposition.Services.Employee
                                             City = "Redmond",
                                             State = "WA"
                                         },
-                                    new EmployeeItem(2)
+                                    new EmployeeItem
                                         {
+                                            EmployeeId = 2,
                                             FirstName = "Bonnie",
                                             LastName = "Skelly",
                                             Phone = "+1 (425) 555-0105",
