@@ -1,4 +1,8 @@
-﻿using System;
+// ===================================================================================
+// Bakopanos Konstantinos
+// http://www.deaddevssociety.com
+// ===================================================================================
+using System;
 using Microsoft.Practices.Unity;
 
 namespace UIComposition.Infrastructure.Services
@@ -25,11 +29,11 @@ namespace UIComposition.Infrastructure.Services
             return _container.Resolve<T>();
         }
 
+        #endregion
+
         public Func<T> ResolveLazy<T>()
         {
             return () => _container.Resolve<T>();
         }
-
-        #endregion
     }
 }

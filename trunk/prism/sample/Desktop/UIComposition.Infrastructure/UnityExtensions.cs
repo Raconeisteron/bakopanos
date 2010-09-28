@@ -1,4 +1,8 @@
-﻿using Microsoft.Practices.Unity;
+// ===================================================================================
+// Bakopanos Konstantinos
+// http://www.deaddevssociety.com
+// ===================================================================================
+using Microsoft.Practices.Unity;
 
 namespace UIComposition.Infrastructure
 {
