@@ -11,11 +11,11 @@ namespace UIComposition.Services
     {
         #region IEmployeeService Members
 
-        public ObservableCollection<EmployeeItem> RetrieveEmployees()
+        public ObservableCollection<Employee> RetrieveEmployees()
         {
-            var employees = new ObservableCollection<EmployeeItem>
+            var employees = new ObservableCollection<Employee>
                                 {
-                                    new EmployeeItem
+                                    new Employee
                                         {
                                             EmployeeId = 1,
                                             FirstName = "John",
@@ -26,7 +26,7 @@ namespace UIComposition.Services
                                             City = "Redmond",
                                             State = "WA"
                                         },
-                                    new EmployeeItem
+                                    new Employee
                                         {
                                             EmployeeId = 2,
                                             FirstName = "Bonnie",

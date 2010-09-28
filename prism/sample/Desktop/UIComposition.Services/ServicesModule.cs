@@ -19,6 +19,8 @@ namespace UIComposition.Services
         {
             _unityService = unityService;
             _unityService.RegisterInstance(EnterpriseLibraryContainer.Current.GetInstance<Database>("Db"));
+            //_unityService.RegisterInstance(new ProjectServiceClient());
+            //_unityService.RegisterInstance(new EmployeeServiceClient());
         }
 
         #region IModule Members
