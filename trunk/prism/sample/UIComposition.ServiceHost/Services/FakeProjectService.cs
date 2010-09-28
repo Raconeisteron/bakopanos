@@ -4,9 +4,9 @@
 // ===================================================================================
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using UIComposition.BusinessEntities;
+using UIComposition.Contracts;
 
-namespace UIComposition.Services.Project
+namespace UIComposition.Services
 {
     internal class FakeProjectService : IProjectService
     {
