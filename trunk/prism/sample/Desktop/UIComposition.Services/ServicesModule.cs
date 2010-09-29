@@ -9,6 +9,7 @@ using UIComposition.Services.Project;
 
 namespace UIComposition.Services
 {
+
     internal class ServicesModule : IModule
     {
         private readonly IUnityContainer _container;
@@ -30,7 +31,11 @@ namespace UIComposition.Services
             //_container.RegisterSingleton<IEmployeeService, WcfEmployeeService>();
             //_container.RegisterSingleton<IProjectService, WcfProjectService>();
 
+            _container.RegisterSingleton<EmployeeWorkItem, EmployeeWorkItem>();
             _container.RegisterSingleton<IEmployeeWorkItem, EmployeeWorkItem>();
+            _container.RegisterSingleton<IEmployeeList, EmployeeWorkItem>();
+            _container.RegisterSingleton<IEmployeeInfo, EmployeeWorkItem>();
+            _container.RegisterSingleton<IProjectList, EmployeeWorkItem>();
         }
 
         #endregion

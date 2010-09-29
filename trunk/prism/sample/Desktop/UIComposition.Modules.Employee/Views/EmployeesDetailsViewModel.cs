@@ -10,6 +10,6 @@ namespace UIComposition.Modules.Employee.Views
     public class EmployeesDetailsViewModel
     {
         [Dependency]
-        public IEmployeeWorkItem WorkItem { get; set; }
+        public IEmployeeInfo Info { get; set; }
     }
 }

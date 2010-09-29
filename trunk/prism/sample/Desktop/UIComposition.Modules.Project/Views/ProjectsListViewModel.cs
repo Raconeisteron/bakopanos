@@ -10,7 +10,7 @@ namespace UIComposition.Modules.Project.Views
     public class ProjectsListViewModel
     {
         [Dependency]
-        public IEmployeeWorkItem WorkItem { get; set; }
+        public IProjectList List { get; set; }
 
         public string HeaderInfo
         {

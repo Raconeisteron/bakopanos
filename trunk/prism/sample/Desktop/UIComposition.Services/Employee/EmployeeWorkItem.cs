@@ -11,7 +11,7 @@ using UIComposition.Infrastructure;
 
 namespace UIComposition.Services.Employee
 {
-    internal class EmployeeWorkItem : IEmployeeWorkItem
+    internal class EmployeeWorkItem : IEmployeeWorkItem,IEmployeeList,IEmployeeInfo, IProjectList
     {
         private readonly IEmployeeService _employeeService;
         private readonly IEventAggregator _eventAggregator;
@@ -32,16 +32,6 @@ namespace UIComposition.Services.Employee
         #region IEmployeeWorkItem Members
 
         public DelegateCommand<object> ReadCommand { get; private set; }
-
-        private void Read(object arg)
-        {
-            Employees = _employeeService.RetrieveEmployees();
-        }
-
-        private static bool CanRead(object arg)
-        {
-            return true;
-        }
 
         public ObservableCollection<EmployeeItem> Employees
         {
@@ -79,5 +69,17 @@ namespace UIComposition.Services.Employee
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
+
+        private void Read(object arg)
+        {
+            Employees = _employeeService.RetrieveEmployees();
+        }
+
+        private static bool CanRead(object arg)
+        {
+            return true;
+        }
+
+       
     }
 }

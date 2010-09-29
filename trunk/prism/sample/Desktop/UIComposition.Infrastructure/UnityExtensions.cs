@@ -11,5 +11,11 @@ namespace Microsoft.Practices.Unity
         {
             container.RegisterType<TTo, TFrom>(new ContainerControlledLifetimeManager());
         }
+
+        public static void RegisterSingleton<TTo, TFrom>(this IUnityContainer container,string name)
+           where TFrom : TTo
+        {
+            container.RegisterType<TTo, TFrom>(name, new ContainerControlledLifetimeManager());
+        }
     }
 }
