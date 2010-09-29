@@ -4,7 +4,7 @@
 // ===================================================================================
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.Regions;
-using UIComposition.Infrastructure.Services;
+using Microsoft.Practices.Unity;
 using UIComposition.Modules.Employee.Controllers;
 using UIComposition.Modules.Employee.Views;
 
@@ -14,12 +14,12 @@ namespace UIComposition.Modules.Employee
     {
         private readonly IRegionManager _regionManager;
         private readonly IRegionViewRegistry _regionViewRegistry;
-        private readonly IUnityService _unityService;
+        private readonly IUnityContainer _unityContainer;
 
-        public EmployeeModule(IUnityService unityService, IRegionViewRegistry regionViewRegistry,
+        public EmployeeModule(IUnityContainer unityContainer, IRegionViewRegistry regionViewRegistry,
                               IRegionManager regionManager)
         {
-            _unityService = unityService;
+            _unityContainer = unityContainer;
             _regionViewRegistry = regionViewRegistry;
             _regionManager = regionManager;
         }
@@ -28,7 +28,7 @@ namespace UIComposition.Modules.Employee
 
         public void Initialize()
         {
-            _unityService.RegisterSingleton<IEmployeesController, EmployeesController>();
+            _unityContainer.RegisterSingleton<IEmployeesController, EmployeesController>();
 
             RegisterViewsWithRegions();
         }
@@ -40,12 +40,12 @@ namespace UIComposition.Modules.Employee
             _regionViewRegistry.RegisterViewWithRegion(RegionNames.SelectionRegion,
                                                        () =>
                                                        new EmployeesListView(
-                                                           _unityService.Resolve<EmployeesListViewModel>()));
+                                                           _unityContainer.Resolve<EmployeesListViewModel>()));
 
             _regionManager.RegisterViewWithRegion(Infrastructure.RegionNames.MainRegion,
                                                   () => new EmployeesView());
 
-            _unityService.Resolve<IEmployeesController>();
+            _unityContainer.Resolve<IEmployeesController>();
         }
     }
 }

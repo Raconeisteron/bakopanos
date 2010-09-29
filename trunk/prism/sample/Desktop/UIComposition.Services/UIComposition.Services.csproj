@@ -54,19 +54,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Microsoft.Practices.Composite.Presentation.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
-      <HintPath>..\..\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data.SqlCe">
-      <HintPath>..\..\Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <HintPath>..\..\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -81,12 +71,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Employee\EmployeeService.cs" />
+    <Compile Include="Employee\FakeEmployeeService.cs" />
+    <Compile Include="Project\FakeProjectService.cs" />
     <Compile Include="Employee\WcfEmployeeService.cs" />
     <Compile Include="Employee\SelectedEmployeeWorkItem.cs" />
     <Compile Include="ISelectedEmployeeWorkItem.cs" />
-    <Compile Include="Project\GetProjectsByIdParameterMapper.cs" />
-    <Compile Include="Project\ProjectService.cs" />
     <Compile Include="Project\WcfProjectService.cs" />
     <Compile Include="SelectedEmployeeEvent.cs" />
     <Compile Include="Service References\DataServiceReference\Reference.cs">

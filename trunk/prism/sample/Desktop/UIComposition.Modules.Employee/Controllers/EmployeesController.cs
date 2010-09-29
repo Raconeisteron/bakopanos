@@ -4,6 +4,7 @@
 // ===================================================================================
 using Microsoft.Practices.Composite.Events;
 using Microsoft.Practices.Composite.Regions;
+using Microsoft.Practices.Unity;
 using UIComposition.BusinessEntities;
 using UIComposition.Infrastructure.Services;
 using UIComposition.Modules.Employee.Views;
@@ -15,12 +16,12 @@ namespace UIComposition.Modules.Employee.Controllers
     {
         private readonly ILogService _logService;
         private readonly IRegionManager _regionManager;
-        private readonly IUnityService _unityService;
+        private readonly IUnityContainer _unityContainer;
 
-        public EmployeesController(IUnityService unityService, ILogService logService, IRegionManager regionManager,
+        public EmployeesController(IUnityContainer unityContainer, ILogService logService, IRegionManager regionManager,
                                    IEventAggregator eventAggregator)
         {
-            _unityService = unityService;
+            _unityContainer = unityContainer;
             _regionManager = regionManager;
             _logService = logService;
             eventAggregator.GetEvent<SelectedEmployeeEvent>().Subscribe(NavigateSelectedEmployee);
@@ -36,7 +37,7 @@ namespace UIComposition.Modules.Employee.Controllers
             if (existingView == null)
             {
                 // the view does not exist yet. Create it and push it into the region
-                var detailsView = _unityService.Resolve<EmployeesDetailsView>();
+                var detailsView = _unityContainer.Resolve<EmployeesDetailsView>();
 
                 // the details view should receive it's own scoped region manager, therefore Add overload using 'true' (see notes below).
                 detailsRegion.Add(detailsView, "EmployeesDetailsView", true);
