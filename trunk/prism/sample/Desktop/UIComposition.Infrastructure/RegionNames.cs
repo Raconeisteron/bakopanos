@@ -6,7 +6,7 @@ namespace UIComposition.Infrastructure
 {
     public class RegionNames
     {
-        public const string MainToolBar = "MainToolBar";
+        public const string ToolBarRegion = "ToolBarRegion";        
         public const string MainRegion = "MainRegion";
     }
 }
