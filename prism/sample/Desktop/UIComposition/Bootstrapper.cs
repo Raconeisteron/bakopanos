@@ -21,6 +21,8 @@ namespace UIComposition
 
         protected override IModuleCatalog GetModuleCatalog()
         {
+            Type shellModuleType = Type.GetType("UIComposition.ShellModule,UIComposition");
+
             Type infrastructureModuleType =
                 Type.GetType("UIComposition.Infrastructure.InfrastructureModule,UIComposition.Infrastructure");
             Type servicesModuleType = Type.GetType("UIComposition.Services.ServicesModule,UIComposition.Services");
@@ -28,8 +30,9 @@ namespace UIComposition
                 Type.GetType("UIComposition.Modules.Employee.EmployeeModule,UIComposition.Modules.Employee");
             Type projectModuleType =
                 Type.GetType("UIComposition.Modules.Project.ProjectModule,UIComposition.Modules.Project");
-
+            
             ModuleCatalog catalog = new ModuleCatalog().
+                AddModule(shellModuleType).
                 AddModule(infrastructureModuleType).
                 AddModule(servicesModuleType);
             catalog.AddModule(employeeModuleType);
