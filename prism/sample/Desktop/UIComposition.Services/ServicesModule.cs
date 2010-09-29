@@ -17,8 +17,8 @@ namespace UIComposition.Services
         public ServicesModule(IUnityContainer container)
         {
             _container = container;
-            _container.RegisterInstance(new ProjectServiceClient());
-            _container.RegisterInstance(new EmployeeServiceClient());
+            //_container.RegisterInstance(new ProjectServiceClient());
+            //_container.RegisterInstance(new EmployeeServiceClient());
         }
 
         #region IModule Members
@@ -27,6 +27,9 @@ namespace UIComposition.Services
         {
             _container.RegisterSingleton<IEmployeeService, FakeEmployeeService>();
             _container.RegisterSingleton<IProjectService, FakeProjectService>();
+
+            //_container.RegisterSingleton<IEmployeeService, WcfEmployeeService>();
+            //_container.RegisterSingleton<IProjectService, WcfProjectService>();
 
             _container.RegisterSingleton<ISelectedEmployeeWorkItem, SelectedEmployeeWorkItem>();
         }
