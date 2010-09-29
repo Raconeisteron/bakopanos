@@ -3,36 +3,37 @@
 // http://www.deaddevssociety.com
 // ===================================================================================
 using System.Collections.ObjectModel;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Data;
-using UIComposition.BusinessEntities;
+using UIComposition.Contracts;
 
-namespace UIComposition.Services.Project
+namespace UIComposition.Services
 {
     internal class ProjectService : IProjectService
     {
         private readonly Database _db;
 
-        public ProjectService(Database db)
+        public ProjectService()
         {
-            _db = db;
+            _db = EnterpriseLibraryContainer.Current.GetInstance<Database>("Db");
         }
 
         #region IProjectService Members
 
-        public ObservableCollection<ProjectItem> RetrieveProjects(int employeeId)
+        public ObservableCollection<Project> RetrieveProjects(int employeeId)
         {
             const string cmdText =
                 "select Project.* from Project inner join EmployeeProject on Project.ProjectName = EmployeeProject.ProjectName where EmployeeProject.EmployeeId = @EmployeeId";
 
-            IRowMapper<ProjectItem> rowMapper = MapBuilder<ProjectItem>.MapAllProperties()
+            IRowMapper<Project> rowMapper = MapBuilder<Project>.MapAllProperties()
                 .Map(p => p.ProjectName).ToColumn("ProjectName")
                 .Build();
 
-            DataAccessor<ProjectItem> employeeAccessor = _db.CreateSqlStringAccessor(cmdText,
+            DataAccessor<Project> employeeAccessor = _db.CreateSqlStringAccessor(cmdText,
                                                                                      new GetProjectsByIdParameterMapper(
                                                                                          _db), rowMapper);
 
-            return new ObservableCollection<ProjectItem>(employeeAccessor.Execute(employeeId));
+            return new ObservableCollection<Project>(employeeAccessor.Execute(employeeId));
         }
 
         #endregion

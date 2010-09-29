@@ -4,7 +4,7 @@
 // ===================================================================================
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.Regions;
-using UIComposition.Infrastructure.Services;
+using Microsoft.Practices.Unity;
 using UIComposition.Modules.Project.Views;
 
 namespace UIComposition.Modules.Project
@@ -12,11 +12,11 @@ namespace UIComposition.Modules.Project
     public class ProjectModule : IModule
     {
         private readonly IRegionViewRegistry _regionViewRegistry;
-        private readonly IUnityService _unityService;
+        private readonly IUnityContainer _unityContainer;
 
-        public ProjectModule(IUnityService unityService, IRegionViewRegistry regionViewRegistry)
+        public ProjectModule(IUnityContainer unityContainer, IRegionViewRegistry regionViewRegistry)
         {
-            _unityService = unityService;
+            _unityContainer = unityContainer;
             _regionViewRegistry = regionViewRegistry;
         }
 
@@ -28,7 +28,7 @@ namespace UIComposition.Modules.Project
             _regionViewRegistry.RegisterViewWithRegion(RegionNames.TabRegion,
                                                        () =>
                                                        new ProjectsListView(
-                                                           _unityService.Resolve<ProjectsListViewModel>()));
+                                                           _unityContainer.Resolve<ProjectsListViewModel>()));
         }
 
         #endregion

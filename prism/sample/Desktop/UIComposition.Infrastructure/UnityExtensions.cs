@@ -2,11 +2,10 @@
 // Bakopanos Konstantinos
 // http://www.deaddevssociety.com
 // ===================================================================================
-using Microsoft.Practices.Unity;
 
-namespace UIComposition.Infrastructure
+namespace Microsoft.Practices.Unity
 {
-    internal static class UnityExtensions
+    public static class UnityExtensions
     {
         public static void RegisterSingleton<TTo, TFrom>(this IUnityContainer container)
             where TFrom : TTo

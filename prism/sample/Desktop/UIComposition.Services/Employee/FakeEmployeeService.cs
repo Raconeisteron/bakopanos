@@ -3,19 +3,19 @@
 // http://www.deaddevssociety.com
 // ===================================================================================
 using System.Collections.ObjectModel;
-using UIComposition.Contracts;
+using UIComposition.BusinessEntities;
 
-namespace UIComposition.Services
+namespace UIComposition.Services.Employee
 {
     internal class FakeEmployeeService : IEmployeeService
     {
         #region IEmployeeService Members
 
-        public ObservableCollection<Employee> RetrieveEmployees()
+        public ObservableCollection<EmployeeItem> RetrieveEmployees()
         {
-            var employees = new ObservableCollection<Employee>
+            var employees = new ObservableCollection<EmployeeItem>
                                 {
-                                    new Employee
+                                    new EmployeeItem
                                         {
                                             EmployeeId = 1,
                                             FirstName = "John",
@@ -26,7 +26,7 @@ namespace UIComposition.Services
                                             City = "Redmond",
                                             State = "WA"
                                         },
-                                    new Employee
+                                    new EmployeeItem
                                         {
                                             EmployeeId = 2,
                                             FirstName = "Bonnie",

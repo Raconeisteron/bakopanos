@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.Common;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 
-namespace UIComposition.Services.Project
+namespace UIComposition.Services
 {
     internal class GetProjectsByIdParameterMapper : IParameterMapper
     {

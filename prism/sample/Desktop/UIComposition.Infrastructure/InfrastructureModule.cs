@@ -20,8 +20,7 @@ namespace UIComposition.Infrastructure
         #region IModule Members
 
         public void Initialize()
-        {
-            _container.RegisterSingleton<IUnityService, UnityService>();
+        {            
             _container.RegisterSingleton<ILogService, LogService>();
         }
 
