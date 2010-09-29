@@ -6,21 +6,19 @@ using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.Unity;
 using UIComposition.Infrastructure;
+using UIComposition.Views;
 
 namespace UIComposition
 {
     public class ShellModule : IModule
     {
-        private readonly IRegionManager _regionManager;
         private readonly IRegionViewRegistry _regionViewRegistry;
         private readonly IUnityContainer _unityContainer;
 
-        public ShellModule(IUnityContainer unityContainer, IRegionViewRegistry regionViewRegistry,
-                              IRegionManager regionManager)
+        public ShellModule(IUnityContainer unityContainer, IRegionViewRegistry regionViewRegistry)
         {
             _unityContainer = unityContainer;
-            _regionViewRegistry = regionViewRegistry;
-            _regionManager = regionManager;
+            _regionViewRegistry = regionViewRegistry;            
         }
 
         #region IModule Members
@@ -34,7 +32,10 @@ namespace UIComposition
 
         private void RegisterViewsWithRegions()
         {
-            
+            _regionViewRegistry.RegisterViewWithRegion(RegionNames.ToolBarRegion,
+                                                       () =>
+                                                       new ToolBarView(
+                                                           _unityContainer.Resolve<ToolBarViewModel>()));
         }
     }
 }
