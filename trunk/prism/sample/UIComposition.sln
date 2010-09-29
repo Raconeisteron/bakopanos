@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIComposition.Services", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIComposition.BusinessEntities", "Desktop\UIComposition.BusinessEntities\UIComposition.BusinessEntities.csproj", "{D02D082A-53DC-4894-A6AF-9043EFA39850}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIComposition.ServiceHost", "UIComposition.ServiceHost\UIComposition.ServiceHost.csproj", "{74166780-E4EE-4DE3-89B3-EBDBED00A39F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIComposition.ServiceHost", "Server\UIComposition.ServiceHost\UIComposition.ServiceHost.csproj", "{74166780-E4EE-4DE3-89B3-EBDBED00A39F}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
