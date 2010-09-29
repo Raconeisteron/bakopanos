@@ -19,7 +19,7 @@ namespace UIComposition.ServiceHost
         #region IEmployeeService Members
 
         public ObservableCollection<Employee> RetrieveEmployees()
-        {            
+        {
             return new EmployeeService().RetrieveEmployees();
         }
 

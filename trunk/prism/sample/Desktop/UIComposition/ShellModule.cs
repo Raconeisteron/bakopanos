@@ -3,39 +3,28 @@
 // http://www.deaddevssociety.com
 // ===================================================================================
 using Microsoft.Practices.Composite.Modularity;
-using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.Unity;
-using UIComposition.Infrastructure;
-using UIComposition.Views;
+using UIComposition.Controllers;
 
 namespace UIComposition
 {
     public class ShellModule : IModule
     {
-        private readonly IRegionViewRegistry _regionViewRegistry;
         private readonly IUnityContainer _unityContainer;
 
-        public ShellModule(IUnityContainer unityContainer, IRegionViewRegistry regionViewRegistry)
+        public ShellModule(IUnityContainer unityContainer)
         {
             _unityContainer = unityContainer;
-            _regionViewRegistry = regionViewRegistry;            
         }
 
         #region IModule Members
 
         public void Initialize()
         {
-            RegisterViewsWithRegions();
+            _unityContainer.RegisterSingleton<IShellController, ShellController>();
+            _unityContainer.Resolve<IShellController>();
         }
 
         #endregion
-
-        private void RegisterViewsWithRegions()
-        {
-            _regionViewRegistry.RegisterViewWithRegion(RegionNames.ToolBarRegion,
-                                                       () =>
-                                                       new ToolBarView(
-                                                           _unityContainer.Resolve<ToolBarViewModel>()));
-        }
     }
 }

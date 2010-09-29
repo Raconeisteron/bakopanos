@@ -2,11 +2,9 @@
 // Bakopanos Konstantinos
 // http://www.deaddevssociety.com
 // ===================================================================================
-namespace UIComposition.Infrastructure
+namespace UIComposition.Controllers
 {
-    public class RegionNames
+    public interface IShellController
     {
-        public const string ToolBarRegion = "ToolBarRegion";
-        public const string MainRegion = "MainRegion";
     }
 }

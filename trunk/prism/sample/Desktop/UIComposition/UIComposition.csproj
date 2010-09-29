@@ -101,6 +101,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\ShellController.cs" />
+    <Compile Include="Controllers\IShellController.cs" />
     <Compile Include="Views\ToolBarView.xaml.cs">
       <DependentUpon>ToolBarView.xaml</DependentUpon>
     </Compile>
@@ -142,6 +144,10 @@
     <ProjectReference Include="..\UIComposition.Infrastructure\UIComposition.Infrastructure.csproj">
       <Project>{4511B435-FF23-484C-B5FE-9C4057F380C0}</Project>
       <Name>UIComposition.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UIComposition.Services\UIComposition.Services.csproj">
+      <Project>{D1F6A288-459E-401A-90A6-3B3B955B739D}</Project>
+      <Name>UIComposition.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
