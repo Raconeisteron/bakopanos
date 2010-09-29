@@ -18,8 +18,8 @@ namespace UIComposition.Services.Project
 
             var projectsEmployee1 = new ObservableCollection<ProjectItem>();
 
-            var project1 = new ProjectItem { ProjectName = "Project 1", Role = "Architect" };
-            var project2 = new ProjectItem { ProjectName = "Project 2", Role = "Developer" };
+            var project1 = new ProjectItem {ProjectName = "Project 1", Role = "Architect"};
+            var project2 = new ProjectItem {ProjectName = "Project 2", Role = "Developer"};
 
             projectsEmployee1.Add(project1);
             projectsEmployee1.Add(project2);

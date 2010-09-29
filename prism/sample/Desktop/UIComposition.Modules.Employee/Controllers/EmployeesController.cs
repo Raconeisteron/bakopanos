@@ -19,12 +19,21 @@ namespace UIComposition.Modules.Employee.Controllers
         private readonly IUnityContainer _unityContainer;
 
         public EmployeesController(IUnityContainer unityContainer, ILogService logService, IRegionManager regionManager,
+                                   IRegionViewRegistry regionViewRegistry,
                                    IEventAggregator eventAggregator)
         {
             _unityContainer = unityContainer;
             _regionManager = regionManager;
             _logService = logService;
             eventAggregator.GetEvent<SelectedEmployeeEvent>().Subscribe(NavigateSelectedEmployee);
+
+            regionViewRegistry.RegisterViewWithRegion(RegionNames.SelectionRegion,
+                                                      () =>
+                                                      new EmployeesListView(
+                                                          _unityContainer.Resolve<EmployeesListViewModel>()));
+
+            _regionManager.RegisterViewWithRegion(Infrastructure.RegionNames.MainRegion,
+                                                  () => new EmployeesView());
         }
 
         private void NavigateSelectedEmployee(EmployeeItem employee)

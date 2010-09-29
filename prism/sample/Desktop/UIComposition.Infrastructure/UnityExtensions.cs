@@ -2,7 +2,6 @@
 // Bakopanos Konstantinos
 // http://www.deaddevssociety.com
 // ===================================================================================
-
 namespace Microsoft.Practices.Unity
 {
     public static class UnityExtensions

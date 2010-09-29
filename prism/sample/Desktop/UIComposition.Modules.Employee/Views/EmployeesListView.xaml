@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="UIComposition.Modules.Employee.Views.EmployeesListView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	<StackPanel>
 		<Label Width="Auto" Height="Auto" Content="Select Employee:" Padding="0,0,0,0" FontWeight="Bold" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
-		<ListView x:Name="EmployeesList" ItemsSource="{Binding Path=Employees}" IsSynchronizedWithCurrentItem="true" SelectedItem="{Binding SelectedEmployee.Employee, Mode=TwoWay}">
+		<ListView x:Name="EmployeesList" ItemsSource="{Binding Path=WorkItem.Employees}" IsSynchronizedWithCurrentItem="true" SelectedItem="{Binding WorkItem.Employee, Mode=TwoWay}">
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="First Name" DisplayMemberBinding="{Binding Path=FirstName}"></GridViewColumn>

@@ -30,8 +30,8 @@ namespace UIComposition.Services
                 .Build();
 
             DataAccessor<Project> employeeAccessor = _db.CreateSqlStringAccessor(cmdText,
-                                                                                     new GetProjectsByIdParameterMapper(
-                                                                                         _db), rowMapper);
+                                                                                 new GetProjectsByIdParameterMapper(
+                                                                                     _db), rowMapper);
 
             return new ObservableCollection<Project>(employeeAccessor.Execute(employeeId));
         }

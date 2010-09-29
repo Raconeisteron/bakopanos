@@ -2,18 +2,15 @@
 // Bakopanos Konstantinos
 // http://www.deaddevssociety.com
 // ===================================================================================
+using Microsoft.Practices.Unity;
 using UIComposition.Services;
 
 namespace UIComposition.Modules.Project.Views
 {
     public class ProjectsListViewModel
     {
-        public ProjectsListViewModel(ISelectedEmployeeWorkItem selectedEmployee)
-        {
-            SelectedEmployee = selectedEmployee;
-        }
-
-        public ISelectedEmployeeWorkItem SelectedEmployee { get; private set; }
+        [Dependency]
+        public IEmployeeWorkItem WorkItem { get; set; }
 
         public string HeaderInfo
         {

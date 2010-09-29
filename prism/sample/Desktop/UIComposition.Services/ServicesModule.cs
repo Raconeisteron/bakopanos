@@ -4,7 +4,6 @@
 // ===================================================================================
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Unity;
-using UIComposition.Services.DataServiceReference;
 using UIComposition.Services.Employee;
 using UIComposition.Services.Project;
 
@@ -31,7 +30,7 @@ namespace UIComposition.Services
             //_container.RegisterSingleton<IEmployeeService, WcfEmployeeService>();
             //_container.RegisterSingleton<IProjectService, WcfProjectService>();
 
-            _container.RegisterSingleton<ISelectedEmployeeWorkItem, SelectedEmployeeWorkItem>();
+            _container.RegisterSingleton<IEmployeeWorkItem, EmployeeWorkItem>();
         }
 
         #endregion

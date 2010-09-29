@@ -9,14 +9,14 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="50" />
-            <RowDefinition Height="50" />
+			<RowDefinition Height="50" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-        <Border Margin="10,5,10,10" Grid.Row="0" CornerRadius="4,4,4,4" BorderBrush="#FF0F68A6" Background="#FFFCFCFC" BorderThickness="2,2,2,2" Width="Auto" Height="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <ToolBar Grid.Row="0" cal:RegionManager.RegionName="{x:Static infrastructure:RegionNames.ToolBarRegion}" />
-        </Border>
-        <Separator VerticalAlignment="Bottom" Height="10" />
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5,5,5,5">
+		<Border Margin="10,5,10,10" Grid.Row="0" CornerRadius="4,4,4,4" BorderBrush="#FF0F68A6" Background="#FFFCFCFC" BorderThickness="2,2,2,2" Width="Auto" Height="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+			<ToolBar Grid.Row="0" cal:RegionManager.RegionName="{x:Static infrastructure:RegionNames.ToolBarRegion}" />
+		</Border>
+		<Separator VerticalAlignment="Bottom" Height="10" />
+		<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5,5,5,5">
 			<Label HorizontalAlignment="Left" Width="Auto" Content="View Discovery Composition" FontWeight="Bold" Foreground="#FFFFFFFF" FontSize="24" FontFamily="Corbel" />
 			<Label HorizontalAlignment="Left" Width="Auto" Content="QuickStart" FontWeight="Normal" Foreground="#FFFFFFFF" FontSize="24" FontFamily="Corbel" />
 		</StackPanel>

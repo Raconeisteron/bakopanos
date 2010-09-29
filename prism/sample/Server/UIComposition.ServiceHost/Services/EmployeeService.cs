@@ -15,7 +15,7 @@ namespace UIComposition.Services
 
         public EmployeeService()
         {
-            _db=EnterpriseLibraryContainer.Current.GetInstance<Database>("Db");
+            _db = EnterpriseLibraryContainer.Current.GetInstance<Database>("Db");
         }
 
         #region IEmployeeService Members

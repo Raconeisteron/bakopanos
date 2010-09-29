@@ -30,13 +30,14 @@ namespace UIComposition
                 Type.GetType("UIComposition.Modules.Employee.EmployeeModule,UIComposition.Modules.Employee");
             Type projectModuleType =
                 Type.GetType("UIComposition.Modules.Project.ProjectModule,UIComposition.Modules.Project");
-            
-            ModuleCatalog catalog = new ModuleCatalog().
-                AddModule(shellModuleType).
-                AddModule(infrastructureModuleType).
+
+            var catalog = new ModuleCatalog();
+            catalog.AddModule(infrastructureModuleType).
                 AddModule(servicesModuleType);
             catalog.AddModule(employeeModuleType);
             catalog.AddModule(projectModuleType);
+
+            catalog.AddModule(shellModuleType);
 
             return catalog;
         }

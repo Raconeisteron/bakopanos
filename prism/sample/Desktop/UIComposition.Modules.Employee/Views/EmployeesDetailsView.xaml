@@ -7,7 +7,7 @@
 				</Style>
 			</TabControl.ItemContainerStyle>
 			<TabItem Header="General" Style="{DynamicResource SimpleTabItem}">
-				<Grid DataContext="{Binding SelectedEmployee.Employee}" Width="Auto" Height="Auto">
+				<Grid DataContext="{Binding WorkItem.Employee}" Width="Auto" Height="Auto">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width=".5*" />
 						<ColumnDefinition Width=".5*" />
