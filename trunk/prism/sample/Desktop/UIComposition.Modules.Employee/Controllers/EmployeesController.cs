@@ -19,6 +19,7 @@ namespace UIComposition.Modules.Employee.Controllers
         private readonly IRegionManager _regionManager;
         private readonly IUnityContainer _unityContainer;
         private readonly IRegionViewRegistry _regionViewRegistry;
+        private bool areViewsRegistered;
 
         public EmployeesController(IUnityContainer unityContainer, ILogService logService, IRegionManager regionManager,
                                    IRegionViewRegistry regionViewRegistry,
@@ -37,19 +38,24 @@ namespace UIComposition.Modules.Employee.Controllers
 
         private void ShowModule(object arg)
         {
-            _regionViewRegistry.RegisterViewWithRegion(RegionNames.NaviRegion,
-                                                       () =>
-                                                       new NaviBarView(
-                                                           _unityContainer.Resolve<NaviBarViewModel>()));
+            if (!areViewsRegistered)
+            {
+                _regionViewRegistry.RegisterViewWithRegion(RegionNames.NaviRegion,
+                                                           () =>
+                                                           new NaviBarView(
+                                                               _unityContainer.Resolve<NaviBarViewModel>()));
 
 
-            _regionViewRegistry.RegisterViewWithRegion(RegionNames.SelectionRegion,
-                                                      () =>
-                                                      new EmployeesListView(
-                                                          _unityContainer.Resolve<EmployeesListViewModel>()));
+                _regionViewRegistry.RegisterViewWithRegion(RegionNames.SelectionRegion,
+                                                           () =>
+                                                           new EmployeesListView(
+                                                               _unityContainer.Resolve<EmployeesListViewModel>()));
 
-            _regionManager.RegisterViewWithRegion(Infrastructure.RegionNames.MainRegion,
-                                                  () => new EmployeesView());
+                _regionManager.RegisterViewWithRegion(Infrastructure.RegionNames.MainRegion,
+                                                      () => new EmployeesView());
+
+            }
+            areViewsRegistered = true;
         }
 
         private static bool CanShowModule(object arg)
