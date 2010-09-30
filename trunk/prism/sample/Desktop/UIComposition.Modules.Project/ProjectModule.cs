@@ -5,6 +5,7 @@
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.Unity;
+using UIComposition.Infrastructure;
 using UIComposition.Modules.Project.Views;
 
 namespace UIComposition.Modules.Project
@@ -25,7 +26,7 @@ namespace UIComposition.Modules.Project
         public void Initialize()
         {
             // Register a type for pull based based composition. 
-            _regionViewRegistry.RegisterViewWithRegion(RegionNames.TabRegion,
+            _regionViewRegistry.RegisterViewWithRegion(RegionNames.MainDetailsTabRegion,
                                                        () =>
                                                        new ProjectsListView(
                                                            _unityContainer.Resolve<ProjectsListViewModel>()));

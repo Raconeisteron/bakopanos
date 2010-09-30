@@ -102,7 +102,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="RegionNames.cs" />
     <Compile Include="Views\NaviBarView.xaml.cs">
       <DependentUpon>NaviBarView.xaml</DependentUpon>
     </Compile>
