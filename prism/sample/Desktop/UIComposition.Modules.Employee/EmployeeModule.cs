@@ -5,6 +5,7 @@
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.Unity;
+using UIComposition.Infrastructure;
 using UIComposition.Modules.Employee.Controllers;
 using UIComposition.Modules.Employee.Views;
 

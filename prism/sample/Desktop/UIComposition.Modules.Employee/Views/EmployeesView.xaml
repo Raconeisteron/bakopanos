@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="UIComposition.Modules.Employee.Views.EmployeesView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:UIComposition.Modules.Employee" xmlns:cal="http://www.codeplex.com/CompositeWPF">
+﻿<UserControl x:Class="UIComposition.Modules.Employee.Views.EmployeesView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:UIComposition.Modules.Employee" xmlns:cal="http://www.codeplex.com/CompositeWPF" xmlns:Infrastructure="clr-namespace:UIComposition.Infrastructure;assembly=UIComposition.Infrastructure">
 	<StackPanel>
         
 		<!--In the SelectionPanel, we are pulling an EmployeesListView control. Then we're binding the SelectedEmployee
@@ -9,13 +9,13 @@
         Property on the EmployeesPresentationModel, because it's 2 way databound. When this value changes, the 
         EmployeeController will use this value.
         -->
-		<ContentControl x:Name="SelectionPanel" cal:RegionManager.RegionName="{x:Static local:RegionNames.SelectionRegion}" /> 
+		<ContentControl x:Name="SelectionPanel" cal:RegionManager.RegionName="{x:Static Infrastructure:RegionNames.MainSelectionRegion}" /> 
         
         
 		<!--The DetailsRegion will get the EmployeeDetails view pushed in. We are still a push based model here
         to show the usage of scoped regions. When you select an employee, a new EmployeeDetailsControl will get 
         created and pushed in here by the EmployeeController
         -->
-		<ContentControl cal:RegionManager.RegionName="{x:Static local:RegionNames.DetailsRegion}" />
+		<ContentControl cal:RegionManager.RegionName="{x:Static Infrastructure:RegionNames.MainDetailsRegion}" />
 	</StackPanel>
 </UserControl>

@@ -7,6 +7,7 @@ using Microsoft.Practices.Composite.Presentation.Commands;
 using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.Unity;
 using UIComposition.BusinessEntities;
+using UIComposition.Infrastructure;
 using UIComposition.Infrastructure.Services;
 using UIComposition.Modules.Employee.Views;
 using UIComposition.Services;
@@ -46,7 +47,7 @@ namespace UIComposition.Modules.Employee.Controllers
                                                                _unityContainer.Resolve<NaviBarViewModel>()));
 
 
-                _regionViewRegistry.RegisterViewWithRegion(RegionNames.SelectionRegion,
+                _regionViewRegistry.RegisterViewWithRegion(RegionNames.MainSelectionRegion,
                                                            () =>
                                                            new EmployeesListView(
                                                                _unityContainer.Resolve<EmployeesListViewModel>()));
@@ -66,7 +67,7 @@ namespace UIComposition.Modules.Employee.Controllers
         private void NavigateSelectedEmployee(EmployeeItem employee)
         {
             _logService.WriteInfo("EmployeesController::OnEmployeeSelected");
-            IRegion detailsRegion = _regionManager.Regions[RegionNames.DetailsRegion];
+            IRegion detailsRegion = _regionManager.Regions[RegionNames.MainDetailsRegion];
             object existingView = detailsRegion.GetView("EmployeesDetailsView");
 
             // See if the view already exists in the region. 
