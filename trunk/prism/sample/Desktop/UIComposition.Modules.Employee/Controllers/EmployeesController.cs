@@ -3,6 +3,7 @@
 // http://www.deaddevssociety.com
 // ===================================================================================
 using Microsoft.Practices.Composite.Events;
+using Microsoft.Practices.Composite.Presentation.Commands;
 using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.Unity;
 using UIComposition.BusinessEntities;
@@ -17,6 +18,7 @@ namespace UIComposition.Modules.Employee.Controllers
         private readonly ILogService _logService;
         private readonly IRegionManager _regionManager;
         private readonly IUnityContainer _unityContainer;
+        private readonly IRegionViewRegistry _regionViewRegistry;
 
         public EmployeesController(IUnityContainer unityContainer, ILogService logService, IRegionManager regionManager,
                                    IRegionViewRegistry regionViewRegistry,
@@ -25,26 +27,34 @@ namespace UIComposition.Modules.Employee.Controllers
             _unityContainer = unityContainer;
             _regionManager = regionManager;
             _logService = logService;
+            _regionViewRegistry = regionViewRegistry;
             eventAggregator.GetEvent<SelectedEmployeeEvent>().Subscribe(NavigateSelectedEmployee);
 
-            regionViewRegistry.RegisterViewWithRegion(RegionNames.ToolBarRegion,
-                                                       () =>
-                                                       new ToolBarView(
-                                                           _unityContainer.Resolve<ToolBarViewModel>()));
+            ShowModuleCommand = new DelegateCommand<object>(ShowModule, CanShowModule);            
+        }
+        
+        public DelegateCommand<object> ShowModuleCommand { get; private set; }
 
-            regionViewRegistry.RegisterViewWithRegion(RegionNames.NaviRegion,
+        private void ShowModule(object arg)
+        {
+            _regionViewRegistry.RegisterViewWithRegion(RegionNames.NaviRegion,
                                                        () =>
                                                        new NaviBarView(
                                                            _unityContainer.Resolve<NaviBarViewModel>()));
 
 
-            regionViewRegistry.RegisterViewWithRegion(RegionNames.SelectionRegion,
+            _regionViewRegistry.RegisterViewWithRegion(RegionNames.SelectionRegion,
                                                       () =>
                                                       new EmployeesListView(
                                                           _unityContainer.Resolve<EmployeesListViewModel>()));
 
             _regionManager.RegisterViewWithRegion(Infrastructure.RegionNames.MainRegion,
                                                   () => new EmployeesView());
+        }
+
+        private static bool CanShowModule(object arg)
+        {
+            return true;
         }
 
         private void NavigateSelectedEmployee(EmployeeItem employee)

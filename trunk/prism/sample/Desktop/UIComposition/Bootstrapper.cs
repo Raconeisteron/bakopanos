@@ -26,16 +26,20 @@ namespace UIComposition
             Type infrastructureModuleType =
                 Type.GetType("UIComposition.Infrastructure.InfrastructureModule,UIComposition.Infrastructure");
             Type servicesModuleType = Type.GetType("UIComposition.Services.ServicesModule,UIComposition.Services");
-            Type employeeModuleType =
-                Type.GetType("UIComposition.Modules.Employee.EmployeeModule,UIComposition.Modules.Employee");
-            Type projectModuleType =
-                Type.GetType("UIComposition.Modules.Project.ProjectModule,UIComposition.Modules.Project");
-
+            
             var catalog = new ModuleCatalog();
             catalog.AddModule(infrastructureModuleType).
                 AddModule(servicesModuleType);
-            catalog.AddModule(employeeModuleType);
-            catalog.AddModule(projectModuleType);
+
+            //modules
+            //Type employeeModuleType =
+            //    Type.GetType("UIComposition.Modules.Employee.EmployeeModule,UIComposition.Modules.Employee");
+
+            //Type projectModuleType =
+            //   Type.GetType("UIComposition.Modules.Project.ProjectModule,UIComposition.Modules.Project");
+            //catalog.AddModule(employeeModuleType);
+            //catalog.AddModule(projectModuleType);
+
 
             catalog.AddModule(shellModuleType);
 
