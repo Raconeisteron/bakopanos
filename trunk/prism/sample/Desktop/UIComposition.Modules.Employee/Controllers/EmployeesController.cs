@@ -27,6 +27,11 @@ namespace UIComposition.Modules.Employee.Controllers
             _logService = logService;
             eventAggregator.GetEvent<SelectedEmployeeEvent>().Subscribe(NavigateSelectedEmployee);
 
+            regionViewRegistry.RegisterViewWithRegion(RegionNames.ToolBarRegion,
+                                                       () =>
+                                                       new ToolBarView(
+                                                           _unityContainer.Resolve<ToolBarViewModel>()));
+
             regionViewRegistry.RegisterViewWithRegion(RegionNames.SelectionRegion,
                                                       () =>
                                                       new EmployeesListView(
