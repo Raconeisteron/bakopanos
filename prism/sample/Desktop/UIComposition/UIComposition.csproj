@@ -101,14 +101,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controllers\ShellController.cs">
-      <SubType>
-      </SubType>
-    </Compile>
-    <Compile Include="Controllers\IShellController.cs">
-      <SubType>
-      </SubType>
-    </Compile>
+    <Compile Include="Controllers\IShellController.cs" />
+    <Compile Include="Controllers\ShellController.cs" />
     <Compile Include="Views\ToolBarView.xaml.cs">
       <DependentUpon>ToolBarView.xaml</DependentUpon>
     </Compile>

@@ -32,13 +32,13 @@ namespace UIComposition
                 AddModule(servicesModuleType);
 
             //modules
-            //Type employeeModuleType =
-            //    Type.GetType("UIComposition.Modules.Employee.EmployeeModule,UIComposition.Modules.Employee");
+            Type employeeModuleType =
+                Type.GetType("UIComposition.Modules.Employee.EmployeeModule,UIComposition.Modules.Employee");
 
-            //Type projectModuleType =
-            //   Type.GetType("UIComposition.Modules.Project.ProjectModule,UIComposition.Modules.Project");
-            //catalog.AddModule(employeeModuleType);
-            //catalog.AddModule(projectModuleType);
+            Type projectModuleType =
+               Type.GetType("UIComposition.Modules.Project.ProjectModule,UIComposition.Modules.Project");
+            catalog.AddModule(employeeModuleType);
+            catalog.AddModule(projectModuleType);
 
 
             catalog.AddModule(shellModuleType);
