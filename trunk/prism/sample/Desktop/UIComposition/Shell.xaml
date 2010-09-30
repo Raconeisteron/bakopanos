@@ -7,21 +7,29 @@
 		</LinearGradientBrush>
 	</Window.Background>
 	<Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="50" />
+			<RowDefinition Height="60" />
 			<RowDefinition Height="50" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-		<Border Margin="10,5,10,10" Grid.Row="0" CornerRadius="4,4,4,4" BorderBrush="#FF0F68A6" Background="#FFFCFCFC" BorderThickness="2,2,2,2" Width="Auto" Height="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-			<ToolBar Grid.Row="0" cal:RegionManager.RegionName="{x:Static infrastructure:RegionNames.ToolBarRegion}" />
-		</Border>
-		<Separator VerticalAlignment="Bottom" Height="10" />
-		<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5,5,5,5">
-			<Label HorizontalAlignment="Left" Width="Auto" Content="View Discovery Composition" FontWeight="Bold" Foreground="#FFFFFFFF" FontSize="24" FontFamily="Corbel" />
+        <Border Margin="10,5,10,10" Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="4,4,4,4" BorderBrush="#FF0F68A6" Background="#FFFCFCFC" BorderThickness="2,2,2,2" Width="Auto" Height="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <StackPanel Width="Auto" Height="Auto" Margin="10,10,10,3" Orientation="Horizontal">
+                <ItemsControl Grid.Row="0" cal:RegionManager.RegionName="{x:Static infrastructure:RegionNames.ToolBarRegion}" />
+            </StackPanel>
+        </Border>
+		<StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5,5,5,5">			
 			<Label HorizontalAlignment="Left" Width="Auto" Content="QuickStart" FontWeight="Normal" Foreground="#FFFFFFFF" FontSize="24" FontFamily="Corbel" />
 		</StackPanel>
-		<Separator VerticalAlignment="Bottom" Height="10" />
-		<Border Margin="10,5,10,10" Grid.Row="2" CornerRadius="4,4,4,4" BorderBrush="#FF0F68A6" Background="#FFFCFCFC" BorderThickness="2,2,2,2" Width="Auto" Height="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+		<Border Margin="10,5,10,10" Grid.Row="2" Grid.Column="0" CornerRadius="4,4,4,4" BorderBrush="#FF0F68A6" Background="#FFFCFCFC" BorderThickness="2,2,2,2" Width="Auto" Height="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <StackPanel Width="Auto" Height="Auto" Margin="10,10,10,10" Orientation="Vertical">
+                <ItemsControl cal:RegionManager.RegionName="{x:Static infrastructure:RegionNames.NaviRegion}" Width="Auto" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            </StackPanel>
+        </Border>
+        <Border Margin="10,5,10,10" Grid.Row="2" Grid.Column="1" CornerRadius="4,4,4,4" BorderBrush="#FF0F68A6" Background="#FFFCFCFC" BorderThickness="2,2,2,2" Width="Auto" Height="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 			<StackPanel Width="Auto" Height="Auto" Margin="10,10,10,10">
 				<ItemsControl cal:RegionManager.RegionName="{x:Static infrastructure:RegionNames.MainRegion}" Width="Auto" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 			</StackPanel>

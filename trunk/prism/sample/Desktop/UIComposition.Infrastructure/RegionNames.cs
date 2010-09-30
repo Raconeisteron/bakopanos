@@ -8,5 +8,6 @@ namespace UIComposition.Infrastructure
     {
         public const string ToolBarRegion = "ToolBarRegion";
         public const string MainRegion = "MainRegion";
+        public const string NaviRegion = "NaviRegion";
     }
 }
