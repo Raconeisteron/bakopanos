@@ -1,4 +1,4 @@
-﻿<Window x:Class="UIComposition.Shell" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:infrastructure="clr-namespace:UIComposition.Infrastructure;assembly=UIComposition.Infrastructure" xmlns:cal="http://www.codeplex.com/CompositeWPF" Title="View Discovery Composition QuickStart" Width="640" Height="480">
+﻿<Window x:Class="UIComposition.Shell" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:infrastructure="clr-namespace:UIComposition.Infrastructure;assembly=UIComposition.Infrastructure" xmlns:cal="http://www.codeplex.com/CompositeWPF" Title="View Discovery Composition QuickStart" Width="1221" Height="707">
 	<Window.Background>
 		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 			<GradientStop Color="#FF83BBF4" Offset="0" />
