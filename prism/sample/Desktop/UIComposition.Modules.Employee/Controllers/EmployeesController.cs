@@ -32,6 +32,12 @@ namespace UIComposition.Modules.Employee.Controllers
                                                        new ToolBarView(
                                                            _unityContainer.Resolve<ToolBarViewModel>()));
 
+            regionViewRegistry.RegisterViewWithRegion(RegionNames.NaviRegion,
+                                                       () =>
+                                                       new NaviBarView(
+                                                           _unityContainer.Resolve<NaviBarViewModel>()));
+
+
             regionViewRegistry.RegisterViewWithRegion(RegionNames.SelectionRegion,
                                                       () =>
                                                       new EmployeesListView(
