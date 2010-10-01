@@ -10,11 +10,11 @@ using UIComposition.BusinessEntities;
 
 namespace UIComposition.Services
 {
-    public interface IEmployeeWorkItem 
+    public interface IEmployeeWorkItem : IEmployeeList, IEmployeeInfo, IProjectList
     {
         DelegateCommand<object> ReadCommand { get; }
     }
-    
+
     public interface IEmployeeInfo : INotifyPropertyChanged
     {
         EmployeeItem Employee { get; set; }
@@ -28,5 +28,10 @@ namespace UIComposition.Services
     public interface IProjectList : INotifyPropertyChanged
     {
         ObservableCollection<ProjectItem> Projects { get; set; }
+    }
+
+    public interface IProjectInfo : INotifyPropertyChanged
+    {
+        ProjectItem ProjectItem { get; set; }
     }
 }

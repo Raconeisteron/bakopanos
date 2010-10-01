@@ -4,6 +4,7 @@
 // ===================================================================================
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using UIComposition.BusinessEntities;
 
 namespace UIComposition.Services.Project
@@ -42,6 +43,16 @@ namespace UIComposition.Services.Project
         }
 
         #region IProjectService Members
+
+        public ObservableCollection<ProjectItem> RetrieveProjects()
+        {
+            var projects = new List<ProjectItem>();
+            projects.Add( new ProjectItem { ProjectName = "Project 1", Role = "Architect" });
+            projects.Add( new ProjectItem { ProjectName = "Project 2", Role = "Developer" });
+            projects.Add( new ProjectItem { ProjectName = "Project 3", Role = "Dev Lead" });
+
+            return new ObservableCollection<ProjectItem>(projects);
+        }
 
         public ObservableCollection<ProjectItem> RetrieveProjects(int employeeId)
         {

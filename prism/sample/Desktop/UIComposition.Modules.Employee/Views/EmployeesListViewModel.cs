@@ -2,17 +2,20 @@
 // Bakopanos Konstantinos
 // http://www.deaddevssociety.com
 // ===================================================================================
-using Microsoft.Practices.Unity;
 using UIComposition.Services;
 
 namespace UIComposition.Modules.Employee.Views
 {
     public class EmployeesListViewModel
     {
-        [Dependency]
-        public IEmployeeList List { get; set; }
+        public EmployeesListViewModel(IEmployeeList list, IEmployeeInfo selected)
+        {
+            List = list;
+            Selected = selected;
+        }
+        
+        public IEmployeeList List { get; private set; }
 
-        [Dependency]
-        public IEmployeeInfo Selected { get; set; }
+        public IEmployeeInfo Selected { get; private set; }
     }
 }

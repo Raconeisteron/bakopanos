@@ -41,18 +41,18 @@ namespace UIComposition.Modules.Employee.Controllers
         {
             if (!areViewsRegistered)
             {
+                var workitem = _unityContainer.Resolve<IEmployeeWorkItem>();
                 _regionViewRegistry.RegisterViewWithRegion(RegionNames.NaviRegion,
                                                            () =>
                                                            new NaviBarView(
-                                                               _unityContainer.Resolve<NaviBarViewModel>()));
-
+                                                               new NaviBarViewModel(workitem)));
 
                 _regionViewRegistry.RegisterViewWithRegion(RegionNames.MainSelectionRegion,
                                                            () =>
                                                            new EmployeesListView(
-                                                               _unityContainer.Resolve<EmployeesListViewModel>()));
+                                                               new EmployeesListViewModel(workitem,workitem)));
 
-                _regionManager.RegisterViewWithRegion(Infrastructure.RegionNames.MainRegion,
+                _regionManager.RegisterViewWithRegion(RegionNames.MainRegion,
                                                       () => new EmployeesView());
 
             }
@@ -74,7 +74,7 @@ namespace UIComposition.Modules.Employee.Controllers
             if (existingView == null)
             {
                 // the view does not exist yet. Create it and push it into the region
-                var detailsView = _unityContainer.Resolve<EmployeesDetailsView>();
+                var detailsView = new EmployeesDetailsView(new EmployeesDetailsViewModel(_unityContainer.Resolve<IEmployeeWorkItem>()));
 
                 // the details view should receive it's own scoped region manager, therefore Add overload using 'true' (see notes below).
                 detailsRegion.Add(detailsView, "EmployeesDetailsView", true);

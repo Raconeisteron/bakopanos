@@ -4,6 +4,11 @@
 // ===================================================================================
 namespace UIComposition.Infrastructure
 {
+    public class WorkItemNames
+    {
+        public const string EmployeeWorkItem = "Employee";
+    }
+
     public class RegionNames
     {
         public const string ToolBarRegion = "ToolBarRegion";//0

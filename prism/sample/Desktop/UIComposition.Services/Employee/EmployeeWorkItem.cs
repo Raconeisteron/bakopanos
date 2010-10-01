@@ -11,7 +11,7 @@ using UIComposition.Infrastructure;
 
 namespace UIComposition.Services.Employee
 {
-    internal class EmployeeWorkItem : IEmployeeWorkItem,IEmployeeList,IEmployeeInfo, IProjectList
+    internal class EmployeeWorkItem : IEmployeeWorkItem
     {
         private readonly IEmployeeService _employeeService;
         private readonly IEventAggregator _eventAggregator;
