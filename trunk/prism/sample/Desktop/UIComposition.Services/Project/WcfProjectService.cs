@@ -2,6 +2,7 @@
 // Bakopanos Konstantinos
 // http://www.deaddevssociety.com
 // ===================================================================================
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using UIComposition.BusinessEntities;
@@ -19,6 +20,11 @@ namespace UIComposition.Services.Project
         }
 
         #region IProjectService Members
+
+        public ObservableCollection<ProjectItem> RetrieveProjects()
+        {
+            throw new NotImplementedException();
+        }
 
         public ObservableCollection<ProjectItem> RetrieveProjects(int employeeId)
         {
