@@ -31,8 +31,7 @@ namespace UIComposition.Services
             //_container.RegisterSingleton<IEmployeeService, WcfEmployeeService>();
             //_container.RegisterSingleton<IProjectService, WcfProjectService>();
 
-            _container.RegisterSingleton<IEmployeeWorkItem, EmployeeWorkItem>();
-            _container.RegisterSingleton<IProjectWorkItem, ProjectWorkItem>();            
+                   
         }
 
         #endregion
