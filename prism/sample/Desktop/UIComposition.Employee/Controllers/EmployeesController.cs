@@ -19,17 +19,14 @@ namespace UIComposition.Employee.Controllers
         private readonly ILogService _logService;
         private readonly IRegionManager _regionManager;
         private readonly IUnityContainer _unityContainer;
-        private readonly IRegionViewRegistry _regionViewRegistry;
         private bool areViewsRegistered;
 
         public EmployeesController(IUnityContainer unityContainer, ILogService logService, IRegionManager regionManager,
-                                   IRegionViewRegistry regionViewRegistry,
                                    IEventAggregator eventAggregator)
         {
             _unityContainer = unityContainer;
             _regionManager = regionManager;
             _logService = logService;
-            _regionViewRegistry = regionViewRegistry;
             eventAggregator.GetEvent<SelectedEmployeeEvent>().Subscribe(NavigateSelectedEmployee);
 
             ShowModuleCommand = new DelegateCommand<object>(ShowModule, CanShowModule);            
@@ -41,16 +38,9 @@ namespace UIComposition.Employee.Controllers
         {
             if (!areViewsRegistered)
             {
-                var workitem = _unityContainer.Resolve<IEmployeeWorkItem>();
-                _regionViewRegistry.RegisterViewWithRegion(RegionNames.NaviRegion,
-                                                           () =>
-                                                           new NaviBarView(
-                                                               new NaviBarViewModel(workitem)));
+                _unityContainer.RegisterViewWithRegion<NaviBarView>(RegionNames.NaviRegion);
 
-                _regionViewRegistry.RegisterViewWithRegion(RegionNames.MainSelectionRegion,
-                                                           () =>
-                                                           new EmployeesListView(
-                                                               new EmployeesListViewModel(workitem,workitem)));
+                _unityContainer.RegisterViewWithRegion<EmployeesListView>(RegionNames.MainSelectionRegion);
 
                 _regionManager.RegisterViewWithRegion(RegionNames.MainRegion,
                                                       () => new EmployeesView());

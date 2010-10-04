@@ -2,6 +2,8 @@
 // Bakopanos Konstantinos
 // http://www.deaddevssociety.com
 // ===================================================================================
+using Microsoft.Practices.Composite.Regions;
+
 namespace Microsoft.Practices.Unity
 {
     public static class UnityExtensions
@@ -16,6 +18,13 @@ namespace Microsoft.Practices.Unity
            where TFrom : TTo
         {
             container.RegisterType<TTo, TFrom>(name, new ContainerControlledLifetimeManager());
+        }
+
+        public static void RegisterViewWithRegion<TView>(this IUnityContainer unityContainer,string regionName)
+        {
+            var regionViewRegistry = unityContainer.Resolve<IRegionViewRegistry>();
+            regionViewRegistry.RegisterViewWithRegion(regionName,
+                                                      () => unityContainer.Resolve<TView>());
         }
     }
 }
