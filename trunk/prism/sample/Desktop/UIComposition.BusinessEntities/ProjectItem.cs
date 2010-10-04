@@ -2,7 +2,7 @@
 // Bakopanos Konstantinos
 // http://www.deaddevssociety.com
 // ===================================================================================
-namespace UIComposition.BusinessEntities
+namespace UIComposition.Model
 {
     public class ProjectItem
     {

@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
-using UIComposition.BusinessEntities;
 
-namespace UIComposition.Services
+namespace UIComposition.Model
 {
     public interface IEmployeeInfo : INotifyPropertyChanged
     {

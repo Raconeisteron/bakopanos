@@ -3,7 +3,7 @@
 // http://www.deaddevssociety.com
 // ===================================================================================
 using System.Collections.ObjectModel;
-using UIComposition.BusinessEntities;
+using UIComposition.Model;
 
 namespace UIComposition.Services
 {

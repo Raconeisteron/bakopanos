@@ -4,10 +4,10 @@
 // ===================================================================================
 using System.Collections.ObjectModel;
 using System.Linq;
-using UIComposition.BusinessEntities;
+using UIComposition.Model;
 using UIComposition.Services.DataServiceReference;
 
-namespace UIComposition.Services.Employee
+namespace UIComposition.Services
 {
     internal class WcfEmployeeService : IEmployeeService
     {

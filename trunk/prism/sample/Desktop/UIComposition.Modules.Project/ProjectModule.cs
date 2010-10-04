@@ -6,12 +6,12 @@ using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.Unity;
 using UIComposition.Infrastructure;
-using UIComposition.Modules.Project.Model;
-using UIComposition.Modules.Project.Views;
+using UIComposition.Model;
+using UIComposition.Project.Model;
+using UIComposition.Project.Views;
 using UIComposition.Services;
-using UIComposition.Services.Project;
 
-namespace UIComposition.Modules.Project
+namespace UIComposition.Project
 {
     public class ProjectModule : IModule
     {

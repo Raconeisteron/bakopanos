@@ -6,13 +6,13 @@ using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.Unity;
 using UIComposition.Infrastructure;
-using UIComposition.Modules.Employee.Controllers;
-using UIComposition.Modules.Employee.Model;
-using UIComposition.Modules.Employee.Views;
+using UIComposition.Employee.Controllers;
+using UIComposition.Employee.Model;
+using UIComposition.Employee.Views;
+using UIComposition.Model;
 using UIComposition.Services;
-using UIComposition.Services.Employee;
 
-namespace UIComposition.Modules.Employee
+namespace UIComposition.Employee
 {
     public class EmployeeModule : IModule
     {

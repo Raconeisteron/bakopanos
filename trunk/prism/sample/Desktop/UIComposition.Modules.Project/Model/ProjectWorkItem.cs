@@ -4,11 +4,11 @@
 // ===================================================================================
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using UIComposition.BusinessEntities;
 using UIComposition.Infrastructure;
+using UIComposition.Model;
 using UIComposition.Services;
 
-namespace UIComposition.Modules.Project.Model
+namespace UIComposition.Project.Model
 {
     internal class ProjectWorkItem : IProjectWorkItem, IProjectList
     {        

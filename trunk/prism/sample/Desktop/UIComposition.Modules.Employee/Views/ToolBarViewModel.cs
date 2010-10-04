@@ -3,9 +3,9 @@
 // http://www.deaddevssociety.com
 // ===================================================================================
 using Microsoft.Practices.Unity;
-using UIComposition.Modules.Employee.Controllers;
+using UIComposition.Employee.Controllers;
 
-namespace UIComposition.Modules.Employee.Views
+namespace UIComposition.Employee.Views
 {
     public class ToolBarViewModel
     {

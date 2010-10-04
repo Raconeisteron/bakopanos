@@ -4,8 +4,6 @@
 // ===================================================================================
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Unity;
-using UIComposition.Services.Employee;
-using UIComposition.Services.Project;
 
 namespace UIComposition.Services
 {
