@@ -2,10 +2,9 @@
 // Bakopanos Konstantinos
 // http://www.deaddevssociety.com
 // ===================================================================================
-using System.Collections.Generic;
 using Microsoft.Practices.Composite.Presentation.Commands;
 
-namespace UIComposition.Services
+namespace UIComposition.Model
 {
     public interface IEmployeeWorkItem : IEmployeeList, IEmployeeInfo, IProjectList
     {

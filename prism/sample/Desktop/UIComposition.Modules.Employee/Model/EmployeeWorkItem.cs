@@ -6,11 +6,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Microsoft.Practices.Composite.Events;
 using Microsoft.Practices.Composite.Presentation.Commands;
-using UIComposition.BusinessEntities;
 using UIComposition.Infrastructure;
+using UIComposition.Model;
 using UIComposition.Services;
 
-namespace UIComposition.Modules.Employee.Model
+namespace UIComposition.Employee.Model
 {
     internal class EmployeeWorkItem : IEmployeeWorkItem
     {

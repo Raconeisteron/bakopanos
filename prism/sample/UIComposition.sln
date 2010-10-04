@@ -5,9 +5,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{077C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIComposition", "Desktop\UIComposition\UIComposition.csproj", "{038A54AC-EEFD-4F5D-82DC-C4AFD1A3201D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIComposition.Modules.Employee", "Desktop\UIComposition.Modules.Employee\UIComposition.Modules.Employee.csproj", "{D361DA77-FC72-4352-8942-03037978287A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIComposition.Employee", "Desktop\UIComposition.Modules.Employee\UIComposition.Employee.csproj", "{D361DA77-FC72-4352-8942-03037978287A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIComposition.Modules.Project", "Desktop\UIComposition.Modules.Project\UIComposition.Modules.Project.csproj", "{A7DC4C1C-BFE1-4820-A821-1B7E37E3E0D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIComposition.Project", "Desktop\UIComposition.Modules.Project\UIComposition.Project.csproj", "{A7DC4C1C-BFE1-4820-A821-1B7E37E3E0D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIComposition.Infrastructure", "Desktop\UIComposition.Infrastructure\UIComposition.Infrastructure.csproj", "{4511B435-FF23-484C-B5FE-9C4057F380C0}"
 EndProject
@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIComposition.Services", "D
 		{74166780-E4EE-4DE3-89B3-EBDBED00A39F} = {74166780-E4EE-4DE3-89B3-EBDBED00A39F}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIComposition.BusinessEntities", "Desktop\UIComposition.BusinessEntities\UIComposition.BusinessEntities.csproj", "{D02D082A-53DC-4894-A6AF-9043EFA39850}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIComposition.Model", "Desktop\UIComposition.BusinessEntities\UIComposition.Model.csproj", "{D02D082A-53DC-4894-A6AF-9043EFA39850}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIComposition.ServiceHost", "Server\UIComposition.ServiceHost\UIComposition.ServiceHost.csproj", "{74166780-E4EE-4DE3-89B3-EBDBED00A39F}"
 EndProject

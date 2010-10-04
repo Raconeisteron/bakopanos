@@ -2,9 +2,10 @@
 // Bakopanos Konstantinos
 // http://www.deaddevssociety.com
 // ===================================================================================
+using UIComposition.Model;
 using UIComposition.Services;
 
-namespace UIComposition.Modules.Project.Views
+namespace UIComposition.Project.Views
 {
     public class ProjectsListViewModel
     {

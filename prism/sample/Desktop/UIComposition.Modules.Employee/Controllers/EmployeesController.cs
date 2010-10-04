@@ -6,13 +6,13 @@ using Microsoft.Practices.Composite.Events;
 using Microsoft.Practices.Composite.Presentation.Commands;
 using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.Unity;
-using UIComposition.BusinessEntities;
 using UIComposition.Infrastructure;
 using UIComposition.Infrastructure.Services;
-using UIComposition.Modules.Employee.Views;
+using UIComposition.Employee.Views;
+using UIComposition.Model;
 using UIComposition.Services;
 
-namespace UIComposition.Modules.Employee.Controllers
+namespace UIComposition.Employee.Controllers
 {
     internal class EmployeesController : IEmployeesController
     {

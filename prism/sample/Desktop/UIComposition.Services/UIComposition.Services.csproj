@@ -72,17 +72,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Employee\FakeEmployeeService.cs" />
-    <Compile Include="IEmployeeInfo.cs" />
-    <Compile Include="IEmployeeList.cs" />
-    <Compile Include="IEmployeeWorkItem.cs" />
-    <Compile Include="IProjectInfo.cs" />
-    <Compile Include="IProjectList.cs" />
-    <Compile Include="IProjectWorkItem.cs" />
-    <Compile Include="Project\FakeProjectService.cs" />
-    <Compile Include="Employee\WcfEmployeeService.cs" />
-    <Compile Include="Project\WcfProjectService.cs" />
-    <Compile Include="SelectedEmployeeEvent.cs" />
+    <Compile Include="FakeEmployeeService.cs" />
+    <Compile Include="IProjectService.cs" />
+    <Compile Include="FakeProjectService.cs" />
+    <Compile Include="WcfEmployeeService.cs" />
+    <Compile Include="WcfProjectService.cs" />
     <Compile Include="Service References\DataServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -90,13 +84,12 @@
     </Compile>
     <Compile Include="ServicesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IProjectService.cs" />
     <Compile Include="IEmployeeService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UIComposition.BusinessEntities\UIComposition.BusinessEntities.csproj">
+    <ProjectReference Include="..\UIComposition.BusinessEntities\UIComposition.Model.csproj">
       <Project>{D02D082A-53DC-4894-A6AF-9043EFA39850}</Project>
-      <Name>UIComposition.BusinessEntities</Name>
+      <Name>UIComposition.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\UIComposition.Infrastructure\UIComposition.Infrastructure.csproj">
       <Project>{4511B435-FF23-484C-B5FE-9C4057F380C0}</Project>

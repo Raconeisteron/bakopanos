@@ -4,7 +4,7 @@
 // ===================================================================================
 using System.Windows.Controls;
 
-namespace UIComposition.Modules.Employee.Views
+namespace UIComposition.Employee.Views
 {
     /// <summary>
     ///   Interaction logic for EmployeesDetailsView.xaml

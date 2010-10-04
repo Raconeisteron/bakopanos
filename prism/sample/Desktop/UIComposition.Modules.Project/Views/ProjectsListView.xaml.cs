@@ -3,8 +3,9 @@
 // http://www.deaddevssociety.com
 // ===================================================================================
 using System.Windows.Controls;
+using UIComposition.Project.Views;
 
-namespace UIComposition.Modules.Project.Views
+namespace UIComposition.Project.Views
 {
     public partial class ProjectsListView : UserControl
     {

@@ -2,9 +2,10 @@
 // Bakopanos Konstantinos
 // http://www.deaddevssociety.com
 // ===================================================================================
+using UIComposition.Model;
 using UIComposition.Services;
 
-namespace UIComposition.Modules.Employee.Views
+namespace UIComposition.Employee.Views
 {
     public class NaviBarViewModel
     {

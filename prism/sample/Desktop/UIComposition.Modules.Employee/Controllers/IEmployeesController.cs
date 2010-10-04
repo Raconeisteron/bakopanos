@@ -2,7 +2,7 @@
 // Bakopanos Konstantinos
 // http://www.deaddevssociety.com
 // ===================================================================================
-namespace UIComposition.Modules.Employee.Controllers
+namespace UIComposition.Employee.Controllers
 {
     public interface IEmployeesController
     {
