@@ -8,8 +8,9 @@ using Microsoft.Practices.Composite.Events;
 using Microsoft.Practices.Composite.Presentation.Commands;
 using UIComposition.BusinessEntities;
 using UIComposition.Infrastructure;
+using UIComposition.Services;
 
-namespace UIComposition.Services.Employee
+namespace UIComposition.Modules.Employee.Model
 {
     internal class EmployeeWorkItem : IEmployeeWorkItem
     {

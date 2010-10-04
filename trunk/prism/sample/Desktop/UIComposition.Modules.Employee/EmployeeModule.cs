@@ -7,14 +7,17 @@ using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.Unity;
 using UIComposition.Infrastructure;
 using UIComposition.Modules.Employee.Controllers;
+using UIComposition.Modules.Employee.Model;
 using UIComposition.Modules.Employee.Views;
+using UIComposition.Services;
+using UIComposition.Services.Employee;
 
 namespace UIComposition.Modules.Employee
 {
     public class EmployeeModule : IModule
     {
         private readonly IUnityContainer _unityContainer;
-        private IRegionViewRegistry _regionViewRegistry;
+        private readonly IRegionViewRegistry _regionViewRegistry;
 
         public EmployeeModule(IUnityContainer unityContainer,IRegionViewRegistry regionViewRegistry)
         {
@@ -27,6 +30,8 @@ namespace UIComposition.Modules.Employee
 
         public void Initialize()
         {
+            _unityContainer.RegisterSingleton<IEmployeeWorkItem, EmployeeWorkItem>();
+
             _unityContainer.RegisterSingleton<IEmployeesController, EmployeesController>();
             _unityContainer.Resolve<IEmployeesController>();
 

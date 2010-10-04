@@ -73,12 +73,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Employee\FakeEmployeeService.cs" />
-    <Compile Include="Project\ProjectWorkItem.cs" />
+    <Compile Include="IEmployeeInfo.cs" />
+    <Compile Include="IEmployeeList.cs" />
+    <Compile Include="IEmployeeWorkItem.cs" />
+    <Compile Include="IProjectInfo.cs" />
+    <Compile Include="IProjectList.cs" />
+    <Compile Include="IProjectWorkItem.cs" />
     <Compile Include="Project\FakeProjectService.cs" />
     <Compile Include="Employee\WcfEmployeeService.cs" />
-    <Compile Include="Employee\EmployeeWorkItem.cs" />
-    <Compile Include="IEmployeeWorkItem.cs" />
-    <Compile Include="IProjectWorkItem.cs" />
     <Compile Include="Project\WcfProjectService.cs" />
     <Compile Include="SelectedEmployeeEvent.cs" />
     <Compile Include="Service References\DataServiceReference\Reference.cs">

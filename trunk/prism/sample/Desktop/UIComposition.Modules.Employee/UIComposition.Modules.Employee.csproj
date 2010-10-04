@@ -99,6 +99,7 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\IEmployeesController.cs" />
     <Compile Include="EmployeeModule.cs" />
+    <Compile Include="Model\EmployeeWorkItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
