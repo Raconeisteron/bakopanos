@@ -4,28 +4,23 @@
 // ===================================================================================
 using Microsoft.Practices.Composite.Events;
 using Microsoft.Practices.Composite.Presentation.Commands;
-using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.Unity;
 using UIComposition.Infrastructure;
 using UIComposition.Infrastructure.Services;
 using UIComposition.Employee.Views;
 using UIComposition.Model;
-using UIComposition.Services;
 
 namespace UIComposition.Employee.Controllers
 {
     internal class EmployeesController : IEmployeesController
     {
         private readonly ILogService _logService;
-        private readonly IRegionManager _regionManager;
         private readonly IUnityContainer _unityContainer;
         private bool areViewsRegistered;
 
-        public EmployeesController(IUnityContainer unityContainer, ILogService logService, IRegionManager regionManager,
-                                   IEventAggregator eventAggregator)
+        public EmployeesController(IUnityContainer unityContainer, ILogService logService, IEventAggregator eventAggregator)
         {
-            _unityContainer = unityContainer;
-            _regionManager = regionManager;
+            _unityContainer = unityContainer;            
             _logService = logService;
             eventAggregator.GetEvent<SelectedEmployeeEvent>().Subscribe(NavigateSelectedEmployee);
 
@@ -42,8 +37,7 @@ namespace UIComposition.Employee.Controllers
 
                 _unityContainer.RegisterViewWithRegion<EmployeesListView>(RegionNames.MainSelectionRegion);
 
-                _regionManager.RegisterViewWithRegion(RegionNames.MainRegion,
-                                                      () => new EmployeesView());
+                _unityContainer.RegisterViewWithRegion<EmployeesView>(RegionNames.MainRegion);
 
             }
             areViewsRegistered = true;
@@ -57,25 +51,8 @@ namespace UIComposition.Employee.Controllers
         private void NavigateSelectedEmployee(EmployeeItem employee)
         {
             _logService.WriteInfo("EmployeesController::OnEmployeeSelected");
-            IRegion detailsRegion = _regionManager.Regions[RegionNames.MainDetailsRegion];
-            object existingView = detailsRegion.GetView("EmployeesDetailsView");
-
-            // See if the view already exists in the region. 
-            if (existingView == null)
-            {
-                // the view does not exist yet. Create it and push it into the region
-                var detailsView = new EmployeesDetailsView(new EmployeesDetailsViewModel(_unityContainer.Resolve<IEmployeeWorkItem>()));
-
-                // the details view should receive it's own scoped region manager, therefore Add overload using 'true' (see notes below).
-                detailsRegion.Add(detailsView, "EmployeesDetailsView", true);
-
-                detailsRegion.Activate(detailsView);
-            }
-            else
-            {
-                // The view already exists. Just show it. 
-                detailsRegion.Activate(existingView);
-            }
+            _unityContainer.ActivateView<EmployeesDetailsView>(RegionNames.MainDetailsRegion, "EmployeesDetailsView");            
         }
+        
     }
 }

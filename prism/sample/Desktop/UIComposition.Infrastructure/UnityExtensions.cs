@@ -14,17 +14,46 @@ namespace Microsoft.Practices.Unity
             container.RegisterType<TTo, TFrom>(new ContainerControlledLifetimeManager());
         }
 
-        public static void RegisterSingleton<TTo, TFrom>(this IUnityContainer container,string name)
+        public static void RegisterSingleton<TTo, TFrom>(this IUnityContainer container, string name)
            where TFrom : TTo
         {
             container.RegisterType<TTo, TFrom>(name, new ContainerControlledLifetimeManager());
         }
 
-        public static void RegisterViewWithRegion<TView>(this IUnityContainer unityContainer,string regionName)
+        public static void RegisterViewWithRegion<TView>(this IUnityContainer unityContainer, string regionName)
         {
             var regionViewRegistry = unityContainer.Resolve<IRegionViewRegistry>();
             regionViewRegistry.RegisterViewWithRegion(regionName,
                                                       () => unityContainer.Resolve<TView>());
+        }
+
+        static IRegion GetRegion(this IUnityContainer unityContainer, string regionName)
+        {
+            var regionManager = unityContainer.Resolve<IRegionManager>();
+            return regionManager.Regions[regionName];
+        }
+
+        public static void ActivateView<T>(this IUnityContainer unityContainer, string regionName, string viewName)
+        {
+            IRegion region = unityContainer.GetRegion(regionName);
+            object existingView = region.GetView(viewName);
+
+            // See if the view already exists in the region. 
+            if (existingView == null)
+            {
+                // the view does not exist yet. Create it and push it into the region
+                var view = unityContainer.Resolve<T>();
+
+                // the details view should receive it's own scoped region manager, therefore Add overload using 'true' (see notes below).
+                region.Add(view, viewName, true);
+
+                region.Activate(view);
+            }
+            else
+            {
+                // The view already exists. Just show it. 
+                region.Activate(existingView);
+            }
         }
     }
 }
