@@ -25,15 +25,14 @@ namespace UIComposition.Project
 
         public void Initialize()
         {
+            _unityContainer.RegisterViewWithRegion<EmployeeProjectsListView>(RegionNames.MainDetailsTabRegion);
+
             //this is an optional module. Isolate it...
             IUnityContainer container= _unityContainer.CreateChildContainer();
-            container.RegisterSingleton<ProjectWorkItem, ProjectWorkItem>();
-            container.RegisterSingleton<IProjectWorkItem, ProjectWorkItem>();
-            container.RegisterSingleton<IProjectList, ProjectWorkItem>();     
-
-            // Register a type for pull based based composition. 
-            _unityContainer.RegisterViewWithRegion<ProjectsListView>(RegionNames.NaviRegion);
-            _unityContainer.RegisterViewWithRegion<ProjectsListView>(RegionNames.MainDetailsTabRegion);
+            container.RegisterSingleton<ProjectWorkItem, ProjectWorkItem>()
+                .RegisterSingleton<IProjectWorkItem, ProjectWorkItem>()
+                .RegisterSingleton<IProjectList, ProjectWorkItem>()
+                .RegisterViewWithRegion<ProjectsListView>(RegionNames.NaviRegion);            
         }
 
         #endregion

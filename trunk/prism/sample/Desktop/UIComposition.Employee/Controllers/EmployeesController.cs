@@ -16,7 +16,7 @@ namespace UIComposition.Employee.Controllers
     {
         private readonly ILogService _logService;
         private readonly IUnityContainer _unityContainer;
-        private bool areViewsRegistered;
+        private bool _areViewsRegistered;
 
         public EmployeesController(IUnityContainer unityContainer, ILogService logService, IEventAggregator eventAggregator)
         {
@@ -31,16 +31,14 @@ namespace UIComposition.Employee.Controllers
 
         private void ShowModule(object arg)
         {
-            if (!areViewsRegistered)
+            if (!_areViewsRegistered)
             {
-                _unityContainer.RegisterViewWithRegion<NaviBarView>(RegionNames.NaviRegion);
-
-                _unityContainer.RegisterViewWithRegion<EmployeesListView>(RegionNames.MainSelectionRegion);
-
-                _unityContainer.RegisterViewWithRegion<EmployeesView>(RegionNames.MainRegion);
+                _unityContainer.RegisterViewWithRegion<NaviBarView>(RegionNames.NaviRegion)
+                    .RegisterViewWithRegion<EmployeesListView>(RegionNames.MainSelectionRegion)
+                    .RegisterViewWithRegion<EmployeesView>(RegionNames.MainRegion);
 
             }
-            areViewsRegistered = true;
+            _areViewsRegistered = true;
         }
 
         private static bool CanShowModule(object arg)
@@ -50,7 +48,7 @@ namespace UIComposition.Employee.Controllers
 
         private void NavigateSelectedEmployee(EmployeeItem employee)
         {
-            _logService.WriteInfo("EmployeesController::OnEmployeeSelected");
+            _logService.WriteInfo("EmployeesController:: OnEmployeeSelected");
             _unityContainer.ActivateView<EmployeesDetailsView>(RegionNames.MainDetailsRegion, "EmployeesDetailsView");            
         }
         
