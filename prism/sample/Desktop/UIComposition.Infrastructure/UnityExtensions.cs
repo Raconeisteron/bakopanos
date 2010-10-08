@@ -8,10 +8,11 @@ namespace Microsoft.Practices.Unity
 {
     public static class UnityExtensions
     {
-        public static void RegisterSingleton<TTo, TFrom>(this IUnityContainer container)
+        public static IUnityContainer RegisterSingleton<TTo, TFrom>(this IUnityContainer container)
             where TFrom : TTo
         {
             container.RegisterType<TTo, TFrom>(new ContainerControlledLifetimeManager());
+            return container;
         }
 
         public static void RegisterSingleton<TTo, TFrom>(this IUnityContainer container, string name)
@@ -20,11 +21,12 @@ namespace Microsoft.Practices.Unity
             container.RegisterType<TTo, TFrom>(name, new ContainerControlledLifetimeManager());
         }
 
-        public static void RegisterViewWithRegion<TView>(this IUnityContainer unityContainer, string regionName)
+        public static IUnityContainer RegisterViewWithRegion<TView>(this IUnityContainer unityContainer, string regionName)
         {
             var regionViewRegistry = unityContainer.Resolve<IRegionViewRegistry>();
             regionViewRegistry.RegisterViewWithRegion(regionName,
                                                       () => unityContainer.Resolve<TView>());
+            return unityContainer;
         }
 
         static IRegion GetRegion(this IUnityContainer unityContainer, string regionName)

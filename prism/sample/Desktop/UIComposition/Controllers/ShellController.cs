@@ -2,7 +2,6 @@
 // Bakopanos Konstantinos
 // http://www.deaddevssociety.com
 // ===================================================================================
-using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.Unity;
 using UIComposition.Infrastructure;
 using UIComposition.Views;
@@ -11,18 +10,9 @@ namespace UIComposition.Controllers
 {
     internal class ShellController : IShellController
     {
-        private readonly IRegionViewRegistry _regionViewRegistry;
-        private readonly IUnityContainer _unityContainer;
-
-        public ShellController(IUnityContainer unityContainer, IRegionViewRegistry regionViewRegistry)
+        public ShellController(IUnityContainer unityContainer)
         {
-            _unityContainer = unityContainer;
-            _regionViewRegistry = regionViewRegistry;
-
-            _regionViewRegistry.RegisterViewWithRegion(RegionNames.ToolBarRegion,
-                                                       () =>
-                                                       new ToolBarView(
-                                                           _unityContainer.Resolve<ToolBarViewModel>()));
+            unityContainer.RegisterViewWithRegion<ToolBarView>(RegionNames.ToolBarRegion);
         }
     }
 }
