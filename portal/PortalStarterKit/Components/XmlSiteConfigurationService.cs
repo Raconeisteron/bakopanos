@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Xml.Linq;
 
@@ -62,7 +63,7 @@ namespace ASPNET.StarterKit.Portal
 
         public TabSettings ActiveTab(int tabId)
         {
-            return _settings.ActiveTab = _settings.DesktopTabs[tabId];
+            return _settings.DesktopTabs.Single<TabSettings>(item=>item.TabId==tabId);
         }
     }
 }

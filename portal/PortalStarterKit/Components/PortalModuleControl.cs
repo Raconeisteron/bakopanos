@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.ComponentModel;
+using System.IO;
 using System.Web.UI;
 using PortalStarterKit;
 
@@ -46,4 +47,7 @@ namespace ASPNET.StarterKit.Portal
             Global.BuildItemWithCurrentContext<T>(this);
         }
     }
+
+
+   
 }

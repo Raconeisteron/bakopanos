@@ -8,13 +8,13 @@ namespace ASPNET.StarterKit.Portal
     /// </summary>
     public class ModuleSettings 
     {
-        public String AuthorizedEditRoles;
+        public String AuthorizedEditRoles { get; set; }
 
-        public String DesktopSrc;
-        public int ModuleId;
-        public int ModuleOrder;
-        public String ModuleTitle;
-        public String PaneName;
-        public int TabId;
+        public String DesktopSrc { get; set; }
+        public int ModuleId { get; set; }
+        public int ModuleOrder { get; set; }
+        public String ModuleTitle { get; set; }
+        public String PaneName { get; set; }
+        public int TabId { get; set; }
     }
 }

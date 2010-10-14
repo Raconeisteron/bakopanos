@@ -11,12 +11,18 @@ namespace ASPNET.StarterKit.Portal
     /// </summary>
     public class PortalSettings
     {
-        public TabSettings ActiveTab = new TabSettings();
-        public List<TabSettings> DesktopTabs = new List<TabSettings>();
+        public PortalSettings()
+        {
+            ActiveTab = new TabSettings();
+            DesktopTabs = new List<TabSettings>();
+        }
 
-        public bool AlwaysShowEditButton;
-        public int PortalId;
-        public String PortalName;
+        public TabSettings ActiveTab { get; set; }
+        public List<TabSettings> DesktopTabs { get; set; }
+
+        public bool AlwaysShowEditButton { get; set; }
+        public int PortalId { get; set; }
+        public String PortalName { get; set; }
 
     }
 }
