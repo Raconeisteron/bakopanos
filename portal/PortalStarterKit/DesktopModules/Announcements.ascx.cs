@@ -5,14 +5,23 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal;
+using Microsoft.Practices.Unity;
 
 namespace PortalStarterKit.DesktopModules
 {
-    public partial class Announcements : PortalModuleControl
+    public partial class Announcements : PortalModuleControl<Announcements>
     {
+        [Dependency]
+        public ISiteConfigurationService ConfigurationService
+        {
+            private
+            get;
+            set;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            label.Text=ConfigurationService.ActivePortal(0).PortalName;
         }
     }
 }
