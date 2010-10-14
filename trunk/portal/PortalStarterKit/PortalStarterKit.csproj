@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="3rdParty\Microsoft.Practices.ServiceLocation\Readme.txt" />
-    <Content Include="About.aspx" />
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
@@ -331,13 +330,6 @@
     <Compile Include="3rdParty\Microsoft.Practices.Unity\Utility\ParameterReflectionHelper.cs" />
     <Compile Include="3rdParty\Microsoft.Practices.Unity\Utility\ReflectionHelper.cs" />
     <Compile Include="3rdParty\Microsoft.Practices.Unity\Utility\StaticReflection.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Account\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -42,11 +42,12 @@ namespace PortalStarterKit
 
                     // create the user control instance and dynamically
                     // inject it into the page.  
-                    var portalModule = (PortalModuleControl) Page.LoadControl(moduleSettings.DesktopSrc);
+                    dynamic portalModule =  Page.LoadControl(moduleSettings.DesktopSrc);
 
                     BuildUpControl(portalModule);
 
                     portalModule.PortalId = activePortal.PortalId;
+                    portalModule.TabId = activePortal.ActiveTab.TabId;
                     portalModule.ModuleConfiguration = moduleSettings;
 
                     parent.Controls.Add(portalModule);

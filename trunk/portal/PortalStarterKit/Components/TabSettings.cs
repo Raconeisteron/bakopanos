@@ -14,7 +14,6 @@ namespace ASPNET.StarterKit.Portal
         public List<ModuleSettings> Modules = new List<ModuleSettings>();
 
         public int TabId;
-        public int TabIndex;
         public String TabName;
         public int TabOrder;
     }

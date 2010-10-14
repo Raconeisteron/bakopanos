@@ -20,7 +20,9 @@ namespace PortalStarterKit
         {
             foreach (TabSettings tab in ConfigurationService.ActivePortal(0).DesktopTabs)
             {
-                NavigationMenu.Items.Add(new MenuItem(tab.TabName+"...temmorary..."));
+                var menuItem = new MenuItem(tab.TabName);
+                menuItem.NavigateUrl = "~/Default.aspx?id=" + tab.TabId;
+                NavigationMenu.Items.Add(menuItem);
             }
         }
     }
