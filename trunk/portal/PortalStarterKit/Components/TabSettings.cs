@@ -10,11 +10,16 @@ namespace ASPNET.StarterKit.Portal
     /// </summary>
     public class TabSettings
     {
-        public String AuthorizedRoles;
-        public List<ModuleSettings> Modules = new List<ModuleSettings>();
+        public TabSettings()
+        {
+            Modules = new List<ModuleSettings>();
+        }
 
-        public int TabId;
-        public String TabName;
-        public int TabOrder;
+        public String AuthorizedRoles { get; set; }
+        public List<ModuleSettings> Modules { get; set; }
+
+        public int TabId { get; set; }
+        public String TabName { get; set; }
+        public int TabOrder { get; set; }
     }
 }

@@ -14,10 +14,11 @@ namespace PortalStarterKit
             get; set;
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Init(Object sender, EventArgs e) 
         {
+            int id = Convert.ToInt32( Request.QueryString["id"] );
             var activePortal = ConfigurationService.ActivePortal(0);
-            var activeTab = ConfigurationService.ActiveTab(0);
+            var activeTab = ConfigurationService.ActiveTab(id);
 
             // Dynamically Populate the Left, Center and Right pane sections of the portal page
             if (activeTab.Modules.Count > 0)
@@ -40,6 +41,8 @@ namespace PortalStarterKit
                             break;
                     }
 
+                   
+    
                     // create the user control instance and dynamically
                     // inject it into the page.  
                     dynamic portalModule =  Page.LoadControl(moduleSettings.DesktopSrc);
@@ -51,7 +54,7 @@ namespace PortalStarterKit
                     portalModule.ModuleConfiguration = moduleSettings;
 
                     parent.Controls.Add(portalModule);
-
+               
 
                     // Dynamically inject separator break between portal modules
                     parent.Controls.Add(new LiteralControl("<" + "br" + ">"));

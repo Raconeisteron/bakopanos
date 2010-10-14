@@ -18,6 +18,8 @@ namespace PortalStarterKit
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            portalName.Text = ConfigurationService.ActivePortal(0).PortalName;
+
             foreach (TabSettings tab in ConfigurationService.ActivePortal(0).DesktopTabs)
             {
                 var menuItem = new MenuItem(tab.TabName);

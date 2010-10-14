@@ -6,12 +6,6 @@ using Microsoft.Practices.Unity;
 
 namespace PortalStarterKit
 {
-    public interface IContainerAccessor
-    {
-        IUnityContainer Container { get; }
-    }
-
-
     public class Global : HttpApplication, IContainerAccessor
     {
         /// <summary>
@@ -33,14 +27,14 @@ namespace PortalStarterKit
         protected void Application_Start(object sender, EventArgs e)
         {
 
-           
+           BuildContainer();
 
         }
 
         protected void Application_End(object sender, EventArgs e)
         {
 
-           
+           CleanUp();
 
         }
 
@@ -52,7 +46,7 @@ namespace PortalStarterKit
         private void Session_Start(object sender, EventArgs e)
         {
             // Code that runs when a new session is started
-            BuildContainer();
+            
         }
 
         private void Session_End(object sender, EventArgs e)
@@ -61,7 +55,7 @@ namespace PortalStarterKit
             // Note: The Session_End event is raised only when the sessionstate mode
             // is set to InProc in the Web.config file. If session mode is set to StateServer 
             // or SQLServer, the event is not raised.
-            CleanUp();
+            
         }
 
         public static void BuildItemWithCurrentContext<T>(Control ctrl)
