@@ -23,7 +23,7 @@ namespace PortalStarterKit.DesktopModules
         {
             if (!Page.IsPostBack)
             {
-                tabList.DataSource = ConfigurationService.ActivePortal("0").DesktopTabs;                
+                tabList.DataSource = ConfigurationService.DefaultPortal.DesktopTabs;                
                 tabList.DataBind();
             }
             

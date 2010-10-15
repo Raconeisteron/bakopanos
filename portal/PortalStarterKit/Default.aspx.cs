@@ -14,14 +14,14 @@ namespace PortalStarterKit
             get; set;
         }
 
-        protected void Page_Init(Object sender, EventArgs e)
+        protected void Page_Load(Object sender, EventArgs e)
         {
             PortalSettings activePortal = null;
             string portalId = Page.RouteData.Values["portalId"] as string;
             if (portalId == null)
             {
                 //todo
-                activePortal = ConfigurationService.ActivePortal("main");
+                activePortal = ConfigurationService.DefaultPortal;
             }
             else
             {
@@ -34,11 +34,11 @@ namespace PortalStarterKit
             if (tabId==null)
             {
                 //todo
-                activeTab = ConfigurationService.ActiveTab("home");
+                activeTab = ConfigurationService.DefaultTab;
             }
             else
             {
-                activeTab = ConfigurationService.ActiveTab(tabId);                
+                activeTab = ConfigurationService.ActiveTab(portalId, tabId);                
             }
 
             // Dynamically Populate the Left, Center and Right pane sections of the portal page

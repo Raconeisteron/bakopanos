@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 <SiteConfiguration>
-  
-  <Global PortalId="main" PortalName="ASP.NET Portal Starter Kit" AlwaysShowEditButton="true" />
+
+  <Portal PortalId="main" PortalName="ASP.NET Portal Starter Kit" AlwaysShowEditButton="true">
   
   <Tab TabId="home" TabName="Home" AccessRoles="All Users;" TabOrder="1">
     <Module ModuleId="1" ModuleTitle="Announcements" EditRoles="Admins;" ModuleDefId="1" PaneName="LeftPane" ModuleOrder="1" />
@@ -19,5 +19,5 @@
   
   <ModuleDefinition FriendlyName="Announcements" DesktopSourceFile="DesktopModules/Announcements.ascx" ModuleDefId="1" />
   <ModuleDefinition FriendlyName="SiteInfo" DesktopSourceFile="DesktopModules/SiteInfo.ascx" ModuleDefId="2" />
-  
+  </Portal>
 </SiteConfiguration>
