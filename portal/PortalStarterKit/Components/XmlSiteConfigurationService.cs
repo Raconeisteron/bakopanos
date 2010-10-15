@@ -80,14 +80,14 @@ namespace ASPNET.StarterKit.Portal
             }
         }
 
-        public PortalSettings ActivePortal (string portalId)
+        public PortalSettings GetPortal (string portalId)
         {
             return DesktopPortals.Single<PortalSettings>(item => item.PortalId == portalId);
         }
 
         public TabSettings ActiveTab(string portalId, string tabId)
         {
-            return ActivePortal(portalId).DesktopTabs.Single<TabSettings>(item=>item.TabId==tabId);
+            return GetPortal(portalId).DesktopTabs.Single<TabSettings>(item=>item.TabId==tabId);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ASPNET.StarterKit.Portal
 
         PortalSettings DefaultPortal{ get;}
         TabSettings DefaultTab { get; }
-        PortalSettings ActivePortal (string portalId);
+        PortalSettings GetPortal (string portalId);
         TabSettings ActiveTab(string portalId, string tabId);
     }
 }

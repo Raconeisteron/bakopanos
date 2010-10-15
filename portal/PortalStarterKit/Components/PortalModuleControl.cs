@@ -40,11 +40,12 @@ namespace ASPNET.StarterKit.Portal
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ModuleSettings ModuleConfiguration { get; set; }
 
-        // Methods
+        
         protected override void OnInit(EventArgs e)
         {
-            base.OnInit(e);
             Global.BuildItemWithCurrentContext<T>(this);
+
+            base.OnInit(e);
         }
     }
 

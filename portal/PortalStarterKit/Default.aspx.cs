@@ -17,28 +17,26 @@ namespace PortalStarterKit
         protected void Page_Load(Object sender, EventArgs e)
         {
             PortalSettings activePortal = null;
-            string portalId = Page.RouteData.Values["portalId"] as string;
-            if (portalId == null)
+            if (PortalId == null)
             {
                 //todo
                 activePortal = ConfigurationService.DefaultPortal;
             }
             else
             {
-                activePortal = ConfigurationService.ActivePortal(portalId);
+                activePortal = ConfigurationService.GetPortal(PortalId);
 
             }
 
             TabSettings activeTab = null;
-            string tabId = Page.RouteData.Values["tabId"] as string;
-            if (tabId==null)
+            if (TabId==null)
             {
                 //todo
                 activeTab = ConfigurationService.DefaultTab;
             }
             else
             {
-                activeTab = ConfigurationService.ActiveTab(portalId, tabId);                
+                activeTab = ConfigurationService.ActiveTab(PortalId, TabId);                
             }
 
             // Dynamically Populate the Left, Center and Right pane sections of the portal page
@@ -68,8 +66,7 @@ namespace PortalStarterKit
                     // inject it into the page.  
                     dynamic portalModule =  Page.LoadControl(moduleSettings.DesktopSrc);
 
-                    BuildUpControl(portalModule);
-
+                    
                     portalModule.PortalId = activePortal.PortalId;
                     portalModule.TabId = activePortal.ActiveTab.TabId;
                     portalModule.ModuleConfiguration = moduleSettings;
