@@ -11,10 +11,10 @@ namespace ASPNET.StarterKit.Portal
         public String AuthorizedEditRoles { get; set; }
 
         public String DesktopSrc { get; set; }
-        public int ModuleId { get; set; }
+        public string ModuleId { get; set; }
         public int ModuleOrder { get; set; }
         public String ModuleTitle { get; set; }
         public String PaneName { get; set; }
-        public int TabId { get; set; }
+        public string TabId { get; set; }
     }
 }

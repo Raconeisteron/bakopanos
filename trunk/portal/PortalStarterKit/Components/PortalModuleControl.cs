@@ -25,16 +25,16 @@ namespace ASPNET.StarterKit.Portal
         // Public property accessors
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int ModuleId
+        public string ModuleId
         {
             get { return ModuleConfiguration.ModuleId; }
         }
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int PortalId { get; set; }
+        public string PortalId { get; set; }
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int TabId { get; set; }
+        public string TabId { get; set; }
 
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]

@@ -21,7 +21,7 @@ namespace ASPNET.StarterKit.Portal
         public List<TabSettings> DesktopTabs { get; set; }
 
         public bool AlwaysShowEditButton { get; set; }
-        public int PortalId { get; set; }
+        public string PortalId { get; set; }
         public String PortalName { get; set; }
 
     }

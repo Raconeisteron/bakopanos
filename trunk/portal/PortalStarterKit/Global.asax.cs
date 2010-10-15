@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using System.Web.Routing;
 using System.Web.UI;
 using ASPNET.StarterKit.Portal;
 using Microsoft.Practices.Unity;
@@ -27,7 +28,13 @@ namespace PortalStarterKit
         protected void Application_Start(object sender, EventArgs e)
         {
 
-           BuildContainer();
+            RouteTable.Routes.MapPageRoute(
+                "default-route",
+                "{portalId}/{tabId}",
+                "~/Default.aspx"
+                );
+
+            BuildContainer();
 
         }
 
