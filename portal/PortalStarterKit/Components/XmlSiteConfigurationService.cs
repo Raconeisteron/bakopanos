@@ -20,7 +20,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 _settings.AlwaysShowEditButton = Convert.ToBoolean(global.Attribute("AlwaysShowEditButton").Value);
                 _settings.PortalName = global.Attribute("PortalName").Value as string;
-                _settings.PortalId = Convert.ToInt32(global.Attribute("PortalId").Value);
+                _settings.PortalId = global.Attribute("PortalId").Value;
             }
 
             foreach (XElement tab in document.Descendants("Tab"))
@@ -28,7 +28,7 @@ namespace ASPNET.StarterKit.Portal
                 var tabItem = new TabSettings();
 
                 tabItem.TabName = tab.Attribute("TabName").Value as string;
-                tabItem.TabId = Convert.ToInt32(tab.Attribute("TabId").Value);
+                tabItem.TabId = tab.Attribute("TabId").Value;
 
                 foreach (XElement module in tab.Descendants("Module"))
                 {
@@ -37,7 +37,7 @@ namespace ASPNET.StarterKit.Portal
                     moduleItem.TabId = tabItem.TabId;
                     moduleItem.ModuleTitle = module.Attribute("ModuleTitle").Value as string;
                     moduleItem.PaneName = module.Attribute("PaneName").Value as string;
-                    moduleItem.ModuleId = Convert.ToInt32(module.Attribute("ModuleId").Value);
+                    moduleItem.ModuleId = module.Attribute("ModuleId").Value;
 
                     int moduleDefId = Convert.ToInt32(module.Attribute("ModuleDefId").Value);
 
@@ -56,12 +56,12 @@ namespace ASPNET.StarterKit.Portal
             }
         }
 
-        public PortalSettings ActivePortal (int portalId)
+        public PortalSettings ActivePortal (string portalId)
         {
             return _settings;
         }
 
-        public TabSettings ActiveTab(int tabId)
+        public TabSettings ActiveTab(string tabId)
         {
             return _settings.DesktopTabs.Single<TabSettings>(item=>item.TabId==tabId);
         }

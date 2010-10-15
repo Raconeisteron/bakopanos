@@ -21,7 +21,7 @@ namespace PortalStarterKit.DesktopModules
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            label.Text=ConfigurationService.ActivePortal(0).PortalName;
+            label.Text=ConfigurationService.ActivePortal("0").PortalName;
         }
     }
 }

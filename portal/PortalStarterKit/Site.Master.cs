@@ -18,12 +18,12 @@ namespace PortalStarterKit
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            portalName.Text = ConfigurationService.ActivePortal(0).PortalName;
+            portalName.Text = ConfigurationService.ActivePortal("main").PortalName;
 
-            foreach (TabSettings tab in ConfigurationService.ActivePortal(0).DesktopTabs)
+            foreach (TabSettings tab in ConfigurationService.ActivePortal("main").DesktopTabs)
             {
                 var menuItem = new MenuItem(tab.TabName);
-                menuItem.NavigateUrl = "~/Default.aspx?id=" + tab.TabId;
+                menuItem.NavigateUrl = "~/main/" + tab.TabId;
                 NavigationMenu.Items.Add(menuItem);
             }
         }

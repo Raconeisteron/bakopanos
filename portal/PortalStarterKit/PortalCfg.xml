@@ -1,19 +1,19 @@
 <?xml version="1.0" standalone="yes"?>
 <SiteConfiguration>
   
-  <Global PortalId="0" PortalName="ASP.NET Portal Starter Kit" AlwaysShowEditButton="true" />
+  <Global PortalId="main" PortalName="ASP.NET Portal Starter Kit" AlwaysShowEditButton="true" />
   
-  <Tab TabId="0" TabName="Home" AccessRoles="All Users;" TabOrder="1">
+  <Tab TabId="home" TabName="Home" AccessRoles="All Users;" TabOrder="1">
     <Module ModuleId="1" ModuleTitle="Announcements" EditRoles="Admins;" ModuleDefId="1" PaneName="LeftPane" ModuleOrder="1" />
     <Module ModuleId="2" ModuleTitle="Announcements" EditRoles="Admins;" ModuleDefId="1" PaneName="ContentPane" ModuleOrder="1" />
     <Module ModuleId="3" ModuleTitle="Announcements" EditRoles="Admins;" ModuleDefId="1" PaneName="RightPane" ModuleOrder="1" />
   </Tab>
   
-  <Tab TabId="1" TabName="News" AccessRoles="All Users;" TabOrder="2">
+  <Tab TabId="news" TabName="News" AccessRoles="All Users;" TabOrder="2">
     <Module ModuleId="4" ModuleTitle="Announcements" EditRoles="Admins;" ModuleDefId="1" PaneName="ContentPane" ModuleOrder="1" />
   </Tab>
 
-  <Tab TabId="2" TabName="About" AccessRoles="All Users;" TabOrder="3">
+  <Tab TabId="about" TabName="About" AccessRoles="All Users;" TabOrder="3">
     <Module ModuleId="5" ModuleTitle="Tabs" EditRoles="Admins;" ModuleDefId="2" PaneName="RightPane" ModuleOrder="1" />
   </Tab>
   

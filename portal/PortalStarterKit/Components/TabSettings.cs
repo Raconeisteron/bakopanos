@@ -18,7 +18,7 @@ namespace ASPNET.StarterKit.Portal
         public String AuthorizedRoles { get; set; }
         public List<ModuleSettings> Modules { get; set; }
 
-        public int TabId { get; set; }
+        public string TabId { get; set; }
         public String TabName { get; set; }
         public int TabOrder { get; set; }
     }
