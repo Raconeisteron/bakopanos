@@ -56,6 +56,7 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="DesktopModules\Announcements.ascx" />
+    <Content Include="DesktopModules\SiteInfo.ascx" />
     <Content Include="PortalCfg.xml" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
@@ -386,6 +387,13 @@
     </Compile>
     <Compile Include="DesktopModules\Announcements.ascx.designer.cs">
       <DependentUpon>Announcements.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopModules\SiteInfo.ascx.cs">
+      <DependentUpon>SiteInfo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\SiteInfo.ascx.designer.cs">
+      <DependentUpon>SiteInfo.ascx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
