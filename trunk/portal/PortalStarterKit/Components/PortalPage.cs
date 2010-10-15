@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Web;
 using System.Web.UI;
 using PortalStarterKit;
@@ -43,6 +44,5 @@ namespace ASPNET.StarterKit.Portal
         {
             _accessor.Container.BuildUp(typeof(Control), ctrl, string.Empty);
         }
-
     }
 }

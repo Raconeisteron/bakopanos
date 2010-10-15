@@ -8,7 +8,7 @@ namespace ASPNET.StarterKit.Portal
 {
     public class XmlSiteConfigurationService : ISiteConfigurationService
     {
-        readonly PortalSettings _settings = new PortalSettings();
+        readonly List<PortalSettings> _deskotPortals = new List<PortalSettings>();
 
         public XmlSiteConfigurationService()
         {
@@ -16,54 +16,78 @@ namespace ASPNET.StarterKit.Portal
             string path = HttpContext.Current.Server.MapPath("portalcfg.xml");
             XDocument document = XDocument.Load(path);
 
-            foreach (XElement global in document.Descendants("Global"))
+            foreach (XElement portal in document.Descendants("Portal"))
             {
-                _settings.AlwaysShowEditButton = Convert.ToBoolean(global.Attribute("AlwaysShowEditButton").Value);
-                _settings.PortalName = global.Attribute("PortalName").Value as string;
-                _settings.PortalId = global.Attribute("PortalId").Value;
-            }
+                var portalItem = new PortalSettings();
 
-            foreach (XElement tab in document.Descendants("Tab"))
-            {
-                var tabItem = new TabSettings();
+                portalItem.AlwaysShowEditButton = Convert.ToBoolean(portal.Attribute("AlwaysShowEditButton").Value);
+                portalItem.PortalName = portal.Attribute("PortalName").Value;
+                portalItem.PortalId = portal.Attribute("PortalId").Value;
 
-                tabItem.TabName = tab.Attribute("TabName").Value as string;
-                tabItem.TabId = tab.Attribute("TabId").Value;
+                DesktopPortals.Add(portalItem);
 
-                foreach (XElement module in tab.Descendants("Module"))
+                foreach (XElement tab in portal.Descendants("Tab"))
                 {
-                    var moduleItem = new ModuleSettings();
+                    var tabItem = new TabSettings();
 
-                    moduleItem.TabId = tabItem.TabId;
-                    moduleItem.ModuleTitle = module.Attribute("ModuleTitle").Value as string;
-                    moduleItem.PaneName = module.Attribute("PaneName").Value as string;
-                    moduleItem.ModuleId = module.Attribute("ModuleId").Value;
+                    tabItem.TabName = tab.Attribute("TabName").Value;
+                    tabItem.TabId = tab.Attribute("TabId").Value;
 
-                    int moduleDefId = Convert.ToInt32(module.Attribute("ModuleDefId").Value);
-
-                    foreach (XElement moduleDef in document.Descendants("ModuleDefinition"))
+                    foreach (XElement module in tab.Descendants("Module"))
                     {
-                        if (moduleDefId == Convert.ToInt32(moduleDef.Attribute("ModuleDefId").Value))
+                        var moduleItem = new ModuleSettings();
+
+                        moduleItem.TabId = tabItem.TabId;
+                        moduleItem.ModuleTitle = module.Attribute("ModuleTitle").Value;
+                        moduleItem.PaneName = module.Attribute("PaneName").Value;
+                        moduleItem.ModuleId = module.Attribute("ModuleId").Value;
+
+                        int moduleDefId = Convert.ToInt32(module.Attribute("ModuleDefId").Value);
+
+                        foreach (XElement moduleDef in document.Descendants("ModuleDefinition"))
                         {
-                            moduleItem.DesktopSrc = moduleDef.Attribute("DesktopSourceFile").Value as string;
+                            if (moduleDefId == Convert.ToInt32(moduleDef.Attribute("ModuleDefId").Value))
+                            {
+                                moduleItem.DesktopSrc = moduleDef.Attribute("DesktopSourceFile").Value;
+                            }
                         }
+
+                        tabItem.Modules.Add(moduleItem);
                     }
 
-                    tabItem.Modules.Add(moduleItem);
+                    portalItem.DesktopTabs.Add(tabItem);
                 }
+            }
+        }
 
-                _settings.DesktopTabs.Add(tabItem);
+        public List<PortalSettings> DesktopPortals
+        {
+            get { return _deskotPortals;}
+        }
+        public PortalSettings DefaultPortal
+        {
+            get
+            {
+                return DesktopPortals[0];
+            }
+        }
+
+        public TabSettings DefaultTab
+        {
+            get
+            {
+                return DefaultPortal.DesktopTabs[0];
             }
         }
 
         public PortalSettings ActivePortal (string portalId)
         {
-            return _settings;
+            return DesktopPortals.Single<PortalSettings>(item => item.PortalId == portalId);
         }
 
-        public TabSettings ActiveTab(string tabId)
+        public TabSettings ActiveTab(string portalId, string tabId)
         {
-            return _settings.DesktopTabs.Single<TabSettings>(item=>item.TabId==tabId);
+            return ActivePortal(portalId).DesktopTabs.Single<TabSettings>(item=>item.TabId==tabId);
         }
     }
 }
