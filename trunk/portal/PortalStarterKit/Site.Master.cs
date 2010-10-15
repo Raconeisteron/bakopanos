@@ -18,9 +18,9 @@ namespace PortalStarterKit
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            portalName.Text = ConfigurationService.ActivePortal("main").PortalName;
+            portalName.Text = ConfigurationService.GetPortal("main").PortalName;
 
-            foreach (TabSettings tab in ConfigurationService.ActivePortal("main").DesktopTabs)
+            foreach (TabSettings tab in ConfigurationService.GetPortal("main").DesktopTabs)
             {
                 var menuItem = new MenuItem(tab.TabName);
                 menuItem.NavigateUrl = "~/main/" + tab.TabId;

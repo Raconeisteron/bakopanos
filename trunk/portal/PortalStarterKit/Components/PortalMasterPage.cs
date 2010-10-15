@@ -10,13 +10,18 @@ namespace ASPNET.StarterKit.Portal
     {
         private IContainerAccessor _accessor;
 
+        public string PortalId { get; private set; }
+        public string TabId { get; private set; }
+
         protected override void OnInit(EventArgs e)
         {
             InjectDependencies();
 
+            PortalId = Page.RouteData.Values["portalId"] as string;
+            TabId = Page.RouteData.Values["tabId"] as string;
+
             base.OnInit(e);
         }
-
         protected virtual void InjectDependencies()
         {
             var context = HttpContext.Current;
@@ -40,10 +45,6 @@ namespace ASPNET.StarterKit.Portal
             container.BuildUp(typeof(T), this, string.Empty);
         }
 
-        public void BuildUpControl(Control ctrl)
-        {
-            _accessor.Container.BuildUp(typeof(Control), ctrl, string.Empty);
-        }
-
+       
     }
 }
