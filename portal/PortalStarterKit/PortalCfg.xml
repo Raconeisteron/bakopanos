@@ -10,13 +10,14 @@
   </Tab>
   
   <Tab TabId="1" TabName="News" AccessRoles="All Users;" TabOrder="2">
-    <Module ModuleId="2" ModuleTitle="Announcements" EditRoles="Admins;" ModuleDefId="1" PaneName="ContentPane" ModuleOrder="1" />
+    <Module ModuleId="4" ModuleTitle="Announcements" EditRoles="Admins;" ModuleDefId="1" PaneName="ContentPane" ModuleOrder="1" />
   </Tab>
 
   <Tab TabId="2" TabName="About" AccessRoles="All Users;" TabOrder="3">
-    <Module ModuleId="2" ModuleTitle="Announcements" EditRoles="Admins;" ModuleDefId="1" PaneName="RightPane" ModuleOrder="1" />
+    <Module ModuleId="5" ModuleTitle="Tabs" EditRoles="Admins;" ModuleDefId="2" PaneName="RightPane" ModuleOrder="1" />
   </Tab>
   
   <ModuleDefinition FriendlyName="Announcements" DesktopSourceFile="DesktopModules/Announcements.ascx" ModuleDefId="1" />
+  <ModuleDefinition FriendlyName="SiteInfo" DesktopSourceFile="DesktopModules/SiteInfo.ascx" ModuleDefId="2" />
   
 </SiteConfiguration>
