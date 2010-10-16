@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Xml.Linq;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class XmlSiteConfigurationService : ISiteConfigurationService
+    public class XmlSiteConfigurationRepository : ISiteConfigurationRepository
     {
-        readonly List<PortalSettings> _deskotPortals = new List<PortalSettings>();
-
-        public XmlSiteConfigurationService()
+        public List<PortalSettings> Read()
         {
-            
+            var _deskotPortals = new List<PortalSettings>();
             string path = HttpContext.Current.Server.MapPath("portalcfg.xml");
             XDocument document = XDocument.Load(path);
 
@@ -24,7 +21,7 @@ namespace ASPNET.StarterKit.Portal
                 portalItem.PortalName = portal.Attribute("PortalName").Value;
                 portalItem.PortalId = portal.Attribute("PortalId").Value;
 
-                DesktopPortals.Add(portalItem);
+                _deskotPortals.Add(portalItem);
 
                 foreach (XElement tab in portal.Descendants("Tab"))
                 {
@@ -39,7 +36,7 @@ namespace ASPNET.StarterKit.Portal
 
                         moduleItem.TabId = tabItem.TabId;
                         moduleItem.ModuleTitle = module.Attribute("ModuleTitle").Value;
-                        moduleItem.PaneName = module.Attribute("PaneName").Value;
+                        moduleItem.PaneName = (PortalPane)Enum.Parse(typeof(PortalPane), module.Attribute("PaneName").Value);
                         moduleItem.ModuleId = module.Attribute("ModuleId").Value;
 
                         int moduleDefId = Convert.ToInt32(module.Attribute("ModuleDefId").Value);
@@ -58,36 +55,7 @@ namespace ASPNET.StarterKit.Portal
                     portalItem.DesktopTabs.Add(tabItem);
                 }
             }
-        }
-
-        public List<PortalSettings> DesktopPortals
-        {
-            get { return _deskotPortals;}
-        }
-        public PortalSettings DefaultPortal
-        {
-            get
-            {
-                return DesktopPortals[0];
-            }
-        }
-
-        public TabSettings DefaultTab
-        {
-            get
-            {
-                return DefaultPortal.DesktopTabs[0];
-            }
-        }
-
-        public PortalSettings GetPortal (string portalId)
-        {
-            return DesktopPortals.Single<PortalSettings>(item => item.PortalId == portalId);
-        }
-
-        public TabSettings ActiveTab(string portalId, string tabId)
-        {
-            return GetPortal(portalId).DesktopTabs.Single<TabSettings>(item=>item.TabId==tabId);
+            return _deskotPortals;
         }
     }
 }

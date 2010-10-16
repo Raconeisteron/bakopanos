@@ -78,7 +78,10 @@ namespace PortalStarterKit
             // container here through classes or configuration
             // register the container in the container property
 
-            container.RegisterType<ISiteConfigurationService, XmlSiteConfigurationService>(
+            container.RegisterType<ISiteConfigurationService, SiteConfigurationService>(
+                new ContainerControlledLifetimeManager());
+
+            container.RegisterType<ISiteConfigurationRepository, XmlSiteConfigurationRepository>(
                 new ContainerControlledLifetimeManager());
 
             Container = container;
