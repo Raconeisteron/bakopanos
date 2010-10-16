@@ -360,6 +360,12 @@
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Components\IContainerAccessor.cs" />
+    <Compile Include="Components\ISiteConfigurationRepository.cs" />
+    <Compile Include="Components\PortalExtensions.cs" />
+    <Compile Include="Components\PortalModuleUserControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\IPortalPage.cs" />
     <Compile Include="Components\PortalMasterPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -367,7 +373,9 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Components\ISiteConfigurationService.cs" />
-    <Compile Include="Components\XmlSiteConfigurationService.cs" />
+    <Compile Include="Components\PortalPane.cs" />
+    <Compile Include="Components\XmlSiteConfigurationRepository.cs" />
+    <Compile Include="Components\SiteConfigurationService.cs" />
     <Compile Include="Components\ModuleSettings.cs" />
     <Compile Include="Components\PortalSettings.cs" />
     <Compile Include="Components\TabSettings.cs" />

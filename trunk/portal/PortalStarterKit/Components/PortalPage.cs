@@ -2,15 +2,23 @@
 using System.ComponentModel;
 using System.Web;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 using PortalStarterKit;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public abstract class PortalPage<T> : Page
-         where T : class
+    public abstract class PortalPage<T> : Page, IPortalPage
+        where T : IPortalPage
     {
-        private IContainerAccessor _accessor;
-
+        public ISiteConfigurationService SiteConfiguration
+        {
+            get;
+            set;
+        }
+        public string GetNavigateUrl(string portalId, string tabId)
+        {
+            return Page.GetNavigateUrl(portalId, tabId);
+        }
         protected override void OnPreInit(EventArgs e)
         {
             InjectDependencies();
@@ -22,9 +30,11 @@ namespace ASPNET.StarterKit.Portal
 
         protected override void OnInit(EventArgs e)
         {
-            PortalId = Page.RouteData.Values["portalId"] as string;
-            TabId = Page.RouteData.Values["tabId"] as string;
-           
+            PortalId = Page.RouteData.Values["portalId"] as string ??
+                       SiteConfiguration.GetPortals()[0].PortalId;
+
+            TabId = Page.RouteData.Values["tabId"] as string ??
+                    SiteConfiguration.GetTabs(PortalId)[0].TabId;
             base.OnInit(e);
         }
 
@@ -36,19 +46,20 @@ namespace ASPNET.StarterKit.Portal
                 return;
             }
 
-            _accessor = context.ApplicationInstance as IContainerAccessor;
-            if (_accessor == null)
+            var accessor = context.ApplicationInstance as IContainerAccessor;
+            if (accessor == null)
             {
                 return;
             }
 
-            var container = _accessor.Container;
+            var container = accessor.Container;
             if (container == null)
             {
                 throw new InvalidOperationException("No Unity container found");
             }
 
             container.BuildUp(typeof(T), this, string.Empty);
+            SiteConfiguration = container.Resolve<ISiteConfigurationService>();
         }
 
         

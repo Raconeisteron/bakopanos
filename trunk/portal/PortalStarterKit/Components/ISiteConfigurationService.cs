@@ -4,11 +4,10 @@ namespace ASPNET.StarterKit.Portal
 {
     public interface ISiteConfigurationService
     {
-        List<PortalSettings> DesktopPortals { get; }
+        List<PortalSettings> GetPortals();
+        List<TabSettings> GetTabs(string portalId);
 
-        PortalSettings DefaultPortal{ get;}
-        TabSettings DefaultTab { get; }
         PortalSettings GetPortal (string portalId);
-        TabSettings ActiveTab(string portalId, string tabId);
+        TabSettings GetTab(string portalId, string tabId);
     }
 }

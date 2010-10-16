@@ -14,7 +14,7 @@ namespace ASPNET.StarterKit.Portal
         public string ModuleId { get; set; }
         public int ModuleOrder { get; set; }
         public String ModuleTitle { get; set; }
-        public String PaneName { get; set; }
+        public PortalPane PaneName { get; set; }
         public string TabId { get; set; }
     }
 }
