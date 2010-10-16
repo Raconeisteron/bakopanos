@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -23,19 +23,19 @@ using Microsoft.Practices.Unity.InterceptionExtension.Properties;
 namespace Microsoft.Practices.Unity.InterceptionExtension
 {
     /// <summary>
-    /// A class used to generate proxy classes for doing interception on
-    /// interfaces.
+    ///   A class used to generate proxy classes for doing interception on
+    ///   interfaces.
     /// </summary>
     public class InterfaceInterceptorClassGenerator
     {
-        private readonly Type typeToIntercept;
-        private readonly IEnumerable<Type> additionalInterfaces;
         private static readonly AssemblyBuilder assemblyBuilder;
+        private readonly IEnumerable<Type> additionalInterfaces;
+        private readonly Type typeToIntercept;
 
         private FieldBuilder proxyInterceptionPipelineField;
         private FieldBuilder targetField;
-        private FieldBuilder typeToProxyField;
         private TypeBuilder typeBuilder;
+        private FieldBuilder typeToProxyField;
 
         [SecurityCritical]
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline",
@@ -43,22 +43,21 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         static InterfaceInterceptorClassGenerator()
         {
             assemblyBuilder = AppDomain.CurrentDomain.DefineDynamicAssembly(
-                new AssemblyName("Unity_ILEmit_InterfaceProxies"), 
+                new AssemblyName("Unity_ILEmit_InterfaceProxies"),
 #if DEBUG_SAVE_GENERATED_ASSEMBLY
                 AssemblyBuilderAccess.RunAndSave
 #else
                 AssemblyBuilderAccess.Run
 #endif
                 );
-
         }
 
         /// <summary>
-        /// Create an instance of <see cref="InterfaceInterceptorClassGenerator"/> that
-        /// can construct an intercepting proxy for the given interface.
+        ///   Create an instance of <see cref = "InterfaceInterceptorClassGenerator" /> that
+        ///   can construct an intercepting proxy for the given interface.
         /// </summary>
-        /// <param name="typeToIntercept">Type of the interface to intercept.</param>
-        /// <param name="additionalInterfaces">Additional interfaces the proxy must implement.</param>
+        /// <param name = "typeToIntercept">Type of the interface to intercept.</param>
+        /// <param name = "additionalInterfaces">Additional interfaces the proxy must implement.</param>
         public InterfaceInterceptorClassGenerator(Type typeToIntercept, IEnumerable<Type> additionalInterfaces)
         {
             CheckAdditionalInterfaces(additionalInterfaces);
@@ -75,7 +74,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
                 throw new ArgumentNullException("additionalInterfaces");
             }
 
-            foreach (var type in additionalInterfaces)
+            foreach (Type type in additionalInterfaces)
             {
                 if (type == null)
                 {
@@ -99,29 +98,29 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Create the type to proxy the requested interface
+        ///   Create the type to proxy the requested interface
         /// </summary>
         /// <returns></returns>
         public Type CreateProxyType()
         {
-            HashSet<Type> implementedInterfaces = new HashSet<Type>();
+            var implementedInterfaces = new HashSet<Type>();
 
             int memberCount =
                 new InterfaceImplementation(
-                    this.typeBuilder,
-                    this.typeToIntercept,
-                    this.proxyInterceptionPipelineField,
+                    typeBuilder,
+                    typeToIntercept,
+                    proxyInterceptionPipelineField,
                     false,
-                    this.targetField)
+                    targetField)
                     .Implement(implementedInterfaces, 0);
 
-            foreach (var @interface in this.additionalInterfaces)
+            foreach (Type @interface in additionalInterfaces)
             {
                 memberCount =
                     new InterfaceImplementation(
-                        this.typeBuilder,
+                        typeBuilder,
                         @interface,
-                        this.proxyInterceptionPipelineField,
+                        proxyInterceptionPipelineField,
                         true)
                         .Implement(implementedInterfaces, memberCount);
             }
@@ -137,7 +136,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
 
         private void AddConstructor()
         {
-            Type[] paramTypes = Sequence.Collect(typeToIntercept, typeof(Type)).ToArray();
+            Type[] paramTypes = Sequence.Collect(typeToIntercept, typeof (Type)).ToArray();
 
             ConstructorBuilder ctorBuilder = typeBuilder.DefineConstructor(
                 MethodAttributes.Public,
@@ -182,7 +181,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
 
             proxyInterceptionPipelineField = InterceptingProxyImplementor.ImplementIInterceptingProxy(typeBuilder);
             targetField = typeBuilder.DefineField("target", typeToIntercept, FieldAttributes.Private);
-            typeToProxyField = typeBuilder.DefineField("typeToProxy", typeof(Type), FieldAttributes.Private);
+            typeToProxyField = typeBuilder.DefineField("typeToProxy", typeof (Type), FieldAttributes.Private);
         }
 
         private static ModuleBuilder GetModuleBuilder()

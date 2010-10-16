@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
-namespace ASPNET.StarterKit.Portal
+namespace PortalStarterKit.Components
 {
     /// <summary>
     ///   This class encapsulates all of the settings for the Portal, as well
@@ -23,6 +22,5 @@ namespace ASPNET.StarterKit.Portal
         public bool AlwaysShowEditButton { get; set; }
         public string PortalId { get; set; }
         public String PortalName { get; set; }
-
     }
 }

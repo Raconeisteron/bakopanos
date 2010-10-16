@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -12,15 +12,14 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Reflection;
 using Microsoft.Practices.Unity.Utility;
 
 namespace Microsoft.Practices.Unity.InterceptionExtension
 {
     /// <summary>
-    /// A matching rule that matches when the member is declared
-    /// in the given type.
+    ///   A matching rule that matches when the member is declared
+    ///   in the given type.
     /// </summary>
     public class TypeMatchingRule : IMatchingRule
     {
@@ -28,10 +27,10 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         private readonly bool matchesTypelessMembers;
 
         /// <summary>
-        /// Constructs a new <see cref="TypeMatchingRule"/> that matches the
-        /// given type.
+        ///   Constructs a new <see cref = "TypeMatchingRule" /> that matches the
+        ///   given type.
         /// </summary>
-        /// <param name="type">The type to match.</param>
+        /// <param name = "type">The type to match.</param>
         [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
             Justification = "Validation done by Guard class.")]
         public TypeMatchingRule(Type type)
@@ -40,47 +39,51 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Constructs a new <see cref="TypeMatchingRule"/> that matches types
-        /// with the given name.
+        ///   Constructs a new <see cref = "TypeMatchingRule" /> that matches types
+        ///   with the given name.
         /// </summary>
-        /// <remarks>Comparisons are case sensitive.</remarks>
-        /// <param name="typeName">Type name to match.</param>
+        /// <remarks>
+        ///   Comparisons are case sensitive.
+        /// </remarks>
+        /// <param name = "typeName">Type name to match.</param>
         public TypeMatchingRule(string typeName)
             : this(typeName, false)
         {
         }
 
         /// <summary>
-        /// Constructs a new <see cref="TypeMatchingRule"/> that matches types
-        /// with the given name, using the given case sensitivity.
+        ///   Constructs a new <see cref = "TypeMatchingRule" /> that matches types
+        ///   with the given name, using the given case sensitivity.
         /// </summary>
-        /// <param name="typeName">Type name to match.</param>
-        /// <param name="ignoreCase">if false, do case-sensitive comparison. If true, do case-insensitive.</param>
+        /// <param name = "typeName">Type name to match.</param>
+        /// <param name = "ignoreCase">if false, do case-sensitive comparison. If true, do case-insensitive.</param>
         public TypeMatchingRule(string typeName, bool ignoreCase)
-            : this(new MatchingInfo[] { new MatchingInfo(typeName, ignoreCase) })
+            : this(new[] {new MatchingInfo(typeName, ignoreCase)})
         {
         }
 
         /// <summary>
-        /// Constructs a new <see cref="TypeMatchingRule"/> that will match
-        /// any of the type names given in the collection of match information.
+        ///   Constructs a new <see cref = "TypeMatchingRule" /> that will match
+        ///   any of the type names given in the collection of match information.
         /// </summary>
-        /// <param name="matches">The match information to match.</param>
+        /// <param name = "matches">The match information to match.</param>
         public TypeMatchingRule(IEnumerable<MatchingInfo> matches)
         {
             this.matches = new List<MatchingInfo>(matches);
             matchesTypelessMembers = this.matches.Exists(delegate(MatchingInfo match)
-            {
-                return
-                    string.IsNullOrEmpty(
-                        match.Match);
-            });
+                                                             {
+                                                                 return
+                                                                     string.IsNullOrEmpty(
+                                                                         match.Match);
+                                                             });
         }
 
+        #region IMatchingRule Members
+
         /// <summary>
-        /// Checks if the given member matches any of this object's matches.
+        ///   Checks if the given member matches any of this object's matches.
         /// </summary>
-        /// <param name="member">Member to match.</param>
+        /// <param name = "member">Member to match.</param>
         /// <returns>True if match, false if not.</returns>
         [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
             Justification = "Validation done by Guard class.")]
@@ -96,11 +99,15 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
             return doesMatch;
         }
 
+        #endregion
+
         /// <summary>
-        /// Checks if the given type matches any of this object's matches.
+        ///   Checks if the given type matches any of this object's matches.
         /// </summary>
-        /// <remarks>Matches may be on the namespace-qualified type name or just the type name.</remarks>
-        /// <param name="t">Type to check.</param>
+        /// <remarks>
+        ///   Matches may be on the namespace-qualified type name or just the type name.
+        /// </remarks>
+        /// <param name = "t">Type to check.</param>
         /// <returns>True if it matches, false if it doesn't.</returns>
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "t")]
         public bool Matches(Type t)

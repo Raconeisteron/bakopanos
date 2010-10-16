@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -20,8 +20,8 @@ using Microsoft.Practices.Unity.Utility;
 namespace Microsoft.Practices.Unity
 {
     /// <summary>
-    /// The exception thrown by the Unity container when
-    /// an attempt to resolve a dependency fails.
+    ///   The exception thrown by the Unity container when
+    ///   an attempt to resolve a dependency fails.
     /// </summary>
     // FxCop suppression: The standard constructors don't make sense for this exception,
     // as calling them will leave out the information that makes the exception useful
@@ -29,18 +29,19 @@ namespace Microsoft.Practices.Unity
     [SuppressMessage("Microsoft.Design", "CA1032:ImplementStandardExceptionConstructors")]
     public partial class ResolutionFailedException : Exception
     {
-        private readonly string typeRequested;
         private readonly string nameRequested;
+        private readonly string typeRequested;
 
         /// <summary>
-        /// Create a new <see cref="ResolutionFailedException"/> that records
-        /// the exception for the given type and name.
+        ///   Create a new <see cref = "ResolutionFailedException" /> that records
+        ///   the exception for the given type and name.
         /// </summary>
-        /// <param name="typeRequested">Type requested from the container.</param>
-        /// <param name="nameRequested">Name requested from the container.</param>
-        /// <param name="innerException">The actual exception that caused the failure of the build.</param>
-        /// <param name="context">The build context representing the failed operation.</param>
-        public ResolutionFailedException(Type typeRequested, string nameRequested, Exception innerException, IBuilderContext context)
+        /// <param name = "typeRequested">Type requested from the container.</param>
+        /// <param name = "nameRequested">Name requested from the container.</param>
+        /// <param name = "innerException">The actual exception that caused the failure of the build.</param>
+        /// <param name = "context">The build context representing the failed operation.</param>
+        public ResolutionFailedException(Type typeRequested, string nameRequested, Exception innerException,
+                                         IBuilderContext context)
             : base(CreateMessage(typeRequested, nameRequested, innerException, context), innerException)
         {
             Guard.ArgumentNotNull(typeRequested, "typeRequested");
@@ -52,7 +53,7 @@ namespace Microsoft.Practices.Unity
         }
 
         /// <summary>
-        /// The type that was being requested from the container at the time of failure.
+        ///   The type that was being requested from the container at the time of failure.
         /// </summary>
         public string TypeRequested
         {
@@ -60,14 +61,15 @@ namespace Microsoft.Practices.Unity
         }
 
         /// <summary>
-        /// The name that was being requested from the container at the time of failure.
+        ///   The name that was being requested from the container at the time of failure.
         /// </summary>
         public string NameRequested
         {
             get { return nameRequested; }
         }
 
-        private static string CreateMessage(Type typeRequested, string nameRequested, Exception innerException, IBuilderContext context)
+        private static string CreateMessage(Type typeRequested, string nameRequested, Exception innerException,
+                                            IBuilderContext context)
         {
             Guard.ArgumentNotNull(typeRequested, "typeRequested");
             Guard.ArgumentNotNull(context, "context");
@@ -93,9 +95,9 @@ namespace Microsoft.Practices.Unity
         {
             if (context != null)
             {
-                var indentation = new string(' ', depth * 2);
-                var key = (NamedTypeBuildKey)context.BuildKey;
-                var originalKey = (NamedTypeBuildKey)context.OriginalBuildKey;
+                var indentation = new string(' ', depth*2);
+                NamedTypeBuildKey key = context.BuildKey;
+                NamedTypeBuildKey originalKey = context.OriginalBuildKey;
 
                 builder.Append(indentation);
 
@@ -137,7 +139,7 @@ namespace Microsoft.Practices.Unity
 
         private static string ExceptionReason(IBuilderContext context)
         {
-            var deepestContext = context;
+            IBuilderContext deepestContext = context;
             while (deepestContext.ChildContext != null)
             {
                 deepestContext = deepestContext.ChildContext;

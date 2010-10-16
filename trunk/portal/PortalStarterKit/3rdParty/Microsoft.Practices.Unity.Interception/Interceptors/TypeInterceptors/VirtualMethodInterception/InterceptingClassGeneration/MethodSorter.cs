@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -13,25 +13,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace Microsoft.Practices.Unity.InterceptionExtension
 {
     /// <summary>
-    /// A utility class that takes a set of <see cref="MethodInfo"/>s
-    /// and pulls out shadowed methods, only returning the ones that
-    /// are actually accessible to be overriden.
+    ///   A utility class that takes a set of <see cref = "MethodInfo" />s
+    ///   and pulls out shadowed methods, only returning the ones that
+    ///   are actually accessible to be overriden.
     /// </summary>
-    class MethodSorter : IEnumerable<MethodInfo>
+    internal class MethodSorter : IEnumerable<MethodInfo>
     {
-        readonly Dictionary<string, List<MethodInfo>> methodsByName = new Dictionary<string, List<MethodInfo>>();
         private readonly Type declaringType;
-        
+        private readonly Dictionary<string, List<MethodInfo>> methodsByName = new Dictionary<string, List<MethodInfo>>();
+
         public MethodSorter(Type declaringType, IEnumerable<MethodInfo> methodsToSort)
         {
             this.declaringType = declaringType;
             GroupMethodsByName(methodsToSort);
         }
+
+        #region IEnumerable<MethodInfo> Members
 
         IEnumerator IEnumerable.GetEnumerator()
         {
@@ -53,13 +54,15 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
                         yield return method;
                     }
                 }
-            }            
+            }
         }
 
+        #endregion
+
         /// <summary>
-        /// Take the list of methods and put them together into lists index by method name.
+        ///   Take the list of methods and put them together into lists index by method name.
         /// </summary>
-        /// <param name="methodsToSort">Methods to sort through.</param>
+        /// <param name = "methodsToSort">Methods to sort through.</param>
         private void GroupMethodsByName(IEnumerable<MethodInfo> methodsToSort)
         {
             foreach (MethodInfo method in methodsToSort)
@@ -70,36 +73,34 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
                 }
                 methodsByName[method.Name].Add(method);
             }
-            
         }
 
         /// <summary>
-        /// Given a list of overloads for a method, return only those methods
-        /// that are actually visible. In other words, if there's a "new SomeType" method
-        /// somewhere, return only the new one, not the one from the base class
-        /// that's now hidden.
+        ///   Given a list of overloads for a method, return only those methods
+        ///   that are actually visible. In other words, if there's a "new SomeType" method
+        ///   somewhere, return only the new one, not the one from the base class
+        ///   that's now hidden.
         /// </summary>
-        /// <param name="methods">Sequence of methods to process.</param>
+        /// <param name = "methods">Sequence of methods to process.</param>
         /// <returns>Sequence of returned methods.</returns>
         private IEnumerable<MethodInfo> RemoveHiddenOverloads(IEnumerable<MethodInfo> methods)
         {
             // Group the methods by signature
-            List<MethodInfo> methodsByParameters = new List<MethodInfo>(methods);
+            var methodsByParameters = new List<MethodInfo>(methods);
             methodsByParameters.Sort(CompareMethodInfosByParameterLists);
-            List<List<MethodInfo>> overloadGroups = new List<List<MethodInfo>>(GroupOverloadedMethods(methodsByParameters));
+            var overloadGroups = new List<List<MethodInfo>>(GroupOverloadedMethods(methodsByParameters));
 
             foreach (List<MethodInfo> overload in overloadGroups)
             {
                 yield return SelectMostDerivedOverload(overload);
             }
-
         }
-        
+
         /// <summary>
-        /// Take a semi-randomly ordered set of methods on a type and
-        /// sort them into groups by name and by parameter list.
+        ///   Take a semi-randomly ordered set of methods on a type and
+        ///   sort them into groups by name and by parameter list.
         /// </summary>
-        /// <param name="sortedMethods">The list of methods.</param>
+        /// <param name = "sortedMethods">The list of methods.</param>
         /// <returns>Sequence of lists of methods, grouped by method name.</returns>
         private static IEnumerable<List<MethodInfo>> GroupOverloadedMethods(IList<MethodInfo> sortedMethods)
         {
@@ -107,11 +108,11 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
             while (index < sortedMethods.Count)
             {
                 int overloadStart = index;
-                List<MethodInfo> overloads = new List<MethodInfo>();
+                var overloads = new List<MethodInfo>();
                 overloads.Add(sortedMethods[overloadStart]);
                 ++index;
                 while (index < sortedMethods.Count &&
-                    CompareMethodInfosByParameterLists(sortedMethods[overloadStart], sortedMethods[index]) == 0)
+                       CompareMethodInfosByParameterLists(sortedMethods[overloadStart], sortedMethods[index]) == 0)
                 {
                     overloads.Add(sortedMethods[index++]);
                 }
@@ -121,9 +122,9 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Given a set of hiding overloads, return only the currently visible one.
+        ///   Given a set of hiding overloads, return only the currently visible one.
         /// </summary>
-        /// <param name="overloads">The set of overloads.</param>
+        /// <param name = "overloads">The set of overloads.</param>
         /// <returns>The most visible one.</returns>
         private MethodInfo SelectMostDerivedOverload(IList<MethodInfo> overloads)
         {
@@ -148,11 +149,11 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Given a method, return a value indicating how deeply in the
-        /// inheritance hierarchy the method is declared. Current type = 0,
-        /// parent = 1, grandparent = 2, etc.
+        ///   Given a method, return a value indicating how deeply in the
+        ///   inheritance hierarchy the method is declared. Current type = 0,
+        ///   parent = 1, grandparent = 2, etc.
         /// </summary>
-        /// <param name="method">Method to check.</param>
+        /// <param name = "method">Method to check.</param>
         /// <returns>Declaration depth</returns>
         private int DeclarationDepth(MethodInfo method)
         {
@@ -167,11 +168,11 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// A <see cref="Comparison{T}"/> implementation that can compare two <see cref="MethodInfo"/>
-        /// based on their parameter lists.
+        ///   A <see cref = "Comparison{T}" /> implementation that can compare two <see cref = "MethodInfo" />
+        ///   based on their parameter lists.
         /// </summary>
-        /// <param name="left">First <see cref="MethodInfo"/> to compare.</param>
-        /// <param name="right">Second <see cref="MethodInfo"/> to compare.</param>
+        /// <param name = "left">First <see cref = "MethodInfo" /> to compare.</param>
+        /// <param name = "right">Second <see cref = "MethodInfo" /> to compare.</param>
         /// <returns>&lt; 0, 0, or &gt; 0 based on which one is "greater" than the other.</returns>
         private static int CompareMethodInfosByParameterLists(MethodInfo left, MethodInfo right)
         {
@@ -179,10 +180,10 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Compare two parameter lists.
+        ///   Compare two parameter lists.
         /// </summary>
-        /// <param name="left">First parameter list.</param>
-        /// <param name="right">Second parameter list.</param>
+        /// <param name = "left">First parameter list.</param>
+        /// <param name = "right">Second parameter list.</param>
         /// <returns>&lt; 0, 0, or &gt; 0.</returns>
         private static int CompareParameterLists(ParameterInfo[] left, ParameterInfo[] right)
         {
@@ -203,10 +204,10 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Compare two <see cref="ParameterInfo"/> objects by type.
+        ///   Compare two <see cref = "ParameterInfo" /> objects by type.
         /// </summary>
-        /// <param name="left">First <see cref="ParameterInfo"/></param>
-        /// <param name="right">First <see cref="ParameterInfo"/></param>
+        /// <param name = "left">First <see cref = "ParameterInfo" /></param>
+        /// <param name = "right">First <see cref = "ParameterInfo" /></param>
         /// <returns>&lt; 0, 0, or &gt; 0</returns>
         private static int CompareParameterInfo(ParameterInfo left, ParameterInfo right)
         {
@@ -215,8 +216,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
                 return 0;
             }
             return string.Compare(left.ParameterType.FullName, right.ParameterType.FullName,
-                StringComparison.OrdinalIgnoreCase);
+                                  StringComparison.OrdinalIgnoreCase);
         }
-
     }
 }

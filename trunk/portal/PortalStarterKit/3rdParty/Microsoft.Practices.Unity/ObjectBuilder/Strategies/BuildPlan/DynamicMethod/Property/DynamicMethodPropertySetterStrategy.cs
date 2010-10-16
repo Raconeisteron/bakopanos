@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -20,8 +20,8 @@ using Microsoft.Practices.Unity.Utility;
 namespace Microsoft.Practices.ObjectBuilder2
 {
     /// <summary>
-    /// A <see cref="BuilderStrategy"/> that generates IL to resolve properties
-    /// on an object being built.
+    ///   A <see cref = "BuilderStrategy" /> that generates IL to resolve properties
+    ///   on an object being built.
     /// </summary>
     public class DynamicMethodPropertySetterStrategy : BuilderStrategy
     {
@@ -32,16 +32,16 @@ namespace Microsoft.Practices.ObjectBuilder2
             StaticReflection.GetMethodInfo(() => SetCurrentOperationToSettingProperty(null, null));
 
         /// <summary>
-        /// Called during the chain of responsibility for a build operation.
+        ///   Called during the chain of responsibility for a build operation.
         /// </summary>
-        /// <param name="context">The context for the operation.</param>
+        /// <param name = "context">The context for the operation.</param>
         public override void PreBuildUp(IBuilderContext context)
         {
             Guard.ArgumentNotNull(context, "context");
-            DynamicBuildPlanGenerationContext ilContext = (DynamicBuildPlanGenerationContext)(context.Existing);
+            var ilContext = (DynamicBuildPlanGenerationContext) (context.Existing);
 
             IPolicyList resolverPolicyDestination;
-            IPropertySelectorPolicy selector = context.Policies.Get<IPropertySelectorPolicy>(context.BuildKey, out resolverPolicyDestination);
+            var selector = context.Policies.Get<IPropertySelectorPolicy>(context.BuildKey, out resolverPolicyDestination);
 
             bool shouldClearOperation = false;
 
@@ -75,22 +75,23 @@ namespace Microsoft.Practices.ObjectBuilder2
 
         private static MethodInfo GetValidatedPropertySetter(PropertyInfo property)
         {
-            var setter = property.GetSetMethod();
-            if(setter == null)
+            MethodInfo setter = property.GetSetMethod();
+            if (setter == null)
             {
                 throw new InvalidOperationException(
                     string.Format(CultureInfo.CurrentCulture,
-                        Resources.PropertyNotSettable,
-                        property.Name, property.DeclaringType.FullName)
+                                  Resources.PropertyNotSettable,
+                                  property.Name, property.DeclaringType.FullName)
                     );
             }
             return setter;
         }
 
         /// <summary>
-        /// A helper method used by the generated IL to store the current operation in the build context.
+        ///   A helper method used by the generated IL to store the current operation in the build context.
         /// </summary>
-        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Validation done by Guard class.")]
+        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
+            Justification = "Validation done by Guard class.")]
         public static void SetCurrentOperationToResolvingPropertyValue(string propertyName, IBuilderContext context)
         {
             Guard.ArgumentNotNull(context, "context");
@@ -99,9 +100,10 @@ namespace Microsoft.Practices.ObjectBuilder2
         }
 
         /// <summary>
-        /// A helper method used by the generated IL to store the current operation in the build context.
+        ///   A helper method used by the generated IL to store the current operation in the build context.
         /// </summary>
-        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Validation done by Guard class.")]
+        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
+            Justification = "Validation done by Guard class.")]
         public static void SetCurrentOperationToSettingProperty(string propertyName, IBuilderContext context)
         {
             Guard.ArgumentNotNull(context, "context");

@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -16,25 +16,25 @@ using System.Reflection;
 namespace Microsoft.Practices.Unity.Utility
 {
     /// <summary>
-    /// A small helper class to encapsulate details of the
-    /// reflection API, particularly around generics.
+    ///   A small helper class to encapsulate details of the
+    ///   reflection API, particularly around generics.
     /// </summary>
     public class ReflectionHelper
     {
         private readonly Type t;
 
         /// <summary>
-        /// Create a new <see cref="ReflectionHelper"/> instance that
-        /// lets you look at information about the given type.
+        ///   Create a new <see cref = "ReflectionHelper" /> instance that
+        ///   lets you look at information about the given type.
         /// </summary>
-        /// <param name="typeToReflect">Type to do reflection on.</param>
+        /// <param name = "typeToReflect">Type to do reflection on.</param>
         public ReflectionHelper(Type typeToReflect)
         {
             t = typeToReflect;
         }
 
         /// <summary>
-        /// The <see cref="Type"/> object we're reflecting over.
+        ///   The <see cref = "Type" /> object we're reflecting over.
         /// </summary>
         [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
         public Type Type
@@ -43,7 +43,7 @@ namespace Microsoft.Practices.Unity.Utility
         }
 
         /// <summary>
-        /// Is this type generic?
+        ///   Is this type generic?
         /// </summary>
         public bool IsGenericType
         {
@@ -51,7 +51,7 @@ namespace Microsoft.Practices.Unity.Utility
         }
 
         /// <summary>
-        /// Is this type an open generic (no type parameter specified)
+        ///   Is this type an open generic (no type parameter specified)
         /// </summary>
         public bool IsOpenGeneric
         {
@@ -59,7 +59,7 @@ namespace Microsoft.Practices.Unity.Utility
         }
 
         /// <summary>
-        /// Is this type an array type?
+        ///   Is this type an array type?
         /// </summary>
         public bool IsArray
         {
@@ -67,7 +67,7 @@ namespace Microsoft.Practices.Unity.Utility
         }
 
         /// <summary>
-        /// Is this type an array of generic elements?
+        ///   Is this type an array of generic elements?
         /// </summary>
         public bool IsGenericArray
         {
@@ -75,7 +75,7 @@ namespace Microsoft.Practices.Unity.Utility
         }
 
         /// <summary>
-        /// The type of the elements in this type (if it's an array).
+        ///   The type of the elements in this type (if it's an array).
         /// </summary>
         public Type ArrayElementType
         {
@@ -83,11 +83,11 @@ namespace Microsoft.Practices.Unity.Utility
         }
 
         /// <summary>
-        /// Test the given <see cref="MethodBase"/> object, looking at
-        /// the parameters. Determine if any of the parameters are
-        /// open generic types that need type attributes filled in.
+        ///   Test the given <see cref = "MethodBase" /> object, looking at
+        ///   the parameters. Determine if any of the parameters are
+        ///   open generic types that need type attributes filled in.
         /// </summary>
-        /// <param name="method">The method to check.</param>
+        /// <param name = "method">The method to check.</param>
         /// <returns>True if any of the parameters are open generics. False if not.</returns>
         [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
             Justification = "Validation done via Guard class")]
@@ -106,14 +106,16 @@ namespace Microsoft.Practices.Unity.Utility
         }
 
         /// <summary>
-        /// If this type is an open generic, use the
-        /// given <paramref name="genericArguments"/> array to
-        /// determine what the required closed type is and return that.
+        ///   If this type is an open generic, use the
+        ///   given <paramref name = "genericArguments" /> array to
+        ///   determine what the required closed type is and return that.
         /// </summary>
-        /// <remarks>If the parameter is not an open type, just
-        /// return this parameter's type.</remarks>
-        /// <param name="genericArguments">Type arguments to substitute in for
-        /// the open type parameters.</param>
+        /// <remarks>
+        ///   If the parameter is not an open type, just
+        ///   return this parameter's type.
+        /// </remarks>
+        /// <param name = "genericArguments">Type arguments to substitute in for
+        ///   the open type parameters.</param>
         /// <returns>Corresponding closed type of this parameter.</returns>
         public Type GetClosedParameterType(Type[] genericArguments)
         {
@@ -149,14 +151,14 @@ namespace Microsoft.Practices.Unity.Utility
         }
 
         /// <summary>
-        /// Given a generic argument name, return the corresponding type for this
-        /// closed type. For example, if the current type is SomeType&lt;User&gt;, and the
-        /// corresponding definition was SomeType&lt;TSomething&gt;, calling this method
-        /// and passing "TSomething" will return typeof(User).
+        ///   Given a generic argument name, return the corresponding type for this
+        ///   closed type. For example, if the current type is SomeType&lt;User&gt;, and the
+        ///   corresponding definition was SomeType&lt;TSomething&gt;, calling this method
+        ///   and passing "TSomething" will return typeof(User).
         /// </summary>
-        /// <param name="parameterName">Name of the generic parameter.</param>
+        /// <param name = "parameterName">Name of the generic parameter.</param>
         /// <returns>Type of the corresponding generic parameter, or null if there
-        /// is no matching name.</returns>
+        ///   is no matching name.</returns>
         public Type GetNamedGenericParameter(string parameterName)
         {
             Type openType = Type.GetGenericTypeDefinition();

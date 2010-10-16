@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace ASPNET.StarterKit.Portal
+namespace PortalStarterKit.Components
 {
     public class SiteConfigurationService : ISiteConfigurationService
     {
-        readonly List<PortalSettings> _deskotPortals = new List<PortalSettings>();
+        private readonly List<PortalSettings> _deskotPortals = new List<PortalSettings>();
 
         public SiteConfigurationService(ISiteConfigurationRepository repository)
         {
             _deskotPortals = repository.Read();
         }
+
+        #region ISiteConfigurationService Members
 
         public List<PortalSettings> GetPortals()
         {
@@ -23,14 +25,16 @@ namespace ASPNET.StarterKit.Portal
         }
 
 
-        public PortalSettings GetPortal (string portalId)
+        public PortalSettings GetPortal(string portalId)
         {
-            return GetPortals().Single<PortalSettings>(item => item.PortalId == portalId);
+            return GetPortals().Single(item => item.PortalId == portalId);
         }
 
         public TabSettings GetTab(string portalId, string tabId)
         {
-            return GetPortal(portalId).DesktopTabs.Single<TabSettings>(item=>item.TabId==tabId);
+            return GetPortal(portalId).DesktopTabs.Single(item => item.TabId == tabId);
         }
+
+        #endregion
     }
 }

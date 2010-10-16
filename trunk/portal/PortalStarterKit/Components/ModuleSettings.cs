@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace ASPNET.StarterKit.Portal
+namespace PortalStarterKit.Components
 {
     /// <summary>
     ///   Class that encapsulates the detailed settings for a specific Tab 
-    ///   in the Portal.  
+    ///   in the Portal.
     /// </summary>
-    public class ModuleSettings 
+    public class ModuleSettings
     {
         public String AuthorizedEditRoles { get; set; }
 

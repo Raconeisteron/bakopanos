@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -10,17 +10,15 @@
 //===============================================================================
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using Microsoft.Practices.Unity.Properties;
 
 namespace Microsoft.Practices.ObjectBuilder2
 {
     /// <summary>
-    /// This class records the information about which constructor argument is currently
-    /// being resolved, and is responsible for generating the error string required when
-    /// an error has occurred.
+    ///   This class records the information about which constructor argument is currently
+    ///   being resolved, and is responsible for generating the error string required when
+    ///   an error has occurred.
     /// </summary>
     public class ConstructorArgumentResolveOperation : BuildOperation
     {
@@ -28,12 +26,13 @@ namespace Microsoft.Practices.ObjectBuilder2
         private readonly string parameterName;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConstructorArgumentResolveOperation"/> class.
+        ///   Initializes a new instance of the <see cref = "ConstructorArgumentResolveOperation" /> class.
         /// </summary>
-        /// <param name="typeBeingConstructed">The type that is being constructed.</param>
-        /// <param name="constructorSignature">A string representing the constructor being called.</param>
-        /// <param name="parameterName">Parameter being resolved.</param>
-        public ConstructorArgumentResolveOperation(Type typeBeingConstructed, string constructorSignature, string parameterName)
+        /// <param name = "typeBeingConstructed">The type that is being constructed.</param>
+        /// <param name = "constructorSignature">A string representing the constructor being called.</param>
+        /// <param name = "parameterName">Parameter being resolved.</param>
+        public ConstructorArgumentResolveOperation(Type typeBeingConstructed, string constructorSignature,
+                                                   string parameterName)
             : base(typeBeingConstructed)
         {
             this.constructorSignature = constructorSignature;
@@ -41,18 +40,7 @@ namespace Microsoft.Practices.ObjectBuilder2
         }
 
         /// <summary>
-        /// Generate the string describing what parameter was being resolved.
-        /// </summary>
-        /// <returns>The description string.</returns>
-        public override string ToString()
-        {
-            return string.Format(CultureInfo.CurrentCulture,
-                Resources.ConstructorArgumentResolveOperation,
-                parameterName, constructorSignature);
-        }
-
-        /// <summary>
-        /// String describing the constructor being set up.
+        ///   String describing the constructor being set up.
         /// </summary>
         public string ConstructorSignature
         {
@@ -60,11 +48,22 @@ namespace Microsoft.Practices.ObjectBuilder2
         }
 
         /// <summary>
-        /// Parameter that's being resolved.
+        ///   Parameter that's being resolved.
         /// </summary>
         public string ParameterName
         {
             get { return parameterName; }
+        }
+
+        /// <summary>
+        ///   Generate the string describing what parameter was being resolved.
+        /// </summary>
+        /// <returns>The description string.</returns>
+        public override string ToString()
+        {
+            return string.Format(CultureInfo.CurrentCulture,
+                                 Resources.ConstructorArgumentResolveOperation,
+                                 parameterName, constructorSignature);
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -17,49 +17,68 @@ using Microsoft.Practices.Unity.Utility;
 namespace Microsoft.Practices.Unity.InterceptionExtension
 {
     /// <summary>
-    /// Transient class that supports convenience method for specifying interception policies.
+    ///   Transient class that supports convenience method for specifying interception policies.
     /// </summary>
     public class PolicyDefinition
     {
-        private readonly string policyName;
         private readonly Interception extension;
-        private readonly List<ResolvedParameter> rulesParameters;
         private readonly List<string> handlersNames;
+        private readonly string policyName;
+        private readonly List<ResolvedParameter> rulesParameters;
 
         internal PolicyDefinition(string policyName, Interception extension)
         {
             this.policyName = policyName;
             this.extension = extension;
 
-            this.rulesParameters = new List<ResolvedParameter>();
-            this.handlersNames = new List<string>();
+            rulesParameters = new List<ResolvedParameter>();
+            handlersNames = new List<string>();
 
             this.extension.Container.RegisterType<InjectionPolicy, RuleDrivenPolicy>(this.policyName);
             UpdateRuleDrivenPolicyInjection();
         }
 
+        /// <summary>
+        ///   The <see cref = "IUnityContainer" /> that is currently being
+        ///   configured.
+        /// </summary>
+        public IUnityContainer Container
+        {
+            get { return extension.Container; }
+        }
+
+        /// <summary>
+        ///   The <see cref = "Interception" /> extension to which the policy was added.
+        /// </summary>
+        /// <remarks>
+        ///   Use this property to start adding a new policy.
+        /// </remarks>
+        public Interception Interception
+        {
+            get { return extension; }
+        }
+
         private PolicyDefinition UpdateRuleDrivenPolicyInjection()
         {
-            this.extension.Container
+            extension.Container
                 .RegisterType<RuleDrivenPolicy>(policyName,
-                    new InjectionConstructor(policyName,
-                        new ResolvedArrayParameter<IMatchingRule>(rulesParameters.ToArray()),
-                        handlersNames.ToArray()));
+                                                new InjectionConstructor(policyName,
+                                                                         new ResolvedArrayParameter<IMatchingRule>(
+                                                                             rulesParameters.ToArray()),
+                                                                         handlersNames.ToArray()));
             return this;
         }
 
-        private delegate PolicyDefinition UpdateElements(string name);
-
         private PolicyDefinition UpdateRulesParameters(string name)
         {
-            this.rulesParameters.Add(new ResolvedParameter<IMatchingRule>(name));
+            rulesParameters.Add(new ResolvedParameter<IMatchingRule>(name));
 
             return UpdateRuleDrivenPolicyInjection();
         }
 
         private PolicyDefinition UpdateHandlerNames(string name)
         {
-            this.handlersNames.Add(name);
+            handlersNames.Add(name);
 
             return UpdateRuleDrivenPolicyInjection();
         }
@@ -70,35 +89,15 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// The <see cref="IUnityContainer"/> that is currently being
-        /// configured.
+        ///   Adds a reference to matching rule by name.
         /// </summary>
-        public IUnityContainer Container
-        {
-            get { return extension.Container; }
-        }
-
-        /// <summary>
-        /// The <see cref="Interception"/> extension to which the policy was added.
-        /// </summary>
-        /// <remarks>
-        /// Use this property to start adding a new policy.
-        /// </remarks>
-        public Interception Interception
-        {
-            get { return extension; }
-        }
-
-        /// <summary>
-        /// Adds a reference to matching rule by name.
-        /// </summary>
-        /// <param name="name">The name for the matching rule.</param>
+        /// <param name = "name">The name for the matching rule.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         /// <remarks>
-        /// The details of how the rule should be created by the container must be specified using a 
-        /// standard injection specification mechanism.
+        ///   The details of how the rule should be created by the container must be specified using a 
+        ///   standard injection specification mechanism.
         /// </remarks>
         public PolicyDefinition AddMatchingRule(string name)
         {
@@ -106,25 +105,25 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Makes <paramref name="instance"/> a matching rule in the current policy.
+        ///   Makes <paramref name = "instance" /> a matching rule in the current policy.
         /// </summary>
-        /// <param name="instance">The new <see cref="IMatchingRule"/> for the policy.</param>
+        /// <param name = "instance">The new <see cref = "IMatchingRule" /> for the policy.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddMatchingRule(IMatchingRule instance)
         {
-            return AddElement<IMatchingRule>(instance, UpdateRulesParameters);
+            return AddElement(instance, UpdateRulesParameters);
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="IMatchingRule"/> and makes it available
-        /// as a matching rule in the current policy.
+        ///   Configures injection for a new <see cref = "IMatchingRule" /> and makes it available
+        ///   as a matching rule in the current policy.
         /// </summary>
-        /// <param name="type">The type for the new matching rule.</param>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <param name = "type">The type for the new matching rule.</param>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddMatchingRule(
             Type type,
@@ -139,15 +138,15 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="IMatchingRule"/> and makes it available
-        /// as a matching rule in the current policy, using the given <see cref="LifetimeManager"/>.
+        ///   Configures injection for a new <see cref = "IMatchingRule" /> and makes it available
+        ///   as a matching rule in the current policy, using the given <see cref = "LifetimeManager" />.
         /// </summary>
-        /// <param name="type">The type for the new matching rule.</param>
-        /// <param name="lifetimeManager">The <see cref="LifetimeManager"/> that controls the lifetime
-        /// of the configured matching rule.</param>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <param name = "type">The type for the new matching rule.</param>
+        /// <param name = "lifetimeManager">The <see cref = "LifetimeManager" /> that controls the lifetime
+        ///   of the configured matching rule.</param>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddMatchingRule(
             Type type,
@@ -163,14 +162,14 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="IMatchingRule"/> using the specified name
-        /// and makes it available as a matching rule in the current policy.
+        ///   Configures injection for a new <see cref = "IMatchingRule" /> using the specified name
+        ///   and makes it available as a matching rule in the current policy.
         /// </summary>
-        /// <param name="type">The type for the new matching rule.</param>
-        /// <param name="name">The name for the injection configuration for the matching rule.</param>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <param name = "type">The type for the new matching rule.</param>
+        /// <param name = "name">The name for the injection configuration for the matching rule.</param>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddMatchingRule(
             Type type,
@@ -186,16 +185,16 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="IMatchingRule"/> and makes it available
-        /// as a matching rule in the current policy, using the given <see cref="LifetimeManager"/>.
+        ///   Configures injection for a new <see cref = "IMatchingRule" /> and makes it available
+        ///   as a matching rule in the current policy, using the given <see cref = "LifetimeManager" />.
         /// </summary>
-        /// <param name="type">The type for the new matching rule.</param>
-        /// <param name="name">The name for the injection configuration for the matching rule.</param>
-        /// <param name="lifetimeManager">The <see cref="LifetimeManager"/> that controls the lifetime
-        /// of the configured matching rule.</param>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <param name = "type">The type for the new matching rule.</param>
+        /// <param name = "name">The name for the injection configuration for the matching rule.</param>
+        /// <param name = "lifetimeManager">The <see cref = "LifetimeManager" /> that controls the lifetime
+        ///   of the configured matching rule.</param>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddMatchingRule(
             Type type,
@@ -212,13 +211,13 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="IMatchingRule"/> and makes it available
-        /// as a matching rule in the current policy.
+        ///   Configures injection for a new <see cref = "IMatchingRule" /> and makes it available
+        ///   as a matching rule in the current policy.
         /// </summary>
-        /// <typeparam name="TMatchingRule">The type for the new matching rule.</typeparam>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <typeparam name = "TMatchingRule">The type for the new matching rule.</typeparam>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddMatchingRule<TMatchingRule>(
             params InjectionMember[] injectionMembers)
@@ -232,15 +231,15 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="IMatchingRule"/> and makes it available
-        /// as a matching rule in the current policy, using the given <see cref="LifetimeManager"/>.
+        ///   Configures injection for a new <see cref = "IMatchingRule" /> and makes it available
+        ///   as a matching rule in the current policy, using the given <see cref = "LifetimeManager" />.
         /// </summary>
-        /// <typeparam name="TMatchingRule">The type for the new matching rule.</typeparam>
-        /// <param name="lifetimeManager">The <see cref="LifetimeManager"/> that controls the lifetime
-        /// of the configured matching rule.</param>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <typeparam name = "TMatchingRule">The type for the new matching rule.</typeparam>
+        /// <param name = "lifetimeManager">The <see cref = "LifetimeManager" /> that controls the lifetime
+        ///   of the configured matching rule.</param>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddMatchingRule<TMatchingRule>(
             LifetimeManager lifetimeManager,
@@ -255,14 +254,14 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="IMatchingRule"/> using the specified name
-        /// and makes it available as a matching rule in the current policy.
+        ///   Configures injection for a new <see cref = "IMatchingRule" /> using the specified name
+        ///   and makes it available as a matching rule in the current policy.
         /// </summary>
-        /// <typeparam name="TMatchingRule">The type for the new matching rule.</typeparam>
-        /// <param name="name">The name for the injection configuration for the matching rule.</param>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <typeparam name = "TMatchingRule">The type for the new matching rule.</typeparam>
+        /// <param name = "name">The name for the injection configuration for the matching rule.</param>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddMatchingRule<TMatchingRule>(
             string name,
@@ -277,17 +276,17 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="IMatchingRule"/> using the specified name
-        /// and makes it available as a matching rule in the current policy, 
-        /// using the given <see cref="LifetimeManager"/>.
+        ///   Configures injection for a new <see cref = "IMatchingRule" /> using the specified name
+        ///   and makes it available as a matching rule in the current policy, 
+        ///   using the given <see cref = "LifetimeManager" />.
         /// </summary>
-        /// <typeparam name="TMatchingRule">The type for the new matching rule.</typeparam>
-        /// <param name="name">The name for the injection configuration for the matching rule.</param>
-        /// <param name="lifetimeManager">The <see cref="LifetimeManager"/> that controls the lifetime
-        /// of the configured matching rule.</param>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <typeparam name = "TMatchingRule">The type for the new matching rule.</typeparam>
+        /// <param name = "name">The name for the injection configuration for the matching rule.</param>
+        /// <param name = "lifetimeManager">The <see cref = "LifetimeManager" /> that controls the lifetime
+        ///   of the configured matching rule.</param>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddMatchingRule<TMatchingRule>(
             string name,
@@ -303,15 +302,15 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Adds a reference to call handler by name.
+        ///   Adds a reference to call handler by name.
         /// </summary>
-        /// <param name="name">The name for the call handler.</param>
+        /// <param name = "name">The name for the call handler.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         /// <remarks>
-        /// The details of how the handler should be created by the container must be specified using a 
-        /// standard injection specification mechanism.
+        ///   The details of how the handler should be created by the container must be specified using a 
+        ///   standard injection specification mechanism.
         /// </remarks>
         public PolicyDefinition AddCallHandler(string name)
         {
@@ -319,25 +318,25 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Makes <paramref name="instance"/> a call handler in the current policy.
+        ///   Makes <paramref name = "instance" /> a call handler in the current policy.
         /// </summary>
-        /// <param name="instance">The new <see cref="ICallHandler"/> for the policy.</param>
+        /// <param name = "instance">The new <see cref = "ICallHandler" /> for the policy.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddCallHandler(ICallHandler instance)
         {
-            return AddElement<ICallHandler>(instance, UpdateHandlerNames);
+            return AddElement(instance, UpdateHandlerNames);
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="ICallHandler"/> and makes it available
-        /// as a call handler in the current policy.
+        ///   Configures injection for a new <see cref = "ICallHandler" /> and makes it available
+        ///   as a call handler in the current policy.
         /// </summary>
-        /// <param name="type">The type for the new call handler.</param>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <param name = "type">The type for the new call handler.</param>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddCallHandler(
             Type type,
@@ -352,15 +351,15 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="ICallHandler"/> and makes it available
-        /// as a call handler in the current policy, using the given <see cref="LifetimeManager"/>.
+        ///   Configures injection for a new <see cref = "ICallHandler" /> and makes it available
+        ///   as a call handler in the current policy, using the given <see cref = "LifetimeManager" />.
         /// </summary>
-        /// <param name="type">The type for the new call handler.</param>
-        /// <param name="lifetimeManager">The <see cref="LifetimeManager"/> that controls the lifetime
-        /// of the configured call handler.</param>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <param name = "type">The type for the new call handler.</param>
+        /// <param name = "lifetimeManager">The <see cref = "LifetimeManager" /> that controls the lifetime
+        ///   of the configured call handler.</param>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddCallHandler(
             Type type,
@@ -376,14 +375,14 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="ICallHandler"/> using the specified name
-        /// and makes it available as a call handler in the current policy.
+        ///   Configures injection for a new <see cref = "ICallHandler" /> using the specified name
+        ///   and makes it available as a call handler in the current policy.
         /// </summary>
-        /// <param name="type">The type for the new call handler.</param>
-        /// <param name="name">The name for the injection configuration for the call handler.</param>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <param name = "type">The type for the new call handler.</param>
+        /// <param name = "name">The name for the injection configuration for the call handler.</param>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddCallHandler(
             Type type,
@@ -399,17 +398,17 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="ICallHandler"/> using the specified name
-        /// and makes it available as a call handler in the current policy, 
-        /// using the given <see cref="LifetimeManager"/>.
+        ///   Configures injection for a new <see cref = "ICallHandler" /> using the specified name
+        ///   and makes it available as a call handler in the current policy, 
+        ///   using the given <see cref = "LifetimeManager" />.
         /// </summary>
-        /// <param name="type">The type for the new call handler.</param>
-        /// <param name="name">The name for the injection configuration for the call handler.</param>
-        /// <param name="lifetimeManager">The <see cref="LifetimeManager"/> that controls the lifetime
-        /// of the configured call handler.</param>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <param name = "type">The type for the new call handler.</param>
+        /// <param name = "name">The name for the injection configuration for the call handler.</param>
+        /// <param name = "lifetimeManager">The <see cref = "LifetimeManager" /> that controls the lifetime
+        ///   of the configured call handler.</param>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddCallHandler(
             Type type,
@@ -426,13 +425,13 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="ICallHandler"/> and makes it available
-        /// as a call handler in the current policy.
+        ///   Configures injection for a new <see cref = "ICallHandler" /> and makes it available
+        ///   as a call handler in the current policy.
         /// </summary>
-        /// <typeparam name="TCallHandler">The type for the new call handler.</typeparam>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <typeparam name = "TCallHandler">The type for the new call handler.</typeparam>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddCallHandler<TCallHandler>(
             params InjectionMember[] injectionMembers)
@@ -446,15 +445,15 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="ICallHandler"/> and makes it available
-        /// as a call handler in the current policy, using the given <see cref="LifetimeManager"/>.
+        ///   Configures injection for a new <see cref = "ICallHandler" /> and makes it available
+        ///   as a call handler in the current policy, using the given <see cref = "LifetimeManager" />.
         /// </summary>
-        /// <typeparam name="TCallHandler">The type for the new call handler.</typeparam>
-        /// <param name="lifetimeManager">The <see cref="LifetimeManager"/> that controls the lifetime
-        /// of the configured call handler.</param>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <typeparam name = "TCallHandler">The type for the new call handler.</typeparam>
+        /// <param name = "lifetimeManager">The <see cref = "LifetimeManager" /> that controls the lifetime
+        ///   of the configured call handler.</param>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddCallHandler<TCallHandler>(
             LifetimeManager lifetimeManager,
@@ -469,14 +468,14 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="ICallHandler"/> using the specified name
-        /// and makes it available as a call handler in the current policy.
+        ///   Configures injection for a new <see cref = "ICallHandler" /> using the specified name
+        ///   and makes it available as a call handler in the current policy.
         /// </summary>
-        /// <typeparam name="TCallHandler">The type for the new call handler.</typeparam>
-        /// <param name="name">The name for the injection configuration for the call handler .</param>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <typeparam name = "TCallHandler">The type for the new call handler.</typeparam>
+        /// <param name = "name">The name for the injection configuration for the call handler .</param>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddCallHandler<TCallHandler>(
             string name,
@@ -491,17 +490,17 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Configures injection for a new <see cref="ICallHandler"/> using the specified name
-        /// and makes it available as a call handler in the current policy, 
-        /// using the given <see cref="LifetimeManager"/>.
+        ///   Configures injection for a new <see cref = "ICallHandler" /> using the specified name
+        ///   and makes it available as a call handler in the current policy, 
+        ///   using the given <see cref = "LifetimeManager" />.
         /// </summary>
-        /// <typeparam name="TCallHandler">The type for the new call handler.</typeparam>
-        /// <param name="name">The name for the injection configuration for the call handler .</param>
-        /// <param name="lifetimeManager">The <see cref="LifetimeManager"/> that controls the lifetime
-        /// of the configured call handler.</param>
-        /// <param name="injectionMembers">Objects containing the details on which members to inject and how.</param>
+        /// <typeparam name = "TCallHandler">The type for the new call handler.</typeparam>
+        /// <param name = "name">The name for the injection configuration for the call handler .</param>
+        /// <param name = "lifetimeManager">The <see cref = "LifetimeManager" /> that controls the lifetime
+        ///   of the configured call handler.</param>
+        /// <param name = "injectionMembers">Objects containing the details on which members to inject and how.</param>
         /// <returns>
-        /// The <see cref="PolicyDefinition"/> than allows further configuration of the policy.
+        ///   The <see cref = "PolicyDefinition" /> than allows further configuration of the policy.
         /// </returns>
         public PolicyDefinition AddCallHandler<TCallHandler>(
             string name,
@@ -516,8 +515,8 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
                 UpdateHandlerNames);
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", 
-            Justification="Consistency with other overloads")]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic",
+            Justification = "Consistency with other overloads")]
         private PolicyDefinition AddElement<T>(string name, UpdateElements update)
         {
             Guard.ArgumentNotNull(name, "name");
@@ -530,7 +529,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
             Guard.ArgumentNotNull(instance, "instance");
 
             string newName = NewName();
-            Container.RegisterInstance<T>(newName, instance);
+            Container.RegisterInstance(newName, instance);
 
             return update(newName);
         }
@@ -544,10 +543,10 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         {
             Guard.ArgumentNotNullOrEmpty(name, "name");
             Guard.ArgumentNotNull(type, "type");
-            Guard.TypeIsAssignable(typeof(T), type, "type");
+            Guard.TypeIsAssignable(typeof (T), type, "type");
             Guard.ArgumentNotNull(injectionMembers, "injectionMembers");
 
-            Container.RegisterType(typeof(T), type, name, lifetimeManager, injectionMembers);
+            Container.RegisterType(typeof (T), type, name, lifetimeManager, injectionMembers);
 
             return update(name);
         }
@@ -559,7 +558,13 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
             UpdateElements update)
             where TElement : T
         {
-            return AddElement<T>(typeof(TElement), name, lifetimeManager, injectionMembers, update);
+            return AddElement<T>(typeof (TElement), name, lifetimeManager, injectionMembers, update);
         }
+
+        #region Nested type: UpdateElements
+
+        private delegate PolicyDefinition UpdateElements(string name);
+
+        #endregion
     }
 }

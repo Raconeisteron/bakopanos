@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -10,25 +10,24 @@
 //===============================================================================
 
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Microsoft.Practices.Unity.InterceptionExtension
 {
     /// <summary>
-    /// Interface for interceptor objects that generate
-    /// proxy types.
+    ///   Interface for interceptor objects that generate
+    ///   proxy types.
     /// </summary>
     public interface ITypeInterceptor : IInterceptor
     {
         /// <summary>
-        /// Create a type to proxy for the given type <paramref name="t"/>.
+        ///   Create a type to proxy for the given type <paramref name = "t" />.
         /// </summary>
-        /// <param name="t">Type to proxy.</param>
-        /// <param name="additionalInterfaces">Additional interfaces the proxy must implement.</param>
+        /// <param name = "t">Type to proxy.</param>
+        /// <param name = "additionalInterfaces">Additional interfaces the proxy must implement.</param>
         /// <returns>New type that can be instantiated instead of the
-        /// original type t, and supports interception.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "t")]
+        ///   original type t, and supports interception.</returns>
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "t")]
         Type CreateProxyType(Type t, params Type[] additionalInterfaces);
     }
 }

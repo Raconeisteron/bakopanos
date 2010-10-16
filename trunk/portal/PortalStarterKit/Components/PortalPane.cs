@@ -1,7 +1,9 @@
-﻿namespace ASPNET.StarterKit.Portal
+namespace PortalStarterKit.Components
 {
     public enum PortalPane
     {
-        Left,Content,Right
+        Left,
+        Content,
+        Right
     }
 }

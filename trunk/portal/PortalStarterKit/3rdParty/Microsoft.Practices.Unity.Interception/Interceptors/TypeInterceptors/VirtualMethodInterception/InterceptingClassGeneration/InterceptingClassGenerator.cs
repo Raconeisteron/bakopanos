@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -22,14 +22,13 @@ using System.Security;
 namespace Microsoft.Practices.Unity.InterceptionExtension
 {
     /// <summary>
-    /// Class that handles generating the dynamic types used for interception.
+    ///   Class that handles generating the dynamic types used for interception.
     /// </summary>
     public class InterceptingClassGenerator
     {
-        private readonly Type typeToIntercept;
-        private readonly IEnumerable<Type> additionalInterfaces;
-
         private static readonly AssemblyBuilder assemblyBuilder;
+        private readonly IEnumerable<Type> additionalInterfaces;
+        private readonly Type typeToIntercept;
 
         private FieldBuilder proxyInterceptionPipelineField;
         private TypeBuilder typeBuilder;
@@ -40,7 +39,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         static InterceptingClassGenerator()
         {
             assemblyBuilder = AppDomain.CurrentDomain.DefineDynamicAssembly(
-                new AssemblyName("Unity_ILEmit_DynamicClasses"), 
+                new AssemblyName("Unity_ILEmit_DynamicClasses"),
 #if DEBUG_SAVE_GENERATED_ASSEMBLY
                 AssemblyBuilderAccess.RunAndSave
 #else
@@ -50,11 +49,11 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Create a new <see cref="InterceptingClassGenerator"/> that will generate a
-        /// wrapper class for the requested <paramref name="typeToIntercept"/>.
+        ///   Create a new <see cref = "InterceptingClassGenerator" /> that will generate a
+        ///   wrapper class for the requested <paramref name = "typeToIntercept" />.
         /// </summary>
-        /// <param name="typeToIntercept">Type to generate the wrapper for.</param>
-        /// <param name="additionalInterfaces">Additional interfaces the proxy must implement.</param>
+        /// <param name = "typeToIntercept">Type to generate the wrapper for.</param>
+        /// <param name = "additionalInterfaces">Additional interfaces the proxy must implement.</param>
         public InterceptingClassGenerator(Type typeToIntercept, params Type[] additionalInterfaces)
         {
             this.typeToIntercept = typeToIntercept;
@@ -63,7 +62,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Create the wrapper class for the given type.
+        ///   Create the wrapper class for the given type.
         /// </summary>
         /// <returns>Wrapper type.</returns>
         public Type GenerateType()
@@ -75,10 +74,10 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
 
             int memberCount = 0;
             HashSet<Type> implementedInterfaces = GetImplementedInterfacesSet();
-            foreach (var @interface in this.additionalInterfaces)
+            foreach (Type @interface in additionalInterfaces)
             {
                 memberCount =
-                    new InterfaceImplementation(this.typeBuilder, @interface, this.proxyInterceptionPipelineField, true)
+                    new InterfaceImplementation(typeBuilder, @interface, proxyInterceptionPipelineField, true)
                         .Implement(implementedInterfaces, memberCount);
             }
 
@@ -100,8 +99,10 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
 
         private IEnumerable<MethodInfo> GetMethodsToIntercept()
         {
-            List<MethodInfo> methodsToIntercept = new List<MethodInfo>();
-            foreach (MethodInfo method in typeToIntercept.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
+            var methodsToIntercept = new List<MethodInfo>();
+            foreach (
+                MethodInfo method in
+                    typeToIntercept.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
             {
                 if (!method.IsSpecialName && MethodOverride.MethodCanBeIntercepted(method))
                 {
@@ -109,7 +110,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
                 }
             }
 
-            MethodSorter sorter = new MethodSorter(typeToIntercept, methodsToIntercept);
+            var sorter = new MethodSorter(typeToIntercept, methodsToIntercept);
             foreach (MethodInfo method in sorter)
             {
                 yield return method;
@@ -123,7 +124,9 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
             // show up properly on the derived class.
 
             int propertyCount = 0;
-            foreach (PropertyInfo property in typeToIntercept.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
+            foreach (
+                PropertyInfo property in
+                    typeToIntercept.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
             {
                 OverridePropertyMethod(property.GetGetMethod(true), propertyCount);
                 OverridePropertyMethod(property.GetSetMethod(true), propertyCount);
@@ -146,7 +149,9 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
             // show up properly on the derived class.
 
             int eventCount = 0;
-            foreach (EventInfo eventInfo in typeToIntercept.GetEvents(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
+            foreach (
+                EventInfo eventInfo in
+                    typeToIntercept.GetEvents(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
             {
                 OverrideEventMethod(eventInfo.GetAddMethod(), eventCount);
                 OverrideEventMethod(eventInfo.GetRemoveMethod(), eventCount);
@@ -165,7 +170,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         private void AddConstructors()
         {
             BindingFlags bindingFlags =
-                this.typeToIntercept.IsAbstract
+                typeToIntercept.IsAbstract
                     ? BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic
                     : BindingFlags.Public | BindingFlags.Instance;
 
@@ -181,8 +186,8 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
 
             MethodAttributes attributes =
                 (ctor.Attributes
-                & ~MethodAttributes.ReservedMask
-                & ~MethodAttributes.MemberAccessMask)
+                 & ~MethodAttributes.ReservedMask
+                 & ~MethodAttributes.MemberAccessMask)
                 | MethodAttributes.Public;
 
             ParameterInfo[] parameters = ctor.GetParameters();
@@ -288,8 +293,8 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
 
         private HashSet<Type> GetImplementedInterfacesSet()
         {
-            HashSet<Type> implementedInterfaces = new HashSet<Type>();
-            AddToImplementedInterfaces(this.typeToIntercept, implementedInterfaces);
+            var implementedInterfaces = new HashSet<Type>();
+            AddToImplementedInterfaces(typeToIntercept, implementedInterfaces);
             return implementedInterfaces;
         }
 
@@ -302,7 +307,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
                     implementedInterfaces.Add(type);
                 }
 
-                foreach (var @interface in type.GetInterfaces())
+                foreach (Type @interface in type.GetInterfaces())
                 {
                     AddToImplementedInterfaces(@interface, implementedInterfaces);
                 }

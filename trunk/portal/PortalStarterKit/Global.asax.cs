@@ -2,32 +2,32 @@
 using System.Web;
 using System.Web.Routing;
 using System.Web.UI;
-using ASPNET.StarterKit.Portal;
 using Microsoft.Practices.Unity;
+using PortalStarterKit.Components;
 
 namespace PortalStarterKit
 {
     public class Global : HttpApplication, IContainerAccessor
     {
         /// <summary>
-        /// The Unity container for the current application
+        ///   The Unity container for the current application
         /// </summary>
         public static IUnityContainer Container { get; set; }
 
+        #region IContainerAccessor Members
+
         /// <summary>
-        /// Returns the Unity container of the application 
+        ///   Returns the Unity container of the application
         /// </summary>
         IUnityContainer IContainerAccessor.Container
         {
-            get
-            {
-                return Container;
-            }
+            get { return Container; }
         }
+
+        #endregion
 
         protected void Application_Start(object sender, EventArgs e)
         {
-
             RouteTable.Routes.MapPageRoute(
                 "default-route",
                 "{portalId}/{tabId}",
@@ -35,14 +35,11 @@ namespace PortalStarterKit
                 );
 
             BuildContainer();
-
         }
 
         protected void Application_End(object sender, EventArgs e)
         {
-
-           CleanUp();
-
+            CleanUp();
         }
 
         private void Application_Error(object sender, EventArgs e)
@@ -53,7 +50,6 @@ namespace PortalStarterKit
         private void Session_Start(object sender, EventArgs e)
         {
             // Code that runs when a new session is started
-            
         }
 
         private void Session_End(object sender, EventArgs e)
@@ -62,12 +58,11 @@ namespace PortalStarterKit
             // Note: The Session_End event is raised only when the sessionstate mode
             // is set to InProc in the Web.config file. If session mode is set to StateServer 
             // or SQLServer, the event is not raised.
-            
         }
 
         public static void BuildItemWithCurrentContext<T>(Control ctrl)
         {
-            Container.BuildUp(typeof(T), ctrl);
+            Container.BuildUp(typeof (T), ctrl);
         }
 
         private static void BuildContainer()
@@ -85,7 +80,6 @@ namespace PortalStarterKit
                 new ContainerControlledLifetimeManager());
 
             Container = container;
-
         }
 
         private static void CleanUp()
@@ -95,7 +89,5 @@ namespace PortalStarterKit
                 Container.Dispose();
             }
         }
-
-
     }
 }

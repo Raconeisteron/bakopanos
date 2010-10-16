@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -18,24 +18,24 @@ using Microsoft.Practices.Unity.Utility;
 namespace Microsoft.Practices.ObjectBuilder2
 {
     /// <summary>
-    /// An implementation of <see cref="IBuildKeyMappingPolicy"/> that can map
-    /// generic types.
+    ///   An implementation of <see cref = "IBuildKeyMappingPolicy" /> that can map
+    ///   generic types.
     /// </summary>
     public class GenericTypeBuildKeyMappingPolicy : IBuildKeyMappingPolicy
     {
         private readonly NamedTypeBuildKey destinationKey;
 
         /// <summary>
-        /// Create a new <see cref="GenericTypeBuildKeyMappingPolicy"/> instance
-        /// that will map generic types.
+        ///   Create a new <see cref = "GenericTypeBuildKeyMappingPolicy" /> instance
+        ///   that will map generic types.
         /// </summary>
-        /// <param name="destinationKey">Build key to map to. This must be or contain an open generic type.</param>
+        /// <param name = "destinationKey">Build key to map to. This must be or contain an open generic type.</param>
         // FxCop suppression: Validation is done by Guard class
         [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods")]
         public GenericTypeBuildKeyMappingPolicy(NamedTypeBuildKey destinationKey)
         {
             Guard.ArgumentNotNull(destinationKey, "destinationKey");
-            if(!destinationKey.Type.IsGenericTypeDefinition)
+            if (!destinationKey.Type.IsGenericTypeDefinition)
             {
                 throw new ArgumentException(
                     string.Format(CultureInfo.CurrentCulture,
@@ -45,12 +45,19 @@ namespace Microsoft.Practices.ObjectBuilder2
             this.destinationKey = destinationKey;
         }
 
+        private Type DestinationType
+        {
+            get { return destinationKey.Type; }
+        }
+
+        #region IBuildKeyMappingPolicy Members
+
         /// <summary>
-        /// Maps the build key.
+        ///   Maps the build key.
         /// </summary>
-        /// <param name="buildKey">The build key to map.</param>
-        /// <param name="context">Current build context. Used for contextual information
-        /// if writing a more sophisticated mapping.</param>
+        /// <param name = "buildKey">The build key to map.</param>
+        /// <param name = "context">Current build context. Used for contextual information
+        ///   if writing a more sophisticated mapping.</param>
         /// <returns>The new build key.</returns>
         public NamedTypeBuildKey Map(NamedTypeBuildKey buildKey, IBuilderContext context)
         {
@@ -63,9 +70,11 @@ namespace Microsoft.Practices.ObjectBuilder2
             return new NamedTypeBuildKey(resultType, destinationKey.Name);
         }
 
+        #endregion
+
         private void GuardSameNumberOfGenericArguments(Type sourceType)
         {
-            if(sourceType.GetGenericArguments().Length != DestinationType.GetGenericArguments().Length)
+            if (sourceType.GetGenericArguments().Length != DestinationType.GetGenericArguments().Length)
             {
                 throw new ArgumentException(
                     string.Format(CultureInfo.CurrentCulture,
@@ -73,11 +82,6 @@ namespace Microsoft.Practices.ObjectBuilder2
                                   sourceType.Name, DestinationType.Name),
                     "sourceType");
             }
-        }
-
-        private Type DestinationType
-        {
-            get { return destinationKey.Type; }
         }
     }
 }

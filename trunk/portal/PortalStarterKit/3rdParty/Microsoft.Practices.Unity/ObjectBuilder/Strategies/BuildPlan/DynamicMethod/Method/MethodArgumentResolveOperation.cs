@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -10,17 +10,15 @@
 //===============================================================================
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using Microsoft.Practices.Unity.Properties;
 
 namespace Microsoft.Practices.ObjectBuilder2
 {
     /// <summary>
-    /// This class records the information about which constructor argument is currently
-    /// being resolved, and is responsible for generating the error string required when
-    /// an error has occurred.
+    ///   This class records the information about which constructor argument is currently
+    ///   being resolved, and is responsible for generating the error string required when
+    ///   an error has occurred.
     /// </summary>
     public class MethodArgumentResolveOperation : BuildOperation
     {
@@ -28,11 +26,11 @@ namespace Microsoft.Practices.ObjectBuilder2
         private readonly string parameterName;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConstructorArgumentResolveOperation"/> class.
+        ///   Initializes a new instance of the <see cref = "ConstructorArgumentResolveOperation" /> class.
         /// </summary>
-        /// <param name="typeBeingConstructed">The type that is being constructed.</param>
-        /// <param name="methodSignature">A string representing the method being called.</param>
-        /// <param name="parameterName">Parameter being resolved.</param>
+        /// <param name = "typeBeingConstructed">The type that is being constructed.</param>
+        /// <param name = "methodSignature">A string representing the method being called.</param>
+        /// <param name = "parameterName">Parameter being resolved.</param>
         public MethodArgumentResolveOperation(Type typeBeingConstructed, string methodSignature, string parameterName)
             : base(typeBeingConstructed)
         {
@@ -41,18 +39,7 @@ namespace Microsoft.Practices.ObjectBuilder2
         }
 
         /// <summary>
-        /// Generate the string describing what parameter was being resolved.
-        /// </summary>
-        /// <returns>The description string.</returns>
-        public override string ToString()
-        {
-            return string.Format(CultureInfo.CurrentCulture,
-                Resources.MethodArgumentResolveOperation,
-                parameterName, TypeBeingConstructed.Name, methodSignature);
-        }
-
-        /// <summary>
-        /// String describing the method being set up.
+        ///   String describing the method being set up.
         /// </summary>
         public string MethodSignature
         {
@@ -60,11 +47,22 @@ namespace Microsoft.Practices.ObjectBuilder2
         }
 
         /// <summary>
-        /// Parameter that's being resolved.
+        ///   Parameter that's being resolved.
         /// </summary>
         public string ParameterName
         {
             get { return parameterName; }
+        }
+
+        /// <summary>
+        ///   Generate the string describing what parameter was being resolved.
+        /// </summary>
+        /// <returns>The description string.</returns>
+        public override string ToString()
+        {
+            return string.Format(CultureInfo.CurrentCulture,
+                                 Resources.MethodArgumentResolveOperation,
+                                 parameterName, TypeBeingConstructed.Name, methodSignature);
         }
     }
 }

@@ -1,14 +1,15 @@
 <?xml version="1.0" standalone="yes"?>
+
 <SiteConfiguration>
 
   <Portal PortalId="main" PortalName="ASP.NET Portal Starter Kit" AlwaysShowEditButton="true">
-  
+
     <Tab TabId="home" TabName="Home" AccessRoles="All Users;" TabOrder="1">
       <Module ModuleId="1" ModuleTitle="Announcements" EditRoles="Admins;" ModuleDefId="1" PaneName="Left" ModuleOrder="1" />
       <Module ModuleId="2" ModuleTitle="Announcements" EditRoles="Admins;" ModuleDefId="1" PaneName="Content" ModuleOrder="1" />
       <Module ModuleId="3" ModuleTitle="Announcements" EditRoles="Admins;" ModuleDefId="1" PaneName="Right" ModuleOrder="1" />
     </Tab>
-  
+
     <Tab TabId="news" TabName="News" AccessRoles="All Users;" TabOrder="2">
       <Module ModuleId="4" ModuleTitle="Announcements" EditRoles="Admins;" ModuleDefId="1" PaneName="Content" ModuleOrder="1" />
     </Tab>
@@ -16,9 +17,9 @@
     <Tab TabId="about" TabName="About" AccessRoles="All Users;" TabOrder="3">
       <Module ModuleId="5" ModuleTitle="Tabs" EditRoles="Admins;" ModuleDefId="2" PaneName="Right" ModuleOrder="1" />
     </Tab>
-  
+
     <ModuleDefinition FriendlyName="Announcements" DesktopSourceFile="DesktopModules/Announcements.ascx" ModuleDefId="1" />
     <ModuleDefinition FriendlyName="SiteInfo" DesktopSourceFile="DesktopModules/SiteInfo.ascx" ModuleDefId="2" />
-    
+
   </Portal>
 </SiteConfiguration>

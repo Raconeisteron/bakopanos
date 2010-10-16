@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -17,21 +17,21 @@ using Microsoft.Practices.Unity.Utility;
 namespace Microsoft.Practices.Unity.ObjectBuilder
 {
     /// <summary>
-    /// An implementation of <see cref="IDependencyResolverPolicy"/> that stores a
-    /// type and name, and at resolution time puts them together into a
-    /// <see cref="NamedTypeBuildKey"/>.
+    ///   An implementation of <see cref = "IDependencyResolverPolicy" /> that stores a
+    ///   type and name, and at resolution time puts them together into a
+    ///   <see cref = "NamedTypeBuildKey" />.
     /// </summary>
     public class NamedTypeDependencyResolverPolicy : IDependencyResolverPolicy
     {
-        private Type type;
-        private string name;
+        private readonly string name;
+        private readonly Type type;
 
         /// <summary>
-        /// Create an instance of <see cref="NamedTypeDependencyResolverPolicy"/>
-        /// with the given type and name.
+        ///   Create an instance of <see cref = "NamedTypeDependencyResolverPolicy" />
+        ///   with the given type and name.
         /// </summary>
-        /// <param name="type">The type.</param>
-        /// <param name="name">The name (may be null).</param>
+        /// <param name = "type">The type.</param>
+        /// <param name = "name">The name (may be null).</param>
         public NamedTypeDependencyResolverPolicy(Type type, string name)
         {
             this.type = type;
@@ -39,9 +39,28 @@ namespace Microsoft.Practices.Unity.ObjectBuilder
         }
 
         /// <summary>
-        /// Resolve the value for a dependency.
+        ///   The type that this resolver resolves.
         /// </summary>
-        /// <param name="context">Current build context.</param>
+        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
+        public Type Type
+        {
+            get { return type; }
+        }
+
+        /// <summary>
+        ///   The name that this resolver resolves.
+        /// </summary>
+        public string Name
+        {
+            get { return name; }
+        }
+
+        #region IDependencyResolverPolicy Members
+
+        /// <summary>
+        ///   Resolve the value for a dependency.
+        /// </summary>
+        /// <param name = "context">Current build context.</param>
         /// <returns>The value for the dependency.</returns>
         // FxCop suppression: Validation is done by Guard class
         [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods")]
@@ -51,21 +70,6 @@ namespace Microsoft.Practices.Unity.ObjectBuilder
             return context.NewBuildUp(new NamedTypeBuildKey(type, name));
         }
 
-        /// <summary>
-        /// The type that this resolver resolves.
-        /// </summary>
-        [SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods")]
-        public Type Type
-        {
-            get { return type; }
-        }
-
-        /// <summary>
-        /// The name that this resolver resolves.
-        /// </summary>
-        public string Name
-        {
-            get { return name; }
-        }
+        #endregion
     }
 }

@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -16,13 +16,13 @@ using Microsoft.Practices.Unity.Properties;
 namespace Microsoft.Practices.Unity
 {
     /// <summary>
-    /// This extension supplies the default behavior of the UnityContainer API
-    /// by handling the context events and setting policies.
+    ///   This extension supplies the default behavior of the UnityContainer API
+    ///   by handling the context events and setting policies.
     /// </summary>
     public class UnityDefaultBehaviorExtension : UnityContainerExtension
     {
         /// <summary>
-        /// Install the default container behavior into the container.
+        ///   Install the default container behavior into the container.
         /// </summary>
         protected override void Initialize()
         {
@@ -33,7 +33,7 @@ namespace Microsoft.Practices.Unity
         }
 
         /// <summary>
-        /// Remove the default behavior from the container.
+        ///   Remove the default behavior from the container.
         /// </summary>
         public override void Remove()
         {
@@ -69,7 +69,7 @@ namespace Microsoft.Practices.Unity
         {
             Context.RegisterNamedType(e.RegisteredType, e.Name);
             SetLifetimeManager(e.RegisteredType, e.Name, e.LifetimeManager);
-            NamedTypeBuildKey identityKey = new NamedTypeBuildKey(e.RegisteredType, e.Name);
+            var identityKey = new NamedTypeBuildKey(e.RegisteredType, e.Name);
             Context.Policies.Set<IBuildKeyMappingPolicy>(new BuildKeyMappingPolicy(identityKey), identityKey);
             e.LifetimeManager.SetValue(e.Instance);
         }
@@ -82,16 +82,16 @@ namespace Microsoft.Practices.Unity
             }
             if (lifetimeType.IsGenericTypeDefinition)
             {
-                LifetimeManagerFactory factory =
+                var factory =
                     new LifetimeManagerFactory(Context, lifetimeManager.GetType());
                 Context.Policies.Set<ILifetimeFactoryPolicy>(factory,
-                    new NamedTypeBuildKey(lifetimeType, name));
+                                                             new NamedTypeBuildKey(lifetimeType, name));
             }
             else
             {
                 lifetimeManager.InUse = true;
                 Context.Policies.Set<ILifetimePolicy>(lifetimeManager,
-                    new NamedTypeBuildKey(lifetimeType, name));
+                                                      new NamedTypeBuildKey(lifetimeType, name));
                 if (lifetimeManager is IDisposable)
                 {
                     Context.Lifetime.Add(lifetimeManager);
@@ -100,6 +100,9 @@ namespace Microsoft.Practices.Unity
         }
 
         // Works like the ExternallyControlledLifetimeManager, but uses regular instead of weak references
+
+        #region Nested type: ContainerLifetimeManager
+
         private class ContainerLifetimeManager : LifetimeManager
         {
             private object value;
@@ -118,5 +121,7 @@ namespace Microsoft.Practices.Unity
             {
             }
         }
+
+        #endregion
     }
 }

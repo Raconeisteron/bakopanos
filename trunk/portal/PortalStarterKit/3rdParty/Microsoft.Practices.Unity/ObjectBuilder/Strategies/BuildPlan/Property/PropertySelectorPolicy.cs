@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -15,19 +15,19 @@ using System.Reflection;
 namespace Microsoft.Practices.ObjectBuilder2
 {
     /// <summary>
-    /// An implementation of <see cref="IPropertySelectorPolicy"/> that looks
-    /// for properties marked with the <typeparamref name="TResolutionAttribute"/>
-    /// attribute that are also settable and not indexers.
+    ///   An implementation of <see cref = "IPropertySelectorPolicy" /> that looks
+    ///   for properties marked with the <typeparamref name = "TResolutionAttribute" />
+    ///   attribute that are also settable and not indexers.
     /// </summary>
-    /// <typeparam name="TResolutionAttribute"></typeparam>
+    /// <typeparam name = "TResolutionAttribute"></typeparam>
     public class PropertySelectorPolicy<TResolutionAttribute> : PropertySelectorBase<TResolutionAttribute>
         where TResolutionAttribute : Attribute
     {
         /// <summary>
-        /// Create a <see cref="IDependencyResolverPolicy"/> for the given
-        /// property.
+        ///   Create a <see cref = "IDependencyResolverPolicy" /> for the given
+        ///   property.
         /// </summary>
-        /// <param name="property">Property to create resolver for.</param>
+        /// <param name = "property">Property to create resolver for.</param>
         /// <returns>The resolver object.</returns>
         protected override IDependencyResolverPolicy CreateResolver(PropertyInfo property)
         {

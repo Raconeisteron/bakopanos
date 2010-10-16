@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -17,50 +17,50 @@ using Microsoft.Practices.Unity.Properties;
 
 namespace Microsoft.Practices.ObjectBuilder2
 {
-
     /// <summary>
-    /// A custom collection wrapper over <see cref="IBuilderPolicy"/> objects.
+    ///   A custom collection wrapper over <see cref = "IBuilderPolicy" /> objects.
     /// </summary>
     public class PolicyList : IPolicyList
     {
-        readonly IPolicyList innerPolicyList;
-        readonly object lockObject = new object();
+        private readonly IPolicyList innerPolicyList;
+        private readonly object lockObject = new object();
         private Dictionary<PolicyKey, IBuilderPolicy> policies = new Dictionary<PolicyKey, IBuilderPolicy>();
 
         /// <summary>
-        /// Initialize a new instance of a <see cref="PolicyList"/> class.
+        ///   Initialize a new instance of a <see cref = "PolicyList" /> class.
         /// </summary>
         public PolicyList()
-            : this(null) {}
+            : this(null)
+        {
+        }
 
         /// <summary>
-        /// Initialize a new instance of a <see cref="PolicyList"/> class with another policy list.
+        ///   Initialize a new instance of a <see cref = "PolicyList" /> class with another policy list.
         /// </summary>
-        /// <param name="innerPolicyList">An inner policy list to search.</param>
+        /// <param name = "innerPolicyList">An inner policy list to search.</param>
         public PolicyList(IPolicyList innerPolicyList)
         {
             this.innerPolicyList = innerPolicyList ?? new NullPolicyList();
         }
 
         /// <summary>
-        /// Gets the number of items in the locator.
+        ///   Gets the number of items in the locator.
         /// </summary>
         /// <value>
-        /// The number of items in the locator.
+        ///   The number of items in the locator.
         /// </value>
         public int Count
         {
-            get
-            {
-                return policies.Count;
-            }
+            get { return policies.Count; }
         }
 
+        #region IPolicyList Members
+
         /// <summary>
-        /// Removes an individual policy type for a build key.
+        ///   Removes an individual policy type for a build key.
         /// </summary>
-        /// <param name="policyInterface">The type of policy to remove.</param>
-        /// <param name="buildKey">The key the policy applies.</param>
+        /// <param name = "policyInterface">The type of policy to remove.</param>
+        /// <param name = "buildKey">The key the policy applies.</param>
         public void Clear(Type policyInterface,
                           object buildKey)
         {
@@ -73,7 +73,7 @@ namespace Microsoft.Practices.ObjectBuilder2
         }
 
         /// <summary>
-        /// Removes all policies from the list.
+        ///   Removes all policies from the list.
         /// </summary>
         public void ClearAll()
         {
@@ -84,91 +84,47 @@ namespace Microsoft.Practices.ObjectBuilder2
         }
 
         /// <summary>
-        /// Removes a default policy.
+        ///   Removes a default policy.
         /// </summary>
-        /// <param name="policyInterface">The type the policy was registered as.</param>
+        /// <param name = "policyInterface">The type the policy was registered as.</param>
         public void ClearDefault(Type policyInterface)
         {
             Clear(policyInterface, null);
         }
 
         /// <summary>
-        /// Gets an individual policy.
+        ///   Gets an individual policy.
         /// </summary>
-        /// <param name="policyInterface">The interface the policy is registered under.</param>
-        /// <param name="buildKey">The key the policy applies.</param>
-        /// <param name="localOnly">true if the policy searches local only; otherwise false to seach up the parent chain.</param>
-        /// <param name="containingPolicyList">The policy list in the chain that the searched for policy was found in, null if the policy was
-        /// not found.</param>
+        /// <param name = "policyInterface">The interface the policy is registered under.</param>
+        /// <param name = "buildKey">The key the policy applies.</param>
+        /// <param name = "localOnly">true if the policy searches local only; otherwise false to seach up the parent chain.</param>
+        /// <param name = "containingPolicyList">The policy list in the chain that the searched for policy was found in, null if the policy was
+        ///   not found.</param>
         /// <returns>The policy in the list, if present; returns null otherwise.</returns>
-        public IBuilderPolicy Get(Type policyInterface, object buildKey, bool localOnly, out IPolicyList containingPolicyList)
+        public IBuilderPolicy Get(Type policyInterface, object buildKey, bool localOnly,
+                                  out IPolicyList containingPolicyList)
         {
             Type buildType;
             TryGetType(buildKey, out buildType);
 
             return GetPolicyForKey(policyInterface, buildKey, localOnly, out containingPolicyList) ??
-                GetPolicyForOpenGenericKey(policyInterface, buildKey, buildType, localOnly, out containingPolicyList) ??
-                GetPolicyForType(policyInterface, buildType, localOnly, out containingPolicyList) ??
-                GetPolicyForOpenGenericType(policyInterface, buildType, localOnly, out containingPolicyList) ??
-                GetDefaultForPolicy(policyInterface, localOnly, out containingPolicyList);
-        }
-
-        private IBuilderPolicy GetPolicyForKey(Type policyInterface, object buildKey, bool localOnly, out IPolicyList containingPolicyList)
-        {
-            if (buildKey != null)
-            {
-                return GetNoDefault(policyInterface, buildKey, localOnly, out containingPolicyList);
-            }
-            containingPolicyList = null;
-            return null;
-        }
-
-        private IBuilderPolicy GetPolicyForOpenGenericKey(Type policyInterface, object buildKey, Type buildType, bool localOnly, out IPolicyList containingPolicyList)
-        {
-            if (buildType != null && buildType.IsGenericType)
-            {
-                return GetNoDefault(policyInterface, ReplaceType(buildKey, buildType.GetGenericTypeDefinition()),
-                    localOnly, out containingPolicyList);
-            }
-            containingPolicyList = null;
-            return null;
-        }
-
-        private IBuilderPolicy GetPolicyForType(Type policyInterface, Type buildType, bool localOnly, out IPolicyList containingPolicyList)
-        {
-            if (buildType != null)
-            {
-                return this.GetNoDefault(policyInterface, buildType, localOnly, out containingPolicyList);
-            }
-            containingPolicyList = null;
-            return null;
-        }
-
-        private IBuilderPolicy GetPolicyForOpenGenericType(Type policyInterface, Type buildType, bool localOnly, out IPolicyList containingPolicyList)
-        {
-            if (buildType != null && buildType.IsGenericType)
-            {
-                return GetNoDefault(policyInterface, buildType.GetGenericTypeDefinition(), localOnly, out containingPolicyList);
-            }
-            containingPolicyList = null;
-            return null;
-        }
-
-        private IBuilderPolicy GetDefaultForPolicy(Type policyInterface, bool localOnly, out IPolicyList containingPolicyList)
-        {
-            return GetNoDefault(policyInterface, null, localOnly, out containingPolicyList);
+                   GetPolicyForOpenGenericKey(policyInterface, buildKey, buildType, localOnly, out containingPolicyList) ??
+                   GetPolicyForType(policyInterface, buildType, localOnly, out containingPolicyList) ??
+                   GetPolicyForOpenGenericType(policyInterface, buildType, localOnly, out containingPolicyList) ??
+                   GetDefaultForPolicy(policyInterface, localOnly, out containingPolicyList);
         }
 
         /// <summary>
-        /// Get the non default policy.
+        ///   Get the non default policy.
         /// </summary>
-        /// <param name="policyInterface">The interface the policy is registered under.</param>
-        /// <param name="buildKey">The key the policy applies to.</param>
-        /// <param name="localOnly">True if the search should be in the local policy list only; otherwise false to search up the parent chain.</param>
-        /// <param name="containingPolicyList">The policy list in the chain that the searched for policy was found in, null if the policy was
-        /// not found.</param>
+        /// <param name = "policyInterface">The interface the policy is registered under.</param>
+        /// <param name = "buildKey">The key the policy applies to.</param>
+        /// <param name = "localOnly">True if the search should be in the local policy list only; otherwise false to search up the parent chain.</param>
+        /// <param name = "containingPolicyList">The policy list in the chain that the searched for policy was found in, null if the policy was
+        ///   not found.</param>
         /// <returns>The policy in the list if present; returns null otherwise.</returns>
-        public IBuilderPolicy GetNoDefault(Type policyInterface, object buildKey, bool localOnly, out IPolicyList containingPolicyList)
+        public IBuilderPolicy GetNoDefault(Type policyInterface, object buildKey, bool localOnly,
+                                           out IPolicyList containingPolicyList)
         {
             containingPolicyList = null;
 
@@ -186,11 +142,11 @@ namespace Microsoft.Practices.ObjectBuilder2
         }
 
         /// <summary>
-        /// Sets an individual policy.
+        ///   Sets an individual policy.
         /// </summary>
-        /// <param name="policyInterface">The <see cref="Type"/> of the policy.</param>
-        /// <param name="policy">The policy to be registered.</param>
-        /// <param name="buildKey">The key the policy applies.</param>
+        /// <param name = "policyInterface">The <see cref = "Type" /> of the policy.</param>
+        /// <param name = "policy">The policy to be registered.</param>
+        /// <param name = "buildKey">The key the policy applies.</param>
         public void Set(Type policyInterface,
                         IBuilderPolicy policy,
                         object buildKey)
@@ -204,15 +160,69 @@ namespace Microsoft.Practices.ObjectBuilder2
         }
 
         /// <summary>
-        /// Sets a default policy. When checking for a policy, if no specific individual policy
-        /// is available, the default will be used.
+        ///   Sets a default policy. When checking for a policy, if no specific individual policy
+        ///   is available, the default will be used.
         /// </summary>
-        /// <param name="policyInterface">The interface to register the policy under.</param>
-        /// <param name="policy">The default policy to be registered.</param>
+        /// <param name = "policyInterface">The interface to register the policy under.</param>
+        /// <param name = "policy">The default policy to be registered.</param>
         public void SetDefault(Type policyInterface,
                                IBuilderPolicy policy)
         {
             Set(policyInterface, policy, null);
+        }
+
+        #endregion
+
+        private IBuilderPolicy GetPolicyForKey(Type policyInterface, object buildKey, bool localOnly,
+                                               out IPolicyList containingPolicyList)
+        {
+            if (buildKey != null)
+            {
+                return GetNoDefault(policyInterface, buildKey, localOnly, out containingPolicyList);
+            }
+            containingPolicyList = null;
+            return null;
+        }
+
+        private IBuilderPolicy GetPolicyForOpenGenericKey(Type policyInterface, object buildKey, Type buildType,
+                                                          bool localOnly, out IPolicyList containingPolicyList)
+        {
+            if (buildType != null && buildType.IsGenericType)
+            {
+                return GetNoDefault(policyInterface, ReplaceType(buildKey, buildType.GetGenericTypeDefinition()),
+                                    localOnly, out containingPolicyList);
+            }
+            containingPolicyList = null;
+            return null;
+        }
+
+        private IBuilderPolicy GetPolicyForType(Type policyInterface, Type buildType, bool localOnly,
+                                                out IPolicyList containingPolicyList)
+        {
+            if (buildType != null)
+            {
+                return GetNoDefault(policyInterface, buildType, localOnly, out containingPolicyList);
+            }
+            containingPolicyList = null;
+            return null;
+        }
+
+        private IBuilderPolicy GetPolicyForOpenGenericType(Type policyInterface, Type buildType, bool localOnly,
+                                                           out IPolicyList containingPolicyList)
+        {
+            if (buildType != null && buildType.IsGenericType)
+            {
+                return GetNoDefault(policyInterface, buildType.GetGenericTypeDefinition(), localOnly,
+                                    out containingPolicyList);
+            }
+            containingPolicyList = null;
+            return null;
+        }
+
+        private IBuilderPolicy GetDefaultForPolicy(Type policyInterface, bool localOnly,
+                                                   out IPolicyList containingPolicyList)
+        {
+            return GetNoDefault(policyInterface, null, localOnly, out containingPolicyList);
         }
 
         private Dictionary<PolicyKey, IBuilderPolicy> ClonePolicies()
@@ -262,8 +272,12 @@ namespace Microsoft.Practices.ObjectBuilder2
                 "buildKey");
         }
 
-        class NullPolicyList : IPolicyList
+        #region Nested type: NullPolicyList
+
+        private class NullPolicyList : IPolicyList
         {
+            #region IPolicyList Members
+
             public void Clear(Type policyInterface,
                               object buildKey)
             {
@@ -280,13 +294,15 @@ namespace Microsoft.Practices.ObjectBuilder2
                 throw new NotImplementedException();
             }
 
-            public IBuilderPolicy Get(Type policyInterface, object buildKey, bool localOnly, out IPolicyList containingPolicyList)
+            public IBuilderPolicy Get(Type policyInterface, object buildKey, bool localOnly,
+                                      out IPolicyList containingPolicyList)
             {
                 containingPolicyList = null;
                 return null;
             }
 
-            public IBuilderPolicy GetNoDefault(Type policyInterface, object buildKey, bool localOnly, out IPolicyList containingPolicyList)
+            public IBuilderPolicy GetNoDefault(Type policyInterface, object buildKey, bool localOnly,
+                                               out IPolicyList containingPolicyList)
             {
                 containingPolicyList = null;
                 return null;
@@ -304,9 +320,15 @@ namespace Microsoft.Practices.ObjectBuilder2
             {
                 throw new NotImplementedException();
             }
+
+            #endregion
         }
 
-        struct PolicyKey
+        #endregion
+
+        #region Nested type: PolicyKey
+
+        private struct PolicyKey
         {
 #pragma warning disable 219
             public readonly object BuildKey;
@@ -323,7 +345,7 @@ namespace Microsoft.Practices.ObjectBuilder2
 
             public override bool Equals(object obj)
             {
-                if(obj != null && obj.GetType() == typeof(PolicyKey))
+                if (obj != null && obj.GetType() == typeof (PolicyKey))
                 {
                     return this == (PolicyKey) obj;
                 }
@@ -339,7 +361,7 @@ namespace Microsoft.Practices.ObjectBuilder2
             public static bool operator ==(PolicyKey left, PolicyKey right)
             {
                 return left.PolicyType == right.PolicyType &&
-                    Equals(left.BuildKey, right.BuildKey);
+                       Equals(left.BuildKey, right.BuildKey);
             }
 
             public static bool operator !=(PolicyKey left, PolicyKey right)
@@ -352,5 +374,7 @@ namespace Microsoft.Practices.ObjectBuilder2
                 return obj != null ? obj.GetHashCode() : 0;
             }
         }
+
+        #endregion
     }
 }

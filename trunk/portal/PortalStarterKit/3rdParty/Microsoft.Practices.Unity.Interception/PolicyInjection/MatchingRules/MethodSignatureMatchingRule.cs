@@ -1,22 +1,21 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 // FITNESS FOR A PARTICULAR PURPOSE.
 //===============================================================================
 
-using System;
 using System.Collections.Generic;
 using System.Reflection;
 
 namespace Microsoft.Practices.Unity.InterceptionExtension
 {
     /// <summary>
-    /// Match methods with the given names and method signature.
+    ///   Match methods with the given names and method signature.
     /// </summary>
     public class MethodSignatureMatchingRule : IMatchingRule
     {
@@ -24,12 +23,12 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         private readonly List<TypeMatchingRule> parameterRules;
 
         /// <summary>
-        /// Creates a new <see cref="MethodSignatureMatchingRule"/> that matches methods
-        /// with the given name, with parameter types matching the given list.
+        ///   Creates a new <see cref = "MethodSignatureMatchingRule" /> that matches methods
+        ///   with the given name, with parameter types matching the given list.
         /// </summary>
-        /// <param name="methodName">Method name to match. Wildcards are allowed.</param>
-        /// <param name="parameterTypeNames">Parameter type names to match, in order. Wildcards are allowed.</param>
-        /// <param name="ignoreCase">If false, name comparisons are case sensitive. If true, name comparisons are case insensitive.</param>
+        /// <param name = "methodName">Method name to match. Wildcards are allowed.</param>
+        /// <param name = "parameterTypeNames">Parameter type names to match, in order. Wildcards are allowed.</param>
+        /// <param name = "ignoreCase">If false, name comparisons are case sensitive. If true, name comparisons are case insensitive.</param>
         public MethodSignatureMatchingRule(string methodName, IEnumerable<string> parameterTypeNames, bool ignoreCase)
         {
             methodNamePattern = new Glob(methodName, !ignoreCase);
@@ -42,43 +41,49 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Create a new <see cref="MethodSignatureMatchingRule"/> that matches methods
-        /// with the given name, with parameter types matching the given list.
+        ///   Create a new <see cref = "MethodSignatureMatchingRule" /> that matches methods
+        ///   with the given name, with parameter types matching the given list.
         /// </summary>
-        /// <remarks>Name comparisons are case sensitive.</remarks>
-        /// <param name="methodName">Method name to match. Wildcards are allowed.</param>
-        /// <param name="parameterTypeNames">Parameter type names to match, in order. Wildcards are allowed.</param>
+        /// <remarks>
+        ///   Name comparisons are case sensitive.
+        /// </remarks>
+        /// <param name = "methodName">Method name to match. Wildcards are allowed.</param>
+        /// <param name = "parameterTypeNames">Parameter type names to match, in order. Wildcards are allowed.</param>
         public MethodSignatureMatchingRule(string methodName, IEnumerable<string> parameterTypeNames)
             : this(methodName, parameterTypeNames, false)
         {
         }
 
         /// <summary>
-        /// Create a new <see cref="MethodSignatureMatchingRule"/> that matches any method
-        /// with parameter types matching the given list.
+        ///   Create a new <see cref = "MethodSignatureMatchingRule" /> that matches any method
+        ///   with parameter types matching the given list.
         /// </summary>
-        /// <remarks>Name comparisons are case sensitive.</remarks>
-        /// <param name="parameterTypeNames">Parameter type names to match, in order. Wildcards are allowed.</param>
+        /// <remarks>
+        ///   Name comparisons are case sensitive.
+        /// </remarks>
+        /// <param name = "parameterTypeNames">Parameter type names to match, in order. Wildcards are allowed.</param>
         public MethodSignatureMatchingRule(IEnumerable<string> parameterTypeNames)
             : this("*", parameterTypeNames, false)
         {
         }
 
         /// <summary>
-        /// Create a new <see cref="MethodSignatureMatchingRule"/> that matches any method
-        /// with parameter types matching the given list.
+        ///   Create a new <see cref = "MethodSignatureMatchingRule" /> that matches any method
+        ///   with parameter types matching the given list.
         /// </summary>
-        /// <param name="parameterTypeNames">Parameter type names to match, in order. Wildcards are allowed.</param>
-        /// <param name="ignoreCase">If false, name comparisons are case sensitive. If true, name comparisons are case insensitive.</param>
+        /// <param name = "parameterTypeNames">Parameter type names to match, in order. Wildcards are allowed.</param>
+        /// <param name = "ignoreCase">If false, name comparisons are case sensitive. If true, name comparisons are case insensitive.</param>
         public MethodSignatureMatchingRule(IEnumerable<string> parameterTypeNames, bool ignoreCase)
             : this("*", parameterTypeNames, ignoreCase)
         {
         }
 
+        #region IMatchingRule Members
+
         /// <summary>
-        /// Check to see if the given method matches the name and signature.
+        ///   Check to see if the given method matches the name and signature.
         /// </summary>
-        /// <param name="member">Member to check.</param>
+        /// <param name = "member">Member to check.</param>
         /// <returns>True if match, false if not.</returns>
         public bool Matches(MethodBase member)
         {
@@ -103,5 +108,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
 
             return true;
         }
+
+        #endregion
     }
 }

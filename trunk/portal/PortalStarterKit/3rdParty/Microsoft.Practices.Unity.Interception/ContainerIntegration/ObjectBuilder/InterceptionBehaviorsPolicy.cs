@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -16,16 +16,18 @@ using Microsoft.Practices.ObjectBuilder2;
 namespace Microsoft.Practices.Unity.InterceptionExtension
 {
     /// <summary>
-    /// An <see cref="IInterceptionBehaviorsPolicy"/> that accumulates a sequence of 
-    /// <see cref="IInterceptionBehavior"/> instances for an intercepted object.
+    ///   An <see cref = "IInterceptionBehaviorsPolicy" /> that accumulates a sequence of 
+    ///   <see cref = "IInterceptionBehavior" /> instances for an intercepted object.
     /// </summary>
     public class InterceptionBehaviorsPolicy : IInterceptionBehaviorsPolicy
     {
         private readonly List<NamedTypeBuildKey> behaviorKeys = new List<NamedTypeBuildKey>();
 
+        #region IInterceptionBehaviorsPolicy Members
+
         /// <summary>
-        /// Get the set of <see cref="NamedTypeBuildKey"/> that can be used to resolve the
-        /// behaviors.
+        ///   Get the set of <see cref = "NamedTypeBuildKey" /> that can be used to resolve the
+        ///   behaviors.
         /// </summary>
         public IEnumerable<NamedTypeBuildKey> BehaviorKeys
         {
@@ -33,31 +35,36 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Get the set of <see cref="IInterceptionBehavior"/> object to be used for the given type and
-        /// interceptor.
+        ///   Get the set of <see cref = "IInterceptionBehavior" /> object to be used for the given type and
+        ///   interceptor.
         /// </summary>
         /// <remarks>
-        /// This method will return a sequence of <see cref="IInterceptionBehavior"/>s. These behaviors will
-        /// only be included if their <see cref="IInterceptionBehavior.WillExecute"/> properties are true.
+        ///   This method will return a sequence of <see cref = "IInterceptionBehavior" />s. These behaviors will
+        ///   only be included if their <see cref = "IInterceptionBehavior.WillExecute" /> properties are true.
         /// </remarks>
-        /// <param name="context">Context for the current build operation.</param>
-        /// <param name="interceptor">Interceptor that will be used to invoke the behavior.</param>
-        /// <param name="typeToIntercept">Type that interception was requested on.</param>
-        /// <param name="implementationType">Type that implements the interception.</param>
+        /// <param name = "context">Context for the current build operation.</param>
+        /// <param name = "interceptor">Interceptor that will be used to invoke the behavior.</param>
+        /// <param name = "typeToIntercept">Type that interception was requested on.</param>
+        /// <param name = "implementationType">Type that implements the interception.</param>
         /// <returns></returns>
         public IEnumerable<IInterceptionBehavior> GetEffectiveBehaviors(
             IBuilderContext context, IInterceptor interceptor, Type typeToIntercept, Type implementationType)
         {
             var interceptionRequest = new CurrentInterceptionRequest(interceptor, typeToIntercept, implementationType);
 
-            foreach(var key in BehaviorKeys)
+            foreach (NamedTypeBuildKey key in BehaviorKeys)
             {
-                var behavior = (IInterceptionBehavior)context.NewBuildUp(key,
-                    childContext => childContext.AddResolverOverrides(
-                        new DependencyOverride<CurrentInterceptionRequest>(interceptionRequest) ) );
+                var behavior = (IInterceptionBehavior) context.NewBuildUp(key,
+                                                                          childContext =>
+                                                                          childContext.AddResolverOverrides(
+                                                                              new DependencyOverride
+                                                                                  <CurrentInterceptionRequest>(
+                                                                                  interceptionRequest)));
                 yield return behavior;
             }
         }
+
+        #endregion
 
         internal void AddBehaviorKey(NamedTypeBuildKey key)
         {
@@ -69,15 +76,15 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
             Type typeToCreate,
             string name)
         {
-            NamedTypeBuildKey key = new NamedTypeBuildKey(typeToCreate, name);
-            IInterceptionBehaviorsPolicy policy =
+            var key = new NamedTypeBuildKey(typeToCreate, name);
+            var policy =
                 policies.GetNoDefault<IInterceptionBehaviorsPolicy>(key, false);
             if ((policy == null) || !(policy is InterceptionBehaviorsPolicy))
             {
                 policy = new InterceptionBehaviorsPolicy();
-                policies.Set<IInterceptionBehaviorsPolicy>(policy, key);
+                policies.Set(policy, key);
             }
-            return (InterceptionBehaviorsPolicy)policy;
+            return (InterceptionBehaviorsPolicy) policy;
         }
     }
 }
