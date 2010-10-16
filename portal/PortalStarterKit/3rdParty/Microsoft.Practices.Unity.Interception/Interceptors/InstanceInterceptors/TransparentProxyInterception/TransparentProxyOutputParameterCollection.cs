@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -16,21 +16,22 @@ using System.Security.Permissions;
 namespace Microsoft.Practices.Unity.InterceptionExtension
 {
     /// <summary>
-    /// A class that wraps the outputs of a <see cref="IMethodCallMessage"/> into the
-    /// <see cref="IParameterCollection"/> interface.
+    ///   A class that wraps the outputs of a <see cref = "IMethodCallMessage" /> into the
+    ///   <see cref = "IParameterCollection" /> interface.
     /// </summary>
     [SecurityCritical(SecurityCriticalScope.Everything)]
     [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.Infrastructure)]
-    class TransparentProxyOutputParameterCollection : ParameterCollection
+    internal class TransparentProxyOutputParameterCollection : ParameterCollection
     {
         /// <summary>
-        /// Constructs a new <see cref="TransparentProxyOutputParameterCollection"/> that wraps the
-        /// given method call and arguments.
+        ///   Constructs a new <see cref = "TransparentProxyOutputParameterCollection" /> that wraps the
+        ///   given method call and arguments.
         /// </summary>
-        /// <param name="callMessage">The call message.</param>
-        /// <param name="arguments">The arguments.</param>
+        /// <param name = "callMessage">The call message.</param>
+        /// <param name = "arguments">The arguments.</param>
         public TransparentProxyOutputParameterCollection(IMethodCallMessage callMessage, object[] arguments)
-            : base(arguments, callMessage.MethodBase.GetParameters(), parameterInfo => parameterInfo.ParameterType.IsByRef)
+            : base(
+                arguments, callMessage.MethodBase.GetParameters(), parameterInfo => parameterInfo.ParameterType.IsByRef)
         {
         }
     }

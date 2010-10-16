@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -16,8 +16,8 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
 {
     internal struct GeneratedTypeKey
     {
-        private readonly Type baseType;
         private readonly Type[] additionalInterfaces;
+        private readonly Type baseType;
 
         public GeneratedTypeKey(Type baseType, Type[] additionalInterfaces)
         {
@@ -25,8 +25,12 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
             this.additionalInterfaces = additionalInterfaces;
         }
 
+        #region Nested type: GeneratedTypeKeyComparer
+
         internal class GeneratedTypeKeyComparer : IEqualityComparer<GeneratedTypeKey>
         {
+            #region IEqualityComparer<GeneratedTypeKey> Members
+
             public bool Equals(GeneratedTypeKey x, GeneratedTypeKey y)
             {
                 if (!(x.baseType.Equals(y.baseType) && x.additionalInterfaces.Length == y.additionalInterfaces.Length))
@@ -48,6 +52,10 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
             {
                 return obj.baseType.GetHashCode();
             }
+
+            #endregion
         }
+
+        #endregion
     }
 }

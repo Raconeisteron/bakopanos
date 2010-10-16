@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -12,20 +12,20 @@
 namespace Microsoft.Practices.Unity.Utility
 {
     /// <summary>
-    /// A helper class that encapsulates two different
-    /// data items together into a a single item.
+    ///   A helper class that encapsulates two different
+    ///   data items together into a a single item.
     /// </summary>
     public class Pair<TFirst, TSecond>
     {
-        private TFirst first;
-        private TSecond second;
+        private readonly TFirst first;
+        private readonly TSecond second;
 
         /// <summary>
-        /// Create a new <see cref="Pair{TFirst, TSecond}"/> containing
-        /// the two values give.
+        ///   Create a new <see cref = "Pair{TFirst, TSecond}" /> containing
+        ///   the two values give.
         /// </summary>
-        /// <param name="first">First value</param>
-        /// <param name="second">Second value</param>
+        /// <param name = "first">First value</param>
+        /// <param name = "second">Second value</param>
         public Pair(TFirst first, TSecond second)
         {
             this.first = first;
@@ -33,7 +33,7 @@ namespace Microsoft.Practices.Unity.Utility
         }
 
         /// <summary>
-        /// The first value of the pair.
+        ///   The first value of the pair.
         /// </summary>
         public TFirst First
         {
@@ -41,7 +41,7 @@ namespace Microsoft.Practices.Unity.Utility
         }
 
         /// <summary>
-        /// The second value of the pair.
+        ///   The second value of the pair.
         /// </summary>
         public TSecond Second
         {
@@ -50,19 +50,20 @@ namespace Microsoft.Practices.Unity.Utility
     }
 
     /// <summary>
-    /// Container for a Pair helper method.
+    ///   Container for a Pair helper method.
     /// </summary>
     public static class Pair
     {
         /// <summary>
-        /// A helper factory method that lets users take advantage of type inference.
+        ///   A helper factory method that lets users take advantage of type inference.
         /// </summary>
-        /// <typeparam name="TFirstParameter">Type of first value.</typeparam>
-        /// <typeparam name="TSecondParameter">Type of second value.</typeparam>
-        /// <param name="first">First value.</param>
-        /// <param name="second">Second value.</param>
-        /// <returns>A new <see cref="Pair{TFirstParameter, TSecondParameter}"/> instance.</returns>
-        public static Pair<TFirstParameter, TSecondParameter> Make<TFirstParameter, TSecondParameter>(TFirstParameter first, TSecondParameter second)
+        /// <typeparam name = "TFirstParameter">Type of first value.</typeparam>
+        /// <typeparam name = "TSecondParameter">Type of second value.</typeparam>
+        /// <param name = "first">First value.</param>
+        /// <param name = "second">Second value.</param>
+        /// <returns>A new <see cref = "Pair{TFirstParameter, TSecondParameter}" /> instance.</returns>
+        public static Pair<TFirstParameter, TSecondParameter> Make<TFirstParameter, TSecondParameter>(
+            TFirstParameter first, TSecondParameter second)
         {
             return new Pair<TFirstParameter, TSecondParameter>(first, second);
         }

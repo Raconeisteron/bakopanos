@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -19,18 +19,21 @@ using Microsoft.Practices.Unity.Properties;
 namespace Microsoft.Practices.ObjectBuilder2
 {
     /// <summary>
-    /// Base class that provides an implementation of <see cref="IConstructorSelectorPolicy"/>
-    /// which lets you override how the parameter resolvers are created.
+    ///   Base class that provides an implementation of <see cref = "IConstructorSelectorPolicy" />
+    ///   which lets you override how the parameter resolvers are created.
     /// </summary>
-    public abstract class ConstructorSelectorPolicyBase<TInjectionConstructorMarkerAttribute> : IConstructorSelectorPolicy
+    public abstract class ConstructorSelectorPolicyBase<TInjectionConstructorMarkerAttribute> :
+        IConstructorSelectorPolicy
         where TInjectionConstructorMarkerAttribute : Attribute
     {
+        #region IConstructorSelectorPolicy Members
+
         /// <summary>
-        /// Choose the constructor to call for the given type.
+        ///   Choose the constructor to call for the given type.
         /// </summary>
-        /// <param name="context">Current build context</param>
-        /// <param name="resolverPolicyDestination">The <see cref='IPolicyList'/> to add any
-        /// generated resolver objects into.</param>
+        /// <param name = "context">Current build context</param>
+        /// <param name = "resolverPolicyDestination">The <see cref = 'IPolicyList' /> to add any
+        ///   generated resolver objects into.</param>
         /// <returns>The chosen constructor.</returns>
         public SelectedConstructor SelectConstructor(IBuilderContext context, IPolicyList resolverPolicyDestination)
         {
@@ -43,28 +46,32 @@ namespace Microsoft.Practices.ObjectBuilder2
             return null;
         }
 
-        private SelectedConstructor CreateSelectedConstructor(IBuilderContext context, IPolicyList resolverPolicyDestination, ConstructorInfo ctor)
+        #endregion
+
+        private SelectedConstructor CreateSelectedConstructor(IBuilderContext context,
+                                                              IPolicyList resolverPolicyDestination,
+                                                              ConstructorInfo ctor)
         {
-            SelectedConstructor result = new SelectedConstructor(ctor);
-            
-            foreach(ParameterInfo param in ctor.GetParameters())
+            var result = new SelectedConstructor(ctor);
+
+            foreach (ParameterInfo param in ctor.GetParameters())
             {
                 string key = Guid.NewGuid().ToString();
                 IDependencyResolverPolicy policy = CreateResolver(param);
-                resolverPolicyDestination.Set<IDependencyResolverPolicy>(policy, key);
+                resolverPolicyDestination.Set(policy, key);
                 DependencyResolverTrackerPolicy.TrackKey(resolverPolicyDestination,
-                    context.BuildKey,
-                    key);
+                                                         context.BuildKey,
+                                                         key);
                 result.AddParameterKey(key);
             }
             return result;
         }
 
         /// <summary>
-        /// Create a <see cref="IDependencyResolverPolicy"/> instance for the given
-        /// <see cref="ParameterInfo"/>.
+        ///   Create a <see cref = "IDependencyResolverPolicy" /> instance for the given
+        ///   <see cref = "ParameterInfo" />.
         /// </summary>
-        /// <param name="parameter">Parameter to create the resolver for.</param>
+        /// <param name = "parameter">Parameter to create the resolver for.</param>
         /// <returns>The resolver object.</returns>
         protected abstract IDependencyResolverPolicy CreateResolver(ParameterInfo parameter);
 
@@ -76,7 +83,7 @@ namespace Microsoft.Practices.ObjectBuilder2
                     true))
                 .ToArray();
 
-            switch(injectionConstructors.Length)
+            switch (injectionConstructors.Length)
             {
                 case 0:
                     return null;
@@ -98,7 +105,7 @@ namespace Microsoft.Practices.ObjectBuilder2
             ConstructorInfo[] constructors = typeToConstruct.GetConstructors();
             Array.Sort(constructors, new ConstructorLengthComparer());
 
-            switch(constructors.Length)
+            switch (constructors.Length)
             {
                 case 0:
                     return null;
@@ -108,7 +115,7 @@ namespace Microsoft.Practices.ObjectBuilder2
 
                 default:
                     int paramLength = constructors[0].GetParameters().Length;
-                    if(constructors[1].GetParameters().Length == paramLength)
+                    if (constructors[1].GetParameters().Length == paramLength)
                     {
                         throw new InvalidOperationException(
                             string.Format(
@@ -121,22 +128,28 @@ namespace Microsoft.Practices.ObjectBuilder2
             }
         }
 
+        #region Nested type: ConstructorLengthComparer
+
         private class ConstructorLengthComparer : IComparer<ConstructorInfo>
         {
+            #region IComparer<ConstructorInfo> Members
+
             ///<summary>
-            ///Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.
+            ///  Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.
             ///</summary>
-            ///
             ///<returns>
-            ///Value Condition Less than zerox is less than y.Zerox equals y.Greater than zerox is greater than y.
+            ///  Value Condition Less than zerox is less than y.Zerox equals y.Greater than zerox is greater than y.
             ///</returns>
-            ///
-            ///<param name="y">The second object to compare.</param>
-            ///<param name="x">The first object to compare.</param>
+            ///<param name = "y">The second object to compare.</param>
+            ///<param name = "x">The first object to compare.</param>
             public int Compare(ConstructorInfo x, ConstructorInfo y)
             {
                 return y.GetParameters().Length - x.GetParameters().Length;
             }
+
+            #endregion
         }
+
+        #endregion
     }
 }

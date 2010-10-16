@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -17,15 +17,14 @@ namespace Microsoft.Practices.Unity
 {
     // A helper class to manage the names that get
     // registered in the container
-    class NamedTypesRegistry
+    internal class NamedTypesRegistry
     {
-        private readonly Dictionary<Type, List<string>> registeredKeys;
         private readonly NamedTypesRegistry parent;
+        private readonly Dictionary<Type, List<string>> registeredKeys;
 
         public NamedTypesRegistry()
             : this(null)
         {
-            
         }
 
         public NamedTypesRegistry(NamedTypesRegistry parent)
@@ -34,9 +33,14 @@ namespace Microsoft.Practices.Unity
             registeredKeys = new Dictionary<Type, List<string>>();
         }
 
+        public IEnumerable<Type> RegisteredTypes
+        {
+            get { return registeredKeys.Keys; }
+        }
+
         public void RegisterType(Type t, string name)
         {
-            if(!registeredKeys.ContainsKey(t))
+            if (!registeredKeys.ContainsKey(t))
             {
                 registeredKeys[t] = new List<string>();
             }
@@ -47,27 +51,19 @@ namespace Microsoft.Practices.Unity
 
         public IEnumerable<string> GetKeys(Type t)
         {
-            var keys = Enumerable.Empty<string>();
+            IEnumerable<string> keys = Enumerable.Empty<string>();
 
-            if(parent != null)
+            if (parent != null)
             {
                 keys = keys.Concat(parent.GetKeys(t));
             }
 
-            if(registeredKeys.ContainsKey(t))
+            if (registeredKeys.ContainsKey(t))
             {
                 keys = keys.Concat(registeredKeys[t]);
             }
 
             return keys;
-        }
-
-        public IEnumerable<Type> RegisteredTypes
-        {
-            get
-            {
-                return registeredKeys.Keys;
-            }
         }
 
         public void Clear()
@@ -78,9 +74,9 @@ namespace Microsoft.Practices.Unity
         // We need to do this the long way - Silverlight doesn't support List<T>.RemoveAll(Predicate)
         private void RemoveMatchingKeys(Type t, string name)
         {
-            var uniqueNames = from registeredName in registeredKeys[t]
-                              where registeredName != name
-                              select registeredName;
+            IEnumerable<string> uniqueNames = from registeredName in registeredKeys[t]
+                                              where registeredName != name
+                                              select registeredName;
 
             registeredKeys[t] = uniqueNames.ToList();
         }

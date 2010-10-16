@@ -1,21 +1,18 @@
 using System;
 using System.Collections;
-using System.ComponentModel;
 using Microsoft.Practices.Unity;
-using System.Web.UI;
-using PortalStarterKit;
 
-namespace ASPNET.StarterKit.Portal
+namespace PortalStarterKit.Components
 {
     /// <summary>
-    /// The PortalModuleControl class defines a custom base class inherited by all
-    /// desktop portal modules within the Portal.
+    ///   The PortalModuleControl class defines a custom base class inherited by all
+    ///   desktop portal modules within the Portal.
     /// 
-    /// The PortalModuleControl class defines portal specific properties
-    /// that are used by the portal framework to correctly display portal modules
+    ///   The PortalModuleControl class defines portal specific properties
+    ///   that are used by the portal framework to correctly display portal modules
     /// </summary>
     public class PortalModuleControl<T> : PortalModuleUserControl
-        where T : PortalModuleUserControl 
+        where T : PortalModuleUserControl
     {
         // Private field variables
         private int _isEditable;
@@ -28,15 +25,15 @@ namespace ASPNET.StarterKit.Portal
 
         public ModuleSettings ModuleConfiguration { get; set; }
 
-        
+
         protected override void OnInit(EventArgs e)
         {
             Global.BuildItemWithCurrentContext<T>(this);
 
             var siteConfiguration = Global.Container.Resolve<ISiteConfigurationService>();
-            
+
             PortalId = Page.RouteData.Values["portalId"] as string ??
-                      siteConfiguration.GetPortals()[0].PortalId;
+                       siteConfiguration.GetPortals()[0].PortalId;
 
             TabId = Page.RouteData.Values["tabId"] as string ??
                     siteConfiguration.GetTabs(PortalId)[0].TabId;
@@ -44,7 +41,4 @@ namespace ASPNET.StarterKit.Portal
             base.OnInit(e);
         }
     }
-
-
-   
 }

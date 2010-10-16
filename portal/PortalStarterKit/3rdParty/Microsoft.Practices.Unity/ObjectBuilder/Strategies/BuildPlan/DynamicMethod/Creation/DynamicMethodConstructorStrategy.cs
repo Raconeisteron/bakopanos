@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -22,8 +22,8 @@ using Microsoft.Practices.Unity.Utility;
 namespace Microsoft.Practices.ObjectBuilder2
 {
     /// <summary>
-    /// A <see cref="BuilderStrategy"/> that emits IL to call constructors
-    /// as part of creating a build plan.
+    ///   A <see cref = "BuilderStrategy" /> that emits IL to call constructors
+    ///   as part of creating a build plan.
     /// </summary>
     public class DynamicMethodConstructorStrategy : BuilderStrategy
     {
@@ -49,21 +49,23 @@ namespace Microsoft.Practices.ObjectBuilder2
             StaticReflection.GetMethodInfo(() => SetPerBuildSingleton(null));
 
         /// <summary>
-        /// Called during the chain of responsibility for a build operation.
+        ///   Called during the chain of responsibility for a build operation.
         /// </summary>
-        /// <remarks>Existing object is an instance of <see cref="DynamicBuildPlanGenerationContext"/>.</remarks>
-        /// <param name="context">The context for the operation.</param>
+        /// <remarks>
+        ///   Existing object is an instance of <see cref = "DynamicBuildPlanGenerationContext" />.
+        /// </remarks>
+        /// <param name = "context">The context for the operation.</param>
         // FxCop suppression: Validation is done by Guard class
         [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods")]
         public override void PreBuildUp(IBuilderContext context)
         {
             Guard.ArgumentNotNull(context, "context");
 
-            DynamicBuildPlanGenerationContext buildContext =
-                (DynamicBuildPlanGenerationContext)context.Existing;
+            var buildContext =
+                (DynamicBuildPlanGenerationContext) context.Existing;
 
-            IPolicyList resolverPolicyDestination; 
-            IConstructorSelectorPolicy selector =
+            IPolicyList resolverPolicyDestination;
+            var selector =
                 context.Policies.Get<IConstructorSelectorPolicy>(context.BuildKey, out resolverPolicyDestination);
 
             SelectedConstructor selectedCtor = selector.SelectConstructor(context, resolverPolicyDestination);
@@ -134,7 +136,6 @@ namespace Microsoft.Practices.ObjectBuilder2
                     // the appropriate lifetime manager.
                     buildContext.EmitLoadContext();
                     buildContext.IL.EmitCall(OpCodes.Call, setPerBuildSingleton, null);
-                    
                 }
                 else
                 {
@@ -158,11 +159,11 @@ namespace Microsoft.Practices.ObjectBuilder2
         }
 
         /// <summary>
-        /// A helper method used by the generated IL to throw an exception if
-        /// a dependency cannot be resolved.
+        ///   A helper method used by the generated IL to throw an exception if
+        ///   a dependency cannot be resolved.
         /// </summary>
-        /// <param name="context">The <see cref="IBuilderContext"/> currently being
-        /// used for the build of this object.</param>
+        /// <param name = "context">The <see cref = "IBuilderContext" /> currently being
+        ///   used for the build of this object.</param>
         [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
             Justification = "Validation done by Guard class")]
         public static void ThrowForNullExistingObject(IBuilderContext context)
@@ -175,12 +176,12 @@ namespace Microsoft.Practices.ObjectBuilder2
         }
 
         /// <summary>
-        /// A helper method used by the generated IL to throw an exception if
-        /// a dependency cannot be resolved because of an invalid constructor.
+        ///   A helper method used by the generated IL to throw an exception if
+        ///   a dependency cannot be resolved because of an invalid constructor.
         /// </summary>
-        /// <param name="context">The <see cref="IBuilderContext"/> currently being
-        /// used for the build of this object.</param>
-        /// <param name="signature">The signature of the invalid constructor.</param>
+        /// <param name = "context">The <see cref = "IBuilderContext" /> currently being
+        ///   used for the build of this object.</param>
+        /// <param name = "signature">The signature of the invalid constructor.</param>
         [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
             Justification = "Validation done by Guard class")]
         public static void ThrowForNullExistingObjectWithInvalidConstructor(IBuilderContext context, string signature)
@@ -194,13 +195,14 @@ namespace Microsoft.Practices.ObjectBuilder2
         }
 
         /// <summary>
-        /// A helper method used by the generated IL to throw an exception if
-        /// no existing object is present, but the user is attempting to build
-        /// an interface (usually due to the lack of a type mapping).
+        ///   A helper method used by the generated IL to throw an exception if
+        ///   no existing object is present, but the user is attempting to build
+        ///   an interface (usually due to the lack of a type mapping).
         /// </summary>
-        /// <param name="context">The <see cref="IBuilderContext"/> currently being
-        /// used for the build of this object.</param>
-        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Validation done by Guard class.")]
+        /// <param name = "context">The <see cref = "IBuilderContext" /> currently being
+        ///   used for the build of this object.</param>
+        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
+            Justification = "Validation done by Guard class.")]
         public static void ThrowForAttemptingToConstructInterface(IBuilderContext context)
         {
             Guard.ArgumentNotNull(context, "context");
@@ -208,17 +210,19 @@ namespace Microsoft.Practices.ObjectBuilder2
             {
                 throw new InvalidOperationException(
                     string.Format(CultureInfo.CurrentCulture,
-                        Resources.CannotConstructInterface,
-                        context.BuildKey.Type,
-                        context.BuildKey));
+                                  Resources.CannotConstructInterface,
+                                  context.BuildKey.Type,
+                                  context.BuildKey));
             }
         }
 
         /// <summary>
-        /// A helper method used by the generated IL to store the current operation in the build context.
+        ///   A helper method used by the generated IL to store the current operation in the build context.
         /// </summary>
-        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Validation done by Guard class.")]
-        public static void SetCurrentOperationToResolvingParameter(string parameterName, string constructorSignature, IBuilderContext context)
+        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
+            Justification = "Validation done by Guard class.")]
+        public static void SetCurrentOperationToResolvingParameter(string parameterName, string constructorSignature,
+                                                                   IBuilderContext context)
         {
             Guard.ArgumentNotNull(context, "context");
 
@@ -227,9 +231,10 @@ namespace Microsoft.Practices.ObjectBuilder2
         }
 
         /// <summary>
-        /// A helper method used by the generated IL to store the current operation in the build context.
+        ///   A helper method used by the generated IL to store the current operation in the build context.
         /// </summary>
-        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Validation done by Guard class.")]
+        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
+            Justification = "Validation done by Guard class.")]
         public static void SetCurrentOperationToInvokingConstructor(string constructorSignature, IBuilderContext context)
         {
             Guard.ArgumentNotNull(context, "context");
@@ -239,17 +244,18 @@ namespace Microsoft.Practices.ObjectBuilder2
         }
 
         /// <summary>
-        /// A helper method used by the generated IL to set up a PerResolveLifetimeManager lifetime manager
-        /// if the current object is such.
+        ///   A helper method used by the generated IL to set up a PerResolveLifetimeManager lifetime manager
+        ///   if the current object is such.
         /// </summary>
-        /// <param name="context">Current build context.</param>
-        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Validation done by Guard class.")]
+        /// <param name = "context">Current build context.</param>
+        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
+            Justification = "Validation done by Guard class.")]
         public static void SetPerBuildSingleton(IBuilderContext context)
         {
             Guard.ArgumentNotNull(context, "context");
 
             var lifetime = context.Policies.Get<ILifetimePolicy>(context.BuildKey);
-            if(lifetime is PerResolveLifetimeManager)
+            if (lifetime is PerResolveLifetimeManager)
             {
                 var perBuildLifetime = new PerResolveLifetimeManager(context.Existing);
                 context.Policies.Set<ILifetimePolicy>(perBuildLifetime, context.BuildKey);
@@ -262,29 +268,29 @@ namespace Microsoft.Practices.ObjectBuilder2
         {
             string typeName = ctor.DeclaringType.FullName;
             ParameterInfo[] parameters = ctor.GetParameters();
-            string[] parameterDescriptions = new string[parameters.Length];
+            var parameterDescriptions = new string[parameters.Length];
             for (int i = 0; i < parameters.Length; ++i)
             {
                 parameterDescriptions[i] = string.Format(CultureInfo.CurrentCulture,
-                    "{0} {1}",
-                    parameters[i].ParameterType.FullName,
-                    parameters[i].Name);
+                                                         "{0} {1}",
+                                                         parameters[i].ParameterType.FullName,
+                                                         parameters[i].Name);
             }
 
             return string.Format(CultureInfo.CurrentCulture,
-                "{0}({1})",
-                typeName,
-                string.Join(", ", parameterDescriptions));
+                                 "{0}({1})",
+                                 typeName,
+                                 string.Join(", ", parameterDescriptions));
         }
 
         // Verify the type we're trying to build is actually constructable -
         // CLR primitive types like string and int aren't.
         private static void GuardTypeIsNonPrimitive(IBuilderContext context, SelectedConstructor selectedConstructor)
         {
-            var typeToBuild = context.BuildKey.Type;
-            if(!typeToBuild.IsInterface)
+            Type typeToBuild = context.BuildKey.Type;
+            if (!typeToBuild.IsInterface)
             {
-                if(typeToBuild == typeof(string) || selectedConstructor == null)
+                if (typeToBuild == typeof (string) || selectedConstructor == null)
                 {
                     throw new InvalidOperationException(
                         string.Format(

@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -16,18 +16,18 @@ using Microsoft.Practices.Unity.Utility;
 namespace Microsoft.Practices.Unity.InterceptionExtension
 {
     /// <summary>
-    /// An implementation of <see cref="ITypeInterceptionPolicy"/> that will
-    /// resolve the interceptor through the container.
+    ///   An implementation of <see cref = "ITypeInterceptionPolicy" /> that will
+    ///   resolve the interceptor through the container.
     /// </summary>
     public class ResolvedTypeInterceptionPolicy : ITypeInterceptionPolicy
     {
         private readonly NamedTypeBuildKey buildKey;
 
         /// <summary>
-        /// construct a new <see cref="ResolvedTypeInterceptionPolicy"/> that
-        /// will resolve the interceptor with the given <paramref name="buildKey"/>.
+        ///   construct a new <see cref = "ResolvedTypeInterceptionPolicy" /> that
+        ///   will resolve the interceptor with the given <paramref name = "buildKey" />.
         /// </summary>
-        /// <param name="buildKey">The build key to use to resolve.</param>
+        /// <param name = "buildKey">The build key to use to resolve.</param>
         public ResolvedTypeInterceptionPolicy(NamedTypeBuildKey buildKey)
         {
             this.buildKey = buildKey;
@@ -36,9 +36,9 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         #region ITypeInterceptionPolicy Members
 
         /// <summary>
-        /// Interceptor to use to create type proxy
+        ///   Interceptor to use to create type proxy
         /// </summary>
-        /// <param name="context">Context for current build operation.</param>
+        /// <param name = "context">Context for current build operation.</param>
         public ITypeInterceptor GetInterceptor(IBuilderContext context)
         {
             Guard.ArgumentNotNull(context, "context");
@@ -46,7 +46,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Cache for proxied type.
+        ///   Cache for proxied type.
         /// </summary>
         public Type ProxyType { get; set; }
 

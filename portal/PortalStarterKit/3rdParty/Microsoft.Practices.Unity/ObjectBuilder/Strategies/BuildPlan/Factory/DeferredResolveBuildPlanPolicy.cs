@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -17,15 +17,17 @@ using Microsoft.Practices.Unity;
 namespace Microsoft.Practices.ObjectBuilder2
 {
     /// <summary>
-    /// Build plan for <see cref="Func{TResult}"/> that will
-    /// return a func that will resolve the requested type
-    /// through this container later.
+    ///   Build plan for <see cref = "Func{TResult}" /> that will
+    ///   return a func that will resolve the requested type
+    ///   through this container later.
     /// </summary>
-    class DeferredResolveBuildPlanPolicy : IBuildPlanPolicy
+    internal class DeferredResolveBuildPlanPolicy : IBuildPlanPolicy
     {
+        #region IBuildPlanPolicy Members
+
         public void BuildUp(IBuilderContext context)
         {
-            if(context.Existing == null)
+            if (context.Existing == null)
             {
                 var currentContainer = context.NewBuildUp<IUnityContainer>();
 
@@ -34,7 +36,7 @@ namespace Microsoft.Practices.ObjectBuilder2
 
                 Delegate resolveMethod;
 
-                if(IsResolvingIEnumerable(typeToBuild))
+                if (IsResolvingIEnumerable(typeToBuild))
                 {
                     resolveMethod = CreateResolveAllResolver(currentContainer, typeToBuild);
                 }
@@ -49,6 +51,8 @@ namespace Microsoft.Practices.ObjectBuilder2
             }
         }
 
+        #endregion
+
         private static Type GetTypeToBuild(Type t)
         {
             return t.GetGenericArguments()[0];
@@ -57,11 +61,11 @@ namespace Microsoft.Practices.ObjectBuilder2
         private static bool IsResolvingIEnumerable(Type typeToBuild)
         {
             return typeToBuild.IsGenericType &&
-                typeToBuild.GetGenericTypeDefinition() == typeof (IEnumerable<>);
+                   typeToBuild.GetGenericTypeDefinition() == typeof (IEnumerable<>);
         }
 
         private static Delegate CreateResolver(IUnityContainer currentContainer, Type typeToBuild,
-            string nameToBuild)
+                                               string nameToBuild)
         {
             Type trampolineType = typeof (ResolveTrampoline<>).MakeGenericType(typeToBuild);
             Type delegateType = typeof (Func<>).MakeGenericType(typeToBuild);
@@ -83,6 +87,27 @@ namespace Microsoft.Practices.ObjectBuilder2
             return Delegate.CreateDelegate(delegateType, trampoline, resolveAllMethod);
         }
 
+        #region Nested type: ResolveAllTrampoline
+
+        private class ResolveAllTrampoline<TItem>
+        {
+            private readonly IUnityContainer container;
+
+            public ResolveAllTrampoline(IUnityContainer container)
+            {
+                this.container = container;
+            }
+
+            public IEnumerable<TItem> ResolveAll()
+            {
+                return container.ResolveAll<TItem>();
+            }
+        }
+
+        #endregion
+
+        #region Nested type: ResolveTrampoline
+
         private class ResolveTrampoline<TItem>
         {
             private readonly IUnityContainer container;
@@ -100,20 +125,6 @@ namespace Microsoft.Practices.ObjectBuilder2
             }
         }
 
-        private class ResolveAllTrampoline<TItem>
-        {
-            private readonly IUnityContainer container;
-
-            public ResolveAllTrampoline(IUnityContainer container)
-            {
-                this.container = container;
-            }
-
-            public IEnumerable<TItem> ResolveAll()
-            {
-                return container.ResolveAll<TItem>();
-            }
-        }
-
+        #endregion
     }
 }

@@ -3,17 +3,15 @@ using System.Web;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 
-namespace ASPNET.StarterKit.Portal
+namespace PortalStarterKit.Components
 {
-    public abstract class PortalMasterPage<T> : MasterPage, IPortalPage 
-        where T: IPortalPage
+    public abstract class PortalMasterPage<T> : MasterPage, IPortalPage
+        where T : IPortalPage
     {
-        public ISiteConfigurationService SiteConfiguration
-        {
-            get;
-            set;
-        }
-        
+        #region IPortalPage Members
+
+        public ISiteConfigurationService SiteConfiguration { get; set; }
+
         public string PortalId { get; private set; }
         public string TabId { get; private set; }
 
@@ -21,6 +19,9 @@ namespace ASPNET.StarterKit.Portal
         {
             return Page.GetNavigateUrl(portalId, tabId);
         }
+
+        #endregion
+
         protected override void OnInit(EventArgs e)
         {
             InjectDependencies();
@@ -33,9 +34,10 @@ namespace ASPNET.StarterKit.Portal
 
             base.OnInit(e);
         }
+
         protected virtual void InjectDependencies()
         {
-            var context = HttpContext.Current;
+            HttpContext context = HttpContext.Current;
             if (context == null)
             {
                 return;
@@ -47,16 +49,14 @@ namespace ASPNET.StarterKit.Portal
                 return;
             }
 
-            var container = accessor.Container;
+            IUnityContainer container = accessor.Container;
             if (container == null)
             {
                 throw new InvalidOperationException("No Unity container found");
             }
 
-            container.BuildUp(typeof(T), this, string.Empty);
+            container.BuildUp(typeof (T), this, string.Empty);
             SiteConfiguration = container.Resolve<ISiteConfigurationService>();
         }
-
-       
     }
 }

@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -18,28 +18,28 @@ using Microsoft.Practices.Unity.Utility;
 namespace Microsoft.Practices.Unity.InterceptionExtension
 {
     /// <summary>
-    /// An <see cref="IMatchingRule"/> that matches the assembly name of the
-    /// given member.
+    ///   An <see cref = "IMatchingRule" /> that matches the assembly name of the
+    ///   given member.
     /// </summary>
     public class AssemblyMatchingRule : IMatchingRule
     {
         private readonly string assemblyName;
 
         /// <summary>
-        /// Constructs a new <see cref="AssemblyMatchingRule"/> with the given
-        /// assembly name (or partial name).
+        ///   Constructs a new <see cref = "AssemblyMatchingRule" /> with the given
+        ///   assembly name (or partial name).
         /// </summary>
-        /// <param name="assemblyName">Assembly name to match.</param>
+        /// <param name = "assemblyName">Assembly name to match.</param>
         public AssemblyMatchingRule(string assemblyName)
         {
             this.assemblyName = assemblyName;
         }
 
         /// <summary>
-        /// Constructs a new <see cref="AssemblyMatchingRule"/> that matches
-        /// against the given assembly.
+        ///   Constructs a new <see cref = "AssemblyMatchingRule" /> that matches
+        ///   against the given assembly.
         /// </summary>
-        /// <param name="assembly">Assembly to match.</param>
+        /// <param name = "assembly">Assembly to match.</param>
         public AssemblyMatchingRule(Assembly assembly)
             : this((assembly != null) ? assembly.FullName : null)
         {
@@ -49,18 +49,20 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
             }
         }
 
+        #region IMatchingRule Members
+
         /// <summary>
-        /// Determines if the supplied <paramref name="member"/> matches the rule.
+        ///   Determines if the supplied <paramref name = "member" /> matches the rule.
         /// </summary>
         /// <remarks>
-        /// This rule matches if the assembly containing the given <paramref name="member"/>
-        /// matches the name given. The rule used for matches lets you include the parts
-        /// of the assembly name in order. You can specify assembly name only, assembly and version,
-        /// assembly, version and culture, or the fully qualified assembly name.
+        ///   This rule matches if the assembly containing the given <paramref name = "member" />
+        ///   matches the name given. The rule used for matches lets you include the parts
+        ///   of the assembly name in order. You can specify assembly name only, assembly and version,
+        ///   assembly, version and culture, or the fully qualified assembly name.
         /// </remarks>
-        /// <param name="member">Member to check.</param>
-        /// <returns>true if <paramref name="member"/> is in a matching assembly, false if not.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", 
+        /// <param name = "member">Member to check.</param>
+        /// <returns>true if <paramref name = "member" /> is in a matching assembly, false if not.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
             Justification = "Validation done by Guard class.")]
         public bool Matches(MethodBase member)
         {
@@ -75,6 +77,8 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
 
             return DoesAssemblyNameMatchString(assemblyName, assembly);
         }
+
+        #endregion
 
         private static bool DoesAssemblyNameMatchString(string assemblyNameString, AssemblyName assemblyName)
         {
@@ -100,14 +104,16 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
                 {
                     byte[] cachedAssemblyPublicKeyToken = assemblyName.GetPublicKeyToken();
 
-                    if (Convert.ToBase64String(requestedAsmPublicKeyToken) != Convert.ToBase64String(cachedAssemblyPublicKeyToken))
+                    if (Convert.ToBase64String(requestedAsmPublicKeyToken) !=
+                        Convert.ToBase64String(cachedAssemblyPublicKeyToken))
                     {
                         return false;
                     }
                 }
 
                 CultureInfo requestedAssemblyCulture = assemblyNameToMatch.CultureInfo;
-                if (requestedAssemblyCulture != null && requestedAssemblyCulture.LCID != CultureInfo.InvariantCulture.LCID)
+                if (requestedAssemblyCulture != null &&
+                    requestedAssemblyCulture.LCID != CultureInfo.InvariantCulture.LCID)
                 {
                     if (assemblyName.CultureInfo.LCID != requestedAssemblyCulture.LCID)
                     {

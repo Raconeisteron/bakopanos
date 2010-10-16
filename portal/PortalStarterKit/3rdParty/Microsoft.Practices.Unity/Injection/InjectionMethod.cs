@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -22,8 +22,8 @@ using Microsoft.Practices.Unity.Utility;
 namespace Microsoft.Practices.Unity
 {
     /// <summary>
-    /// An <see cref="InjectionMember"/> that configures the
-    /// container to call a method as part of buildup.
+    ///   An <see cref = "InjectionMember" /> that configures the
+    ///   container to call a method as part of buildup.
     /// </summary>
     public class InjectionMethod : InjectionMember
     {
@@ -31,11 +31,11 @@ namespace Microsoft.Practices.Unity
         private readonly List<InjectionParameterValue> methodParameters;
 
         /// <summary>
-        /// Create a new <see cref="InjectionMethod"/> instance which will configure
-        /// the container to call the given methods with the given parameters.
+        ///   Create a new <see cref = "InjectionMethod" /> instance which will configure
+        ///   the container to call the given methods with the given parameters.
         /// </summary>
-        /// <param name="methodName">Name of the method to call.</param>
-        /// <param name="methodParameters">Parameter values for the method.</param>
+        /// <param name = "methodName">Name of the method to call.</param>
+        /// <param name = "methodParameters">Parameter values for the method.</param>
         public InjectionMethod(string methodName, params object[] methodParameters)
         {
             this.methodName = methodName;
@@ -43,13 +43,13 @@ namespace Microsoft.Practices.Unity
         }
 
         /// <summary>
-        /// Add policies to the <paramref name="policies"/> to configure the
-        /// container to call this constructor with the appropriate parameter values.
+        ///   Add policies to the <paramref name = "policies" /> to configure the
+        ///   container to call this constructor with the appropriate parameter values.
         /// </summary>
-        /// <param name="serviceType">Type of interface registered, ignored in this implementation.</param>
-        /// <param name="implementationType">Type to register.</param>
-        /// <param name="name">Name used to resolve the type object.</param>
-        /// <param name="policies">Policy list to add policies to.</param>
+        /// <param name = "serviceType">Type of interface registered, ignored in this implementation.</param>
+        /// <param name = "implementationType">Type to register.</param>
+        /// <param name = "name">Name used to resolve the type object.</param>
+        /// <param name = "policies">Policy list to add policies to.</param>
         public override void AddPolicies(Type serviceType, Type implementationType, string name, IPolicyList policies)
         {
             MethodInfo methodInfo = FindMethod(implementationType);
@@ -61,11 +61,11 @@ namespace Microsoft.Practices.Unity
         }
 
         /// <summary>
-        /// A small function to handle name matching. You can override this
-        /// to do things like case insensitive comparisons.
+        ///   A small function to handle name matching. You can override this
+        ///   to do things like case insensitive comparisons.
         /// </summary>
-        /// <param name="targetMethod">MethodInfo for the method you're checking.</param>
-        /// <param name="nameToMatch">Name of the method you're looking for.</param>
+        /// <param name = "targetMethod">MethodInfo for the method you're checking.</param>
+        /// <param name = "nameToMatch">Name of the method you're looking for.</param>
         /// <returns>True if a match, false if not.</returns>
         protected virtual bool MethodNameMatches(MemberInfo targetMethod, string nameToMatch)
         {
@@ -74,12 +74,12 @@ namespace Microsoft.Practices.Unity
 
         private MethodInfo FindMethod(Type typeToCreate)
         {
-            ParameterMatcher matcher = new ParameterMatcher(methodParameters);
-            foreach(MethodInfo method in typeToCreate.GetMethods())
+            var matcher = new ParameterMatcher(methodParameters);
+            foreach (MethodInfo method in typeToCreate.GetMethods())
             {
-                if(MethodNameMatches(method, methodName))
+                if (MethodNameMatches(method, methodName))
                 {
-                    if(matcher.Matches(method.GetParameters()))
+                    if (matcher.Matches(method.GetParameters()))
                     {
                         return method;
                     }
@@ -99,7 +99,7 @@ namespace Microsoft.Practices.Unity
 
         private void GuardMethodNotNull(MethodInfo info, Type typeToCreate)
         {
-            if(info == null)
+            if (info == null)
             {
                 ThrowIllegalInjectionMethod(Resources.NoSuchMethod, typeToCreate);
             }
@@ -107,7 +107,7 @@ namespace Microsoft.Practices.Unity
 
         private void GuardMethodNotStatic(MethodInfo info, Type typeToCreate)
         {
-            if(info.IsStatic)
+            if (info.IsStatic)
             {
                 ThrowIllegalInjectionMethod(Resources.CannotInjectStaticMethod, typeToCreate);
             }
@@ -115,7 +115,7 @@ namespace Microsoft.Practices.Unity
 
         private void GuardMethodNotGeneric(MethodInfo info, Type typeToCreate)
         {
-            if(info.IsGenericMethodDefinition)
+            if (info.IsGenericMethodDefinition)
             {
                 ThrowIllegalInjectionMethod(Resources.CannotInjectGenericMethod, typeToCreate);
             }
@@ -123,7 +123,7 @@ namespace Microsoft.Practices.Unity
 
         private void GuardMethodHasNoOutParams(MethodInfo info, Type typeToCreate)
         {
-            if(info.GetParameters().Any(param => param.IsOut))
+            if (info.GetParameters().Any(param => param.IsOut))
             {
                 ThrowIllegalInjectionMethod(Resources.CannotInjectMethodWithOutParams, typeToCreate);
             }
@@ -131,7 +131,7 @@ namespace Microsoft.Practices.Unity
 
         private void GuardMethodHasNoRefParams(MethodInfo info, Type typeToCreate)
         {
-            if(info.GetParameters().Any(param => param.ParameterType.IsByRef))
+            if (info.GetParameters().Any(param => param.ParameterType.IsByRef))
             {
                 ThrowIllegalInjectionMethod(Resources.CannotInjectMethodWithRefParams, typeToCreate);
             }
@@ -141,22 +141,23 @@ namespace Microsoft.Practices.Unity
         {
             throw new InvalidOperationException(
                 string.Format(CultureInfo.CurrentCulture,
-                    message,
-                    typeToCreate.Name,
-                    methodName,
-                    methodParameters.JoinStrings(", ", mp => mp.ParameterTypeName)));
+                              message,
+                              typeToCreate.Name,
+                              methodName,
+                              methodParameters.JoinStrings(", ", mp => mp.ParameterTypeName)));
         }
 
-        private static SpecifiedMethodsSelectorPolicy GetSelectorPolicy(IPolicyList policies, Type typeToCreate, string name)
+        private static SpecifiedMethodsSelectorPolicy GetSelectorPolicy(IPolicyList policies, Type typeToCreate,
+                                                                        string name)
         {
             var key = new NamedTypeBuildKey(typeToCreate, name);
             var selector = policies.GetNoDefault<IMethodSelectorPolicy>(key, false);
-            if(selector == null || !(selector is SpecifiedMethodsSelectorPolicy))
+            if (selector == null || !(selector is SpecifiedMethodsSelectorPolicy))
             {
                 selector = new SpecifiedMethodsSelectorPolicy();
-                policies.Set<IMethodSelectorPolicy>(selector, key);
+                policies.Set(selector, key);
             }
-            return (SpecifiedMethodsSelectorPolicy)selector;
+            return (SpecifiedMethodsSelectorPolicy) selector;
         }
     }
 }

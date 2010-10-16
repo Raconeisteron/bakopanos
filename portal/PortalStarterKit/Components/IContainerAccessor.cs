@@ -1,6 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
 
-namespace ASPNET.StarterKit.Portal
+namespace PortalStarterKit.Components
 {
     public interface IContainerAccessor
     {

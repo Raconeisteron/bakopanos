@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -17,13 +17,13 @@ using System.Reflection.Emit;
 
 namespace Microsoft.Practices.Unity.InterceptionExtension
 {
-    class InterfaceImplementation
+    internal class InterfaceImplementation
     {
-        private readonly TypeBuilder typeBuilder;
+        private readonly bool explicitImplementation;
         private readonly Type @interface;
         private readonly FieldBuilder proxyInterceptionPipelineField;
-        private readonly bool explicitImplementation;
         private readonly FieldBuilder targetField;
+        private readonly TypeBuilder typeBuilder;
 
         public InterfaceImplementation(
             TypeBuilder typeBuilder,
@@ -31,7 +31,8 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
             FieldBuilder proxyInterceptionPipelineField,
             bool explicitImplementation)
             : this(typeBuilder, @interface, proxyInterceptionPipelineField, explicitImplementation, null)
-        { }
+        {
+        }
 
         public InterfaceImplementation(
             TypeBuilder typeBuilder,
@@ -49,14 +50,14 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
 
         public int Implement(HashSet<Type> implementedInterfaces, int memberCount)
         {
-            if (implementedInterfaces.Contains(this.@interface))
+            if (implementedInterfaces.Contains(@interface))
             {
                 return memberCount;
             }
 
-            implementedInterfaces.Add(this.@interface);
+            implementedInterfaces.Add(@interface);
 
-            typeBuilder.AddInterfaceImplementation(this.@interface);
+            typeBuilder.AddInterfaceImplementation(@interface);
 
             foreach (MethodInfo method in MethodsToIntercept())
             {
@@ -73,15 +74,15 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
                 OverrideEvent(@event, memberCount++);
             }
 
-            foreach (var @extendedInterface in this.@interface.GetInterfaces())
+            foreach (Type @extendedInterface in @interface.GetInterfaces())
             {
                 memberCount =
                     new InterfaceImplementation(
-                        this.typeBuilder,
+                        typeBuilder,
                         @extendedInterface,
-                        this.proxyInterceptionPipelineField,
-                        this.explicitImplementation,
-                        this.targetField)
+                        proxyInterceptionPipelineField,
+                        explicitImplementation,
+                        targetField)
                         .Implement(implementedInterfaces, memberCount);
             }
 
@@ -91,7 +92,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         private IEnumerable<MethodInfo> MethodsToIntercept()
         {
             foreach (MethodInfo method in
-                this.@interface.GetMethods(
+                @interface.GetMethods(
                     BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
             {
                 if (!method.IsSpecialName)
@@ -104,18 +105,18 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         private void OverrideMethod(MethodInfo method, int methodNum)
         {
             new InterfaceMethodOverride(
-                this.typeBuilder,
-                this.proxyInterceptionPipelineField,
-                this.targetField,
+                typeBuilder,
+                proxyInterceptionPipelineField,
+                targetField,
                 method,
-                this.explicitImplementation,
+                explicitImplementation,
                 methodNum)
                 .AddMethod();
         }
 
         private IEnumerable<PropertyInfo> PropertiesToIntercept()
         {
-            return this.@interface.GetProperties(
+            return @interface.GetProperties(
                 BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
         }
 
@@ -129,7 +130,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         private void AddPropertyDefinition(PropertyInfo property, MethodBuilder getMethod, MethodBuilder setMethod)
         {
             PropertyBuilder newProperty =
-                this.typeBuilder.DefineProperty(
+                typeBuilder.DefineProperty(
                     property.Name,
                     property.Attributes,
                     property.PropertyType,
@@ -149,20 +150,20 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         private MethodBuilder OverridePropertyMethod(MethodInfo method, int count)
         {
             return method == null
-                ? null
-                : new InterfaceMethodOverride(
-                    this.typeBuilder,
-                    this.proxyInterceptionPipelineField,
-                    this.targetField,
-                    method,
-                    this.explicitImplementation,
-                    count)
-                    .AddMethod();
+                       ? null
+                       : new InterfaceMethodOverride(
+                             typeBuilder,
+                             proxyInterceptionPipelineField,
+                             targetField,
+                             method,
+                             explicitImplementation,
+                             count)
+                             .AddMethod();
         }
 
         private IEnumerable<EventInfo> EventsToIntercept()
         {
-            return this.@interface.GetEvents(
+            return @interface.GetEvents(
                 BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
         }
 
@@ -175,7 +176,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
 
         private void AddEventDefinition(EventInfo @event, MethodBuilder addMethod, MethodBuilder removeMethod)
         {
-            EventBuilder newEvent = this.typeBuilder.DefineEvent(@event.Name, @event.Attributes, @event.EventHandlerType);
+            EventBuilder newEvent = typeBuilder.DefineEvent(@event.Name, @event.Attributes, @event.EventHandlerType);
 
             if (addMethod != null)
             {
@@ -191,15 +192,15 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         private MethodBuilder OverrideEventMethod(MethodInfo method, int count)
         {
             return method == null
-                ? null
-                : new InterfaceMethodOverride(
-                    this.typeBuilder,
-                    this.proxyInterceptionPipelineField,
-                    this.targetField,
-                    method,
-                    this.explicitImplementation,
-                    count)
-                    .AddMethod();
+                       ? null
+                       : new InterfaceMethodOverride(
+                             typeBuilder,
+                             proxyInterceptionPipelineField,
+                             targetField,
+                             method,
+                             explicitImplementation,
+                             count)
+                             .AddMethod();
         }
     }
 }

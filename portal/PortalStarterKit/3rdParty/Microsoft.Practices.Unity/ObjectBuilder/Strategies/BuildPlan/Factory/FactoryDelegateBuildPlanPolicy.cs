@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -14,7 +14,7 @@ using Microsoft.Practices.Unity;
 
 namespace Microsoft.Practices.ObjectBuilder2
 {
-    class FactoryDelegateBuildPlanPolicy : IBuildPlanPolicy
+    internal class FactoryDelegateBuildPlanPolicy : IBuildPlanPolicy
     {
         private readonly Func<IUnityContainer, Type, string, object> factory;
 
@@ -23,14 +23,16 @@ namespace Microsoft.Practices.ObjectBuilder2
             this.factory = factory;
         }
 
+        #region IBuildPlanPolicy Members
+
         /// <summary>
-        /// Creates an instance of this build plan's type, or fills
-        /// in the existing type if passed in.
+        ///   Creates an instance of this build plan's type, or fills
+        ///   in the existing type if passed in.
         /// </summary>
-        /// <param name="context">Context used to build up the object.</param>
+        /// <param name = "context">Context used to build up the object.</param>
         public void BuildUp(IBuilderContext context)
         {
-            if(context.Existing == null)
+            if (context.Existing == null)
             {
                 var currentContainer = context.NewBuildUp<IUnityContainer>();
                 context.Existing = factory(currentContainer, context.BuildKey.Type, context.BuildKey.Name);
@@ -38,5 +40,7 @@ namespace Microsoft.Practices.ObjectBuilder2
                 DynamicMethodConstructorStrategy.SetPerBuildSingleton(context);
             }
         }
+
+        #endregion
     }
 }

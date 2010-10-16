@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -15,28 +15,28 @@ using System.Reflection;
 namespace Microsoft.Practices.Unity.InterceptionExtension
 {
     /// <summary>
-    /// A collection of <see cref="HandlerPipeline"/> objects, indexed
-    /// by <see cref="MethodBase"/>. Returns an empty pipeline if a
-    /// MethodBase is requested that isn't in the dictionary.
+    ///   A collection of <see cref = "HandlerPipeline" /> objects, indexed
+    ///   by <see cref = "MethodBase" />. Returns an empty pipeline if a
+    ///   MethodBase is requested that isn't in the dictionary.
     /// </summary>
     public class PipelineManager
     {
+        private static readonly HandlerPipeline emptyPipeline = new HandlerPipeline();
+
         private readonly Dictionary<HandlerPipelineKey, HandlerPipeline> pipelines =
             new Dictionary<HandlerPipelineKey, HandlerPipeline>();
 
-        private static readonly HandlerPipeline emptyPipeline = new HandlerPipeline();
-
         /// <summary>
-        /// Retrieve the pipeline assocated with the requested <paramref name="method"/>.
+        ///   Retrieve the pipeline assocated with the requested <paramref name = "method" />.
         /// </summary>
-        /// <param name="method">The method for which the pipeline is being requested.</param>
+        /// <param name = "method">The method for which the pipeline is being requested.</param>
         /// <returns>The handler pipeline for the given method. If no pipeline has
-        /// been set, returns a new empty pipeline.</returns>
+        ///   been set, returns a new empty pipeline.</returns>
         public HandlerPipeline GetPipeline(MethodBase method)
         {
             HandlerPipelineKey key = HandlerPipelineKey.ForMethod(method);
             HandlerPipeline pipeline = emptyPipeline;
-            if(pipelines.ContainsKey(key))
+            if (pipelines.ContainsKey(key))
             {
                 pipeline = pipelines[key];
             }
@@ -44,10 +44,10 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Set a new pipeline for a method.
+        ///   Set a new pipeline for a method.
         /// </summary>
-        /// <param name="method">The method on which the pipeline should be set.</param>
-        /// <param name="pipeline">The new pipeline.</param>
+        /// <param name = "method">The method on which the pipeline should be set.</param>
+        /// <param name = "pipeline">The new pipeline.</param>
         public void SetPipeline(MethodBase method, HandlerPipeline pipeline)
         {
             HandlerPipelineKey key = HandlerPipelineKey.ForMethod(method);
@@ -55,15 +55,15 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
         }
 
         /// <summary>
-        /// Get the pipeline for the given method, creating it if necessary.
+        ///   Get the pipeline for the given method, creating it if necessary.
         /// </summary>
-        /// <param name="method">Method to retrieve the pipeline for.</param>
-        /// <param name="handlers">Handlers to initialize the pipeline with</param>
+        /// <param name = "method">Method to retrieve the pipeline for.</param>
+        /// <param name = "handlers">Handlers to initialize the pipeline with</param>
         /// <returns>True if the pipeline has any handlers in it, false if not.</returns>
         public bool InitializePipeline(MethodImplementationInfo method, IEnumerable<ICallHandler> handlers)
         {
-            var pipeline = CreatePipeline(method.ImplementationMethodInfo, handlers);
-            if(method.InterfaceMethodInfo != null)
+            HandlerPipeline pipeline = CreatePipeline(method.ImplementationMethodInfo, handlers);
+            if (method.InterfaceMethodInfo != null)
             {
                 pipelines[HandlerPipelineKey.ForMethod(method.InterfaceMethodInfo)] = pipeline;
             }
@@ -85,10 +85,9 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
                 return pipelines[key];
             }
 
-            var basePipeline = CreatePipeline(method.GetBaseDefinition(), handlers);
+            HandlerPipeline basePipeline = CreatePipeline(method.GetBaseDefinition(), handlers);
             pipelines[key] = basePipeline;
             return basePipeline;
-            
         }
     }
 }

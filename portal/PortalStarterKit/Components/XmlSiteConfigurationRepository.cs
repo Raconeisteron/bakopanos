@@ -1,15 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Xml.Linq;
 
-namespace ASPNET.StarterKit.Portal
+namespace PortalStarterKit.Components
 {
     public class XmlSiteConfigurationRepository : ISiteConfigurationRepository
     {
+        #region ISiteConfigurationRepository Members
+
         public List<PortalSettings> Read()
         {
-            var _deskotPortals = new List<PortalSettings>();
+            var deskotPortals = new List<PortalSettings>();
             string path = HttpContext.Current.Server.MapPath("portalcfg.xml");
             XDocument document = XDocument.Load(path);
 
@@ -21,7 +23,7 @@ namespace ASPNET.StarterKit.Portal
                 portalItem.PortalName = portal.Attribute("PortalName").Value;
                 portalItem.PortalId = portal.Attribute("PortalId").Value;
 
-                _deskotPortals.Add(portalItem);
+                deskotPortals.Add(portalItem);
 
                 foreach (XElement tab in portal.Descendants("Tab"))
                 {
@@ -36,7 +38,8 @@ namespace ASPNET.StarterKit.Portal
 
                         moduleItem.TabId = tabItem.TabId;
                         moduleItem.ModuleTitle = module.Attribute("ModuleTitle").Value;
-                        moduleItem.PaneName = (PortalPane)Enum.Parse(typeof(PortalPane), module.Attribute("PaneName").Value);
+                        moduleItem.PaneName =
+                            (PortalPane) Enum.Parse(typeof (PortalPane), module.Attribute("PaneName").Value);
                         moduleItem.ModuleId = module.Attribute("ModuleId").Value;
 
                         int moduleDefId = Convert.ToInt32(module.Attribute("ModuleDefId").Value);
@@ -55,7 +58,9 @@ namespace ASPNET.StarterKit.Portal
                     portalItem.DesktopTabs.Add(tabItem);
                 }
             }
-            return _deskotPortals;
+            return deskotPortals;
         }
+
+        #endregion
     }
 }

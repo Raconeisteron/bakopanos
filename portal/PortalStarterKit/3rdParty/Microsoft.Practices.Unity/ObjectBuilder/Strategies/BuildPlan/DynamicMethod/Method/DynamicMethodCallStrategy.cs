@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -20,9 +20,9 @@ using Microsoft.Practices.Unity.Utility;
 namespace Microsoft.Practices.ObjectBuilder2
 {
     /// <summary>
-    /// A <see cref="BuilderStrategy"/> that generates IL to call
-    /// chosen methods (as specified by the current <see cref="IMethodSelectorPolicy"/>)
-    /// as part of object build up.
+    ///   A <see cref = "BuilderStrategy" /> that generates IL to call
+    ///   chosen methods (as specified by the current <see cref = "IMethodSelectorPolicy" />)
+    ///   as part of object build up.
     /// </summary>
     public class DynamicMethodCallStrategy : BuilderStrategy
     {
@@ -33,16 +33,16 @@ namespace Microsoft.Practices.ObjectBuilder2
             StaticReflection.GetMethodInfo(() => SetCurrentOperationToInvokingMethod(null, null));
 
         /// <summary>
-        /// Called during the chain of responsibility for a build operation. The
-        /// PreBuildUp method is called when the chain is being executed in the
-        /// forward direction.
+        ///   Called during the chain of responsibility for a build operation. The
+        ///   PreBuildUp method is called when the chain is being executed in the
+        ///   forward direction.
         /// </summary>
-        /// <param name="context">Context of the build operation.</param>
+        /// <param name = "context">Context of the build operation.</param>
         // FxCop suppression: Validation is done by Guard class
         public override void PreBuildUp(IBuilderContext context)
         {
-            var ilContext = (DynamicBuildPlanGenerationContext)(context.Existing);
-            
+            var ilContext = (DynamicBuildPlanGenerationContext) (context.Existing);
+
             IPolicyList resolverPolicyDestination;
             var selector = context.Policies.Get<IMethodSelectorPolicy>(context.BuildKey, out resolverPolicyDestination);
 
@@ -83,7 +83,7 @@ namespace Microsoft.Practices.ObjectBuilder2
 
                 // Invoke the injection method
                 ilContext.IL.EmitCall(OpCodes.Callvirt, method.Method, null);
-                if (method.Method.ReturnType != typeof(void))
+                if (method.Method.ReturnType != typeof (void))
                 {
                     ilContext.IL.Emit(OpCodes.Pop);
                 }
@@ -124,17 +124,18 @@ namespace Microsoft.Practices.ObjectBuilder2
         {
             throw new IllegalInjectionMethodException(
                 string.Format(CultureInfo.CurrentCulture,
-                    format,
-                    method.DeclaringType.Name,
-                    method.Name));
-
+                              format,
+                              method.DeclaringType.Name,
+                              method.Name));
         }
 
         /// <summary>
-        /// A helper method used by the generated IL to store the current operation in the build context.
+        ///   A helper method used by the generated IL to store the current operation in the build context.
         /// </summary>
-        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Validation done by Guard class.")]
-        public static void SetCurrentOperationToResolvingParameter(string parameterName, string methodSignature, IBuilderContext context)
+        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
+            Justification = "Validation done by Guard class.")]
+        public static void SetCurrentOperationToResolvingParameter(string parameterName, string methodSignature,
+                                                                   IBuilderContext context)
         {
             Guard.ArgumentNotNull(context, "context");
             context.CurrentOperation = new MethodArgumentResolveOperation(
@@ -143,9 +144,10 @@ namespace Microsoft.Practices.ObjectBuilder2
         }
 
         /// <summary>
-        /// A helper method used by the generated IL to store the current operation in the build context.
+        ///   A helper method used by the generated IL to store the current operation in the build context.
         /// </summary>
-        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Validation done by Guard class.")]
+        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
+            Justification = "Validation done by Guard class.")]
         public static void SetCurrentOperationToInvokingMethod(string methodSignature, IBuilderContext context)
         {
             Guard.ArgumentNotNull(context, "context");
@@ -156,18 +158,18 @@ namespace Microsoft.Practices.ObjectBuilder2
         {
             string methodName = method.Name;
             ParameterInfo[] parameterInfos = method.GetParameters();
-            string[] parameterDescriptions = new string[parameterInfos.Length];
+            var parameterDescriptions = new string[parameterInfos.Length];
 
             for (int i = 0; i < parameterInfos.Length; ++i)
             {
                 parameterDescriptions[i] = parameterInfos[i].ParameterType.FullName + " " +
-                    parameterInfos[i].Name;
+                                           parameterInfos[i].Name;
             }
 
             return string.Format(CultureInfo.CurrentCulture,
-                "{0}({1})",
-                methodName,
-                string.Join(", ", parameterDescriptions));
+                                 "{0}({1})",
+                                 methodName,
+                                 string.Join(", ", parameterDescriptions));
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -19,24 +19,24 @@ using Microsoft.Practices.Unity.Utility;
 namespace Microsoft.Practices.Unity
 {
     /// <summary>
-    /// A <see cref="IDependencyResolverPolicy"/> that will attempt to
-    /// resolve a value, and return null if it cannot rather than throwing.
+    ///   A <see cref = "IDependencyResolverPolicy" /> that will attempt to
+    ///   resolve a value, and return null if it cannot rather than throwing.
     /// </summary>
     public class OptionalDependencyResolverPolicy : IDependencyResolverPolicy
     {
-        private readonly Type type;
         private readonly string name;
+        private readonly Type type;
 
         /// <summary>
-        /// Construct a new <see cref="OptionalDependencyResolverPolicy"/> object
-        /// that will attempt to resolve the given name and type from the container.
+        ///   Construct a new <see cref = "OptionalDependencyResolverPolicy" /> object
+        ///   that will attempt to resolve the given name and type from the container.
         /// </summary>
-        /// <param name="type">Type to resolve. Must be a reference type.</param>
-        /// <param name="name">Name to resolve with.</param>
+        /// <param name = "type">Type to resolve. Must be a reference type.</param>
+        /// <param name = "name">Name to resolve with.</param>
         public OptionalDependencyResolverPolicy(Type type, string name)
         {
             Guard.ArgumentNotNull(type, "type");
-            if(type.IsValueType)
+            if (type.IsValueType)
             {
                 throw new ArgumentException(
                     string.Format(CultureInfo.CurrentCulture,
@@ -49,18 +49,17 @@ namespace Microsoft.Practices.Unity
         }
 
         /// <summary>
-        /// Construct a new <see cref="OptionalDependencyResolverPolicy"/> object
-        /// that will attempt to resolve the given type from the container.
+        ///   Construct a new <see cref = "OptionalDependencyResolverPolicy" /> object
+        ///   that will attempt to resolve the given type from the container.
         /// </summary>
-        /// <param name="type">Type to resolve. Must be a reference type.</param>
+        /// <param name = "type">Type to resolve. Must be a reference type.</param>
         public OptionalDependencyResolverPolicy(Type type)
             : this(type, null)
         {
-
         }
 
         /// <summary>
-        /// Type this resolver will resolve.
+        ///   Type this resolver will resolve.
         /// </summary>
         public Type DependencyType
         {
@@ -68,7 +67,7 @@ namespace Microsoft.Practices.Unity
         }
 
         /// <summary>
-        /// Name this resolver will resolve.
+        ///   Name this resolver will resolve.
         /// </summary>
         public string Name
         {
@@ -78,9 +77,9 @@ namespace Microsoft.Practices.Unity
         #region IDependencyResolverPolicy Members
 
         /// <summary>
-        /// Get the value for a dependency.
+        ///   Get the value for a dependency.
         /// </summary>
-        /// <param name="context">Current build context.</param>
+        /// <param name = "context">Current build context.</param>
         /// <returns>The value for the dependency.</returns>
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
             Justification = "Entire purpose of this class is to eat the exception")]

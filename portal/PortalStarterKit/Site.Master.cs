@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using ASPNET.StarterKit.Portal;
-using Microsoft.Practices.Unity;
+using PortalStarterKit.Components;
 
 namespace PortalStarterKit
 {

@@ -1,41 +1,40 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 // FITNESS FOR A PARTICULAR PURPOSE.
 //===============================================================================
 
-using System;
 using System.Collections.Generic;
 using System.Reflection;
 
 namespace Microsoft.Practices.Unity.InterceptionExtension
 {
     /// <summary>
-    /// An <see cref="IMatchingRule"/> that matches methods that have any parameters
-    /// of the given types.
+    ///   An <see cref = "IMatchingRule" /> that matches methods that have any parameters
+    ///   of the given types.
     /// </summary>
     public class ParameterTypeMatchingRule : IMatchingRule
     {
         private readonly List<ParameterTypeMatchingInfo> matches;
 
         /// <summary>
-        /// Creates a new <see cref="ParameterTypeMatchingRule"/> that matches if any of
-        /// the method parameters match ones in the given collection.
+        ///   Creates a new <see cref = "ParameterTypeMatchingRule" /> that matches if any of
+        ///   the method parameters match ones in the given collection.
         /// </summary>
-        /// <param name="matches">Collection of <see cref="ParameterTypeMatchingInfo"/> that
-        /// describes the types to match.</param>
+        /// <param name = "matches">Collection of <see cref = "ParameterTypeMatchingInfo" /> that
+        ///   describes the types to match.</param>
         public ParameterTypeMatchingRule(IEnumerable<ParameterTypeMatchingInfo> matches)
         {
             this.matches = new List<ParameterTypeMatchingInfo>(matches);
         }
 
         /// <summary>
-        /// The list of <see cref="ParameterTypeMatchingInfo"/> describing the parameter types to match.
+        ///   The list of <see cref = "ParameterTypeMatchingInfo" /> describing the parameter types to match.
         /// </summary>
         /// <value>The collection of matches.</value>
         public IEnumerable<ParameterTypeMatchingInfo> ParameterMatches
@@ -43,10 +42,12 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
             get { return matches; }
         }
 
+        #region IMatchingRule Members
+
         /// <summary>
-        /// Check the given member to see if it has any matching parameters.
+        ///   Check the given member to see if it has any matching parameters.
         /// </summary>
-        /// <param name="member">Member to match.</param>
+        /// <param name = "member">Member to match.</param>
         /// <returns>true if member matches, false if it doesn't.</returns>
         public bool Matches(MethodBase member)
         {
@@ -54,13 +55,13 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
 
             foreach (ParameterTypeMatchingInfo matchInfo in matches)
             {
-                TypeMatchingRule typeRule =
+                var typeRule =
                     new TypeMatchingRule(matchInfo.Match, matchInfo.IgnoreCase);
                 foreach (ParameterInfo paramInfo in parametersInfo)
                 {
                     if ((!paramInfo.IsOut && !paramInfo.IsRetval) &&
                         (matchInfo.Kind == ParameterKind.Input ||
-                            matchInfo.Kind == ParameterKind.InputOrOutput))
+                         matchInfo.Kind == ParameterKind.InputOrOutput))
                     {
                         if (typeRule.Matches(paramInfo.ParameterType))
                         {
@@ -70,7 +71,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
 
                     if (paramInfo.IsOut &&
                         (matchInfo.Kind == ParameterKind.Output ||
-                            matchInfo.Kind == ParameterKind.InputOrOutput))
+                         matchInfo.Kind == ParameterKind.InputOrOutput))
                     {
                         if (typeRule.Matches(paramInfo.ParameterType.GetElementType()))
                         {
@@ -88,7 +89,7 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
                 }
                 if (matchInfo.Kind == ParameterKind.ReturnValue)
                 {
-                    MethodInfo method = member as MethodInfo;
+                    var method = member as MethodInfo;
                     if (method != null)
                     {
                         if (typeRule.Matches(method.ReturnType))
@@ -100,88 +101,84 @@ namespace Microsoft.Practices.Unity.InterceptionExtension
             }
             return false;
         }
+
+        #endregion
     }
 
     /// <summary>
-    /// Describes the type of parameter to match.
+    ///   Describes the type of parameter to match.
     /// </summary>
     public enum ParameterKind
     {
         /// <summary>
-        /// Input parameter
+        ///   Input parameter
         /// </summary>
         Input,
         /// <summary>
-        /// Output parameter
+        ///   Output parameter
         /// </summary>
         Output,
         /// <summary>
-        /// Input or output parameter
+        ///   Input or output parameter
         /// </summary>
         InputOrOutput,
         /// <summary>
-        /// Method return value
+        ///   Method return value
         /// </summary>
         ReturnValue
     }
 
     /// <summary>
-    /// A class that stores information about a single type to match.
+    ///   A class that stores information about a single type to match.
     /// </summary>
     public class ParameterTypeMatchingInfo : MatchingInfo
     {
-        private ParameterKind kind;
-
         /// <summary>
-        /// Creates a new uninitialized <see cref="ParameterTypeMatchingInfo"/>.
+        ///   Creates a new uninitialized <see cref = "ParameterTypeMatchingInfo" />.
         /// </summary>
         public ParameterTypeMatchingInfo()
         {
         }
 
         /// <summary>
-        /// Creates a new <see cref="ParameterTypeMatchingInfo"/> matching the given kind of parameter.
+        ///   Creates a new <see cref = "ParameterTypeMatchingInfo" /> matching the given kind of parameter.
         /// </summary>
-        /// <param name="kind"><see cref="ParameterKind"/> of parameter to match.</param>
+        /// <param name = "kind"><see cref = "ParameterKind" /> of parameter to match.</param>
         public ParameterTypeMatchingInfo(ParameterKind kind)
         {
-            this.kind = kind;
+            this.Kind = kind;
         }
 
         /// <summary>
-        /// Creates a new <see cref="ParameterTypeMatchingInfo"/> matching the given parameter
-        /// type and kind.
+        ///   Creates a new <see cref = "ParameterTypeMatchingInfo" /> matching the given parameter
+        ///   type and kind.
         /// </summary>
-        /// <param name="nameToMatch">Parameter <see cref="System.Type"/> name to match.</param>
-        /// <param name="kind"><see cref="ParameterKind"/> of parameter to match.</param>
+        /// <param name = "nameToMatch">Parameter <see cref = "System.Type" /> name to match.</param>
+        /// <param name = "kind"><see cref = "ParameterKind" /> of parameter to match.</param>
         public ParameterTypeMatchingInfo(string nameToMatch, ParameterKind kind)
             : base(nameToMatch)
         {
-            this.kind = kind;
+            this.Kind = kind;
         }
 
         /// <summary>
-        /// Creates a new <see cref="ParameterTypeMatchingInfo"/> matching the given parameter
-        /// type and kind.
+        ///   Creates a new <see cref = "ParameterTypeMatchingInfo" /> matching the given parameter
+        ///   type and kind.
         /// </summary>
-        /// <param name="nameToMatch">Parameter <see cref="System.Type"/> name to match.</param>
-        /// <param name="ignoreCase">If false, compare type names using case-sensitive comparison.
-        /// If true, compare type names using case-insensitive comparison.</param>
-        /// <param name="kind"><see cref="ParameterKind"/> of parameter to match.</param>
+        /// <param name = "nameToMatch">Parameter <see cref = "System.Type" /> name to match.</param>
+        /// <param name = "ignoreCase">If false, compare type names using case-sensitive comparison.
+        ///   If true, compare type names using case-insensitive comparison.</param>
+        /// <param name = "kind"><see cref = "ParameterKind" /> of parameter to match.</param>
         public ParameterTypeMatchingInfo(string nameToMatch, bool ignoreCase, ParameterKind kind)
             : base(nameToMatch, ignoreCase)
         {
-            this.kind = kind;
+            this.Kind = kind;
         }
 
         /// <summary>
-        /// What kind of parameter to match.
+        ///   What kind of parameter to match.
         /// </summary>
-        /// <value><see cref="ParameterKind"/> indicating which kind of parameters to match.</value>
-        public ParameterKind Kind
-        {
-            get { return kind; }
-            set { kind = value; }
-        }
+        /// <value><see cref = "ParameterKind" /> indicating which kind of parameters to match.</value>
+        public ParameterKind Kind { get; set; }
     }
 }

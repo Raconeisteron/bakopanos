@@ -1,8 +1,8 @@
-﻿using System.Web.UI;
+using System.Web.UI;
 
-namespace ASPNET.StarterKit.Portal
+namespace PortalStarterKit.Components
 {
-    public abstract class PortalModuleUserControl:UserControl
+    public abstract class PortalModuleUserControl : UserControl
     {
         public string PortalId { get; set; }
 

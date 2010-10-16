@@ -1,8 +1,8 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices
 // Unity Application Block
 //===============================================================================
-// Copyright © Microsoft Corporation.  All rights reserved.
+// Copyright � Microsoft Corporation.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -12,16 +12,16 @@
 namespace Microsoft.Practices.ObjectBuilder2
 {
     /// <summary>
-    /// A <see cref="BuilderStrategy"/> that will look for a build plan
-    /// in the current context. If it exists, it invokes it, otherwise
-    /// it creates one and stores it for later, and invokes it.
+    ///   A <see cref = "BuilderStrategy" /> that will look for a build plan
+    ///   in the current context. If it exists, it invokes it, otherwise
+    ///   it creates one and stores it for later, and invokes it.
     /// </summary>
     public class BuildPlanStrategy : BuilderStrategy
     {
         /// <summary>
-        /// Called during the chain of responsibility for a build operation.
+        ///   Called during the chain of responsibility for a build operation.
         /// </summary>
-        /// <param name="context">The context for the operation.</param>
+        /// <param name = "context">The context for the operation.</param>
         public override void PreBuildUp(IBuilderContext context)
         {
             IPolicyList buildPlanLocation;

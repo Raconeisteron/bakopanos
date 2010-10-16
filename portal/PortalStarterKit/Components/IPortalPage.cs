@@ -1,4 +1,4 @@
-﻿namespace ASPNET.StarterKit.Portal
+﻿namespace PortalStarterKit.Components
 {
     public interface IPortalPage
     {

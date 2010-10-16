@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.UI;
-using ASPNET.StarterKit.Portal;
-using Microsoft.Practices.Unity;
+using PortalStarterKit.Components;
 
 namespace PortalStarterKit
 {
@@ -17,7 +16,7 @@ namespace PortalStarterKit
                 // Loop through each entry in the configuration system for this tab
                 foreach (ModuleSettings moduleSettings in activeTab.Modules)
                 {
-                    Control parent=null;
+                    Control parent = null;
 
                     switch (moduleSettings.PaneName)
                     {
@@ -34,11 +33,11 @@ namespace PortalStarterKit
 
                     // create the user control instance and dynamically
                     // inject it into the page.  
-                    var portalModule = (PortalModuleUserControl)Page.LoadControl(moduleSettings.DesktopSrc);
+                    var portalModule = (PortalModuleUserControl) Page.LoadControl(moduleSettings.DesktopSrc);
                     portalModule.ModuleConfiguration = moduleSettings;
 
                     parent.Controls.Add(portalModule);
-               
+
                     // Dynamically inject separator break between portal modules
                     parent.Controls.Add(new LiteralControl("<" + "br" + ">"));
                     parent.Visible = true;
