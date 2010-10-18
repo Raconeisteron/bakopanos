@@ -10,6 +10,6 @@ namespace PortalStarterKit.Components
 
         ModuleSettings ModuleConfiguration { get; set; }
         
-        PortalSecurity PortalSecurity { get; set; }
+        IPortalSecurity PortalSecurity { get; set; }
     }
 }

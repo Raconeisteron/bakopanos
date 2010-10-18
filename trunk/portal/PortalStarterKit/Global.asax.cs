@@ -79,6 +79,9 @@ namespace PortalStarterKit
             container.RegisterType<ISiteConfigurationRepository, XmlSiteConfigurationRepository>(
                 new ContainerControlledLifetimeManager());
 
+            container.RegisterType<IPortalSecurity, PortalSecurity>(
+                new ContainerControlledLifetimeManager());
+
             Container = container;
         }
 
