@@ -33,10 +33,13 @@ namespace PortalStarterKit
 
                     // create the user control instance and dynamically
                     // inject it into the page.  
-                    var portalModule = (PortalModuleUserControl) Page.LoadControl(moduleSettings.DesktopSrc);
+                    var portalModule = (IPortalControl)Page.LoadControl(moduleSettings.DesktopSrc);
+                    portalModule.PortalId = PortalId;
+                    portalModule.TabId = TabId;
                     portalModule.ModuleConfiguration = moduleSettings;
+                    portalModule.PortalSecurity = PortalSecurity;
 
-                    parent.Controls.Add(portalModule);
+                    parent.Controls.Add((UserControl)portalModule);
 
                     // Dynamically inject separator break between portal modules
                     parent.Controls.Add(new LiteralControl("<" + "br" + ">"));

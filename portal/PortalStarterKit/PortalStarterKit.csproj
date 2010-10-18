@@ -362,9 +362,7 @@
     <Compile Include="Components\IContainerAccessor.cs" />
     <Compile Include="Components\ISiteConfigurationRepository.cs" />
     <Compile Include="Components\PortalExtensions.cs" />
-    <Compile Include="Components\PortalModuleUserControl.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    <Compile Include="Components\IPortalControl.cs" />
     <Compile Include="Components\IPortalPage.cs" />
     <Compile Include="Components\PortalMasterPage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -374,6 +372,7 @@
     </Compile>
     <Compile Include="Components\ISiteConfigurationService.cs" />
     <Compile Include="Components\PortalPane.cs" />
+    <Compile Include="Components\PortalSecurity.cs" />
     <Compile Include="Components\XmlSiteConfigurationRepository.cs" />
     <Compile Include="Components\SiteConfigurationService.cs" />
     <Compile Include="Components\ModuleSettings.cs" />
@@ -386,7 +385,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Components\PortalModuleControl.cs">
+    <Compile Include="Components\PortalModule.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="DesktopModules\Announcements.ascx.cs">

@@ -4,7 +4,7 @@ using PortalStarterKit.Components;
 
 namespace PortalStarterKit.DesktopModules
 {
-    public partial class Announcements : PortalModuleControl<Announcements>
+    public partial class Announcements : PortalModule<Announcements>
     {
         [Dependency]
         public ISiteConfigurationService ConfigurationService { private

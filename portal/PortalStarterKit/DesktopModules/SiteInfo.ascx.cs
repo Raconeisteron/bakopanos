@@ -4,7 +4,7 @@ using PortalStarterKit.Components;
 
 namespace PortalStarterKit.DesktopModules
 {
-    public partial class SiteInfo : PortalModuleControl<SiteInfo>
+    public partial class SiteInfo : PortalModule<SiteInfo>
     {
         [Dependency]
         public ISiteConfigurationService ConfigurationService { private
