@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PortalStarterKit.Components
 {
@@ -11,9 +12,11 @@ namespace PortalStarterKit.Components
         public String AuthorizedEditRoles { get; set; }
 
         public String DesktopSrc { get; set; }
+        public String FriendlyName { get; set; }
+        
         public string ModuleId { get; set; }
         public int ModuleOrder { get; set; }
-        //public int CacheTime { get; set; }
+        public List<string> EditRoles { get; set; }
         
         public String ModuleTitle { get; set; }
         public PortalPane PaneName { get; set; }

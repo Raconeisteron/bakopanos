@@ -29,7 +29,7 @@ namespace PortalStarterKit.Components
 
         public ModuleSettings ModuleConfiguration { get; set; }
 
-        public PortalSecurity PortalSecurity { get; set; }
+        public IPortalSecurity PortalSecurity { get; set; }
 
         public bool IsEditable
         {

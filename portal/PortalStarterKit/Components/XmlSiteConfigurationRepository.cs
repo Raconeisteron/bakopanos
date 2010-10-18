@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Xml.Linq;
 
@@ -24,25 +25,36 @@ namespace PortalStarterKit.Components
                 portalItem.PortalId = portal.Attribute("PortalId").Value;
 
                 deskotPortals.Add(portalItem);
-
+                int tabOrder = 0;
                 foreach (XElement tab in portal.Descendants("Tab"))
                 {
                     var tabItem = new TabSettings();
 
                     tabItem.TabName = tab.Attribute("TabName").Value;
                     tabItem.TabId = tab.Attribute("TabId").Value;
+                    tabOrder++;
+                    tabItem.TabOrder = tabOrder;
 
+                    tabItem.AccessRoles =
+                            (from item in tab.Attribute("AccessRoles").Value.Split(';')
+                             where item.Length > 0
+                             select item).ToList();  
+
+                    int moduleOrder = 0;
                     foreach (XElement module in tab.Descendants("Module"))
                     {
                         var moduleItem = new ModuleSettings();
 
                         moduleItem.TabId = tabItem.TabId;
-                        moduleItem.ModuleTitle = module.Attribute("ModuleTitle").Value;
+                        moduleOrder++;
+                        moduleItem.ModuleOrder = moduleOrder;
 
-                        //if (module.Attribute("CacheTime")!=null)
-                        //{
-                        //    moduleItem.CacheTime = Convert.ToInt32( module.Attribute("CacheTime").Value);                            
-                        //}
+                        moduleItem.ModuleTitle =  module.Attribute("ModuleTitle").Value;
+
+                        moduleItem.EditRoles =
+                            (from item in module.Attribute("EditRoles").Value.Split(';')
+                             where item.Length > 0
+                             select item).ToList();                       
                         
                         moduleItem.PaneName =
                             (PortalPane) Enum.Parse(typeof (PortalPane), module.Attribute("PaneName").Value);
@@ -55,6 +67,7 @@ namespace PortalStarterKit.Components
                             if (moduleDefId == Convert.ToInt32(moduleDef.Attribute("ModuleDefId").Value))
                             {
                                 moduleItem.DesktopSrc = moduleDef.Attribute("DesktopSourceFile").Value;
+                                moduleItem.FriendlyName = moduleDef.Attribute("FriendlyName").Value;
                             }
                         }
 

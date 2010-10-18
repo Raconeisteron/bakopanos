@@ -3,10 +3,10 @@
     public interface IPortalPage
     {
         ISiteConfigurationService SiteConfiguration { get; set; }
-        PortalSecurity PortalSecurity { get; set; }
+        IPortalSecurity PortalSecurity { get; set; }
 
         string PortalId { get; }
         string TabId { get; }
-        string GetNavigateUrl(string portalId, string tabId);
+        string NavigateUrl(string portalId, string tabId);
     }
 }

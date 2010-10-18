@@ -6,7 +6,7 @@ namespace PortalStarterKit
 {
     public partial class _Default : PortalPage<_Default>
     {
-        protected void Page_Load(Object sender, EventArgs e)
+        protected void Page_Init(Object sender, EventArgs e)
         {
             TabSettings activeTab = SiteConfiguration.GetTab(PortalId, TabId);
 
@@ -32,14 +32,8 @@ namespace PortalStarterKit
                     }
 
                     // create the user control instance and dynamically
-                    // inject it into the page.  
-                    var portalModule = (IPortalControl)Page.LoadControl(moduleSettings.DesktopSrc);
-                    portalModule.PortalId = PortalId;
-                    portalModule.TabId = TabId;
-                    portalModule.ModuleConfiguration = moduleSettings;
-                    portalModule.PortalSecurity = PortalSecurity;
-
-                    parent.Controls.Add((UserControl)portalModule);
+                    // inject it into the page. 
+                    parent.Controls.Add(GetPortalModule(this, moduleSettings));
 
                     // Dynamically inject separator break between portal modules
                     parent.Controls.Add(new LiteralControl("<" + "br" + ">"));

@@ -360,6 +360,7 @@
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Components\IContainerAccessor.cs" />
+    <Compile Include="Components\IPortalSecurity.cs" />
     <Compile Include="Components\ISiteConfigurationRepository.cs" />
     <Compile Include="Components\PortalExtensions.cs" />
     <Compile Include="Components\IPortalControl.cs" />

@@ -14,7 +14,7 @@ namespace PortalStarterKit.Components
             Modules = new List<ModuleSettings>();
         }
 
-        public String AuthorizedRoles { get; set; }
+        public List<String> AccessRoles { get; set; }
         public List<ModuleSettings> Modules { get; set; }
 
         public string TabId { get; set; }
