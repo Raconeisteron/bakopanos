@@ -11,6 +11,7 @@ namespace PortalStarterKit.Components
         #region IPortalPage Members
 
         public ISiteConfigurationService SiteConfiguration { get; set; }
+        public PortalSecurity PortalSecurity { get; set; }
 
         public string GetNavigateUrl(string portalId, string tabId)
         {
@@ -60,6 +61,7 @@ namespace PortalStarterKit.Components
 
             container.BuildUp(typeof (T), this, string.Empty);
             SiteConfiguration = container.Resolve<ISiteConfigurationService>();
+            PortalSecurity = container.Resolve<PortalSecurity>();
         }
     }
 }

@@ -1,6 +1,10 @@
 using System;
 using System.Collections;
+using System.Web;
+using System.Web.UI;
 using Microsoft.Practices.Unity;
+using System;
+using PortalStarterKit.Components;
 
 namespace PortalStarterKit.Components
 {
@@ -11,8 +15,8 @@ namespace PortalStarterKit.Components
     ///   The PortalModuleControl class defines portal specific properties
     ///   that are used by the portal framework to correctly display portal modules
     /// </summary>
-    public class PortalModuleControl<T> : PortalModuleUserControl
-        where T : PortalModuleUserControl
+    public class PortalModule<T> : UserControl, IPortalControl
+        where T : IPortalControl
     {
         // Private field variables
         private int _isEditable;
@@ -25,6 +29,34 @@ namespace PortalStarterKit.Components
 
         public ModuleSettings ModuleConfiguration { get; set; }
 
+        public PortalSecurity PortalSecurity { get; set; }
+
+        public bool IsEditable
+        {
+            get
+            {
+                // Perform tri-state switch check to avoid having to perform a security
+                // role lookup on every property access (instead caching the result)
+
+                if (_isEditable == 0)
+                {
+                    // Obtain PortalSettings from Current Context
+
+                    var portalSettings = (PortalSettings)HttpContext.Current.Items["PortalSettings"];
+
+                    if (portalSettings.AlwaysShowEditButton || PortalSecurity.IsInRoles(ModuleConfiguration.AuthorizedEditRoles))
+                    {
+                        _isEditable = 1;
+                    }
+                    else
+                    {
+                        _isEditable = 2;
+                    }
+                }
+
+                return (_isEditable == 1);
+            }
+        }
 
         protected override void OnInit(EventArgs e)
         {

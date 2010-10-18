@@ -38,6 +38,12 @@ namespace PortalStarterKit.Components
 
                         moduleItem.TabId = tabItem.TabId;
                         moduleItem.ModuleTitle = module.Attribute("ModuleTitle").Value;
+
+                        //if (module.Attribute("CacheTime")!=null)
+                        //{
+                        //    moduleItem.CacheTime = Convert.ToInt32( module.Attribute("CacheTime").Value);                            
+                        //}
+                        
                         moduleItem.PaneName =
                             (PortalPane) Enum.Parse(typeof (PortalPane), module.Attribute("PaneName").Value);
                         moduleItem.ModuleId = module.Attribute("ModuleId").Value;
