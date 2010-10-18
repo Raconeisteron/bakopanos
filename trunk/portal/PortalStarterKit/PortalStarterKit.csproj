@@ -359,6 +359,7 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Components\FakeSiteConfigurationRepository.cs" />
     <Compile Include="Components\IContainerAccessor.cs" />
     <Compile Include="Components\IPortalSecurity.cs" />
     <Compile Include="Components\ISiteConfigurationRepository.cs" />
