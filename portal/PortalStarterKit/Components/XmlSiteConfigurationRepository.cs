@@ -16,66 +16,30 @@ namespace PortalStarterKit.Components
             string path = HttpContext.Current.Server.MapPath(@"App_Data\portalcfg.xml");
             XDocument document = XDocument.Load(path);
 
-            var moduleDefSettings = new List<ModuleDefSettings>();
-            foreach (XElement moduleDef in document.Descendants("ModuleDefinition"))
-            {
-                moduleDefSettings.Add(
-                    new ModuleDefSettings
-                    {
-                        ModuleDefId = moduleDef.Attribute("ModuleDefId").Value,
-                        DesktopSrc = moduleDef.Attribute("DesktopSourceFile").Value,
-                        FriendlyName = moduleDef.Attribute("FriendlyName").Value
-                    });
-            }
+            var moduleDefSettings = document.Element("SiteConfiguration").GetModuleDefSettings();
 
             var deskotPortals = new List<PortalSettings>();
             foreach (XElement portal in document.Descendants("Portal"))
             {
-                var portalItem = new PortalSettings();
-
-                portalItem.AlwaysShowEditButton = Convert.ToBoolean(portal.Attribute("AlwaysShowEditButton").Value);
-                portalItem.PortalName = portal.Attribute("PortalName").Value;
-                portalItem.PortalId = portal.Attribute("PortalId").Value;
-
+                var portalItem = portal.GetPortalSetting();
                 deskotPortals.Add(portalItem);
                 int tabOrder = 0;
                 foreach (XElement tab in portal.Descendants("Tab"))
                 {
-                    var tabItem = new TabSettings();
-
-                    tabItem.TabName = tab.Attribute("TabName").Value;
-                    tabItem.TabId = tab.Attribute("TabId").Value;
+                    var tabItem = tab.GetTabSetting();
                     tabOrder++;
                     tabItem.TabOrder = tabOrder;
-
-                    tabItem.AccessRoles =
-                            (from item in tab.Attribute("AccessRoles").Value.Split(';')
-                             where item.Length > 0
-                             select item).ToList();  
 
                     int moduleOrder = 0;
                     foreach (XElement module in tab.Descendants("Module"))
                     {
-                        var moduleItem = new ModuleSettings();
+                        var moduleItem = module.GetModuleSetting();
 
                         moduleItem.TabId = tabItem.TabId;
                         moduleOrder++;
                         moduleItem.ModuleOrder = moduleOrder;
 
-                        moduleItem.ModuleTitle =  module.Attribute("ModuleTitle").Value;
-
-                        moduleItem.EditRoles =
-                            (from item in module.Attribute("EditRoles").Value.Split(';')
-                             where item.Length > 0
-                             select item).ToList();                       
-                        
-                        moduleItem.PaneName =
-                            (PortalPane) Enum.Parse(typeof (PortalPane), module.Attribute("PaneName").Value);
-                        moduleItem.ModuleId = module.Attribute("ModuleId").Value;
-
-                        string moduleDefId = module.Attribute("ModuleDefId").Value;
-
-                        moduleItem.ModuleDef = moduleDefSettings.Single(item => item.ModuleDefId == moduleDefId);
+                        moduleItem.ModuleDef = moduleDefSettings.Single(item => item.ModuleDefId == moduleItem.ModuleDef.ModuleDefId);
 
                         tabItem.Modules.Add(moduleItem);
                     }
