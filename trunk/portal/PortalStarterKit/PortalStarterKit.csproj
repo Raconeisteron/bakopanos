@@ -108,6 +108,7 @@
     </Compile>
     <Compile Include="Components\ContentSiteConfigurationRepository.cs" />
     <Compile Include="Components\FakeSiteConfigurationRepository.cs" />
+    <Compile Include="Components\XmlPortalCfgHelper.cs" />
     <Compile Include="Core\IPortalSecurity.cs" />
     <Compile Include="Components\ISiteConfigurationRepository.cs" />
     <Compile Include="DesktopModules\SiteInfo.ascx.cs">
