@@ -27,19 +27,28 @@ namespace PortalStarterKit.Components
 
         public static PortalSettings GetPortalSetting(this XElement element)
         {
+            return element.GetPortalSetting(element.Attribute("PortalId").Value);
+        }
+        public static PortalSettings GetPortalSetting(this XElement element, string id)
+        {
             var portalItem = new PortalSettings();
             portalItem.AlwaysShowEditButton = Convert.ToBoolean(element.Attribute("AlwaysShowEditButton").Value);
             portalItem.PortalName = element.Attribute("PortalName").Value;
-            portalItem.PortalId = element.Attribute("PortalId").Value;
+            portalItem.PortalId = id;
             return portalItem;
         }
 
         public static TabSettings GetTabSetting(this XElement element)
         {
+            var tabItem = element.GetTabSetting(element.Attribute("TabId").Value);
+            return tabItem;
+        }
+        public static TabSettings GetTabSetting(this XElement element, string id)
+        {
             var tabItem = new TabSettings();
 
             tabItem.TabName = element.Attribute("TabName").Value;
-            tabItem.TabId = element.Attribute("TabId").Value;
+            tabItem.TabId = id;
             tabItem.AccessRoles =
                     (from item in element.Attribute("AccessRoles").Value.Split(';')
                      where item.Length > 0
@@ -50,8 +59,13 @@ namespace PortalStarterKit.Components
 
         public static ModuleSettings GetModuleSetting(this XElement element)
         {
-            var moduleItem = new ModuleSettings();
+            var moduleItem = element.GetModuleSetting(element.Attribute("ModuleId").Value);
+            return moduleItem;
+        }
 
+        public static ModuleSettings GetModuleSetting(this XElement element, string id)
+        {
+            var moduleItem = new ModuleSettings();
             moduleItem.ModuleTitle = element.Attribute("ModuleTitle").Value;
 
             moduleItem.EditRoles =
@@ -61,7 +75,7 @@ namespace PortalStarterKit.Components
 
             moduleItem.PaneName =
                 (PortalPane)Enum.Parse(typeof(PortalPane), element.Attribute("PaneName").Value);
-            moduleItem.ModuleId = element.Attribute("ModuleId").Value;
+            moduleItem.ModuleId = id;
 
             string moduleDefId = element.Attribute("ModuleDefId").Value;
             moduleItem.ModuleDef = new ModuleDefSettings {ModuleDefId = moduleDefId};

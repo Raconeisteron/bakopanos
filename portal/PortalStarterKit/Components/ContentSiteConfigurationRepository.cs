@@ -29,11 +29,8 @@ namespace PortalStarterKit.Components
                 {
                     continue;
                 }
-                var portalItem = new PortalSettings();
-
-                //portalItem.AlwaysShowEditButton = Convert.ToBoolean(portal.Attribute("AlwaysShowEditButton").Value);
-                portalItem.PortalName = pname;
-                portalItem.PortalId = pname;
+                PortalSettings portalItem = XDocument.Load(Path.Combine(portal, "Portal.xml")).
+                    Element("SiteConfiguration").Element("Portal").GetPortalSetting(pname);
 
                 deskotPortals.Add(portalItem);
                 int tabOrder = 0;
@@ -45,17 +42,10 @@ namespace PortalStarterKit.Components
                     {
                         continue;
                     }
-                    var tabItem = new TabSettings();
-
-                    tabItem.TabName = tname;
-                    tabItem.TabId = tname;
+                    var tabItem = XDocument.Load(Path.Combine(tab, "Tab.xml")).
+                    Element("SiteConfiguration").Element("Tab").GetTabSetting(tname);
                     tabOrder++;
                     tabItem.TabOrder = tabOrder;
-
-                    //tabItem.AccessRoles =
-                    //        (from item in tab.Attribute("AccessRoles").Value.Split(';')
-                    //         where item.Length > 0
-                    //         select item).ToList();  
                     
                     int moduleOrder = 0;
                     string[] modules = Directory.GetDirectories(tab);
@@ -66,25 +56,15 @@ namespace PortalStarterKit.Components
                         {
                             continue;
                         }
-                        var moduleItem = new ModuleSettings();
+
+                        var moduleItem = XDocument.Load(Path.Combine(module, "Module.xml")).
+                    Element("SiteConfiguration").Element("Module").GetModuleSetting(mname);
 
                         moduleItem.TabId = tabItem.TabId;
                         moduleOrder++;
                         moduleItem.ModuleOrder = moduleOrder;
+                        moduleItem.ModuleDef = moduleDefSettings.Single(item => item.ModuleDefId == moduleItem.ModuleDef.ModuleDefId);
 
-                        moduleItem.ModuleTitle =  mname;
-
-                        /*moduleItem.EditRoles =
-                            (from item in module.Attribute("EditRoles").Value.Split(';')
-                             where item.Length > 0
-                             select item).ToList();                       
-                        */
-                        moduleItem.PaneName =
-                            (PortalPane) Enum.Parse(typeof (PortalPane), "Content");
-                        moduleItem.ModuleId = mname;
-
-                        moduleItem.ModuleDef = moduleDefSettings.Single(item => item.ModuleDefId == "1");
-                        
                         tabItem.Modules.Add(moduleItem);
                     }
                     
