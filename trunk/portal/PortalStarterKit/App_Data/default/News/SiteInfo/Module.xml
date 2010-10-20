@@ -2,6 +2,6 @@
 
 <SiteConfiguration>
 
-      <Module ModuleTitle="Tabs" EditRoles="Admins;" ModuleDefId="2" PaneName="Right" />
+      <Module ModuleTitle="Tabs" EditRoles="Admins;" ModuleDefId="1" PaneName="Right" />
    
 </SiteConfiguration>
