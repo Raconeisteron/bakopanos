@@ -1,0 +1,7 @@
+<?xml version="1.0" standalone="yes"?>
+
+<SiteConfiguration>
+
+      <Module ModuleTitle="Tabs" EditRoles="Admins;" ModuleDefId="2" PaneName="Right" />
+   
+</SiteConfiguration>

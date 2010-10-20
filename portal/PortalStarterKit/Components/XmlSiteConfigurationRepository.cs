@@ -13,10 +13,8 @@ namespace PortalStarterKit.Components
 
         public List<PortalSettings> Read()
         {
-            var deskotPortals = new List<PortalSettings>();
             string path = HttpContext.Current.Server.MapPath(@"App_Data\portalcfg.xml");
             XDocument document = XDocument.Load(path);
-
 
             var moduleDefSettings = new List<ModuleDefSettings>();
             foreach (XElement moduleDef in document.Descendants("ModuleDefinition"))
@@ -30,6 +28,7 @@ namespace PortalStarterKit.Components
                     });
             }
 
+            var deskotPortals = new List<PortalSettings>();
             foreach (XElement portal in document.Descendants("Portal"))
             {
                 var portalItem = new PortalSettings();

@@ -54,6 +54,11 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="App_Data\default\Home\Announcements\Module.xml" />
+    <Content Include="App_Data\default\Home\Tab.xml" />
+    <Content Include="App_Data\default\News\SiteInfo\Module.xml" />
+    <Content Include="App_Data\default\News\Tab.xml" />
+    <Content Include="App_Data\default\Portal.xml" />
     <Content Include="App_Data\ModuleDefinition.xml" />
     <Content Include="DesktopModules\Announcements.ascx" />
     <Content Include="App_Data\PortalCfg.xml" />
@@ -159,10 +164,7 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\default\Home\" />
-    <Folder Include="App_Data\default\News\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
