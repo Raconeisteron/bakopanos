@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="yes"?>
+
+<SiteConfiguration>
+
+    <ModuleDefinition FriendlyName="Announcements" DesktopSourceFile="DesktopModules/Announcements.ascx" ModuleDefId="1" />
+    <ModuleDefinition FriendlyName="SiteInfo" DesktopSourceFile="DesktopModules/SiteInfo.ascx" ModuleDefId="2" />
+
+</SiteConfiguration>

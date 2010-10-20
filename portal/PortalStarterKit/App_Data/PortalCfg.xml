@@ -18,8 +18,9 @@
       <Module ModuleId="5" ModuleTitle="Tabs" EditRoles="Admins;" ModuleDefId="2" PaneName="Right" />
     </Tab>
 
-    <ModuleDefinition FriendlyName="Announcements" DesktopSourceFile="DesktopModules/Announcements.ascx" ModuleDefId="1" />
-    <ModuleDefinition FriendlyName="SiteInfo" DesktopSourceFile="DesktopModules/SiteInfo.ascx" ModuleDefId="2" />
-
   </Portal>
+  
+  <ModuleDefinition FriendlyName="Announcements" DesktopSourceFile="DesktopModules/Announcements.ascx" ModuleDefId="1" />
+  <ModuleDefinition FriendlyName="SiteInfo" DesktopSourceFile="DesktopModules/SiteInfo.ascx" ModuleDefId="2" />
+  
 </SiteConfiguration>

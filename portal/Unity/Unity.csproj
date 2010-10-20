@@ -8,7 +8,7 @@
     <ProjectGuid>{FF392171-8CBB-4E53-97FE-990BAB73054D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Unity</RootNamespace>
+    <RootNamespace>PortalStarterKit</RootNamespace>
     <AssemblyName>Unity</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IContainerAccessor.cs" />
     <Compile Include="Microsoft.Practices.ServiceLocation\ActivationException.cs" />
     <Compile Include="Microsoft.Practices.ServiceLocation\ActivationException.Desktop.cs" />
     <Compile Include="Microsoft.Practices.ServiceLocation\IServiceLocator.cs" />
@@ -47,101 +48,6 @@
     <Compile Include="Microsoft.Practices.ServiceLocation\ServiceLocator.cs" />
     <Compile Include="Microsoft.Practices.ServiceLocation\ServiceLocatorImplBase.cs" />
     <Compile Include="Microsoft.Practices.ServiceLocation\ServiceLocatorProvider.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\AdditionalInterface.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\DefaultInterceptionBehavior.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\DefaultInterceptor.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\Interception.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\InterceptionBehavior.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\InterceptionBehaviorBase.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\InterceptionMember.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\Interceptor.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\AdditionalInterfacesPolicy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\FixedInstanceInterceptionPolicy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\FixedTypeInterceptionPolicy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\IAdditionalInterfacesPolicy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\IInstanceInterceptionPolicy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\IInterceptionBehaviorsPolicy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\InstanceInterceptionStrategy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\InterceptionBehaviorsPolicy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\ITypeInterceptionPolicy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\ResolvedInstanceInterceptionPolicy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\ResolvedTypeInterceptionPolicy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\TypeInterceptionStrategy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\ContainerIntegration\PolicyDefinition.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\GlobalSuppressions.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Intercept.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\InterceptionBehaviors\CurrentInterceptionRequest.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\InterceptionBehaviors\IInterceptionBehavior.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\InterceptionBehaviors\InterceptionBehaviorPipeline.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\IInterceptingProxy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\IInterceptor.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\IInstanceInterceptor.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\InterfaceInterception\InterfaceImplementation.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\InterfaceInterception\InterfaceInterceptor.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\InterfaceInterception\InterfaceInterceptorClassGenerator.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\InterfaceInterception\InterfaceMethodOverride.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\TransparentProxyInterception\InterceptingRealProxy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\TransparentProxyInterception\TransparentProxyInputParameterCollection.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\TransparentProxyInterception\TransparentProxyInterceptor.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\TransparentProxyInterception\TransparentProxyMethodInvocation.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\TransparentProxyInterception\TransparentProxyMethodReturn.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\TransparentProxyInterception\TransparentProxyOutputParameterCollection.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\MethodImplementationInfo.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\ITypeInterceptor.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\ConstructorWithResolverKeysSelectorPolicy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\CompilerGeneratedAttributeMethods.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\GeneratedTypeKey.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\IInterceptingProxyMethods.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\IListMethods.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\IMethodInvocationMethods.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\IMethodReturnMethods.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\InterceptingClassGenerator.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\InterceptingProxyImplementor.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\InterceptionBehaviorPipelineMethods.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\InvokeInterceptionBehaviorDelegateMethods.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\MethodBaseMethods.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\MethodOverride.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\MethodOverrideParameterMapper.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\MethodSorter.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\ObjectMethods.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\VirtualMethodInvocationMethods.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\VirtualMethodInterceptor.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\VirtualMethodInvocation.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\VirtualMethodReturn.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\HandlerPipelineKey.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\ApplyNoPoliciesMatchingRule.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\AssemblyMatchingRule.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\AttributeDrivenPolicyMatchingRule.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\CustomAttributeMatchingRule.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\IMatchingRule.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\MatchingInfo.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\MatchingRuleSet.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\MemberNameMatchingRule.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\MethodSignatureMatchingRule.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\NamespaceMatchingRule.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\ParameterTypeMatchingRule.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\PropertyMatchingRule.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\ReturnTypeMatchingRule.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\TagAttribute.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\TagAttributeMatchingRule.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\TypeMatchingRule.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\Pipeline\HandlerPipeline.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\Pipeline\ICallHandler.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\Pipeline\IMethodInvocation.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\Pipeline\IMethodReturn.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\Pipeline\IParameterCollection.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\Pipeline\ParameterCollection.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\Pipeline\PipelineManager.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\Policies\ApplyNoPoliciesAttribute.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\Policies\AttributeDrivenPolicy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\Policies\HandlerAttribute.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\Policies\InjectionPolicy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\Policies\PolicySet.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\Policies\RuleDrivenPolicy.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\PolicyInjection\PolicyInjectionBehavior.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Properties\Resources.Designer.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Utilities\Glob.cs" />
-    <Compile Include="Microsoft.Practices.Unity.Interception\Utilities\ReflectionHelper.cs" />
     <Compile Include="Microsoft.Practices.Unity\Attributes\DependencyAttribute.cs" />
     <Compile Include="Microsoft.Practices.Unity\Attributes\DependencyResolutionAttribute.cs" />
     <Compile Include="Microsoft.Practices.Unity\Attributes\InjectionConstructorAttribute.cs" />
@@ -302,7 +208,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Microsoft.Practices.ServiceLocation\Properties\Resources.resx" />
-    <EmbeddedResource Include="Microsoft.Practices.Unity.Interception\Properties\Resources.resx" />
     <EmbeddedResource Include="Microsoft.Practices.Unity\Properties\Resources.resx" />
   </ItemGroup>
   <ItemGroup>
