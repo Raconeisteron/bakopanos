@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using PortalStarterKit.Model;
 
-namespace PortalStarterKit.Components
+namespace PortalStarterKit.Core
 {
     public interface ISiteConfigurationService
     {

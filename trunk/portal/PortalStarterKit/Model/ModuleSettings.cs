@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PortalStarterKit.Components
+namespace PortalStarterKit.Model
 {
     /// <summary>
     ///   Class that encapsulates the detailed settings for a specific Tab 
@@ -11,8 +11,7 @@ namespace PortalStarterKit.Components
     {
         public String AuthorizedEditRoles { get; set; }
 
-        public String DesktopSrc { get; set; }
-        public String FriendlyName { get; set; }
+        public ModuleDefSettings ModuleDef { get; set; }
         
         public string ModuleId { get; set; }
         public int ModuleOrder { get; set; }

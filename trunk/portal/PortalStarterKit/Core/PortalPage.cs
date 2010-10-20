@@ -3,7 +3,9 @@ using System.Web;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 
-namespace PortalStarterKit.Components
+using PortalStarterKit.Model;
+
+namespace PortalStarterKit.Core
 {
     public abstract class PortalPage<T> : Page, IPortalPage
         where T : IPortalPage
@@ -67,10 +69,10 @@ namespace PortalStarterKit.Components
 
         public static UserControl GetPortalModule(PortalPage<T> page, ModuleSettings module)
         {
-            var portalModule = (IPortalControl)page.LoadControl(module.DesktopSrc);
+            var portalModule = (IPortalControl)page.LoadControl(module.ModuleDef.DesktopSrc);
             portalModule.PortalId = page.PortalId;
             portalModule.TabId = page.TabId;
-            portalModule.ModuleConfiguration = module;
+            portalModule.ModuleSettings = module;
             portalModule.PortalSecurity = page.PortalSecurity;
 
             return (UserControl)portalModule;

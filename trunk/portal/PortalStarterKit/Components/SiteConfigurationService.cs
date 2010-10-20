@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using PortalStarterKit.Core;
+using PortalStarterKit.Model;
 
 namespace PortalStarterKit.Components
 {
@@ -27,12 +29,12 @@ namespace PortalStarterKit.Components
 
         public PortalSettings GetPortal(string portalId)
         {
-            return GetPortals().Single(item => item.PortalId == portalId);
+            return _deskotPortals.Single(item => item.PortalId == portalId);
         }
 
         public TabSettings GetTab(string portalId, string tabId)
         {
-            return GetPortal(portalId).DesktopTabs.Single(item => item.TabId == tabId);
+            return GetTabs(portalId).Single(item => item.TabId == tabId);
         }
 
         #endregion

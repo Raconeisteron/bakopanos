@@ -1,6 +1,6 @@
 ﻿using System.Web.UI;
 
-namespace PortalStarterKit.Components
+namespace PortalStarterKit.Core
 {
     public static class PortalExtensions
     {

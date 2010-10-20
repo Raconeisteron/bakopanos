@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PortalStarterKit.Components
+namespace PortalStarterKit.Model
 {
     /// <summary>
     ///   Class that encapsulates the detailed settings for a specific Tab 

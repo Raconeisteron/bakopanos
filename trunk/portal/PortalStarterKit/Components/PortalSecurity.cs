@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Web;
+using PortalStarterKit.Core;
+using PortalStarterKit.Model;
 
 namespace PortalStarterKit.Components
 {

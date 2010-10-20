@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Xml.Linq;
-using PortalStarterKit.Components;
+using PortalStarterKit.Model;
 
 namespace PortalStarterKit.Components
 {
@@ -14,7 +14,7 @@ namespace PortalStarterKit.Components
         public List<PortalSettings> Read()
         {
             var deskotPortals = new List<PortalSettings>();
-            string path = HttpContext.Current.Server.MapPath("portalcfg.xml");
+            string path = HttpContext.Current.Server.MapPath(@"App_Data\portalcfg.xml");
             XDocument document = XDocument.Load(path);
 
             foreach (XElement portal in document.Descendants("Portal"))
@@ -61,14 +61,20 @@ namespace PortalStarterKit.Components
                             (PortalPane) Enum.Parse(typeof (PortalPane), module.Attribute("PaneName").Value);
                         moduleItem.ModuleId = module.Attribute("ModuleId").Value;
 
-                        int moduleDefId = Convert.ToInt32(module.Attribute("ModuleDefId").Value);
+                        string moduleDefId = module.Attribute("ModuleDefId").Value;
 
                         foreach (XElement moduleDef in document.Descendants("ModuleDefinition"))
                         {
-                            if (moduleDefId == Convert.ToInt32(moduleDef.Attribute("ModuleDefId").Value))
+                            if (moduleDefId == moduleDef.Attribute("ModuleDefId").Value)
                             {
-                                moduleItem.DesktopSrc = moduleDef.Attribute("DesktopSourceFile").Value;
-                                moduleItem.FriendlyName = moduleDef.Attribute("FriendlyName").Value;
+                                moduleItem.ModuleDef =
+                                    new ModuleDefSettings
+                                        {
+                                            ModuleDefId = moduleDef.Attribute("ModuleDefId").Value,
+                                            DesktopSrc = moduleDef.Attribute("DesktopSourceFile").Value,
+                                            FriendlyName = moduleDef.Attribute("FriendlyName").Value
+                                        };
+                               
                             }
                         }
 

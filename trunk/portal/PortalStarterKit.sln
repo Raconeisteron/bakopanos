@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalStarterKit", "PortalStarterKit\PortalStarterKit.csproj", "{C3281472-8CC5-4B0F-AEF4-1B82A632EA66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity", "Unity\Unity.csproj", "{FF392171-8CBB-4E53-97FE-990BAB73054D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{C3281472-8CC5-4B0F-AEF4-1B82A632EA66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3281472-8CC5-4B0F-AEF4-1B82A632EA66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3281472-8CC5-4B0F-AEF4-1B82A632EA66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF392171-8CBB-4E53-97FE-990BAB73054D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF392171-8CBB-4E53-97FE-990BAB73054D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF392171-8CBB-4E53-97FE-990BAB73054D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF392171-8CBB-4E53-97FE-990BAB73054D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

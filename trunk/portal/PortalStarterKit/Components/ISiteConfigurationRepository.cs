@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PortalStarterKit.Model;
 
 namespace PortalStarterKit.Components
 {

@@ -3,7 +3,7 @@ using System.Web;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 
-namespace PortalStarterKit.Components
+namespace PortalStarterKit.Core
 {
     public abstract class PortalMasterPage<T> : MasterPage, IPortalPage
         where T : IPortalPage

@@ -1,6 +1,6 @@
-using System.Web.UI;
+using PortalStarterKit.Model;
 
-namespace PortalStarterKit.Components
+namespace PortalStarterKit.Core
 {
     public interface IPortalControl 
     {
@@ -8,7 +8,7 @@ namespace PortalStarterKit.Components
 
         string TabId { get; set; }
 
-        ModuleSettings ModuleConfiguration { get; set; }
+        ModuleSettings ModuleSettings { get; set; }
         
         IPortalSecurity PortalSecurity { get; set; }
     }

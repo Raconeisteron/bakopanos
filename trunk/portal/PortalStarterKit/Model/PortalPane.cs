@@ -1,4 +1,4 @@
-namespace PortalStarterKit.Components
+namespace PortalStarterKit.Model
 {
     public enum PortalPane
     {

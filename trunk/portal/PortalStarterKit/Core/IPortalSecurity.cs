@@ -1,6 +1,7 @@
 ﻿using System;
+using PortalStarterKit.Model;
 
-namespace PortalStarterKit.Components
+namespace PortalStarterKit.Core
 {
     public interface IPortalSecurity
     {

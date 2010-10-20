@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Xml.Linq;
+using PortalStarterKit.Model;
 
 namespace PortalStarterKit.Components
 {
@@ -44,8 +45,14 @@ namespace PortalStarterKit.Components
                 moduleItem.ModuleId = "Announcements";
                 moduleItem.ModuleTitle = "Announcements";
                 moduleItem.ModuleOrder = 0;
-                moduleItem.DesktopSrc = "DesktopModules/Announcements.ascx";
-                moduleItem.FriendlyName = "Announcements";
+
+                moduleItem.ModuleDef =
+                    new ModuleDefSettings
+                        {
+                            ModuleDefId = "1",
+                            DesktopSrc = "DesktopModules/Announcements.ascx",
+                            FriendlyName = "Announcements"
+                        };
 
                 tabItem.Modules.Add(moduleItem);
 
@@ -63,8 +70,15 @@ namespace PortalStarterKit.Components
 
                 moduleItem.ModuleId = "SiteInfo";
                 moduleItem.ModuleOrder = 0;
-                moduleItem.DesktopSrc = "DesktopModules/SiteInfo.ascx";
-                moduleItem.FriendlyName = "SiteInfo";
+
+                moduleItem.ModuleDef =
+                    new ModuleDefSettings
+                    {
+                        ModuleDefId = "2",
+                        DesktopSrc = "DesktopModules/SiteInfo.ascx",
+                        FriendlyName = "SiteInfo"
+                    };
+               
 
                 tabItem.Modules.Add(moduleItem);
             }
