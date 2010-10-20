@@ -14,9 +14,10 @@ namespace PortalStarterKit.Components
 
         public List<PortalSettings> Read()
         {
-            var moduleDefSettings = new List<ModuleDefSettings>();
             string path = HttpContext.Current.Server.MapPath(@"App_Data");
             XDocument document = XDocument.Load(Path.Combine( path , "ModuleDefinition.xml"));
+
+            var moduleDefSettings = new List<ModuleDefSettings>();
             foreach (XElement moduleDef in document.Descendants("ModuleDefinition"))
             {
                 moduleDefSettings.Add(
@@ -71,7 +72,7 @@ namespace PortalStarterKit.Components
                     foreach (string module in modules)
                     {
                         string mname = new DirectoryInfo(module).Name;
-                        if (tname == ".svn")
+                        if (mname == ".svn")
                         {
                             continue;
                         }
