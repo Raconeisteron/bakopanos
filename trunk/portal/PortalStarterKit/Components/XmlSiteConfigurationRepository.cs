@@ -17,6 +17,19 @@ namespace PortalStarterKit.Components
             string path = HttpContext.Current.Server.MapPath(@"App_Data\portalcfg.xml");
             XDocument document = XDocument.Load(path);
 
+
+            var moduleDefSettings = new List<ModuleDefSettings>();
+            foreach (XElement moduleDef in document.Descendants("ModuleDefinition"))
+            {
+                moduleDefSettings.Add(
+                    new ModuleDefSettings
+                    {
+                        ModuleDefId = moduleDef.Attribute("ModuleDefId").Value,
+                        DesktopSrc = moduleDef.Attribute("DesktopSourceFile").Value,
+                        FriendlyName = moduleDef.Attribute("FriendlyName").Value
+                    });
+            }
+
             foreach (XElement portal in document.Descendants("Portal"))
             {
                 var portalItem = new PortalSettings();
@@ -63,20 +76,7 @@ namespace PortalStarterKit.Components
 
                         string moduleDefId = module.Attribute("ModuleDefId").Value;
 
-                        foreach (XElement moduleDef in document.Descendants("ModuleDefinition"))
-                        {
-                            if (moduleDefId == moduleDef.Attribute("ModuleDefId").Value)
-                            {
-                                moduleItem.ModuleDef =
-                                    new ModuleDefSettings
-                                        {
-                                            ModuleDefId = moduleDef.Attribute("ModuleDefId").Value,
-                                            DesktopSrc = moduleDef.Attribute("DesktopSourceFile").Value,
-                                            FriendlyName = moduleDef.Attribute("FriendlyName").Value
-                                        };
-                               
-                            }
-                        }
+                        moduleItem.ModuleDef = moduleDefSettings.Single(item => item.ModuleDefId == moduleDefId);
 
                         tabItem.Modules.Add(moduleItem);
                     }

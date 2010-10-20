@@ -54,6 +54,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="App_Data\ModuleDefinition.xml" />
     <Content Include="DesktopModules\Announcements.ascx" />
     <Content Include="App_Data\PortalCfg.xml" />
     <Content Include="DesktopModules\SiteInfo.ascx" />
@@ -100,8 +101,8 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Components\ContentSiteConfigurationRepository.cs" />
     <Compile Include="Components\FakeSiteConfigurationRepository.cs" />
-    <Compile Include="Core\IContainerAccessor.cs" />
     <Compile Include="Core\IPortalSecurity.cs" />
     <Compile Include="Components\ISiteConfigurationRepository.cs" />
     <Compile Include="DesktopModules\SiteInfo.ascx.cs">
@@ -158,7 +159,10 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\default\Home\" />
+    <Folder Include="App_Data\default\News\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
