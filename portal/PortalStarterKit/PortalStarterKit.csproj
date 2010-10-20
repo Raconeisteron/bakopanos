@@ -50,14 +50,13 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="3rdParty\Microsoft.Practices.ServiceLocation\Readme.txt" />
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="DesktopModules\Announcements.ascx" />
+    <Content Include="App_Data\PortalCfg.xml" />
     <Content Include="DesktopModules\SiteInfo.ascx" />
-    <Content Include="PortalCfg.xml" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -73,264 +72,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="3rdParty\Microsoft.Practices.ServiceLocation\ActivationException.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.ServiceLocation\ActivationException.Desktop.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.ServiceLocation\IServiceLocator.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.ServiceLocation\Properties\Resources.Designer.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.ServiceLocation\ServiceLocator.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.ServiceLocation\ServiceLocatorImplBase.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.ServiceLocation\ServiceLocatorProvider.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\AdditionalInterface.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\DefaultInterceptionBehavior.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\DefaultInterceptor.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\Interception.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\InterceptionBehavior.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\InterceptionBehaviorBase.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\InterceptionMember.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\Interceptor.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\AdditionalInterfacesPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\FixedInstanceInterceptionPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\FixedTypeInterceptionPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\IAdditionalInterfacesPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\IInstanceInterceptionPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\IInterceptionBehaviorsPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\InstanceInterceptionStrategy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\InterceptionBehaviorsPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\ITypeInterceptionPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\ResolvedInstanceInterceptionPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\ResolvedTypeInterceptionPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\ObjectBuilder\TypeInterceptionStrategy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\ContainerIntegration\PolicyDefinition.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\GlobalSuppressions.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Intercept.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\InterceptionBehaviors\CurrentInterceptionRequest.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\InterceptionBehaviors\IInterceptionBehavior.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\InterceptionBehaviors\InterceptionBehaviorPipeline.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\IInterceptingProxy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\IInterceptor.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\IInstanceInterceptor.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\InterfaceInterception\InterfaceImplementation.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\InterfaceInterception\InterfaceInterceptor.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\InterfaceInterception\InterfaceInterceptorClassGenerator.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\InterfaceInterception\InterfaceMethodOverride.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\TransparentProxyInterception\InterceptingRealProxy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\TransparentProxyInterception\TransparentProxyInputParameterCollection.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\TransparentProxyInterception\TransparentProxyInterceptor.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\TransparentProxyInterception\TransparentProxyMethodInvocation.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\TransparentProxyInterception\TransparentProxyMethodReturn.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\InstanceInterceptors\TransparentProxyInterception\TransparentProxyOutputParameterCollection.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\MethodImplementationInfo.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\ITypeInterceptor.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\ConstructorWithResolverKeysSelectorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\CompilerGeneratedAttributeMethods.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\GeneratedTypeKey.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\IInterceptingProxyMethods.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\IListMethods.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\IMethodInvocationMethods.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\IMethodReturnMethods.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\InterceptingClassGenerator.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\InterceptingProxyImplementor.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\InterceptionBehaviorPipelineMethods.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\InvokeInterceptionBehaviorDelegateMethods.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\MethodBaseMethods.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\MethodOverride.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\MethodOverrideParameterMapper.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\MethodSorter.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\ObjectMethods.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\InterceptingClassGeneration\VirtualMethodInvocationMethods.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\VirtualMethodInterceptor.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\VirtualMethodInvocation.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Interceptors\TypeInterceptors\VirtualMethodInterception\VirtualMethodReturn.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\HandlerPipelineKey.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\ApplyNoPoliciesMatchingRule.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\AssemblyMatchingRule.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\AttributeDrivenPolicyMatchingRule.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\CustomAttributeMatchingRule.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\IMatchingRule.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\MatchingInfo.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\MatchingRuleSet.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\MemberNameMatchingRule.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\MethodSignatureMatchingRule.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\NamespaceMatchingRule.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\ParameterTypeMatchingRule.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\PropertyMatchingRule.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\ReturnTypeMatchingRule.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\TagAttribute.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\TagAttributeMatchingRule.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\MatchingRules\TypeMatchingRule.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\Pipeline\HandlerPipeline.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\Pipeline\ICallHandler.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\Pipeline\IMethodInvocation.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\Pipeline\IMethodReturn.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\Pipeline\IParameterCollection.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\Pipeline\ParameterCollection.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\Pipeline\PipelineManager.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\Policies\ApplyNoPoliciesAttribute.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\Policies\AttributeDrivenPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\Policies\HandlerAttribute.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\Policies\InjectionPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\Policies\PolicySet.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\Policies\RuleDrivenPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\PolicyInjection\PolicyInjectionBehavior.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Properties\Resources.Designer.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Utilities\Glob.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity.Interception\Utilities\ReflectionHelper.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Attributes\DependencyAttribute.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Attributes\DependencyResolutionAttribute.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Attributes\InjectionConstructorAttribute.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Attributes\InjectionMethodAttribute.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Attributes\OptionalDependencyAttribute.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\CompositeResolverOverride.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ContainerRegistration.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\DependencyOverride.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\DependencyOverrides.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Extension\ChildContainerCreatedEventArgs.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Extension\ExtensionContext.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Extension\IUnityContainerExtensionConfigurator.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Extension\NamedEventArgs.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Extension\RegisterEventArgs.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Extension\RegisterInstanceEventArgs.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Extension\UnityContainerExtension.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\GlobalSuppressions.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\GenericParameter.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\GenericParameterBase.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\GenericResolvedArrayParameter.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\InjectedMembers.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\InjectionConstructor.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\InjectionFactory.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\InjectionMember.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\InjectionMethod.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\InjectionParameter.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\InjectionParameterValue.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\InjectionProperty.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\OptionalGenericParameter.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\OptionalParameter.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\ResolvedArrayParameter.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\ResolvedParameter.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Injection\TypedInjectionValue.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\IUnityContainer.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Lifetime\ContainerControlledLifetimeManager.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Lifetime\ExternallyControlledLifetimeManager.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Lifetime\HierarchicalLifetimeManager.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Lifetime\LifetimeManager.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Lifetime\LifetimeManagerFactory.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Lifetime\PerResolveLifetimeManager.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Lifetime\PerThreadLifetimeManager.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Lifetime\SynchronizedLifetimeManager.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Lifetime\TransientLifetimeManager.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\NamedTypesRegistry.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilderCustomization\ArrayResolutionStrategy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilderCustomization\DefaultUnityConstructorSelectorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilderCustomization\DefaultUnityMethodSelectorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilderCustomization\DefaultUnityPropertySelectorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilderCustomization\HierarchicalLifetimeStrategy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilderCustomization\LiteralValueDependencyResolverPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilderCustomization\NamedTypeDependencyResolverPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilderCustomization\OptionalDependencyResolverPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilderCustomization\ResolvedArrayWithElementsResolverPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilderCustomization\SpecifiedConstructorSelectorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilderCustomization\SpecifiedMemberSelectorHelper.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilderCustomization\SpecifiedMethodsSelectorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilderCustomization\SpecifiedPropertiesSelectorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilderCustomization\UnityBuildStage.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\BuilderContext.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Exceptions\DependencyMissingException.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Exceptions\DependencyMissingException.Desktop.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Exceptions\IllegalInjectionMethodException.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Exceptions\IllegalInjectionMethodException.Desktop.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\IBuilderContext.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\IRecoveryStack.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\IRequiresRecovery.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Lifetime\ILifetimeContainer.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Lifetime\LifetimeContainer.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Policies\IBuilderPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Policies\IPolicyList.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Policies\PolicyList.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Policies\PolicyListExtensions.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\RecoveryStack.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuilderAware\BuilderAwareStrategy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuilderAware\IBuilderAware.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuilderStage.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuilderStrategy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildKeyMapping\BuildKeyMappingPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildKeyMapping\BuildKeyMappingStrategy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildKeyMapping\GenericTypeBuildKeyMappingPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildKeyMapping\IBuildKeyMappingPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\BuildOperation.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\BuildPlanStrategy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Creation\ConstructorSelectorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Creation\ConstructorSelectorPolicyBase.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Creation\IConstructorSelectorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Creation\SelectedConstructor.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Creation\SelectedMemberWithParameters.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\DynamicMethod\Creation\ConstructorArgumentResolveOperation.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\DynamicMethod\Creation\DynamicMethodConstructorStrategy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\DynamicMethod\Creation\InvokingConstructorOperation.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\DynamicMethod\DefaultDynamicBuilderMethodCreatorPolicy.Desktop.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\DynamicMethod\DynamicBuildPlanGenerationContext.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\DynamicMethod\DynamicMethodBuildPlan.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\DynamicMethod\DynamicMethodBuildPlanCreatorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\DynamicMethod\IDynamicBuilderMethodCreatorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\DynamicMethod\Method\DynamicMethodCallStrategy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\DynamicMethod\Method\InvokingMethodOperation.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\DynamicMethod\Method\MethodArgumentResolveOperation.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\DynamicMethod\Property\DynamicMethodPropertySetterStrategy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\DynamicMethod\Property\PropertyOperation.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\DynamicMethod\Property\ResolvingPropertyValueOperation.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\DynamicMethod\Property\SettingPropertyOperation.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Factory\DeferredResolveBuildPlanPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Factory\FactoryDelegateBuildPlanPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\IBuildPlanCreatorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\IBuildPlanPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Method\IMethodSelectorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Method\MethodSelectorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Method\MethodSelectorPolicyBase.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Method\SelectedMethod.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\OverriddenBuildPlanMarkerPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Property\IPropertySelectorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Property\PropertySelectorBase.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Property\PropertySelectorPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Property\SelectedProperty.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Resolution\DependencyResolverTrackerPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Resolution\FixedTypeResolverPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Resolution\IDependencyResolverPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\BuildPlan\Resolution\IDependencyResolverTrackerPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\IBuilderStrategy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\IStagedStrategyChain.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\IStrategyChain.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\Lifetime\ILifetimeFactoryPolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\Lifetime\ILifetimePolicy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\Lifetime\LifetimeStrategy.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\StagedStrategyChain.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Strategies\StrategyChain.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Utility\EnumerableExtensions.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Utility\NamedTypeBuildKey.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ObjectBuilder\Utility\Sequence.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\OverrideCollection.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ParameterOverride.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ParameterOverrides.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Properties\Resources.Designer.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\PropertyOverride.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\PropertyOverrides.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ResolutionFailedException.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ResolutionFailedException.Desktop.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\ResolverOverride.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\StaticFactory\IStaticFactoryConfiguration.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\StaticFactory\StaticFactoryExtension.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\TypeBasedOverride.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\UnityContainer.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\UnityContainerExtensions.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\UnityDefaultBehaviorExtension.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\UnityDefaultStrategiesExtension.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\UnityDefaultStrategiesExtension.Desktop.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\UnityServiceLocator.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Utility\Guard.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Utility\MethodReflectionHelper.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Utility\Pair.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Utility\ParameterMatcher.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Utility\ParameterReflectionHelper.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Utility\ReflectionHelper.cs" />
-    <Compile Include="3rdParty\Microsoft.Practices.Unity\Utility\StaticReflection.cs" />
     <Compile Include="Account\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -360,26 +101,34 @@
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Components\FakeSiteConfigurationRepository.cs" />
-    <Compile Include="Components\IContainerAccessor.cs" />
-    <Compile Include="Components\IPortalSecurity.cs" />
+    <Compile Include="Core\IContainerAccessor.cs" />
+    <Compile Include="Core\IPortalSecurity.cs" />
     <Compile Include="Components\ISiteConfigurationRepository.cs" />
-    <Compile Include="Components\PortalExtensions.cs" />
-    <Compile Include="Components\IPortalControl.cs" />
-    <Compile Include="Components\IPortalPage.cs" />
-    <Compile Include="Components\PortalMasterPage.cs">
+    <Compile Include="DesktopModules\SiteInfo.ascx.cs">
+      <DependentUpon>SiteInfo.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Components\PortalPage.cs">
+    <Compile Include="DesktopModules\SiteInfo.ascx.designer.cs">
+      <DependentUpon>SiteInfo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ModuleDefSettings.cs" />
+    <Compile Include="Core\PortalExtensions.cs" />
+    <Compile Include="Core\IPortalControl.cs" />
+    <Compile Include="Core\IPortalPage.cs" />
+    <Compile Include="Core\PortalMasterPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Components\ISiteConfigurationService.cs" />
-    <Compile Include="Components\PortalPane.cs" />
+    <Compile Include="Core\PortalPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Core\ISiteConfigurationService.cs" />
+    <Compile Include="Model\PortalPane.cs" />
     <Compile Include="Components\PortalSecurity.cs" />
     <Compile Include="Components\XmlSiteConfigurationRepository.cs" />
     <Compile Include="Components\SiteConfigurationService.cs" />
-    <Compile Include="Components\ModuleSettings.cs" />
-    <Compile Include="Components\PortalSettings.cs" />
-    <Compile Include="Components\TabSettings.cs" />
+    <Compile Include="Model\ModuleSettings.cs" />
+    <Compile Include="Model\PortalSettings.cs" />
+    <Compile Include="Model\TabSettings.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -387,7 +136,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Components\PortalModule.cs">
+    <Compile Include="Core\PortalModule.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="DesktopModules\Announcements.ascx.cs">
@@ -396,13 +145,6 @@
     </Compile>
     <Compile Include="DesktopModules\Announcements.ascx.designer.cs">
       <DependentUpon>Announcements.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="DesktopModules\SiteInfo.ascx.cs">
-      <DependentUpon>SiteInfo.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DesktopModules\SiteInfo.ascx.designer.cs">
-      <DependentUpon>SiteInfo.ascx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -416,17 +158,16 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="3rdParty\Microsoft.Practices.ServiceLocation\Properties\Resources.resx" />
-    <EmbeddedResource Include="3rdParty\Microsoft.Practices.Unity.Interception\Properties\Resources.resx" />
-    <EmbeddedResource Include="3rdParty\Microsoft.Practices.Unity\Properties\Resources.resx" />
+    <ProjectReference Include="..\Unity\Unity.csproj">
+      <Project>{FF392171-8CBB-4E53-97FE-990BAB73054D}</Project>
+      <Name>Unity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

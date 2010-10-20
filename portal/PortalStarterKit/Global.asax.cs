@@ -4,6 +4,7 @@ using System.Web.Routing;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 using PortalStarterKit.Components;
+using PortalStarterKit.Core;
 
 namespace PortalStarterKit
 {
@@ -76,7 +77,7 @@ namespace PortalStarterKit
             container.RegisterType<ISiteConfigurationService, SiteConfigurationService>(
                 new ContainerControlledLifetimeManager());
 
-            container.RegisterType<ISiteConfigurationRepository, FakeSiteConfigurationRepository>(
+            container.RegisterType<ISiteConfigurationRepository, XmlSiteConfigurationRepository>(
                 new ContainerControlledLifetimeManager());
 
             container.RegisterType<IPortalSecurity, PortalSecurity>(

@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
-using System.Web;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
-using System;
-using PortalStarterKit.Components;
+using PortalStarterKit.Model;
 
-namespace PortalStarterKit.Components
+namespace PortalStarterKit.Core
 {
     /// <summary>
     ///   The PortalModuleControl class defines a custom base class inherited by all
@@ -18,43 +15,19 @@ namespace PortalStarterKit.Components
     public class PortalModule<T> : UserControl, IPortalControl
         where T : IPortalControl
     {
-        // Private field variables
-        private int _isEditable;
-        private Hashtable _settings;
-
         // Public property accessors
         public string PortalId { get; set; }
-
         public string TabId { get; set; }
 
-        public ModuleSettings ModuleConfiguration { get; set; }
-
+        public ModuleSettings ModuleSettings { get; set; }
         public IPortalSecurity PortalSecurity { get; set; }
 
         public bool IsEditable
         {
             get
             {
-                // Perform tri-state switch check to avoid having to perform a security
-                // role lookup on every property access (instead caching the result)
-
-                if (_isEditable == 0)
-                {
-                    // Obtain PortalSettings from Current Context
-
-                    var portalSettings = (PortalSettings)HttpContext.Current.Items["PortalSettings"];
-
-                    if (portalSettings.AlwaysShowEditButton || PortalSecurity.IsInRoles(ModuleConfiguration.AuthorizedEditRoles))
-                    {
-                        _isEditable = 1;
-                    }
-                    else
-                    {
-                        _isEditable = 2;
-                    }
-                }
-
-                return (_isEditable == 1);
+                //TODO
+                return true;
             }
         }
 

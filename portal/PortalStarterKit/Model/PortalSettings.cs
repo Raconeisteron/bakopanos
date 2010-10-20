@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PortalStarterKit.Components
+namespace PortalStarterKit.Model
 {
     /// <summary>
     ///   This class encapsulates all of the settings for the Portal, as well

@@ -1,8 +1,8 @@
 ﻿using Microsoft.Practices.Unity;
 
-namespace PortalStarterKit.Components
+namespace PortalStarterKit.Core
 {
-    public interface IContainerAccessor
+    internal interface IContainerAccessor
     {
         IUnityContainer Container { get; }
     }

@@ -1,4 +1,5 @@
-﻿namespace PortalStarterKit.Components
+﻿
+namespace PortalStarterKit.Core
 {
     public interface IPortalPage
     {
