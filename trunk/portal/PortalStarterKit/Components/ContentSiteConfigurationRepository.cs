@@ -17,7 +17,8 @@ namespace PortalStarterKit.Components
             string path = HttpContext.Current.Server.MapPath(@"App_Data");
             XDocument document = XDocument.Load(Path.Combine( path , "ModuleDefinition.xml"));
 
-            var moduleDefSettings = document.Element("SiteConfiguration").GetModuleDefSettings();
+            var moduleDefSettings = document.Element("SiteConfiguration").
+                Descendants("ModuleDefinition").GetModuleDefSettings();
             
             var deskotPortals = new List<PortalSettings>();
             string[] portals = Directory.GetDirectories(path);

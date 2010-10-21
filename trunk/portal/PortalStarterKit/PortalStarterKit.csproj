@@ -62,6 +62,7 @@
     <Content Include="App_Data\ModuleDefinition.xml" />
     <Content Include="DesktopModules\Announcements.ascx" />
     <Content Include="App_Data\PortalCfg.xml" />
+    <Content Include="DesktopModules\HtmlModule.ascx" />
     <Content Include="DesktopModules\SiteInfo.ascx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
@@ -111,6 +112,13 @@
     <Compile Include="Components\XmlPortalCfgHelper.cs" />
     <Compile Include="Core\IPortalSecurity.cs" />
     <Compile Include="Components\ISiteConfigurationRepository.cs" />
+    <Compile Include="DesktopModules\HtmlModule.ascx.cs">
+      <DependentUpon>HtmlModule.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\HtmlModule.ascx.designer.cs">
+      <DependentUpon>HtmlModule.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DesktopModules\SiteInfo.ascx.cs">
       <DependentUpon>SiteInfo.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

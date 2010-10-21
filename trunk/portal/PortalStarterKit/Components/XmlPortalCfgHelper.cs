@@ -6,23 +6,19 @@ using PortalStarterKit.Model;
 
 namespace PortalStarterKit.Components
 {
+   
+
     public static class XmlPortalCfgHelper 
     {
-        public static List<ModuleDefSettings> GetModuleDefSettings(this XElement element)
+        public static IEnumerable<ModuleDefSettings> GetModuleDefSettings(this IEnumerable<XElement> elements)
         {
-            var moduleDefSettings = new List<ModuleDefSettings>();
-            foreach (XElement moduleDef in element.Descendants("ModuleDefinition"))
-            {
-                moduleDefSettings.Add(
-                    new ModuleDefSettings
-                        {
-                            ModuleDefId = moduleDef.Attribute("ModuleDefId").Value,
-                            DesktopSrc = moduleDef.Attribute("DesktopSourceFile").Value,
-                            FriendlyName = moduleDef.Attribute("FriendlyName").Value
-                        });
-            }
-
-            return moduleDefSettings;
+            return elements.
+                Select(moduleDef => new ModuleDefSettings
+                                        {
+                                            ModuleDefId = moduleDef.Attribute("ModuleDefId").Value,
+                                            DesktopSrc = moduleDef.Attribute("DesktopSourceFile").Value,
+                                            FriendlyName = moduleDef.Attribute("FriendlyName").Value
+                                        });
         }
 
         public static PortalSettings GetPortalSetting(this XElement element)
