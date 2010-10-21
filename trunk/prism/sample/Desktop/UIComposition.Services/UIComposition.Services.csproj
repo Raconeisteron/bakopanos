@@ -60,6 +60,7 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -75,6 +76,7 @@
     <Compile Include="FakeEmployeeService.cs" />
     <Compile Include="IProjectService.cs" />
     <Compile Include="FakeProjectService.cs" />
+    <Compile Include="IServicesCfg.cs" />
     <Compile Include="WcfEmployeeService.cs" />
     <Compile Include="WcfProjectService.cs" />
     <Compile Include="Service References\DataServiceReference\Reference.cs">
