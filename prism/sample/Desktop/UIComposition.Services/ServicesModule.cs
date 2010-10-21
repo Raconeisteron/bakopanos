@@ -2,13 +2,14 @@
 // Bakopanos Konstantinos
 // http://www.deaddevssociety.com
 // ===================================================================================
+using System.Configuration;
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Unity;
 
 namespace UIComposition.Services
 {
 
-    internal class ServicesModule : IModule
+    internal class ServicesModule : ConfigurationSection, IModule,IServicesCfg
     {
         private readonly IUnityContainer _container;
 
@@ -18,6 +19,16 @@ namespace UIComposition.Services
             //_container.RegisterInstance(new ProjectServiceClient());
             //_container.RegisterInstance(new EmployeeServiceClient());
         }
+
+        [ConfigurationProperty("name")]
+        public string Name 
+        { 
+            get
+            {
+                return this["name"] as string;
+            } 
+        }
+
 
         #region IModule Members
 

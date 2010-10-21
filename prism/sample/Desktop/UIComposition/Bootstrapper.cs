@@ -21,29 +21,29 @@ namespace UIComposition
 
         protected override IModuleCatalog GetModuleCatalog()
         {
-            Type shellModuleType = Type.GetType("UIComposition.ShellModule,UIComposition");
+            //Type shellModuleType = Type.GetType("UIComposition.ShellModule,UIComposition");
 
-            Type infrastructureModuleType =
-                Type.GetType("UIComposition.Infrastructure.InfrastructureModule,UIComposition.Infrastructure");
-            Type servicesModuleType = Type.GetType("UIComposition.Services.ServicesModule,UIComposition.Services");
+            //Type infrastructureModuleType =
+            //    Type.GetType("UIComposition.Infrastructure.InfrastructureModule,UIComposition.Infrastructure");
+            //Type servicesModuleType = Type.GetType("UIComposition.Services.ServicesModule,UIComposition.Services");
             
-            var catalog = new ModuleCatalog();
-            catalog.AddModule(infrastructureModuleType).
-                AddModule(servicesModuleType);
+            //var catalog = new ModuleCatalog();
+            //catalog.AddModule(infrastructureModuleType).
+            //    AddModule(servicesModuleType);
 
-            //modules
-            Type employeeModuleType =
-                Type.GetType("UIComposition.Employee.EmployeeModule,UIComposition.Employee");
+            ////modules
+            //Type employeeModuleType =
+            //    Type.GetType("UIComposition.Employee.EmployeeModule,UIComposition.Employee");
 
-            Type projectModuleType =
-               Type.GetType("UIComposition.Project.ProjectModule,UIComposition.Project");
-            catalog.AddModule(employeeModuleType);
-            catalog.AddModule(projectModuleType);
+            //Type projectModuleType =
+            //   Type.GetType("UIComposition.Project.ProjectModule,UIComposition.Project");
+            //catalog.AddModule(employeeModuleType);
+            //catalog.AddModule(projectModuleType);
 
 
-            catalog.AddModule(shellModuleType);
+            //catalog.AddModule(shellModuleType);
 
-            return catalog;
+            return new ConfigurationModuleCatalog();
         }
     }
 }
