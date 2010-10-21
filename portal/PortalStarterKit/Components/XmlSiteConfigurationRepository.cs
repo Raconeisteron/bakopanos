@@ -16,7 +16,8 @@ namespace PortalStarterKit.Components
             string path = HttpContext.Current.Server.MapPath(@"App_Data\portalcfg.xml");
             XDocument document = XDocument.Load(path);
 
-            var moduleDefSettings = document.Element("SiteConfiguration").GetModuleDefSettings();
+            var moduleDefSettings = document.Element("SiteConfiguration").
+                Descendants("ModuleDefinition").GetModuleDefSettings();
 
             var deskotPortals = new List<PortalSettings>();
             foreach (XElement portal in document.Descendants("Portal"))

@@ -83,6 +83,30 @@ namespace PortalStarterKit.Components
                 tabItem.Modules.Add(moduleItem);
             }
 
+            {
+                var tabItem = new TabSettings();
+
+                tabItem.TabName = "html";
+                tabItem.TabId = "html";
+                tabItem.TabOrder = 1;
+                portalItem.DesktopTabs.Add(tabItem);
+
+                var moduleItem = new ModuleSettings();
+
+                moduleItem.ModuleId = "html";
+                moduleItem.ModuleOrder = 0;
+
+                moduleItem.ModuleDef =
+                    new ModuleDefSettings
+                    {
+                        ModuleDefId = "3",
+                        DesktopSrc = "DesktopModules/HtmlModule.ascx",
+                        FriendlyName = "HtmlModule"
+                    };
+
+
+                tabItem.Modules.Add(moduleItem);
+            }
             return deskotPortals;
         }
 
