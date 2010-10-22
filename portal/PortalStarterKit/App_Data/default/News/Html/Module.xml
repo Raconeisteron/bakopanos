@@ -1,0 +1,7 @@
+<?xml version="1.0" standalone="yes"?>
+
+<SiteConfiguration>
+
+      <Module ModuleTitle="html" EditRoles="Admins;" ModuleDefId="3" PaneName="Right" />
+   
+</SiteConfiguration>

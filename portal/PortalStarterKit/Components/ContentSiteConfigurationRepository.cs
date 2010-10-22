@@ -4,24 +4,30 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Xml.Linq;
+using PortalStarterKit.Core;
 using PortalStarterKit.Model;
 
 namespace PortalStarterKit.Components
 {
     public class ContentSiteConfigurationRepository : ISiteConfigurationRepository
     {
+        private ISiteEnvironment _environment;
+        public ContentSiteConfigurationRepository(ISiteEnvironment environment)
+        {
+            _environment = environment;
+        }
+
         #region ISiteConfigurationRepository Members
 
         public List<PortalSettings> Read()
         {
-            string path = HttpContext.Current.Server.MapPath(@"App_Data");
-            XDocument document = XDocument.Load(Path.Combine( path , "ModuleDefinition.xml"));
+            XDocument document = XDocument.Load(Path.Combine( _environment.DataPhysicalPath , "ModuleDefinition.xml"));
 
             var moduleDefSettings = document.Element("SiteConfiguration").
                 Descendants("ModuleDefinition").GetModuleDefSettings();
             
             var deskotPortals = new List<PortalSettings>();
-            string[] portals = Directory.GetDirectories(path);
+            string[] portals = Directory.GetDirectories(_environment.DataPhysicalPath);
 
             foreach (string portal in portals)
             {
@@ -43,8 +49,9 @@ namespace PortalStarterKit.Components
                     {
                         continue;
                     }
-                    var tabItem = XDocument.Load(Path.Combine(tab, "Tab.xml")).
-                    Element("SiteConfiguration").Element("Tab").GetTabSetting(tname);
+                    var tabdoc = XDocument.Load(Path.Combine(tab, "Tab.xml"));
+                    var tabItem = tabdoc.
+                        Element("SiteConfiguration").Element("Tab").GetTabSetting(tname);
                     tabOrder++;
                     tabItem.TabOrder = tabOrder;
                     
@@ -58,8 +65,10 @@ namespace PortalStarterKit.Components
                             continue;
                         }
 
-                        var moduleItem = XDocument.Load(Path.Combine(module, "Module.xml")).
-                    Element("SiteConfiguration").Element("Module").GetModuleSetting(mname);
+                        var moduledoc = XDocument.Load(Path.Combine(module, "Module.xml"));
+                        var moduleItem = moduledoc.
+                            Element("SiteConfiguration").
+                            Element("Module").GetModuleSetting(mname);
 
                         moduleItem.TabId = tabItem.TabId;
                         moduleOrder++;

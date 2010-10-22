@@ -5,6 +5,7 @@ using System.Web.UI;
 using Microsoft.Practices.Unity;
 using PortalStarterKit.Components;
 using PortalStarterKit.Core;
+using PortalStarterKit.DesktopModules;
 
 namespace PortalStarterKit
 {
@@ -77,11 +78,26 @@ namespace PortalStarterKit
             container.RegisterType<ISiteConfigurationService, SiteConfigurationService>(
                 new ContainerControlledLifetimeManager());
 
-            container.RegisterType<ISiteConfigurationRepository, FakeSiteConfigurationRepository>(
+            container.RegisterType<ISiteConfigurationRepository, ContentSiteConfigurationRepository>(
                 new ContainerControlledLifetimeManager());
 
             container.RegisterType<IPortalSecurity, PortalSecurity>(
                 new ContainerControlledLifetimeManager());
+
+
+            container.RegisterType<IHtmlModuleDb, FakeHtmlModuleDb>(
+                new ContainerControlledLifetimeManager());
+
+            string dataPhysicalPath =
+                HttpContext.Current.Server.MapPath(@"App_Data");
+
+            container.RegisterInstance<ISiteEnvironment>(new SiteEnvironment
+                                                             {
+                                                                 DataPhysicalPath =
+                                                                     dataPhysicalPath
+                                                             });
+
+            
 
             Container = container;
         }
