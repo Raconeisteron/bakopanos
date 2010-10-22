@@ -3,6 +3,15 @@ using PortalStarterKit.Model;
 
 namespace PortalStarterKit.Core
 {
+    public interface ISiteEnvironment
+    {
+        string DataPhysicalPath { get; set; }
+    }
+    public class SiteEnvironment:ISiteEnvironment
+    {
+        public string DataPhysicalPath { get; set; }
+    }
+
     public interface ISiteConfigurationService
     {
         List<PortalSettings> GetPortals();

@@ -54,14 +54,16 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="App_Data\default\Home\Announcements\Module.xml" />
+    <Content Include="App_Data\default\News\Announcements\Module.xml" />
     <Content Include="App_Data\default\Home\Tab.xml" />
+    <Content Include="App_Data\default\News\Html\Module.xml" />
     <Content Include="App_Data\default\News\SiteInfo\Module.xml" />
     <Content Include="App_Data\default\News\Tab.xml" />
     <Content Include="App_Data\default\Portal.xml" />
     <Content Include="App_Data\ModuleDefinition.xml" />
+    <Content Include="App_Data\default\News\Html\test.htm" />
+    <Content Include="App_Data\default\News\Html\image001.jpg" />
     <Content Include="DesktopModules\Announcements.ascx" />
-    <Content Include="App_Data\PortalCfg.xml" />
     <Content Include="DesktopModules\HtmlModule.ascx" />
     <Content Include="DesktopModules\SiteInfo.ascx" />
     <Content Include="Styles\Site.css" />
@@ -108,7 +110,6 @@
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Components\ContentSiteConfigurationRepository.cs" />
-    <Compile Include="Components\FakeSiteConfigurationRepository.cs" />
     <Compile Include="Components\XmlPortalCfgHelper.cs" />
     <Compile Include="Core\IPortalSecurity.cs" />
     <Compile Include="Components\ISiteConfigurationRepository.cs" />
@@ -119,6 +120,8 @@
     <Compile Include="DesktopModules\HtmlModule.ascx.designer.cs">
       <DependentUpon>HtmlModule.ascx</DependentUpon>
     </Compile>
+    <Compile Include="DesktopModules\FakeHtmlModuleDb.cs" />
+    <Compile Include="DesktopModules\IHtmlModuleDb.cs" />
     <Compile Include="DesktopModules\SiteInfo.ascx.cs">
       <DependentUpon>SiteInfo.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -139,7 +142,6 @@
     <Compile Include="Core\ISiteConfigurationService.cs" />
     <Compile Include="Model\PortalPane.cs" />
     <Compile Include="Components\PortalSecurity.cs" />
-    <Compile Include="Components\XmlSiteConfigurationRepository.cs" />
     <Compile Include="Components\SiteConfigurationService.cs" />
     <Compile Include="Model\ModuleSettings.cs" />
     <Compile Include="Model\PortalSettings.cs" />
@@ -173,7 +175,6 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
@@ -184,6 +185,7 @@
       <Name>Unity</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
