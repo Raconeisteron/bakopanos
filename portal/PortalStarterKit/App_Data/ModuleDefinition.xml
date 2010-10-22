@@ -4,6 +4,6 @@
 
     <ModuleDefinition FriendlyName="Announcements" DesktopSourceFile="DesktopModules/Announcements.ascx" ModuleDefId="1" />
   <ModuleDefinition FriendlyName="SiteInfo" DesktopSourceFile="DesktopModules/SiteInfo.ascx" ModuleDefId="2" />
-  <ModuleDefinition FriendlyName="Html" DesktopSourceFile="DesktopModules/Html.ascx" ModuleDefId="3" />
+  <ModuleDefinition FriendlyName="Html" DesktopSourceFile="DesktopModules/HtmlModule.ascx" ModuleDefId="3" />
 
 </SiteConfiguration>
