@@ -20,6 +20,7 @@ namespace DemoApp.ViewModel
         #region Fields
 
         private readonly ICustomerRepository _customerRepository;
+        private readonly IProjectRepository _projectRepository;
         private ReadOnlyCollection<CommandViewModel> _commands;
         private ObservableCollection<WorkspaceViewModel> _workspaces;
 
@@ -27,11 +28,12 @@ namespace DemoApp.ViewModel
 
         #region Constructor
 
-        public MainWindowViewModel(ICustomerRepository customerRepository)
+        public MainWindowViewModel(ICustomerRepository customerRepository, IProjectRepository projectRepository)
         {
             base.DisplayName = Strings.MainWindowViewModel_DisplayName;
 
             _customerRepository = customerRepository;
+            _projectRepository = projectRepository;
         }
 
         #endregion // Constructor
@@ -59,6 +61,9 @@ namespace DemoApp.ViewModel
         {
             return new List<CommandViewModel>
                        {
+                           new CommandViewModel(
+                               Strings.MainWindowViewModel_Command_ViewAllProjects,
+                               new RelayCommand(param => ShowAllProjects())),
                            new CommandViewModel(
                                Strings.MainWindowViewModel_Command_ViewAllCustomers,
                                new RelayCommand(param => ShowAllCustomers())),
@@ -128,6 +133,21 @@ namespace DemoApp.ViewModel
             if (workspace == null)
             {
                 workspace = new AllCustomersViewModel(_customerRepository);
+                Workspaces.Add(workspace);
+            }
+
+            SetActiveWorkspace(workspace);
+        }
+
+        private void ShowAllProjects()
+        {
+            var workspace =
+                Workspaces.FirstOrDefault(vm => vm is AllProjectsViewModel)
+                as AllProjectsViewModel;
+
+            if (workspace == null)
+            {
+                workspace = new AllProjectsViewModel(_projectRepository);
                 Workspaces.Add(workspace);
             }
 

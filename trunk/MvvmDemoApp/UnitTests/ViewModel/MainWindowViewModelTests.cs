@@ -54,7 +54,7 @@ namespace DemoApp.ViewModel
         [TestMethod]
         public void TestViewAllCustomers()
         {
-            var target = new MainWindowViewModel(new CustomerRepository(Constants.CUSTOMER_DATA_FILE));
+            var target = new MainWindowViewModel(new CustomerRepository(Constants.CUSTOMER_DATA_FILE), new ProjectRepository());
             CommandViewModel commandVM =
                 target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_ViewAllCustomers);
             commandVM.Command.Execute(null);
@@ -66,7 +66,7 @@ namespace DemoApp.ViewModel
         [TestMethod]
         public void TestCreateNewCustomer()
         {
-            var target = new MainWindowViewModel(new CustomerRepository(Constants.CUSTOMER_DATA_FILE));
+            var target = new MainWindowViewModel(new CustomerRepository(Constants.CUSTOMER_DATA_FILE), new ProjectRepository());
             CommandViewModel commandVM =
                 target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_CreateNewCustomer);
             commandVM.Command.Execute(null);
@@ -78,7 +78,7 @@ namespace DemoApp.ViewModel
         [TestMethod]
         public void TestCannotViewAllCustomersTwice()
         {
-            var target = new MainWindowViewModel(new CustomerRepository(Constants.CUSTOMER_DATA_FILE));
+            var target = new MainWindowViewModel(new CustomerRepository(Constants.CUSTOMER_DATA_FILE), new ProjectRepository());
             CommandViewModel commandVM =
                 target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_ViewAllCustomers);
             // Tell the ViewModel to show all customers twice.
@@ -94,7 +94,7 @@ namespace DemoApp.ViewModel
         public void TestCloseAllCustomersWorkspace()
         {
             // Create the MainWindowViewModel, but not the MainWindow.
-            var target = new MainWindowViewModel(new CustomerRepository(Constants.CUSTOMER_DATA_FILE));
+            var target = new MainWindowViewModel(new CustomerRepository(Constants.CUSTOMER_DATA_FILE), new ProjectRepository());
 
             Assert.AreEqual(0, target.Workspaces.Count, "Workspaces isn't empty.");
 

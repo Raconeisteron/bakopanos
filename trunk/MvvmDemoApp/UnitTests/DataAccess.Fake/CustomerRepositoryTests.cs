@@ -54,7 +54,7 @@ namespace DemoApp.DataAccess.Fake
             Customer cust = Customer.CreateNewCustomer();
 
             bool eventArgIsValid = false;
-            target.CustomerAdded += (sender, e) => eventArgIsValid = (e.NewCustomer == cust);
+            target.ItemAdded += (sender, e) => eventArgIsValid = (e.NewItem == cust);
             target.AddCustomer(cust);
 
             Assert.IsTrue(eventArgIsValid, "Invalid NewCustomer property");

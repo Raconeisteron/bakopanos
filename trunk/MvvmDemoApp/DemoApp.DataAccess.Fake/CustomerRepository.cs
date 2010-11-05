@@ -39,7 +39,7 @@ namespace DemoApp.DataAccess.Fake
         /// <summary>
         /// Raised when a customer is placed into the repository.
         /// </summary>
-        public event EventHandler<CustomerAddedEventArgs> CustomerAdded;
+        public event EventHandler<ItemAddedEventArgs<Customer>> ItemAdded;
 
         /// <summary>
         /// Places the specified customer into the repository.
@@ -55,8 +55,8 @@ namespace DemoApp.DataAccess.Fake
             {
                 _customers.Add(customer);
 
-                if (CustomerAdded != null)
-                    CustomerAdded(this, new CustomerAddedEventArgs(customer));
+                if (ItemAdded != null)
+                    ItemAdded(this, new ItemAddedEventArgs<Customer>(customer));
             }
         }
 
