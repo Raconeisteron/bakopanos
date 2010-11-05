@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using DemoApp.DataAccess;
+using DemoApp.Model;
 using DemoApp.Properties;
 
 namespace DemoApp.ViewModel
@@ -35,7 +36,7 @@ namespace DemoApp.ViewModel
             _customerRepository = customerRepository;
 
             // Subscribe for notifications of when a new customer is saved.
-            _customerRepository.CustomerAdded += OnCustomerAddedToRepository;
+            _customerRepository.ItemAdded += OnCustomerAddedToRepository;
 
             // Populate the AllCustomers collection with CustomerViewModels.
             CreateAllCustomers();
@@ -87,7 +88,7 @@ namespace DemoApp.ViewModel
             AllCustomers.Clear();
             AllCustomers.CollectionChanged -= OnCollectionChanged;
 
-            _customerRepository.CustomerAdded -= OnCustomerAddedToRepository;
+            _customerRepository.ItemAdded -= OnCustomerAddedToRepository;
         }
 
         #endregion // Base Class Overrides
@@ -120,9 +121,9 @@ namespace DemoApp.ViewModel
                 OnPropertyChanged("TotalSelectedSales");
         }
 
-        private void OnCustomerAddedToRepository(object sender, CustomerAddedEventArgs e)
+        private void OnCustomerAddedToRepository(object sender, ItemAddedEventArgs<Customer> e)
         {
-            var viewModel = new CustomerViewModel(e.NewCustomer, _customerRepository);
+            var viewModel = new CustomerViewModel(e.NewItem, _customerRepository);
             AllCustomers.Add(viewModel);
         }
 

@@ -42,7 +42,13 @@ namespace DemoApp
                     Type.GetType("DemoApp.DataAccess.Fake.CustomerRepository,DemoApp.DataAccess.Fake"),
                     new object[] {path});
 
-            var viewModel = new MainWindowViewModel(customerRepository);
+            var projectRepository =
+                (IProjectRepository)
+                Activator.CreateInstance(
+                    Type.GetType("DemoApp.DataAccess.Fake.ProjectRepository,DemoApp.DataAccess.Fake"));
+
+
+            var viewModel = new MainWindowViewModel(customerRepository, projectRepository);
 
             // When the ViewModel asks to be closed, 
             // close the window.

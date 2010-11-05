@@ -6,9 +6,9 @@
 			</CollectionViewSource.GroupDescriptions>
 			<CollectionViewSource.SortDescriptions>
 				<!-- 
-        Sort descending by IsCompany so that the 'True' values appear first,
-        which means that companies will always be listed before people.
-        -->
+		Sort descending by IsCompany so that the 'True' values appear first,
+		which means that companies will always be listed before people.
+		-->
 				<scm:SortDescription PropertyName="IsCompany" Direction="Descending" />
 				<scm:SortDescription PropertyName="DisplayName" Direction="Ascending" />
 			</CollectionViewSource.SortDescriptions>
@@ -29,14 +29,14 @@
 
 		<Style x:Key="CustomerItemStyle" TargetType="{x:Type ListViewItem}">
 			<!-- 
-      Stretch the content of each cell so that we can 
-      right-align text in the Total Sales column. 
-      -->
+	  Stretch the content of each cell so that we can 
+	  right-align text in the Total Sales column. 
+	  -->
 			<Setter Property="HorizontalContentAlignment" Value="Stretch" />
 			<!-- 
-      Bind the IsSelected property of a ListViewItem to the 
-      IsSelected property of a CustomerViewModel object.
-      -->
+	  Bind the IsSelected property of a ListViewItem to the 
+	  IsSelected property of a CustomerViewModel object.
+	  -->
 			<Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
 			<Style.Triggers>
 				<MultiTrigger>

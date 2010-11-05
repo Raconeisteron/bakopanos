@@ -70,6 +70,15 @@ namespace DemoApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Projects.
+        /// </summary>
+        public static string AllProjectsViewModel_DisplayName {
+            get {
+                return ResourceManager.GetString("AllProjectsViewModel_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company.
         /// </summary>
         public static string CustomerViewModel_CustomerTypeOption_Company {
@@ -138,6 +147,15 @@ namespace DemoApp.Properties {
         public static string MainWindowViewModel_Command_ViewAllCustomers {
             get {
                 return ResourceManager.GetString("MainWindowViewModel_Command_ViewAllCustomers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View all projects.
+        /// </summary>
+        public static string MainWindowViewModel_Command_ViewAllProjects {
+            get {
+                return ResourceManager.GetString("MainWindowViewModel_Command_ViewAllProjects", resourceCulture);
             }
         }
         
