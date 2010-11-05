@@ -25,11 +25,11 @@ namespace DemoApp.Model
             return new Project();
         }
 
-        public static Project CreateProject()
+        public static Project CreateProject(string projectName)
         {
             return new Project()
                        {
-                          
+                          ProjectName = projectName
                        };
         }
 
@@ -37,7 +37,10 @@ namespace DemoApp.Model
 
         #region State Properties
 
-        
+        /// <summary>
+        /// Gets/sets the ProjectName for the project.
+        /// </summary>
+        public string ProjectName { get; set; }
 
         #endregion // State Properties
 

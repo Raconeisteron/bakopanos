@@ -34,13 +34,28 @@ namespace DemoApp.ViewModel
             base.DisplayName = Strings.AllProjectsViewModel_DisplayName;
 
             _projectRepository = projectRepository;
+
+            // Populate the AllProjects collection with ProjectViewModels.
+            CreateAllProjects();
+        }
+
+        private void CreateAllProjects()
+        {
+            List<ProjectViewModel> all =
+                (from proj in _projectRepository.GetProjects()
+                 select new ProjectViewModel(proj, _projectRepository)).ToList();            
+
+            AllProjects = new ObservableCollection<ProjectViewModel>(all);            
         }
 
         #endregion // Constructor
 
         #region Public Interface
 
-        
+        /// <summary>
+        /// Returns a collection of all the ProjectViewModel objects.
+        /// </summary>
+        public ObservableCollection<ProjectViewModel> AllProjects { get; private set; }
 
         #endregion // Public Interface
 
@@ -55,6 +70,7 @@ namespace DemoApp.ViewModel
 
         #region Event Handling Methods
 
+        
         
         #endregion // Event Handling Methods
     }
