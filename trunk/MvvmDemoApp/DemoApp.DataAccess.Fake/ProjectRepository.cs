@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using DemoApp.Model;
 
 namespace DemoApp.DataAccess.Fake
@@ -10,19 +11,27 @@ namespace DemoApp.DataAccess.Fake
     internal class ProjectRepository : IProjectRepository
     {
         public event EventHandler<ItemAddedEventArgs<Project>> ItemAdded;
-        public void AddProject(Project project)
+        public void Add(Project project)
         {
             
         }
 
-        public bool ContainsProject(Project project)
+        public bool Contains(Project project)
         {
             return true;
         }
 
-        public List<Project> GetProjects()
+        public List<Project> Get()
         {
-            return new List<Project> {Project.CreateProject("P1"), Project.CreateProject("P2")};
+            var projects = new List<Project>();
+
+            foreach (string projectFile in Directory.GetFiles(@"C:\svn\chinook2.trunk\source","*.csproj",SearchOption.AllDirectories))
+            {
+                var project = Project.CreateProject(Path.GetFileNameWithoutExtension(projectFile));
+                projects.Add(project);
+            }
+
+            return projects;
         }
     }
 }

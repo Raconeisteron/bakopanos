@@ -45,7 +45,7 @@ namespace DemoApp.ViewModel
         private void CreateAllCustomers()
         {
             List<CustomerViewModel> all =
-                (from cust in _customerRepository.GetCustomers()
+                (from cust in _customerRepository.Get()
                  select new CustomerViewModel(cust, _customerRepository)).ToList();
 
             foreach (CustomerViewModel cvm in all)

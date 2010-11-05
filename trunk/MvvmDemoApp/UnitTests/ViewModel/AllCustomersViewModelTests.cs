@@ -76,7 +76,7 @@ namespace DemoApp.ViewModel
 
             Assert.AreEqual(3, target.AllCustomers.Count, "Test data includes three customers");
 
-            repos.AddCustomer(Customer.CreateCustomer(123.45, "new", "customer", false, "new.customer@email.com"));
+            repos.Add(Customer.CreateCustomer(123.45, "new", "customer", false, "new.customer@email.com"));
 
             Assert.AreEqual(4, target.AllCustomers.Count, "Adding a customer to the repository increase the Count");
         }
