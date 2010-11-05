@@ -44,7 +44,7 @@ namespace DemoApp.DataAccess.Fake
         public void TestAllCustomersAreLoaded()
         {
             var target = new CustomerRepository(Constants.CUSTOMER_DATA_FILE);
-            Assert.AreEqual(3, target.GetCustomers().Count, "Invalid number of customers in repository.");
+            Assert.AreEqual(3, target.Get().Count, "Invalid number of customers in repository.");
         }
 
         [TestMethod]
@@ -55,10 +55,10 @@ namespace DemoApp.DataAccess.Fake
 
             bool eventArgIsValid = false;
             target.ItemAdded += (sender, e) => eventArgIsValid = (e.NewItem == cust);
-            target.AddCustomer(cust);
+            target.Add(cust);
 
             Assert.IsTrue(eventArgIsValid, "Invalid NewCustomer property");
-            Assert.IsTrue(target.ContainsCustomer(cust), "New customer was not added");
+            Assert.IsTrue(target.Contains(cust), "New customer was not added");
         }
     }
 }

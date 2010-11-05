@@ -21,6 +21,7 @@ namespace DemoApp.ViewModel
         #region Fields
 
         private readonly IProjectRepository _projectRepository;
+        private readonly BackgroundWorker _backgroundWorker = new BackgroundWorker();
 
         #endregion // Fields
 
@@ -34,18 +35,33 @@ namespace DemoApp.ViewModel
             base.DisplayName = Strings.AllProjectsViewModel_DisplayName;
 
             _projectRepository = projectRepository;
+            
+            AllProjects = new ObservableCollection<ProjectViewModel>();
 
-            // Populate the AllProjects collection with ProjectViewModels.
-            CreateAllProjects();
+            // Set up the Background Worker Events
+            _backgroundWorker.DoWork += (sender, e) => e.Result = CreateAllProjects();
+
+            _backgroundWorker.RunWorkerCompleted +=
+                delegate(object sender, RunWorkerCompletedEventArgs e)
+                    {
+                        foreach (ProjectViewModel projectViewModel in (List<ProjectViewModel>)e.Result)
+                        {
+                            AllProjects.Add(projectViewModel);
+                        }
+                    };
+
+            // Run the Background Worker
+            _backgroundWorker.RunWorkerAsync(5000);
+
         }
 
-        private void CreateAllProjects()
+        private List<ProjectViewModel> CreateAllProjects()
         {
             List<ProjectViewModel> all =
-                (from proj in _projectRepository.GetProjects()
-                 select new ProjectViewModel(proj, _projectRepository)).ToList();            
+                (from proj in _projectRepository.Get()
+                 select new ProjectViewModel(proj, _projectRepository)).ToList();
 
-            AllProjects = new ObservableCollection<ProjectViewModel>(all);            
+            return all;
         }
 
         #endregion // Constructor

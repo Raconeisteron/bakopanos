@@ -221,7 +221,7 @@ namespace DemoApp.ViewModel
                 throw new InvalidOperationException(Strings.CustomerViewModel_Exception_CannotSave);
 
             if (IsNewCustomer)
-                _customerRepository.AddCustomer(_customer);
+                _customerRepository.Add(_customer);
 
             base.OnPropertyChanged("DisplayName");
         }
@@ -236,7 +236,7 @@ namespace DemoApp.ViewModel
         /// </summary>
         private bool IsNewCustomer
         {
-            get { return !_customerRepository.ContainsCustomer(_customer); }
+            get { return !_customerRepository.Contains(_customer); }
         }
 
         /// <summary>

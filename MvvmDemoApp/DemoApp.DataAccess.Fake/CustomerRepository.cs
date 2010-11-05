@@ -46,7 +46,7 @@ namespace DemoApp.DataAccess.Fake
         /// If the customer is already in the repository, an
         /// exception is not thrown.
         /// </summary>
-        public void AddCustomer(Customer customer)
+        public void Add(Customer customer)
         {
             if (customer == null)
                 throw new ArgumentNullException("customer");
@@ -64,7 +64,7 @@ namespace DemoApp.DataAccess.Fake
         /// Returns true if the specified customer exists in the
         /// repository, or false if it is not.
         /// </summary>
-        public bool ContainsCustomer(Customer customer)
+        public bool Contains(Customer customer)
         {
             if (customer == null)
                 throw new ArgumentNullException("customer");
@@ -75,7 +75,7 @@ namespace DemoApp.DataAccess.Fake
         /// <summary>
         /// Returns a shallow-copied list of all customers in the repository.
         /// </summary>
-        public List<Customer> GetCustomers()
+        public List<Customer> Get()
         {
             return new List<Customer>(_customers);
         }
