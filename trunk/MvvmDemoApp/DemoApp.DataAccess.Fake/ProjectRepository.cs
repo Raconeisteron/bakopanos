@@ -22,7 +22,7 @@ namespace DemoApp.DataAccess.Fake
 
         public List<Project> GetProjects()
         {
-            return default(List<Project>);
+            return new List<Project> {Project.CreateProject("P1"), Project.CreateProject("P2")};
         }
     }
 }
