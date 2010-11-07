@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Markup;
 using DemoApp.DataAccess;
 using DemoApp.ViewModel;
+using Microsoft.Practices.Unity;
 
 namespace DemoApp
 {
@@ -31,24 +34,20 @@ namespace DemoApp
             base.OnStartup(e);
 
             var window = new MainWindow();
+            IUnityContainer container = new UnityContainer();
 
             // Create the ViewModel to which 
             // the main window binds.
             const string path = "Data/customers.xml";
 
-            var customerRepository =
-                (ICustomerRepository)
-                Activator.CreateInstance(
-                    Type.GetType("DemoApp.DataAccess.Fake.CustomerRepository,DemoApp.DataAccess.Fake"),
-                    new object[] {path});
+            container.RegisterInstance(typeof(ICustomerRepository), Activator.CreateInstance(
+                Type.GetType("DemoApp.DataAccess.Fake.CustomerRepository,DemoApp.DataAccess.Fake"), new object[] { path }));
 
-            var projectRepository =
-                (IProjectRepository)
-                Activator.CreateInstance(
-                    Type.GetType("DemoApp.DataAccess.Fake.ProjectRepository,DemoApp.DataAccess.Fake"));
+            string sourceCodePath = new DirectoryInfo(Assembly.GetExecutingAssembly().Location).Parent.Parent.FullName;
+            container.RegisterInstance(typeof(IProjectRepository),Activator.CreateInstance(
+                                   Type.GetType("DemoApp.DataAccess.Fake.ProjectRepository,DemoApp.DataAccess.Fake"), new object[] { sourceCodePath, "*.csproj" }));
 
-
-            var viewModel = new MainWindowViewModel(customerRepository, projectRepository);
+            var viewModel = container.Resolve<MainWindowViewModel>();
 
             // When the ViewModel asks to be closed, 
             // close the window.
