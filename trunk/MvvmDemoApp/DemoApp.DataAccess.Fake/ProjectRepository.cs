@@ -10,10 +10,19 @@ namespace DemoApp.DataAccess.Fake
     /// </summary>
     internal class ProjectRepository : IProjectRepository
     {
+        private readonly string _sourceRootPath;
+        private readonly string _searchPattern;
+
+        public ProjectRepository(string sourceRootPath, string searchPattern)
+        {
+            _sourceRootPath = sourceRootPath;
+            _searchPattern = searchPattern;
+        }
+
         public event EventHandler<ItemAddedEventArgs<Project>> ItemAdded;
         public void Add(Project project)
         {
-            
+
         }
 
         public bool Contains(Project project)
@@ -25,7 +34,7 @@ namespace DemoApp.DataAccess.Fake
         {
             var projects = new List<Project>();
 
-            foreach (string projectFile in Directory.GetFiles(@"C:\svn\chinook2.trunk\source","*.csproj",SearchOption.AllDirectories))
+            foreach (string projectFile in Directory.GetFiles(_sourceRootPath, _searchPattern, SearchOption.AllDirectories))
             {
                 var project = Project.CreateProject(Path.GetFileNameWithoutExtension(projectFile));
                 projects.Add(project);
