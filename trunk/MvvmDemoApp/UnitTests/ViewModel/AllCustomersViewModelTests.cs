@@ -1,6 +1,8 @@
-﻿using DemoApp.DataAccess.Fake;
+﻿using DemoApp.DataAccess;
+using DemoApp.DataAccess.Fake;
 using DemoApp.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rhino.Mocks;
 
 namespace DemoApp.ViewModel
 {
@@ -44,7 +46,8 @@ namespace DemoApp.ViewModel
         [TestMethod]
         public void TestTotalSelectedSales()
         {
-            var repos = new CustomerRepository(Constants.CUSTOMER_DATA_FILE);
+            var mocks = new MockRepository();
+            var repos = mocks.StrictMock<ICustomerRepository>();
             var target = new AllCustomersViewModel(repos);
 
             int notifications = 0;
@@ -71,7 +74,8 @@ namespace DemoApp.ViewModel
         [TestMethod]
         public void TestNewCustomerIsAdded()
         {
-            var repos = new CustomerRepository(Constants.CUSTOMER_DATA_FILE);
+            var mocks = new MockRepository();
+            var repos = mocks.StrictMock<ICustomerRepository>();
             var target = new AllCustomersViewModel(repos);
 
             Assert.AreEqual(3, target.AllCustomers.Count, "Test data includes three customers");

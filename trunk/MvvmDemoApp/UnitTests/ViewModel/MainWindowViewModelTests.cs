@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
-using DemoApp.DataAccess.Fake;
+using DemoApp.DataAccess;
 using DemoApp.Properties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rhino.Mocks;
 
 namespace DemoApp.ViewModel
 {
@@ -18,30 +19,6 @@ namespace DemoApp.ViewModel
         ///</summary>
         public TestContext TestContext { get; set; }
 
-        #region Additional test attributes
-
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-
-        #endregion
-
         #endregion // Boilerplate Code
 
         //
@@ -54,7 +31,9 @@ namespace DemoApp.ViewModel
         [TestMethod]
         public void TestViewAllCustomers()
         {
-            var target = new MainWindowViewModel(new CustomerRepository(Constants.CUSTOMER_DATA_FILE), new ProjectRepository("",""));
+            var mocks = new MockRepository();
+            var target = new MainWindowViewModel(mocks.DynamicMock<ICustomerRepository>(),
+                                                 mocks.DynamicMock<IProjectRepository>());
             CommandViewModel commandVM =
                 target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_ViewAllCustomers);
             commandVM.Command.Execute(null);
@@ -66,7 +45,9 @@ namespace DemoApp.ViewModel
         [TestMethod]
         public void TestCreateNewCustomer()
         {
-            var target = new MainWindowViewModel(new CustomerRepository(Constants.CUSTOMER_DATA_FILE), new ProjectRepository("",""));
+            var mocks = new MockRepository();
+            var target = new MainWindowViewModel(mocks.DynamicMock<ICustomerRepository>(),
+                                                 mocks.DynamicMock<IProjectRepository>());
             CommandViewModel commandVM =
                 target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_CreateNewCustomer);
             commandVM.Command.Execute(null);
@@ -78,7 +59,8 @@ namespace DemoApp.ViewModel
         [TestMethod]
         public void TestCannotViewAllCustomersTwice()
         {
-            var target = new MainWindowViewModel(new CustomerRepository(Constants.CUSTOMER_DATA_FILE), new ProjectRepository("",""));
+            var mocks = new MockRepository();
+            var target = new MainWindowViewModel(mocks.DynamicMock<ICustomerRepository>(), mocks.DynamicMock<IProjectRepository>());
             CommandViewModel commandVM =
                 target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_ViewAllCustomers);
             // Tell the ViewModel to show all customers twice.
@@ -93,8 +75,9 @@ namespace DemoApp.ViewModel
         [TestMethod]
         public void TestCloseAllCustomersWorkspace()
         {
+            var mocks = new MockRepository();
             // Create the MainWindowViewModel, but not the MainWindow.
-            var target = new MainWindowViewModel(new CustomerRepository(Constants.CUSTOMER_DATA_FILE), new ProjectRepository("",""));
+            var target = new MainWindowViewModel(mocks.DynamicMock<ICustomerRepository>(), mocks.DynamicMock<IProjectRepository>());
 
             Assert.AreEqual(0, target.Workspaces.Count, "Workspaces isn't empty.");
 
