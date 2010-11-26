@@ -3,7 +3,6 @@ using System.Linq;
 using System.Windows.Data;
 using DemoApp.DataAccess;
 using DemoApp.Properties;
-using DemoApp.Services;
 using DemoApp.ViewModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -25,7 +24,9 @@ namespace DemoApp
             var workspaces = new Workspaces();
             var commands = new Commands();
             var target = new MainWindowViewModel(workspaces, commands);
-            new CustomerService(new CustomerRepository(Constants.CUSTOMER_DATA_FILE), workspaces, commands);
+            var module = new CustomerModule();
+            module.CustomerDataFile = Constants.CUSTOMER_DATA_FILE;
+            module.Initialize(workspaces, commands);
 
             CommandViewModel commandVM =
                 target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_ViewAllCustomers);
@@ -41,7 +42,9 @@ namespace DemoApp
             var workspaces = new Workspaces();
             var commands = new Commands();
             var target = new MainWindowViewModel(workspaces, commands);
-            new CustomerService(new CustomerRepository(Constants.CUSTOMER_DATA_FILE), workspaces, commands);
+            var module = new CustomerModule();
+            module.CustomerDataFile = Constants.CUSTOMER_DATA_FILE;
+            module.Initialize(workspaces, commands);
 
             CommandViewModel commandVM =
                 target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_CreateNewCustomer);
@@ -56,8 +59,11 @@ namespace DemoApp
         {
             var workspaces = new Workspaces();
             var commands = new Commands();
-            var target = new MainWindowViewModel( workspaces,commands);
-            new CustomerService(new CustomerRepository(Constants.CUSTOMER_DATA_FILE), workspaces, commands);
+            var target = new MainWindowViewModel(workspaces, commands);
+            var module = new CustomerModule();
+            module.CustomerDataFile = Constants.CUSTOMER_DATA_FILE;
+            module.Initialize(workspaces, commands);
+
             CommandViewModel commandVM =
                 target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_ViewAllCustomers);
             // Tell the ViewModel to show all customers twice.
@@ -76,7 +82,9 @@ namespace DemoApp
             var workspaces = new Workspaces();
             var commands = new Commands();
             var target = new MainWindowViewModel(workspaces, commands);
-            new CustomerService(new CustomerRepository(Constants.CUSTOMER_DATA_FILE), workspaces, commands);
+            var module = new CustomerModule();
+            module.CustomerDataFile = Constants.CUSTOMER_DATA_FILE;
+            module.Initialize(workspaces, commands);
 
             Assert.AreEqual(0, workspaces.Count, "Workspaces isn't empty.");
 
