@@ -13,7 +13,7 @@ namespace DemoApp.DataAccess
     /// <summary>
     ///   Represents a source of customers in the application.
     /// </summary>
-    public class CustomerRepository
+    public class CustomerRepository : ICustomerRepository
     {
         #region Fields
 
