@@ -1,25 +1,25 @@
+using System.Configuration;
 using System.Linq;
 using DemoApp.DataAccess;
 using DemoApp.Model;
 using DemoApp.Properties;
 using DemoApp.ViewModel;
 
-namespace DemoApp.Services
+namespace DemoApp
 {
-    public class CustomerService
+    public class CustomerModule : ConfigurationSection, IModule
     {
         #region Fields
 
-        private readonly ICustomerRepository _customerRepository;
-        private readonly Workspaces _workspaces;
+        private ICustomerRepository _customerRepository;
+        private Workspaces _workspaces;
 
         #endregion // Fields
 
-        #region Constructor
-
-        public CustomerService(ICustomerRepository customerRepository, Workspaces workspaces, Commands commands)
+        public void Initialize(Workspaces workspaces, Commands commands)
         {
-            _customerRepository = customerRepository;
+            _customerRepository = new CustomerRepository(CustomerDataFile);
+
             _workspaces = workspaces;
             
             commands.Add(new CommandViewModel(
@@ -30,8 +30,6 @@ namespace DemoApp.Services
                              Strings.MainWindowViewModel_Command_CreateNewCustomer,
                              new RelayCommand(param => CreateNewCustomer())));
         }
-
-        #endregion // Constructor
 
         private void CreateNewCustomer()
         {
@@ -55,5 +53,19 @@ namespace DemoApp.Services
 
             _workspaces.SetActiveWorkspace(workspace);
         }
+
+        [ConfigurationProperty(("customerDataFile"))]
+        public string CustomerDataFile
+        {
+            get 
+            { 
+                return this["customerDataFile"] as string;
+            }
+            internal set
+            {
+                this["customerDataFile"] = value;
+            }
+        }
+
     }
 }

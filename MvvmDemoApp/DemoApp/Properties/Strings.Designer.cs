@@ -22,7 +22,7 @@ namespace DemoApp.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Strings {
+    internal class Strings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace DemoApp.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DemoApp.Properties.Strings", typeof(Strings).Assembly);
@@ -51,7 +51,7 @@ namespace DemoApp.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to All Customers.
         /// </summary>
-        public static string AllCustomersViewModel_DisplayName {
+        internal static string AllCustomersViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("AllCustomersViewModel_DisplayName", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Companies have no last name.
         /// </summary>
-        public static string Customer_Error_CompanyHasNoLastName {
+        internal static string Customer_Error_CompanyHasNoLastName {
             get {
                 return ResourceManager.GetString("Customer_Error_CompanyHasNoLastName", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to E-mail address is invalid.
         /// </summary>
-        public static string Customer_Error_InvalidEmail {
+        internal static string Customer_Error_InvalidEmail {
             get {
                 return ResourceManager.GetString("Customer_Error_InvalidEmail", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to E-mail address is missing.
         /// </summary>
-        public static string Customer_Error_MissingEmail {
+        internal static string Customer_Error_MissingEmail {
             get {
                 return ResourceManager.GetString("Customer_Error_MissingEmail", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to First name is missing.
         /// </summary>
-        public static string Customer_Error_MissingFirstName {
+        internal static string Customer_Error_MissingFirstName {
             get {
                 return ResourceManager.GetString("Customer_Error_MissingFirstName", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Last name is missing.
         /// </summary>
-        public static string Customer_Error_MissingLastName {
+        internal static string Customer_Error_MissingLastName {
             get {
                 return ResourceManager.GetString("Customer_Error_MissingLastName", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Company.
         /// </summary>
-        public static string CustomerViewModel_CustomerTypeOption_Company {
+        internal static string CustomerViewModel_CustomerTypeOption_Company {
             get {
                 return ResourceManager.GetString("CustomerViewModel_CustomerTypeOption_Company", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to (Not Specified).
         /// </summary>
-        public static string CustomerViewModel_CustomerTypeOption_NotSpecified {
+        internal static string CustomerViewModel_CustomerTypeOption_NotSpecified {
             get {
                 return ResourceManager.GetString("CustomerViewModel_CustomerTypeOption_NotSpecified", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Person.
         /// </summary>
-        public static string CustomerViewModel_CustomerTypeOption_Person {
+        internal static string CustomerViewModel_CustomerTypeOption_Person {
             get {
                 return ResourceManager.GetString("CustomerViewModel_CustomerTypeOption_Person", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to New Customer.
         /// </summary>
-        public static string CustomerViewModel_DisplayName {
+        internal static string CustomerViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("CustomerViewModel_DisplayName", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Customer type must be selected.
         /// </summary>
-        public static string CustomerViewModel_Error_MissingCustomerType {
+        internal static string CustomerViewModel_Error_MissingCustomerType {
             get {
                 return ResourceManager.GetString("CustomerViewModel_Error_MissingCustomerType", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cannot save an invalid customer..
         /// </summary>
-        public static string CustomerViewModel_Exception_CannotSave {
+        internal static string CustomerViewModel_Exception_CannotSave {
             get {
                 return ResourceManager.GetString("CustomerViewModel_Exception_CannotSave", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Create new customer.
         /// </summary>
-        public static string MainWindowViewModel_Command_CreateNewCustomer {
+        internal static string MainWindowViewModel_Command_CreateNewCustomer {
             get {
                 return ResourceManager.GetString("MainWindowViewModel_Command_CreateNewCustomer", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to View all customers.
         /// </summary>
-        public static string MainWindowViewModel_Command_ViewAllCustomers {
+        internal static string MainWindowViewModel_Command_ViewAllCustomers {
             get {
                 return ResourceManager.GetString("MainWindowViewModel_Command_ViewAllCustomers", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to MVVM Demo App.
         /// </summary>
-        public static string MainWindowViewModel_DisplayName {
+        internal static string MainWindowViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("MainWindowViewModel_DisplayName", resourceCulture);
             }

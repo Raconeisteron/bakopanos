@@ -1,9 +1,9 @@
 using System;
+using System.Configuration;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Markup;
 using DemoApp.DataAccess;
-using DemoApp.Services;
 using DemoApp.ViewModel;
 
 namespace DemoApp
@@ -37,11 +37,10 @@ namespace DemoApp
             // the main window binds.
             var workspaces = new Workspaces();
             var commands = new Commands();
-
             var viewModel = new MainWindowViewModel(workspaces,commands);
 
-            string customerDataFile = "Data/customers.xml";
-            new CustomerService(new CustomerRepository(customerDataFile), workspaces, commands);
+            var module = (IModule)ConfigurationManager.GetSection("customer");
+            module.Initialize(workspaces,commands);
 
             // When the ViewModel asks to be closed, 
             // close the window.
