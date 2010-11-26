@@ -2,6 +2,8 @@ using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Markup;
+using DemoApp.DataAccess;
+using DemoApp.Services;
 using DemoApp.ViewModel;
 
 namespace DemoApp
@@ -33,8 +35,13 @@ namespace DemoApp
 
             // Create the ViewModel to which 
             // the main window binds.
-            string path = "Data/customers.xml";
-            var viewModel = new MainWindowViewModel(path);
+            var workspaces = new Workspaces();
+            var commands = new Commands();
+
+            var viewModel = new MainWindowViewModel(workspaces,commands);
+
+            string customerDataFile = "Data/customers.xml";
+            new CustomerService(new CustomerRepository(customerDataFile), workspaces, commands);
 
             // When the ViewModel asks to be closed, 
             // close the window.
