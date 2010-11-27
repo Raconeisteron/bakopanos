@@ -3,8 +3,8 @@ using System.Configuration;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Markup;
-using DemoApp.DataAccess;
 using DemoApp.ViewModel;
+using Microsoft.Practices.Unity;
 
 namespace DemoApp
 {
@@ -33,14 +33,7 @@ namespace DemoApp
 
             var window = new MainWindow();
 
-            // Create the ViewModel to which 
-            // the main window binds.
-            var workspaces = new WorkspaceWorkItem();
-            var commands = new CommandWorkItem();
-            var viewModel = new MainWindowViewModel(workspaces,commands);
-
-            var module = (IModule)ConfigurationManager.GetSection("customer");
-            module.Initialize(workspaces,commands);
+            var viewModel = Bootstrapper.CreateContainer(ConfigurationManager.AppSettings["modules"].Split(';')).Resolve<MainWindowViewModel>();
 
             // When the ViewModel asks to be closed, 
             // close the window.
@@ -60,5 +53,7 @@ namespace DemoApp
 
             window.Show();
         }
+
+        
     }
 }

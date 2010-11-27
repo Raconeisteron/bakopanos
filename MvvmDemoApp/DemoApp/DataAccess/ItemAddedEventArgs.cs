@@ -1,5 +1,4 @@
 using System;
-using DemoApp.Model;
 
 namespace DemoApp.DataAccess
 {

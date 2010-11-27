@@ -11,7 +11,7 @@ namespace DemoApp
         [TestMethod]
         public void TestTotalSelectedSales()
         {
-            var repos = new CustomerRepository(Constants.CUSTOMER_DATA_FILE);
+            var repos = new CustomerRepository(new FakeCustomerModule());
             var target = new AllCustomersViewModel(repos);
 
             int notifications = 0;
@@ -38,7 +38,7 @@ namespace DemoApp
         [TestMethod]
         public void TestNewCustomerIsAdded()
         {
-            var repos = new CustomerRepository(Constants.CUSTOMER_DATA_FILE);
+            var repos = new CustomerRepository(new FakeCustomerModule());
             var target = new AllCustomersViewModel(repos);
 
             Assert.AreEqual(3, target.AllCustomers.Count, "Test data includes three customers");

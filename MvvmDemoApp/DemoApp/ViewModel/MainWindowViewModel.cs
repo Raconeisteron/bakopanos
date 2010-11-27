@@ -1,4 +1,3 @@
-
 using System.Collections.ObjectModel;
 using DemoApp.Properties;
 
@@ -11,14 +10,14 @@ namespace DemoApp.ViewModel
     {
         #region Fields
 
-        private readonly WorkspaceWorkItem _workspaces;
-        private readonly CommandWorkItem _commands;
+        private readonly CommandController _commands;
+        private readonly WorkspaceController _workspaces;
 
         #endregion // Fields
 
         #region Constructor
 
-        public MainWindowViewModel(WorkspaceWorkItem workspaces,CommandWorkItem commands)
+        public MainWindowViewModel(WorkspaceController workspaces, CommandController commands)
         {
             base.DisplayName = Strings.MainWindowViewModel_DisplayName;
 
@@ -30,10 +29,7 @@ namespace DemoApp.ViewModel
 
         public ObservableCollection<WorkspaceViewModel> Workspaces
         {
-            get
-            {
-                return _workspaces;
-            }
+            get { return _workspaces; }
         }
 
         /// <summary>
@@ -42,11 +38,7 @@ namespace DemoApp.ViewModel
         /// </summary>
         public ObservableCollection<CommandViewModel> Commands
         {
-            get
-            {
-                return _commands;
-            }
+            get { return _commands; }
         }
-
     }
 }

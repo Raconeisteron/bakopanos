@@ -2,8 +2,7 @@ using System.Collections.ObjectModel;
 
 namespace DemoApp.ViewModel
 {
-    public class CommandWorkItem:ObservableCollection<CommandViewModel>
+    public class CommandController : ObservableCollection<CommandViewModel>
     {
-       
     }
 }

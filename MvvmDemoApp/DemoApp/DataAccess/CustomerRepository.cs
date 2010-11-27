@@ -26,10 +26,9 @@ namespace DemoApp.DataAccess
         /// <summary>
         ///   Creates a new repository of customers.
         /// </summary>
-        /// <param name = "customerDataFile">The relative path to an XML resource file that contains customer data.</param>
-        public CustomerRepository(string customerDataFile)
+        public CustomerRepository(ICustomerModule config)
         {
-            _customers = LoadCustomers(customerDataFile);
+            _customers = LoadCustomers(config.CustomerDataFile);
         }
 
         #endregion // Constructor
