@@ -9,7 +9,7 @@ namespace DemoApp.DataAccess
         /// <summary>
         ///   Raised when a customer is placed into the repository.
         /// </summary>
-        event EventHandler<CustomerAddedEventArgs> CustomerAdded;
+        event EventHandler<ItemAddedEventArgs<Customer>> CustomerAdded;
 
         /// <summary>
         ///   Places the specified customer into the repository.

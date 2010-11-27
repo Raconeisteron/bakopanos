@@ -21,8 +21,8 @@ namespace DemoApp
         [TestMethod]
         public void TestViewAllCustomers()
         {
-            var workspaces = new Workspaces();
-            var commands = new Commands();
+            var workspaces = new WorkspaceWorkItem();
+            var commands = new CommandWorkItem();
             var target = new MainWindowViewModel(workspaces, commands);
             var module = new CustomerModule();
             module.CustomerDataFile = Constants.CUSTOMER_DATA_FILE;
@@ -39,8 +39,8 @@ namespace DemoApp
         [TestMethod]
         public void TestCreateNewCustomer()
         {
-            var workspaces = new Workspaces();
-            var commands = new Commands();
+            var workspaces = new WorkspaceWorkItem();
+            var commands = new CommandWorkItem();
             var target = new MainWindowViewModel(workspaces, commands);
             var module = new CustomerModule();
             module.CustomerDataFile = Constants.CUSTOMER_DATA_FILE;
@@ -57,8 +57,8 @@ namespace DemoApp
         [TestMethod]
         public void TestCannotViewAllCustomersTwice()
         {
-            var workspaces = new Workspaces();
-            var commands = new Commands();
+            var workspaces = new WorkspaceWorkItem();
+            var commands = new CommandWorkItem();
             var target = new MainWindowViewModel(workspaces, commands);
             var module = new CustomerModule();
             module.CustomerDataFile = Constants.CUSTOMER_DATA_FILE;
@@ -79,8 +79,8 @@ namespace DemoApp
         public void TestCloseAllCustomersWorkspace()
         {
             // Create the MainWindowViewModel, but not the MainWindow.
-            var workspaces = new Workspaces();
-            var commands = new Commands();
+            var workspaces = new WorkspaceWorkItem();
+            var commands = new CommandWorkItem();
             var target = new MainWindowViewModel(workspaces, commands);
             var module = new CustomerModule();
             module.CustomerDataFile = Constants.CUSTOMER_DATA_FILE;

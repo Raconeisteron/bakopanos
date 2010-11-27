@@ -12,11 +12,11 @@ namespace DemoApp
         #region Fields
 
         private ICustomerRepository _customerRepository;
-        private Workspaces _workspaces;
+        private WorkspaceWorkItem _workspaces;
 
         #endregion // Fields
 
-        public void Initialize(Workspaces workspaces, Commands commands)
+        public void Initialize(WorkspaceWorkItem workspaces, CommandWorkItem commands)
         {
             _customerRepository = new CustomerRepository(CustomerDataFile);
 

@@ -11,14 +11,14 @@ namespace DemoApp.ViewModel
     {
         #region Fields
 
-        private readonly Workspaces _workspaces;
-        private readonly Commands _commands;
+        private readonly WorkspaceWorkItem _workspaces;
+        private readonly CommandWorkItem _commands;
 
         #endregion // Fields
 
         #region Constructor
 
-        public MainWindowViewModel(Workspaces workspaces,Commands commands)
+        public MainWindowViewModel(WorkspaceWorkItem workspaces,CommandWorkItem commands)
         {
             base.DisplayName = Strings.MainWindowViewModel_DisplayName;
 
