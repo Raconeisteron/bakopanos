@@ -15,7 +15,7 @@ namespace DemoApp
         public void TestCustomerType()
         {
             Customer cust = Customer.CreateNewCustomer();
-            var repos = new CustomerRepository(Constants.CUSTOMER_DATA_FILE);
+            var repos = new CustomerRepository(new FakeCustomerModule());
             var target = new CustomerViewModel(cust, repos);
 
             target.CustomerType = Strings.CustomerViewModel_CustomerTypeOption_Company;

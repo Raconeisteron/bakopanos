@@ -4,6 +4,7 @@ using System.Windows.Data;
 using DemoApp.DataAccess;
 using DemoApp.Properties;
 using DemoApp.ViewModel;
+using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DemoApp
@@ -21,12 +22,13 @@ namespace DemoApp
         [TestMethod]
         public void TestViewAllCustomers()
         {
-            var workspaces = new WorkspaceWorkItem();
-            var commands = new CommandWorkItem();
-            var target = new MainWindowViewModel(workspaces, commands);
+            IUnityContainer container = Bootstrapper.CreateContainer(default(string[]));
             var module = new CustomerModule();
             module.CustomerDataFile = Constants.CUSTOMER_DATA_FILE;
-            module.Initialize(workspaces, commands);
+            module.Initialize(container);
+
+            var target = container.Resolve<MainWindowViewModel>();
+            var workspaces = container.Resolve<WorkspaceController>();
 
             CommandViewModel commandVM =
                 target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_ViewAllCustomers);
@@ -39,12 +41,13 @@ namespace DemoApp
         [TestMethod]
         public void TestCreateNewCustomer()
         {
-            var workspaces = new WorkspaceWorkItem();
-            var commands = new CommandWorkItem();
-            var target = new MainWindowViewModel(workspaces, commands);
+            IUnityContainer container = Bootstrapper.CreateContainer(default(string[]));
             var module = new CustomerModule();
             module.CustomerDataFile = Constants.CUSTOMER_DATA_FILE;
-            module.Initialize(workspaces, commands);
+            module.Initialize(container);
+
+            var target = container.Resolve<MainWindowViewModel>();
+            var workspaces = container.Resolve<WorkspaceController>();
 
             CommandViewModel commandVM =
                 target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_CreateNewCustomer);
@@ -57,12 +60,13 @@ namespace DemoApp
         [TestMethod]
         public void TestCannotViewAllCustomersTwice()
         {
-            var workspaces = new WorkspaceWorkItem();
-            var commands = new CommandWorkItem();
-            var target = new MainWindowViewModel(workspaces, commands);
+            IUnityContainer container = Bootstrapper.CreateContainer(default(string[]));
             var module = new CustomerModule();
             module.CustomerDataFile = Constants.CUSTOMER_DATA_FILE;
-            module.Initialize(workspaces, commands);
+            module.Initialize(container);
+
+            var target = container.Resolve<MainWindowViewModel>();
+            var workspaces = container.Resolve<WorkspaceController>();
 
             CommandViewModel commandVM =
                 target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_ViewAllCustomers);
@@ -79,12 +83,13 @@ namespace DemoApp
         public void TestCloseAllCustomersWorkspace()
         {
             // Create the MainWindowViewModel, but not the MainWindow.
-            var workspaces = new WorkspaceWorkItem();
-            var commands = new CommandWorkItem();
-            var target = new MainWindowViewModel(workspaces, commands);
+            IUnityContainer container = Bootstrapper.CreateContainer(default(string[]));
             var module = new CustomerModule();
             module.CustomerDataFile = Constants.CUSTOMER_DATA_FILE;
-            module.Initialize(workspaces, commands);
+            module.Initialize(container);
+
+            var target = container.Resolve<MainWindowViewModel>();
+            var workspaces = container.Resolve<WorkspaceController>();
 
             Assert.AreEqual(0, workspaces.Count, "Workspaces isn't empty.");
 
