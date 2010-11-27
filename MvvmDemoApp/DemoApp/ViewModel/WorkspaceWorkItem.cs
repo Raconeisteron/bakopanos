@@ -7,11 +7,11 @@ using System.Windows.Data;
 
 namespace DemoApp.ViewModel
 {
-    public class Workspaces : ObservableCollection<WorkspaceViewModel>
+    public class WorkspaceWorkItem : ObservableCollection<WorkspaceViewModel>
     {
         #region Constructor
 
-        public Workspaces()
+        public WorkspaceWorkItem()
         {
             CollectionChanged += OnWorkspacesChanged;
         }

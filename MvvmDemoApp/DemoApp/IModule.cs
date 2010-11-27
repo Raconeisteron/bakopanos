@@ -4,6 +4,6 @@ namespace DemoApp
 {
     public interface IModule
     {
-        void Initialize(Workspaces workspaces, Commands commands);
+        void Initialize(WorkspaceWorkItem workspaces, CommandWorkItem commands);
     }
 }

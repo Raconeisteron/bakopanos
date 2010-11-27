@@ -35,8 +35,8 @@ namespace DemoApp
 
             // Create the ViewModel to which 
             // the main window binds.
-            var workspaces = new Workspaces();
-            var commands = new Commands();
+            var workspaces = new WorkspaceWorkItem();
+            var commands = new CommandWorkItem();
             var viewModel = new MainWindowViewModel(workspaces,commands);
 
             var module = (IModule)ConfigurationManager.GetSection("customer");

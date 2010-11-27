@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using DemoApp.DataAccess;
+using DemoApp.Model;
 using DemoApp.Properties;
 
 namespace DemoApp.ViewModel
@@ -120,9 +121,9 @@ namespace DemoApp.ViewModel
                 OnPropertyChanged("TotalSelectedSales");
         }
 
-        private void OnCustomerAddedToRepository(object sender, CustomerAddedEventArgs e)
+        private void OnCustomerAddedToRepository(object sender, ItemAddedEventArgs<Customer> e)
         {
-            var viewModel = new CustomerViewModel(e.NewCustomer, _customerRepository);
+            var viewModel = new CustomerViewModel(e.NewItem, _customerRepository);
             AllCustomers.Add(viewModel);
         }
 
