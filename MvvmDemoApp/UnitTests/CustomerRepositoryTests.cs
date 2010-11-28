@@ -1,13 +1,9 @@
-﻿using System;
 using DemoApp.DataAccess;
 using DemoApp.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DemoApp
 {
-
-    
-
     [TestClass]
     public class CustomerRepositoryTests
     {

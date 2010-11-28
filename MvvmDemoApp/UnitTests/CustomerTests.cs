@@ -1,4 +1,4 @@
-﻿using DemoApp.Model;
+using DemoApp.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DemoApp

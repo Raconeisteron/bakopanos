@@ -33,7 +33,9 @@ namespace DemoApp
 
             var window = new MainWindow();
 
-            var viewModel = Bootstrapper.CreateContainer(ConfigurationManager.AppSettings["modules"].Split(';')).Resolve<MainWindowViewModel>();
+            var viewModel =
+                Bootstrapper.CreateContainer(ConfigurationManager.AppSettings["modules"].Split(';')).Resolve
+                    <MainWindowViewModel>();
 
             // When the ViewModel asks to be closed, 
             // close the window.
@@ -53,7 +55,5 @@ namespace DemoApp
 
             window.Show();
         }
-
-        
     }
 }
