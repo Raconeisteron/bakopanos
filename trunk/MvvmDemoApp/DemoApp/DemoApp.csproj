@@ -102,12 +102,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Shared\Bootstrapper.cs" />
-    <Compile Include="Shared\DataAccess\ItemAddedEventArgs.cs" />
     <Compile Include="CustomerModule\DataAccess\CustomerRepository.cs" />
     <Compile Include="CustomerModule\DataAccess\ICustomerRepository.cs" />
     <Compile Include="CustomerModule\ICustomerModule.cs" />
-    <Compile Include="Shared\IModule.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -120,16 +117,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Shared\RelayCommand.cs" />
-    <Compile Include="Shared\ViewModel\CommandController.cs" />
-    <Compile Include="Shared\ViewModel\CommandViewModel.cs" />
     <Compile Include="CustomerModule\ViewModel\AllCustomersViewModel.cs" />
     <Compile Include="CustomerModule\CustomerModule.cs" />
     <Compile Include="CustomerModule\ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="Shared\ViewModel\ViewModelBase.cs" />
-    <Compile Include="Shared\ViewModel\WorkspaceController.cs" />
-    <Compile Include="Shared\ViewModel\WorkspaceViewModel.cs" />
     <Compile Include="CustomerModule\View\AllCustomersView.xaml.cs">
       <DependentUpon>AllCustomersView.xaml</DependentUpon>
     </Compile>
@@ -199,8 +190,12 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Shared\Model\" />
+    <ProjectReference Include="..\DemoAppShared\DemoAppShared.csproj">
+      <Project>{3BA1C8C7-B37F-4F3A-8BAC-1DCB8DA606C7}</Project>
+      <Name>DemoAppShared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

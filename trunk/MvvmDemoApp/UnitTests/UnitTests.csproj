@@ -103,6 +103,10 @@
     <Resource Include="Data\customers.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DemoAppShared\DemoAppShared.csproj">
+      <Project>{3BA1C8C7-B37F-4F3A-8BAC-1DCB8DA606C7}</Project>
+      <Name>DemoAppShared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DemoApp\DemoApp.csproj">
       <Project>{26CFD5D4-94BD-40F3-BABA-E5FC7B6DB623}</Project>
       <Name>DemoApp</Name>
