@@ -12,10 +12,12 @@ namespace DemoApp
     {
         #region Fields
 
-        private WorkspaceController _workspaces;
         private IUnityContainer _container;
+        private WorkspaceController _workspaces;
 
         #endregion // Fields
+
+        #region ICustomerModule Members
 
         [ConfigurationProperty(("customerDataFile"))]
         public string CustomerDataFile
@@ -23,6 +25,8 @@ namespace DemoApp
             get { return this["customerDataFile"] as string; }
             internal set { this["customerDataFile"] = value; }
         }
+
+        #endregion
 
         #region IModule Members
 

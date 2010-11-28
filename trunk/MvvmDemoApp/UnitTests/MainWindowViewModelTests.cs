@@ -1,7 +1,6 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
-using DemoApp.DataAccess;
 using DemoApp.Properties;
 using DemoApp.ViewModel;
 using Microsoft.Practices.Unity;

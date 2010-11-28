@@ -1,4 +1,3 @@
-using DemoApp.ViewModel;
 using Microsoft.Practices.Unity;
 
 namespace DemoApp

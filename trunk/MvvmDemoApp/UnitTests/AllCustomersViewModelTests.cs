@@ -1,4 +1,4 @@
-﻿using DemoApp.DataAccess;
+using DemoApp.DataAccess;
 using DemoApp.Model;
 using DemoApp.ViewModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
