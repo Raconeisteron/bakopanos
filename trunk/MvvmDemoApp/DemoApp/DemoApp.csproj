@@ -102,13 +102,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrapper.cs" />
-    <Compile Include="DataAccess\ItemAddedEventArgs.cs" />
+    <Compile Include="Shared\Bootstrapper.cs" />
+    <Compile Include="Shared\DataAccess\ItemAddedEventArgs.cs" />
     <Compile Include="CustomerModule\DataAccess\CustomerRepository.cs" />
     <Compile Include="CustomerModule\DataAccess\ICustomerRepository.cs" />
     <Compile Include="CustomerModule\ICustomerModule.cs" />
-    <Compile Include="IModule.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Shared\IModule.cs" />
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomerModule\Model\Customer.cs" />
@@ -120,16 +120,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="RelayCommand.cs" />
-    <Compile Include="ViewModel\CommandController.cs" />
-    <Compile Include="ViewModel\CommandViewModel.cs" />
+    <Compile Include="Shared\RelayCommand.cs" />
+    <Compile Include="Shared\ViewModel\CommandController.cs" />
+    <Compile Include="Shared\ViewModel\CommandViewModel.cs" />
     <Compile Include="CustomerModule\ViewModel\AllCustomersViewModel.cs" />
     <Compile Include="CustomerModule\CustomerModule.cs" />
     <Compile Include="CustomerModule\ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="ViewModel\WorkspaceController.cs" />
-    <Compile Include="ViewModel\WorkspaceViewModel.cs" />
+    <Compile Include="Shared\ViewModel\ViewModelBase.cs" />
+    <Compile Include="Shared\ViewModel\WorkspaceController.cs" />
+    <Compile Include="Shared\ViewModel\WorkspaceViewModel.cs" />
     <Compile Include="CustomerModule\View\AllCustomersView.xaml.cs">
       <DependentUpon>AllCustomersView.xaml</DependentUpon>
     </Compile>
@@ -154,7 +154,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <Generator>MSBuild:Compile</Generator>
@@ -200,8 +200,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="View\" />
+    <Folder Include="Shared\Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
