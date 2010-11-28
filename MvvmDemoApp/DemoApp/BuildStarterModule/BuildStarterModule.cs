@@ -1,8 +1,4 @@
 using System.Configuration;
-using System.Linq;
-using DemoApp.DataAccess;
-using DemoApp.Model;
-using DemoApp.Properties;
 using DemoApp.ViewModel;
 using Microsoft.Practices.Unity;
 
@@ -16,7 +12,6 @@ namespace DemoApp
         private WorkspaceController _workspaces;
 
         #endregion // Fields
-
 
         #region IModule Members
 
@@ -36,7 +31,6 @@ namespace DemoApp
 
         private void ShowBuildTarget()
         {
-            
             var workspace = new BuildTargetViewModel();
             _workspaces.Add(workspace);
             _workspaces.SetActiveWorkspace(workspace);
