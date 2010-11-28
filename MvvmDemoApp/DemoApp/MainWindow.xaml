@@ -1,7 +1,6 @@
-<Window x:Class="DemoApp.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:vm="clr-namespace:DemoApp.ViewModel" FontSize="13" FontFamily="Verdana" MinWidth="650" MinHeight="420" Title="{Binding Path=DisplayName}" Width="650" Height="420" WindowStartupLocation="CenterScreen">
-	<Window.Resources>
-		<ResourceDictionary Source="MainWindowResources.xaml" />
-	</Window.Resources>
+<Window x:Class="DemoApp.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        FontSize="13" FontFamily="Verdana" MinWidth="650" MinHeight="420" Title="{Binding Path=DisplayName}" Width="650" Height="420" WindowStartupLocation="CenterScreen">
+
 
 	<DockPanel>
 		<DockPanel DockPanel.Dock="Top" KeyboardNavigation.TabNavigation="None">
