@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Markup;
+using DemoApp.View;
 using DemoApp.ViewModel;
 using Microsoft.Practices.Unity;
 
