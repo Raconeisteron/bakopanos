@@ -100,7 +100,7 @@
     <Compile Include="ViewModelBaseTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="customers.xml" />
+    <Resource Include="Data\customers.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DemoApp\DemoApp.csproj">
