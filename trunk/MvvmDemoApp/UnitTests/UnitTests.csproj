@@ -89,14 +89,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllCustomersViewModelTests.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="CustomerRepositoryTests.cs" />
-    <Compile Include="CustomerTests.cs" />
-    <Compile Include="CustomerViewModelTests.cs" />
+    <Compile Include="CustomerModule\AllCustomersViewModelTests.cs" />
+    <Compile Include="CustomerModule\Constants.cs" />
+    <Compile Include="CustomerModule\CustomerRepositoryTests.cs" />
+    <Compile Include="CustomerModule\CustomerTests.cs" />
+    <Compile Include="CustomerModule\CustomerViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MainWindowViewModelTests.cs" />
-    <Compile Include="FakeCustomerModule.cs" />
+    <Compile Include="CustomerModule\FakeCustomerModule.cs" />
     <Compile Include="ViewModelBaseTests.cs" />
   </ItemGroup>
   <ItemGroup>
