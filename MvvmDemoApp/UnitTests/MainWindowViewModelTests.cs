@@ -30,7 +30,7 @@ namespace DemoApp
             var workspaces = container.Resolve<WorkspaceController>();
 
             CommandViewModel commandVM =
-                target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_ViewAllCustomers);
+                target.Commands.First(cvm => cvm.DisplayName == CustomerStrings.MainWindowViewModel_Command_ViewAllCustomers);
             commandVM.Command.Execute(null);
 
             ICollectionView collectionView = CollectionViewSource.GetDefaultView(workspaces);
@@ -49,7 +49,7 @@ namespace DemoApp
             var workspaces = container.Resolve<WorkspaceController>();
 
             CommandViewModel commandVM =
-                target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_CreateNewCustomer);
+                target.Commands.First(cvm => cvm.DisplayName == CustomerStrings.MainWindowViewModel_Command_CreateNewCustomer);
             commandVM.Command.Execute(null);
 
             ICollectionView collectionView = CollectionViewSource.GetDefaultView(workspaces);
@@ -68,7 +68,7 @@ namespace DemoApp
             var workspaces = container.Resolve<WorkspaceController>();
 
             CommandViewModel commandVM =
-                target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_ViewAllCustomers);
+                target.Commands.First(cvm => cvm.DisplayName == CustomerStrings.MainWindowViewModel_Command_ViewAllCustomers);
             // Tell the ViewModel to show all customers twice.
             commandVM.Command.Execute(null);
             commandVM.Command.Execute(null);
@@ -94,7 +94,7 @@ namespace DemoApp
 
             // Find the command that opens the "All Customers" workspace.
             CommandViewModel commandVM =
-                target.Commands.First(cvm => cvm.DisplayName == Strings.MainWindowViewModel_Command_ViewAllCustomers);
+                target.Commands.First(cvm => cvm.DisplayName == CustomerStrings.MainWindowViewModel_Command_ViewAllCustomers);
 
             // Open the "All Customers" workspace.
             commandVM.Command.Execute(null);

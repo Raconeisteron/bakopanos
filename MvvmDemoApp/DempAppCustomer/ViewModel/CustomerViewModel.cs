@@ -35,7 +35,7 @@ namespace DemoApp.ViewModel
 
             _customer = customer;
             _customerRepository = customerRepository;
-            _customerType = Strings.CustomerViewModel_CustomerTypeOption_NotSpecified;
+            _customerType = CustomerStrings.CustomerViewModel_CustomerTypeOption_NotSpecified;
         }
 
         #endregion // Constructor
@@ -113,11 +113,11 @@ namespace DemoApp.ViewModel
 
                 _customerType = value;
 
-                if (_customerType == Strings.CustomerViewModel_CustomerTypeOption_Company)
+                if (_customerType == CustomerStrings.CustomerViewModel_CustomerTypeOption_Company)
                 {
                     _customer.IsCompany = true;
                 }
-                else if (_customerType == Strings.CustomerViewModel_CustomerTypeOption_Person)
+                else if (_customerType == CustomerStrings.CustomerViewModel_CustomerTypeOption_Person)
                 {
                     _customer.IsCompany = false;
                 }
@@ -145,9 +145,9 @@ namespace DemoApp.ViewModel
                 {
                     _customerTypeOptions = new[]
                                                {
-                                                   Strings.CustomerViewModel_CustomerTypeOption_NotSpecified,
-                                                   Strings.CustomerViewModel_CustomerTypeOption_Person,
-                                                   Strings.CustomerViewModel_CustomerTypeOption_Company
+                                                   CustomerStrings.CustomerViewModel_CustomerTypeOption_NotSpecified,
+                                                   CustomerStrings.CustomerViewModel_CustomerTypeOption_Person,
+                                                   CustomerStrings.CustomerViewModel_CustomerTypeOption_Company
                                                };
                 }
                 return _customerTypeOptions;
@@ -160,7 +160,7 @@ namespace DemoApp.ViewModel
             {
                 if (IsNewCustomer)
                 {
-                    return Strings.CustomerViewModel_DisplayName;
+                    return CustomerStrings.CustomerViewModel_DisplayName;
                 }
                 else if (_customer.IsCompany)
                 {
@@ -218,7 +218,7 @@ namespace DemoApp.ViewModel
         public void Save()
         {
             if (!_customer.IsValid)
-                throw new InvalidOperationException(Strings.CustomerViewModel_Exception_CannotSave);
+                throw new InvalidOperationException(CustomerStrings.CustomerViewModel_Exception_CannotSave);
 
             if (IsNewCustomer)
                 _customerRepository.AddCustomer(_customer);
@@ -288,11 +288,11 @@ namespace DemoApp.ViewModel
 
         private string ValidateCustomerType()
         {
-            if (CustomerType == Strings.CustomerViewModel_CustomerTypeOption_Company ||
-                CustomerType == Strings.CustomerViewModel_CustomerTypeOption_Person)
+            if (CustomerType == CustomerStrings.CustomerViewModel_CustomerTypeOption_Company ||
+                CustomerType == CustomerStrings.CustomerViewModel_CustomerTypeOption_Person)
                 return null;
 
-            return Strings.CustomerViewModel_Error_MissingCustomerType;
+            return CustomerStrings.CustomerViewModel_Error_MissingCustomerType;
         }
     }
 }
