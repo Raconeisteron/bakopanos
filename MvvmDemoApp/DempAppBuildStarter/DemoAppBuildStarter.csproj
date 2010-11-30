@@ -54,6 +54,11 @@
   <ItemGroup>
     <Compile Include="BuildStarterModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\BuildStarterStrings.Designer.cs">
+      <DependentUpon>BuildStarterStrings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="ViewModel\BuildTargetViewModel.cs" />
     <Compile Include="View\BuildTargetView.xaml.cs">
       <DependentUpon>BuildTargetView.xaml</DependentUpon>
@@ -80,6 +85,12 @@
   <ItemGroup>
     <Folder Include="DataAccess\" />
     <Folder Include="Model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\BuildStarterStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>BuildStarterStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
