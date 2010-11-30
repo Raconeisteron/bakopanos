@@ -60,10 +60,11 @@ namespace DemoApp
         public void TestCannotViewAllCustomersTwice()
         {
             IUnityContainer container = Bootstrapper.CreateContainer(default(string[]));
+            
             var module = new CustomerModule();
             module.CustomerDataFile = Constants.CUSTOMER_DATA_FILE;
             module.Initialize(container);
-
+            
             var target = container.Resolve<MainWindowViewModel>();
             var workspaces = container.Resolve<WorkspaceController>();
 
