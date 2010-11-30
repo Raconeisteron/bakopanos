@@ -102,6 +102,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainModule.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -142,9 +143,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\customers.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -161,10 +159,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BuildStarterModule\" />
-    <Folder Include="CustomerModule\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DemoAppShared\DemoAppShared.csproj">
       <Project>{3BA1C8C7-B37F-4F3A-8BAC-1DCB8DA606C7}</Project>
