@@ -111,11 +111,11 @@
       <Project>{26CFD5D4-94BD-40F3-BABA-E5FC7B6DB623}</Project>
       <Name>DemoApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DempAppBuildStarter\DemoAppBuildStarter.csproj">
+    <ProjectReference Include="..\DemoAppBuildStarter\DemoAppBuildStarter.csproj">
       <Project>{6548EB13-B56E-4DAD-B4E4-3F96F389FBE8}</Project>
       <Name>DemoAppBuildStarter</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DempAppCustomer\DemoAppCustomer.csproj">
+    <ProjectReference Include="..\DemoAppCustomer\DemoAppCustomer.csproj">
       <Project>{F47B786E-642B-4CF1-B57D-207F81BC69DD}</Project>
       <Name>DemoAppCustomer</Name>
     </ProjectReference>
