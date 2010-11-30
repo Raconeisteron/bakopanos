@@ -5,28 +5,9 @@ namespace DemoApp.ViewModel
     /// </summary>
     public class BuildTargetViewModel : WorkspaceViewModel
     {
-        #region Fields
-
-        #endregion // Fields
-
-        #region Constructor
-
-        #endregion // Constructor
-
-        #region Customer Properties
-
-        #endregion // Customer Properties
-
-        #region Presentation Properties
-
-        #endregion // Presentation Properties
-
-        #region Public Methods
-
-        #endregion // Public Methods
-
-        #region Private Helpers
-
-        #endregion // Private Helpers
+        public string Text
+        {
+            get { return "OK"; }
+        }
     }
 }
