@@ -218,7 +218,7 @@ namespace DemoApp.ViewModel
         public void Save()
         {
             if (!_customer.IsValid)
-                throw new InvalidOperationException(CustomerStrings.CustomerViewModel_Exception_CannotSave);
+                throw new InvalidOperationException(CustomerStrings.Exception_CannotSave);
 
             if (IsNewCustomer)
                 _customerRepository.AddCustomer(_customer);
@@ -292,7 +292,7 @@ namespace DemoApp.ViewModel
                 CustomerType == CustomerStrings.CustomerViewModel_CustomerTypeOption_Person)
                 return null;
 
-            return CustomerStrings.CustomerViewModel_Error_MissingCustomerType;
+            return CustomerStrings.Error_MissingCustomerType;
         }
     }
 }
