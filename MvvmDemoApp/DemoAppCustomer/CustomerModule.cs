@@ -33,7 +33,12 @@ namespace DemoApp
         {
             {
                 // Info: http://msdn.microsoft.com/en-us/library/aa970069.aspx
-                var resources = new ResourceDictionary { Source = new Uri("pack://application:,,,/DemoAppCustomer;component/DataTemplates.xaml") };
+                var resources = new ResourceDictionary
+                                    {
+                                        Source =
+                                            new Uri(
+                                            "pack://application:,,,/DemoAppCustomer;component/DataTemplates.xaml")
+                                    };
                 Application.Current.Resources.MergedDictionaries.Add(resources);
             }
 
@@ -42,11 +47,8 @@ namespace DemoApp
             container.RegisterInstance<ICustomerModule>(this);
 
             container.Resolve<CustomerController>().Run();
-            
         }
 
         #endregion
-
-        
     }
 }

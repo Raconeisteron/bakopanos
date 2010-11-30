@@ -11,18 +11,20 @@ namespace DemoApp
 
         public void Initialize(IUnityContainer container)
         {
-            {                
+            {
                 // Info: http://msdn.microsoft.com/en-us/library/aa970069.aspx
-                var resources = new ResourceDictionary { Source = new Uri("pack://application:,,,/DemoAppBuildStarter;component/DataTemplates.xaml") };
+                var resources = new ResourceDictionary
+                                    {
+                                        Source =
+                                            new Uri(
+                                            "pack://application:,,,/DemoAppBuildStarter;component/DataTemplates.xaml")
+                                    };
                 Application.Current.Resources.MergedDictionaries.Add(resources);
             }
 
             container.Resolve<BuildStarterController>().Run();
-
         }
 
         #endregion
-
-        
     }
 }
