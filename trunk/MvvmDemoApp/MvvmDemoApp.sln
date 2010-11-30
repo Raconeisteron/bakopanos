@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\Unit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoAppShared", "DemoAppShared\DemoAppShared.csproj", "{3BA1C8C7-B37F-4F3A-8BAC-1DCB8DA606C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoAppBuildStarter", "DempAppBuildStarter\DemoAppBuildStarter.csproj", "{6548EB13-B56E-4DAD-B4E4-3F96F389FBE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoAppBuildStarter", "DemoAppBuildStarter\DemoAppBuildStarter.csproj", "{6548EB13-B56E-4DAD-B4E4-3F96F389FBE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoAppCustomer", "DempAppCustomer\DemoAppCustomer.csproj", "{F47B786E-642B-4CF1-B57D-207F81BC69DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoAppCustomer", "DemoAppCustomer\DemoAppCustomer.csproj", "{F47B786E-642B-4CF1-B57D-207F81BC69DD}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
