@@ -70,6 +70,24 @@ namespace DemoApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create new customer.
+        /// </summary>
+        internal static string Command_CreateNewCustomer {
+            get {
+                return ResourceManager.GetString("Command_CreateNewCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View all customers.
+        /// </summary>
+        internal static string Command_ViewAllCustomers {
+            get {
+                return ResourceManager.GetString("Command_ViewAllCustomers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Companies have no last name.
         /// </summary>
         internal static string Customer_Error_CompanyHasNoLastName {
@@ -153,36 +171,18 @@ namespace DemoApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Customer type must be selected.
         /// </summary>
-        internal static string CustomerViewModel_Error_MissingCustomerType {
+        internal static string Error_MissingCustomerType {
             get {
-                return ResourceManager.GetString("CustomerViewModel_Error_MissingCustomerType", resourceCulture);
+                return ResourceManager.GetString("Error_MissingCustomerType", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Cannot save an invalid customer..
         /// </summary>
-        internal static string CustomerViewModel_Exception_CannotSave {
+        internal static string Exception_CannotSave {
             get {
-                return ResourceManager.GetString("CustomerViewModel_Exception_CannotSave", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create new customer.
-        /// </summary>
-        internal static string MainWindowViewModel_Command_CreateNewCustomer {
-            get {
-                return ResourceManager.GetString("MainWindowViewModel_Command_CreateNewCustomer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to View all customers.
-        /// </summary>
-        internal static string MainWindowViewModel_Command_ViewAllCustomers {
-            get {
-                return ResourceManager.GetString("MainWindowViewModel_Command_ViewAllCustomers", resourceCulture);
+                return ResourceManager.GetString("Exception_CannotSave", resourceCulture);
             }
         }
     }

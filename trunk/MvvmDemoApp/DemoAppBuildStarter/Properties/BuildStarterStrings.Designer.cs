@@ -59,5 +59,14 @@ namespace DemoApp.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View all build targets.
+        /// </summary>
+        internal static string Command_ViewAllCustomers {
+            get {
+                return ResourceManager.GetString("Command_ViewAllCustomers", resourceCulture);
+            }
+        }
     }
 }
