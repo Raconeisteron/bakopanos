@@ -8,20 +8,22 @@ namespace DemoApp
 {
     public class CustomerController : IController
     {
-        private readonly WorkspaceController _workspaces;
         private readonly CommandController _commands;
         private readonly ICustomerRepository _customerRepository;
+        private readonly WorkspaceController _workspaces;
 
-        public CustomerController(WorkspaceController workspaces, CommandController commands, ICustomerRepository customerRepository)
+        public CustomerController(WorkspaceController workspaces, CommandController commands,
+                                  ICustomerRepository customerRepository)
         {
             _workspaces = workspaces;
             _commands = commands;
             _customerRepository = customerRepository;
         }
 
+        #region IController Members
+
         public void Run()
         {
-
             _commands.Add(new CommandViewModel(
                               CustomerStrings.Command_ViewAllCustomers,
                               new RelayCommand(param => ShowAllCustomers())));
@@ -29,8 +31,9 @@ namespace DemoApp
             _commands.Add(new CommandViewModel(
                               CustomerStrings.Command_CreateNewCustomer,
                               new RelayCommand(param => CreateNewCustomer())));
-
         }
+
+        #endregion
 
         private void CreateNewCustomer()
         {

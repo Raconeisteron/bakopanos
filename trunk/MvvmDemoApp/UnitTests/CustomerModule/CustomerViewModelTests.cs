@@ -4,7 +4,6 @@ using DemoApp.DataAccess;
 using DemoApp.Model;
 using DemoApp.Properties;
 using DemoApp.ViewModel;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DemoApp

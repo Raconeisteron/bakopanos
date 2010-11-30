@@ -1,5 +1,4 @@
-﻿
-namespace DemoApp
+﻿namespace DemoApp
 {
     public interface IController
     {

@@ -1,12 +1,12 @@
-﻿using DemoApp.Properties;
+using DemoApp.Properties;
 using DemoApp.ViewModel;
 
 namespace DemoApp
 {
     public class BuildStarterController : IController
     {
-        private readonly WorkspaceController _workspaces;
         private readonly CommandController _commands;
+        private readonly WorkspaceController _workspaces;
 
         public BuildStarterController(WorkspaceController workspaces, CommandController commands)
         {
@@ -14,12 +14,16 @@ namespace DemoApp
             _commands = commands;
         }
 
+        #region IController Members
+
         public void Run()
         {
             _commands.Add(new CommandViewModel(
-                             BuildStarterStrings.Command_ViewAllCustomers,
-                             new RelayCommand(param => ShowBuildTargets())));
+                              BuildStarterStrings.Command_ViewAllCustomers,
+                              new RelayCommand(param => ShowBuildTargets())));
         }
+
+        #endregion
 
         private void ShowBuildTargets()
         {

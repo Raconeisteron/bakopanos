@@ -4,7 +4,6 @@ using System.Windows.Data;
 using DemoApp.DataAccess;
 using DemoApp.Properties;
 using DemoApp.ViewModel;
-using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DemoApp
@@ -12,17 +11,17 @@ namespace DemoApp
     [TestClass]
     public class MainWindowViewModelTests
     {
-        readonly WorkspaceController _workspaces = new WorkspaceController();
+        private readonly WorkspaceController _workspaces = new WorkspaceController();
 
         private MainWindowViewModel GetTarget()
-        {            
+        {
             var commands = new CommandController();
             //todo: fake this with rhino mocks...
             var repo = new CustomerRepository(new CustomerModule
-            {
-                CustomerDataFile =
-                    Constants.CUSTOMER_DATA_FILE
-            });
+                                                  {
+                                                      CustomerDataFile =
+                                                          Constants.CUSTOMER_DATA_FILE
+                                                  });
 
             new CustomerController(_workspaces, commands, repo).Run();
 
@@ -32,8 +31,8 @@ namespace DemoApp
         [TestMethod]
         public void TestViewAllCustomers()
         {
-            var target = GetTarget();
-            
+            MainWindowViewModel target = GetTarget();
+
             CommandViewModel commandVM =
                 target.Commands.First(cvm => cvm.DisplayName == CustomerStrings.Command_ViewAllCustomers);
             commandVM.Command.Execute(null);
@@ -45,7 +44,7 @@ namespace DemoApp
         [TestMethod]
         public void TestCreateNewCustomer()
         {
-            var target = GetTarget();
+            MainWindowViewModel target = GetTarget();
 
             CommandViewModel commandVM =
                 target.Commands.First(cvm => cvm.DisplayName == CustomerStrings.Command_CreateNewCustomer);
@@ -58,7 +57,7 @@ namespace DemoApp
         [TestMethod]
         public void TestCannotViewAllCustomersTwice()
         {
-            var target = GetTarget();
+            MainWindowViewModel target = GetTarget();
 
             CommandViewModel commandVM =
                 target.Commands.First(cvm => cvm.DisplayName == CustomerStrings.Command_ViewAllCustomers);
@@ -75,7 +74,7 @@ namespace DemoApp
         public void TestCloseAllCustomersWorkspace()
         {
             // Create the MainWindowViewModel, but not the MainWindow.
-            var target = GetTarget();
+            MainWindowViewModel target = GetTarget();
 
             Assert.AreEqual(0, _workspaces.Count, "Workspaces isn't empty.");
 
