@@ -1,5 +1,7 @@
+using System;
 using System.Configuration;
 using System.Linq;
+using System.Windows;
 using DemoApp.DataAccess;
 using DemoApp.Model;
 using DemoApp.Properties;
@@ -31,7 +33,13 @@ namespace DemoApp
         #region IModule Members
 
         public void Initialize(IUnityContainer container)
-        {
+        {			
+            {                
+                // Info: http://msdn.microsoft.com/en-us/library/aa970069.aspx
+                var resources = new ResourceDictionary { Source = new Uri("pack://application:,,,/DemoAppCustomer;component/DataTemplates.xaml") };
+                Application.Current.Resources.MergedDictionaries.Add(resources);
+            }
+
             _container = container;
             container.RegisterType<ICustomerRepository, CustomerRepository>(new ContainerControlledLifetimeManager());
             container.RegisterInstance<ICustomerModule>(this);
@@ -40,11 +48,11 @@ namespace DemoApp
             var commands = container.Resolve<CommandController>();
 
             commands.Add(new CommandViewModel(
-                             Strings.MainWindowViewModel_Command_ViewAllCustomers,
+                             CustomerStrings.MainWindowViewModel_Command_ViewAllCustomers,
                              new RelayCommand(param => ShowAllCustomers())));
 
             commands.Add(new CommandViewModel(
-                             Strings.MainWindowViewModel_Command_CreateNewCustomer,
+                             CustomerStrings.MainWindowViewModel_Command_CreateNewCustomer,
                              new RelayCommand(param => CreateNewCustomer())));
         }
 

@@ -147,11 +147,11 @@ namespace DemoApp.Model
         {
             if (IsStringMissing(Email))
             {
-                return Strings.Customer_Error_MissingEmail;
+                return CustomerStrings.Customer_Error_MissingEmail;
             }
             else if (!IsValidEmailAddress(Email))
             {
-                return Strings.Customer_Error_InvalidEmail;
+                return CustomerStrings.Customer_Error_InvalidEmail;
             }
             return null;
         }
@@ -160,7 +160,7 @@ namespace DemoApp.Model
         {
             if (IsStringMissing(FirstName))
             {
-                return Strings.Customer_Error_MissingFirstName;
+                return CustomerStrings.Customer_Error_MissingFirstName;
             }
             return null;
         }
@@ -170,12 +170,12 @@ namespace DemoApp.Model
             if (IsCompany)
             {
                 if (!IsStringMissing(LastName))
-                    return Strings.Customer_Error_CompanyHasNoLastName;
+                    return CustomerStrings.Customer_Error_CompanyHasNoLastName;
             }
             else
             {
                 if (IsStringMissing(LastName))
-                    return Strings.Customer_Error_MissingLastName;
+                    return CustomerStrings.Customer_Error_MissingLastName;
             }
             return null;
         }

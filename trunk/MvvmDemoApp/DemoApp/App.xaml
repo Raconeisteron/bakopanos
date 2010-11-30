@@ -6,8 +6,6 @@
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="Styles.xaml" />
 				<ResourceDictionary Source="DataTemplates.xaml" />
-				<ResourceDictionary Source="CustomerModule\DataTemplates.xaml" />
-				<ResourceDictionary Source="BuildStarterModule\DataTemplates.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 
