@@ -12,7 +12,7 @@ namespace PortalStarterKit
         {
             var portalSettings = (SiteConfiguration) Context.Cache["SiteConfiguration"];
 
-            AddMenus(NavigationMenu.Items, portalSettings.Portal.Tabs);
+            AddMenus(NavigationMenu.Items, portalSettings.Portals[0].Tabs);
         }
 
         private static void AddMenus(MenuItemCollection menuitems, IEnumerable<Tab> tabs)

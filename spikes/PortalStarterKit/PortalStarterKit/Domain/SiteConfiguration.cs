@@ -5,7 +5,8 @@ namespace PortalStarterKit.Domain
 {
     public class SiteConfiguration
     {
-        public Portal Portal { get; set; }
+        [XmlElement("Portal")]
+        public List<Portal> Portals { get; set; }
 
         [XmlElement("TabDefinition")]
         public List<TabDefinition> TabDefinitions { get; set; }

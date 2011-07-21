@@ -9,7 +9,8 @@ namespace PortalStarterKit
 {
     public class Global : HttpApplication
     {
-        [Import] private XmlSiteConfigurationService _service;
+        [Import]
+        private XmlSiteConfigurationService _service;
 
         private void Application_Start(object sender, EventArgs e)
         {

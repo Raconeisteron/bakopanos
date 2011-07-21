@@ -14,12 +14,12 @@ namespace PortalStarterKit.Domain
             {
                 if (Page.Request.Params["tabId"] == null)
                 {
-                    return SiteConfiguration.Portal.Tabs[0];
+                    return SiteConfiguration.Portals[0].Tabs[0];
                 }
                 int tabId = Convert.ToInt32(Page.Request.Params["tabId"]);
-                if (SiteConfiguration.Portal.Tabs.Exists(item => item.TabId == tabId))
+                if (SiteConfiguration.Portals[0].Tabs.Exists(item => item.TabId == tabId))
                 {
-                    return SiteConfiguration.Portal.Tabs.Single(item => item.TabId == tabId);
+                    return SiteConfiguration.Portals[0].Tabs.Single(item => item.TabId == tabId);
                 }
                 return null;
             }

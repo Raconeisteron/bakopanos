@@ -24,7 +24,7 @@ namespace PortalStarterKit.Domain
                 if (_isEditable == 0)
                 {
                     // Obtain SiteConfiguration from Current Context                    
-                    if (SiteConfiguration.Portal.AlwaysShowEditButton
+                    if (SiteConfiguration.Portals[0].AlwaysShowEditButton
                         /*|| PortalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles)*/)
                     {
                         _isEditable = 1;
