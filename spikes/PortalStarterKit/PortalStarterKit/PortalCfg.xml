@@ -1,0 +1,22 @@
+<?xml version="1.0" standalone="yes"?>
+
+<SiteConfiguration>
+  <Portal PortalId="0" PortalName="ASP.NET Portal Starter Kit" AlwaysShowEditButton="false">
+    <Tab TabId="1" TabDefId="1" TabName="Employee Info" AccessRoles="All Users;" TabOrder="3">
+      <Module ModuleId="7" ModuleTitle="Spy Diary" EditRoles="Admins;" ModuleDefId="1" PaneName="LeftPane" ModuleOrder="1" />
+      <Tab TabId="11" TabDefId="1" TabName="OK" AccessRoles="All Users;" TabOrder="3" />
+    </Tab>
+    <Tab TabId="2" TabDefId="1" TabName="Info" AccessRoles="All Users;" TabOrder="3">
+      <Setting Key="xmlsrc" Value="~/data/sales.xml" />
+      <Setting Key="xslsrc" Value="~/data/sales.xsl" />
+    </Tab>
+    <Tab TabId="3" TabDefId="1" TabName="Help" AccessRoles="All Users;" TabOrder="3">
+      <Module ModuleId="10" ModuleTitle="xsl report" EditRoles="Admins;" ModuleDefId="1" PaneName="LeftPane" ModuleOrder="1">
+        <Setting Key="xmlsrc" Value="~/data/sales.xml" />
+        <Setting Key="xslsrc" Value="~/data/sales.xsl" />
+      </Module>
+    </Tab>
+  </Portal>
+  <TabDefinition FriendlyName="Default" DesktopSourceFile="~/Default.aspx" TabDefId="1" />
+  <ModuleDefinition FriendlyName="Announcements" DesktopSourceFile="Modules/Test.ascx" ModuleDefId="1" />
+</SiteConfiguration>
