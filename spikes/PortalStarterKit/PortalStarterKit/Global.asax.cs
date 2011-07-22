@@ -1,7 +1,5 @@
 ﻿using System;
-using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.Hosting;
-using System.IO;
+using System.Configuration;
 using System.Web;
 using PortalStarterKit.Domain;
 
@@ -9,21 +7,26 @@ namespace PortalStarterKit
 {
     public class Global : HttpApplication
     {
-        [Import]
-        private XmlSiteConfigurationService _service;
+        private ISiteConfigurationService _service;
 
         private void Application_Start(object sender, EventArgs e)
         {
-            //Find the assembly (.dll) that has the stuff we need             
-            var catalog = new DirectoryCatalog(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin"));
-
-            //To do anything with the stuff in the catalog, 
-            //we need to put into a container (Which has methods to do the magic stuff)
-            var container = new CompositionContainer(catalog);
-
-            //Now lets do the magic bit - Wiring everything up
-            container.ComposeParts(this);
-
+            switch (ConfigurationManager.AppSettings["SiteConfigurationService"])
+            {
+                case "Xls":
+                    Type xlsType = Type.GetType("PortalStarterKit.Domain.XlsSiteConfigurationService,PortalStarterKit");
+                string xlsFile =
+                    HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XlsSiteConfigurationFile"]);
+                _service = (ISiteConfigurationService)Activator.CreateInstance(xlsType, new object[] { xlsFile });
+                    break;
+                case "Xml":
+                    Type xmlType = Type.GetType("PortalStarterKit.Domain.XmlSiteConfigurationService,PortalStarterKit");
+                string xmlFile =
+                    HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XmlSiteConfigurationFile"]);
+                _service = (ISiteConfigurationService) Activator.CreateInstance(xmlType, new object[] {xmlFile});
+                    break;
+            }
+            
             //deal with cache...
             Context.Cache.Insert("SiteConfiguration", _service.SiteConfiguration);
         }

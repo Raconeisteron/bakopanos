@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
@@ -10,26 +9,29 @@ using System.Web;
 
 namespace PortalStarterKit.Domain
 {
-    [Export]
     public class XlsSiteConfigurationService : SiteConfigurationService
     {
-        private readonly string _xlsSiteConfigurationFile;
+        private readonly string _xlsFile;
+        readonly List<PortalEntity> _portalList;
+        readonly List<TabEntity> _tabList;
+        readonly List<ModuleEntity> _moduleList;
+        readonly List<TabDefinitionEntity> _tabDefList;
+        readonly List<ModuleDefinitionEntity> _moduleDefList;
 
-        public XlsSiteConfigurationService()
+        public XlsSiteConfigurationService(string xlsFile)
         {
-            _xlsSiteConfigurationFile =
-                HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XlsSiteConfigurationFile"]);
+            _xlsFile = xlsFile;                
 
-            var portalList = GetList<PortalEntity>("Portals", ToPortal);
-            var tabList = GetList<TabEntity>("Tabs", ToTab);
-            var moduleList = GetList<ModuleEntity>("Modules", ToModule);
-            var tabDefList = GetList<TabDefinitionEntity>("TabDefinitions", ToTabDefinition);
-            var moduleDefList = GetList<ModuleDefinitionEntity>("ModuleDefinitions", ToModuleDefinition);
+            _portalList = GetList<PortalEntity>("Portals", ToPortal);
+            _tabList = GetList<TabEntity>("Tabs", ToTab);
+            _moduleList = GetList<ModuleEntity>("Modules", ToModule);
+            _tabDefList = GetList<TabDefinitionEntity>("TabDefinitions", ToTabDefinition);
+            _moduleDefList = GetList<ModuleDefinitionEntity>("ModuleDefinitions", ToModuleDefinition);
 
             SiteConfiguration = new SiteConfiguration();
 
             SiteConfiguration.TabDefinitions = new List<TabDefinition>();
-            foreach (TabDefinitionEntity entity in tabDefList)
+            foreach (TabDefinitionEntity entity in _tabDefList)
             {
                 var item = new TabDefinition
                                {
@@ -41,7 +43,7 @@ namespace PortalStarterKit.Domain
             }
 
             SiteConfiguration.ModuleDefinitions = new List<ModuleDefinition>();
-            foreach (ModuleDefinitionEntity entity in moduleDefList)
+            foreach (ModuleDefinitionEntity entity in _moduleDefList)
             {
                 var item = new ModuleDefinition
                                {
@@ -53,7 +55,7 @@ namespace PortalStarterKit.Domain
             }
 
             SiteConfiguration.Portals = new List<Portal>();
-            foreach (PortalEntity portalEntity in portalList)
+            foreach (PortalEntity portalEntity in _portalList)
             {
                 var portal = new Portal
                                  {
@@ -64,36 +66,42 @@ namespace PortalStarterKit.Domain
                                  };
 
                 SiteConfiguration.Portals.Add(portal);
-                foreach (TabEntity tabEntity in tabList.Where(item => item.PortalId == portalEntity.PortalId))
-                {
-                    var tab = new Tab
-                                  {
-                                      TabId = tabEntity.TabId,
-                                      TabName = tabEntity.TabName,
-                                      Modules = new List<Module>(),
-                                      TabDefId = tabEntity.TabDefId,
-                                      TabOrder = tabEntity.TabOrder,
-                                      Tabs = new List<Tab>()
-                                  };
-                    portal.Tabs.Add(tab);
-                    foreach (ModuleEntity moduleEntity in moduleList.Where(item => item.TabId == tabEntity.TabId))
-                    {
-                        var module = new Module
-                                         {
-                                             ModuleId = moduleEntity.ModuleId,
-                                             ModuleDefId = moduleEntity.ModuleDefId,
-                                             ModuleTitle = moduleEntity.ModuleTitle,
-                                             ModuleOrder = moduleEntity.ModuleOrder,
-                                             PaneName = moduleEntity.PaneName
-                                         };
-                        tab.Modules.Add(module);
-                    }
-                }
+                MakeTabs(portal.Tabs,portal.PortalId,0);
             }
 
             foreach (Portal portal in SiteConfiguration.Portals)
             {
                 InitializeSiteConfiguration(portal.Tabs);
+            }
+        }
+
+        private void MakeTabs(List<Tab> tabs, int portalId, int parentTabId)
+        {
+            foreach (TabEntity tabEntity in _tabList.Where(item => item.PortalId == portalId).Where(item => item.ParentTabId == parentTabId))
+            {
+                var tab = new Tab
+                {
+                    TabId = tabEntity.TabId,
+                    TabName = tabEntity.TabName,
+                    Modules = new List<Module>(),
+                    TabDefId = tabEntity.TabDefId,
+                    TabOrder = tabEntity.TabOrder,
+                    Tabs = new List<Tab>()
+                };
+                tabs.Add(tab);
+                foreach (ModuleEntity moduleEntity in _moduleList.Where(item => item.TabId == tabEntity.TabId))
+                {
+                    var module = new Module
+                    {
+                        ModuleId = moduleEntity.ModuleId,
+                        ModuleDefId = moduleEntity.ModuleDefId,
+                        ModuleTitle = moduleEntity.ModuleTitle,
+                        ModuleOrder = moduleEntity.ModuleOrder,
+                        PaneName = moduleEntity.PaneName
+                    };
+                    tab.Modules.Add(module);
+                }
+                MakeTabs(tab.Tabs, portalId, tab.TabId);
             }
         }
 
@@ -121,6 +129,7 @@ namespace PortalStarterKit.Domain
             {
                 PortalId = Convert.ToInt32(items["PortalId"]),
                 TabId = Convert.ToInt32(items["TabId"]),
+                ParentTabId = Convert.ToInt32(items["ParentTabId"]),
                 TabDefId = Convert.ToInt32(items["TabDefId"]),
                 TabName = items["TabName"] as string
             };
@@ -131,10 +140,10 @@ namespace PortalStarterKit.Domain
         {
             public int PortalId { get; set; }
             public int TabId { get; set; }
+            public int ParentTabId { get; set; }
             public int TabDefId { get; set; }
             public string TabName { get; set; }
             public int TabOrder { get; set; }
-            public string NavigateUrl { get; set; }            
         }
 
         private static ModuleEntity ToModule(IDataRecord items)
@@ -196,9 +205,9 @@ namespace PortalStarterKit.Domain
         private List<T> GetList<T>(string settingsTableName, Func<OleDbDataReader, T> toT)
         {
             var list = new List<T>();
-            if (File.Exists(_xlsSiteConfigurationFile))
+            if (File.Exists(_xlsFile))
             {
-                string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + _xlsSiteConfigurationFile +
+                string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + _xlsFile +
                                           @";Extended Properties=""Excel 8.0;HDR=YES;""";
 
                 var connection = new OleDbConnection(connectionString);

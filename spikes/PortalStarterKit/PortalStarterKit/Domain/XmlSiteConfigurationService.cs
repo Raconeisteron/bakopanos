@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Configuration;
 using System.IO;
 using System.Web;
@@ -7,19 +6,13 @@ using System.Xml.Serialization;
 
 namespace PortalStarterKit.Domain
 {
-    [Export]
     public class XmlSiteConfigurationService : SiteConfigurationService
-    {
-        private readonly string _xmlSiteConfigurationFile;
-
-        public XmlSiteConfigurationService()
-        {
-            _xmlSiteConfigurationFile =
-                HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XmlSiteConfigurationFile"]);
-
+    {        
+        public XmlSiteConfigurationService(string xmlFile)
+        {            
             // Code that runs on application startup            
             var serializer = new XmlSerializer(typeof (SiteConfigurationEntity));
-            var fs = new FileStream(_xmlSiteConfigurationFile, FileMode.Open, FileAccess.Read, FileShare.Read);
+            var fs = new FileStream(xmlFile, FileMode.Open, FileAccess.Read, FileShare.Read);
             
             var siteConfigurationEntity = (SiteConfigurationEntity) serializer.Deserialize(fs);
 
@@ -61,14 +54,14 @@ namespace PortalStarterKit.Domain
                 };
 
                 SiteConfiguration.Portals.Add(portal);
-                MakeTabs(portalEntity.Tabs, portal.Tabs);
+                MakeTabs(portal.Tabs, portalEntity.Tabs);
             }
 
             //
             InitializeSiteConfiguration(SiteConfiguration.Portals[0].Tabs);
         }
 
-        private static void MakeTabs(IEnumerable<TabEntity> tabEntities, List<Tab> tabs)
+        private static void MakeTabs(List<Tab> tabs, IEnumerable<TabEntity> tabEntities)
         {
             foreach (TabEntity tabEntity in tabEntities)
             {
@@ -94,7 +87,7 @@ namespace PortalStarterKit.Domain
                                      };
                     tab.Modules.Add(module);
                 }
-                MakeTabs(tabEntity.Tabs, tab.Tabs);
+                MakeTabs(tab.Tabs, tabEntity.Tabs);
             }
         }
 
@@ -163,10 +156,7 @@ namespace PortalStarterKit.Domain
 
             [XmlAttribute]
             public int TabOrder { get; set; }
-
-            [XmlIgnore]
-            public string NavigateUrl { get; set; }
-
+            
             [XmlElement("Tab")]
             public List<TabEntity> Tabs { get; set; }
 
