@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using PortalStarterKit.Domain;
+using PortalStarterKit.Model;
 
 namespace PortalStarterKit
 {

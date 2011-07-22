@@ -117,18 +117,6 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Domain\IPortalTemplateControl.cs" />
-    <Compile Include="Domain\ISiteConfigurationService.cs" />
-    <Compile Include="Domain\PortalModuleControl.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Domain\PortalPage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Domain\SiteConfiguration.cs" />
-    <Compile Include="Domain\SiteConfigurationService.cs" />
-    <Compile Include="Domain\XlsSiteConfigurationService.cs" />
-    <Compile Include="Domain\XmlSiteConfigurationService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -158,6 +146,24 @@
   <ItemGroup>
     <None Include="PortalCfg.xls" />
     <None Include="SiteConfiguration.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\copy\copy.csproj">
+      <Project>{5B126A53-CDCA-4947-BE57-B8228EF6BCFE}</Project>
+      <Name>copy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortalStarterKit.Data\PortalStarterKit.Data.csproj">
+      <Project>{087DD1EB-E466-4750-8CE2-489E156DA6C9}</Project>
+      <Name>PortalStarterKit.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortalStarterKit.Model\PortalStarterKit.Model.csproj">
+      <Project>{66B517C5-F420-4FA8-9D6A-09A7B72BDE3E}</Project>
+      <Name>PortalStarterKit.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortalStarterKit.Presentation\PortalStarterKit.Presentation.csproj">
+      <Project>{11FB1C96-6879-4381-94FE-8EA121E363AB}</Project>
+      <Name>PortalStarterKit.Presentation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

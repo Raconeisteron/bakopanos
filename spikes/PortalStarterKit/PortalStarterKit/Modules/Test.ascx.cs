@@ -1,5 +1,5 @@
 ﻿using System;
-using PortalStarterKit.Domain;
+using PortalStarterKit.Presentation;
 
 namespace PortalStarterKit.Modules
 {
