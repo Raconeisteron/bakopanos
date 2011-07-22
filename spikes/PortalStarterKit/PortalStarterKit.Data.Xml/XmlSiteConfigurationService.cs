@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
+using System.Web;
 using System.Xml.Serialization;
 using PortalStarterKit.Model;
 
@@ -7,8 +9,10 @@ namespace PortalStarterKit.Data.Xml
 {
     public class XmlSiteConfigurationService : SiteConfigurationService
     {        
-        public XmlSiteConfigurationService(string xmlFile)
-        {            
+        public XmlSiteConfigurationService()
+        {
+            string xmlFile = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XmlSiteConfigurationFile"]);
+
             // Code that runs on application startup            
             var serializer = new XmlSerializer(typeof (SiteConfigurationEntity));
             var fs = new FileStream(xmlFile, FileMode.Open, FileAccess.Read, FileShare.Read);

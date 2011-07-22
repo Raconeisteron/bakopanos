@@ -11,21 +11,8 @@ namespace PortalStarterKit
 
         private void Application_Start(object sender, EventArgs e)
         {
-            switch (ConfigurationManager.AppSettings["SiteConfigurationService"])
-            {
-                case "Xls":
-                    Type xlsType = Type.GetType("PortalStarterKit.Data.Xls.XlsSiteConfigurationService,PortalStarterKit.Data.Xls");
-                string xlsFile =
-                    HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XlsSiteConfigurationFile"]);
-                _service = (ISiteConfigurationService)Activator.CreateInstance(xlsType, new object[] { xlsFile });
-                    break;
-                case "Xml":
-                    Type xmlType = Type.GetType("PortalStarterKit.Data.Xml.XmlSiteConfigurationService,PortalStarterKit.Data.Xml");
-                string xmlFile =
-                    HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XmlSiteConfigurationFile"]);
-                _service = (ISiteConfigurationService) Activator.CreateInstance(xmlType, new object[] {xmlFile});
-                    break;
-            }
+            Type siteConfigurationServiceType = Type.GetType(ConfigurationManager.AppSettings["SiteConfigurationService"]);
+            _service = (ISiteConfigurationService)Activator.CreateInstance(siteConfigurationServiceType);
             
             //deal with cache...
             Context.Cache.Insert("SiteConfiguration", _service.SiteConfiguration);

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
 using System.Linq;
+using System.Web;
 using PortalStarterKit.Model;
 
 namespace PortalStarterKit.Data.Xls
@@ -17,9 +19,9 @@ namespace PortalStarterKit.Data.Xls
         readonly List<TabDefinitionEntity> _tabDefList;
         readonly List<ModuleDefinitionEntity> _moduleDefList;
 
-        public XlsSiteConfigurationService(string xlsFile)
+        public XlsSiteConfigurationService()
         {
-            _xlsFile = xlsFile;                
+            _xlsFile = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XlsSiteConfigurationFile"]);
 
             _portalList = GetList<PortalEntity>("Portals", ToPortal);
             _tabList = GetList<TabEntity>("Tabs", ToTab);
