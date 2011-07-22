@@ -8,20 +8,8 @@ namespace PortalStarterKit.Data
     {
         #region ISiteConfigurationService Members
 
-        public SiteConfiguration SiteConfiguration { get; protected set; }
+        public abstract SiteConfiguration ReadSiteConfiguration();
 
         #endregion
-
-        public void InitializeSiteConfiguration(IEnumerable<Tab> tabs)
-        {
-            foreach (Tab tab in tabs)
-            {
-                string desktopSrc =
-                    SiteConfiguration.TabDefinitions.Single(item => item.TabDefId == tab.TabDefId).SourceFile;
-                tab.NavigateUrl = desktopSrc + "?tabid=" + tab.TabId;
-
-                InitializeSiteConfiguration(tab.Tabs);
-            }
-        }
     }
 }

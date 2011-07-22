@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace PortalStarterKit.Model
 {
@@ -40,6 +41,18 @@ namespace PortalStarterKit.Model
                     _moduleDefinitions = new List<ModuleDefinition>();
                 }
                 return _moduleDefinitions;
+            }
+        }
+
+        public void InitializeSiteConfiguration(IEnumerable<Tab> tabs)
+        {
+            foreach (Tab tab in tabs)
+            {
+                string desktopSrc =
+                    TabDefinitions.Single(item => item.TabDefId == tab.TabDefId).SourceFile;
+                tab.NavigateUrl = desktopSrc + "?tabid=" + tab.TabId;
+
+                InitializeSiteConfiguration(tab.Tabs);
             }
         }
     }

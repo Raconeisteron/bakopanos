@@ -8,8 +8,8 @@ using PortalStarterKit.Model;
 namespace PortalStarterKit.Data.Xml
 {
     public class XmlSiteConfigurationService : SiteConfigurationService
-    {        
-        public XmlSiteConfigurationService()
+    {
+        public override SiteConfiguration ReadSiteConfiguration()
         {
             string xmlFile = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XmlSiteConfigurationFile"]);
 
@@ -19,7 +19,7 @@ namespace PortalStarterKit.Data.Xml
             
             var siteConfigurationEntity = (SiteConfigurationEntity) serializer.Deserialize(fs);
 
-            SiteConfiguration = new SiteConfiguration();
+            var configuration = new SiteConfiguration();
             
             foreach (TabDefinitionEntity entity in siteConfigurationEntity.TabDefinitions)
             {
@@ -29,7 +29,7 @@ namespace PortalStarterKit.Data.Xml
                     FriendlyName = entity.FriendlyName,
                     SourceFile = entity.SourceFile
                 };
-                SiteConfiguration.TabDefinitions.Add(item);
+                configuration.TabDefinitions.Add(item);
             }
             
             foreach (ModuleDefinitionEntity entity in siteConfigurationEntity.ModuleDefinitions)
@@ -40,7 +40,7 @@ namespace PortalStarterKit.Data.Xml
                     FriendlyName = entity.FriendlyName,
                     SourceFile = entity.SourceFile
                 };
-                SiteConfiguration.ModuleDefinitions.Add(item);
+                configuration.ModuleDefinitions.Add(item);
             }
 
             foreach (PortalEntity portalEntity in siteConfigurationEntity.Portals)
@@ -52,12 +52,14 @@ namespace PortalStarterKit.Data.Xml
                     AlwaysShowEditButton = portalEntity.AlwaysShowEditButton                    
                 };
 
-                SiteConfiguration.Portals.Add(portal);
+                configuration.Portals.Add(portal);
                 MakeTabs(portal.Tabs, portalEntity.Tabs);
             }
 
             //
-            InitializeSiteConfiguration(SiteConfiguration.Portals[0].Tabs);
+            configuration.InitializeSiteConfiguration(configuration.Portals[0].Tabs);
+
+            return configuration;
         }
 
         private static void MakeTabs(List<Tab> tabs, IEnumerable<TabEntity> tabEntities)

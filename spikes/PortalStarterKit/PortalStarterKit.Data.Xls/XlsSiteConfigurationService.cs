@@ -12,14 +12,14 @@ namespace PortalStarterKit.Data.Xls
 {
     public class XlsSiteConfigurationService : SiteConfigurationService
     {
-        private readonly string _xlsFile;
-        readonly List<PortalEntity> _portalList;
-        readonly List<TabEntity> _tabList;
-        readonly List<ModuleEntity> _moduleList;
-        readonly List<TabDefinitionEntity> _tabDefList;
-        readonly List<ModuleDefinitionEntity> _moduleDefList;
+        private string _xlsFile;
+        private List<PortalEntity> _portalList;
+        private List<TabEntity> _tabList;
+        private List<ModuleEntity> _moduleList;
+        private List<TabDefinitionEntity> _tabDefList;
+        private List<ModuleDefinitionEntity> _moduleDefList;
 
-        public XlsSiteConfigurationService()
+        public override SiteConfiguration ReadSiteConfiguration()
         {
             _xlsFile = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XlsSiteConfigurationFile"]);
 
@@ -29,7 +29,7 @@ namespace PortalStarterKit.Data.Xls
             _tabDefList = GetList<TabDefinitionEntity>("TabDefinitions", ToTabDefinition);
             _moduleDefList = GetList<ModuleDefinitionEntity>("ModuleDefinitions", ToModuleDefinition);
 
-            SiteConfiguration = new SiteConfiguration();
+            var configuration = new SiteConfiguration();
 
             foreach (TabDefinitionEntity entity in _tabDefList)
             {
@@ -39,7 +39,7 @@ namespace PortalStarterKit.Data.Xls
                                    FriendlyName = entity.FriendlyName,
                                    SourceFile = entity.SourceFile
                                };
-                SiteConfiguration.TabDefinitions.Add(item);
+                configuration.TabDefinitions.Add(item);
             }
 
             foreach (ModuleDefinitionEntity entity in _moduleDefList)
@@ -50,7 +50,7 @@ namespace PortalStarterKit.Data.Xls
                                    FriendlyName = entity.FriendlyName,
                                    SourceFile = entity.SourceFile
                                };
-                SiteConfiguration.ModuleDefinitions.Add(item);
+                configuration.ModuleDefinitions.Add(item);
             }
 
             foreach (PortalEntity portalEntity in _portalList)
@@ -62,14 +62,16 @@ namespace PortalStarterKit.Data.Xls
                                      AlwaysShowEditButton = portalEntity.AlwaysShowEditButton                                     
                                  };
 
-                SiteConfiguration.Portals.Add(portal);
+                configuration.Portals.Add(portal);
                 MakeTabs(portal.Tabs,portal.PortalId,0);
             }
 
-            foreach (Portal portal in SiteConfiguration.Portals)
+            foreach (Portal portal in configuration.Portals)
             {
-                InitializeSiteConfiguration(portal.Tabs);
+                configuration.InitializeSiteConfiguration(portal.Tabs);
             }
+
+            return configuration;
         }
 
         private void MakeTabs(List<Tab> tabs, int portalId, int parentTabId)

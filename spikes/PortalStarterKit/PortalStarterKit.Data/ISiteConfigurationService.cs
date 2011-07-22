@@ -4,6 +4,6 @@ namespace PortalStarterKit.Data
 {
     public interface ISiteConfigurationService
     {
-        SiteConfiguration SiteConfiguration { get; }
+        SiteConfiguration ReadSiteConfiguration();
     }
 }

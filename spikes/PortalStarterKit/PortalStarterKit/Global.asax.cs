@@ -15,7 +15,7 @@ namespace PortalStarterKit
             _service = (ISiteConfigurationService)Activator.CreateInstance(siteConfigurationServiceType);
             
             //deal with cache...
-            Context.Cache.Insert("SiteConfiguration", _service.SiteConfiguration);
+            Context.Cache.Insert("SiteConfiguration", _service.ReadSiteConfiguration());
         }
 
         private void Application_End(object sender, EventArgs e)
