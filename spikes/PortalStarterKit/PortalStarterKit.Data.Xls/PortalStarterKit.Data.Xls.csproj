@@ -42,7 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModuleDefinitionEntity.cs" />
+    <Compile Include="ModuleEntity.cs" />
+    <Compile Include="PortalEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TabDefinitionEntity.cs" />
+    <Compile Include="TabEntity.cs" />
     <Compile Include="XlsSiteConfigurationService.cs" />
   </ItemGroup>
   <ItemGroup>

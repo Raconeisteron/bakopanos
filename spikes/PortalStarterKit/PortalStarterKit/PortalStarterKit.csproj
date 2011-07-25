@@ -145,7 +145,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PortalCfg.xls" />
-    <None Include="SiteConfiguration.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\copy\copy.csproj">

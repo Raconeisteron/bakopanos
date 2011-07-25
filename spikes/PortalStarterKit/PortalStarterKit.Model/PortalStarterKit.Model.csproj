@@ -40,8 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPortalContainer.cs" />
+    <Compile Include="ITabContainer.cs" />
+    <Compile Include="Module.cs" />
+    <Compile Include="ModuleDefinition.cs" />
+    <Compile Include="PaneType.cs" />
+    <Compile Include="Portal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setting.cs" />
     <Compile Include="SiteConfiguration.cs" />
+    <Compile Include="Tab.cs" />
+    <Compile Include="TabDefinition.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

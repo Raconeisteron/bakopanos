@@ -23,11 +23,11 @@ namespace PortalStarterKit.Data.Xls
         {
             _xlsFile = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XlsSiteConfigurationFile"]);
 
-            _portalList = GetList<PortalEntity>("Portals", ToPortal);
-            _tabList = GetList<TabEntity>("Tabs", ToTab);
-            _moduleList = GetList<ModuleEntity>("Modules", ToModule);
-            _tabDefList = GetList<TabDefinitionEntity>("TabDefinitions", ToTabDefinition);
-            _moduleDefList = GetList<ModuleDefinitionEntity>("ModuleDefinitions", ToModuleDefinition);
+            _portalList = GetList<PortalEntity>("Portals", item => new PortalEntity(item));
+            _tabList = GetList<TabEntity>("Tabs", item => new TabEntity(item));
+            _moduleList = GetList<ModuleEntity>("Modules", item => new ModuleEntity(item));
+            _tabDefList = GetList<TabDefinitionEntity>("TabDefinitions", item => new TabDefinitionEntity(item));
+            _moduleDefList = GetList<ModuleDefinitionEntity>("ModuleDefinitions", item => new ModuleDefinitionEntity(item));
 
             var configuration = new SiteConfiguration();
 
@@ -55,37 +55,29 @@ namespace PortalStarterKit.Data.Xls
 
             foreach (PortalEntity portalEntity in _portalList)
             {
-                var portal = new Portal
-                                 {
-                                     PortalId = portalEntity.PortalId,
-                                     PortalName = portalEntity.PortalName,
-                                     AlwaysShowEditButton = portalEntity.AlwaysShowEditButton                                     
-                                 };
+                var portal = configuration.NewPortal();
+                portal.PortalId = portalEntity.PortalId;
+                portal.PortalName = portalEntity.PortalName;
+                portal.AlwaysShowEditButton = portalEntity.AlwaysShowEditButton;                                 
 
                 configuration.Portals.Add(portal);
-                MakeTabs(portal.Tabs,portal.PortalId,0);
-            }
-
-            foreach (Portal portal in configuration.Portals)
-            {
-                configuration.InitializeSiteConfiguration(portal.Tabs);
+                MakeTabs(portal,portal.PortalId,0);
             }
 
             return configuration;
         }
 
-        private void MakeTabs(List<Tab> tabs, int portalId, int parentTabId)
+        private void MakeTabs(ITabContainer tabContainer, int portalId, int parentTabId)
         {
             foreach (TabEntity tabEntity in _tabList.Where(item => item.PortalId == portalId).Where(item => item.ParentTabId == parentTabId))
             {
-                var tab = new Tab
-                {
-                    TabId = tabEntity.TabId,
-                    TabName = tabEntity.TabName,                    
-                    TabDefId = tabEntity.TabDefId,
-                    TabOrder = tabEntity.TabOrder                    
-                };
-                tabs.Add(tab);
+                var tab = tabContainer.NewTab();
+                tab.TabId = tabEntity.TabId;
+                tab.TabName = tabEntity.TabName;
+                tab.TabDefId = tabEntity.TabDefId;
+                tab.TabOrder = tabEntity.TabOrder;
+            
+                tabContainer.Tabs.Add(tab);
                 foreach (ModuleEntity moduleEntity in _moduleList.Where(item => item.TabId == tabEntity.TabId))
                 {
                     var module = new Module
@@ -98,105 +90,8 @@ namespace PortalStarterKit.Data.Xls
                     };
                     tab.Modules.Add(module);
                 }
-                MakeTabs(tab.Tabs, portalId, tab.TabId);
+                MakeTabs(tab, portalId, tab.TabId);
             }
-        }
-
-        private static PortalEntity ToPortal(IDataRecord items)
-        {
-            var item = new PortalEntity
-                           {
-                               PortalId = Convert.ToInt32(items["PortalId"]),
-                               PortalName = items["PortalName"] as string,
-                               AlwaysShowEditButton = Convert.ToBoolean(items["AlwaysShowEditButton"])
-                           };
-            return item;
-        }
-
-        private class PortalEntity
-        {
-            public int PortalId { get; set; }            
-            public string PortalName { get; set; }            
-            public bool AlwaysShowEditButton { get; set; }            
-        }
-
-        private static TabEntity ToTab(IDataRecord items)
-        {
-            var item = new TabEntity
-            {
-                PortalId = Convert.ToInt32(items["PortalId"]),
-                TabId = Convert.ToInt32(items["TabId"]),
-                ParentTabId = Convert.ToInt32(items["ParentTabId"]),
-                TabDefId = Convert.ToInt32(items["TabDefId"]),
-                TabName = items["TabName"] as string
-            };
-            return item;
-        }
-
-        private class TabEntity
-        {
-            public int PortalId { get; set; }
-            public int TabId { get; set; }
-            public int ParentTabId { get; set; }
-            public int TabDefId { get; set; }
-            public string TabName { get; set; }
-            public int TabOrder { get; set; }
-        }
-
-        private static ModuleEntity ToModule(IDataRecord items)
-        {
-            var item = new ModuleEntity
-            {
-                ModuleId = Convert.ToInt32(items["ModuleId"]),
-                ModuleTitle = items["ModuleTitle"] as string
-            };
-            return item;
-        }
-
-        private class ModuleEntity
-        {
-            public int TabId { get; set; }
-            public int ModuleId { get; set; }
-            public int ModuleDefId { get; set; }
-            public int ModuleOrder { get; set; }
-            public string ModuleTitle { get; set; }
-            public PaneType PaneName { get; set; }            
-        }
-
-        private static TabDefinitionEntity ToTabDefinition(IDataRecord items)
-        {
-            var item = new TabDefinitionEntity
-            {
-                TabDefId = Convert.ToInt32(items["TabDefId"]),
-                FriendlyName = items["FriendlyName"] as string,
-                SourceFile = items["DesktopSourceFile"] as string
-            };
-            return item;
-        }
-
-        private class TabDefinitionEntity
-        {
-            public int TabDefId { get; set; }
-            public string FriendlyName { get; set; }
-            public string SourceFile { get; set; }
-        }
-
-        private static ModuleDefinitionEntity ToModuleDefinition(IDataRecord items)
-        {
-            var item = new ModuleDefinitionEntity
-            {
-                ModuleDefId = Convert.ToInt32(items["ModuleDefId"]),
-                FriendlyName = items["FriendlyName"] as string,
-                SourceFile = items["DesktopSourceFile"] as string
-            };
-            return item;
-        }
-
-        private class ModuleDefinitionEntity
-        {
-            public int ModuleDefId { get; set; }
-            public string FriendlyName { get; set; }
-            public string SourceFile { get; set; }
         }
 
         private List<T> GetList<T>(string settingsTableName, Func<OleDbDataReader, T> toT)
@@ -225,8 +120,5 @@ namespace PortalStarterKit.Data.Xls
 
             return list;
         }
-
-
-
     }
 }

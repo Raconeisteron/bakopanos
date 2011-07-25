@@ -45,35 +45,28 @@ namespace PortalStarterKit.Data.Xml
 
             foreach (PortalEntity portalEntity in siteConfigurationEntity.Portals)
             {
-                var portal = new Portal
-                {
-                    PortalId = portalEntity.PortalId,
-                    PortalName = portalEntity.PortalName,
-                    AlwaysShowEditButton = portalEntity.AlwaysShowEditButton                    
-                };
+                var portal = configuration.NewPortal();
+                portal.PortalId = portalEntity.PortalId;
+                portal.PortalName = portalEntity.PortalName;
+                portal.AlwaysShowEditButton = portalEntity.AlwaysShowEditButton;                
 
                 configuration.Portals.Add(portal);
-                MakeTabs(portal.Tabs, portalEntity.Tabs);
+                MakeTabs(portal, portalEntity.Tabs);
             }
-
-            //
-            configuration.InitializeSiteConfiguration(configuration.Portals[0].Tabs);
 
             return configuration;
         }
 
-        private static void MakeTabs(List<Tab> tabs, IEnumerable<TabEntity> tabEntities)
+        private static void MakeTabs(ITabContainer tabContainer, IEnumerable<TabEntity> tabEntities)
         {
             foreach (TabEntity tabEntity in tabEntities)
             {
-                var tab = new Tab
-                              {
-                                  TabId = tabEntity.TabId,
-                                  TabName = tabEntity.TabName,                                  
-                                  TabDefId = tabEntity.TabDefId,
-                                  TabOrder = tabEntity.TabOrder                                  
-                              };
-                tabs.Add(tab);
+                var tab = tabContainer.NewTab();
+                tab.TabId = tabEntity.TabId;
+                tab.TabName = tabEntity.TabName;
+                tab.TabDefId = tabEntity.TabDefId;
+                tab.TabOrder = tabEntity.TabOrder;
+                tabContainer.Tabs.Add(tab);
                 foreach (ModuleEntity moduleEntity in tabEntity.Modules)
                 {
                     var module = new Module
@@ -86,115 +79,8 @@ namespace PortalStarterKit.Data.Xml
                                      };
                     tab.Modules.Add(module);
                 }
-                MakeTabs(tab.Tabs, tabEntity.Tabs);
+                MakeTabs(tab, tabEntity.Tabs);
             }
         }
-
-        [XmlRoot("SiteConfiguration")]
-        public class SiteConfigurationEntity
-        {
-            [XmlElement("Portal")]
-            public List<PortalEntity> Portals { get; set; }
-
-            [XmlElement("TabDefinition")]
-            public List<TabDefinitionEntity> TabDefinitions { get; set; }
-
-            [XmlElement("ModuleDefinition")]
-            public List<ModuleDefinitionEntity> ModuleDefinitions { get; set; }
-        }
-
-        public class PortalEntity
-        {
-            [XmlAttribute]
-            public int PortalId { get; set; }
-
-            [XmlAttribute]
-            public string PortalName { get; set; }
-
-            [XmlAttribute]
-            public bool AlwaysShowEditButton { get; set; }
-
-            [XmlElement("Tab")]
-            public List<TabEntity> Tabs { get; set; }
-        }
-
-        public class ModuleDefinitionEntity
-        {
-            [XmlAttribute]
-            public int ModuleDefId { get; set; }
-
-            [XmlAttribute]
-            public string FriendlyName { get; set; }
-
-            [XmlAttribute("DesktopSourceFile")]
-            public string SourceFile { get; set; }
-        }
-
-        public class TabDefinitionEntity
-        {
-            [XmlAttribute]
-            public int TabDefId { get; set; }
-
-            [XmlAttribute]
-            public string FriendlyName { get; set; }
-
-            [XmlAttribute("DesktopSourceFile")]
-            public string SourceFile { get; set; }
-        }
-
-        public class TabEntity
-        {
-            [XmlAttribute]
-            public int TabId { get; set; }
-
-            [XmlAttribute]
-            public int TabDefId { get; set; }
-
-            [XmlAttribute]
-            public string TabName { get; set; }
-
-            [XmlAttribute]
-            public int TabOrder { get; set; }
-            
-            [XmlElement("Tab")]
-            public List<TabEntity> Tabs { get; set; }
-
-            [XmlElement("Module")]
-            public List<ModuleEntity> Modules { get; set; }
-
-            [XmlElement("Setting")]
-            public List<SettingEntity> Settings { get; set; }
-        }
-
-        public class ModuleEntity
-        {
-            [XmlAttribute]
-            public int ModuleId { get; set; }
-
-            [XmlAttribute]
-            public int ModuleDefId { get; set; }
-
-            [XmlAttribute]
-            public int ModuleOrder { get; set; }
-
-            [XmlAttribute]
-            public string ModuleTitle { get; set; }
-
-            [XmlAttribute]
-            public PaneType PaneName { get; set; }
-
-            [XmlElement("Setting")]
-            public List<SettingEntity> Settings { get; set; }
-        }
-
-        public class SettingEntity
-        {
-            [XmlAttribute]
-            public string Key { get; set; }
-
-            [XmlAttribute]
-            public string Value { get; set; }
-        }
-
     }
 }
