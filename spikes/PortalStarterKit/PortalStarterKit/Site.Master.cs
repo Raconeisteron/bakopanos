@@ -12,17 +12,17 @@ namespace PortalStarterKit
         {
             var portalSettings = (SiteConfiguration) Context.Cache["SiteConfiguration"];
 
-            AddMenus(NavigationMenu.Items, portalSettings.Portals[0].Tabs);
+            AddMenus(NavigationMenu.Items, portalSettings.Portals[0]);
         }
 
-        private static void AddMenus(MenuItemCollection menuitems, IEnumerable<Tab> tabs)
+        private static void AddMenus(MenuItemCollection menuitems, ITabContainer tabContainer)
         {
-            foreach (Tab tab in tabs)
+            foreach (Tab tab in tabContainer.Tabs)
             {
                 var item = new MenuItem {Text = tab.TabName, NavigateUrl = tab.NavigateUrl};
                 menuitems.Add(item);
 
-                AddMenus(item.ChildItems, tab.Tabs);
+                AddMenus(item.ChildItems, tab);
             }
         }
     }

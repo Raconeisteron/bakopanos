@@ -4,6 +4,11 @@ namespace PortalStarterKit.Model
 {
     public class Module
     {
+        internal Module()
+        {
+
+        }
+
         public int ModuleId { get; set; }
         public int ModuleDefId { get; set; }
         public int ModuleOrder { get; set; }
@@ -12,6 +17,7 @@ namespace PortalStarterKit.Model
         public List<Setting> Settings { get; set; }
 
         public ModuleDefinition ModuleDefinition { get; set; }
+        public Portal ParentPortal { get; internal set; }        
         public Tab ParentTab { get; set; }
     }
 }

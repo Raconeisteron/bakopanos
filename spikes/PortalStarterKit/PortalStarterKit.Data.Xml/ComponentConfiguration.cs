@@ -76,14 +76,13 @@ namespace PortalStarterKit.Data.Xml
                 tabContainer.Tabs.Add(tab);
                 foreach (ModuleEntity moduleEntity in tabEntity.Modules)
                 {
-                    var module = new Module
-                                     {
-                                         ModuleId = moduleEntity.ModuleId,
-                                         ModuleDefId = moduleEntity.ModuleDefId,
-                                         ModuleTitle = moduleEntity.ModuleTitle,
-                                         ModuleOrder = moduleEntity.ModuleOrder,
-                                         PaneName = moduleEntity.PaneName
-                                     };
+                    var module = tab.NewModule();
+                    module.ModuleId = moduleEntity.ModuleId;
+                    module.ModuleDefId = moduleEntity.ModuleDefId;
+                    module.ModuleTitle = moduleEntity.ModuleTitle;
+                    module.ModuleOrder = moduleEntity.ModuleOrder;
+                    module.PaneName = moduleEntity.PaneName;
+                    
                     tab.Modules.Add(module);
                 }
                 MakeTabs(tab, tabEntity.Tabs);

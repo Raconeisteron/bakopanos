@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace PortalStarterKit.Model
 {
-    public class Tab : ITabContainer
+    public class Tab : ITabContainer, IModuleContainer
     {
         private List<Tab> _tabs;
         private List<Module> _modules;
@@ -18,6 +18,13 @@ namespace PortalStarterKit.Model
             var tab = new Tab {ParentTab = this, ParentPortal = ParentPortal};
             
             return tab;
+        }
+
+        public Module NewModule()
+        {
+            var module = new Module { ParentTab = this, ParentPortal = ParentPortal };
+
+            return module;
         }
 
         public int TabId { get; set; }     
