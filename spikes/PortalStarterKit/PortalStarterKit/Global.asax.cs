@@ -6,16 +6,12 @@ using PortalStarterKit.Data;
 namespace PortalStarterKit
 {
     public class Global : HttpApplication
-    {
-        private ISiteConfigurationService _service;
-
+    {       
         private void Application_Start(object sender, EventArgs e)
         {
-            Type siteConfigurationServiceType = Type.GetType(ConfigurationManager.AppSettings["SiteConfigurationService"]);
-            _service = (ISiteConfigurationService)Activator.CreateInstance(siteConfigurationServiceType);
-            
+            var configuration = (IComponentConfiguration)ConfigurationManager.GetSection("DataComponentConfiguration");            
             //deal with cache...
-            Context.Cache.Insert("SiteConfiguration", _service.ReadSiteConfiguration());
+            Context.Cache.Insert("SiteConfiguration", configuration.ReadSiteConfiguration(Server.MapPath));
         }
 
         private void Application_End(object sender, EventArgs e)

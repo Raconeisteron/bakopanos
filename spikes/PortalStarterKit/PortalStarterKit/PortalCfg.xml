@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 
 <SiteConfiguration>
-  <Portal PortalId="0" PortalName="ASP.NET Portal Starter Kit" AlwaysShowEditButton="false">
+  <Portal PortalId="1" PortalName="ASP.NET Portal Starter Kit" AlwaysShowEditButton="false">
     <Tab TabId="1" TabDefId="1" TabName="Employee Info" AccessRoles="All Users;" TabOrder="3">
       <Module ModuleId="7" ModuleTitle="Spy Diary" EditRoles="Admins;" ModuleDefId="1" PaneName="LeftPane" ModuleOrder="1" />
       <Tab TabId="11" TabDefId="1" TabName="OK" AccessRoles="All Users;" TabOrder="3" />
@@ -17,6 +17,7 @@
       </Module>
     </Tab>
   </Portal>
+  <Portal PortalId="2" PortalName="test second portal" AlwaysShowEditButton="false" />
   <TabDefinition FriendlyName="Default" DesktopSourceFile="~/Default.aspx" TabDefId="1" />
   <ModuleDefinition FriendlyName="Announcements" DesktopSourceFile="Modules/Test.ascx" ModuleDefId="1" />
 </SiteConfiguration>

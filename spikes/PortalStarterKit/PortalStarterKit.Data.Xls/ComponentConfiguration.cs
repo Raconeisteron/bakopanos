@@ -10,24 +10,33 @@ using PortalStarterKit.Model;
 
 namespace PortalStarterKit.Data.Xls
 {
-    public class XlsSiteConfigurationService : SiteConfigurationService
+
+    public class ComponentConfiguration : ConfigurationSection, IComponentConfiguration
     {
-        private string _xlsFile;
+        [ConfigurationProperty("XlsFile")]
+        public string XlsFile
+        {
+            get
+            {
+                return this["XlsFile"] as string;
+            }
+        }
+   
         private List<PortalEntity> _portalList;
         private List<TabEntity> _tabList;
         private List<ModuleEntity> _moduleList;
         private List<TabDefinitionEntity> _tabDefList;
         private List<ModuleDefinitionEntity> _moduleDefList;
 
-        public override SiteConfiguration ReadSiteConfiguration()
+        public SiteConfiguration ReadSiteConfiguration(Func<string, string> serverMapPath)
         {
-            _xlsFile = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XlsSiteConfigurationFile"]);
+            string xlsFileName = serverMapPath(XlsFile);
 
-            _portalList = GetList<PortalEntity>("Portals", item => new PortalEntity(item));
-            _tabList = GetList<TabEntity>("Tabs", item => new TabEntity(item));
-            _moduleList = GetList<ModuleEntity>("Modules", item => new ModuleEntity(item));
-            _tabDefList = GetList<TabDefinitionEntity>("TabDefinitions", item => new TabDefinitionEntity(item));
-            _moduleDefList = GetList<ModuleDefinitionEntity>("ModuleDefinitions", item => new ModuleDefinitionEntity(item));
+            _portalList = GetList<PortalEntity>(xlsFileName, "Portals", item => new PortalEntity(item));
+            _tabList = GetList<TabEntity>(xlsFileName, "Tabs", item => new TabEntity(item));
+            _moduleList = GetList<ModuleEntity>(xlsFileName, "Modules", item => new ModuleEntity(item));
+            _tabDefList = GetList<TabDefinitionEntity>(xlsFileName, "TabDefinitions", item => new TabDefinitionEntity(item));
+            _moduleDefList = GetList<ModuleDefinitionEntity>(xlsFileName, "ModuleDefinitions", item => new ModuleDefinitionEntity(item));
 
             var configuration = new SiteConfiguration();
 
@@ -94,12 +103,12 @@ namespace PortalStarterKit.Data.Xls
             }
         }
 
-        private List<T> GetList<T>(string settingsTableName, Func<OleDbDataReader, T> toT)
+        private static List<T> GetList<T>(string xlsFileName, string settingsTableName, Func<OleDbDataReader, T> toT)
         {
             var list = new List<T>();
-            if (File.Exists(_xlsFile))
+            if (File.Exists(xlsFileName))
             {
-                string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + _xlsFile +
+                string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + xlsFileName +
                                           @";Extended Properties=""Excel 8.0;HDR=YES;""";
 
                 var connection = new OleDbConnection(connectionString);
@@ -120,5 +129,7 @@ namespace PortalStarterKit.Data.Xls
 
             return list;
         }
+
+       
     }
 }

@@ -1,21 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Web;
 using System.Xml.Serialization;
 using PortalStarterKit.Model;
 
 namespace PortalStarterKit.Data.Xml
 {
-    public class XmlSiteConfigurationService : SiteConfigurationService
+    public class ComponentConfiguration : ConfigurationSection, IComponentConfiguration
     {
-        public override SiteConfiguration ReadSiteConfiguration()
+        [ConfigurationProperty("XmlFile")]
+        public string XmlFile
         {
-            string xmlFile = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["XmlSiteConfigurationFile"]);
+            get
+            {
+                return this["XmlFile"] as string;
+            }
+        }
 
+        public SiteConfiguration ReadSiteConfiguration(Func<string, string> serverMapPath)
+        {             
             // Code that runs on application startup            
             var serializer = new XmlSerializer(typeof (SiteConfigurationEntity));
-            var fs = new FileStream(xmlFile, FileMode.Open, FileAccess.Read, FileShare.Read);
+            var fs = new FileStream(serverMapPath(XmlFile), FileMode.Open, FileAccess.Read, FileShare.Read);
             
             var siteConfigurationEntity = (SiteConfigurationEntity) serializer.Deserialize(fs);
 
