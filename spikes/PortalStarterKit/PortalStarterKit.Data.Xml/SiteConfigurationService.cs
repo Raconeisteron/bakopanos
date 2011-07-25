@@ -7,7 +7,7 @@ using PortalStarterKit.Model;
 
 namespace PortalStarterKit.Data.Xml
 {
-    public class ComponentConfiguration : ConfigurationSection, IComponentConfiguration
+    public class SiteConfigurationService : ConfigurationSection, ISiteConfigurationService
     {
         [ConfigurationProperty("XmlFile")]
         public string XmlFile

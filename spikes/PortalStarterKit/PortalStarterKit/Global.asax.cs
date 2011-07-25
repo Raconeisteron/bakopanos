@@ -9,7 +9,7 @@ namespace PortalStarterKit
     {       
         private void Application_Start(object sender, EventArgs e)
         {
-            var configuration = (IComponentConfiguration)ConfigurationManager.GetSection("DataComponentConfiguration");            
+            var configuration = (ISiteConfigurationService)ConfigurationManager.GetSection("SiteConfigurationService");            
             //deal with cache...
             Context.Cache.Insert("SiteConfiguration", configuration.ReadSiteConfiguration(Server.MapPath));
         }

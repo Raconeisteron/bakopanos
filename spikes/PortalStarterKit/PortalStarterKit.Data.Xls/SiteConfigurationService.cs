@@ -11,7 +11,7 @@ using PortalStarterKit.Model;
 namespace PortalStarterKit.Data.Xls
 {
 
-    public class ComponentConfiguration : ConfigurationSection, IComponentConfiguration
+    public class SiteConfigurationService : ConfigurationSection, ISiteConfigurationService
     {
         [ConfigurationProperty("XlsFile")]
         public string XlsFile
