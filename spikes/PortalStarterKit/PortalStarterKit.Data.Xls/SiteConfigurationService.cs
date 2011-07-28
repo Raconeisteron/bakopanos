@@ -25,7 +25,7 @@ namespace PortalStarterKit.Data.Xls
         private List<PortalEntity> _portalList;
         private List<TabEntity> _tabList;
         private List<ModuleEntity> _moduleList;
-        private List<TabDefinitionEntity> _tabDefList;
+        //private List<TabDefinitionEntity> _tabDefList;
         private List<ModuleDefinitionEntity> _moduleDefList;
 
         public SiteConfiguration ReadSiteConfiguration(Func<string, string> serverMapPath)
@@ -35,22 +35,13 @@ namespace PortalStarterKit.Data.Xls
             _portalList = GetList<PortalEntity>(xlsFileName, "Portals", item => new PortalEntity(item));
             _tabList = GetList<TabEntity>(xlsFileName, "Tabs", item => new TabEntity(item));
             _moduleList = GetList<ModuleEntity>(xlsFileName, "Modules", item => new ModuleEntity(item));
-            _tabDefList = GetList<TabDefinitionEntity>(xlsFileName, "TabDefinitions", item => new TabDefinitionEntity(item));
+            //_tabDefList = GetList<TabDefinitionEntity>(xlsFileName, "TabDefinitions", item => new TabDefinitionEntity(item));
             _moduleDefList = GetList<ModuleDefinitionEntity>(xlsFileName, "ModuleDefinitions", item => new ModuleDefinitionEntity(item));
 
             var configuration = new SiteConfiguration();
 
-            foreach (TabDefinitionEntity entity in _tabDefList)
-            {
-                var item = new TabDefinition
-                               {
-                                   TabDefId = entity.TabDefId,
-                                   FriendlyName = entity.FriendlyName,
-                                   SourceFile = entity.SourceFile
-                               };
-                configuration.TabDefinitions.Add(item);
-            }
-
+            configuration.TabDefinitions.AddRange(new TabDefinitionService().ReadTabDefinitions());            
+            
             foreach (ModuleDefinitionEntity entity in _moduleDefList)
             {
                 var item = new ModuleDefinition
@@ -80,10 +71,10 @@ namespace PortalStarterKit.Data.Xls
         {
             foreach (TabEntity tabEntity in _tabList.Where(item => item.PortalId == portalId).Where(item => item.ParentTabId == parentTabId))
             {
-                var tab = tabContainer.NewTab();
+                var tab = tabContainer.NewTab(tabEntity.TabDefId);
                 tab.TabId = tabEntity.TabId;
                 tab.TabName = tabEntity.TabName;
-                tab.TabDefId = tabEntity.TabDefId;
+                
                 tab.TabOrder = tabEntity.TabOrder;
             
                 tabContainer.Tabs.Add(tab);

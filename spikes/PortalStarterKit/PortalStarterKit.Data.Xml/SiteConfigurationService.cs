@@ -27,17 +27,8 @@ namespace PortalStarterKit.Data.Xml
             var siteConfigurationEntity = (SiteConfigurationEntity) serializer.Deserialize(fs);
 
             var configuration = new SiteConfiguration();
-            
-            foreach (TabDefinitionEntity entity in siteConfigurationEntity.TabDefinitions)
-            {
-                var item = new TabDefinition
-                {
-                    TabDefId = entity.TabDefId,
-                    FriendlyName = entity.FriendlyName,
-                    SourceFile = entity.SourceFile
-                };
-                configuration.TabDefinitions.Add(item);
-            }
+
+            configuration.TabDefinitions.AddRange(new TabDefinitionService().ReadTabDefinitions());            
             
             foreach (ModuleDefinitionEntity entity in siteConfigurationEntity.ModuleDefinitions)
             {
@@ -68,10 +59,10 @@ namespace PortalStarterKit.Data.Xml
         {
             foreach (TabEntity tabEntity in tabEntities)
             {
-                var tab = tabContainer.NewTab();
+                var tab = tabContainer.NewTab(tabEntity.TabDefId);
                 tab.TabId = tabEntity.TabId;
                 tab.TabName = tabEntity.TabName;
-                tab.TabDefId = tabEntity.TabDefId;
+                
                 tab.TabOrder = tabEntity.TabOrder;
                 tabContainer.Tabs.Add(tab);
                 foreach (ModuleEntity moduleEntity in tabEntity.Modules)

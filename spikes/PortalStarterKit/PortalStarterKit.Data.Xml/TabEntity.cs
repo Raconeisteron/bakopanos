@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace PortalStarterKit.Data.Xml
@@ -9,7 +10,7 @@ namespace PortalStarterKit.Data.Xml
         public int TabId { get; set; }
 
         [XmlAttribute]
-        public int TabDefId { get; set; }
+        public Guid TabDefId { get; set; }
 
         [XmlAttribute]
         public string TabName { get; set; }

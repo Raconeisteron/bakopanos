@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PortalStarterKit.Model
 {
@@ -11,9 +13,18 @@ namespace PortalStarterKit.Model
 
         }
 
-        public Tab NewTab()
+        public Tab NewTab(Guid tabDefId)
         {
-            return new Tab {ParentPortal = this};
+            var tab = new Tab
+                          {
+                              ParentTab = null, 
+                              ParentPortal = this                              
+                          };
+
+            tab.TabDefinition =
+                ParentSiteConfiguration.TabDefinitions.Single<TabDefinition>(item => item.TabDefId == tabDefId);
+
+            return tab;
         }
 
         public int PortalId { get; set; }

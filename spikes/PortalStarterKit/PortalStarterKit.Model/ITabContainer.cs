@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PortalStarterKit.Model
 {
@@ -6,6 +7,6 @@ namespace PortalStarterKit.Model
     {
         List<Tab> Tabs { get; }
 
-        Tab NewTab();
+        Tab NewTab(Guid tabDefId);
     }
 }
