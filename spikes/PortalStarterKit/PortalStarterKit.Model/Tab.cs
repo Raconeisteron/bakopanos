@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace PortalStarterKit.Model
@@ -8,22 +7,15 @@ namespace PortalStarterKit.Model
     {
         private List<Tab> _tabs;
         private List<Module> _modules;
-        
+
         internal Tab()
         {
 
         }
 
-        public Tab NewTab(Guid tabDefId)
+        public Tab NewTab()
         {
             var tab = new Tab {ParentTab = this, ParentPortal = ParentPortal};
-
-            if (ParentPortal!=null)
-            {
-                tab.TabDefinition =
-                    ParentPortal.ParentSiteConfiguration.TabDefinitions.Single<TabDefinition>(
-                        item => item.TabDefId == tabDefId);    
-            }
             
             return tab;
         }
@@ -36,14 +28,16 @@ namespace PortalStarterKit.Model
         }
 
         public int TabId { get; set; }     
+        public int TabDefId { get; set; }
         public string TabName { get; set; }
         public int TabOrder { get; set; }
         
         public string NavigateUrl
         {
             get
-            {                
-                return TabDefinition.SourceFile + "?tabid=" + TabId;
+            {
+                string desktopSrc = ParentPortal.ParentSiteConfiguration.TabDefinitions.Single(item => item.TabDefId == TabDefId).SourceFile;
+                return desktopSrc + "?tabid=" + TabId;
             }
         }
 
@@ -71,7 +65,7 @@ namespace PortalStarterKit.Model
             }
         }
 
-        public TabDefinition TabDefinition { get; internal set; }
+        public TabDefinition TabDefinition { get; set; }
 
         public Portal ParentPortal { get; internal set; }
         public Tab ParentTab { get; internal set; }

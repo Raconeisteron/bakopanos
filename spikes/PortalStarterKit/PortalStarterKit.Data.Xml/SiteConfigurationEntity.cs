@@ -9,8 +9,8 @@ namespace PortalStarterKit.Data.Xml
         [XmlElement("Portal")]
         public List<PortalEntity> Portals { get; set; }
 
-        /*[XmlElement("TabDefinition")]
-        public List<TabDefinitionEntity> TabDefinitions { get; set; }*/
+        [XmlElement("TabDefinition")]
+        public List<TabDefinitionEntity> TabDefinitions { get; set; }
 
         [XmlElement("ModuleDefinition")]
         public List<ModuleDefinitionEntity> ModuleDefinitions { get; set; }
