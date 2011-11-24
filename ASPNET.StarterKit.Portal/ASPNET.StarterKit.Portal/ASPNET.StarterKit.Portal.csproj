@@ -456,7 +456,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="PortalCfg.cs">
+    <Compile Include="PortalCfg.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>PortalCfg.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -551,7 +553,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="PortalCfg.xsd" />
+    <None Include="PortalCfg.xsc">
+      <DependentUpon>PortalCfg.xsd</DependentUpon>
+    </None>
+    <None Include="PortalCfg.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PortalCfg.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PortalCfg.xss">
+      <DependentUpon>PortalCfg.xsd</DependentUpon>
+    </None>
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
