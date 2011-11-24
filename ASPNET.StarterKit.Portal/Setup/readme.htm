@@ -1,0 +1,365 @@
+<!doctype html public "-//w3c//dtd html 4.01 transitional//en">
+<html>
+	<head>
+		<title>ASP.NET Portal Read Me</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<style type="text/css"> <!-- .readme-body-text { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #666666; }
+	.readme-header-text { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; text-transform: uppercase; color: #990000; font-weight: bold; }
+	.readme-body-text-numbers { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #666666; font-weight: bold; }
+	.readme-blank { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 5px; color: #EDEDDC; }
+	.readme-body-codetext { font-family: "Courier New", Courier, mono; font-size: 11px; color: #666666; }
+	--></style>
+	</head>
+	<body bgcolor="#ededdc" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+		<table id="Table1" cellspacing="0" cellpadding="0" width="100%" border="0">
+			<tr class="readme-blank">
+				<td height="15">&nbsp;</td>
+				<td valign="top" align="left" height="15">&nbsp;</td>
+				<td height="15">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="60" background="images/logo-bar.gif"><img height="20" src="images/spacer.gif" width="60"></td>
+				<td class="readme-body-text" valign="top" align="left" background="images/logo-bar.gif"><img height="47" src="images/ASP.NET-Logo-small2.gif" width="65"></td>
+				<td class="readme-body-text" width="60" background="images/logo-bar.gif">&nbsp;</td>
+			</tr>
+			<tr class="readme-blank">
+				<td height="15">&nbsp;</td>
+				<td height="15">&nbsp;</td>
+				<td height="15">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td class="readme-body-text-numbers" valign="top">Congratulations! You have 
+					successfully installed Microsoft ASP.NET Portal.</td>
+				<td class="readme-body-text">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="60">&nbsp;</td>
+				<td class="readme-congrats">&nbsp;</td>
+				<td class="readme-body-text" width="60">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="60">&nbsp;</td>
+				<td class="readme-header-text">web site ACCESS</td>
+				<td class="readme-header-text" width="60">&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="readme-blank" width="60">.</td>
+				<td class="readme-blank">.</td>
+				<td class="readme-blank" width="60">.</td>
+			</tr>
+			<tr>
+				<td width="60">&nbsp;</td>
+				<td class="readme-body-text">
+					<P>If you chose to use IIS during the installation process,&nbsp;point your browser 
+						to:
+						<SPAN class="readme-body-text-numbers">
+							<A href="http://localhost/%APPLICATION_NAME%" target="_blank">http://localhost/%APPLICATION_NAME%</A></SPAN>
+						to access the application.</P>
+					<P>If you chose to use Cassini, please configure Cassini manually.&nbsp; Use 
+						%APPLICATION_NAME% for Cassini virtual root configuration.</P>
+				</td>
+				<td class="readme-body-text" width="60">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="60">&nbsp;</td>
+				<td class="readme-body-text">
+					<p class="MsoNormal">*You can only have one instance of the portal per database, 
+						but you can have multiple portal virtual directories on a single web server and 
+						they have to point to different databases.</p>
+				</td>
+				<td class="readme-body-text" width="60">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="60" height="25">&nbsp;</td>
+				<td height="25">&nbsp;</td>
+				<td width="60" height="25">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="60">&nbsp;</td>
+				<td class="readme-header-text">Source Code ACCESS</td>
+				<td class="readme-header-text" width="60">&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="readme-blank" width="60">.</td>
+				<td class="readme-blank">.</td>
+				<td class="readme-blank" width="60">.</td>
+			</tr>
+			<tr>
+				<td width="60">&nbsp;</td>
+				<td class="readme-body-text">To access the source code, go to:
+					<span class="readme-body-text-numbers">Start 
+      &gt; Programs &gt; ASP.NET Starter Kits</span>
+				</td>
+				<td class="readme-body-text" width="60">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="60" height="25">&nbsp;</td>
+				<td height="25">&nbsp;</td>
+				<td width="60" height="25">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="60">&nbsp;</td>
+				<td class="readme-header-text">SQL SERVER REMOTE INSTALLATION</td>
+				<td class="readme-header-text" width="60">&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="readme-blank" width="60">.</td>
+				<td class="readme-blank">.</td>
+				<td class="readme-blank" width="60">.</td>
+			</tr>
+			<tr>
+				<td width="60">&nbsp;</td>
+				<td class="readme-body-text">If you chose to install the Portal database remotely, 
+					you need to manually run the SQL scripts provided in the
+					<span class="readme-body-text-numbers">Setup</span>
+					subfolder. Then you also need to change the SQL connection string attribute in 
+					the web.config files for both sites.<span class="readme-close-window-text"><br>
+						<br>
+					</span><span class="readme-body-text-numbers">Running SQL scripts on 
+      remote server:<br></span><span class="readme-close-window-text"><br>
+						<table id="Table2" cellspacing="0" cellpadding="0" width="90%" border="0">
+							<tr valign="top" align="left">
+								<td class="readme-body-text-numbers" align="right" width="25">1.</td>
+								<td width="5"><img height="1" src="images/spacer.gif" width="1"></td>
+								<td class="readme-body-text">Open SQL Query Analyzer on the remote machine.</td>
+							</tr>
+							<tr valign="top" align="left">
+								<td class="readme-body-text-numbers" align="right" width="25" height="5"><img height="1" src="images/spacer.gif" width="1"></td>
+								<td width="5" height="5"><img height="1" src="images/spacer.gif" width="1"></td>
+								<td class="readme-body-text" height="5"><img height="1" src="images/spacer.gif" width="1"></td>
+							</tr>
+							<tr valign="top" align="left">
+								<td class="readme-body-text-numbers" align="right" width="25">2.</td>
+								<td width="5"><img height="1" src="images/spacer.gif" width="1"></td>
+								<td class="readme-body-text">Run Setup\Portal_CreateDB.sql.</td>
+							<tr valign="top" align="left">
+								<td class="readme-body-text-numbers" align="right" width="25" height="5"><img height="1" src="images/spacer.gif" width="1"></td>
+								<td width="5" height="5"><img height="1" src="images/spacer.gif" width="1"></td>
+								<td class="readme-body-text" height="5"><img height="1" src="images/spacer.gif" width="1"></td>
+							</tr>
+							<tr valign="top" align="left">
+								<td class="readme-body-text-numbers" align="right" width="25">3.</td>
+								<td width="5"><img height="1" src="images/spacer.gif" width="1"></td>
+								<td class="readme-body-text">Run Setup\Portal_GrantPermissions_ForRemote.sql.</td>
+							</tr>
+							<tr valign="top" align="left">
+								<td class="readme-body-text-numbers" align="right" width="25" height="5"><img height="1" src="images/spacer.gif" width="1"></td>
+								<td width="5" height="5"><img height="1" src="images/spacer.gif" width="1"></td>
+								<td class="readme-body-text" height="5"><img height="1" src="images/spacer.gif" width="1"></td>
+							</tr>
+							<tr valign="top" align="left">
+								<td class="readme-body-text-numbers" align="right" width="25">4.</td>
+								<td width="5"><img height="1" src="images/spacer.gif" width="1"></td>
+								<td class="readme-body-text">Run Setup\Portal_LoadData.sql.</td>
+							</tr>
+						</table>
+						<br>
+						<br>
+					</span>Running the scripts creates a SQL login, <em>PortalUser</em>, with this 
+					password: <em>PortalUser</em><span class="readme-close-window-text"><br>
+						<br>
+						<span class="readme-body-text-numbers">Changing the SQL 
+      Connection String in the web.config file for remote SQL Server 
+      installation:</span>
+						<br>
+						<br>
+					</span>
+					<table id="Table3" cellspacing="0" cellpadding="0" width="90%" border="0">
+						<tr valign="top" align="left">
+							<td class="readme-body-text-numbers" align="right" width="25">1.</td>
+							<td width="5"><img height="1" src="images/spacer.gif" width="1"></td>
+							<td class="readme-body-text">Open the web.config file from %APPLICATION_NAME% 
+								directory using a text editor.</td>
+						</tr>
+						<tr valign="top" align="left">
+							<td class="readme-body-text-numbers" align="right" width="25" height="5"><img height="1" src="images/spacer.gif" width="1"></td>
+							<td width="5" height="5"><img height="1" src="images/spacer.gif" width="1"></td>
+							<td class="readme-body-text" height="5"><img height="1" src="images/spacer.gif" width="1"></td>
+						</tr>
+						<tr valign="top" align="left">
+							<td class="readme-body-text-numbers" align="right" width="25">2.</td>
+							<td width="5"><img height="1" src="images/spacer.gif" width="1"></td>
+							<td class="readme-body-text">Under
+								<span class="readme-body-codetext">&lt;configuration&gt;\&lt;appSettings&gt;\&lt;add 
+            key="ConnectionString" ... /&gt;</span>, change the value attribute.</td>
+						<tr valign="top" align="left">
+							<td class="readme-body-text-numbers" align="right" width="25" height="5"><img height="1" src="images/spacer.gif" width="1"></td>
+							<td width="5" height="5"><img height="1" src="images/spacer.gif" width="1"></td>
+							<td class="readme-body-text" height="5"><img height="1" src="images/spacer.gif" width="1"></td>
+						</tr>
+						<tr valign="top" align="left">
+							<td class="readme-body-text-numbers" align="right" width="25">3.</td>
+							<td width="5"><img height="1" src="images/spacer.gif" width="1"></td>
+							<td class="readme-body-text">Modify the value attribute to the desired connection 
+								string (you can't use Integrated Security) using PortalUser as both the uid and 
+								pwd pointing to the remote SQL Server.<br>
+								<br>
+								web.config section:<br>
+								<br>
+								<span class="readme-body-codetext">&lt;add key="ConnectionString" 
+            value="server=REMOTE_SERVER;database=Portal;uid=PortalUser;pwd=PortalUser;" 
+            /&gt;</span><br>
+								<br>
+							</td>
+						</tr>
+					</table>
+					<span class="readme-close-window-text"></span></td>
+				<td class="readme-body-text" width="60">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="60">&nbsp;</td>
+				<td class="readme-header-text">Database clean up</td>
+				<td class="readme-header-text" width="60">&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="readme-blank" width="60">.</td>
+				<td class="readme-blank">.</td>
+				<td class="readme-blank" width="60">.</td>
+			</tr>
+			<tr>
+				<td width="60">&nbsp;</td>
+				<td class="readme-body-text">If you chose to&nbsp;remove the Portal database sample 
+					data, you can manually run the SQL script, Portal_CleanUp.sql,&nbsp;provided in 
+					the
+					<span class="readme-body-text-numbers">Setup</span>
+					subfolder using Query Analyzer.</td>
+				<td class="readme-body-text" width="60">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="60" height="25">&nbsp;</td>
+				<td height="25">&nbsp;</td>
+				<td width="60" height="25">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="60">&nbsp;</td>
+				<td class="readme-header-text">What's new</td>
+				<td class="readme-header-text" width="60">&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="readme-blank" width="60">.</td>
+				<td class="readme-blank">.</td>
+				<td class="readme-blank" width="60">.</td>
+			</tr>
+			<tr>
+				<td width="60">&nbsp;</td>
+				<td class="readme-body-text"><span class="readme-close-window-text">
+						<br>
+						<table width="90%" border="0" cellpadding="0" cellspacing="0" id="Table4">
+							<tr align="left" valign="top">
+								<td width="25" align="right" class="readme-body-text-numbers"><SPAN style="mso-list: Ignore">1.</SPAN></td>
+								<td width="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td class="readme-body-text">
+									Added password security through the addition of the storing passwords in 
+									encrypted format.
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" height="5" align="right" class="readme-body-text-numbers"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td width="5" height="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td height="5" class="readme-body-text"><img src="images/spacer.gif" width="1" height="1"></td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" align="right" class="readme-body-text-numbers"><SPAN style="mso-list: Ignore">2.</SPAN></td>
+								<td width="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td class="readme-body-text">Fixed Database script to work correctly when SQL 
+									server is set up as case-sensitive.</td>
+							<tr align="left" valign="top">
+								<td width="25" height="5" align="right" class="readme-body-text-numbers"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td width="5" height="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td height="5" class="readme-body-text"><img src="images/spacer.gif" width="1" height="1"></td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" align="right" class="readme-body-text-numbers"><SPAN style="mso-list: Ignore">3.</SPAN></td>
+								<td width="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td class="readme-body-text">Fixed Request.ApplicationPath related problems when 
+									application is installed in a website root, instead of virtual directory.</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" height="5" align="right" class="readme-body-text-numbers"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td width="5" height="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td height="5" class="readme-body-text"><img src="images/spacer.gif" width="1" height="1"></td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" align="right" class="readme-body-text-numbers"><SPAN style="mso-list: Ignore">4.</SPAN></td>
+								<td width="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td class="readme-body-text">Fixed culture setting issues.</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" height="5" align="right" class="readme-body-text-numbers"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td width="5" height="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td height="5" class="readme-body-text"><img src="images/spacer.gif" width="1" height="1"></td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" align="right" class="readme-body-text-numbers"><SPAN style="mso-list: Ignore">5.</SPAN></td>
+								<td width="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td class="readme-body-text">New naming convention for database objects.</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" height="5" align="right" class="readme-body-text-numbers"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td width="5" height="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td height="5" class="readme-body-text"><img src="images/spacer.gif" width="1" height="1"></td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" align="right" class="readme-body-text-numbers"><SPAN style="mso-list: Ignore">6.</SPAN></td>
+								<td width="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td class="readme-body-text">Added clean-up script to delete sample data.</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" height="5" align="right" class="readme-body-text-numbers"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td width="5" height="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td height="5" class="readme-body-text"><img src="images/spacer.gif" width="1" height="1"></td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" align="right" class="readme-body-text-numbers"><SPAN style="mso-list: Ignore">7.</SPAN></td>
+								<td width="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td class="readme-body-text">Added Cassini support.</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" height="5" align="right" class="readme-body-text-numbers"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td width="5" height="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td height="5" class="readme-body-text"><img src="images/spacer.gif" width="1" height="1"></td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" align="right" class="readme-body-text-numbers"><SPAN style="mso-list: Ignore">8.</SPAN></td>
+								<td width="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td class="readme-body-text">Added support for Windows 2003 and .NET 1.1</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" height="5" align="right" class="readme-body-text-numbers"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td width="5" height="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td height="5" class="readme-body-text"><img src="images/spacer.gif" width="1" height="1"></td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" align="right" class="readme-body-text-numbers"><SPAN style="mso-list: Ignore">9.</SPAN></td>
+								<td width="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td class="readme-body-text">Fixed security loophole when editing an existing 
+									module.</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" height="5" align="right" class="readme-body-text-numbers"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td width="5" height="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td height="5" class="readme-body-text"><img src="images/spacer.gif" width="1" height="1"></td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="25" align="right" class="readme-body-text-numbers"><SPAN style="mso-list: Ignore">10.</SPAN></td>
+								<td width="5"><img src="images/spacer.gif" width="1" height="1"></td>
+								<td class="readme-body-text">Fixed event-handler issues when editing xml module.</td>
+							</tr>
+						</table>
+					</span></td>
+				<td width="60" class="readme-body-text">&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="60" height="40">&nbsp;</td>
+				<td height="40">&nbsp;</td>
+				<td width="60" height="40">&nbsp;</td>
+			</tr>
+			<tr>
+				<td height="47" background="images/logo-bar.gif"></td>
+				<td height="47" background="images/logo-bar.gif">&nbsp;</td>
+				<td height="47" background="images/logo-bar.gif">&nbsp;</td>
+			</tr>
+		</table>
+	</body>
+</html>
