@@ -280,6 +280,7 @@
     <Compile Include="Components\LinksDB.cs" />
     <Compile Include="Components\RolesDB.cs" />
     <Compile Include="Components\Security.cs" />
+    <Compile Include="Components\UsersDB.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

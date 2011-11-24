@@ -185,7 +185,7 @@ namespace ASPNET.StarterKit.Portal
             //
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
             var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
 
             // Mark the Command as a SPROC
@@ -350,7 +350,7 @@ namespace ASPNET.StarterKit.Portal
             //
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
             var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
 
             // Mark the Command as a SPROC
@@ -615,7 +615,7 @@ namespace ASPNET.StarterKit.Portal
             //
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myConnection = new SqlConnection(ConfigurationManager.AppSettings["connectionString"]);
             var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
 
             // Mark the Command as a SPROC
@@ -733,7 +733,7 @@ namespace ASPNET.StarterKit.Portal
                 siteSettings = new SiteConfiguration();
 
                 // Retrieve the location of the XML configuration file
-                string configFile = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["configFile"]);
+                string configFile = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["configFile"]);
 
                 // Set the AutoIncrement property to true for easier adding of rows
                 siteSettings.Tab.TabIdColumn.AutoIncrement = true;
@@ -773,7 +773,7 @@ namespace ASPNET.StarterKit.Portal
                 // which reloads the cache, the siteSettings object will be Null 
                 siteSettings = GetSiteSettings();
             }
-            string configFile = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["configFile"]);
+            string configFile = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["configFile"]);
 
             // Object is evicted from the Cache here.  
             siteSettings.WriteXml(configFile);
