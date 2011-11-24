@@ -1,20 +1,18 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using System.Data.SqlClient;
+using System.Web.UI;
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNET.StarterKit.Portal
+{
+    public partial class EditLinks : Page
+    {
+        private int itemId;
+        private int moduleId;
 
-    public partial class EditLinks : System.Web.UI.Page {
-    
-        int itemId = 0;
-        int moduleId = 0;
+        public EditLinks()
+        {
+            Page.Init += Page_Init;
+        }
 
         //****************************************************************
         //
@@ -26,18 +24,20 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void Page_Load(object sender, System.EventArgs e) {
-
+        protected void Page_Load(object sender, EventArgs e)
+        {
             // Determine ModuleId of Links Portal Module
             moduleId = Int32.Parse(Request.Params["Mid"]);
 
             // Verify that the current user has access to edit this module
-            if (PortalSecurity.HasEditPermissions(moduleId) == false) {
+            if (PortalSecurity.HasEditPermissions(moduleId) == false)
+            {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
 
             // Determine ItemId of Link to Update
-            if (Request.Params["ItemId"] != null) {
+            if (Request.Params["ItemId"] != null)
+            {
                 itemId = Int32.Parse(Request.Params["ItemId"]);
             }
 
@@ -45,24 +45,24 @@ namespace ASPNET.StarterKit.Portal {
             // link itemId value is specified, and if so populate page
             // contents with the link details
 
-            if (Page.IsPostBack == false) {
-
-                if (itemId != 0) {
-
+            if (Page.IsPostBack == false)
+            {
+                if (itemId != 0)
+                {
                     // Obtain a single row of link information
-                    ASPNET.StarterKit.Portal.LinkDB links = new ASPNET.StarterKit.Portal.LinkDB();
+                    var links = new LinkDB();
                     SqlDataReader dr = links.GetSingleLink(itemId);
-                
+
                     // Read in first row from database
                     dr.Read();
 
-					// Security check.  verify that itemid is within the module.
-					int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
-					if (dbModuleID != moduleId)
-					{
-						dr.Close();
-						Response.Redirect("~/Admin/EditAccessDenied.aspx");
-					}
+                    // Security check.  verify that itemid is within the module.
+                    int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
+                    if (dbModuleID != moduleId)
+                    {
+                        dr.Close();
+                        Response.Redirect("~/Admin/EditAccessDenied.aspx");
+                    }
 
                     TitleField.Text = (String) dr["Title"];
                     DescriptionField.Text = (String) dr["Description"];
@@ -71,7 +71,7 @@ namespace ASPNET.StarterKit.Portal {
                     ViewOrderField.Text = dr["ViewOrder"].ToString();
                     CreatedBy.Text = (String) dr["CreatedByUser"];
                     CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
-                
+
                     // Close datareader
                     dr.Close();
                 }
@@ -89,22 +89,24 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void UpdateBtn_Click(Object sender, EventArgs e) {
-
-            if (Page.IsValid == true) {
-
+        protected void UpdateBtn_Click(Object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
                 // Create an instance of the Link DB component
-                ASPNET.StarterKit.Portal.LinkDB links = new ASPNET.StarterKit.Portal.LinkDB();
+                var links = new LinkDB();
 
-                if (itemId == 0) {
-
+                if (itemId == 0)
+                {
                     // Add the link within the Links table
-                    links.AddLink( moduleId, itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text, MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text );
+                    links.AddLink(moduleId, itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                                  MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
-                else {
-
+                else
+                {
                     // Update the link within the Links table
-                    links.UpdateLink( moduleId, itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text, MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text );
+                    links.UpdateLink(moduleId, itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                                     MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
 
                 // Redirect back to the portal home page
@@ -120,14 +122,14 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void DeleteBtn_Click(Object sender, EventArgs e) {
-
+        protected void DeleteBtn_Click(Object sender, EventArgs e)
+        {
             // Only attempt to delete the item if it is an existing item
             // (new items will have "ItemId" of 0)
 
-            if (itemId != 0) {
-
-                ASPNET.StarterKit.Portal.LinkDB links = new ASPNET.StarterKit.Portal.LinkDB();
+            if (itemId != 0)
+            {
+                var links = new LinkDB();
                 links.DeleteLink(itemId);
             }
 
@@ -143,31 +145,30 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void CancelBtn_Click(Object sender, EventArgs e) {
-
+        protected void CancelBtn_Click(Object sender, EventArgs e)
+        {
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
-        
-        public EditLinks() {
-            Page.Init += new System.EventHandler(Page_Init);
-        }
 
-        protected void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {    
-
+        private void InitializeComponent()
+        {
         }
-		#endregion
+
+        #endregion
     }
 }

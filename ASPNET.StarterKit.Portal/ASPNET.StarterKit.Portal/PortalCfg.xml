@@ -1,4 +1,5 @@
 <?xml version="1.0" standalone="yes"?>
+
 <SiteConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://tempuri.org/PortalCfg.xsd">
   <Global PortalId="0" PortalName="ASP.NET Portal Starter Kit" AlwaysShowEditButton="false" />
   <Tab TabId="1" TabName="Home" AccessRoles="All Users;" TabOrder="1" ShowMobile="true" MobileTabName="Home">

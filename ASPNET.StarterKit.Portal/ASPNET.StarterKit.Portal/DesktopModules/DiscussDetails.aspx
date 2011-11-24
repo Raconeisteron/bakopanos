@@ -1,10 +1,10 @@
 <%@ Page language="c#" CodeBehind="DiscussDetails.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.DiscussDetails" %>
-<%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
+<%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 
 <HTML>
     <HEAD>
-        <link href='<%= Global.GetApplicationPath(Request) + "/ASPNETPortal.css" %>' type="text/css" rel="stylesheet">
+        <link href='<%=Global.GetApplicationPath(Request) + "/ASPNETPortal.css"%>' type="text/css" rel="stylesheet">
     </HEAD>
     <body bottomMargin="0" leftMargin="0" topMargin="0" rightMargin="0" marginwidth="0" marginheight="0">
         <form name="form1" runat="server">
@@ -28,7 +28,7 @@
                                 </td>
                                 <td align="right">
                                     <asp:panel id="ButtonPanel" runat="server"><A class="CommandButton" id="prevItem" title="Previous Message" runat="server">
-                                            <IMG src='<%=Global.GetApplicationPath(Request) + "/images/rew.gif"  %>' border="0"></A>&nbsp; <A class="CommandButton" id="nextItem" title="Next Message" runat="server"><IMG src='<%=Global.GetApplicationPath(Request) + "/images/fwd.gif"  %>' border="0"></A>&nbsp; 
+                                            <IMG src='<%=Global.GetApplicationPath(Request) + "/images/rew.gif"%>' border="0"></A>&nbsp; <A class="CommandButton" id="nextItem" title="Next Message" runat="server"><IMG src='<%=Global.GetApplicationPath(Request) + "/images/fwd.gif"%>' border="0"></A>&nbsp; 
                                             <asp:LinkButton id="ReplyBtn" runat="server" EnableViewState="false" Cssclass="CommandButton" Text="Reply to this Message" onclick="ReplyBtn_Click"></asp:LinkButton>
                                     </asp:panel>
                                 </td>

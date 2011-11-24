@@ -1,10 +1,10 @@
 <%@ Page Language="c#" CodeBehind="EditHtml.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.EditHtml" %>
-<%@ Register TagPrefix="portal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
+<%@ Register TagPrefix="portal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 
 <html>
     <head>
-        <link rel="stylesheet" href='<%= Global.GetApplicationPath(Request) + "/ASPNetPortal.css" %>' type="text/css" />
+        <link rel="stylesheet" href='<%=Global.GetApplicationPath(Request) + "/ASPNetPortal.css"%>' type="text/css" />
     </head>
     <body leftmargin="0" bottommargin="0" rightmargin="0" topmargin="0" marginheight="0" marginwidth="0">
         <form runat="server">

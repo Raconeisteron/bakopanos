@@ -1,21 +1,18 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using System.Data.SqlClient;
+using System.Web.UI;
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNET.StarterKit.Portal
+{
+    public partial class DiscussDetails : Page
+    {
+        private int itemId;
+        private int moduleId;
 
-    public partial class DiscussDetails : System.Web.UI.Page {
-    
-
-        int moduleId = 0;
-        int itemId = 0;
+        public DiscussDetails()
+        {
+            Page.Init += Page_Init;
+        }
 
         //*******************************************************
         //
@@ -25,32 +22,37 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected void Page_Load(object sender, System.EventArgs e) {
-
+        protected void Page_Load(object sender, EventArgs e)
+        {
             // Obtain moduleId and ItemId from QueryString
             moduleId = Int32.Parse(Request.Params["Mid"]);
-        
-            if (Request.Params["ItemId"] != null) {
+
+            if (Request.Params["ItemId"] != null)
+            {
                 itemId = Int32.Parse(Request.Params["ItemId"]);
             }
-            else {
+            else
+            {
                 itemId = 0;
                 EditPanel.Visible = true;
                 ButtonPanel.Visible = false;
             }
 
             // Populate message contents if this is the first visit to the page
-            if (Page.IsPostBack == false && itemId != 0) {
+            if (Page.IsPostBack == false && itemId != 0)
+            {
                 BindData();
             }
 
-            if (PortalSecurity.HasEditPermissions(moduleId) == false) {
-        
-                if (itemId == 0) {
+            if (PortalSecurity.HasEditPermissions(moduleId) == false)
+            {
+                if (itemId == 0)
+                {
                     Response.Redirect("~/Admin/EditAccessDenied.aspx");
                 }
-                else {
-                    ReplyBtn.Visible=false;
+                else
+                {
+                    ReplyBtn.Visible = false;
                 }
             }
         }
@@ -63,8 +65,8 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected void ReplyBtn_Click(Object Sender, EventArgs e) {
-
+        protected void ReplyBtn_Click(Object Sender, EventArgs e)
+        {
             EditPanel.Visible = true;
             ButtonPanel.Visible = false;
         }
@@ -77,13 +79,14 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected void UpdateBtn_Click(Object sender, EventArgs e) {
-
+        protected void UpdateBtn_Click(Object sender, EventArgs e)
+        {
             // Create new discussion database component
-            DiscussionDB discuss = new DiscussionDB();
+            var discuss = new DiscussionDB();
 
             // Add new message (updating the "itemId" on the page)
-            itemId = discuss.AddMessage(moduleId, itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text), Server.HtmlEncode(BodyField.Text));
+            itemId = discuss.AddMessage(moduleId, itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
+                                        Server.HtmlEncode(BodyField.Text));
 
             // Update visibility of page elements
             EditPanel.Visible = false;
@@ -102,8 +105,8 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        protected void CancelBtn_Click(Object sender, EventArgs e) {
-
+        protected void CancelBtn_Click(Object sender, EventArgs e)
+        {
             // Update visibility of page elements
             EditPanel.Visible = false;
             ButtonPanel.Visible = true;
@@ -117,22 +120,22 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        void BindData() {
-
+        private void BindData()
+        {
             // Obtain the selected item from the Discussion table
-            ASPNET.StarterKit.Portal.DiscussionDB discuss = new ASPNET.StarterKit.Portal.DiscussionDB();
+            var discuss = new DiscussionDB();
             SqlDataReader dr = discuss.GetSingleMessage(itemId);
-        
+
             // Load first row from database
             dr.Read();
 
-			// Security check.  verify that itemid is within the module.
-			int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
-			if (dbModuleID != moduleId)
-			{
-				dr.Close();
-				Response.Redirect("~/Admin/EditAccessDenied.aspx");
-			}
+            // Security check.  verify that itemid is within the module.
+            int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
+            if (dbModuleID != moduleId)
+            {
+                dr.Close();
+                Response.Redirect("~/Admin/EditAccessDenied.aspx");
+            }
 
             // Update labels with message contents
             Title.Text = (String) dr["Title"];
@@ -146,28 +149,32 @@ namespace ASPNET.StarterKit.Portal {
 
             // Update next and preview links
             object id1 = dr["PrevMessageID"];
-        
-            if (id1 != DBNull.Value) {
+
+            if (id1 != DBNull.Value)
+            {
                 prevId = (int) id1;
                 prevItem.HRef = Request.Path + "?ItemId=" + prevId + "&mid=" + moduleId;
             }
 
             object id2 = dr["NextMessageID"];
-        
-            if (id2 != DBNull.Value) {
+
+            if (id2 != DBNull.Value)
+            {
                 nextId = (int) id2;
                 nextItem.HRef = Request.Path + "?ItemId=" + nextId + "&mid=" + moduleId;
             }
-        
+
             // close the datareader
             dr.Close();
-        
+
             // Show/Hide Next/Prev Button depending on whether there is a next/prev message
-            if (prevId <= 0) {
+            if (prevId <= 0)
+            {
                 prevItem.Visible = false;
             }
 
-            if (nextId <= 0) {
+            if (nextId <= 0)
+            {
                 nextItem.Visible = false;
             }
         }
@@ -179,34 +186,34 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*******************************************************
 
-        String ReTitle(String title) {
-
-            if (title.Length > 0 & title.IndexOf("Re: ",0) == -1) {
+        private String ReTitle(String title)
+        {
+            if (title.Length > 0 & title.IndexOf("Re: ", 0) == -1)
+            {
                 title = "Re: " + title;
             }
 
             return title;
         }
-        
-        public DiscussDetails() {
-            Page.Init += new System.EventHandler(Page_Init);
-        }
 
-        protected void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {    
-
+        private void InitializeComponent()
+        {
         }
-		#endregion
+
+        #endregion
     }
 }

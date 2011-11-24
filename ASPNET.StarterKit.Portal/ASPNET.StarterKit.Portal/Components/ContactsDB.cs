@@ -2,10 +2,9 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using ASPNET.StarterKit.Portal;
 
-namespace ASPNET.StarterKit.Portal {
-
+namespace ASPNET.StarterKit.Portal
+{
     //*********************************************************************
     //
     // ContactDB Class
@@ -15,8 +14,8 @@ namespace ASPNET.StarterKit.Portal {
     //
     //*********************************************************************
 
-    public class ContactsDB {
-
+    public class ContactsDB
+    {
         //*********************************************************************
         //
         // GetContacts Method
@@ -33,22 +32,22 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public DataSet GetContacts(int moduleId) {
-
+        public DataSet GetContacts(int moduleId)
+        {
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlDataAdapter myCommand = new SqlDataAdapter("Portal_GetContacts", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlDataAdapter("Portal_GetContacts", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             parameterModuleId.Value = moduleId;
             myCommand.SelectCommand.Parameters.Add(parameterModuleId);
 
             // Create and Fill the DataSet
-            DataSet myDataSet = new DataSet();
+            var myDataSet = new DataSet();
             myCommand.Fill(myDataSet);
 
             // Return the DataSet
@@ -67,24 +66,24 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleContact(int itemId) {
-
+        public SqlDataReader GetSingleContact(int itemId)
+        {
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_GetSingleContact", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_GetSingleContact", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
             parameterItemId.Value = itemId;
             myCommand.Parameters.Add(parameterItemId);
 
             // Execute the command
             myConnection.Open();
             SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-            
+
             // Return the datareader 
             return result;
         }
@@ -101,17 +100,17 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public void DeleteContact(int itemID) {
-
+        public void DeleteContact(int itemID)
+        {
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_DeleteContact", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_DeleteContact", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
             parameterItemID.Value = itemID;
             myCommand.Parameters.Add(parameterItemID);
 
@@ -132,49 +131,51 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public int AddContact(int moduleId, int itemId, String userName, String name, String role, String email, String contact1, String contact2) {
-
-            if (userName.Length < 1) {
+        public int AddContact(int moduleId, int itemId, String userName, String name, String role, String email,
+                              String contact1, String contact2)
+        {
+            if (userName.Length < 1)
+            {
                 userName = "unknown";
             }
 
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_AddContact", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_AddContact", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
             parameterItemID.Direction = ParameterDirection.Output;
             myCommand.Parameters.Add(parameterItemID);
 
-            SqlParameter parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             parameterModuleID.Value = moduleId;
             myCommand.Parameters.Add(parameterModuleID);
 
-            SqlParameter parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
+            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
             parameterUserName.Value = userName;
             myCommand.Parameters.Add(parameterUserName);
 
-            SqlParameter parameterName = new SqlParameter("@Name", SqlDbType.NVarChar, 100);
+            var parameterName = new SqlParameter("@Name", SqlDbType.NVarChar, 100);
             parameterName.Value = name;
             myCommand.Parameters.Add(parameterName);
 
-            SqlParameter parameterRole = new SqlParameter("@Role", SqlDbType.NVarChar, 100);
+            var parameterRole = new SqlParameter("@Role", SqlDbType.NVarChar, 100);
             parameterRole.Value = role;
             myCommand.Parameters.Add(parameterRole);
 
-            SqlParameter parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
             myCommand.Parameters.Add(parameterEmail);
 
-            SqlParameter parameterContact1 = new SqlParameter("@Contact1", SqlDbType.NVarChar, 100);
+            var parameterContact1 = new SqlParameter("@Contact1", SqlDbType.NVarChar, 100);
             parameterContact1.Value = contact1;
             myCommand.Parameters.Add(parameterContact1);
 
-            SqlParameter parameterContact2 = new SqlParameter("@Contact2", SqlDbType.NVarChar, 100);
+            var parameterContact2 = new SqlParameter("@Contact2", SqlDbType.NVarChar, 100);
             parameterContact2.Value = contact2;
             myCommand.Parameters.Add(parameterContact2);
 
@@ -182,7 +183,7 @@ namespace ASPNET.StarterKit.Portal {
             myCommand.ExecuteNonQuery();
             myConnection.Close();
 
-            return (int)parameterItemID.Value;
+            return (int) parameterItemID.Value;
         }
 
         //*********************************************************************
@@ -197,45 +198,47 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public void UpdateContact(int moduleId, int itemId, String userName, String name, String role, String email, String contact1, String contact2) {
-
-            if (userName.Length < 1) {
+        public void UpdateContact(int moduleId, int itemId, String userName, String name, String role, String email,
+                                  String contact1, String contact2)
+        {
+            if (userName.Length < 1)
+            {
                 userName = "unknown";
             }
 
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_UpdateContact", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_UpdateContact", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
             parameterItemID.Value = itemId;
             myCommand.Parameters.Add(parameterItemID);
 
-            SqlParameter parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
+            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
             parameterUserName.Value = userName;
             myCommand.Parameters.Add(parameterUserName);
 
-            SqlParameter parameterName = new SqlParameter("@Name", SqlDbType.NVarChar, 100);
+            var parameterName = new SqlParameter("@Name", SqlDbType.NVarChar, 100);
             parameterName.Value = name;
             myCommand.Parameters.Add(parameterName);
 
-            SqlParameter parameterRole = new SqlParameter("@Role", SqlDbType.NVarChar, 100);
+            var parameterRole = new SqlParameter("@Role", SqlDbType.NVarChar, 100);
             parameterRole.Value = role;
             myCommand.Parameters.Add(parameterRole);
 
-            SqlParameter parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
             myCommand.Parameters.Add(parameterEmail);
 
-            SqlParameter parameterContact1 = new SqlParameter("@Contact1", SqlDbType.NVarChar, 100);
+            var parameterContact1 = new SqlParameter("@Contact1", SqlDbType.NVarChar, 100);
             parameterContact1.Value = contact1;
             myCommand.Parameters.Add(parameterContact1);
 
-            SqlParameter parameterContact2 = new SqlParameter("@Contact2", SqlDbType.NVarChar, 100);
+            var parameterContact2 = new SqlParameter("@Contact2", SqlDbType.NVarChar, 100);
             parameterContact2.Value = contact2;
             myCommand.Parameters.Add(parameterContact2);
 
@@ -245,4 +248,3 @@ namespace ASPNET.StarterKit.Portal {
         }
     }
 }
-

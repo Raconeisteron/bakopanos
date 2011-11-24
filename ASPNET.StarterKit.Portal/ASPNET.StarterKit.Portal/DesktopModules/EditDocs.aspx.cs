@@ -1,21 +1,19 @@
 using System;
-using System.IO;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using System.Data.SqlClient;
+using System.IO;
+using System.Web.UI;
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNET.StarterKit.Portal
+{
+    public partial class EditDocs : Page
+    {
+        private int itemId;
+        private int moduleId;
 
-    public partial class EditDocs : System.Web.UI.Page {
-    
-        int itemId = 0;
-        int moduleId = 0;
+        public EditDocs()
+        {
+            Page.Init += Page_Init;
+        }
 
         //****************************************************************
         //
@@ -27,18 +25,20 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void Page_Load(object sender, System.EventArgs e) {
-
+        protected void Page_Load(object sender, EventArgs e)
+        {
             // Determine ModuleId of Announcements Portal Module
             moduleId = Int32.Parse(Request.Params["Mid"]);
 
             // Verify that the current user has access to edit this module
-            if (PortalSecurity.HasEditPermissions(moduleId) == false) {
+            if (PortalSecurity.HasEditPermissions(moduleId) == false)
+            {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
 
             // Determine ItemId of Document to Update
-            if (Request.Params["ItemId"] != null) {
+            if (Request.Params["ItemId"] != null)
+            {
                 itemId = Int32.Parse(Request.Params["ItemId"]);
             }
 
@@ -46,31 +46,31 @@ namespace ASPNET.StarterKit.Portal {
             // document itemId value is specified, and if so populate page
             // contents with the document details
 
-            if (Page.IsPostBack == false) {
-
-                if (itemId != 0) {
-
+            if (Page.IsPostBack == false)
+            {
+                if (itemId != 0)
+                {
                     // Obtain a single row of document information
-                    ASPNET.StarterKit.Portal.DocumentDB documents = new ASPNET.StarterKit.Portal.DocumentDB();
+                    var documents = new DocumentDB();
                     SqlDataReader dr = documents.GetSingleDocument(itemId);
-                
+
                     // Load first row into Datareader
                     dr.Read();
 
-					// Security check.  verify that itemid is within the module.
-					int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
-					if (dbModuleID != moduleId)
-					{
-						dr.Close();
-						Response.Redirect("~/Admin/EditAccessDenied.aspx");
-					}
+                    // Security check.  verify that itemid is within the module.
+                    int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
+                    if (dbModuleID != moduleId)
+                    {
+                        dr.Close();
+                        Response.Redirect("~/Admin/EditAccessDenied.aspx");
+                    }
 
                     NameField.Text = (String) dr["FileFriendlyName"];
                     PathField.Text = (String) dr["FileNameUrl"];
                     CategoryField.Text = (String) dr["Category"];
                     CreatedBy.Text = (String) dr["CreatedByUser"];
                     CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
-                
+
                     dr.Close();
                 }
 
@@ -87,32 +87,33 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void UpdateBtn_Click(Object sender, EventArgs e) {
-
+        protected void UpdateBtn_Click(Object sender, EventArgs e)
+        {
             // Only Update if Input Data is Valid
-            if (Page.IsValid == true) {
-
+            if (Page.IsValid)
+            {
                 // Create an instance of the Document DB component
-                ASPNET.StarterKit.Portal.DocumentDB documents = new ASPNET.StarterKit.Portal.DocumentDB();
+                var documents = new DocumentDB();
 
                 // Determine whether a file was uploaded
-            
-                if ((storeInDatabase.Checked == true) && (FileUpload.PostedFile != null)) {
 
+                if (storeInDatabase.Checked && (FileUpload.PostedFile != null))
+                {
                     // for web farm support
-                    int length = (int) FileUpload.PostedFile.InputStream.Length;
+                    var length = (int) FileUpload.PostedFile.InputStream.Length;
                     String contentType = FileUpload.PostedFile.ContentType;
-                    byte[] content = new byte[length];
+                    var content = new byte[length];
 
                     FileUpload.PostedFile.InputStream.Read(content, 0, length);
-        
+
                     // Update the document within the Documents table
-                    documents.UpdateDocument( moduleId, itemId, Context.User.Identity.Name, NameField.Text, PathField.Text, CategoryField.Text, content, length, contentType );        
+                    documents.UpdateDocument(moduleId, itemId, Context.User.Identity.Name, NameField.Text,
+                                             PathField.Text, CategoryField.Text, content, length, contentType);
                 }
-                else {
-            
-                    if ((Upload.Checked == true) && (FileUpload.PostedFile != null)) {
-                
+                else
+                {
+                    if (Upload.Checked && (FileUpload.PostedFile != null))
+                    {
                         // Calculate virtualPath of the newly uploaded file
                         String virtualPath = "~/uploads/" + Path.GetFileName(FileUpload.PostedFile.FileName);
 
@@ -125,14 +126,15 @@ namespace ASPNET.StarterKit.Portal {
                         // Update PathFile with uploaded virtual file location
                         PathField.Text = virtualPath;
                     }
-                    documents.UpdateDocument( moduleId, itemId, Context.User.Identity.Name, NameField.Text, PathField.Text, CategoryField.Text, new byte[0], 0, "" );
+                    documents.UpdateDocument(moduleId, itemId, Context.User.Identity.Name, NameField.Text,
+                                             PathField.Text, CategoryField.Text, new byte[0], 0, "");
                 }
 
                 // Redirect back to the portal home page
                 Response.Redirect((String) ViewState["UrlReferrer"]);
             }
         }
-    
+
         //****************************************************************
         //
         // The DeleteBtn_Click event handler on this Page is used to delete an
@@ -141,14 +143,14 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void DeleteBtn_Click(Object sender, EventArgs e) {
-
+        protected void DeleteBtn_Click(Object sender, EventArgs e)
+        {
             // Only attempt to delete the item if it is an existing item
             // (new items will have "ItemId" of 0)
 
-            if (itemId != 0) {
-
-                ASPNET.StarterKit.Portal.DocumentDB documents = new ASPNET.StarterKit.Portal.DocumentDB();
+            if (itemId != 0)
+            {
+                var documents = new DocumentDB();
                 documents.DeleteDocument(itemId);
             }
 
@@ -164,32 +166,30 @@ namespace ASPNET.StarterKit.Portal {
         //
         //****************************************************************
 
-        protected void CancelBtn_Click(Object sender, EventArgs e) {
-
+        protected void CancelBtn_Click(Object sender, EventArgs e)
+        {
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
-        
-        public EditDocs() {
-            Page.Init += new System.EventHandler(Page_Init);
-        }
 
-        protected void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {    
-
+        private void InitializeComponent()
+        {
         }
-		#endregion
 
+        #endregion
     }
 }

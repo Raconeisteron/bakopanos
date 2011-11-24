@@ -3,8 +3,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal {
-
+namespace ASPNET.StarterKit.Portal
+{
     //*********************************************************************
     //
     // AnnounceDB Class
@@ -14,8 +14,8 @@ namespace ASPNET.StarterKit.Portal {
     //
     //*********************************************************************
 
-    public class AnnouncementsDB {
-
+    public class AnnouncementsDB
+    {
         //*********************************************************************
         //
         // GetAnnouncements Method
@@ -32,22 +32,22 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public DataSet GetAnnouncements(int moduleId) {
-
+        public DataSet GetAnnouncements(int moduleId)
+        {
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlDataAdapter myCommand = new SqlDataAdapter("Portal_GetAnnouncements", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlDataAdapter("Portal_GetAnnouncements", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             parameterModuleId.Value = moduleId;
             myCommand.SelectCommand.Parameters.Add(parameterModuleId);
 
             // Create and Fill the DataSet
-            DataSet myDataSet = new DataSet();
+            var myDataSet = new DataSet();
             myCommand.Fill(myDataSet);
 
             // Return the DataSet
@@ -66,24 +66,24 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleAnnouncement(int itemId) {
-
+        public SqlDataReader GetSingleAnnouncement(int itemId)
+        {
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_GetSingleAnnouncement", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_GetSingleAnnouncement", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
             parameterItemId.Value = itemId;
             myCommand.Parameters.Add(parameterItemId);
 
             // Execute the command
             myConnection.Open();
             SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-            
+
             // Return the datareader 
             return result;
         }
@@ -100,17 +100,17 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public void DeleteAnnouncement(int itemID) {
-
+        public void DeleteAnnouncement(int itemID)
+        {
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_DeleteAnnouncement", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_DeleteAnnouncement", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
             parameterItemID.Value = itemID;
             myCommand.Parameters.Add(parameterItemID);
 
@@ -131,49 +131,51 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public int AddAnnouncement(int moduleId, int itemId, String userName, String title, DateTime expireDate, String description, String moreLink, String mobileMoreLink) {
-
-            if (userName.Length < 1) {
+        public int AddAnnouncement(int moduleId, int itemId, String userName, String title, DateTime expireDate,
+                                   String description, String moreLink, String mobileMoreLink)
+        {
+            if (userName.Length < 1)
+            {
                 userName = "unknown";
             }
 
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_AddAnnouncement", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_AddAnnouncement", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
             parameterItemID.Direction = ParameterDirection.Output;
             myCommand.Parameters.Add(parameterItemID);
 
-            SqlParameter parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             parameterModuleID.Value = moduleId;
             myCommand.Parameters.Add(parameterModuleID);
 
-            SqlParameter parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
+            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
             parameterUserName.Value = userName;
             myCommand.Parameters.Add(parameterUserName);
 
-            SqlParameter parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 150);
+            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 150);
             parameterTitle.Value = title;
             myCommand.Parameters.Add(parameterTitle);
 
-            SqlParameter parameterMoreLink = new SqlParameter("@MoreLink", SqlDbType.NVarChar, 150);
+            var parameterMoreLink = new SqlParameter("@MoreLink", SqlDbType.NVarChar, 150);
             parameterMoreLink.Value = moreLink;
             myCommand.Parameters.Add(parameterMoreLink);
 
-            SqlParameter parameterMobileMoreLink = new SqlParameter("@MobileMoreLink", SqlDbType.NVarChar, 150);
+            var parameterMobileMoreLink = new SqlParameter("@MobileMoreLink", SqlDbType.NVarChar, 150);
             parameterMobileMoreLink.Value = mobileMoreLink;
             myCommand.Parameters.Add(parameterMobileMoreLink);
 
-            SqlParameter parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
+            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
             parameterExpireDate.Value = expireDate;
             myCommand.Parameters.Add(parameterExpireDate);
 
-            SqlParameter parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
+            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
             parameterDescription.Value = description;
             myCommand.Parameters.Add(parameterDescription);
 
@@ -181,7 +183,7 @@ namespace ASPNET.StarterKit.Portal {
             myCommand.ExecuteNonQuery();
             myConnection.Close();
 
-            return (int)parameterItemID.Value;
+            return (int) parameterItemID.Value;
         }
 
         //*********************************************************************
@@ -196,43 +198,44 @@ namespace ASPNET.StarterKit.Portal {
         //
         //*********************************************************************
 
-        public void UpdateAnnouncement(int moduleId, int itemId, String userName, String title, DateTime expireDate, String description, String moreLink, String mobileMoreLink) {
-
+        public void UpdateAnnouncement(int moduleId, int itemId, String userName, String title, DateTime expireDate,
+                                       String description, String moreLink, String mobileMoreLink)
+        {
             if (userName.Length < 1) userName = "unknown";
 
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
-            SqlCommand myCommand = new SqlCommand("Portal_UpdateAnnouncement", myConnection);
+            var myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            var myCommand = new SqlCommand("Portal_UpdateAnnouncement", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
             parameterItemID.Value = itemId;
             myCommand.Parameters.Add(parameterItemID);
 
-            SqlParameter parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
+            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
             parameterUserName.Value = userName;
             myCommand.Parameters.Add(parameterUserName);
 
-            SqlParameter parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 150);
+            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 150);
             parameterTitle.Value = title;
             myCommand.Parameters.Add(parameterTitle);
 
-            SqlParameter parameterMoreLink = new SqlParameter("@MoreLink", SqlDbType.NVarChar, 150);
+            var parameterMoreLink = new SqlParameter("@MoreLink", SqlDbType.NVarChar, 150);
             parameterMoreLink.Value = moreLink;
             myCommand.Parameters.Add(parameterMoreLink);
 
-            SqlParameter parameterMobileMoreLink = new SqlParameter("@MobileMoreLink", SqlDbType.NVarChar, 150);
+            var parameterMobileMoreLink = new SqlParameter("@MobileMoreLink", SqlDbType.NVarChar, 150);
             parameterMobileMoreLink.Value = mobileMoreLink;
             myCommand.Parameters.Add(parameterMobileMoreLink);
 
-            SqlParameter parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
+            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
             parameterExpireDate.Value = expireDate;
             myCommand.Parameters.Add(parameterExpireDate);
 
-            SqlParameter parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
+            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
             parameterDescription.Value = description;
             myCommand.Parameters.Add(parameterDescription);
 
@@ -242,5 +245,3 @@ namespace ASPNET.StarterKit.Portal {
         }
     }
 }
-
-

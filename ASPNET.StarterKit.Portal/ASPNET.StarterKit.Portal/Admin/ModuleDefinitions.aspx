@@ -1,6 +1,6 @@
 <%@ Page language="c#" CodeBehind="ModuleDefinitions.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.ModuleDefinitions" %>
-<%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
+<%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 
 <%--
     The SecurityRoles.aspx page is used to create and edit security roles within
@@ -9,7 +9,7 @@
 
 <HTML>
   <HEAD>
-        <link rel="stylesheet" href='<%= Global.GetApplicationPath(Request) + "/ASPNETPortal.css" %>' type="text/css">
+        <link rel="stylesheet" href='<%=Global.GetApplicationPath(Request) + "/ASPNETPortal.css"%>' type="text/css">
   </HEAD>
     <body leftmargin="0" bottommargin="0" rightmargin="0" topmargin="0" marginheight="0" marginwidth="0">
         <form runat="server">

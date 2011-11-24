@@ -1,48 +1,45 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal {
-
-    public partial class CDefault : System.Web.UI.Page {
-
-        public CDefault() {
-            Page.Init += new System.EventHandler(Page_Init);
+namespace ASPNET.StarterKit.Portal
+{
+    public partial class CDefault : Page
+    {
+        public CDefault()
+        {
+            Page.Init += Page_Init;
         }
 
-        protected void Page_Load(object sender, System.EventArgs e) {
-
-            if (Request.Browser["IsMobileDevice"] == "true" ) {
-        
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Request.Browser["IsMobileDevice"] == "true")
+            {
                 Response.Redirect("MobileDefault.aspx");
             }
-            else {
-
+            else
+            {
                 Response.Redirect("DesktopDefault.aspx");
             }
         }
 
-        protected void Page_Init(object sender, EventArgs e) {
+        protected void Page_Init(object sender, EventArgs e)
+        {
             //
             // CODEGEN: This call is required by the ASP.NET Web Form Designer.
             //
             InitializeComponent();
         }
 
-		#region Web Form Designer generated code
+        #region Web Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {    
+        private void InitializeComponent()
+        {
         }
-		#endregion
+
+        #endregion
     }
 }
