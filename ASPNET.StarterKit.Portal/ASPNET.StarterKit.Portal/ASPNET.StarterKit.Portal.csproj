@@ -11,7 +11,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ASPNET.StarterKit.Portal</RootNamespace>
-    <AssemblyName>ASPNET.StarterKit.Portal</AssemblyName>
+    <AssemblyName>Portal</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
