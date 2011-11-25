@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</ProjectGuid>
+    <ProjectGuid>{030CAA4B-3EA8-4522-A979-E983B3885F1E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASPNET.StarterKit.Portal.DAL</RootNamespace>
-    <AssemblyName>Portal.DAL</AssemblyName>
+    <RootNamespace>ASPNET.StarterKit.Portal.DAL.SqlServer</RootNamespace>
+    <AssemblyName>Portal.DAL.SqlServer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,21 +40,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPortalDB.cs" />
-    <Compile Include="DataAccess.cs" />
-    <Compile Include="IAnnouncementsDB.cs" />
-    <Compile Include="IContactsDB.cs" />
-    <Compile Include="IDaoFactory.cs" />
-    <Compile Include="IDiscussionDB.cs" />
-    <Compile Include="IDocumentDB.cs" />
-    <Compile Include="IEventsDB.cs" />
-    <Compile Include="IHtmlTextDB.cs" />
-    <Compile Include="ILinkDB.cs" />
-    <Compile Include="IRolesDB.cs" />
-    <Compile Include="IUsersDB.cs" />
+    <Compile Include="AnnouncementsDB.cs" />
+    <Compile Include="ContactsDB.cs" />
+    <Compile Include="DiscussionDB.cs" />
+    <Compile Include="DocumentDB.cs" />
+    <Compile Include="EventsDB.cs" />
+    <Compile Include="HtmlTextDB.cs" />
+    <Compile Include="LinksDB.cs" />
+    <Compile Include="PortalDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolesDB.cs" />
+    <Compile Include="DaoFactory.cs" />
+    <Compile Include="UsersDB.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ASPNET.StarterKit.Portal.DAL\Portal.DAL.csproj">
+      <Project>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</Project>
+      <Name>Portal.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ASPNET.StarterKit.Portal.Domain\Portal.Domain.csproj">
+      <Project>{77FD0CE8-5170-4675-8032-EBA01E167361}</Project>
+      <Name>Portal.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>COPY $(TargetPath) $(SolutionDir)$(SolutionName)\Bin\$(TargetFileName) /Y</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

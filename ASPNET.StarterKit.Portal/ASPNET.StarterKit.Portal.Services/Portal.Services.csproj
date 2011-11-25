@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{030CAA4B-3EA8-4522-A979-E983B3885F1E}</ProjectGuid>
+    <ProjectGuid>{20FD75EF-D541-42BF-ACC8-FD22F200FF57}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASPNET.StarterKit.Portal.DAL.SqlServer</RootNamespace>
-    <AssemblyName>Portal.DAL.SqlServer</AssemblyName>
+    <RootNamespace>ASPNET.StarterKit.Portal.Services</RootNamespace>
+    <AssemblyName>Portal.Services</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,29 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnnouncementsDB.cs" />
-    <Compile Include="ContactsDB.cs" />
-    <Compile Include="DiscussionDB.cs" />
-    <Compile Include="DocumentDB.cs" />
-    <Compile Include="EventsDB.cs" />
-    <Compile Include="HtmlTextDB.cs" />
-    <Compile Include="LinksDB.cs" />
-    <Compile Include="PortalDB.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RolesDB.cs" />
-    <Compile Include="DaoFactory.cs" />
-    <Compile Include="UsersDB.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ASPNET.StarterKit.Portal.DAL\ASPNET.StarterKit.Portal.DAL.csproj">
-      <Project>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</Project>
-      <Name>ASPNET.StarterKit.Portal.DAL</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>COPY $(TargetPath) $(SolutionDir)$(SolutionName)\Bin\$(TargetFileName) /Y</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

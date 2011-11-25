@@ -477,9 +477,9 @@
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ASPNET.StarterKit.Portal.DAL\ASPNET.StarterKit.Portal.DAL.csproj">
+    <ProjectReference Include="..\ASPNET.StarterKit.Portal.DAL\Portal.DAL.csproj">
       <Project>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</Project>
-      <Name>ASPNET.StarterKit.Portal.DAL</Name>
+      <Name>Portal.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
