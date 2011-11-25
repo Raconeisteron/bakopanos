@@ -35,7 +35,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
         #region IRolesDB Members
 
-        public SqlDataReader GetPortalRoles(int portalId)
+        public IDataReader GetPortalRoles(int portalId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -51,7 +51,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Open the database connection and execute the command
             myConnection.Open();
-            SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader
             return dr;
@@ -183,7 +183,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*********************************************************************
 
-        public SqlDataReader GetRoleMembers(int roleId)
+        public IDataReader GetRoleMembers(int roleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -198,7 +198,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Open the database connection and execute the command
             myConnection.Open();
-            SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader
             return dr;
@@ -291,7 +291,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*********************************************************************
 
-        public SqlDataReader GetUsers()
+        public IDataReader GetUsers()
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -302,7 +302,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Open the database connection and execute the command
             myConnection.Open();
-            SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader
             return dr;

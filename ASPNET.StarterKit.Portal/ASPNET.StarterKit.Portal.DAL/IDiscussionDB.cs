@@ -1,13 +1,13 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 
 namespace ASPNET.StarterKit.Portal.DAL
 {
     public interface IDiscussionDB
     {
-        SqlDataReader GetTopLevelMessages(int moduleId);
-        SqlDataReader GetThreadMessages(String parent);
-        SqlDataReader GetSingleMessage(int itemId);
+        IDataReader GetTopLevelMessages(int moduleId);
+        IDataReader GetThreadMessages(String parent);
+        IDataReader GetSingleMessage(int itemId);
         int AddMessage(int moduleId, int parentId, String userName, String title, String body);
     }
 }

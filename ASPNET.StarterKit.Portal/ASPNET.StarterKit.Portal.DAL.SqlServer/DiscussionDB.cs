@@ -35,7 +35,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
         #region IDiscussionDB Members
 
-        public SqlDataReader GetTopLevelMessages(int moduleId)
+        public IDataReader GetTopLevelMessages(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -51,7 +51,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Execute the command
             myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader 
             return result;
@@ -68,7 +68,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*******************************************************
 
-        public SqlDataReader GetThreadMessages(String parent)
+        public IDataReader GetThreadMessages(String parent)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -84,7 +84,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Execute the command
             myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader 
             return result;
@@ -102,7 +102,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*******************************************************
 
-        public SqlDataReader GetSingleMessage(int itemId)
+        public IDataReader GetSingleMessage(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -118,7 +118,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Execute the command
             myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader 
             return result;

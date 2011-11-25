@@ -1,13 +1,13 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 
 namespace ASPNET.StarterKit.Portal.DAL
 {
     public interface IDocumentDB
     {
-        SqlDataReader GetDocuments(int moduleId);
-        SqlDataReader GetSingleDocument(int itemId);
-        SqlDataReader GetDocumentContent(int itemId);
+        IDataReader GetDocuments(int moduleId);
+        IDataReader GetSingleDocument(int itemId);
+        IDataReader GetDocumentContent(int itemId);
         void DeleteDocument(int itemID);
 
         void UpdateDocument(int moduleId, int itemId, String userName, String name, String url, String category,

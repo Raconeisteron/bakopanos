@@ -26,7 +26,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         // GetLinks Method
         //
-        // The GetLinks method returns a SqlDataReader containing all of the
+        // The GetLinks method returns a IDataReader containing all of the
         // links for a specific portal module from the announcements
         // database.
         //
@@ -37,7 +37,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
         #region ILinkDB Members
 
-        public SqlDataReader GetLinks(int moduleId)
+        public IDataReader GetLinks(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -53,7 +53,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Execute the command
             myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader 
             return result;
@@ -63,7 +63,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         // GetSingleLink Method
         //
-        // The GetSingleLink method returns a SqlDataReader containing details
+        // The GetSingleLink method returns a IDataReader containing details
         // about a specific link from the Links database table.
         //
         // Other relevant sources:
@@ -71,7 +71,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleLink(int itemId)
+        public IDataReader GetSingleLink(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -87,7 +87,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Execute the command
             myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader 
             return result;

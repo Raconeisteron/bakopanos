@@ -8,7 +8,7 @@ namespace ASPNET.StarterKit.Portal
         //*******************************************************
         //
         // The Page_Load event handler on this User Control is used to
-        // obtain a SqlDataReader of document information from the 
+        // obtain a IDataReader of document information from the 
         // Documents table, and then databind the results to a DataGrid
         // server control.  It uses the ASPNET.StarterKit.Portal.DocumentDB()
         // data component to encapsulate all data functionality.

@@ -168,7 +168,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*********************************************************************
 
-        public SqlDataReader GetRolesByUser(String email)
+        public IDataReader GetRolesByUser(String email)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -183,7 +183,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Open the database connection and execute the command
             myConnection.Open();
-            SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader
             return dr;
@@ -193,12 +193,12 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         // GetSingleUser Method
         //
-        // The GetSingleUser method returns a SqlDataReader containing details
+        // The GetSingleUser method returns a IDataReader containing details
         // about a specific user from the Users database table.
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleUser(String email)
+        public IDataReader GetSingleUser(String email)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -214,7 +214,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Open the database connection and execute the command
             myConnection.Open();
-            SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader
             return dr;
@@ -246,7 +246,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.Parameters.Add(parameterEmail);
 
             // Open the database connection and execute the command
-            SqlDataReader dr;
+            IDataReader dr;
 
             myConnection.Open();
             dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);

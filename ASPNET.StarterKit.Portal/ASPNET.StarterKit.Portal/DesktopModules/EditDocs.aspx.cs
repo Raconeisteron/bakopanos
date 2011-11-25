@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.IO;
 using System.Web.UI;
 using ASPNET.StarterKit.Portal.DAL;
@@ -53,7 +53,7 @@ namespace ASPNET.StarterKit.Portal
                 {
                     // Obtain a single row of document information
                     IDocumentDB documents = DataAccess.DocumentDB;
-                    SqlDataReader dr = documents.GetSingleDocument(itemId);
+                    IDataReader dr = documents.GetSingleDocument(itemId);
 
                     // Load first row into Datareader
                     dr.Read();

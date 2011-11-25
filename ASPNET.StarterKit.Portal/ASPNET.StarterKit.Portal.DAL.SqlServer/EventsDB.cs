@@ -66,7 +66,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         // GetSingleEvent Method
         //
-        // The GetSingleEvent method returns a SqlDataReader containing details
+        // The GetSingleEvent method returns a IDataReader containing details
         // about a specific event from the events database.
         //
         // Other relevant sources:
@@ -74,7 +74,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleEvent(int itemId)
+        public IDataReader GetSingleEvent(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -90,7 +90,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Execute the command
             myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader 
             return result;

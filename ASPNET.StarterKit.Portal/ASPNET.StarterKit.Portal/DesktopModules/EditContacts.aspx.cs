@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web.UI;
 using ASPNET.StarterKit.Portal.DAL;
 
@@ -52,7 +52,7 @@ namespace ASPNET.StarterKit.Portal
                 {
                     // Obtain a single row of contact information
                     IContactsDB contacts = DataAccess.ContactsDB;
-                    SqlDataReader dr = contacts.GetSingleContact(itemId);
+                    IDataReader dr = contacts.GetSingleContact(itemId);
 
                     // Read first row from database
                     dr.Read();

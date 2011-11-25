@@ -1,11 +1,11 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 
 namespace ASPNET.StarterKit.Portal.DAL
 {
     public interface IHtmlTextDB
     {
-        SqlDataReader GetHtmlText(int moduleId);
+        IDataReader GetHtmlText(int moduleId);
         void UpdateHtmlText(int moduleId, String desktopHtml, String mobileSummary, String mobileDetails);
     }
 }

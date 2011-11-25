@@ -1,12 +1,12 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 
 namespace ASPNET.StarterKit.Portal.DAL
 {
     public interface ILinkDB
     {
-        SqlDataReader GetLinks(int moduleId);
-        SqlDataReader GetSingleLink(int itemId);
+        IDataReader GetLinks(int moduleId);
+        IDataReader GetSingleLink(int itemId);
         void DeleteLink(int itemID);
 
         int AddLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,

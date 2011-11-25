@@ -66,7 +66,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         // GetSingleAnnouncement Method
         //
-        // The GetSingleAnnouncement method returns a SqlDataReader containing details
+        // The GetSingleAnnouncement method returns a IDataReader containing details
         // about a specific announcement from the Announcements database table.
         //
         // Other relevant sources:
@@ -74,7 +74,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleAnnouncement(int itemId)
+        public IDataReader GetSingleAnnouncement(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -90,7 +90,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Execute the command
             myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader 
             return result;

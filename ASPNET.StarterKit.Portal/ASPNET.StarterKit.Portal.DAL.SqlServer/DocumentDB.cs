@@ -26,7 +26,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         // GetDocuments Method
         //
-        // The GetDocuments method returns a SqlDataReader containing all of the
+        // The GetDocuments method returns a IDataReader containing all of the
         // documents for a specific portal module from the documents
         // database.
         //
@@ -37,7 +37,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
         #region IDocumentDB Members
 
-        public SqlDataReader GetDocuments(int moduleId)
+        public IDataReader GetDocuments(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -53,7 +53,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Execute the command
             myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader 
             return result;
@@ -63,7 +63,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         // GetSingleDocument Method
         //
-        // The GetSingleDocument method returns a SqlDataReader containing details
+        // The GetSingleDocument method returns a IDataReader containing details
         // about a specific document from the Documents database table.
         //
         // Other relevant sources:
@@ -71,7 +71,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleDocument(int itemId)
+        public IDataReader GetSingleDocument(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -87,7 +87,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Execute the command
             myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader 
             return result;
@@ -105,7 +105,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*********************************************************************
 
-        public SqlDataReader GetDocumentContent(int itemId)
+        public IDataReader GetDocumentContent(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -121,7 +121,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Execute the command
             myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader 
             return result;

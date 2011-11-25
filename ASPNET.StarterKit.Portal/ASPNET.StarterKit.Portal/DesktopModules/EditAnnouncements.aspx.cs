@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web.UI;
 using ASPNET.StarterKit.Portal.DAL;
 
@@ -52,7 +52,7 @@ namespace ASPNET.StarterKit.Portal
                 {
                     // Obtain a single row of announcement information
                     IAnnouncementsDB announcementDB = DataAccess.AnnouncementsDB;
-                    SqlDataReader dr = announcementDB.GetSingleAnnouncement(itemId);
+                    IDataReader dr = announcementDB.GetSingleAnnouncement(itemId);
 
                     // Load first row into DataReader
                     dr.Read();

@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 
 namespace ASPNET.StarterKit.Portal.DAL
 {
@@ -8,8 +8,8 @@ namespace ASPNET.StarterKit.Portal.DAL
         int AddUser(String fullName, String email, String password);
         void DeleteUser(int userId);
         void UpdateUser(int userId, String email, String password);
-        SqlDataReader GetRolesByUser(String email);
-        SqlDataReader GetSingleUser(String email);
+        IDataReader GetRolesByUser(String email);
+        IDataReader GetSingleUser(String email);
         String[] GetRoles(String email);
         String Login(String email, String password);
     }

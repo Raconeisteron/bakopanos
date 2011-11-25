@@ -58,10 +58,6 @@
       <Project>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</Project>
       <Name>Portal.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ASPNET.StarterKit.Portal.Domain\Portal.Domain.csproj">
-      <Project>{77FD0CE8-5170-4675-8032-EBA01E167361}</Project>
-      <Name>Portal.Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
