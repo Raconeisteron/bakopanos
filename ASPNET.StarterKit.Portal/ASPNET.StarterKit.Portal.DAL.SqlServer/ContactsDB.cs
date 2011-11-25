@@ -1,42 +1,50 @@
 using System;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
     //*********************************************************************
     //
-    // EventDB Class
+    // ContactDB Class
     //
     // Class that encapsulates all data logic necessary to add/query/delete
-    // events within the Portal database.
+    // contacts within the Portal database.
     //
     //*********************************************************************
 
-    public class EventsDB
+    internal class ContactsDB : IContactsDB
     {
+        private readonly string _connectionString;
+
+        public ContactsDB(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         //*********************************************************************
         //
-        // GetEvents Method
+        // GetContacts Method
         //
-        // The GetEvents method returns a DataSet containing all of the
-        // events for a specific portal module from the events
+        // The GetContacts method returns a DataSet containing all of the
+        // contacts for a specific portal module from the contacts
         // database.
         //
         // NOTE: A DataSet is returned from this method to allow this method to support
         // both desktop and mobile Web UI.
         //
         // Other relevant sources:
-        //     + <a href="GetEvents.htm" style="color:green">GetEvents Stored Procedure</a>
+        //     + <a href="GetContacts.htm" style="color:green">GetContacts Stored Procedure</a>
         //
         //*********************************************************************
 
-        public DataSet GetEvents(int moduleId)
+        #region IContactsDB Members
+
+        public DataSet GetContacts(int moduleId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlDataAdapter("Portal_GetEvents", myConnection);
+            var myConnection = new SqlConnection(_connectionString);
+            var myCommand = new SqlDataAdapter("Portal_GetContacts", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -56,21 +64,21 @@ namespace ASPNET.StarterKit.Portal
 
         //*********************************************************************
         //
-        // GetSingleEvent Method
+        // GetSingleContact Method
         //
-        // The GetSingleEvent method returns a SqlDataReader containing details
-        // about a specific event from the events database.
+        // The GetSingleContact method returns a SqlDataReader containing details
+        // about a specific contact from the Contacts database table.
         //
         // Other relevant sources:
-        //     + <a href="GetSingleEvent.htm" style="color:green">GetSingleEvent Stored Procedure</a>
+        //     + <a href="GetSingleContact.htm" style="color:green">GetSingleContact Stored Procedure</a>
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleEvent(int itemId)
+        public SqlDataReader GetSingleContact(int itemId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetSingleEvent", myConnection);
+            var myConnection = new SqlConnection(_connectionString);
+            var myCommand = new SqlCommand("Portal_GetSingleContact", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
@@ -90,21 +98,21 @@ namespace ASPNET.StarterKit.Portal
 
         //*********************************************************************
         //
-        // DeleteEvent Method
+        // DeleteContact Method
         //
-        // The DeleteEvent method deletes a specified event from
-        // the events database.
+        // The DeleteContact method deletes the specified contact from
+        // the Contacts database table.
         //
         // Other relevant sources:
-        //     + <a href="DeleteEvent.htm" style="color:green">DeleteEvent Stored Procedure</a>
+        //     + <a href="DeleteContact.htm" style="color:green">DeleteContact Stored Procedure</a>
         //
         //*********************************************************************
 
-        public void DeleteEvent(int itemID)
+        public void DeleteContact(int itemID)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_DeleteEvent", myConnection);
+            var myConnection = new SqlConnection(_connectionString);
+            var myCommand = new SqlCommand("Portal_DeleteContact", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
@@ -114,7 +122,6 @@ namespace ASPNET.StarterKit.Portal
             parameterItemID.Value = itemID;
             myCommand.Parameters.Add(parameterItemID);
 
-            // Open the database connection and execute SQL Command
             myConnection.Open();
             myCommand.ExecuteNonQuery();
             myConnection.Close();
@@ -122,18 +129,18 @@ namespace ASPNET.StarterKit.Portal
 
         //*********************************************************************
         //
-        // AddEvent Method
+        // AddContact Method
         //
-        // The AddEvent method adds a new event within the Events database table, 
-        // and returns the ItemID value as a result.
+        // The AddContact method adds a new contact to the Contacts
+        // database table, and returns the ItemId value as a result.
         //
         // Other relevant sources:
-        //     + <a href="AddEvent.htm" style="color:green">AddEvent Stored Procedure</a>
+        //     + <a href="AddContact.htm" style="color:green">AddContact Stored Procedure</a>
         //
         //*********************************************************************
 
-        public int AddEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
-                            String description, String wherewhen)
+        public int AddContact(int moduleId, int itemId, String userName, String name, String role, String email,
+                              String contact1, String contact2)
         {
             if (userName.Length < 1)
             {
@@ -141,8 +148,8 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_AddEvent", myConnection);
+            var myConnection = new SqlConnection(_connectionString);
+            var myCommand = new SqlCommand("Portal_AddContact", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
@@ -160,45 +167,47 @@ namespace ASPNET.StarterKit.Portal
             parameterUserName.Value = userName;
             myCommand.Parameters.Add(parameterUserName);
 
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
-            parameterTitle.Value = title;
-            myCommand.Parameters.Add(parameterTitle);
+            var parameterName = new SqlParameter("@Name", SqlDbType.NVarChar, 100);
+            parameterName.Value = name;
+            myCommand.Parameters.Add(parameterName);
 
-            var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
-            parameterWhereWhen.Value = wherewhen;
-            myCommand.Parameters.Add(parameterWhereWhen);
+            var parameterRole = new SqlParameter("@Role", SqlDbType.NVarChar, 100);
+            parameterRole.Value = role;
+            myCommand.Parameters.Add(parameterRole);
 
-            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
-            parameterExpireDate.Value = expireDate;
-            myCommand.Parameters.Add(parameterExpireDate);
+            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            parameterEmail.Value = email;
+            myCommand.Parameters.Add(parameterEmail);
 
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
-            parameterDescription.Value = description;
-            myCommand.Parameters.Add(parameterDescription);
+            var parameterContact1 = new SqlParameter("@Contact1", SqlDbType.NVarChar, 100);
+            parameterContact1.Value = contact1;
+            myCommand.Parameters.Add(parameterContact1);
 
-            // Open the database connection and execute SQL Command
+            var parameterContact2 = new SqlParameter("@Contact2", SqlDbType.NVarChar, 100);
+            parameterContact2.Value = contact2;
+            myCommand.Parameters.Add(parameterContact2);
+
             myConnection.Open();
             myCommand.ExecuteNonQuery();
             myConnection.Close();
 
-            // Return the new Event ItemID
             return (int) parameterItemID.Value;
         }
 
         //*********************************************************************
         //
-        // UpdateEvent Method
+        // UpdateContact Method
         //
-        // The UpdateEvent method updates the specified event within
-        // the Events database table.
+        // The UpdateContact method updates the specified contact within
+        // the Contacts database table.
         //
         // Other relevant sources:
-        //     + <a href="UpdateEvent.htm" style="color:green">UpdateEvent Stored Procedure</a>
+        //     + <a href="UpdateContact.htm" style="color:green">UpdateContact Stored Procedure</a>
         //
         //*********************************************************************
 
-        public void UpdateEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
-                                String description, String wherewhen)
+        public void UpdateContact(int moduleId, int itemId, String userName, String name, String role, String email,
+                                  String contact1, String contact2)
         {
             if (userName.Length < 1)
             {
@@ -206,8 +215,8 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_UpdateEvent", myConnection);
+            var myConnection = new SqlConnection(_connectionString);
+            var myCommand = new SqlCommand("Portal_UpdateContact", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
@@ -221,25 +230,31 @@ namespace ASPNET.StarterKit.Portal
             parameterUserName.Value = userName;
             myCommand.Parameters.Add(parameterUserName);
 
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
-            parameterTitle.Value = title;
-            myCommand.Parameters.Add(parameterTitle);
+            var parameterName = new SqlParameter("@Name", SqlDbType.NVarChar, 100);
+            parameterName.Value = name;
+            myCommand.Parameters.Add(parameterName);
 
-            var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
-            parameterWhereWhen.Value = wherewhen;
-            myCommand.Parameters.Add(parameterWhereWhen);
+            var parameterRole = new SqlParameter("@Role", SqlDbType.NVarChar, 100);
+            parameterRole.Value = role;
+            myCommand.Parameters.Add(parameterRole);
 
-            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
-            parameterExpireDate.Value = expireDate;
-            myCommand.Parameters.Add(parameterExpireDate);
+            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            parameterEmail.Value = email;
+            myCommand.Parameters.Add(parameterEmail);
 
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
-            parameterDescription.Value = description;
-            myCommand.Parameters.Add(parameterDescription);
+            var parameterContact1 = new SqlParameter("@Contact1", SqlDbType.NVarChar, 100);
+            parameterContact1.Value = contact1;
+            myCommand.Parameters.Add(parameterContact1);
+
+            var parameterContact2 = new SqlParameter("@Contact2", SqlDbType.NVarChar, 100);
+            parameterContact2.Value = contact2;
+            myCommand.Parameters.Add(parameterContact2);
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
+
+        #endregion
     }
 }

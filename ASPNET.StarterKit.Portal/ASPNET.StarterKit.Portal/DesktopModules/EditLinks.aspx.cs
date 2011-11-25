@@ -1,6 +1,7 @@
 using System;
 using System.Data.SqlClient;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -50,7 +51,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of link information
-                    var links = new LinkDB();
+                    ILinkDB links = DataAccess.LinkDB;
                     SqlDataReader dr = links.GetSingleLink(itemId);
 
                     // Read in first row from database
@@ -94,7 +95,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Link DB component
-                var links = new LinkDB();
+                ILinkDB links = DataAccess.LinkDB;
 
                 if (itemId == 0)
                 {
@@ -129,7 +130,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                var links = new LinkDB();
+                ILinkDB links = DataAccess.LinkDB;
                 links.DeleteLink(itemId);
             }
 

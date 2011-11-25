@@ -1,9 +1,8 @@
 using System;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
     //*********************************************************************
     //
@@ -14,8 +13,15 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class HtmlTextDB
+    internal class HtmlTextDB : IHtmlTextDB
     {
+        private readonly string _connectionString;
+
+        public HtmlTextDB(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         //*********************************************************************
         //
         // GetHtmlText Method
@@ -28,10 +34,12 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
+        #region IHtmlTextDB Members
+
         public SqlDataReader GetHtmlText(int moduleId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection = new SqlConnection(_connectionString);
             var myCommand = new SqlCommand("Portal_GetHtmlText", myConnection);
 
             // Mark the Command as a SPROC
@@ -66,7 +74,7 @@ namespace ASPNET.StarterKit.Portal
         public void UpdateHtmlText(int moduleId, String desktopHtml, String mobileSummary, String mobileDetails)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection = new SqlConnection(_connectionString);
             var myCommand = new SqlCommand("Portal_UpdateHtmlText", myConnection);
 
             // Mark the Command as a SPROC
@@ -93,5 +101,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
+
+        #endregion
     }
 }

@@ -267,20 +267,11 @@
     <Compile Include="Admin\Users.ascx.designer.cs">
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Components\AnnouncementsDB.cs" />
     <Compile Include="Components\Configuration.cs" />
-    <Compile Include="Components\ContactsDB.cs" />
     <Compile Include="Components\DesktopControls.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Components\DiscussionDB.cs" />
-    <Compile Include="Components\DocumentDB.cs" />
-    <Compile Include="Components\EventsDB.cs" />
-    <Compile Include="Components\HtmlTextDB.cs" />
-    <Compile Include="Components\LinksDB.cs" />
-    <Compile Include="Components\RolesDB.cs" />
     <Compile Include="Components\Security.cs" />
-    <Compile Include="Components\UsersDB.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -484,6 +475,12 @@
       <DependentUpon>PortalCfg.xsd</DependentUpon>
     </None>
     <None Include="Uploads\sample.doc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ASPNET.StarterKit.Portal.DAL\ASPNET.StarterKit.Portal.DAL.csproj">
+      <Project>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</Project>
+      <Name>ASPNET.StarterKit.Portal.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

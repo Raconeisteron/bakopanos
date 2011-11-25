@@ -1,6 +1,7 @@
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ASPNET.StarterKit.Portal.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -87,7 +88,7 @@ namespace ASPNET.StarterKit.Portal
             if (((LinkButton) sender).ID == "addNew")
             {
                 // add new user to users table
-                var users = new UsersDB();
+                IUsersDB users = DataAccess.UsersDB;
                 if ((userId = users.AddUser(windowsUserName.Text, windowsUserName.Text, "acme")) == -1)
                 {
                     Message.Text = "Add New Failed!  There is already an entry for <" + "u" + ">" + windowsUserName.Text +
@@ -104,7 +105,7 @@ namespace ASPNET.StarterKit.Portal
             if (userId != -1)
             {
                 // Add a new userRole to the database
-                var roles = new RolesDB();
+                IRolesDB roles = DataAccess.RolesDB;
                 roles.AddUserRole(roleId, userId);
             }
 
@@ -122,7 +123,7 @@ namespace ASPNET.StarterKit.Portal
 
         private void usersInRole_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            var roles = new RolesDB();
+            IRolesDB roles = DataAccess.RolesDB;
             var userId = (int) usersInRole.DataKeys[e.Item.ItemIndex];
 
             if (e.CommandName == "delete")
@@ -161,7 +162,7 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Get the portal's roles from the database
-            var roles = new RolesDB();
+            IRolesDB roles = DataAccess.RolesDB;
 
             // bind users in role to DataList
             usersInRole.DataSource = roles.GetRoleMembers(roleId);

@@ -1,4 +1,5 @@
 using System;
+using ASPNET.StarterKit.Portal.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -35,7 +36,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the list control
-            var links = new LinkDB();
+            ILinkDB links = DataAccess.LinkDB;
 
             myDataList.DataSource = links.GetLinks(ModuleId);
             myDataList.DataBind();

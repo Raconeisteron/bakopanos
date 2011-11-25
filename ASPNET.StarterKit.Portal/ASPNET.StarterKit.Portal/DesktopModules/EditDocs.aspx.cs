@@ -2,6 +2,7 @@ using System;
 using System.Data.SqlClient;
 using System.IO;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -51,7 +52,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of document information
-                    var documents = new DocumentDB();
+                    IDocumentDB documents = DataAccess.DocumentDB;
                     SqlDataReader dr = documents.GetSingleDocument(itemId);
 
                     // Load first row into Datareader
@@ -93,7 +94,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Document DB component
-                var documents = new DocumentDB();
+                IDocumentDB documents = DataAccess.DocumentDB;
 
                 // Determine whether a file was uploaded
 
@@ -150,7 +151,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                var documents = new DocumentDB();
+                IDocumentDB documents = DataAccess.DocumentDB;
                 documents.DeleteDocument(itemId);
             }
 

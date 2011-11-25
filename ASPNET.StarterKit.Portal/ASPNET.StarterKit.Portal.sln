@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNET.StarterKit.Portal", "ASPNET.StarterKit.Portal\ASPNET.StarterKit.Portal.csproj", "{B5DDF1C4-7178-4035-BCC1-C746076F979A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNET.StarterKit.Portal.DAL", "ASPNET.StarterKit.Portal.DAL\ASPNET.StarterKit.Portal.DAL.csproj", "{D12F1EEC-928D-4876-A8D6-15D2CADFB460}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNET.StarterKit.Portal.DAL.SqlServer", "ASPNET.StarterKit.Portal.DAL.SqlServer\ASPNET.StarterKit.Portal.DAL.SqlServer.csproj", "{030CAA4B-3EA8-4522-A979-E983B3885F1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{B5DDF1C4-7178-4035-BCC1-C746076F979A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5DDF1C4-7178-4035-BCC1-C746076F979A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5DDF1C4-7178-4035-BCC1-C746076F979A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D12F1EEC-928D-4876-A8D6-15D2CADFB460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D12F1EEC-928D-4876-A8D6-15D2CADFB460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D12F1EEC-928D-4876-A8D6-15D2CADFB460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D12F1EEC-928D-4876-A8D6-15D2CADFB460}.Release|Any CPU.Build.0 = Release|Any CPU
+		{030CAA4B-3EA8-4522-A979-E983B3885F1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{030CAA4B-3EA8-4522-A979-E983B3885F1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{030CAA4B-3EA8-4522-A979-E983B3885F1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{030CAA4B-3EA8-4522-A979-E983B3885F1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
