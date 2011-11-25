@@ -506,12 +506,6 @@
     <EmbeddedResource Include="Admin\Users.ascx.resx">
       <DependentUpon>Users.ascx.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Default.aspx.resx">
-      <DependentUpon>Default.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopDefault.aspx.resx">
-      <DependentUpon>DesktopDefault.aspx.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DesktopModules\DiscussDetails.aspx.resx">
       <DependentUpon>DiscussDetails.aspx.cs</DependentUpon>
     </EmbeddedResource>
@@ -547,9 +541,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopModules\Signin.ascx.resx">
       <DependentUpon>Signin.ascx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopPortalBanner.ascx.resx">
-      <DependentUpon>DesktopPortalBanner.ascx.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Global.asax.resx">
       <DependentUpon>Global.asax.cs</DependentUpon>
