@@ -15,11 +15,6 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        public Announcements()
-        {
-            Init += Page_Init;
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain announcement information from Announcements table
@@ -31,23 +26,5 @@ namespace ASPNET.StarterKit.Portal
             myDataList.DataBind();
         }
 
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        ///		Required method for Designer support - do not modify
-        ///		the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

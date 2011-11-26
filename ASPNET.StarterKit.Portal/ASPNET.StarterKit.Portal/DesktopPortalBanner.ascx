@@ -29,7 +29,7 @@
 		<td height="40">
 			<asp:label id="siteName" CssClass="SiteTitle" EnableViewState="false" runat="server" />
 		</td>
-		<td align="middle" rowspan="2">
+		<td align="center" rowspan="2">
 			<!--ASP.NET Logo was here//-->
 		</td>
 	</tr>

@@ -8,10 +8,6 @@ namespace ASPNET.StarterKit.Portal
     {
         private int moduleId;
 
-        public EditXml()
-        {
-            Page.Init += Page_Init;
-        }
 
         //****************************************************************
         //
@@ -83,24 +79,5 @@ namespace ASPNET.StarterKit.Portal
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
 
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

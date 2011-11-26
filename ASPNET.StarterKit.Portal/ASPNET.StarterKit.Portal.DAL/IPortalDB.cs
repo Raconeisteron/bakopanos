@@ -2,6 +2,6 @@
 {
     public interface IPortalDB
     {
-        void PortalDeleteModule(params int[] moduleIds);
+        void DeleteModule(params int[] moduleIds);
     }
 }

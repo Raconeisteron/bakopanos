@@ -30,12 +30,7 @@ namespace ASPNET.StarterKit.Portal.DAL
         static DataAccess()
         {
             Type type = Type.GetType(ConfigurationManager.AppSettings["DAL"]);
-            var args =
-                new object[]
-                    {
-                        ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString
-                    };
-            Factory = (IDaoFactory) Activator.CreateInstance(type, args);
+            Factory = (IDaoFactory) Activator.CreateInstance(type);
         }
 
         public static IPortalDB PortalDB

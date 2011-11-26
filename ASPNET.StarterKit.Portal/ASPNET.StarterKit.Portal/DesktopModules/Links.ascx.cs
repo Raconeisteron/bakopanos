@@ -7,10 +7,6 @@ namespace ASPNET.StarterKit.Portal
     {
         protected String linkImage = "";
 
-        public Links()
-        {
-            Init += Page_Init;
-        }
 
         //*******************************************************
         //
@@ -66,23 +62,6 @@ namespace ASPNET.StarterKit.Portal
                 return desc;
         }
 
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        ///		Required method for Designer support - do not modify
-        ///		the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
+       
     }
 }

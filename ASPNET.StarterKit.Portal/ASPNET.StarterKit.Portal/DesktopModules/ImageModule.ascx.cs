@@ -12,10 +12,6 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        public ImageModule()
-        {
-            Init += Page_Init;
-        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,39 +20,21 @@ namespace ASPNET.StarterKit.Portal
             var imageWidth = (String) Settings["width"];
 
             // Set Image Source, Width and Height Properties
-            if ((imageSrc != null) && (imageSrc != ""))
+            if (!string.IsNullOrEmpty(imageSrc))
             {
                 Image1.ImageUrl = imageSrc;
             }
 
-            if ((imageWidth != null) && (imageWidth != ""))
+            if (!string.IsNullOrEmpty(imageWidth))
             {
                 Image1.Width = Int32.Parse(imageWidth);
             }
 
-            if ((imageHeight != null) && (imageHeight != ""))
+            if (!string.IsNullOrEmpty(imageHeight))
             {
                 Image1.Height = Int32.Parse(imageHeight);
             }
         }
 
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        ///		Required method for Designer support - do not modify
-        ///		the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

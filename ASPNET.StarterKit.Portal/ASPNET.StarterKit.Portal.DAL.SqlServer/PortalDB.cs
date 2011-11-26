@@ -14,7 +14,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
         #region IPortalDB Members
 
-        public void PortalDeleteModule(params int[] moduleIds)
+        public void DeleteModule(params int[] moduleIds)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);

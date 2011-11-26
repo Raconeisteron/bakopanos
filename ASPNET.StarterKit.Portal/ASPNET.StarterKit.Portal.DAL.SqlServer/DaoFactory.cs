@@ -1,3 +1,5 @@
+using System.Configuration;
+
 namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
     /// <summary>
@@ -6,13 +8,13 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
     /// <remarks>
     /// GoF Design Pattern: Factory.
     /// </remarks>
-    internal class DaoFactory : IDaoFactory
+    public class DaoFactory : IDaoFactory
     {
         private readonly string _connectionString;
 
-        public DaoFactory(string connectionString)
+        public DaoFactory()
         {
-            _connectionString = connectionString;
+            _connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
         }
 
         #region IDaoFactory Members
