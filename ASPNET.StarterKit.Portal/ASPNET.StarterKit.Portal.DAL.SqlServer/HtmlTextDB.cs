@@ -46,9 +46,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleID.Value = moduleId;
-            myCommand.Parameters.Add(parameterModuleID);
+            myCommand.AddParameterModuleId(moduleId);
 
             // Execute the command
             myConnection.Open();
@@ -81,9 +79,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleID.Value = moduleId;
-            myCommand.Parameters.Add(parameterModuleID);
+            myCommand.AddParameterModuleId(moduleId);
 
             var parameterDesktopHtml = new SqlParameter("@DesktopHtml", SqlDbType.NText);
             parameterDesktopHtml.Value = desktopHtml;

@@ -50,9 +50,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
-            myCommand.SelectCommand.Parameters.Add(parameterModuleId);
+            myCommand.SelectCommand.AddParameterModuleId(moduleId);
 
             // Create and Fill the DataSet
             var myDataSet = new DataSet();
@@ -84,9 +82,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemId;
-            myCommand.Parameters.Add(parameterItemId);
+            myCommand.AddParameterItemId(itemId);
 
             // Execute the command
             myConnection.Open();
@@ -118,9 +114,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemID.Value = itemID;
-            myCommand.Parameters.Add(parameterItemID);
+            myCommand.AddParameterItemId(itemID);
 
             // Open the database connection and execute SQL Command
             myConnection.Open();
@@ -156,33 +150,19 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemID.Direction = ParameterDirection.Output;
-            myCommand.Parameters.Add(parameterItemID);
+            var parameterItemID = myCommand.AddParameterItemId();
 
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleID.Value = moduleId;
-            myCommand.Parameters.Add(parameterModuleID);
-
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
-            parameterUserName.Value = userName;
-            myCommand.Parameters.Add(parameterUserName);
-
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
-            parameterTitle.Value = title;
-            myCommand.Parameters.Add(parameterTitle);
+            myCommand.AddParameterModuleId(moduleId);
+            myCommand.AddParameterUserName(userName);
+            myCommand.AddParameterTitle(title);
 
             var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
             parameterWhereWhen.Value = wherewhen;
             myCommand.Parameters.Add(parameterWhereWhen);
 
-            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
-            parameterExpireDate.Value = expireDate;
-            myCommand.Parameters.Add(parameterExpireDate);
-
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
-            parameterDescription.Value = description;
-            myCommand.Parameters.Add(parameterDescription);
+           
+            myCommand.AddParameterExpireDate(expireDate);
+            myCommand.AddParameterDescription(description);
 
             // Open the database connection and execute SQL Command
             myConnection.Open();
@@ -221,29 +201,16 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemID.Value = itemId;
-            myCommand.Parameters.Add(parameterItemID);
-
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
-            parameterUserName.Value = userName;
-            myCommand.Parameters.Add(parameterUserName);
-
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
-            parameterTitle.Value = title;
-            myCommand.Parameters.Add(parameterTitle);
+            myCommand.AddParameterItemId(itemId);
+            myCommand.AddParameterUserName(userName);
+            myCommand.AddParameterTitle(title);
 
             var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
             parameterWhereWhen.Value = wherewhen;
             myCommand.Parameters.Add(parameterWhereWhen);
 
-            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
-            parameterExpireDate.Value = expireDate;
-            myCommand.Parameters.Add(parameterExpireDate);
-
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
-            parameterDescription.Value = description;
-            myCommand.Parameters.Add(parameterDescription);
+            myCommand.AddParameterExpireDate(expireDate);
+            myCommand.AddParameterDescription(description);
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();

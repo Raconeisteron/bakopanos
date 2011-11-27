@@ -46,6 +46,7 @@
     <Compile Include="DiscussionDB.cs" />
     <Compile Include="DocumentDB.cs" />
     <Compile Include="EventsDB.cs" />
+    <Compile Include="SqlParameterHelper.cs" />
     <Compile Include="HtmlTextDB.cs" />
     <Compile Include="LinksDB.cs" />
     <Compile Include="PortalDB.cs" />

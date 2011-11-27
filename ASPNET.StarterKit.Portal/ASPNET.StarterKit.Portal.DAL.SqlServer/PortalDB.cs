@@ -24,14 +24,12 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             myConnection.Open();
 
             foreach (int moduleId in moduleIds)
             {
                 myCommand.Parameters.Clear();
-                parameterModuleID.Value = moduleId;
-                myCommand.Parameters.Add(parameterModuleID);
+                myCommand.AddParameterModuleId(moduleId);
 
                 // Open the database connection and execute the command
                 myCommand.ExecuteNonQuery();
