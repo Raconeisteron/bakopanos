@@ -6,9 +6,9 @@ namespace ASPNET.StarterKit.Portal.DAL
     public interface IRolesDb
     {
         IDataReader GetPortalRoles(int portalId);
-        int AddRole(int portalId, String roleName);
+        int AddRole(int portalId, string roleName);
         void DeleteRole(int roleId);
-        void UpdateRole(int roleId, String roleName);
+        void UpdateRole(int roleId, string roleName);
         IDataReader GetRoleMembers(int roleId);
         void AddUserRole(int roleId, int userId);
         void DeleteUserRole(int roleId, int userId);

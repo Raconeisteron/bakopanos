@@ -9,10 +9,10 @@ namespace ASPNET.StarterKit.Portal.DAL
         IDataReader GetSingleLink(int itemId);
         void DeleteLink(int itemId);
 
-        int AddLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
-                    int viewOrder, String description);
+        int AddLink(int moduleId, int itemId, string userName, string title, string url, string mobileUrl,
+                    int viewOrder, string description);
 
-        void UpdateLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
-                        int viewOrder, String description);
+        void UpdateLink(int moduleId, int itemId, string userName, string title, string url, string mobileUrl,
+                        int viewOrder, string description);
     }
 }

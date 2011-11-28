@@ -52,7 +52,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of document information
-                    IDocumentsDb documents = DataAccess.DocumentDB;
+                    IDocumentsDb documents = DataAccess.DocumentDb;
                     IDataReader dr = documents.GetSingleDocument(itemId);
 
                     // Load first row into Datareader
@@ -66,10 +66,10 @@ namespace ASPNET.StarterKit.Portal
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
                     }
 
-                    NameField.Text = (String) dr["FileFriendlyName"];
-                    PathField.Text = (String) dr["FileNameUrl"];
-                    CategoryField.Text = (String) dr["Category"];
-                    CreatedBy.Text = (String) dr["CreatedByUser"];
+                    NameField.Text = (string) dr["FileFriendlyName"];
+                    PathField.Text = (string) dr["FileNameUrl"];
+                    CategoryField.Text = (string) dr["Category"];
+                    CreatedBy.Text = (string) dr["CreatedByUser"];
                     CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
 
                     dr.Close();
@@ -94,7 +94,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Document DB component
-                IDocumentsDb documents = DataAccess.DocumentDB;
+                IDocumentsDb documents = DataAccess.DocumentDb;
 
                 // Determine whether a file was uploaded
 
@@ -102,7 +102,7 @@ namespace ASPNET.StarterKit.Portal
                 {
                     // for web farm support
                     var length = (int) FileUpload.PostedFile.InputStream.Length;
-                    String contentType = FileUpload.PostedFile.ContentType;
+                    string contentType = FileUpload.PostedFile.ContentType;
                     var content = new byte[length];
 
                     FileUpload.PostedFile.InputStream.Read(content, 0, length);
@@ -116,10 +116,10 @@ namespace ASPNET.StarterKit.Portal
                     if (Upload.Checked && (FileUpload.PostedFile != null))
                     {
                         // Calculate virtualPath of the newly uploaded file
-                        String virtualPath = "~/uploads/" + Path.GetFileName(FileUpload.PostedFile.FileName);
+                        string virtualPath = "~/uploads/" + Path.GetFileName(FileUpload.PostedFile.FileName);
 
                         // Calculate physical path of the newly uploaded file
-                        String phyiscalPath = Server.MapPath(virtualPath);
+                        string phyiscalPath = Server.MapPath(virtualPath);
 
                         // Save file to uploads directory
                         FileUpload.PostedFile.SaveAs(phyiscalPath);
@@ -132,7 +132,7 @@ namespace ASPNET.StarterKit.Portal
                 }
 
                 // Redirect back to the portal home page
-                Response.Redirect((String) ViewState["UrlReferrer"]);
+                Response.Redirect((string) ViewState["UrlReferrer"]);
             }
         }
 
@@ -151,12 +151,12 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                IDocumentsDb documents = DataAccess.DocumentDB;
+                IDocumentsDb documents = DataAccess.DocumentDb;
                 documents.DeleteDocument(itemId);
             }
 
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
 
         //****************************************************************
@@ -170,7 +170,7 @@ namespace ASPNET.StarterKit.Portal
         protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
 
         protected void Page_Init(object sender, EventArgs e)

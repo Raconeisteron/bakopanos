@@ -17,9 +17,9 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var xmlsrc = (String) Settings["xmlsrc"];
+            var xmlsrc = (string) Settings["xmlsrc"];
 
-            if ((xmlsrc != null) && (xmlsrc != ""))
+            if (!string.IsNullOrEmpty(xmlsrc))
             {
                 if (File.Exists(Server.MapPath(xmlsrc)))
                 {
@@ -33,9 +33,9 @@ namespace ASPNET.StarterKit.Portal
                 }
             }
 
-            var xslsrc = (String) Settings["xslsrc"];
+            var xslsrc = (string) Settings["xslsrc"];
 
-            if ((xslsrc != null) && (xslsrc != ""))
+            if (!string.IsNullOrEmpty(xslsrc))
             {
                 if (File.Exists(Server.MapPath(xslsrc)))
                 {

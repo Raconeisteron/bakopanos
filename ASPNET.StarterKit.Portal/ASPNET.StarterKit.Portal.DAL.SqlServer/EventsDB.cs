@@ -17,24 +17,13 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             _connectionString = connectionString;
         }
 
-        //*********************************************************************
-        //
-        // GetEvents Method
-        //
-        // The GetEvents method returns a DataSet containing all of the
-        // events for a specific portal module from the events
-        // database.
-        //
-        // NOTE: A DataSet is returned from this method to allow this method to support
-        // both desktop and mobile Web UI.
-        //
-        // Other relevant sources:
-        //     + <a href="GetEvents.htm" style="color:green">GetEvents Stored Procedure</a>
-        //
-        //*********************************************************************
-
         #region IEventsDb Members
 
+        /// <summary>
+        /// The GetEvents method returns a DataSet containing all of the
+        /// events for a specific portal module from the events
+        /// database.
+        /// </summary>        
         public DataSet GetEvents(int moduleId)
         {
             // Create Instance of Connection and Command Object
@@ -45,7 +34,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.SelectCommand.AddParameterModuleId(moduleId);
+            myCommand.SelectCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
 
             // Create and Fill the DataSet
             var myDataSet = new DataSet();
@@ -55,18 +44,10 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return myDataSet;
         }
 
-        //*********************************************************************
-        //
-        // GetSingleEvent Method
-        //
-        // The GetSingleEvent method returns a IDataReader containing details
-        // about a specific event from the events database.
-        //
-        // Other relevant sources:
-        //     + <a href="GetSingleEvent.htm" style="color:green">GetSingleEvent Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The GetSingleEvent method returns a IDataReader containing details
+        /// about a specific event from the events database.
+        /// </summary>
         public IDataReader GetSingleEvent(int itemId)
         {
             // Create Instance of Connection and Command Object
@@ -77,7 +58,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterItemId(itemId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
 
             // Execute the command
             myConnection.Open();
@@ -87,19 +68,11 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return result;
         }
 
-        //*********************************************************************
-        //
-        // DeleteEvent Method
-        //
-        // The DeleteEvent method deletes a specified event from
-        // the events database.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteEvent.htm" style="color:green">DeleteEvent Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public void DeleteEvent(int itemID)
+        /// <summary>
+        /// The DeleteEvent method deletes a specified event from
+        /// the events database.
+        /// </summary>        
+        public void DeleteEvent(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -109,7 +82,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterItemId(itemID);
+            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
 
             // Open the database connection and execute SQL Command
             myConnection.Open();
@@ -117,20 +90,12 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myConnection.Close();
         }
 
-        //*********************************************************************
-        //
-        // AddEvent Method
-        //
-        // The AddEvent method adds a new event within the Events database table, 
-        // and returns the ItemID value as a result.
-        //
-        // Other relevant sources:
-        //     + <a href="AddEvent.htm" style="color:green">AddEvent Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public int AddEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
-                            String description, String wherewhen)
+        /// <summary>
+        /// // The AddEvent method adds a new event within the Events database table, 
+        /// and returns the ItemID value as a result.
+        /// </summary>        
+        public int AddEvent(int moduleId, int itemId, string userName, string title, DateTime expireDate,
+                            string description, string wherewhen)
         {
             if (userName.Length < 1)
             {
@@ -145,19 +110,19 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemID = myCommand.AddParameterItemId();
+            SqlParameter parameterItemId = myCommand.Parameters.Add(SqlParameterHelper.ReturnValueItemId());
 
-            myCommand.AddParameterModuleId(moduleId);
-            myCommand.AddParameterUserName(userName);
-            myCommand.AddParameterTitle(title);
+            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
+            myCommand.Parameters.Add(SqlParameterHelper.InputUserName(userName));
+            myCommand.Parameters.Add(SqlParameterHelper.InputTitle(title));
 
             var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
             parameterWhereWhen.Value = wherewhen;
             myCommand.Parameters.Add(parameterWhereWhen);
 
 
-            myCommand.AddParameterExpireDate(expireDate);
-            myCommand.AddParameterDescription(description);
+            myCommand.Parameters.Add(SqlParameterHelper.InputExpireDate(expireDate));
+            myCommand.Parameters.Add(SqlParameterHelper.InputDescription(description));
 
             // Open the database connection and execute SQL Command
             myConnection.Open();
@@ -165,23 +130,15 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myConnection.Close();
 
             // Return the new Event ItemID
-            return (int) parameterItemID.Value;
+            return (int) parameterItemId.Value;
         }
 
-        //*********************************************************************
-        //
-        // UpdateEvent Method
-        //
-        // The UpdateEvent method updates the specified event within
-        // the Events database table.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateEvent.htm" style="color:green">UpdateEvent Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public void UpdateEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
-                                String description, String wherewhen)
+        /// <summary>
+        /// The UpdateEvent method updates the specified event within
+        /// the Events database table.
+        /// </summary>        
+        public void UpdateEvent(int moduleId, int itemId, string userName, string title, DateTime expireDate,
+                                string description, string wherewhen)
         {
             if (userName.Length < 1)
             {
@@ -196,16 +153,16 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterItemId(itemId);
-            myCommand.AddParameterUserName(userName);
-            myCommand.AddParameterTitle(title);
+            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
+            myCommand.Parameters.Add(SqlParameterHelper.InputUserName(userName));
+            myCommand.Parameters.Add(SqlParameterHelper.InputTitle(title));
 
             var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
             parameterWhereWhen.Value = wherewhen;
             myCommand.Parameters.Add(parameterWhereWhen);
 
-            myCommand.AddParameterExpireDate(expireDate);
-            myCommand.AddParameterDescription(description);
+            myCommand.Parameters.Add(SqlParameterHelper.InputExpireDate(expireDate));
+            myCommand.Parameters.Add(SqlParameterHelper.InputDescription(description));
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();

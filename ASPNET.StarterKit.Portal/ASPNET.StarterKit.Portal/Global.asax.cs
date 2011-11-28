@@ -10,23 +10,18 @@ using ASPNET.StarterKit.Portal.DAL;
 namespace ASPNET.StarterKit.Portal
 {
     public class Global : HttpApplication
-    {
-        //*********************************************************************
-        //
-        // Application_BeginRequest Event
-        //
-        // The Application_BeginRequest method is an ASP.NET event that executes 
-        // on each web request into the portal application.  The below method
-        // obtains the current tabIndex and TabId from the querystring of the 
-        // request -- and then obtains the configuration necessary to process
-        // and render the request.
-        //
-        // This portal configuration is stored within the application's "Context"
-        // object -- which is available to all pages, controls and components
-        // during the processing of a single request.
-        // 
-        //*********************************************************************
-
+    {        
+        /// <summary>
+        /// The Application_BeginRequest method is an ASP.NET event that executes 
+        /// on each web request into the portal application.  The below method
+        /// obtains the current tabIndex and TabId from the querystring of the 
+        /// request -- and then obtains the configuration necessary to process
+        /// and render the request.
+        ///
+        /// This portal configuration is stored within the application's "Context"
+        /// object -- which is available to all pages, controls and components
+        /// during the processing of a single request.
+        /// </summary>
         protected void Application_BeginRequest(Object sender, EventArgs e)
         {
             int tabIndex = 0;
@@ -68,36 +63,31 @@ namespace ASPNET.StarterKit.Portal
             }
         }
 
-        //*********************************************************************
-        //
-        // Application_AuthenticateRequest Event
-        //
-        // If the client is authenticated with the application, then determine
-        // which security roles he/she belongs to and replace the "User" intrinsic
-        // with a custom IPrincipal security object that permits "User.IsInRole"
-        // role checks within the application
-        //
-        // Roles are cached in the browser in an in-memory encrypted cookie.  If the
-        // cookie doesn't exist yet for this session, create it.
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// If the client is authenticated with the application, then determine
+        /// which security roles he/she belongs to and replace the "User" intrinsic
+        /// with a custom IPrincipal security object that permits "User.IsInRole"
+        /// role checks within the application
+        ///
+        /// Roles are cached in the browser in an in-memory encrypted cookie.  If the
+        /// cookie doesn't exist yet for this session, create it.
+        /// </summary>
         protected void Application_AuthenticateRequest(Object sender, EventArgs e)
         {
             if (Request.IsAuthenticated)
             {
-                String[] roles;
+                string[] roles;
 
                 // Create the roles cookie if it doesn't exist yet for this session.
-                if ((Request.Cookies["portalroles"] == null) || (Request.Cookies["portalroles"].Value == ""))
+                if ((Request.Cookies["portalroles"] == null) || (Request.Cookies["portalroles"].Value == string.Empty))
                 {
                     // Get roles from UserRoles table, and add to cookie
-                    IUsersDb user = DataAccess.UsersDB;
+                    IUsersDb user = DataAccess.UsersDb;
                     roles = user.GetRoles(User.Identity.Name);
 
                     // Create a string to persist the roles
-                    String roleStr = "";
-                    foreach (String role in roles)
+                    string roleStr = string.Empty;
+                    foreach (string role in roles)
                     {
                         roleStr += role;
                         roleStr += ";";
@@ -114,7 +104,7 @@ namespace ASPNET.StarterKit.Portal
                         );
 
                     // Encrypt the ticket
-                    String cookieStr = FormsAuthentication.Encrypt(ticket);
+                    string cookieStr = FormsAuthentication.Encrypt(ticket);
 
                     // Send the cookie to the client
                     Response.Cookies["portalroles"].Value = cookieStr;
@@ -130,12 +120,12 @@ namespace ASPNET.StarterKit.Portal
                     //convert the string representation of the role data into a string array
                     var userRoles = new ArrayList();
 
-                    foreach (String role in ticket.UserData.Split(new[] {';'}))
+                    foreach (string role in ticket.UserData.Split(new[] {';'}))
                     {
                         userRoles.Add(role);
                     }
 
-                    roles = (String[]) userRoles.ToArray(typeof (String));
+                    roles = (string[]) userRoles.ToArray(typeof(string));
                 }
 
                 // Add our own custom principal to the request containing the roles in the auth ticket
@@ -143,14 +133,10 @@ namespace ASPNET.StarterKit.Portal
             }
         }
 
-        //*********************************************************************
-        //
-        // GetApplicationPath Method
-        //
-        // This method returns the correct relative path when installing
-        // the portal on a root web site instead of virtual directory
-        //
-        //*********************************************************************
+        /// <summary>
+        /// This method returns the correct relative path when installing
+        /// the portal on a root web site instead of virtual directory
+        /// </summary>        
         public static string GetApplicationPath(HttpRequest request)
         {
             string path = string.Empty;

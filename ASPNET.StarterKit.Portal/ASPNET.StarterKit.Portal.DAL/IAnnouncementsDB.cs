@@ -9,10 +9,10 @@ namespace ASPNET.StarterKit.Portal.DAL
         IDataReader GetSingleAnnouncement(int itemId);
         void DeleteAnnouncement(int itemId);
 
-        int AddAnnouncement(int moduleId, int itemId, String userName, String title, DateTime expireDate,
-                            String description, String moreLink, String mobileMoreLink);
+        int AddAnnouncement(int moduleId, int itemId, string userName, string title, DateTime expireDate,
+                            string description, string moreLink, string mobileMoreLink);
 
-        void UpdateAnnouncement(int moduleId, int itemId, String userName, String title, DateTime expireDate,
-                                String description, String moreLink, String mobileMoreLink);
+        void UpdateAnnouncement(int moduleId, int itemId, string userName, string title, DateTime expireDate,
+                                string description, string moreLink, string mobileMoreLink);
     }
 }

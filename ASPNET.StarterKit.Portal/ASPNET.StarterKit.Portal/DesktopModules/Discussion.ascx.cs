@@ -42,7 +42,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain a list of discussion messages for the module
             // and bind to datalist
-            IDiscussionsDb discuss = DataAccess.DiscussionDB;
+            IDiscussionsDb discuss = DataAccess.DiscussionDb;
 
             TopLevelList.DataSource = discuss.GetTopLevelMessages(ModuleId);
             TopLevelList.DataBind();
@@ -61,7 +61,7 @@ namespace ASPNET.StarterKit.Portal
         protected IDataReader GetThreadMessages()
         {
             // Obtain a list of discussion messages for the module
-            IDiscussionsDb discuss = DataAccess.DiscussionDB;
+            IDiscussionsDb discuss = DataAccess.DiscussionDb;
             IDataReader dr = discuss.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
 
             // Return the filtered DataView
@@ -79,7 +79,7 @@ namespace ASPNET.StarterKit.Portal
         private void TopLevelList_Select(object Sender, DataListCommandEventArgs e)
         {
             // Determine the command of the button (either "select" or "collapse")
-            String command = ((ImageButton) e.CommandSource).CommandName;
+            string command = ((ImageButton) e.CommandSource).CommandName;
 
             // Update asp:datalist selection index depending upon the type of command
             // and then rebind the asp:datalist with content
@@ -107,7 +107,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        protected String FormatUrl(int item)
+        protected string FormatUrl(int item)
         {
             return "~/DesktopModules/DiscussDetails.aspx?ItemID=" + item + "&mid=" + ModuleId;
         }
@@ -122,7 +122,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        protected String NodeImage(int count)
+        protected string NodeImage(int count)
         {
             if (count > 0)
             {

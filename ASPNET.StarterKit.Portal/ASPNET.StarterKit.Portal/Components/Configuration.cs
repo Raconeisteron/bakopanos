@@ -36,7 +36,7 @@ namespace ASPNET.StarterKit.Portal
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public void UpdatePortalInfo(int portalId, String portalName, bool alwaysShow)
+        public void UpdatePortalInfo(int portalId, string portalName, bool alwaysShow)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -69,7 +69,7 @@ namespace ASPNET.StarterKit.Portal
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public int AddTab(int portalId, String tabName, int tabOrder)
+        public int AddTab(int portalId, string tabName, int tabOrder)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -80,7 +80,7 @@ namespace ASPNET.StarterKit.Portal
             // Set the properties on the new row
             newRow.TabName = tabName;
             newRow.TabOrder = tabOrder;
-            newRow.MobileTabName = String.Empty;
+            newRow.MobileTabName = string.Empty;
             newRow.ShowMobile = true;
             newRow.AccessRoles = "All Users;";
 
@@ -107,8 +107,8 @@ namespace ASPNET.StarterKit.Portal
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public void UpdateTab(int portalId, int tabId, String tabName, int tabOrder, String authorizedRoles,
-                              String mobileTabName, bool showMobile)
+        public void UpdateTab(int portalId, int tabId, string tabName, int tabOrder, string authorizedRoles,
+                              string mobileTabName, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -184,7 +184,7 @@ namespace ASPNET.StarterKit.Portal
             //
             // Delete information in the Database relating to each Module being deleted
             //
-            IPortalDb portal = DataAccess.PortalDB;
+            IPortalDb portal = DataAccess.PortalDb;
             portal.DeleteModule(tabRow.GetModuleRows().Select(item => item.ModuleId).ToArray());
 
             // Finish removing the Tab row from the Xml file
@@ -211,15 +211,15 @@ namespace ASPNET.StarterKit.Portal
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public void UpdateModuleOrder(int ModuleId, int ModuleOrder, String pane)
+        public void UpdateModuleOrder(int moduleId, int moduleOrder, string pane)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
             // Find the appropriate Module in the Module table and update the properties
-            SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(ModuleId);
+            SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
 
-            moduleRow.ModuleOrder = ModuleOrder;
+            moduleRow.ModuleOrder = moduleOrder;
             moduleRow.PaneName = pane;
 
             // Save the changes 
@@ -239,8 +239,8 @@ namespace ASPNET.StarterKit.Portal
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public int AddModule(int tabId, int moduleOrder, String paneName, String title, int moduleDefId, int cacheTime,
-                             String editRoles, bool showMobile)
+        public int AddModule(int tabId, int moduleOrder, string paneName, string title, int moduleDefId, int cacheTime,
+                             string editRoles, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -282,8 +282,8 @@ namespace ASPNET.StarterKit.Portal
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public int UpdateModule(int moduleId, int moduleOrder, String paneName, String title, int cacheTime,
-                                String editRoles, bool showMobile)
+        public int UpdateModule(int moduleId, int moduleOrder, string paneName, string title, int cacheTime,
+                                string editRoles, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -328,7 +328,7 @@ namespace ASPNET.StarterKit.Portal
             // Delete information in the Database relating to Module being deleted
             //
 
-            IPortalDb portal = DataAccess.PortalDB;
+            IPortalDb portal = DataAccess.PortalDb;
             portal.DeleteModule(moduleId);
 
             // Finish removing Module
@@ -343,7 +343,7 @@ namespace ASPNET.StarterKit.Portal
         // UpdateModuleSetting Method  <a name="UpdateModuleSetting"></a>
         //
         // The UpdateModuleSetting Method updates a single module setting 
-        // in the configuration file.  If the value passed in is String.Empty,
+        // in the configuration file.  If the value passed in is string.Empty,
         // the Setting element is deleted if it exists.  If not, either a 
         // matching Setting element is updated, or a new Setting element is 
         // created.
@@ -353,7 +353,7 @@ namespace ASPNET.StarterKit.Portal
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public void UpdateModuleSetting(int moduleId, String key, String val)
+        public void UpdateModuleSetting(int moduleId, string key, string val)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -388,7 +388,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 // If there are no Setting elements at all, add one with the new name and value,
                 // but only if the value is not empty
-                if (val != String.Empty)
+                if (val != string.Empty)
                 {
                     settingRow = siteSettings.Setting.NewSettingRow();
 
@@ -407,12 +407,12 @@ namespace ASPNET.StarterKit.Portal
                 Int32 i;
 
                 // Find which row matches the input parameter "key" and update the
-                // value.  If the value is String.Empty, however, delete the row.
+                // value.  If the value is string.Empty, however, delete the row.
                 for (i = 0; i < settingRows.Length; i++)
                 {
                     if (settingRows[i].Name == key)
                     {
-                        if (val == String.Empty)
+                        if (val == string.Empty)
                         {
                             // Delete the row
                             siteSettings.Setting.RemoveSettingRow(settingRows[i]);
@@ -431,7 +431,7 @@ namespace ASPNET.StarterKit.Portal
                 {
                     // Setting elements exist, however, there is no matching Setting element.
                     // Add one with new name and value, but only if the value is not empty
-                    if (val != String.Empty)
+                    if (val != string.Empty)
                     {
                         settingRow = siteSettings.Setting.NewSettingRow();
 
@@ -529,7 +529,7 @@ namespace ASPNET.StarterKit.Portal
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public int AddModuleDefinition(int portalId, String name, String desktopSrc, String mobileSrc)
+        public int AddModuleDefinition(int portalId, string name, string desktopSrc, string mobileSrc)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -581,7 +581,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 if (moduleRow.ModuleDefId == defId)
                 {
-                    IPortalDb portal = DataAccess.PortalDB;
+                    IPortalDb portal = DataAccess.PortalDb;
                     portal.DeleteModule(moduleRow.ModuleId);
 
                     // Delete the xml module associated with the ModuleDef
@@ -610,7 +610,7 @@ namespace ASPNET.StarterKit.Portal
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public void UpdateModuleDefinition(int defId, String name, String desktopSrc, String mobileSrc)
+        public void UpdateModuleDefinition(int defId, string name, string desktopSrc, string mobileSrc)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -743,7 +743,7 @@ namespace ASPNET.StarterKit.Portal
         public ArrayList DesktopTabs = new ArrayList();
         public ArrayList MobileTabs = new ArrayList();
         public int PortalId;
-        public String PortalName;
+        public string PortalName;
 
         //*********************************************************************
         //
@@ -766,7 +766,7 @@ namespace ASPNET.StarterKit.Portal
             SiteConfiguration siteSettings = Configuration.GetSiteSettings();
 
             // Read the Desktop Tab Information, and sort by Tab Order
-            foreach (SiteConfiguration.TabRow tRow in siteSettings.Tab.Select("", "TabOrder"))
+            foreach (SiteConfiguration.TabRow tRow in siteSettings.Tab.Select(string.Empty, "TabOrder"))
             {
                 var tabDetails = new TabStripDetails();
 
@@ -855,9 +855,9 @@ namespace ASPNET.StarterKit.Portal
 
     public class TabStripDetails
     {
-        public String AuthorizedRoles;
+        public string AuthorizedRoles;
         public int TabId;
-        public String TabName;
+        public string TabName;
         public int TabOrder;
     }
 
@@ -872,13 +872,13 @@ namespace ASPNET.StarterKit.Portal
 
     public class TabSettings
     {
-        public String AuthorizedRoles;
-        public String MobileTabName;
+        public string AuthorizedRoles;
+        public string MobileTabName;
         public ArrayList Modules = new ArrayList();
         public bool ShowMobile;
         public int TabId;
         public int TabIndex;
-        public String TabName;
+        public string TabName;
         public int TabOrder;
     }
 
@@ -895,15 +895,15 @@ namespace ASPNET.StarterKit.Portal
 
     public class ModuleSettings : IComparable
     {
-        public String AuthorizedEditRoles;
+        public string AuthorizedEditRoles;
         public int CacheTime;
-        public String DesktopSrc;
-        public String MobileSrc;
+        public string DesktopSrc;
+        public string MobileSrc;
         public int ModuleDefId;
         public int ModuleId;
         public int ModuleOrder;
-        public String ModuleTitle;
-        public String PaneName;
+        public string ModuleTitle;
+        public string PaneName;
         public bool ShowMobile;
         public int TabId;
 
@@ -939,9 +939,9 @@ namespace ASPNET.StarterKit.Portal
     {
         public int ModuleOrder { get; set; }
 
-        public String ModuleTitle { get; set; }
+        public string ModuleTitle { get; set; }
 
-        public String PaneName { get; set; }
+        public string PaneName { get; set; }
 
         public int ModuleId { get; set; }
 
@@ -979,7 +979,7 @@ namespace ASPNET.StarterKit.Portal
     {
         public int TabOrder { get; set; }
 
-        public String TabName { get; set; }
+        public string TabName { get; set; }
 
         public int TabId { get; set; }
 

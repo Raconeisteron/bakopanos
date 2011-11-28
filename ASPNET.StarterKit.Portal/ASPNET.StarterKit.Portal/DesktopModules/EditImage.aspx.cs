@@ -38,9 +38,9 @@ namespace ASPNET.StarterKit.Portal
                     // Get settings from the database
                     settings = Configuration.GetModuleSettings(moduleId);
 
-                    Src.Text = (String) settings["src"];
-                    Width.Text = (String) settings["width"];
-                    Height.Text = (String) settings["height"];
+                    Src.Text = (string) settings["src"];
+                    Width.Text = (string) settings["width"];
+                    Height.Text = (string) settings["height"];
                 }
 
                 // Store URL Referrer to return to portal
@@ -67,7 +67,7 @@ namespace ASPNET.StarterKit.Portal
             config.UpdateModuleSetting(moduleId, "width", Width.Text);
 
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
 
         //****************************************************************
@@ -81,7 +81,7 @@ namespace ASPNET.StarterKit.Portal
         protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
     }
 }

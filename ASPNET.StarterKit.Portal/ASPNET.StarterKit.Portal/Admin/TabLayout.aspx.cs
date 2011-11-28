@@ -97,8 +97,8 @@ namespace ASPNET.StarterKit.Portal
 
         protected void UpDown_Click(Object sender, ImageClickEventArgs e)
         {
-            String cmd = ((ImageButton) sender).CommandName;
-            String pane = ((ImageButton) sender).CommandArgument;
+            string cmd = ((ImageButton) sender).CommandName;
+            string pane = ((ImageButton) sender).CommandArgument;
             var _listbox = (ListBox) Page.FindControl(pane);
 
             ArrayList modules = GetModules(pane);
@@ -153,8 +153,8 @@ namespace ASPNET.StarterKit.Portal
 
         protected void RightLeft_Click(Object sender, ImageClickEventArgs e)
         {
-            String sourcePane = ((ImageButton) sender).Attributes["sourcepane"];
-            String targetPane = ((ImageButton) sender).Attributes["targetpane"];
+            string sourcePane = ((ImageButton) sender).Attributes["sourcepane"];
+            string targetPane = ((ImageButton) sender).Attributes["targetpane"];
             var sourceBox = (ListBox) Page.FindControl(sourcePane);
             var targetBox = (ListBox) Page.FindControl(targetPane);
 
@@ -216,7 +216,7 @@ namespace ASPNET.StarterKit.Portal
         protected void Apply_Click(Object Sender, EventArgs e)
         {
             // Save changes then navigate back to admin.  
-            String id = ((LinkButton) Sender).ID;
+            string id = ((LinkButton) Sender).ID;
 
             SaveTabData();
 
@@ -255,8 +255,8 @@ namespace ASPNET.StarterKit.Portal
 
         private void SaveTabData()
         {
-            // Construct Authorized User Roles String
-            String authorizedRoles = "";
+            // Construct Authorized User Roles string
+            string authorizedRoles = "";
 
             foreach (ListItem item in authRoles.Items)
             {
@@ -284,7 +284,7 @@ namespace ASPNET.StarterKit.Portal
 
         protected void EditBtn_Click(Object sender, ImageClickEventArgs e)
         {
-            String pane = ((ImageButton) sender).CommandArgument;
+            string pane = ((ImageButton) sender).CommandArgument;
             var _listbox = (ListBox) Page.FindControl(pane);
 
             if (_listbox.SelectedIndex != -1)
@@ -305,7 +305,7 @@ namespace ASPNET.StarterKit.Portal
 
         protected void DeleteBtn_Click(Object sender, ImageClickEventArgs e)
         {
-            String pane = ((ImageButton) sender).CommandArgument;
+            string pane = ((ImageButton) sender).CommandArgument;
             var _listbox = (ListBox) Page.FindControl(pane);
             ArrayList modules = GetModules(pane);
 
@@ -345,7 +345,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Populate checkbox list with all security roles for this portal
             // and "check" the ones already configured for this tab
-            IRolesDb rolesObj = DataAccess.RolesDB;
+            IRolesDb rolesObj = DataAccess.RolesDb;
             IDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
 
             // Clear existing items in checkboxlist
@@ -364,7 +364,7 @@ namespace ASPNET.StarterKit.Portal
             while (roles.Read())
             {
                 var item = new ListItem();
-                item.Text = (String) roles["RoleName"];
+                item.Text = (string) roles["RoleName"];
                 item.Value = roles["RoleID"].ToString();
 
                 if ((tab.AuthorizedRoles.LastIndexOf(item.Text)) > -1)
@@ -400,7 +400,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private ArrayList GetModules(String pane)
+        private ArrayList GetModules(string pane)
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];

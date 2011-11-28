@@ -33,14 +33,14 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsPostBack == false)
             {
                 // Obtain a single row of text information
-                IHtmlTextDb text = DataAccess.HtmlTextDB;
+                IHtmlTextDb text = DataAccess.HtmlTextDb;
                 IDataReader dr = text.GetHtmlText(moduleId);
 
                 if (dr.Read())
                 {
-                    DesktopText.Text = Server.HtmlDecode((String) dr["DesktopHtml"]);
-                    MobileSummary.Text = Server.HtmlDecode((String) dr["MobileSummary"]);
-                    MobileDetails.Text = Server.HtmlDecode((String) dr["MobileDetails"]);
+                    DesktopText.Text = Server.HtmlDecode((string) dr["DesktopHtml"]);
+                    MobileSummary.Text = Server.HtmlDecode((string) dr["MobileSummary"]);
+                    MobileDetails.Text = Server.HtmlDecode((string) dr["MobileDetails"]);
                 }
                 else
                 {
@@ -66,14 +66,14 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create an instance of the HtmlTextDB component
-            IHtmlTextDb text = DataAccess.HtmlTextDB;
+            IHtmlTextDb text = DataAccess.HtmlTextDb;
 
             // Update the text within the HtmlText table
             text.UpdateHtmlText(moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text),
                                 Server.HtmlEncode(MobileDetails.Text));
 
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
 
         //****************************************************************
@@ -87,7 +87,7 @@ namespace ASPNET.StarterKit.Portal
         protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
     }
 }

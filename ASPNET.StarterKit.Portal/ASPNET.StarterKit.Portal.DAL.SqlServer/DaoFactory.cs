@@ -19,52 +19,52 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
         #region IDaoFactory Members
 
-        public IPortalDb PortalDB
+        public IPortalDb PortalDb
         {
             get { return new PortalDb(_connectionString); }
         }
 
-        public IAnnouncementsDb AnnouncementsDB
+        public IAnnouncementsDb AnnouncementsDb
         {
             get { return new AnnouncementsDb(_connectionString); }
         }
 
-        public IContactsDb ContactsDB
+        public IContactsDb ContactsDb
         {
             get { return new ContactsDb(_connectionString); }
         }
 
-        public IDiscussionsDb DiscussionDB
+        public IDiscussionsDb DiscussionDb
         {
             get { return new DiscussionsDb(_connectionString); }
         }
 
-        public IDocumentsDb DocumentDB
+        public IDocumentsDb DocumentDb
         {
             get { return new DocumentsDb(_connectionString); }
         }
 
-        public IEventsDb EventsDB
+        public IEventsDb EventsDb
         {
             get { return new EventsDb(_connectionString); }
         }
 
-        public IHtmlTextDb HtmlTextDB
+        public IHtmlTextDb HtmlTextDb
         {
             get { return new HtmlTextDb(_connectionString); }
         }
 
-        public ILinksDb LinkDB
+        public ILinksDb LinkDb
         {
             get { return new LinkDb(_connectionString); }
         }
 
-        public IRolesDb RolesDB
+        public IRolesDb RolesDb
         {
             get { return new RolesDb(_connectionString); }
         }
 
-        public IUsersDb UsersDB
+        public IUsersDb UsersDb
         {
             get { return new UsersDb(_connectionString); }
         }

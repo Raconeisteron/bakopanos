@@ -14,17 +14,13 @@ namespace ASPNET.StarterKit.Portal.DAL
     /// This class makes extensive use of the Factory pattern in determining which 
     /// database specific DAOs (Data Access Objects) to return.
     /// 
-    /// This class is like a Singleton -- it is a static class (Shared in VB) and 
+    /// This class is like a Singleton -- it is a static class and 
     /// therefore only one 'instance' will ever exist.
     /// 
     /// This class is a Proxy as it 'stands in' for the actual Data Access Object Factory.
     /// </remarks>
     public static class DataAccess
     {
-        // The static field initializers below are thread safe.
-        // Furthermore, they are executed in the order in which they appear
-        // in the class declaration. Note: if a static constructor
-        // is present you want to initialize these in that constructor.        
         private static readonly IDaoFactory Factory;
 
         static DataAccess()
@@ -33,57 +29,54 @@ namespace ASPNET.StarterKit.Portal.DAL
             Factory = (IDaoFactory) Activator.CreateInstance(type);
         }
 
-        public static IPortalDb PortalDB
+        public static IPortalDb PortalDb
         {
-            get { return Factory.PortalDB; }
+            get { return Factory.PortalDb; }
         }
 
-        /// <summary>
-        /// Gets a provider-specific customer data access object.
-        /// </summary>
-        public static IAnnouncementsDb AnnouncementsDB
+        public static IAnnouncementsDb AnnouncementsDb
         {
-            get { return Factory.AnnouncementsDB; }
+            get { return Factory.AnnouncementsDb; }
         }
 
-        public static IContactsDb ContactsDB
+        public static IContactsDb ContactsDb
         {
-            get { return Factory.ContactsDB; }
+            get { return Factory.ContactsDb; }
         }
 
-        public static IDiscussionsDb DiscussionDB
+        public static IDiscussionsDb DiscussionDb
         {
-            get { return Factory.DiscussionDB; }
+            get { return Factory.DiscussionDb; }
         }
 
-        public static IDocumentsDb DocumentDB
+        public static IDocumentsDb DocumentDb
         {
-            get { return Factory.DocumentDB; }
+            get { return Factory.DocumentDb; }
         }
 
-        public static IEventsDb EventsDB
+        public static IEventsDb EventsDb
         {
-            get { return Factory.EventsDB; }
+            get { return Factory.EventsDb; }
         }
 
-        public static ILinksDb LinkDB
+        public static ILinksDb LinkDb
         {
-            get { return Factory.LinkDB; }
+            get { return Factory.LinkDb; }
         }
 
-        public static IHtmlTextDb HtmlTextDB
+        public static IHtmlTextDb HtmlTextDb
         {
-            get { return Factory.HtmlTextDB; }
+            get { return Factory.HtmlTextDb; }
         }
 
-        public static IRolesDb RolesDB
+        public static IRolesDb RolesDb
         {
-            get { return Factory.RolesDB; }
+            get { return Factory.RolesDb; }
         }
 
-        public static IUsersDb UsersDB
+        public static IUsersDb UsersDb
         {
-            get { return Factory.UsersDB; }
+            get { return Factory.UsersDb; }
         }
     }
 }

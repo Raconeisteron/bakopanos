@@ -29,7 +29,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             foreach (int moduleId in moduleIds)
             {
                 myCommand.Parameters.Clear();
-                myCommand.AddParameterModuleId(moduleId);
+                myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
 
                 // Open the database connection and execute the command
                 myCommand.ExecuteNonQuery();

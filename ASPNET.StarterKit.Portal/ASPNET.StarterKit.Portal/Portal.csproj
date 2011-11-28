@@ -267,6 +267,7 @@
     <Compile Include="Admin\Users.ascx.designer.cs">
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Components\CachedPortalModuleControl.cs" />
     <Compile Include="Components\Configuration.cs" />
     <Compile Include="Components\DesktopControls.cs">
       <SubType>ASPXCodeBehind</SubType>

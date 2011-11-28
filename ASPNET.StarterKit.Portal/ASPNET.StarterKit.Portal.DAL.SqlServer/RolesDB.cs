@@ -33,7 +33,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterPortalId(portalId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputPortalId(portalId));
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -47,7 +47,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// The AddRole method creates a new security role for the specified portal,
         /// and returns the new RoleID value.
         /// </summary>
-        public int AddRole(int portalId, String roleName)
+        public int AddRole(int portalId, string roleName)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -57,13 +57,13 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterPortalId(portalId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputPortalId(portalId));
 
             var parameterRoleName = new SqlParameter("@RoleName", SqlDbType.NVarChar, 50);
             parameterRoleName.Value = roleName;
             myCommand.Parameters.Add(parameterRoleName);
 
-            SqlParameter parameterRoleId = myCommand.AddParameterRoleId();            
+            SqlParameter parameterRoleId = myCommand.Parameters.Add(SqlParameterHelper.ReturnValueRoleId());
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -87,7 +87,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC            
-            myCommand.AddParameterRoleId(roleId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputRoleId(roleId));
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -98,7 +98,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// <summary>
         /// The UpdateRole method updates the friendly name of the specified role.
         /// </summary>        
-        public void UpdateRole(int roleId, String roleName)
+        public void UpdateRole(int roleId, string roleName)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -108,7 +108,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterRoleId(roleId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputRoleId(roleId));
 
             var parameterRoleName = new SqlParameter("@RoleName", SqlDbType.NVarChar, 50);
             parameterRoleName.Value = roleName;
@@ -138,7 +138,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
-            myCommand.AddParameterRoleId(roleId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputRoleId(roleId));
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -161,8 +161,8 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterRoleId(roleId);
-            myCommand.AddParameterUserId(userId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputRoleId(roleId));
+            myCommand.Parameters.Add(SqlParameterHelper.InputUserId(userId));
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -183,8 +183,8 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterRoleId(roleId);
-            myCommand.AddParameterUserId(userId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputRoleId(roleId));
+            myCommand.Parameters.Add(SqlParameterHelper.InputUserId(userId));
 
             // Open the database connection and execute the command
             myConnection.Open();

@@ -46,7 +46,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of link information
-                    ILinksDb links = DataAccess.LinkDB;
+                    ILinksDb links = DataAccess.LinkDb;
                     IDataReader dr = links.GetSingleLink(itemId);
 
                     // Read in first row from database
@@ -60,12 +60,12 @@ namespace ASPNET.StarterKit.Portal
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
                     }
 
-                    TitleField.Text = (String) dr["Title"];
-                    DescriptionField.Text = (String) dr["Description"];
-                    UrlField.Text = (String) dr["Url"];
-                    MobileUrlField.Text = (String) dr["MobileUrl"];
+                    TitleField.Text = (string) dr["Title"];
+                    DescriptionField.Text = (string) dr["Description"];
+                    UrlField.Text = (string) dr["Url"];
+                    MobileUrlField.Text = (string) dr["MobileUrl"];
                     ViewOrderField.Text = dr["ViewOrder"].ToString();
-                    CreatedBy.Text = (String) dr["CreatedByUser"];
+                    CreatedBy.Text = (string) dr["CreatedByUser"];
                     CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
 
                     // Close datareader
@@ -90,7 +90,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Link DB component
-                ILinksDb links = DataAccess.LinkDB;
+                ILinksDb links = DataAccess.LinkDb;
 
                 if (itemId == 0)
                 {
@@ -106,7 +106,7 @@ namespace ASPNET.StarterKit.Portal
                 }
 
                 // Redirect back to the portal home page
-                Response.Redirect((String) ViewState["UrlReferrer"]);
+                Response.Redirect((string) ViewState["UrlReferrer"]);
             }
         }
 
@@ -125,12 +125,12 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                ILinksDb links = DataAccess.LinkDB;
+                ILinksDb links = DataAccess.LinkDb;
                 links.DeleteLink(itemId);
             }
 
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
 
         //****************************************************************
@@ -144,7 +144,7 @@ namespace ASPNET.StarterKit.Portal
         protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
     }
 }

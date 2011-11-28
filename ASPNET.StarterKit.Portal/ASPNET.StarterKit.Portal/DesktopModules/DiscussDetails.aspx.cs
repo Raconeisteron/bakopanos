@@ -79,7 +79,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create new discussion database component
-            IDiscussionsDb discuss = DataAccess.DiscussionDB;
+            IDiscussionsDb discuss = DataAccess.DiscussionDb;
 
             // Add new message (updating the "itemId" on the page)
             itemId = discuss.AddMessage(moduleId, itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
@@ -120,7 +120,7 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Obtain the selected item from the Discussion table
-            IDiscussionsDb discuss = DataAccess.DiscussionDB;
+            IDiscussionsDb discuss = DataAccess.DiscussionDb;
             IDataReader dr = discuss.GetSingleMessage(itemId);
 
             // Load first row from database
@@ -135,10 +135,10 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Update labels with message contents
-            Title.Text = (String) dr["Title"];
-            Body.Text = (String) dr["Body"];
-            CreatedByUser.Text = (String) dr["CreatedByUser"];
-            CreatedDate.Text = String.Format("{0:d}", dr["CreatedDate"]);
+            Title.Text = (string) dr["Title"];
+            Body.Text = (string) dr["Body"];
+            CreatedByUser.Text = (string) dr["CreatedByUser"];
+            CreatedDate.Text = string.Format("{0:d}", dr["CreatedDate"]);
             TitleField.Text = ReTitle(Title.Text);
 
             int prevId = 0;
@@ -183,7 +183,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private String ReTitle(String title)
+        private string ReTitle(string title)
         {
             if (title.Length > 0 & title.IndexOf("Re: ", 0) == -1)
             {

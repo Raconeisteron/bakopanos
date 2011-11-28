@@ -17,20 +17,12 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             _connectionString = connectionString;
         }
 
-        //*********************************************************************
-        //
-        // GetHtmlText Method
-        //
-        // The GetHtmlText method returns a IDataReader containing details
-        // about a specific item from the HtmlText database table.
-        //
-        // Other relevant sources:
-        //     + <a href="GetHtmlText.htm" style="color:green">GetHtmlText Stored Procedure</a>
-        //
-        //*********************************************************************
-
         #region IHtmlTextDb Members
 
+        /// <summary>
+        /// The GetHtmlText method returns a IDataReader containing details
+        /// about a specific item from the HtmlText database table.
+        /// </summary>        
         public IDataReader GetHtmlText(int moduleId)
         {
             // Create Instance of Connection and Command Object
@@ -41,7 +33,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterModuleId(moduleId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
 
             // Execute the command
             myConnection.Open();
@@ -51,20 +43,11 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return result;
         }
 
-
-        //*********************************************************************
-        //
-        // UpdateHtmlText Method
-        //
-        // The UpdateHtmlText method updates a specified item within
-        // the HtmlText database table.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateHtmlText.htm" style="color:green">UpdateHtmlText Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public void UpdateHtmlText(int moduleId, String desktopHtml, String mobileSummary, String mobileDetails)
+        /// <summary>
+        /// The UpdateHtmlText method updates a specified item within
+        /// the HtmlText database table.
+        /// </summary>        
+        public void UpdateHtmlText(int moduleId, string desktopHtml, string mobileSummary, string mobileDetails)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -74,7 +57,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterModuleId(moduleId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
 
             var parameterDesktopHtml = new SqlParameter("@DesktopHtml", SqlDbType.NText);
             parameterDesktopHtml.Value = desktopHtml;

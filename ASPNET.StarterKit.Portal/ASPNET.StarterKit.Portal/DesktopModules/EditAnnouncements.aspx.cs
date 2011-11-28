@@ -46,7 +46,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of announcement information
-                    IAnnouncementsDb announcementDB = DataAccess.AnnouncementsDB;
+                    IAnnouncementsDb announcementDB = DataAccess.AnnouncementsDb;
                     IDataReader dr = announcementDB.GetSingleAnnouncement(itemId);
 
                     // Load first row into DataReader
@@ -60,12 +60,12 @@ namespace ASPNET.StarterKit.Portal
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
                     }
 
-                    TitleField.Text = (String) dr["Title"];
-                    MoreLinkField.Text = (String) dr["MoreLink"];
-                    MobileMoreField.Text = (String) dr["MobileMoreLink"];
-                    DescriptionField.Text = (String) dr["Description"];
+                    TitleField.Text = (string) dr["Title"];
+                    MoreLinkField.Text = (string) dr["MoreLink"];
+                    MobileMoreField.Text = (string) dr["MobileMoreLink"];
+                    DescriptionField.Text = (string) dr["Description"];
                     ExpireField.Text = ((DateTime) dr["ExpireDate"]).ToShortDateString();
-                    CreatedBy.Text = (String) dr["CreatedByUser"];
+                    CreatedBy.Text = (string) dr["CreatedByUser"];
                     CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
 
                     // Close the datareader
@@ -91,7 +91,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Announcement DB component
-                IAnnouncementsDb announcementDB = DataAccess.AnnouncementsDB;
+                IAnnouncementsDb announcementDB = DataAccess.AnnouncementsDb;
 
                 if (itemId == 0)
                 {
@@ -109,7 +109,7 @@ namespace ASPNET.StarterKit.Portal
                 }
 
                 // Redirect back to the portal home page
-                Response.Redirect((String) ViewState["UrlReferrer"]);
+                Response.Redirect((string) ViewState["UrlReferrer"]);
             }
         }
 
@@ -128,12 +128,12 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                IAnnouncementsDb announcementDB = DataAccess.AnnouncementsDB;
+                IAnnouncementsDb announcementDB = DataAccess.AnnouncementsDb;
                 announcementDB.DeleteAnnouncement(itemId);
             }
 
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
 
         //****************************************************************
@@ -147,7 +147,7 @@ namespace ASPNET.StarterKit.Portal
         protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
     }
 }

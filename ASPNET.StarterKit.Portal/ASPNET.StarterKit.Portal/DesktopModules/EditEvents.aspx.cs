@@ -51,7 +51,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of event information
-                    IEventsDb events = DataAccess.EventsDB;
+                    IEventsDb events = DataAccess.EventsDb;
                     IDataReader dr = events.GetSingleEvent(itemId);
 
                     // Read first row from database
@@ -65,11 +65,11 @@ namespace ASPNET.StarterKit.Portal
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
                     }
 
-                    TitleField.Text = (String) dr["Title"];
-                    DescriptionField.Text = (String) dr["Description"];
+                    TitleField.Text = (string) dr["Title"];
+                    DescriptionField.Text = (string) dr["Description"];
                     ExpireField.Text = ((DateTime) dr["ExpireDate"]).ToShortDateString();
-                    CreatedBy.Text = (String) dr["CreatedByUser"];
-                    WhereWhenField.Text = (String) dr["WhereWhen"];
+                    CreatedBy.Text = (string) dr["CreatedByUser"];
+                    WhereWhenField.Text = (string) dr["WhereWhen"];
                     CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
 
                     dr.Close();
@@ -94,7 +94,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Event DB component
-                IEventsDb events = DataAccess.EventsDB;
+                IEventsDb events = DataAccess.EventsDb;
 
                 if (itemId == 0)
                 {
@@ -110,7 +110,7 @@ namespace ASPNET.StarterKit.Portal
                 }
 
                 // Redirect back to the portal home page
-                Response.Redirect((String) ViewState["UrlReferrer"]);
+                Response.Redirect((string) ViewState["UrlReferrer"]);
             }
         }
 
@@ -129,12 +129,12 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                IEventsDb events = DataAccess.EventsDB;
+                IEventsDb events = DataAccess.EventsDb;
                 events.DeleteEvent(itemId);
             }
 
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
 
         //****************************************************************
@@ -148,7 +148,7 @@ namespace ASPNET.StarterKit.Portal
         protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
     }
 }

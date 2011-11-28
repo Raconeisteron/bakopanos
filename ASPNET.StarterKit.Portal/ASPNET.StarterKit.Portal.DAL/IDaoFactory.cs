@@ -5,15 +5,15 @@ namespace ASPNET.StarterKit.Portal.DAL
     /// </remarks>
     public interface IDaoFactory
     {
-        IPortalDb PortalDB { get; }
-        IAnnouncementsDb AnnouncementsDB { get; }
-        IContactsDb ContactsDB { get; }
-        IDiscussionsDb DiscussionDB { get; }
-        IDocumentsDb DocumentDB { get; }
-        IEventsDb EventsDB { get; }
-        IHtmlTextDb HtmlTextDB { get; }
-        ILinksDb LinkDB { get; }
-        IRolesDb RolesDB { get; }
-        IUsersDb UsersDB { get; }
+        IPortalDb PortalDb { get; }
+        IAnnouncementsDb AnnouncementsDb { get; }
+        IContactsDb ContactsDb { get; }
+        IDiscussionsDb DiscussionDb { get; }
+        IDocumentsDb DocumentDb { get; }
+        IEventsDb EventsDb { get; }
+        IHtmlTextDb HtmlTextDb { get; }
+        ILinksDb LinkDb { get; }
+        IRolesDb RolesDb { get; }
+        IUsersDb UsersDb { get; }
     }
 }

@@ -37,8 +37,8 @@ namespace ASPNET.StarterKit.Portal
                     // Get settings from the database
                     Hashtable settings = Configuration.GetModuleSettings(moduleId);
 
-                    XmlDataSrc.Text = (String) settings["xmlsrc"];
-                    XslTransformSrc.Text = (String) settings["xslsrc"];
+                    XmlDataSrc.Text = (string) settings["xmlsrc"];
+                    XslTransformSrc.Text = (string) settings["xslsrc"];
                 }
 
                 // Store URL Referrer to return to portal
@@ -62,7 +62,7 @@ namespace ASPNET.StarterKit.Portal
             config.UpdateModuleSetting(moduleId, "xslsrc", XslTransformSrc.Text);
 
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
 
         //****************************************************************
@@ -76,7 +76,7 @@ namespace ASPNET.StarterKit.Portal
         protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
     }
 }

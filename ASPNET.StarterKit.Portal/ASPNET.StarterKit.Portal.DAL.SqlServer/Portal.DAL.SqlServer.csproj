@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AnnouncementsDB.cs" />
     <Compile Include="ContactsDB.cs" />
+    <Compile Include="DbHelper.cs" />
     <Compile Include="DiscussionsDb.cs" />
     <Compile Include="DocumentsDb.cs" />
     <Compile Include="EventsDB.cs" />

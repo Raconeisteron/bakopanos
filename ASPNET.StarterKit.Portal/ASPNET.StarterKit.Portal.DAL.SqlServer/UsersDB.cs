@@ -30,7 +30,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// The AddUser method inserts a new user record into the "Users" database table.
         /// </summary>
         /// <returns>New user Id</returns>
-        public int AddUser(String fullName, String email, String password)
+        public int AddUser(string fullName, string email, string password)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -44,13 +44,13 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             parameterFullName.Value = fullName;
             myCommand.Parameters.Add(parameterFullName);
 
-            myCommand.AddParameterEmail(email);
+            myCommand.Parameters.Add(SqlParameterHelper.InputEmail(email));
 
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
             myCommand.Parameters.Add(parameterPassword);
 
-            SqlParameter parameterUserId = myCommand.AddParameterUserId();
+            SqlParameter parameterUserId = myCommand.Parameters.Add(SqlParameterHelper.ReturnValueUserId());
 
             // Execute the command in a try/catch to catch duplicate username errors);
             try
@@ -86,7 +86,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
-            myCommand.AddParameterUserId(userId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputUserId(userId));
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -97,7 +97,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// <summary>
         /// The UpdateUser method updates a  user record from the "Users" database table.
         /// </summary>
-        public void UpdateUser(int userId, String email, String password)
+        public void UpdateUser(int userId, string email, string password)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -105,9 +105,9 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
-            
-            myCommand.AddParameterUserId(userId);
-            myCommand.AddParameterEmail(email);
+
+            myCommand.Parameters.Add(SqlParameterHelper.InputUserId(userId));
+            myCommand.Parameters.Add(SqlParameterHelper.InputEmail(email));
 
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
@@ -119,7 +119,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myConnection.Close();
         }
 
-        public IDataReader GetRolesByUser(String email)
+        public IDataReader GetRolesByUser(string email)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -128,7 +128,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
-            myCommand.AddParameterEmail(email);
+            myCommand.Parameters.Add(SqlParameterHelper.InputEmail(email));
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -142,7 +142,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// The GetSingleUser method returns a IDataReader containing details
         // about a specific user from the Users database table.
         /// </summary>
-        public IDataReader GetSingleUser(String email)
+        public IDataReader GetSingleUser(string email)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -152,7 +152,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterEmail(email);
+            myCommand.Parameters.Add(SqlParameterHelper.InputEmail(email));
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -165,7 +165,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// <summary>
         /// The GetRoles method returns a list of role names for the user.
         /// </summary>        
-        public String[] GetRoles(String email)
+        public string[] GetRoles(string email)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -175,7 +175,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterEmail(email);
+            myCommand.Parameters.Add(SqlParameterHelper.InputEmail(email));
 
             // Open the database connection and execute the command
 
@@ -193,7 +193,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             dr.Close();
 
             // Return the String array of roles
-            return (String[]) userRoles.ToArray(typeof (String));
+            return (string[]) userRoles.ToArray(typeof(string));
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// stored in the users database.  If the email/password pair is valid,
         /// the method returns user's name.
         /// </summary>        
-        public String Login(String email, String password)
+        public string Login(string email, string password)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -211,7 +211,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterEmail(email);
+            myCommand.Parameters.Add(SqlParameterHelper.InputEmail(email));
 
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
@@ -228,9 +228,9 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             if ((parameterUserName.Value != null) && (parameterUserName.Value != DBNull.Value))
             {
-                return ((String) parameterUserName.Value).Trim();
+                return ((string) parameterUserName.Value).Trim();
             }
-            return String.Empty;
+            return string.Empty;
         }
 
         /// <summary>

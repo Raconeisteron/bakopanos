@@ -17,19 +17,11 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             _connectionString = connectionString;
         }
 
-        //*******************************************************
-        //
-        // GetTopLevelMessages Method
-        //
-        // Returns details for all of the messages in the discussion specified by ModuleID.
-        //
-        // Other relevant sources:
-        //     + <a href="GetTopLevelMessages.htm" style="color:green">GetTopLevelMessages Stored Procedure</a>
-        //
-        //*******************************************************
-
         #region IDiscussionsDb Members
 
+        /// <summary>
+        /// Returns details for all of the messages in the discussion specified by ModuleID.
+        /// </summary>
         public IDataReader GetTopLevelMessages(int moduleId)
         {
             // Create Instance of Connection and Command Object
@@ -40,8 +32,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC            
-            myCommand.AddParameterModuleId(moduleId);
-
+            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
 
             // Execute the command
             myConnection.Open();
@@ -51,18 +42,10 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return result;
         }
 
-        //*******************************************************
-        //
-        // GetThreadMessages Method
-        //
-        // Returns details for all of the messages the thread, as identified by the Parent id string.
-        //
-        // Other relevant sources:
-        //     + <a href="GetThreadMessages.htm" style="color:green">GetThreadMessages Stored Procedure</a>
-        //
-        //*******************************************************
-
-        public IDataReader GetThreadMessages(String parent)
+        /// <summary>
+        /// Returns details for all of the messages the thread, as identified by the Parent id string.
+        /// </summary>
+        public IDataReader GetThreadMessages(string parent)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -84,18 +67,10 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return result;
         }
 
-        //*******************************************************
-        //
-        // GetSingleMessage Method
-        //
-        // The GetSingleMessage method returns the details for the message
-        // specified by the itemId parameter.
-        //
-        // Other relevant sources:
-        //     + <a href="GetSingleMessage.htm" style="color:green">GetSingleMessage Stored Procedure</a>
-        //
-        //*******************************************************
-
+        /// <summary>
+        /// The GetSingleMessage method returns the details for the message
+        /// specified by the itemId parameter.
+        /// </summary>        
         public IDataReader GetSingleMessage(int itemId)
         {
             // Create Instance of Connection and Command Object
@@ -106,7 +81,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterItemId(itemId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
 
             // Execute the command
             myConnection.Open();
@@ -116,19 +91,11 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return result;
         }
 
-        //*********************************************************************
-        //
-        // AddMessage Method
-        //
-        // The AddMessage method adds a new message within the
-        // Discussions database table, and returns ItemID value as a result.
-        //
-        // Other relevant sources:
-        //     + <a href="AddMessage.htm" style="color:green">AddMessage Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public int AddMessage(int moduleId, int parentId, String userName, String title, String body)
+        /// <summary>
+        /// The AddMessage method adds a new message within the
+        /// Discussions database table, and returns ItemID value as a result.
+        /// </summary>        
+        public int AddMessage(int moduleId, int parentId, string userName, string title, string body)
         {
             if (userName.Length < 1)
             {
@@ -143,25 +110,25 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemID = myCommand.AddParameterItemId();
-            myCommand.AddParameterTitle(title);
+            SqlParameter parameterItemId = myCommand.Parameters.Add(SqlParameterHelper.ReturnValueItemId());
+            myCommand.Parameters.Add(SqlParameterHelper.InputTitle(title));
 
             var parameterBody = new SqlParameter("@Body", SqlDbType.NVarChar, 3000);
             parameterBody.Value = body;
             myCommand.Parameters.Add(parameterBody);
 
-            var parameterParentID = new SqlParameter("@ParentID", SqlDbType.Int, 4);
-            parameterParentID.Value = parentId;
-            myCommand.Parameters.Add(parameterParentID);
+            var parameterParentId = new SqlParameter("@ParentID", SqlDbType.Int, 4);
+            parameterParentId.Value = parentId;
+            myCommand.Parameters.Add(parameterParentId);
 
-            myCommand.AddParameterUserName(userName);
-            myCommand.AddParameterModuleId(moduleId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputUserName(userName));
+            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();
             myConnection.Close();
 
-            return (int) parameterItemID.Value;
+            return (int) parameterItemId.Value;
         }
 
         #endregion

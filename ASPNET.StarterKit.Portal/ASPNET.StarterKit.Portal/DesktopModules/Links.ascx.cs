@@ -5,7 +5,7 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class Links : PortalModuleControl
     {
-        protected String linkImage = "";
+        protected string linkImage = "";
 
 
         //*******************************************************
@@ -32,7 +32,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the datalist control
-            ILinksDb links = DataAccess.LinkDB;
+            ILinksDb links = DataAccess.LinkDb;
 
             myDataList.DataSource = links.GetLinks(ModuleId);
             myDataList.DataBind();

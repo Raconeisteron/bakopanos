@@ -6,121 +6,99 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
     internal static class SqlParameterHelper
     {
-        public static void AddParameterItemId(this SqlCommand command, int itemId)
+        public static SqlParameter InputItemId(int itemId)
         {
-            var parameter = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
-            command.Parameters.Add(parameter);
+            return new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
         }
 
-        public static SqlParameter AddParameterItemId(this SqlCommand command)
+        public static SqlParameter ReturnValueItemId()
         {
-            var parameter = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Direction = ParameterDirection.ReturnValue};
-            command.Parameters.Add(parameter);
-            return parameter;
+            return new SqlParameter("@ItemID", SqlDbType.Int, 4) {Direction = ParameterDirection.ReturnValue};            
         }
 
-        public static void AddParameterModuleId(this SqlCommand command, int moduleId)
+        public static SqlParameter InputModuleId(int moduleId)
         {
-            var parameter = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
-            command.Parameters.Add(parameter);
-        }
-        
-        public static void AddParameterPortalId(this SqlCommand command, int portalId)
-        {
-            var parameter = new SqlParameter("@PortalID", SqlDbType.Int, 4) { Value = portalId};
-            command.Parameters.Add(parameter);
+            return new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};            
         }
 
-        public static void AddParameterUserId(this SqlCommand command, int userId)
+        public static SqlParameter InputPortalId(int portalId)
         {
-            var parameter = new SqlParameter("@UserID", SqlDbType.Int, 4) { Value = userId };
-            command.Parameters.Add(parameter);
+            return new SqlParameter("@PortalID", SqlDbType.Int, 4) {Value = portalId};            
         }
 
-        public static SqlParameter AddParameterUserId(this SqlCommand command)
+        public static SqlParameter InputUserId(int userId)
         {
-            var parameter = new SqlParameter("@UserID", SqlDbType.Int, 4) {Direction = ParameterDirection.ReturnValue};
-            command.Parameters.Add(parameter);
-            return parameter;
+            return new SqlParameter("@UserID", SqlDbType.Int, 4) {Value = userId};            
         }
 
-        public static void AddParameterRoleId(this SqlCommand command, int roleId)
+        public static SqlParameter ReturnValueUserId()
         {
-            var parameter = new SqlParameter("@RoleID", SqlDbType.Int, 4) { Value = roleId };
-            command.Parameters.Add(parameter);
+            return new SqlParameter("@UserID", SqlDbType.Int, 4) {Direction = ParameterDirection.ReturnValue};                        
         }
 
-        public static SqlParameter AddParameterRoleId(this SqlCommand command)
+        public static SqlParameter InputRoleId(int roleId)
         {
-            var parameter = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Direction = ParameterDirection.ReturnValue};
-            command.Parameters.Add(parameter);
-            return parameter;
+            return new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};            
         }
 
-        public static void AddParameterUserName(this SqlCommand command, string userName)
+        public static SqlParameter ReturnValueRoleId()
         {
-            var parameter = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};
-            command.Parameters.Add(parameter);
+            return new SqlParameter("@RoleID", SqlDbType.Int, 4) {Direction = ParameterDirection.ReturnValue};            
         }
 
-        public static void AddParameterName(this SqlCommand command, string name)
+        public static SqlParameter InputUserName(string userName)
         {
-            var parameter = new SqlParameter("@Name", SqlDbType.NVarChar, 100) {Value = name};
-            command.Parameters.Add(parameter);
+            return new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};            
         }
 
-        public static void AddParameterTitle(this SqlCommand command, string title)
+        public static SqlParameter InputName(string name)
         {
-            var parameter = new SqlParameter("@Title", SqlDbType.NVarChar, 100) {Value = title};
-            command.Parameters.Add(parameter);
+            return new SqlParameter("@Name", SqlDbType.NVarChar, 100) {Value = name};            
         }
 
-        public static void AddParameterDescription(this SqlCommand command, string description)
+        public static SqlParameter InputTitle(string title)
         {
-            var parameter = new SqlParameter("@Description", SqlDbType.NVarChar, 100) {Value = description};
-            command.Parameters.Add(parameter);
+            return new SqlParameter("@Title", SqlDbType.NVarChar, 100) {Value = title};            
         }
 
-        public static void AddParameterMoreLink(this SqlCommand command, string moreLink)
+        public static SqlParameter InputDescription(string description)
         {
-            var parameter = new SqlParameter("@MoreLink", SqlDbType.NVarChar, 150) {Value = moreLink};
-            command.Parameters.Add(parameter);
+            return new SqlParameter("@Description", SqlDbType.NVarChar, 100) {Value = description};            
         }
 
-        public static void AddParameterMobileMoreLink(this SqlCommand command, string mobileMoreLink)
+        public static SqlParameter InputMoreLink(string moreLink)
         {
-            var parameter = new SqlParameter("@MobileMoreLink", SqlDbType.NVarChar, 150) {Value = mobileMoreLink};
-            command.Parameters.Add(parameter);
+            return new SqlParameter("@MoreLink", SqlDbType.NVarChar, 150) {Value = moreLink};            
         }
 
-        public static void AddParameterExpireDate(this SqlCommand command, DateTime expireDate)
+        public static SqlParameter InputMobileMoreLink(string mobileMoreLink)
         {
-            var parameter = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8) {Value = expireDate};
-            command.Parameters.Add(parameter);
+            return new SqlParameter("@MobileMoreLink", SqlDbType.NVarChar, 150) {Value = mobileMoreLink};            
         }
 
-        public static void AddParameterContact1(this SqlCommand command, string contact1)
+        public static SqlParameter InputExpireDate(DateTime expireDate)
         {
-            var parameter = new SqlParameter("@Contact1", SqlDbType.NVarChar, 100) {Value = contact1};
-            command.Parameters.Add(parameter);
+            return new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8) {Value = expireDate};            
         }
 
-        public static void AddParameterContact2(this SqlCommand command, string contact2)
+        public static SqlParameter InputContact1(string contact1)
         {
-            var parameter = new SqlParameter("@Contact2", SqlDbType.NVarChar, 100) {Value = contact2};
-            command.Parameters.Add(parameter);
+            return new SqlParameter("@Contact1", SqlDbType.NVarChar, 100) {Value = contact1};            
         }
 
-        public static void AddParameterEmail(this SqlCommand command, string email)
+        public static SqlParameter InputContact2(string contact2)
         {
-            var parameter = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
-            command.Parameters.Add(parameter);
+            return new SqlParameter("@Contact2", SqlDbType.NVarChar, 100) {Value = contact2};            
         }
 
-        public static void AddParameterRole(this SqlCommand command, string role)
+        public static SqlParameter InputEmail(string email)
         {
-            var parameter = new SqlParameter("@Role", SqlDbType.NVarChar, 100) {Value = role};
-            command.Parameters.Add(parameter);
+            return new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};            
+        }
+
+        public static SqlParameter InputRole(string role)
+        {
+            return new SqlParameter("@Role", SqlDbType.NVarChar, 100) {Value = role};            
         }
     }
 }

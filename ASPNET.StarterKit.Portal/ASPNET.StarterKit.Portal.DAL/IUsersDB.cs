@@ -5,13 +5,13 @@ namespace ASPNET.StarterKit.Portal.DAL
 {
     public interface IUsersDb
     {
-        int AddUser(String fullName, String email, String password);
+        int AddUser(string fullName, string email, string password);
         void DeleteUser(int userId);
-        void UpdateUser(int userId, String email, String password);
-        IDataReader GetRolesByUser(String email);
-        IDataReader GetSingleUser(String email);
-        String[] GetRoles(String email);
-        String Login(String email, String password);
+        void UpdateUser(int userId, string email, string password);
+        IDataReader GetRolesByUser(string email);
+        IDataReader GetSingleUser(string email);
+        string[] GetRoles(string email);
+        string Login(string email, string password);
         IDataReader GetUsers();
     }
 }

@@ -17,21 +17,13 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             _connectionString = connectionString;
         }
 
-        //*********************************************************************
-        //
-        // GetLinks Method
-        //
-        // The GetLinks method returns a IDataReader containing all of the
-        // links for a specific portal module from the announcements
-        // database.
-        //
-        // Other relevant sources:
-        //     + <a href="GetLinks.htm" style="color:green">GetLinks Stored Procedure</a>
-        //
-        //*********************************************************************
-
         #region ILinksDb Members
 
+        /// <summary>
+        /// The GetLinks method returns a IDataReader containing all of the
+        /// links for a specific portal module from the announcements
+        /// database.
+        /// </summary>        
         public IDataReader GetLinks(int moduleId)
         {
             // Create Instance of Connection and Command Object
@@ -42,7 +34,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterModuleId(moduleId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
 
             // Execute the command
             myConnection.Open();
@@ -52,18 +44,10 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return result;
         }
 
-        //*********************************************************************
-        //
-        // GetSingleLink Method
-        //
-        // The GetSingleLink method returns a IDataReader containing details
-        // about a specific link from the Links database table.
-        //
-        // Other relevant sources:
-        //     + <a href="GetSingleLink.htm" style="color:green">GetSingleLink Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The GetSingleLink method returns a IDataReader containing details
+        /// about a specific link from the Links database table.
+        /// </summary>        
         public IDataReader GetSingleLink(int itemId)
         {
             // Create Instance of Connection and Command Object
@@ -74,7 +58,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterItemId(itemId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
 
             // Execute the command
             myConnection.Open();
@@ -84,19 +68,11 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return result;
         }
 
-        //*********************************************************************
-        //
-        // DeleteLink Method
-        //
-        // The DeleteLink method deletes a specified link from
-        // the Links database table.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteLink.htm" style="color:green">DeleteLink Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public void DeleteLink(int itemID)
+        /// <summary>
+        /// The DeleteLink method deletes a specified link from
+        /// the Links database table.
+        /// </summary>
+        public void DeleteLink(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -106,27 +82,19 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterItemId(itemID);
+            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
 
-        //*********************************************************************
-        //
-        // AddLink Method
-        //
-        // The AddLink method adds a new link within the
-        // links database table, and returns ItemID value as a result.
-        //
-        // Other relevant sources:
-        //     + <a href="AddLink.htm" style="color:green">AddLink Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public int AddLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
-                           int viewOrder, String description)
+        /// <summary>
+        /// The AddLink method adds a new link within the
+        /// links database table, and returns ItemID value as a result.
+        /// </summary>
+        public int AddLink(int moduleId, int itemId, string userName, string title, string url, string mobileUrl,
+                           int viewOrder, string description)
         {
             if (userName.Length < 1)
             {
@@ -141,13 +109,13 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemID = myCommand.AddParameterItemId();
-            myCommand.AddParameterModuleId(moduleId);
-            myCommand.AddParameterUserName(userName);
+            SqlParameter parameterItemId = myCommand.Parameters.Add(SqlParameterHelper.ReturnValueItemId());
+            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
+            myCommand.Parameters.Add(SqlParameterHelper.InputUserName(userName));
 
-            myCommand.AddParameterTitle(title);
+            myCommand.Parameters.Add(SqlParameterHelper.InputTitle(title));
 
-            myCommand.AddParameterDescription(description);
+            myCommand.Parameters.Add(SqlParameterHelper.InputDescription(description));
 
             var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
             parameterUrl.Value = url;
@@ -165,23 +133,15 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.ExecuteNonQuery();
             myConnection.Close();
 
-            return (int) parameterItemID.Value;
+            return (int) parameterItemId.Value;
         }
 
-        //*********************************************************************
-        //
-        // UpdateLink Method
-        //
-        // The UpdateLink method updates a specified link within
-        // the Links database table.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateLink.htm" style="color:green">UpdateLink Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public void UpdateLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
-                               int viewOrder, String description)
+        /// <summary>
+        /// // The UpdateLink method updates a specified link within
+        /// the Links database table.
+        /// </summary>        
+        public void UpdateLink(int moduleId, int itemId, string userName, string title, string url, string mobileUrl,
+                               int viewOrder, string description)
         {
             if (userName.Length < 1)
             {
@@ -196,10 +156,10 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterItemId(itemId);
-            myCommand.AddParameterUserName(userName);
-            myCommand.AddParameterTitle(title);
-            myCommand.AddParameterDescription(description);
+            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
+            myCommand.Parameters.Add(SqlParameterHelper.InputUserName(userName));
+            myCommand.Parameters.Add(SqlParameterHelper.InputTitle(title));
+            myCommand.Parameters.Add(SqlParameterHelper.InputDescription(description));
 
             var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
             parameterUrl.Value = url;

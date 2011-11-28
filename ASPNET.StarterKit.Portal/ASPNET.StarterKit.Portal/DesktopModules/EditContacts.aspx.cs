@@ -51,7 +51,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of contact information
-                    IContactsDb contacts = DataAccess.ContactsDB;
+                    IContactsDb contacts = DataAccess.ContactsDb;
                     IDataReader dr = contacts.GetSingleContact(itemId);
 
                     // Read first row from database
@@ -65,12 +65,12 @@ namespace ASPNET.StarterKit.Portal
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
                     }
 
-                    NameField.Text = (String) dr["Name"];
-                    RoleField.Text = (String) dr["Role"];
-                    EmailField.Text = (String) dr["Email"];
-                    Contact1Field.Text = (String) dr["Contact1"];
-                    Contact2Field.Text = (String) dr["Contact2"];
-                    CreatedBy.Text = (String) dr["CreatedByUser"];
+                    NameField.Text = (string) dr["Name"];
+                    RoleField.Text = (string) dr["Role"];
+                    EmailField.Text = (string) dr["Email"];
+                    Contact1Field.Text = (string) dr["Contact1"];
+                    Contact2Field.Text = (string) dr["Contact2"];
+                    CreatedBy.Text = (string) dr["CreatedByUser"];
                     CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
 
                     // Close datareader
@@ -96,7 +96,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the ContactsDB component
-                IContactsDb contacts = DataAccess.ContactsDB;
+                IContactsDb contacts = DataAccess.ContactsDb;
 
                 if (itemId == 0)
                 {
@@ -112,7 +112,7 @@ namespace ASPNET.StarterKit.Portal
                 }
 
                 // Redirect back to the portal home page
-                Response.Redirect((String) ViewState["UrlReferrer"]);
+                Response.Redirect((string) ViewState["UrlReferrer"]);
             }
         }
 
@@ -131,12 +131,12 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                IContactsDb contacts = DataAccess.ContactsDB;
+                IContactsDb contacts = DataAccess.ContactsDb;
                 contacts.DeleteContact(itemId);
             }
 
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
 
         //****************************************************************
@@ -150,7 +150,7 @@ namespace ASPNET.StarterKit.Portal
         protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((string) ViewState["UrlReferrer"]);
         }
 
         protected void Page_Init(object sender, EventArgs e)

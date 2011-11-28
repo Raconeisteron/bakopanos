@@ -31,17 +31,17 @@ namespace ASPNET.StarterKit.Portal
             if (documentId != -1)
             {
                 // Obtain Document Data from Documents table
-                IDocumentsDb documents = DataAccess.DocumentDB;
+                IDocumentsDb documents = DataAccess.DocumentDb;
 
                 IDataReader dBContent = documents.GetDocumentContent(documentId);
                 dBContent.Read();
 
                 // Serve up the file by name
-                Response.AppendHeader("content-disposition", "filename=" + (String) dBContent["FileName"]);
+                Response.AppendHeader("content-disposition", "filename=" + (string) dBContent["FileName"]);
 
                 // set the content type for the Response to that of the 
                 // document to display.  For example. "application/msword"
-                Response.ContentType = (String) dBContent["ContentType"];
+                Response.ContentType = (string) dBContent["ContentType"];
 
                 // output the actual document contents to the response output stream
                 Response.OutputStream.Write((byte[]) dBContent["Content"], 0, (int) dBContent["ContentSize"]);

@@ -10,8 +10,8 @@ namespace ASPNET.StarterKit.Portal
         protected void LoginBtn_Click(Object sender, ImageClickEventArgs e)
         {
             // Attempt to Validate User Credentials using UsersDB
-            IUsersDb accountSystem = DataAccess.UsersDB;
-            String userId = accountSystem.Login(email.Text, PortalSecurity.Encrypt(password.Text));
+            IUsersDb accountSystem = DataAccess.UsersDb;
+            string userId = accountSystem.Login(email.Text, PortalSecurity.Encrypt(password.Text));
 
             if (!string.IsNullOrEmpty(userId))
             {

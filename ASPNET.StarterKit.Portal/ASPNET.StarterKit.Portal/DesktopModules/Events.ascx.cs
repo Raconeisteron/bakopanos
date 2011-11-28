@@ -20,7 +20,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain the list of events from the Events table
             // and bind to the DataList Control
-            IEventsDb events = DataAccess.EventsDB;
+            IEventsDb events = DataAccess.EventsDb;
 
             myDataList.DataSource = events.GetEvents(ModuleId);
             myDataList.DataBind();

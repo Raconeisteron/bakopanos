@@ -10,7 +10,7 @@ namespace ASPNET.StarterKit.Portal.DAL
         IDataReader GetDocumentContent(int itemId);
         void DeleteDocument(int itemID);
 
-        void UpdateDocument(int moduleId, int itemId, String userName, String name, String url, String category,
-                            byte[] content, int size, String contentType);
+        void UpdateDocument(int moduleId, int itemId, string userName, string name, string url, string category,
+                            byte[] content, int size, string contentType);
     }
 }

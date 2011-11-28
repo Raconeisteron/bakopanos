@@ -17,21 +17,13 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             _connectionString = connectionString;
         }
 
-        //*********************************************************************
-        //
-        // GetDocuments Method
-        //
-        // The GetDocuments method returns a IDataReader containing all of the
-        // documents for a specific portal module from the documents
-        // database.
-        //
-        // Other relevant sources:
-        //     + <a href="GetDocuments.htm" style="color:green">GetDocuments Stored Procedure</a>
-        //
-        //*********************************************************************
-
         #region IDocumentsDb Members
 
+        /// <summary>
+        /// The GetDocuments method returns a IDataReader containing all of the
+        /// documents for a specific portal module from the documents
+        /// database.
+        /// </summary>        
         public IDataReader GetDocuments(int moduleId)
         {
             // Create Instance of Connection and Command Object
@@ -42,7 +34,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterModuleId(moduleId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
 
             // Execute the command
             myConnection.Open();
@@ -52,18 +44,10 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return result;
         }
 
-        //*********************************************************************
-        //
-        // GetSingleDocument Method
-        //
-        // The GetSingleDocument method returns a IDataReader containing details
-        // about a specific document from the Documents database table.
-        //
-        // Other relevant sources:
-        //     + <a href="GetSingleDocument.htm" style="color:green">GetSingleDocument Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The GetSingleDocument method returns a IDataReader containing details
+        /// about a specific document from the Documents database table.
+        /// </summary>        
         public IDataReader GetSingleDocument(int itemId)
         {
             // Create Instance of Connection and Command Object
@@ -74,7 +58,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterItemId(itemId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
 
             // Execute the command
             myConnection.Open();
@@ -84,18 +68,10 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return result;
         }
 
-        //*********************************************************************
-        //
-        // GetDocumentContent Method
-        //
-        // The GetDocumentContent method returns the contents of the specified
-        // document from the Documents database table.
-        //
-        // Other relevant sources:
-        //     + <a href="GetDocumentContent.htm" style="color:green">GetDocumentContent</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The GetDocumentContent method returns the contents of the specified
+        /// document from the Documents database table.
+        /// </summary>        
         public IDataReader GetDocumentContent(int itemId)
         {
             // Create Instance of Connection and Command Object
@@ -106,7 +82,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterItemId(itemId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
 
             // Execute the command
             myConnection.Open();
@@ -117,19 +93,11 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         }
 
 
-        //*********************************************************************
-        //
-        // DeleteDocument Method
-        //
-        // The DeleteDocument method deletes the specified document from
-        // the Documents database table.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteDocument.htm" style="color:green">DeleteDocument Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public void DeleteDocument(int itemID)
+        /// <summary>
+        /// // The DeleteDocument method deletes the specified document from
+        /// the Documents database table.
+        /// </summary>        
+        public void DeleteDocument(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -139,7 +107,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterItemId(itemID);
+            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();
@@ -147,20 +115,12 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         }
 
 
-        //*********************************************************************
-        //
-        // UpdateDocument Method
-        //
-        // The UpdateDocument method updates the specified document within
-        // the Documents database table.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateDocument.htm" style="color:green">UpdateDocument Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public void UpdateDocument(int moduleId, int itemId, String userName, String name, String url, String category,
-                                   byte[] content, int size, String contentType)
+        /// <summary>
+        /// The UpdateDocument method updates the specified document within
+        /// the Documents database table.
+        /// </summary>        
+        public void UpdateDocument(int moduleId, int itemId, string userName, string name, string url, string category,
+                                   byte[] content, int size, string contentType)
         {
             if (userName.Length < 1)
             {
@@ -175,9 +135,9 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterItemId(itemId);
-            myCommand.AddParameterModuleId(moduleId);
-            myCommand.AddParameterUserName(userName);
+            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
+            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
+            myCommand.Parameters.Add(SqlParameterHelper.InputUserName(userName));
 
             var parameterName = new SqlParameter("@FileFriendlyName", SqlDbType.NVarChar, 150);
             parameterName.Value = name;

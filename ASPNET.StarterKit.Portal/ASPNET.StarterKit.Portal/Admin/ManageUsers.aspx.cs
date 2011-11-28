@@ -11,7 +11,7 @@ namespace ASPNET.StarterKit.Portal
         private int tabId;
         private int tabIndex;
         private int userId = -1;
-        private String userName = "";
+        private string userName = "";
 
         public ManageUsers()
         {
@@ -58,7 +58,7 @@ namespace ASPNET.StarterKit.Portal
                 // new user?
                 if (userName == "")
                 {
-                    IUsersDb users = DataAccess.UsersDB;
+                    IUsersDb users = DataAccess.UsersDb;
 
                     // make a unique new user record
                     int uid = -1;
@@ -66,7 +66,7 @@ namespace ASPNET.StarterKit.Portal
 
                     while (uid == -1)
                     {
-                        String friendlyName = "New User created " + DateTime.Now;
+                        string friendlyName = "New User created " + DateTime.Now;
                         userName = "New User" + i;
                         uid = users.AddUser(friendlyName, userName, "");
                         i++;
@@ -112,7 +112,7 @@ namespace ASPNET.StarterKit.Portal
             roleId = Int32.Parse(allRoles.SelectedItem.Value);
 
             // Add a new userRole to the database
-            IRolesDb roles = DataAccess.RolesDB;
+            IRolesDb roles = DataAccess.RolesDb;
             roles.AddUserRole(roleId, userId);
 
             // Rebind list
@@ -129,7 +129,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateUser_Click(Object sender, EventArgs e)
         {
             // update the user record in the database
-            IUsersDb users = DataAccess.UsersDB;
+            IUsersDb users = DataAccess.UsersDb;
             users.UpdateUser(userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
 
             // redirect to this page with the corrected querystring args
@@ -147,7 +147,7 @@ namespace ASPNET.StarterKit.Portal
 
         private void UserRoles_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            IRolesDb roles = DataAccess.RolesDB;
+            IRolesDb roles = DataAccess.RolesDb;
             var roleId = (int) userRoles.DataKeys[e.Item.ItemIndex];
 
             // update database
@@ -170,13 +170,13 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Bind the Email and Password
-            IUsersDb users = DataAccess.UsersDB;
+            IUsersDb users = DataAccess.UsersDb;
             IDataReader dr = users.GetSingleUser(userName);
 
             // Read first row from database
             dr.Read();
 
-            Email.Text = (String) dr["Email"];
+            Email.Text = (string) dr["Email"];
 
             dr.Close();
 
@@ -194,7 +194,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Get the portal's roles from the database
-            IRolesDb roles = DataAccess.RolesDB;
+            IRolesDb roles = DataAccess.RolesDb;
 
             // bind all portal roles to dropdownlist
             allRoles.DataSource = roles.GetPortalRoles(portalSettings.PortalId);

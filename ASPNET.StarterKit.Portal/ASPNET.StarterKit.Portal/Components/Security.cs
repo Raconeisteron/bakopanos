@@ -5,25 +5,15 @@ using System.Web;
 
 namespace ASPNET.StarterKit.Portal
 {
-    //*********************************************************************
-    //
-    // PortalSecurity Class
-    //
-    // The PortalSecurity class encapsulates two helper methods that enable
-    // developers to easily check the role status of the current browser client.
-    //
-    //*********************************************************************
-
+    /// <summary>
+    /// The PortalSecurity class encapsulates two helper methods that enable
+    /// developers to easily check the role status of the current browser client.
+    /// </summary>
     public class PortalSecurity
     {
-        //*********************************************************************
-        //
-        // Security.Encrypt() Method
-        //
-        // The Encrypt method encrypts a clean string into a hashed string
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The Encrypt method encrypts a clean string into a hashed string
+        /// </summary>
         public static string Encrypt(string cleanString)
         {
             Byte[] clearBytes = new UnicodeEncoding().GetBytes(cleanString);
@@ -32,36 +22,27 @@ namespace ASPNET.StarterKit.Portal
             return BitConverter.ToString(hashedBytes);
         }
 
-        //*********************************************************************
-        //
-        // PortalSecurity.IsInRole() Method
-        //
-        // The IsInRole method enables developers to easily check the role
-        // status of the current browser client.
-        //
-        //*********************************************************************
-
-        public static bool IsInRole(String role)
+        /// <summary>
+        /// The IsInRole method enables developers to easily check the role
+        /// status of the current browser client.
+        /// </summary>        
+        public static bool IsInRole(string role)
         {
             return HttpContext.Current.User.IsInRole(role);
         }
 
-        //*********************************************************************
-        //
-        // PortalSecurity.IsInRoles() Method
-        //
-        // The IsInRoles method enables developers to easily check the role
-        // status of the current browser client against an array of roles
-        //
-        //*********************************************************************
-
-        public static bool IsInRoles(String roles)
+        /// <summary>
+        /// The IsInRoles method enables developers to easily check the role
+        /// status of the current browser client against an array of roles
+        /// </summary>        
+        public static bool IsInRoles(string roles)
         {
             HttpContext context = HttpContext.Current;
+            string[] list = roles.Split(new[] {';'});
 
-            foreach (String role in roles.Split(new[] {';'}))
+            foreach (string role in list)
             {
-                if (role != "" && role != null && ((role == "All Users") || (context.User.IsInRole(role))))
+                if (!string.IsNullOrEmpty(role) && ((role == "All Users") || (context.User.IsInRole(role))))
                 {
                     return true;
                 }
@@ -70,34 +51,25 @@ namespace ASPNET.StarterKit.Portal
             return false;
         }
 
-        //*********************************************************************
-        //
-        // PortalSecurity.HasEditPermissions() Method
-        //
-        // The HasEditPermissions method enables developers to easily check 
-        // whether the current browser client has access to edit the settings
-        // of a specified portal module
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The HasEditPermissions method enables developers to easily check 
+        /// whether the current browser client has access to edit the settings
+        /// of a specified portal module
+        /// </summary>        
         public static bool HasEditPermissions(int moduleId)
         {
-            string accessRoles;
-            string editRoles;
-
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
             // Find the appropriate Module in the Module table
             SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
 
-            editRoles = moduleRow.EditRoles;
-            accessRoles = moduleRow.TabRow.AccessRoles;
+            string editRoles = moduleRow.EditRoles;
+            string accessRoles = moduleRow.TabRow.AccessRoles;
 
             if (IsInRoles(accessRoles) == false || IsInRoles(editRoles) == false)
                 return false;
-            else
-                return true;
+            return true;
         }
     }
 }

@@ -17,24 +17,13 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             _connectionString = connectionString;
         }
 
-        //*********************************************************************
-        //
-        // GetAnnouncements Method
-        //
-        // The GetAnnouncements method returns a DataSet containing all of the
-        // announcements for a specific portal module from the Announcements
-        // database table.
-        //
-        // NOTE: A DataSet is returned from this method to allow this method to support
-        // both desktop and mobile Web UI.
-        //
-        // Other relevant sources:
-        //     + <a href="GetAnnouncements.htm" style="color:green">GetAnnouncements Stored Procedure</a>
-        //
-        //*********************************************************************
-
         #region IAnnouncementsDb Members
 
+        /// <summary>
+        /// The GetAnnouncements method returns a DataSet containing all of the
+        /// announcements for a specific portal module from the Announcements
+        /// database table.
+        /// </summary>        
         public DataSet GetAnnouncements(int moduleId)
         {
             // Create Instance of Connection and Command Object
@@ -45,7 +34,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.SelectCommand.AddParameterModuleId(moduleId);
+            myCommand.SelectCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
 
             // Create and Fill the DataSet
             var myDataSet = new DataSet();
@@ -55,18 +44,10 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return myDataSet;
         }
 
-        //*********************************************************************
-        //
-        // GetSingleAnnouncement Method
-        //
-        // The GetSingleAnnouncement method returns a IDataReader containing details
-        // about a specific announcement from the Announcements database table.
-        //
-        // Other relevant sources:
-        //     + <a href="GetSingleAnnouncement.htm" style="color:green">GetSingleAnnouncement Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The GetSingleAnnouncement method returns a IDataReader containing details
+        /// about a specific announcement from the Announcements database table.
+        /// </summary>        
         public IDataReader GetSingleAnnouncement(int itemId)
         {
             // Create Instance of Connection and Command Object
@@ -77,7 +58,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterItemId(itemId);
+            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
 
             // Execute the command
             myConnection.Open();
@@ -87,19 +68,11 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return result;
         }
 
-        //*********************************************************************
-        //
-        // DeleteAnnouncement Method
-        //
-        // The DeleteAnnouncement method deletes the specified announcement from
-        // the Announcements database table.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteAnnouncement.htm" style="color:green">DeleteAnnouncement Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public void DeleteAnnouncement(int itemID)
+        /// <summary>
+        /// The DeleteAnnouncement method deletes the specified announcement from
+        /// the Announcements database table.
+        /// </summary>        
+        public void DeleteAnnouncement(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(_connectionString);
@@ -109,27 +82,19 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterItemId(itemID);
+            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
 
-        //*********************************************************************
-        //
-        // AddAnnouncement Method
-        //
-        // The AddAnnouncement method adds a new announcement to the
-        // Announcements database table, and returns the ItemId value as a result.
-        //
-        // Other relevant sources:
-        //     + <a href="AddAnnouncement.htm" style="color:green">AddAnnouncement Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public int AddAnnouncement(int moduleId, int itemId, String userName, String title, DateTime expireDate,
-                                   String description, String moreLink, String mobileMoreLink)
+        /// <summary>
+        /// The AddAnnouncement method adds a new announcement to the
+        /// Announcements database table, and returns the ItemId value as a result.
+        /// </summary>        
+        public int AddAnnouncement(int moduleId, int itemId, string userName, string title, DateTime expireDate,
+                                   string description, string moreLink, string mobileMoreLink)
         {
             if (userName.Length < 1)
             {
@@ -144,36 +109,28 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemID = myCommand.AddParameterItemId();
-            myCommand.AddParameterModuleId(moduleId);
-            myCommand.AddParameterUserName(userName);
-            myCommand.AddParameterTitle(title);
-            myCommand.AddParameterMoreLink(moreLink);
-            myCommand.AddParameterMobileMoreLink(mobileMoreLink);
-            myCommand.AddParameterExpireDate(expireDate);
-            myCommand.AddParameterDescription(description);
-
+            SqlParameter parameterItemId = myCommand.Parameters.Add(SqlParameterHelper.ReturnValueItemId());
+            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
+            myCommand.Parameters.Add(SqlParameterHelper.InputUserName(userName));
+            myCommand.Parameters.Add(SqlParameterHelper.InputTitle(title));
+            myCommand.Parameters.Add(SqlParameterHelper.InputMoreLink(moreLink));
+            myCommand.Parameters.Add(SqlParameterHelper.InputMobileMoreLink(mobileMoreLink));
+            myCommand.Parameters.Add(SqlParameterHelper.InputExpireDate(expireDate));
+            myCommand.Parameters.Add(SqlParameterHelper.InputDescription(description));
+            
             myConnection.Open();
             myCommand.ExecuteNonQuery();
             myConnection.Close();
 
-            return (int) parameterItemID.Value;
+            return (int) parameterItemId.Value;
         }
 
-        //*********************************************************************
-        //
-        // UpdateAnnouncement Method
-        //
-        // The UpdateAnnouncement method updates the specified announcement within
-        // the Announcements database table.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateAnnouncement.htm" style="color:green">UpdateAnnouncement Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public void UpdateAnnouncement(int moduleId, int itemId, String userName, String title, DateTime expireDate,
-                                       String description, String moreLink, String mobileMoreLink)
+        /// <summary>
+        /// The UpdateAnnouncement method updates the specified announcement within
+        /// the Announcements database table.
+        /// </summary>        
+        public void UpdateAnnouncement(int moduleId, int itemId, string userName, string title, DateTime expireDate,
+                                       string description, string moreLink, string mobileMoreLink)
         {
             if (userName.Length < 1) userName = "unknown";
 
@@ -185,13 +142,13 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.AddParameterItemId(itemId);
-            myCommand.AddParameterUserName(userName);
-            myCommand.AddParameterTitle(title);
-            myCommand.AddParameterMoreLink(moreLink);
-            myCommand.AddParameterMobileMoreLink(mobileMoreLink);
-            myCommand.AddParameterExpireDate(expireDate);
-            myCommand.AddParameterDescription(description);
+            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
+            myCommand.Parameters.Add(SqlParameterHelper.InputUserName(userName));
+            myCommand.Parameters.Add(SqlParameterHelper.InputTitle(title));
+            myCommand.Parameters.Add(SqlParameterHelper.InputMoreLink(moreLink));
+            myCommand.Parameters.Add(SqlParameterHelper.InputMobileMoreLink(mobileMoreLink));
+            myCommand.Parameters.Add(SqlParameterHelper.InputExpireDate(expireDate));
+            myCommand.Parameters.Add(SqlParameterHelper.InputDescription(description));
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();

@@ -66,8 +66,8 @@ namespace ASPNET.StarterKit.Portal
             {
                 var m = (ModuleSettings) value;
 
-                // Construct Authorized User Roles String
-                String editRoles = "";
+                // Construct Authorized User Roles string
+                string editRoles = "";
 
                 foreach (ListItem item in authEditRoles.Items)
                 {
@@ -88,7 +88,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                IRolesDb rolesObj = DataAccess.RolesDB;
+                IRolesDb rolesObj = DataAccess.RolesDb;
                 IDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist
@@ -107,7 +107,7 @@ namespace ASPNET.StarterKit.Portal
                 while (roles.Read())
                 {
                     var item = new ListItem();
-                    item.Text = (String) roles["RoleName"];
+                    item.Text = (string) roles["RoleName"];
                     item.Value = roles["RoleID"].ToString();
 
                     if ((m.AuthorizedEditRoles.LastIndexOf(item.Text)) > -1)
@@ -148,7 +148,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                IRolesDb rolesObj = DataAccess.RolesDB;
+                IRolesDb rolesObj = DataAccess.RolesDb;
                 IDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist
@@ -167,7 +167,7 @@ namespace ASPNET.StarterKit.Portal
                 while (roles.Read())
                 {
                     var item = new ListItem();
-                    item.Text = (String) roles["RoleName"];
+                    item.Text = (string) roles["RoleName"];
                     item.Value = roles["RoleID"].ToString();
 
                     if ((m.AuthorizedEditRoles.LastIndexOf(item.Text)) > -1)

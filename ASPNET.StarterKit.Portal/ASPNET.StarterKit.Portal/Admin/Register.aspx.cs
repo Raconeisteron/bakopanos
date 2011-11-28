@@ -21,7 +21,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Add New User to Portal User Database
-                IUsersDb accountSystem = DataAccess.UsersDB;
+                IUsersDb accountSystem = DataAccess.UsersDb;
 
                 if ((accountSystem.AddUser(Name.Text, Email.Text, PortalSecurity.Encrypt(Password.Text))) > -1)
                 {
