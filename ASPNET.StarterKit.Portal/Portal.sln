@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal", "ASPNET.StarterKit.Portal\Portal.csproj", "{B5DDF1C4-7178-4035-BCC1-C746076F979A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal", "Portal\Portal.csproj", "{B5DDF1C4-7178-4035-BCC1-C746076F979A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.DAL", "ASPNET.StarterKit.Portal.DAL\Portal.DAL.csproj", "{D12F1EEC-928D-4876-A8D6-15D2CADFB460}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.DAL", "Portal.DAL\Portal.DAL.csproj", "{D12F1EEC-928D-4876-A8D6-15D2CADFB460}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.DAL.SqlServer", "ASPNET.StarterKit.Portal.DAL.SqlServer\Portal.DAL.SqlServer.csproj", "{030CAA4B-3EA8-4522-A979-E983B3885F1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.DAL.SqlServer", "Portal.DAL.SqlServer\Portal.DAL.SqlServer.csproj", "{030CAA4B-3EA8-4522-A979-E983B3885F1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Services", "ASPNET.StarterKit.Portal.Services\Portal.Services.csproj", "{20FD75EF-D541-42BF-ACC8-FD22F200FF57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Services", "Portal.Services\Portal.Services.csproj", "{20FD75EF-D541-42BF-ACC8-FD22F200FF57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.DTO", "ASPNET.StarterKit.Portal.DTO\Portal.DTO.csproj", "{2343B0ED-E37C-4401-BA8A-96880AF036C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.DTO", "Portal.DTO\Portal.DTO.csproj", "{2343B0ED-E37C-4401-BA8A-96880AF036C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Presentation", "ASPNET.StarterKit.Portal.Presentation\Portal.Presentation.csproj", "{726EAAC3-A645-482C-895A-96E2547B1A4F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Presentation", "Portal.Presentation\Portal.Presentation.csproj", "{726EAAC3-A645-482C-895A-96E2547B1A4F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Presentation", "1. Presentation", "{7BFBD8D6-82B4-45A4-81D8-97BBF11D2A6D}"
 EndProject
@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Service Layer", "2. Serv
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Data Access Layer", "3. Data Access Layer", "{D7A289AE-52DA-4F11-AD67-3D789967893C}"
 EndProject
-Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "SqlServerDatabaseSetup", "DatabaseSetup\SqlServerDatabaseSetup.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
+Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "SqlServerDatabaseSetup", "SqlServerDatabaseSetup\SqlServerDatabaseSetup.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

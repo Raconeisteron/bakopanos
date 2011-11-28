@@ -478,7 +478,7 @@
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ASPNET.StarterKit.Portal.DAL\Portal.DAL.csproj">
+    <ProjectReference Include="..\Portal.DAL\Portal.DAL.csproj">
       <Project>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</Project>
       <Name>Portal.DAL</Name>
     </ProjectReference>
