@@ -56,7 +56,7 @@ namespace ASPNET.StarterKit.Portal
         protected void DeleteUser_Click(Object Sender, ImageClickEventArgs e)
         {
             // get user id from dropdownlist of users
-            IUsersDB users = DataAccess.UsersDB;
+            IUsersDb users = DataAccess.UsersDB;
             users.DeleteUser(Int32.Parse(allUsers.SelectedItem.Value));
 
             // Rebind list
@@ -105,10 +105,10 @@ namespace ASPNET.StarterKit.Portal
                     "Domain users do not need to be registered to access portal content that is available to \"All Users\".  Administrators may add domain users to specific roles using the Security Roles function above.  This section permits Administrators to manage users and their security roles directly.";
 
             // Get the list of registered users from the database
-            IRolesDB roles = DataAccess.RolesDB;
+            IUsersDb users = DataAccess.UsersDB;
 
             // bind all portal users to dropdownlist
-            allUsers.DataSource = roles.GetUsers();
+            allUsers.DataSource = users.GetUsers();
             allUsers.DataBind();
         }
 

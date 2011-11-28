@@ -4,20 +4,15 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
-    //*********************************************************************
-    //
-    // DocumentDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // documents within the Portal database.
-    //
-    //*********************************************************************
-
-    internal class DocumentDB : IDocumentDB
+    /// <summary>
+    /// Class that encapsulates all data logic necessary to add/query/delete
+    /// documents within the Portal database.
+    /// </summary>
+    internal class DocumentsDb : IDocumentsDb
     {
         private readonly string _connectionString;
 
-        public DocumentDB(string connectionString)
+        public DocumentsDb(string connectionString)
         {
             _connectionString = connectionString;
         }
@@ -35,7 +30,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*********************************************************************
 
-        #region IDocumentDB Members
+        #region IDocumentsDb Members
 
         public IDataReader GetDocuments(int moduleId)
         {

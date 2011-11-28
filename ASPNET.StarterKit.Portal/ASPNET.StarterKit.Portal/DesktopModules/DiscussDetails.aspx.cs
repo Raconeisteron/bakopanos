@@ -10,7 +10,6 @@ namespace ASPNET.StarterKit.Portal
         private int itemId;
         private int moduleId;
 
-       
 
         //*******************************************************
         //
@@ -80,7 +79,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create new discussion database component
-            IDiscussionDB discuss = DataAccess.DiscussionDB;
+            IDiscussionsDb discuss = DataAccess.DiscussionDB;
 
             // Add new message (updating the "itemId" on the page)
             itemId = discuss.AddMessage(moduleId, itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
@@ -121,7 +120,7 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Obtain the selected item from the Discussion table
-            IDiscussionDB discuss = DataAccess.DiscussionDB;
+            IDiscussionsDb discuss = DataAccess.DiscussionDB;
             IDataReader dr = discuss.GetSingleMessage(itemId);
 
             // Load first row from database
@@ -193,7 +192,5 @@ namespace ASPNET.StarterKit.Portal
 
             return title;
         }
-
-       
     }
 }

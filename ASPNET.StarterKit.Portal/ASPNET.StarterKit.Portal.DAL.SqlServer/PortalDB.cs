@@ -3,16 +3,16 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
-    internal class PortalDB : IPortalDB
+    internal class PortalDb : IPortalDb
     {
         private readonly string _connectionString;
 
-        public PortalDB(string connectionString)
+        public PortalDb(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        #region IPortalDB Members
+        #region IPortalDb Members
 
         public void DeleteModule(params int[] moduleIds)
         {

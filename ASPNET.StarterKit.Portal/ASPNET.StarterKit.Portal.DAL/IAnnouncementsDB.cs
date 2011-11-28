@@ -3,11 +3,11 @@ using System.Data;
 
 namespace ASPNET.StarterKit.Portal.DAL
 {
-    public interface IAnnouncementsDB
+    public interface IAnnouncementsDb
     {
         DataSet GetAnnouncements(int moduleId);
         IDataReader GetSingleAnnouncement(int itemId);
-        void DeleteAnnouncement(int itemID);
+        void DeleteAnnouncement(int itemId);
 
         int AddAnnouncement(int moduleId, int itemId, String userName, String title, DateTime expireDate,
                             String description, String moreLink, String mobileMoreLink);

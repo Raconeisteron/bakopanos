@@ -19,54 +19,54 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
         #region IDaoFactory Members
 
-        public IPortalDB PortalDB
+        public IPortalDb PortalDB
         {
-            get { return new PortalDB(_connectionString); }
+            get { return new PortalDb(_connectionString); }
         }
 
-        public IAnnouncementsDB AnnouncementsDB
+        public IAnnouncementsDb AnnouncementsDB
         {
-            get { return new AnnouncementsDB(_connectionString); }
+            get { return new AnnouncementsDb(_connectionString); }
         }
 
-        public IContactsDB ContactsDB
+        public IContactsDb ContactsDB
         {
-            get { return new ContactsDB(_connectionString); }
+            get { return new ContactsDb(_connectionString); }
         }
 
-        public IDiscussionDB DiscussionDB
+        public IDiscussionsDb DiscussionDB
         {
-            get { return new DiscussionDB(_connectionString); }
+            get { return new DiscussionsDb(_connectionString); }
         }
 
-        public IDocumentDB DocumentDB
+        public IDocumentsDb DocumentDB
         {
-            get { return new DocumentDB(_connectionString); }
+            get { return new DocumentsDb(_connectionString); }
         }
 
-        public IEventsDB EventsDB
+        public IEventsDb EventsDB
         {
-            get { return new EventsDB(_connectionString); }
+            get { return new EventsDb(_connectionString); }
         }
 
-        public IHtmlTextDB HtmlTextDB
+        public IHtmlTextDb HtmlTextDB
         {
-            get { return new HtmlTextDB(_connectionString); }
+            get { return new HtmlTextDb(_connectionString); }
         }
 
-        public ILinkDB LinkDB
+        public ILinksDb LinkDB
         {
-            get { return new LinkDB(_connectionString); }
+            get { return new LinkDb(_connectionString); }
         }
 
-        public IRolesDB RolesDB
+        public IRolesDb RolesDB
         {
-            get { return new RolesDB(_connectionString); }
+            get { return new RolesDb(_connectionString); }
         }
 
-        public IUsersDB UsersDB
+        public IUsersDb UsersDB
         {
-            get { return new UsersDB(_connectionString); }
+            get { return new UsersDb(_connectionString); }
         }
 
         #endregion

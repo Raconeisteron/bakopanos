@@ -4,20 +4,15 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
-    //*********************************************************************
-    //
-    // AnnounceDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // announcements within the Portal database.
-    //
-    //*********************************************************************
-
-    internal class AnnouncementsDB : IAnnouncementsDB
+    /// <summary>
+    /// Class that encapsulates all data logic necessary to add/query/delete
+    /// announcements within the Portal database.
+    /// </summary>
+    internal class AnnouncementsDb : IAnnouncementsDb
     {
         private readonly string _connectionString;
 
-        public AnnouncementsDB(string connectionString)
+        public AnnouncementsDb(string connectionString)
         {
             _connectionString = connectionString;
         }
@@ -38,7 +33,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*********************************************************************
 
-        #region IAnnouncementsDB Members
+        #region IAnnouncementsDb Members
 
         public DataSet GetAnnouncements(int moduleId)
         {

@@ -33,7 +33,7 @@ namespace ASPNET.StarterKit.Portal.DAL
             Factory = (IDaoFactory) Activator.CreateInstance(type);
         }
 
-        public static IPortalDB PortalDB
+        public static IPortalDb PortalDB
         {
             get { return Factory.PortalDB; }
         }
@@ -41,47 +41,47 @@ namespace ASPNET.StarterKit.Portal.DAL
         /// <summary>
         /// Gets a provider-specific customer data access object.
         /// </summary>
-        public static IAnnouncementsDB AnnouncementsDB
+        public static IAnnouncementsDb AnnouncementsDB
         {
             get { return Factory.AnnouncementsDB; }
         }
 
-        public static IContactsDB ContactsDB
+        public static IContactsDb ContactsDB
         {
             get { return Factory.ContactsDB; }
         }
 
-        public static IDiscussionDB DiscussionDB
+        public static IDiscussionsDb DiscussionDB
         {
             get { return Factory.DiscussionDB; }
         }
 
-        public static IDocumentDB DocumentDB
+        public static IDocumentsDb DocumentDB
         {
             get { return Factory.DocumentDB; }
         }
 
-        public static IEventsDB EventsDB
+        public static IEventsDb EventsDB
         {
             get { return Factory.EventsDB; }
         }
 
-        public static ILinkDB LinkDB
+        public static ILinksDb LinkDB
         {
             get { return Factory.LinkDB; }
         }
 
-        public static IHtmlTextDB HtmlTextDB
+        public static IHtmlTextDb HtmlTextDB
         {
             get { return Factory.HtmlTextDB; }
         }
 
-        public static IRolesDB RolesDB
+        public static IRolesDb RolesDB
         {
             get { return Factory.RolesDB; }
         }
 
-        public static IUsersDB UsersDB
+        public static IUsersDb UsersDB
         {
             get { return Factory.UsersDB; }
         }

@@ -4,20 +4,15 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
-    //*********************************************************************
-    //
-    // DiscussionDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // discussions within the Portal database.
-    //
-    //*********************************************************************
-
-    internal class DiscussionDB : IDiscussionDB
+    /// <summary>
+    /// Class that encapsulates all data logic necessary to add/query/delete
+    /// discussions within the Portal database.
+    /// </summary>
+    internal class DiscussionsDb : IDiscussionsDb
     {
         private readonly string _connectionString;
 
-        public DiscussionDB(string connectionString)
+        public DiscussionsDb(string connectionString)
         {
             _connectionString = connectionString;
         }
@@ -33,7 +28,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*******************************************************
 
-        #region IDiscussionDB Members
+        #region IDiscussionsDb Members
 
         public IDataReader GetTopLevelMessages(int moduleId)
         {
@@ -148,7 +143,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemID = myCommand.AddParameterItemId();
+            SqlParameter parameterItemID = myCommand.AddParameterItemId();
             myCommand.AddParameterTitle(title);
 
             var parameterBody = new SqlParameter("@Body", SqlDbType.NVarChar, 3000);

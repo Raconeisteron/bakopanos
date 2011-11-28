@@ -3,7 +3,7 @@ using System.Data;
 
 namespace ASPNET.StarterKit.Portal.DAL
 {
-    public interface IRolesDB
+    public interface IRolesDb
     {
         IDataReader GetPortalRoles(int portalId);
         int AddRole(int portalId, String roleName);
@@ -12,6 +12,5 @@ namespace ASPNET.StarterKit.Portal.DAL
         IDataReader GetRoleMembers(int roleId);
         void AddUserRole(int roleId, int userId);
         void DeleteUserRole(int roleId, int userId);
-        IDataReader GetUsers();
     }
 }

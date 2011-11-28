@@ -46,7 +46,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of announcement information
-                    IAnnouncementsDB announcementDB = DataAccess.AnnouncementsDB;
+                    IAnnouncementsDb announcementDB = DataAccess.AnnouncementsDB;
                     IDataReader dr = announcementDB.GetSingleAnnouncement(itemId);
 
                     // Load first row into DataReader
@@ -91,7 +91,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Announcement DB component
-                IAnnouncementsDB announcementDB = DataAccess.AnnouncementsDB;
+                IAnnouncementsDb announcementDB = DataAccess.AnnouncementsDB;
 
                 if (itemId == 0)
                 {
@@ -128,7 +128,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                IAnnouncementsDB announcementDB = DataAccess.AnnouncementsDB;
+                IAnnouncementsDb announcementDB = DataAccess.AnnouncementsDB;
                 announcementDB.DeleteAnnouncement(itemId);
             }
 
@@ -149,6 +149,5 @@ namespace ASPNET.StarterKit.Portal
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
-
     }
 }

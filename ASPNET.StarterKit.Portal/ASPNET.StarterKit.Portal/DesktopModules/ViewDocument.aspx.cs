@@ -31,7 +31,7 @@ namespace ASPNET.StarterKit.Portal
             if (documentId != -1)
             {
                 // Obtain Document Data from Documents table
-                IDocumentDB documents = DataAccess.DocumentDB;
+                IDocumentsDb documents = DataAccess.DocumentDB;
 
                 IDataReader dBContent = documents.GetDocumentContent(documentId);
                 dBContent.Read();
@@ -50,6 +50,5 @@ namespace ASPNET.StarterKit.Portal
                 Response.End();
             }
         }
-
     }
 }

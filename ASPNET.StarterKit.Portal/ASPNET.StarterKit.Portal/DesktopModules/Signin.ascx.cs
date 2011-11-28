@@ -10,7 +10,7 @@ namespace ASPNET.StarterKit.Portal
         protected void LoginBtn_Click(Object sender, ImageClickEventArgs e)
         {
             // Attempt to Validate User Credentials using UsersDB
-            IUsersDB accountSystem = DataAccess.UsersDB;
+            IUsersDb accountSystem = DataAccess.UsersDB;
             String userId = accountSystem.Login(email.Text, PortalSecurity.Encrypt(password.Text));
 
             if (!string.IsNullOrEmpty(userId))
@@ -26,6 +26,5 @@ namespace ASPNET.StarterKit.Portal
                 Message.Text = "<" + "br" + ">Login Failed!" + "<" + "br" + ">";
             }
         }
-
     }
 }

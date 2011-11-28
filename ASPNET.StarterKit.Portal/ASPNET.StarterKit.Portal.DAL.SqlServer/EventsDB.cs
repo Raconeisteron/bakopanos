@@ -4,20 +4,15 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
-    //*********************************************************************
-    //
-    // EventDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // events within the Portal database.
-    //
-    //*********************************************************************
-
-    internal class EventsDB : IEventsDB
+    /// <summary>
+    /// Class that encapsulates all data logic necessary to add/query/delete
+    /// events within the Portal database.
+    /// </summary>
+    internal class EventsDb : IEventsDb
     {
         private readonly string _connectionString;
 
-        public EventsDB(string connectionString)
+        public EventsDb(string connectionString)
         {
             _connectionString = connectionString;
         }
@@ -38,7 +33,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*********************************************************************
 
-        #region IEventsDB Members
+        #region IEventsDb Members
 
         public DataSet GetEvents(int moduleId)
         {
@@ -150,7 +145,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemID = myCommand.AddParameterItemId();
+            SqlParameter parameterItemID = myCommand.AddParameterItemId();
 
             myCommand.AddParameterModuleId(moduleId);
             myCommand.AddParameterUserName(userName);
@@ -160,7 +155,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             parameterWhereWhen.Value = wherewhen;
             myCommand.Parameters.Add(parameterWhereWhen);
 
-           
+
             myCommand.AddParameterExpireDate(expireDate);
             myCommand.AddParameterDescription(description);
 

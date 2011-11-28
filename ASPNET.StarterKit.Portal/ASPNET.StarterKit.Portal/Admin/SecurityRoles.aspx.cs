@@ -7,10 +7,10 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class SecurityRoles : Page
     {
-        private int roleId = -1;
-        private String roleName = "";
-        private int tabId;
-        private int tabIndex;
+        private int _roleId = -1;
+        private String _roleName = "";
+        private int _tabId;
+        private int _tabIndex;
 
         public SecurityRoles()
         {
@@ -35,19 +35,19 @@ namespace ASPNET.StarterKit.Portal
             // Calculate security roleId
             if (Request.Params["roleid"] != null)
             {
-                roleId = Int32.Parse(Request.Params["roleid"]);
+                _roleId = Int32.Parse(Request.Params["roleid"]);
             }
             if (Request.Params["rolename"] != null)
             {
-                roleName = Request.Params["rolename"];
+                _roleName = Request.Params["rolename"];
             }
             if (Request.Params["tabid"] != null)
             {
-                tabId = Int32.Parse(Request.Params["tabid"]);
+                _tabId = Int32.Parse(Request.Params["tabid"]);
             }
             if (Request.Params["tabindex"] != null)
             {
-                tabIndex = Int32.Parse(Request.Params["tabindex"]);
+                _tabIndex = Int32.Parse(Request.Params["tabindex"]);
             }
 
 
@@ -71,7 +71,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Navigate back to admin page
-            Response.Redirect("~/DesktopDefault.aspx?tabindex=" + tabIndex + "&tabid=" + tabId);
+            Response.Redirect("~/DesktopDefault.aspx?tabindex=" + _tabIndex + "&tabid=" + _tabId);
         }
 
         //*******************************************************
@@ -88,7 +88,7 @@ namespace ASPNET.StarterKit.Portal
             if (((LinkButton) sender).ID == "addNew")
             {
                 // add new user to users table
-                IUsersDB users = DataAccess.UsersDB;
+                IUsersDb users = DataAccess.UsersDB;
                 if ((userId = users.AddUser(windowsUserName.Text, windowsUserName.Text, "acme")) == -1)
                 {
                     Message.Text = "Add New Failed!  There is already an entry for <" + "u" + ">" + windowsUserName.Text +
@@ -105,8 +105,8 @@ namespace ASPNET.StarterKit.Portal
             if (userId != -1)
             {
                 // Add a new userRole to the database
-                IRolesDB roles = DataAccess.RolesDB;
-                roles.AddUserRole(roleId, userId);
+                IRolesDb roles = DataAccess.RolesDB;
+                roles.AddUserRole(_roleId, userId);
             }
 
             // Rebind list
@@ -123,13 +123,13 @@ namespace ASPNET.StarterKit.Portal
 
         private void usersInRole_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            IRolesDB roles = DataAccess.RolesDB;
+            IRolesDb roles = DataAccess.RolesDB;
             var userId = (int) usersInRole.DataKeys[e.Item.ItemIndex];
 
             if (e.CommandName == "delete")
             {
                 // update database
-                roles.DeleteUserRole(roleId, userId);
+                roles.DeleteUserRole(_roleId, userId);
 
                 // Ensure that item is not editable
                 usersInRole.EditItemIndex = -1;
@@ -156,20 +156,23 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // add the role name to the title
-            if (roleName != "")
+            if (_roleName != "")
             {
-                title.InnerText = "Role Membership: " + roleName;
+                title.InnerText = "Role Membership: " + _roleName;
             }
 
             // Get the portal's roles from the database
-            IRolesDB roles = DataAccess.RolesDB;
+            IRolesDb roles = DataAccess.RolesDB;
 
             // bind users in role to DataList
-            usersInRole.DataSource = roles.GetRoleMembers(roleId);
+            usersInRole.DataSource = roles.GetRoleMembers(_roleId);
             usersInRole.DataBind();
 
+            // Get the portal's users from the database
+            IUsersDb users = DataAccess.UsersDB;
+
             // bind all portal users to dropdownlist
-            allUsers.DataSource = roles.GetUsers();
+            allUsers.DataSource = users.GetUsers();
             allUsers.DataBind();
         }
 

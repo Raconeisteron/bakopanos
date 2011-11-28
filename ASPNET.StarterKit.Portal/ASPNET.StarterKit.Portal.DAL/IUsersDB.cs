@@ -3,7 +3,7 @@ using System.Data;
 
 namespace ASPNET.StarterKit.Portal.DAL
 {
-    public interface IUsersDB
+    public interface IUsersDb
     {
         int AddUser(String fullName, String email, String password);
         void DeleteUser(int userId);
@@ -12,5 +12,6 @@ namespace ASPNET.StarterKit.Portal.DAL
         IDataReader GetSingleUser(String email);
         String[] GetRoles(String email);
         String Login(String email, String password);
+        IDataReader GetUsers();
     }
 }

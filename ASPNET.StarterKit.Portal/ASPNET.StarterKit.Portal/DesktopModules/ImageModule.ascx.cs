@@ -35,6 +35,5 @@ namespace ASPNET.StarterKit.Portal
                 Image1.Height = Int32.Parse(imageHeight);
             }
         }
-
     }
 }

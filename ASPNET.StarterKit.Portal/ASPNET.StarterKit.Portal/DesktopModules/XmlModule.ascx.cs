@@ -49,7 +49,5 @@ namespace ASPNET.StarterKit.Portal
                 }
             }
         }
-
-       
     }
 }

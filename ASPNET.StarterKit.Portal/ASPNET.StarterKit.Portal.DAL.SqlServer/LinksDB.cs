@@ -4,20 +4,15 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
-    //*********************************************************************
-    //
-    // LinkDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // links within the Portal database.
-    //
-    //*********************************************************************
-
-    internal class LinkDB : ILinkDB
+    /// <summary>
+    /// // Class that encapsulates all data logic necessary to add/query/delete
+    /// links within the Portal database.
+    /// </summary>
+    internal class LinkDb : ILinksDb
     {
         private readonly string _connectionString;
 
-        public LinkDB(string connectionString)
+        public LinkDb(string connectionString)
         {
             _connectionString = connectionString;
         }
@@ -35,7 +30,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*********************************************************************
 
-        #region ILinkDB Members
+        #region ILinksDb Members
 
         public IDataReader GetLinks(int moduleId)
         {
@@ -146,7 +141,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemID = myCommand.AddParameterItemId();
+            SqlParameter parameterItemID = myCommand.AddParameterItemId();
             myCommand.AddParameterModuleId(moduleId);
             myCommand.AddParameterUserName(userName);
 

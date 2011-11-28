@@ -32,7 +32,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the datalist control
-            ILinkDB links = DataAccess.LinkDB;
+            ILinksDb links = DataAccess.LinkDB;
 
             myDataList.DataSource = links.GetLinks(ModuleId);
             myDataList.DataBind();
@@ -61,7 +61,5 @@ namespace ASPNET.StarterKit.Portal
             else
                 return desc;
         }
-
-       
     }
 }

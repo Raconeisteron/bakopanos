@@ -1,6 +1,6 @@
 ﻿namespace ASPNET.StarterKit.Portal.DAL
 {
-    public interface IPortalDB
+    public interface IPortalDb
     {
         void DeleteModule(params int[] moduleIds);
     }

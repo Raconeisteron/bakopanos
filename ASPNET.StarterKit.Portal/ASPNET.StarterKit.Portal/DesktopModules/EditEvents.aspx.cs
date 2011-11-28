@@ -51,7 +51,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of event information
-                    IEventsDB events = DataAccess.EventsDB;
+                    IEventsDb events = DataAccess.EventsDB;
                     IDataReader dr = events.GetSingleEvent(itemId);
 
                     // Read first row from database
@@ -94,7 +94,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Event DB component
-                IEventsDB events = DataAccess.EventsDB;
+                IEventsDb events = DataAccess.EventsDB;
 
                 if (itemId == 0)
                 {
@@ -129,7 +129,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                IEventsDB events = DataAccess.EventsDB;
+                IEventsDb events = DataAccess.EventsDB;
                 events.DeleteEvent(itemId);
             }
 
@@ -150,7 +150,5 @@ namespace ASPNET.StarterKit.Portal
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
-
-       
     }
 }

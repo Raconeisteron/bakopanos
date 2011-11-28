@@ -19,12 +19,11 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain announcement information from Announcements table
             // and bind to the datalist control
-            IAnnouncementsDB announcements = DataAccess.AnnouncementsDB;
+            IAnnouncementsDb announcements = DataAccess.AnnouncementsDB;
 
             // DataBind Announcements to DataList Control
             myDataList.DataSource = announcements.GetAnnouncements(ModuleId);
             myDataList.DataBind();
         }
-
     }
 }

@@ -51,7 +51,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of contact information
-                    IContactsDB contacts = DataAccess.ContactsDB;
+                    IContactsDb contacts = DataAccess.ContactsDB;
                     IDataReader dr = contacts.GetSingleContact(itemId);
 
                     // Read first row from database
@@ -96,7 +96,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the ContactsDB component
-                IContactsDB contacts = DataAccess.ContactsDB;
+                IContactsDb contacts = DataAccess.ContactsDB;
 
                 if (itemId == 0)
                 {
@@ -131,7 +131,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                IContactsDB contacts = DataAccess.ContactsDB;
+                IContactsDb contacts = DataAccess.ContactsDB;
                 contacts.DeleteContact(itemId);
             }
 

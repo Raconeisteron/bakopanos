@@ -5,42 +5,31 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
-    //*********************************************************************
-    //
-    // UsersDB Class
-    //
-    // The UsersDB class encapsulates all data logic necessary to add/login/query
-    // users within the Portal Users database.
-    //
-    // Important Note: The UsersDB class is only used when forms-based cookie
-    // authentication is enabled within the portal.  When windows based
-    // authentication is used instead, then either the Windows SAM or Active Directory
-    // is used to store and validate all username/password credentials.
-    //
-    //*********************************************************************
-
-    internal class UsersDB : IUsersDB
+    /// <summary>
+    /// The UsersDB class encapsulates all data logic necessary to add/login/query
+    /// users within the Portal Users database.
+    /// </summary>
+    /// <remarks>
+    /// The UsersDB class is only used when forms-based cookie
+    /// authentication is enabled within the portal.  When windows based
+    /// authentication is used instead, then either the Windows SAM or Active Directory
+    /// is used to store and validate all username/password credentials.
+    /// </remarks>
+    internal class UsersDb : IUsersDb
     {
         private readonly string _connectionString;
 
-        public UsersDB(string connectionString)
+        public UsersDb(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        //*********************************************************************
-        //
-        // UsersDB.AddUser() Method <a name="AddUser"></a>
-        //
-        // The AddUser method inserts a new user record into the "Users" database table.
-        //
-        // Other relevant sources:
-        //     + <a href="AddUser.htm" style="color:green">AddUser Stored Procedure</a>
-        //
-        //*********************************************************************
+        #region IUsersDb Members
 
-        #region IUsersDB Members
-
+        /// <summary>
+        /// The AddUser method inserts a new user record into the "Users" database table.
+        /// </summary>
+        /// <returns>New user Id</returns>
         public int AddUser(String fullName, String email, String password)
         {
             // Create Instance of Connection and Command Object
@@ -55,19 +44,15 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             parameterFullName.Value = fullName;
             myCommand.Parameters.Add(parameterFullName);
 
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
-            parameterEmail.Value = email;
-            myCommand.Parameters.Add(parameterEmail);
+            myCommand.AddParameterEmail(email);
 
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
             myCommand.Parameters.Add(parameterPassword);
 
-            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
-            parameterUserId.Direction = ParameterDirection.Output;
-            myCommand.Parameters.Add(parameterUserId);
+            SqlParameter parameterUserId = myCommand.AddParameterUserId();
 
-            // Execute the command in a try/catch to catch duplicate username errors
+            // Execute the command in a try/catch to catch duplicate username errors);
             try
             {
                 // Open the connection and execute the Command
@@ -89,17 +74,9 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return (int) parameterUserId.Value;
         }
 
-        //*********************************************************************
-        //
-        // UsersDB.DeleteUser() Method <a name="DeleteUser"></a>
-        //
-        // The DeleteUser method deleted a  user record from the "Users" database table.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteUser.htm" style="color:green">DeleteUser Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The DeleteUser method deleted a  user record from the "Users" database table.
+        /// </summary>
         public void DeleteUser(int userId)
         {
             // Create Instance of Connection and Command Object
@@ -109,9 +86,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
-            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
-            parameterUserId.Value = userId;
-            myCommand.Parameters.Add(parameterUserId);
+            myCommand.AddParameterUserId(userId);
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -119,17 +94,9 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myConnection.Close();
         }
 
-        //*********************************************************************
-        //
-        // UsersDB.UpdateUser() Method <a name="DeleteUser"></a>
-        //
-        // The UpdateUser method deleted a  user record from the "Users" database table.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateUser.htm" style="color:green">UpdateUser Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The UpdateUser method updates a  user record from the "Users" database table.
+        /// </summary>
         public void UpdateUser(int userId, String email, String password)
         {
             // Create Instance of Connection and Command Object
@@ -138,14 +105,9 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
-
-            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
-            parameterUserId.Value = userId;
-            myCommand.Parameters.Add(parameterUserId);
-
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
-            parameterEmail.Value = email;
-            myCommand.Parameters.Add(parameterEmail);
+            
+            myCommand.AddParameterUserId(userId);
+            myCommand.AddParameterEmail(email);
 
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
@@ -157,17 +119,6 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myConnection.Close();
         }
 
-        //*********************************************************************
-        //
-        // UsersDB.GetRolesByUser() Method <a name="GetRolesByUser"></a>
-        //
-        // The DeleteUser method deleted a  user record from the "Users" database table.
-        //
-        // Other relevant sources:
-        //     + <a href="GetRolesByUser.htm" style="color:green">GetRolesByUser Stored Procedure</a>
-        //
-        //*********************************************************************
-
         public IDataReader GetRolesByUser(String email)
         {
             // Create Instance of Connection and Command Object
@@ -177,9 +128,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
-            parameterEmail.Value = email;
-            myCommand.Parameters.Add(parameterEmail);
+            myCommand.AddParameterEmail(email);
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -189,15 +138,10 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return dr;
         }
 
-        //*********************************************************************
-        //
-        // GetSingleUser Method
-        //
-        // The GetSingleUser method returns a IDataReader containing details
+        /// <summary>
+        /// The GetSingleUser method returns a IDataReader containing details
         // about a specific user from the Users database table.
-        //
-        //*********************************************************************
-
+        /// </summary>
         public IDataReader GetSingleUser(String email)
         {
             // Create Instance of Connection and Command Object
@@ -208,9 +152,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
-            parameterEmail.Value = email;
-            myCommand.Parameters.Add(parameterEmail);
+            myCommand.AddParameterEmail(email);
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -220,17 +162,9 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return dr;
         }
 
-        //*********************************************************************
-        //
-        // GetRoles() Method <a name="GetRoles"></a>
-        //
-        // The GetRoles method returns a list of role names for the user.
-        //
-        // Other relevant sources:
-        //     + <a href="GetRolesByUser.htm" style="color:green">GetRolesByUser Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The GetRoles method returns a list of role names for the user.
+        /// </summary>        
         public String[] GetRoles(String email)
         {
             // Create Instance of Connection and Command Object
@@ -241,15 +175,12 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
-            parameterEmail.Value = email;
-            myCommand.Parameters.Add(parameterEmail);
+            myCommand.AddParameterEmail(email);
 
             // Open the database connection and execute the command
-            IDataReader dr;
 
             myConnection.Open();
-            dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // create a String array from the data
             var userRoles = new ArrayList();
@@ -265,19 +196,11 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return (String[]) userRoles.ToArray(typeof (String));
         }
 
-        //*********************************************************************
-        //
-        // UsersDB.Login() Method <a name="Login"></a>
-        //
-        // The Login method validates a email/password pair against credentials
-        // stored in the users database.  If the email/password pair is valid,
-        // the method returns user's name.
-        //
-        // Other relevant sources:
-        //     + <a href="UserLogin.htm" style="color:green">UserLogin Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The Login method validates a email/password pair against credentials
+        /// stored in the users database.  If the email/password pair is valid,
+        /// the method returns user's name.
+        /// </summary>        
         public String Login(String email, String password)
         {
             // Create Instance of Connection and Command Object
@@ -288,9 +211,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
-            parameterEmail.Value = email;
-            myCommand.Parameters.Add(parameterEmail);
+            myCommand.AddParameterEmail(email);
 
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
@@ -309,10 +230,28 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             {
                 return ((String) parameterUserName.Value).Trim();
             }
-            else
-            {
-                return String.Empty;
-            }
+            return String.Empty;
+        }
+
+        /// <summary>
+        /// The GetUsers method returns returns the UserID, Name and Email for 
+        /// all registered users.
+        /// </summary>        
+        public IDataReader GetUsers()
+        {
+            // Create Instance of Connection and Command Object
+            var myConnection = new SqlConnection(_connectionString);
+            var myCommand = new SqlCommand("Portal_GetUsers", myConnection);
+
+            // Mark the Command as a SPROC
+            myCommand.CommandType = CommandType.StoredProcedure;
+
+            // Open the database connection and execute the command
+            myConnection.Open();
+            IDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+            // Return the datareader
+            return dr;
         }
 
         #endregion

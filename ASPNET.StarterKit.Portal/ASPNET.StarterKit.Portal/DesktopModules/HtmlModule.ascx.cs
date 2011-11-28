@@ -21,7 +21,7 @@ namespace ASPNET.StarterKit.Portal
         protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain the selected item from the HtmlText table
-            IHtmlTextDB text = DataAccess.HtmlTextDB;
+            IHtmlTextDb text = DataAccess.HtmlTextDB;
             IDataReader dr = text.GetHtmlText(ModuleId);
 
             if (dr.Read())
@@ -34,6 +34,5 @@ namespace ASPNET.StarterKit.Portal
             // Close the datareader
             dr.Close();
         }
-
     }
 }

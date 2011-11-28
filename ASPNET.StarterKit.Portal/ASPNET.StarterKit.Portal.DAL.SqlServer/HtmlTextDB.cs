@@ -4,20 +4,15 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
-    //*********************************************************************
-    //
-    // HtmlTextDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // HTML/text within the Portal database.
-    //
-    //*********************************************************************
-
-    internal class HtmlTextDB : IHtmlTextDB
+    /// <summary>
+    /// Class that encapsulates all data logic necessary to add/query/delete
+    /// HTML/text within the Portal database.
+    /// </summary>
+    internal class HtmlTextDb : IHtmlTextDb
     {
         private readonly string _connectionString;
 
-        public HtmlTextDB(string connectionString)
+        public HtmlTextDb(string connectionString)
         {
             _connectionString = connectionString;
         }
@@ -34,7 +29,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*********************************************************************
 
-        #region IHtmlTextDB Members
+        #region IHtmlTextDb Members
 
         public IDataReader GetHtmlText(int moduleId)
         {

@@ -3,11 +3,11 @@ using System.Data;
 
 namespace ASPNET.StarterKit.Portal.DAL
 {
-    public interface ILinkDB
+    public interface ILinksDb
     {
         IDataReader GetLinks(int moduleId);
         IDataReader GetSingleLink(int itemId);
-        void DeleteLink(int itemID);
+        void DeleteLink(int itemId);
 
         int AddLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
                     int viewOrder, String description);

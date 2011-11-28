@@ -46,7 +46,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of link information
-                    ILinkDB links = DataAccess.LinkDB;
+                    ILinksDb links = DataAccess.LinkDB;
                     IDataReader dr = links.GetSingleLink(itemId);
 
                     // Read in first row from database
@@ -90,7 +90,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Link DB component
-                ILinkDB links = DataAccess.LinkDB;
+                ILinksDb links = DataAccess.LinkDB;
 
                 if (itemId == 0)
                 {
@@ -125,7 +125,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                ILinkDB links = DataAccess.LinkDB;
+                ILinksDb links = DataAccess.LinkDB;
                 links.DeleteLink(itemId);
             }
 
@@ -146,6 +146,5 @@ namespace ASPNET.StarterKit.Portal
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
-
     }
 }

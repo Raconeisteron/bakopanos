@@ -4,20 +4,15 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
-    //*********************************************************************
-    //
-    // ContactDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // contacts within the Portal database.
-    //
-    //*********************************************************************
-
-    internal class ContactsDB : IContactsDB
+    /// <summary>
+    /// Class that encapsulates all data logic necessary to add/query/delete
+    /// contacts within the Portal database.
+    /// </summary>
+    internal class ContactsDb : IContactsDb
     {
         private readonly string _connectionString;
 
-        public ContactsDB(string connectionString)
+        public ContactsDb(string connectionString)
         {
             _connectionString = connectionString;
         }
@@ -38,7 +33,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         //
         //*********************************************************************
 
-        #region IContactsDB Members
+        #region IContactsDb Members
 
         public DataSet GetContacts(int moduleId)
         {

@@ -33,7 +33,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsPostBack == false)
             {
                 // Obtain a single row of text information
-                IHtmlTextDB text = DataAccess.HtmlTextDB;
+                IHtmlTextDb text = DataAccess.HtmlTextDB;
                 IDataReader dr = text.GetHtmlText(moduleId);
 
                 if (dr.Read())
@@ -66,7 +66,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create an instance of the HtmlTextDB component
-            IHtmlTextDB text = DataAccess.HtmlTextDB;
+            IHtmlTextDb text = DataAccess.HtmlTextDB;
 
             // Update the text within the HtmlText table
             text.UpdateHtmlText(moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text),
@@ -89,7 +89,5 @@ namespace ASPNET.StarterKit.Portal
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
-
-       
     }
 }
