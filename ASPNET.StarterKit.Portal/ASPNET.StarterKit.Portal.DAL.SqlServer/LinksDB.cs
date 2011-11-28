@@ -8,7 +8,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
     /// // Class that encapsulates all data logic necessary to add/query/delete
     /// links within the Portal database.
     /// </summary>
-    internal class LinkDb : ILinksDb
+    internal class LinkDb : DbHelper, ILinksDb
     {
         private readonly string _connectionString;
 
@@ -34,7 +34,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
+            myCommand.Parameters.Add(InputModuleId(moduleId));
 
             // Execute the command
             myConnection.Open();
@@ -58,7 +58,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
+            myCommand.Parameters.Add(InputItemId(itemId));
 
             // Execute the command
             myConnection.Open();
@@ -82,7 +82,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
+            myCommand.Parameters.Add(InputItemId(itemId));
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();
@@ -109,13 +109,13 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            SqlParameter parameterItemId = myCommand.Parameters.Add(SqlParameterHelper.ReturnValueItemId());
-            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
-            myCommand.Parameters.Add(SqlParameterHelper.InputUserName(userName));
+            SqlParameter parameterItemId = myCommand.Parameters.Add(ReturnValueItemId());
+            myCommand.Parameters.Add(InputModuleId(moduleId));
+            myCommand.Parameters.Add(InputUserName(userName));
 
-            myCommand.Parameters.Add(SqlParameterHelper.InputTitle(title));
+            myCommand.Parameters.Add(InputTitle(title));
 
-            myCommand.Parameters.Add(SqlParameterHelper.InputDescription(description));
+            myCommand.Parameters.Add(InputDescription(description));
 
             var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
             parameterUrl.Value = url;
@@ -156,10 +156,10 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
-            myCommand.Parameters.Add(SqlParameterHelper.InputUserName(userName));
-            myCommand.Parameters.Add(SqlParameterHelper.InputTitle(title));
-            myCommand.Parameters.Add(SqlParameterHelper.InputDescription(description));
+            myCommand.Parameters.Add(InputItemId(itemId));
+            myCommand.Parameters.Add(InputUserName(userName));
+            myCommand.Parameters.Add(InputTitle(title));
+            myCommand.Parameters.Add(InputDescription(description));
 
             var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
             parameterUrl.Value = url;

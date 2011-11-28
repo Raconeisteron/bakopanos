@@ -8,7 +8,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// documents within the Portal database.
     /// </summary>
-    internal class DocumentsDb : IDocumentsDb
+    internal class DocumentsDb : DbHelper, IDocumentsDb
     {
         private readonly string _connectionString;
 
@@ -34,7 +34,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
+            myCommand.Parameters.Add(InputModuleId(moduleId));
 
             // Execute the command
             myConnection.Open();
@@ -58,7 +58,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
+            myCommand.Parameters.Add(InputItemId(itemId));
 
             // Execute the command
             myConnection.Open();
@@ -82,7 +82,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
+            myCommand.Parameters.Add(InputItemId(itemId));
 
             // Execute the command
             myConnection.Open();
@@ -107,7 +107,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
+            myCommand.Parameters.Add(InputItemId(itemId));
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();
@@ -135,9 +135,9 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
-            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
-            myCommand.Parameters.Add(SqlParameterHelper.InputUserName(userName));
+            myCommand.Parameters.Add(InputItemId(itemId));
+            myCommand.Parameters.Add(InputModuleId(moduleId));
+            myCommand.Parameters.Add(InputUserName(userName));
 
             var parameterName = new SqlParameter("@FileFriendlyName", SqlDbType.NVarChar, 150);
             parameterName.Value = name;

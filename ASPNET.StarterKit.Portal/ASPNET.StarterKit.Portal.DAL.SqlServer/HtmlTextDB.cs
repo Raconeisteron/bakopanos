@@ -8,7 +8,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// HTML/text within the Portal database.
     /// </summary>
-    internal class HtmlTextDb : IHtmlTextDb
+    internal class HtmlTextDb : DbHelper, IHtmlTextDb
     {
         private readonly string _connectionString;
 
@@ -33,7 +33,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
+            myCommand.Parameters.Add(InputModuleId(moduleId));
 
             // Execute the command
             myConnection.Open();
@@ -57,7 +57,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
+            myCommand.Parameters.Add(InputModuleId(moduleId));
 
             var parameterDesktopHtml = new SqlParameter("@DesktopHtml", SqlDbType.NText);
             parameterDesktopHtml.Value = desktopHtml;

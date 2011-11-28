@@ -3,10 +3,9 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
-    internal static class DbHelper
+    internal class DbHelper : SqlParameterHelper
     {
-
-        public static void ExecuteNonQuery(string connectionString, string commandText, params SqlParameter[] parameters)
+        protected static void ExecuteNonQuery(string connectionString, string commandText, params SqlParameter[] parameters)
         {
             // Create Instance of Connection and Command Object
             using (var myConnection = new SqlConnection(connectionString))
@@ -25,5 +24,72 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
                 }
             }
         }
+
+        protected static void DeleteItem(string connectionString, string commandText, int itemId)
+        {
+            // Create Instance of Connection and Command Object
+            using (var myConnection = new SqlConnection(connectionString))
+            {
+                using (var myCommand = new SqlCommand(commandText, myConnection))
+                {
+                    // Mark the Command as a SPROC
+                    myCommand.CommandType = CommandType.StoredProcedure;
+
+                    // Add Parameters to SPROC
+                    myCommand.Parameters.Add(InputItemId(itemId));
+
+                    myConnection.Open();
+                    myCommand.ExecuteNonQuery();
+                    myConnection.Close();
+                }
+            }
+        
+        }
+
+        protected static int CreateItem(string connectionString, string commandText, params SqlParameter[] parameters)
+        {
+            SqlParameter parameterItemId = ReturnValueItemId();
+
+            // Create Instance of Connection and Command Object
+            using (var myConnection = new SqlConnection(connectionString))
+            {
+                using (var myCommand = new SqlCommand(commandText, myConnection))
+                {
+                    // Mark the Command as a SPROC
+                    myCommand.CommandType = CommandType.StoredProcedure;
+
+                    // Add Parameters to SPROC
+                    myCommand.Parameters.Add(parameterItemId);
+                    myCommand.Parameters.AddRange(parameters);
+
+                    myConnection.Open();
+                    myCommand.ExecuteNonQuery();
+                    myConnection.Close();
+                }
+            }
+
+            return (int)parameterItemId.Value;
+        }
+
+        protected static IDataReader GetSingleItem(string connectionString, string commandText, int itemId)
+        {
+            // Create Instance of Connection and Command Object
+            var myConnection = new SqlConnection(connectionString);
+            var myCommand = new SqlCommand(commandText, myConnection);
+
+            // Mark the Command as a SPROC
+            myCommand.CommandType = CommandType.StoredProcedure;
+
+            // Add Parameters to SPROC
+            myCommand.Parameters.Add(InputItemId(itemId));
+
+            // Execute the command
+            myConnection.Open();
+            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+            // Return the datareader 
+            return result;
+        }
+
     }
 }

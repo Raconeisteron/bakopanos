@@ -8,7 +8,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// contacts within the Portal database.
     /// </summary>
-    internal class ContactsDb : IContactsDb
+    internal class ContactsDb : DbHelper, IContactsDb
     {
         private readonly string _connectionString;
 
@@ -34,7 +34,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.SelectCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
+            myCommand.SelectCommand.Parameters.Add(InputModuleId(moduleId));
 
 
             // Create and Fill the DataSet
@@ -51,22 +51,8 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>        
         public IDataReader GetSingleContact(int itemId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
-            var myCommand = new SqlCommand("Portal_GetSingleContact", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(SqlParameterHelper.InputItemId(itemId));
-
-            // Execute the command
-            myConnection.Open();
-            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
             // Return the datareader 
-            return result;
+            return GetSingleItem(_connectionString, "Portal_GetSingleContact", itemId);
         }
 
         /// <summary>
@@ -75,7 +61,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>        
         public void DeleteContact(int itemId)
         {
-            DbHelper.ExecuteNonQuery(_connectionString, "Portal_DeleteContact", SqlParameterHelper.InputItemId(itemId));
+            DeleteItem(_connectionString, "Portal_DeleteContact", itemId);
         }
 
         /// <summary>
@@ -90,18 +76,14 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
                 userName = "unknown";
             }
 
-            SqlParameter parameterItemId = SqlParameterHelper.ReturnValueItemId();
-            DbHelper.ExecuteNonQuery(_connectionString, "Portal_AddContact",
-                parameterItemId,
-            SqlParameterHelper.InputModuleId(moduleId),
-            SqlParameterHelper.InputUserName(userName),
-            SqlParameterHelper.InputName(name),
-            SqlParameterHelper.InputRole(role),
-            SqlParameterHelper.InputEmail(email),
-            SqlParameterHelper.InputContact1(contact1),
-            SqlParameterHelper.InputContact2(contact2));
-            
-            return (int) parameterItemId.Value;
+            return CreateItem(_connectionString, "Portal_AddContact", 
+                              InputModuleId(moduleId),
+                              InputUserName(userName),
+                              InputName(name),
+                              InputRole(role),
+                              InputEmail(email),
+                              InputContact1(contact1),
+                              InputContact2(contact2));
         }
 
         /// <summary>
@@ -115,15 +97,15 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             {
                 userName = "unknown";
             }
-            
-            DbHelper.ExecuteNonQuery(_connectionString, "Portal_UpdateContact",
-                SqlParameterHelper.InputItemId(itemId), 
-                SqlParameterHelper.InputUserName(userName),
-                SqlParameterHelper.InputName(name),
-                SqlParameterHelper.InputRole(role),
-            SqlParameterHelper.InputEmail(email),
-            SqlParameterHelper.InputContact1(contact1),
-            SqlParameterHelper.InputContact2(contact2));
+
+            ExecuteNonQuery(_connectionString, "Portal_UpdateContact",
+                            InputItemId(itemId),
+                            InputUserName(userName),
+                            InputName(name),
+                            InputRole(role),
+                            InputEmail(email),
+                            InputContact1(contact1),
+                            InputContact2(contact2));
 
         }
 

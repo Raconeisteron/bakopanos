@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
-    internal class PortalDb : IPortalDb
+    internal class PortalDb : DbHelper, IPortalDb
     {
         private readonly string _connectionString;
 
@@ -29,7 +29,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             foreach (int moduleId in moduleIds)
             {
                 myCommand.Parameters.Clear();
-                myCommand.Parameters.Add(SqlParameterHelper.InputModuleId(moduleId));
+                myCommand.Parameters.Add(InputModuleId(moduleId));
 
                 // Open the database connection and execute the command
                 myCommand.ExecuteNonQuery();

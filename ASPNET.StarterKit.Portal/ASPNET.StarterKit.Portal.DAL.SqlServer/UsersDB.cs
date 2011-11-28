@@ -15,7 +15,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
     /// authentication is used instead, then either the Windows SAM or Active Directory
     /// is used to store and validate all username/password credentials.
     /// </remarks>
-    internal class UsersDb : IUsersDb
+    internal class UsersDb : DbHelper, IUsersDb
     {
         private readonly string _connectionString;
 
@@ -44,13 +44,13 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             parameterFullName.Value = fullName;
             myCommand.Parameters.Add(parameterFullName);
 
-            myCommand.Parameters.Add(SqlParameterHelper.InputEmail(email));
+            myCommand.Parameters.Add(InputEmail(email));
 
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
             myCommand.Parameters.Add(parameterPassword);
 
-            SqlParameter parameterUserId = myCommand.Parameters.Add(SqlParameterHelper.ReturnValueUserId());
+            SqlParameter parameterUserId = myCommand.Parameters.Add(ReturnValueUserId());
 
             // Execute the command in a try/catch to catch duplicate username errors);
             try
@@ -86,7 +86,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
-            myCommand.Parameters.Add(SqlParameterHelper.InputUserId(userId));
+            myCommand.Parameters.Add(InputUserId(userId));
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -106,8 +106,8 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
-            myCommand.Parameters.Add(SqlParameterHelper.InputUserId(userId));
-            myCommand.Parameters.Add(SqlParameterHelper.InputEmail(email));
+            myCommand.Parameters.Add(InputUserId(userId));
+            myCommand.Parameters.Add(InputEmail(email));
 
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
@@ -128,7 +128,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
-            myCommand.Parameters.Add(SqlParameterHelper.InputEmail(email));
+            myCommand.Parameters.Add(InputEmail(email));
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -152,7 +152,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.Parameters.Add(SqlParameterHelper.InputEmail(email));
+            myCommand.Parameters.Add(InputEmail(email));
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -175,7 +175,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.Parameters.Add(SqlParameterHelper.InputEmail(email));
+            myCommand.Parameters.Add(InputEmail(email));
 
             // Open the database connection and execute the command
 
@@ -211,7 +211,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            myCommand.Parameters.Add(SqlParameterHelper.InputEmail(email));
+            myCommand.Parameters.Add(InputEmail(email));
 
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;

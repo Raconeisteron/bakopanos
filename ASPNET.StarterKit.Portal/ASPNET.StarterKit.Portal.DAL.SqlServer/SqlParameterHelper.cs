@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
-    internal static class SqlParameterHelper
+    internal class SqlParameterHelper
     {
         public static SqlParameter InputItemId(int itemId)
         {
