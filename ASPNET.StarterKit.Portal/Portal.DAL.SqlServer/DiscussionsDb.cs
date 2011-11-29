@@ -10,13 +10,6 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
     /// </summary>
     internal class DiscussionsDb : DbHelper, IDiscussionsDb
     {
-        private readonly string _connectionString;
-
-        public DiscussionsDb(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
         #region IDiscussionsDb Members
 
         /// <summary>
@@ -24,7 +17,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>
         public IDataReader GetTopLevelMessages(int moduleId)
         {
-            return GetItems(_connectionString, "Portal_GetTopLevelMessages", moduleId);
+            return GetItems("Portal_GetTopLevelMessages", moduleId);
         }
 
         /// <summary>
@@ -33,16 +26,14 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public IDataReader GetThreadMessages(string parent)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_GetThreadMessages", myConnection);
 
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
-            // Add Parameters to SPROC
-            var parameterParent = new SqlParameter("@Parent", SqlDbType.NVarChar, 750);
-            parameterParent.Value = parent;
-            myCommand.Parameters.Add(parameterParent);
+            // Add Parameters to SPROC            
+            myCommand.Parameters.Add(InputParent(parent));
 
             // Execute the command
             myConnection.Open();
@@ -58,7 +49,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>        
         public IDataReader GetSingleMessage(int itemId)
         {
-            return GetSingleItem(_connectionString, "Portal_GetSingleMessage", itemId);
+            return GetSingleItem("Portal_GetSingleMessage", itemId);
         }
 
         /// <summary>
@@ -72,13 +63,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
                 userName = "unknown";
             }
             
-            var parameterBody = new SqlParameter("@Body", SqlDbType.NVarChar, 3000);
-            parameterBody.Value = body;
-            
-            var parameterParentId = new SqlParameter("@ParentID", SqlDbType.Int, 4);
-            parameterParentId.Value = parentId;
-
-            return CreateItem(_connectionString, "Portal_AddMessage", InputTitle(title), parameterBody, parameterParentId,
+            return CreateItem("Portal_AddMessage", InputTitle(title), InputBody(body), InputParentId(parentId),
                        InputUserName(userName), InputModuleId(moduleId));
         }
 

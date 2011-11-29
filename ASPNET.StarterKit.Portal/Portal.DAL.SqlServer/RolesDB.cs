@@ -10,14 +10,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
     /// </summary>
     internal class RolesDb : DbHelper, IRolesDb
     {
-        private readonly string _connectionString;
-
-        public RolesDb(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
-        #region IRolesDb Members
+       #region IRolesDb Members
 
         /// <summary>
         /// The GetPortalRoles method returns a list of all role names for the 
@@ -26,7 +19,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public IDataReader GetPortalRoles(int portalId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_GetPortalRoles", myConnection);
 
             // Mark the Command as a SPROC
@@ -50,7 +43,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public int AddRole(int portalId, string roleName)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_AddRole", myConnection);
 
             // Mark the Command as a SPROC
@@ -80,7 +73,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public void DeleteRole(int roleId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_DeleteRole", myConnection);
 
             // Mark the Command as a SPROC
@@ -101,7 +94,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public void UpdateRole(int roleId, string roleName)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_UpdateRole", myConnection);
 
             // Mark the Command as a SPROC
@@ -132,7 +125,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public IDataReader GetRoleMembers(int roleId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_GetRoleMembership", myConnection);
 
             // Mark the Command as a SPROC
@@ -154,7 +147,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public void AddUserRole(int roleId, int userId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_AddUserRole", myConnection);
 
             // Mark the Command as a SPROC
@@ -176,7 +169,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public void DeleteUserRole(int roleId, int userId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_DeleteUserRole", myConnection);
 
             // Mark the Command as a SPROC

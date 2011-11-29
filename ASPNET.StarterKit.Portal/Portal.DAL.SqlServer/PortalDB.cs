@@ -5,19 +5,12 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 {
     internal class PortalDb : DbHelper, IPortalDb
     {
-        private readonly string _connectionString;
-
-        public PortalDb(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
         #region IPortalDb Members
 
         public void DeleteModule(params int[] moduleIds)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
 
             // Mark the Command as a SPROC

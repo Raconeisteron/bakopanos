@@ -10,13 +10,6 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
     /// </summary>
     internal class LinkDb : DbHelper, ILinksDb
     {
-        private readonly string _connectionString;
-
-        public LinkDb(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
         #region ILinksDb Members
 
         /// <summary>
@@ -26,22 +19,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>        
         public IDataReader GetLinks(int moduleId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
-            var myCommand = new SqlCommand("Portal_GetLinks", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputModuleId(moduleId));
-
-            // Execute the command
-            myConnection.Open();
-            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader 
-            return result;
+            return GetItems("Portal_GetLinks", moduleId);
         }
 
         /// <summary>
@@ -50,22 +28,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>        
         public IDataReader GetSingleLink(int itemId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
-            var myCommand = new SqlCommand("Portal_GetSingleLink", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputItemId(itemId));
-
-            // Execute the command
-            myConnection.Open();
-            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader 
-            return result;
+            return GetSingleItem("Portal_GetSingleLink", itemId);
         }
 
         /// <summary>
@@ -74,19 +37,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>
         public void DeleteLink(int itemId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
-            var myCommand = new SqlCommand("Portal_DeleteLink", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputItemId(itemId));
-
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            DeleteItem("Portal_DeleteLink", itemId);
         }
 
         /// <summary>
@@ -101,39 +52,13 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
                 userName = "unknown";
             }
 
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
-            var myCommand = new SqlCommand("Portal_AddLink", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            SqlParameter parameterItemId = myCommand.Parameters.Add(ReturnValueItemId());
-            myCommand.Parameters.Add(InputModuleId(moduleId));
-            myCommand.Parameters.Add(InputUserName(userName));
-
-            myCommand.Parameters.Add(InputTitle(title));
-
-            myCommand.Parameters.Add(InputDescription(description));
-
-            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
-            parameterUrl.Value = url;
-            myCommand.Parameters.Add(parameterUrl);
-
-            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100);
-            parameterMobileUrl.Value = mobileUrl;
-            myCommand.Parameters.Add(parameterMobileUrl);
-
-            var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4);
-            parameterViewOrder.Value = viewOrder;
-            myCommand.Parameters.Add(parameterViewOrder);
-
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
-
-            return (int) parameterItemId.Value;
+            return CreateItem("Portal_AddLink", InputModuleId(moduleId),
+                       InputUserName(userName),
+                       InputTitle(title),
+                       InputDescription(description),
+                       InputUrl(url),
+                       InputMobileUrl(mobileUrl),
+                       InputViewOrder(viewOrder));
         }
 
         /// <summary>
@@ -147,35 +72,15 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             {
                 userName = "unknown";
             }
+            
+            UpdateItem("Portal_UpdateLink", itemId,
+                       InputUserName(userName),
+                       InputTitle(title),
+                       InputDescription(description),
+                       InputUrl(url),
+                       InputMobileUrl(mobileUrl),
+                       InputViewOrder(viewOrder));
 
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
-            var myCommand = new SqlCommand("Portal_UpdateLink", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputItemId(itemId));
-            myCommand.Parameters.Add(InputUserName(userName));
-            myCommand.Parameters.Add(InputTitle(title));
-            myCommand.Parameters.Add(InputDescription(description));
-
-            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
-            parameterUrl.Value = url;
-            myCommand.Parameters.Add(parameterUrl);
-
-            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100);
-            parameterMobileUrl.Value = mobileUrl;
-            myCommand.Parameters.Add(parameterMobileUrl);
-
-            var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4);
-            parameterViewOrder.Value = viewOrder;
-            myCommand.Parameters.Add(parameterViewOrder);
-
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
         }
 
         #endregion

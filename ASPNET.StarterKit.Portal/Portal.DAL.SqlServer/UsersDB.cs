@@ -16,14 +16,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
     /// is used to store and validate all username/password credentials.
     /// </remarks>
     internal class UsersDb : DbHelper, IUsersDb
-    {
-        private readonly string _connectionString;
-
-        public UsersDb(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
+    {       
         #region IUsersDb Members
 
         /// <summary>
@@ -33,7 +26,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public int AddUser(string fullName, string email, string password)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_AddUser", myConnection);
 
             // Mark the Command as a SPROC
@@ -80,7 +73,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public void DeleteUser(int userId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_DeleteUser", myConnection);
 
             // Mark the Command as a SPROC
@@ -100,7 +93,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public void UpdateUser(int userId, string email, string password)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_UpdateUser", myConnection);
 
             // Mark the Command as a SPROC
@@ -122,7 +115,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public IDataReader GetRolesByUser(string email)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_GetRolesByUser", myConnection);
 
             // Mark the Command as a SPROC
@@ -145,7 +138,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public IDataReader GetSingleUser(string email)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_GetSingleUser", myConnection);
 
             // Mark the Command as a SPROC
@@ -168,7 +161,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public string[] GetRoles(string email)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_GetRolesByUser", myConnection);
 
             // Mark the Command as a SPROC
@@ -204,7 +197,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public string Login(string email, string password)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_UserLogin", myConnection);
 
             // Mark the Command as a SPROC
@@ -240,7 +233,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public IDataReader GetUsers()
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_GetUsers", myConnection);
 
             // Mark the Command as a SPROC

@@ -10,13 +10,6 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
     /// </summary>
     internal class EventsDb : DbHelper, IEventsDb
     {
-        private readonly string _connectionString;
-
-        public EventsDb(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
         #region IEventsDb Members
 
         /// <summary>
@@ -24,24 +17,9 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// events for a specific portal module from the events
         /// database.
         /// </summary>        
-        public DataSet GetEvents(int moduleId)
+        public IDataReader GetEvents(int moduleId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
-            var myCommand = new SqlDataAdapter("Portal_GetEvents", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.SelectCommand.Parameters.Add(InputModuleId(moduleId));
-
-            // Create and Fill the DataSet
-            var myDataSet = new DataSet();
-            myCommand.Fill(myDataSet);
-
-            // Return the DataSet
-            return myDataSet;
+            return GetItems("Portal_GetEvents", moduleId);
         }
 
         /// <summary>
@@ -51,7 +29,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public IDataReader GetSingleEvent(int itemId)
         {
             // Return the datareader 
-            return GetSingleItem(_connectionString, "Portal_GetSingleEvent", itemId);
+            return GetSingleItem("Portal_GetSingleEvent", itemId);
         }
 
         /// <summary>
@@ -60,7 +38,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>        
         public void DeleteEvent(int itemId)
         {
-            DeleteItem(_connectionString, "Portal_DeleteEvent", itemId);
+            DeleteItem("Portal_DeleteEvent", itemId);
         }
 
         /// <summary>
@@ -75,35 +53,12 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
                 userName = "unknown";
             }
 
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
-            var myCommand = new SqlCommand("Portal_AddEvent", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            SqlParameter parameterItemId = myCommand.Parameters.Add(ReturnValueItemId());
-
-            myCommand.Parameters.Add(InputModuleId(moduleId));
-            myCommand.Parameters.Add(InputUserName(userName));
-            myCommand.Parameters.Add(InputTitle(title));
-
-            var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
-            parameterWhereWhen.Value = wherewhen;
-            myCommand.Parameters.Add(parameterWhereWhen);
-
-
-            myCommand.Parameters.Add(InputExpireDate(expireDate));
-            myCommand.Parameters.Add(InputDescription(description));
-
-            // Open the database connection and execute SQL Command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
-
-            // Return the new Event ItemID
-            return (int) parameterItemId.Value;
+            return CreateItem("Portal_AddEvent", InputModuleId(moduleId),
+                       InputUserName(userName),
+                       InputTitle(title),
+                       InputWhereWhen(wherewhen),
+                       InputExpireDate(expireDate),
+                       InputDescription(description)); 
         }
 
         /// <summary>
@@ -118,28 +73,12 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
                 userName = "unknown";
             }
 
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
-            var myCommand = new SqlCommand("Portal_UpdateEvent", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputItemId(itemId));
-            myCommand.Parameters.Add(InputUserName(userName));
-            myCommand.Parameters.Add(InputTitle(title));
-
-            var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
-            parameterWhereWhen.Value = wherewhen;
-            myCommand.Parameters.Add(parameterWhereWhen);
-
-            myCommand.Parameters.Add(InputExpireDate(expireDate));
-            myCommand.Parameters.Add(InputDescription(description));
-
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            UpdateItem("Portal_UpdateEvent", itemId,
+                       InputUserName(userName),
+                       InputTitle(title),
+                       InputWhereWhen(wherewhen),
+                       InputExpireDate(expireDate),
+                       InputDescription(description));            
         }
 
         #endregion

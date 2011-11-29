@@ -5,7 +5,7 @@ namespace ASPNET.StarterKit.Portal.DAL
 {
     public interface IEventsDb
     {
-        DataSet GetEvents(int moduleId);
+        IDataReader GetEvents(int moduleId);
         IDataReader GetSingleEvent(int itemId);
         void DeleteEvent(int itemId);
 

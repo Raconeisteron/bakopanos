@@ -10,13 +10,6 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
     /// </summary>
     internal class AnnouncementsDb : DbHelper, IAnnouncementsDb
     {
-        private readonly string _connectionString;
-
-        public AnnouncementsDb(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
         #region IAnnouncementsDb Members
 
         /// <summary>
@@ -26,7 +19,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>        
         public IDataReader GetAnnouncements(int moduleId)
         {
-            return GetItems(_connectionString, "Portal_GetAnnouncements", moduleId);
+            return GetItems("Portal_GetAnnouncements", moduleId);
         }
 
         /// <summary>
@@ -35,7 +28,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>        
         public IDataReader GetSingleAnnouncement(int itemId)
         {
-            return GetSingleItem(_connectionString, "Portal_GetSingleAnnouncement", itemId);
+            return GetSingleItem("Portal_GetSingleAnnouncement", itemId);
         }
 
         /// <summary>
@@ -44,7 +37,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>        
         public void DeleteAnnouncement(int itemId)
         {
-            DeleteItem(_connectionString, "Portal_DeleteAnnouncement", itemId);
+            DeleteItem("Portal_DeleteAnnouncement", itemId);
         }
 
         /// <summary>
@@ -60,7 +53,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             }
 
             // Add Parameters to SPROC
-            return CreateItem(_connectionString, "Portal_AddAnnouncement", InputModuleId(moduleId),
+            return CreateItem("Portal_AddAnnouncement", InputModuleId(moduleId),
                               InputUserName(userName),
                               InputTitle(title),
                               InputMoreLink(moreLink),
@@ -77,27 +70,18 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public void UpdateAnnouncement(int moduleId, int itemId, string userName, string title, DateTime expireDate,
                                        string description, string moreLink, string mobileMoreLink)
         {
-            if (userName.Length < 1) userName = "unknown";
+            if (userName.Length < 1)
+            {
+                userName = "unknown";
+            }
 
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
-            var myCommand = new SqlCommand("Portal_UpdateAnnouncement", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputItemId(itemId));
-            myCommand.Parameters.Add(InputUserName(userName));
-            myCommand.Parameters.Add(InputTitle(title));
-            myCommand.Parameters.Add(InputMoreLink(moreLink));
-            myCommand.Parameters.Add(InputMobileMoreLink(mobileMoreLink));
-            myCommand.Parameters.Add(InputExpireDate(expireDate));
-            myCommand.Parameters.Add(InputDescription(description));
-
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            UpdateItem("Portal_UpdateAnnouncement", itemId, 
+                       InputUserName(userName),
+                       InputTitle(title),
+                       InputMoreLink(moreLink),
+                       InputMobileMoreLink(mobileMoreLink),
+                       InputExpireDate(expireDate),
+                       InputDescription(description));
         }
 
         #endregion

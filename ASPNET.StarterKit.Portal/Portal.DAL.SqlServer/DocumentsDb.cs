@@ -10,13 +10,6 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
     /// </summary>
     internal class DocumentsDb : DbHelper, IDocumentsDb
     {
-        private readonly string _connectionString;
-
-        public DocumentsDb(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
         #region IDocumentsDb Members
 
         /// <summary>
@@ -26,7 +19,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>        
         public IDataReader GetDocuments(int moduleId)
         {
-            return GetItems(_connectionString, "Portal_GetDocuments", moduleId);
+            return GetItems("Portal_GetDocuments", moduleId);
         }
 
         /// <summary>
@@ -35,7 +28,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>        
         public IDataReader GetSingleDocument(int itemId)
         {
-            return GetSingleItem(_connectionString, "Portal_GetSingleDocument", itemId);
+            return GetSingleItem("Portal_GetSingleDocument", itemId);
         }
 
         /// <summary>
@@ -44,24 +37,8 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>        
         public IDataReader GetDocumentContent(int itemId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
-            var myCommand = new SqlCommand("Portal_GetDocumentContent", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputItemId(itemId));
-
-            // Execute the command
-            myConnection.Open();
-            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader 
-            return result;
+            return GetSingleItem("Portal_GetDocumentContent", itemId);
         }
-
 
         /// <summary>
         /// // The DeleteDocument method deletes the specified document from
@@ -69,21 +46,8 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>        
         public void DeleteDocument(int itemId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
-            var myCommand = new SqlCommand("Portal_DeleteDocument", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputItemId(itemId));
-
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            DeleteItem("Portal_DeleteDocument", itemId);
         }
-
 
         /// <summary>
         /// The UpdateDocument method updates the specified document within
@@ -98,7 +62,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             }
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
+            var myConnection = new SqlConnection(ConnectionString);
             var myCommand = new SqlCommand("Portal_UpdateDocument", myConnection);
 
             // Mark the Command as a SPROC

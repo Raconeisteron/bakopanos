@@ -10,13 +10,6 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
     /// </summary>
     internal class ContactsDb : DbHelper, IContactsDb
     {
-        private readonly string _connectionString;
-
-        public ContactsDb(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
         #region IContactsDb Members
 
         /// <summary>
@@ -26,7 +19,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>        
         public IDataReader GetContacts(int moduleId)
         {
-            return GetItems(_connectionString, "Portal_GetContacts", moduleId);
+            return GetItems("Portal_GetContacts", moduleId);
         }
 
         /// <summary>
@@ -36,7 +29,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public IDataReader GetSingleContact(int itemId)
         {
             // Return the datareader 
-            return GetSingleItem(_connectionString, "Portal_GetSingleContact", itemId);
+            return GetSingleItem("Portal_GetSingleContact", itemId);
         }
 
         /// <summary>
@@ -45,7 +38,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>        
         public void DeleteContact(int itemId)
         {
-            DeleteItem(_connectionString, "Portal_DeleteContact", itemId);
+            DeleteItem("Portal_DeleteContact", itemId);
         }
 
         /// <summary>
@@ -60,7 +53,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
                 userName = "unknown";
             }
 
-            return CreateItem(_connectionString, "Portal_AddContact", 
+            return CreateItem("Portal_AddContact", 
                               InputModuleId(moduleId),
                               InputUserName(userName),
                               InputName(name),
@@ -82,8 +75,8 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
                 userName = "unknown";
             }
 
-            ExecuteNonQuery(_connectionString, "Portal_UpdateContact",
-                            InputItemId(itemId),
+            UpdateItem("Portal_UpdateContact",
+                            itemId,
                             InputUserName(userName),
                             InputName(name),
                             InputRole(role),

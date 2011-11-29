@@ -15,6 +15,11 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         {
             return new SqlParameter("@ItemID", SqlDbType.Int, 4) {Direction = ParameterDirection.ReturnValue};            
         }
+        
+        public static SqlParameter InputParentId(int parentId)
+        {
+            return new SqlParameter("@ParentID", SqlDbType.Int, 4) { Value = parentId };
+        }
 
         public static SqlParameter InputModuleId(int moduleId)
         {
@@ -29,6 +34,11 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public static SqlParameter InputUserId(int userId)
         {
             return new SqlParameter("@UserID", SqlDbType.Int, 4) {Value = userId};            
+        }
+
+        public static SqlParameter InputViewOrder(int viewOrder)
+        {
+            return new SqlParameter("@ViewOrder", SqlDbType.Int, 4) { Value = viewOrder};
         }
 
         public static SqlParameter ReturnValueUserId()
@@ -75,6 +85,21 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         {
             return new SqlParameter("@MobileMoreLink", SqlDbType.NVarChar, 150) {Value = mobileMoreLink};            
         }
+        
+        public static SqlParameter InputUrl(string url)
+        {
+            return new SqlParameter("@Url", SqlDbType.NVarChar, 100) { Value = url };
+        }
+
+        public static SqlParameter InputMobileUrl(string mobileUrl)
+        {
+            return new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100) { Value = mobileUrl };
+        }
+
+        public static SqlParameter InputWhereWhen(string whereWhen)
+        {
+            return new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100) { Value = whereWhen };
+        }
 
         public static SqlParameter InputExpireDate(DateTime expireDate)
         {
@@ -89,6 +114,31 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public static SqlParameter InputContact2(string contact2)
         {
             return new SqlParameter("@Contact2", SqlDbType.NVarChar, 100) {Value = contact2};            
+        }
+
+        public static SqlParameter InputBody(string body)
+        {
+            return new SqlParameter("@Body", SqlDbType.NVarChar, 3000) { Value = body };
+        }
+
+        public static SqlParameter InputDesktopHtml(string desktopHtml)
+        {
+            return new SqlParameter("@DesktopHtml", SqlDbType.NText) { Value = desktopHtml };
+        }
+
+        public static SqlParameter InputMobileSummary(string mobileSummary)
+        {
+            return new SqlParameter("@MobileSummary", SqlDbType.NText) { Value = mobileSummary };
+        }
+
+        public static SqlParameter InputMobileDetails(string mobileDetails)
+        {
+            return new SqlParameter("@MobileDetails", SqlDbType.NText) { Value = mobileDetails };
+        }
+
+        public static SqlParameter InputParent(string parent)
+        {
+            return new SqlParameter("@Parent", SqlDbType.NVarChar, 750) { Value = parent };
         }
 
         public static SqlParameter InputEmail(string email)
