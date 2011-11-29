@@ -1,5 +1,5 @@
 using System;
-using ASPNET.StarterKit.Portal.DAL;
+using ASPNET.StarterKit.Portal.Modules.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -20,7 +20,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain the list of events from the Events table
             // and bind to the DataList Control
-            IEventsDb events = DataAccess.EventsDb;
+            IEventsDb events = ModulesDataAccess.EventsDb;
 
             myDataList.DataSource = events.GetEvents(ModuleId);
             myDataList.DataBind();

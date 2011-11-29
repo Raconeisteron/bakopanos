@@ -1,7 +1,7 @@
 using System;
 using System.Data;
 using System.Web.UI;
-using ASPNET.StarterKit.Portal.DAL;
+using ASPNET.StarterKit.Portal.Modules.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -46,7 +46,7 @@ namespace ASPNET.StarterKit.Portal
                 if (itemId != 0)
                 {
                     // Obtain a single row of announcement information
-                    IAnnouncementsDb announcementDB = DataAccess.AnnouncementsDb;
+                    IAnnouncementsDb announcementDB = ModulesDataAccess.AnnouncementsDb;
                     IDataReader dr = announcementDB.GetSingleAnnouncement(itemId);
 
                     // Load first row into DataReader
@@ -91,7 +91,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Announcement DB component
-                IAnnouncementsDb announcementDB = DataAccess.AnnouncementsDb;
+                IAnnouncementsDb announcementDB = ModulesDataAccess.AnnouncementsDb;
 
                 if (itemId == 0)
                 {
@@ -128,7 +128,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (itemId != 0)
             {
-                IAnnouncementsDb announcementDB = DataAccess.AnnouncementsDb;
+                IAnnouncementsDb announcementDB = ModulesDataAccess.AnnouncementsDb;
                 announcementDB.DeleteAnnouncement(itemId);
             }
 

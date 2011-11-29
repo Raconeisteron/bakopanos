@@ -1,8 +1,7 @@
 using System;
 using System.Data;
-using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal.DAL.SqlServer
+namespace ASPNET.StarterKit.Portal.Modules.DAL.SqlServer
 {
     /// <summary>
     /// Class that encapsulates all data logic necessary to add/query/delete
@@ -60,7 +59,6 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
                               InputMobileMoreLink(mobileMoreLink),
                               InputExpireDate(expireDate),
                               InputDescription(description));
-
         }
 
         /// <summary>
@@ -75,7 +73,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
                 userName = "unknown";
             }
 
-            UpdateItem("Portal_UpdateAnnouncement", itemId, 
+            UpdateItem("Portal_UpdateAnnouncement", itemId,
                        InputUserName(userName),
                        InputTitle(title),
                        InputMoreLink(moreLink),

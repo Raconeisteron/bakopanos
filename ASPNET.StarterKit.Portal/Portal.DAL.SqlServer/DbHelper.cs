@@ -1,15 +1,11 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal.DAL.SqlServer
+namespace ASPNET.StarterKit.Portal.Modules.DAL.SqlServer
 {
     internal class DbHelper : SqlParameterHelper
     {
-        internal string ConnectionString
-        { 
-            get; 
-            set;
-        }
+        internal string ConnectionString { get; set; }
 
         protected void DeleteItem(string commandText, int itemId)
         {
@@ -29,7 +25,6 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
                     myConnection.Close();
                 }
             }
-        
         }
 
         protected int CreateItem(string commandText, params SqlParameter[] parameters)
@@ -54,7 +49,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
                 }
             }
 
-            return (int)parameterItemId.Value;
+            return (int) parameterItemId.Value;
         }
 
         protected IDataReader GetItems(string commandText, int moduleId)
@@ -97,7 +92,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             return result;
         }
 
-        protected void UpdateItem(string commandText, int itemId, params SqlParameter[] parameters )
+        protected void UpdateItem(string commandText, int itemId, params SqlParameter[] parameters)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConnectionString);

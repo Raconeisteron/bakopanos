@@ -9,7 +9,7 @@ namespace ASPNET.StarterKit.Portal.Security.DAL.SqlServer
     /// </summary>
     internal class RolesDb : DbHelper, IRolesDb
     {
-       #region IRolesDb Members
+        #region IRolesDb Members
 
         /// <summary>
         /// The GetPortalRoles method returns a list of all role names for the 

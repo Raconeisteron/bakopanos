@@ -1,7 +1,7 @@
 using System;
 using System.Data;
 using System.Web.UI;
-using ASPNET.StarterKit.Portal.DAL;
+using ASPNET.StarterKit.Portal.Modules.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -21,7 +21,7 @@ namespace ASPNET.StarterKit.Portal
         protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain the selected item from the HtmlText table
-            IHtmlTextDb text = DataAccess.HtmlTextDb;
+            IHtmlTextDb text = ModulesDataAccess.HtmlTextDb;
             IDataReader dr = text.GetHtmlText(ModuleId);
 
             if (dr.Read())

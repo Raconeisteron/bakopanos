@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal", "Portal\Portal.csproj", "{B5DDF1C4-7178-4035-BCC1-C746076F979A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.DAL", "Portal.DAL\Portal.DAL.csproj", "{D12F1EEC-928D-4876-A8D6-15D2CADFB460}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.DAL", "Portal.DAL\Portal.Modules.DAL.csproj", "{D12F1EEC-928D-4876-A8D6-15D2CADFB460}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.DAL.SqlServer", "Portal.DAL.SqlServer\Portal.DAL.SqlServer.csproj", "{030CAA4B-3EA8-4522-A979-E983B3885F1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.DAL.SqlServer", "Portal.DAL.SqlServer\Portal.Modules.DAL.SqlServer.csproj", "{030CAA4B-3EA8-4522-A979-E983B3885F1E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Services", "Portal.Services\Portal.Services.csproj", "{20FD75EF-D541-42BF-ACC8-FD22F200FF57}"
 EndProject

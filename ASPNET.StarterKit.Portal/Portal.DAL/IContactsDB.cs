@@ -1,7 +1,6 @@
-using System;
 using System.Data;
 
-namespace ASPNET.StarterKit.Portal.DAL
+namespace ASPNET.StarterKit.Portal.Modules.DAL
 {
     public interface IContactsDb
     {

@@ -1,5 +1,5 @@
 using System;
-using ASPNET.StarterKit.Portal.DAL;
+using ASPNET.StarterKit.Portal.Modules.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -20,7 +20,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain contact information from Contacts table
             // and bind to the DataGrid Control
-            IContactsDb contacts = DataAccess.ContactsDb;
+            IContactsDb contacts = ModulesDataAccess.ContactsDb;
 
             myDataGrid.DataSource = contacts.GetContacts(ModuleId);
             myDataGrid.DataBind();

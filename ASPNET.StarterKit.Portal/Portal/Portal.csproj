@@ -478,9 +478,9 @@
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Portal.DAL\Portal.DAL.csproj">
+    <ProjectReference Include="..\Portal.DAL\Portal.Modules.DAL.csproj">
       <Project>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</Project>
-      <Name>Portal.DAL</Name>
+      <Name>Portal.Modules.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Portal.Security.DAL\Portal.Security.DAL.csproj">
       <Project>{201E9CD6-51D1-4707-9A49-13E9D2973453}</Project>

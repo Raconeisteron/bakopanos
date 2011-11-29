@@ -1,8 +1,6 @@
-using System;
 using System.Data;
-using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal.DAL.SqlServer
+namespace ASPNET.StarterKit.Portal.Modules.DAL.SqlServer
 {
     /// <summary>
     /// Class that encapsulates all data logic necessary to add/query/delete
@@ -53,7 +51,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
                 userName = "unknown";
             }
 
-            return CreateItem("Portal_AddContact", 
+            return CreateItem("Portal_AddContact",
                               InputModuleId(moduleId),
                               InputUserName(userName),
                               InputName(name),
@@ -76,14 +74,13 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             }
 
             UpdateItem("Portal_UpdateContact",
-                            itemId,
-                            InputUserName(userName),
-                            InputName(name),
-                            InputRole(role),
-                            InputEmail(email),
-                            InputContact1(contact1),
-                            InputContact2(contact2));
-
+                       itemId,
+                       InputUserName(userName),
+                       InputName(name),
+                       InputRole(role),
+                       InputEmail(email),
+                       InputContact1(contact1),
+                       InputContact2(contact2));
         }
 
         #endregion

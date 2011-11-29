@@ -1,6 +1,6 @@
 using System.Configuration;
 
-namespace ASPNET.StarterKit.Portal.DAL.SqlServer
+namespace ASPNET.StarterKit.Portal.Modules.DAL.SqlServer
 {
     /// <summary>
     /// Sql Server specific factory that creates Sql Server specific data access objects.
@@ -21,67 +21,44 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
 
         public IPortalDb PortalDb
         {
-            get
-            {
-                return new PortalDb { ConnectionString = _connectionString };
-            }
+            get { return new PortalDb {ConnectionString = _connectionString}; }
         }
 
         public IAnnouncementsDb AnnouncementsDb
         {
-            get
-            {
-                return new AnnouncementsDb{ConnectionString = _connectionString};
-            }
+            get { return new AnnouncementsDb {ConnectionString = _connectionString}; }
         }
 
         public IContactsDb ContactsDb
         {
-            get
-            {
-                return new ContactsDb{ConnectionString = _connectionString};
-            }
+            get { return new ContactsDb {ConnectionString = _connectionString}; }
         }
 
         public IDiscussionsDb DiscussionDb
         {
-            get
-            {
-                return new DiscussionsDb { ConnectionString = _connectionString };
-            }
+            get { return new DiscussionsDb {ConnectionString = _connectionString}; }
         }
 
         public IDocumentsDb DocumentDb
         {
-            get
-            {
-                return new DocumentsDb { ConnectionString = _connectionString };
-            }
+            get { return new DocumentsDb {ConnectionString = _connectionString}; }
         }
 
         public IEventsDb EventsDb
         {
-            get
-            {
-                return new EventsDb { ConnectionString = _connectionString };
-            }
+            get { return new EventsDb {ConnectionString = _connectionString}; }
         }
 
         public IHtmlTextDb HtmlTextDb
         {
-            get
-            {
-                return new HtmlTextDb { ConnectionString = _connectionString };
-            }
+            get { return new HtmlTextDb {ConnectionString = _connectionString}; }
         }
 
         public ILinksDb LinkDb
         {
-            get
-            {
-                return new LinkDb { ConnectionString = _connectionString };
-            }
-        }        
+            get { return new LinkDb {ConnectionString = _connectionString}; }
+        }
+
         #endregion
     }
 }

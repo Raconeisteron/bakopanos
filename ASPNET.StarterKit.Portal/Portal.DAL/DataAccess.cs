@@ -1,7 +1,7 @@
 using System;
 using System.Configuration;
 
-namespace ASPNET.StarterKit.Portal.DAL
+namespace ASPNET.StarterKit.Portal.Modules.DAL
 {
     /// <summary>
     /// This class shields the client from the details of database specific 
@@ -19,13 +19,13 @@ namespace ASPNET.StarterKit.Portal.DAL
     /// 
     /// This class is a Proxy as it 'stands in' for the actual Data Access Object Factory.
     /// </remarks>
-    public static class DataAccess
+    public static class ModulesDataAccess
     {
         private static readonly IDaoFactory Factory;
 
-        static DataAccess()
+        static ModulesDataAccess()
         {
-            Type type = Type.GetType(ConfigurationManager.AppSettings["DAL"]);
+            Type type = Type.GetType(ConfigurationManager.AppSettings["Modules.DAL"]);
             Factory = (IDaoFactory) Activator.CreateInstance(type);
         }
 

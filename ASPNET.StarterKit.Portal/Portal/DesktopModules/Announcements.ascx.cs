@@ -1,5 +1,5 @@
 using System;
-using ASPNET.StarterKit.Portal.DAL;
+using ASPNET.StarterKit.Portal.Modules.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -19,7 +19,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain announcement information from Announcements table
             // and bind to the datalist control
-            IAnnouncementsDb announcements = DataAccess.AnnouncementsDb;
+            IAnnouncementsDb announcements = ModulesDataAccess.AnnouncementsDb;
 
             // DataBind Announcements to DataList Control
             myDataList.DataSource = announcements.GetAnnouncements(ModuleId);

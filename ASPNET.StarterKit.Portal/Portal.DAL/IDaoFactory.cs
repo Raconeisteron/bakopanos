@@ -1,4 +1,4 @@
-namespace ASPNET.StarterKit.Portal.DAL
+namespace ASPNET.StarterKit.Portal.Modules.DAL
 {
     /// <remarks>
     /// GoF Design Pattern: Factory.

@@ -16,7 +16,7 @@ namespace ASPNET.StarterKit.Portal.Security.DAL.SqlServer
     /// is used to store and validate all username/password credentials.
     /// </remarks>
     internal class UsersDb : DbHelper, IUsersDb
-    {       
+    {
         #region IUsersDb Members
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace ASPNET.StarterKit.Portal.Security.DAL.SqlServer
             dr.Close();
 
             // Return the String array of roles
-            return (string[]) userRoles.ToArray(typeof(string));
+            return (string[]) userRoles.ToArray(typeof (string));
         }
 
         /// <summary>

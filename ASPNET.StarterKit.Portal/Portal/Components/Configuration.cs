@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Caching;
-using ASPNET.StarterKit.Portal.DAL;
+using ASPNET.StarterKit.Portal.Modules.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -184,7 +184,7 @@ namespace ASPNET.StarterKit.Portal
             //
             // Delete information in the Database relating to each Module being deleted
             //
-            IPortalDb portal = DataAccess.PortalDb;
+            IPortalDb portal = ModulesDataAccess.PortalDb;
             portal.DeleteModule(tabRow.GetModuleRows().Select(item => item.ModuleId).ToArray());
 
             // Finish removing the Tab row from the Xml file
@@ -328,7 +328,7 @@ namespace ASPNET.StarterKit.Portal
             // Delete information in the Database relating to Module being deleted
             //
 
-            IPortalDb portal = DataAccess.PortalDb;
+            IPortalDb portal = ModulesDataAccess.PortalDb;
             portal.DeleteModule(moduleId);
 
             // Finish removing Module
@@ -581,7 +581,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 if (moduleRow.ModuleDefId == defId)
                 {
-                    IPortalDb portal = DataAccess.PortalDb;
+                    IPortalDb portal = ModulesDataAccess.PortalDb;
                     portal.DeleteModule(moduleRow.ModuleId);
 
                     // Delete the xml module associated with the ModuleDef

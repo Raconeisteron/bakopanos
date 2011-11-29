@@ -1,7 +1,7 @@
 using System;
 using System.Data;
 using System.Web.UI;
-using ASPNET.StarterKit.Portal.DAL;
+using ASPNET.StarterKit.Portal.Modules.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -31,7 +31,7 @@ namespace ASPNET.StarterKit.Portal
             if (documentId != -1)
             {
                 // Obtain Document Data from Documents table
-                IDocumentsDb documents = DataAccess.DocumentDb;
+                IDocumentsDb documents = ModulesDataAccess.DocumentDb;
 
                 IDataReader dBContent = documents.GetDocumentContent(documentId);
                 dBContent.Read();

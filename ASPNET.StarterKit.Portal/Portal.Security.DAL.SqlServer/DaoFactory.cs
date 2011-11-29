@@ -19,21 +19,14 @@ namespace ASPNET.StarterKit.Portal.Security.DAL.SqlServer
 
         #region IDaoFactory Members
 
-       
         public IRolesDb RolesDb
         {
-            get
-            {
-                return new RolesDb { ConnectionString = _connectionString };
-            }
+            get { return new RolesDb {ConnectionString = _connectionString}; }
         }
 
         public IUsersDb UsersDb
         {
-            get
-            {
-                return new UsersDb { ConnectionString = _connectionString };
-            }
+            get { return new UsersDb {ConnectionString = _connectionString}; }
         }
 
         #endregion

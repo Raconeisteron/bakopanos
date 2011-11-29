@@ -1,8 +1,7 @@
-using System;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal.DAL.SqlServer
+namespace ASPNET.StarterKit.Portal.Modules.DAL.SqlServer
 {
     /// <summary>
     /// Class that encapsulates all data logic necessary to add/query/delete
@@ -62,9 +61,9 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             {
                 userName = "unknown";
             }
-            
+
             return CreateItem("Portal_AddMessage", InputTitle(title), InputBody(body), InputParentId(parentId),
-                       InputUserName(userName), InputModuleId(moduleId));
+                              InputUserName(userName), InputModuleId(moduleId));
         }
 
         #endregion

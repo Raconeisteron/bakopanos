@@ -5,13 +5,12 @@ using System.Security.Principal;
 using System.Threading;
 using System.Web;
 using System.Web.Security;
-using ASPNET.StarterKit.Portal.DAL;
 using ASPNET.StarterKit.Portal.Security.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
     public class Global : HttpApplication
-    {        
+    {
         /// <summary>
         /// The Application_BeginRequest method is an ASP.NET event that executes 
         /// on each web request into the portal application.  The below method
@@ -126,7 +125,7 @@ namespace ASPNET.StarterKit.Portal
                         userRoles.Add(role);
                     }
 
-                    roles = (string[]) userRoles.ToArray(typeof(string));
+                    roles = (string[]) userRoles.ToArray(typeof (string));
                 }
 
                 // Add our own custom principal to the request containing the roles in the auth ticket

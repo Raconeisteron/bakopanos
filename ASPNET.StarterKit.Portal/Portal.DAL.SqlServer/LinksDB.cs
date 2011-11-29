@@ -1,8 +1,6 @@
-using System;
 using System.Data;
-using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal.DAL.SqlServer
+namespace ASPNET.StarterKit.Portal.Modules.DAL.SqlServer
 {
     /// <summary>
     /// // Class that encapsulates all data logic necessary to add/query/delete
@@ -53,12 +51,12 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             }
 
             return CreateItem("Portal_AddLink", InputModuleId(moduleId),
-                       InputUserName(userName),
-                       InputTitle(title),
-                       InputDescription(description),
-                       InputUrl(url),
-                       InputMobileUrl(mobileUrl),
-                       InputViewOrder(viewOrder));
+                              InputUserName(userName),
+                              InputTitle(title),
+                              InputDescription(description),
+                              InputUrl(url),
+                              InputMobileUrl(mobileUrl),
+                              InputViewOrder(viewOrder));
         }
 
         /// <summary>
@@ -72,7 +70,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             {
                 userName = "unknown";
             }
-            
+
             UpdateItem("Portal_UpdateLink", itemId,
                        InputUserName(userName),
                        InputTitle(title),
@@ -80,7 +78,6 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
                        InputUrl(url),
                        InputMobileUrl(mobileUrl),
                        InputViewOrder(viewOrder));
-
         }
 
         #endregion

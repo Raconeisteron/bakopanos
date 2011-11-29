@@ -1,7 +1,6 @@
 using System;
 using System.Web.Security;
 using System.Web.UI;
-using ASPNET.StarterKit.Portal.DAL;
 using ASPNET.StarterKit.Portal.Security.DAL;
 
 namespace ASPNET.StarterKit.Portal

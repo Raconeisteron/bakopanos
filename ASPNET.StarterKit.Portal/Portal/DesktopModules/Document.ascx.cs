@@ -1,5 +1,5 @@
 using System;
-using ASPNET.StarterKit.Portal.DAL;
+using ASPNET.StarterKit.Portal.Modules.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -20,7 +20,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain Document Data from Documents table
             // and bind to the datalist control
-            IDocumentsDb documents = DataAccess.DocumentDb;
+            IDocumentsDb documents = ModulesDataAccess.DocumentDb;
 
             myDataGrid.DataSource = documents.GetDocuments(ModuleId);
             myDataGrid.DataBind();

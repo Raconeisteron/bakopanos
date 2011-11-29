@@ -1,5 +1,5 @@
 using System;
-using ASPNET.StarterKit.Portal.DAL;
+using ASPNET.StarterKit.Portal.Modules.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -32,7 +32,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the datalist control
-            ILinksDb links = DataAccess.LinkDb;
+            ILinksDb links = ModulesDataAccess.LinkDb;
 
             myDataList.DataSource = links.GetLinks(ModuleId);
             myDataList.DataBind();
