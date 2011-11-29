@@ -24,25 +24,9 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// contacts for a specific portal module from the contacts
         /// database.        
         /// </summary>        
-        public DataSet GetContacts(int moduleId)
+        public IDataReader GetContacts(int moduleId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
-            var myCommand = new SqlDataAdapter("Portal_GetContacts", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.SelectCommand.Parameters.Add(InputModuleId(moduleId));
-
-
-            // Create and Fill the DataSet
-            var myDataSet = new DataSet();
-            myCommand.Fill(myDataSet);
-
-            // Return the DataSet
-            return myDataSet;
+            return GetItems(_connectionString, "Portal_GetContacts", moduleId);
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ namespace ASPNET.StarterKit.Portal.DAL
 {
     public interface IAnnouncementsDb
     {
-        DataSet GetAnnouncements(int moduleId);
+        IDataReader GetAnnouncements(int moduleId);
         IDataReader GetSingleAnnouncement(int itemId);
         void DeleteAnnouncement(int itemId);
 

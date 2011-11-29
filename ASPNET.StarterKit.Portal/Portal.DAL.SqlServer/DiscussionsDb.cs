@@ -24,22 +24,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// </summary>
         public IDataReader GetTopLevelMessages(int moduleId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
-            var myCommand = new SqlCommand("Portal_GetTopLevelMessages", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC            
-            myCommand.Parameters.Add(InputModuleId(moduleId));
-
-            // Execute the command
-            myConnection.Open();
-            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader 
-            return result;
+            return GetItems(_connectionString, "Portal_GetTopLevelMessages", moduleId);
         }
 
         /// <summary>

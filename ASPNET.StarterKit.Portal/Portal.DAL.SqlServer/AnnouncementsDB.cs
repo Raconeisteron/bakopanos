@@ -24,24 +24,9 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         /// announcements for a specific portal module from the Announcements
         /// database table.
         /// </summary>        
-        public DataSet GetAnnouncements(int moduleId)
+        public IDataReader GetAnnouncements(int moduleId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(_connectionString);
-            var myCommand = new SqlDataAdapter("Portal_GetAnnouncements", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.SelectCommand.Parameters.Add(InputModuleId(moduleId));
-
-            // Create and Fill the DataSet
-            var myDataSet = new DataSet();
-            myCommand.Fill(myDataSet);
-
-            // Return the DataSet
-            return myDataSet;
+            return GetItems(_connectionString, "Portal_GetAnnouncements", moduleId);
         }
 
         /// <summary>

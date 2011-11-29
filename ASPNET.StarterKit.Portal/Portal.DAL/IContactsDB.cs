@@ -5,7 +5,7 @@ namespace ASPNET.StarterKit.Portal.DAL
 {
     public interface IContactsDb
     {
-        DataSet GetContacts(int moduleId);
+        IDataReader GetContacts(int moduleId);
         IDataReader GetSingleContact(int itemId);
         void DeleteContact(int itemId);
 
