@@ -1,7 +1,7 @@
 using System;
 using System.Configuration;
 
-namespace ASPNET.StarterKit.Portal.Security.DAL
+namespace Portal.Security.DAL
 {
     /// <summary>
     /// This class shields the client from the details of database specific 

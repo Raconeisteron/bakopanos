@@ -8,7 +8,7 @@
     <ProjectGuid>{43D5AF16-7A22-4C0C-845B-404D85721CE4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASPNET.StarterKit.Portal.Security.DAL.SqlServer</RootNamespace>
+    <RootNamespace>Portal.Security.DAL.SqlServer</RootNamespace>
     <AssemblyName>Portal.Security.DAL.SqlServer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

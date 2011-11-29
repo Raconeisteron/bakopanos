@@ -3,7 +3,7 @@ using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ASPNET.StarterKit.Portal.Security.DAL;
+using Portal.Security.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {

@@ -2,7 +2,7 @@ using System;
 using System.Data;
 using System.IO;
 using System.Web.UI;
-using ASPNET.StarterKit.Portal.Modules.DAL;
+using Portal.Modules.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {

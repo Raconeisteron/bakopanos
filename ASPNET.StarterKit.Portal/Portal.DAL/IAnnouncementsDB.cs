@@ -1,7 +1,7 @@
 using System;
 using System.Data;
 
-namespace ASPNET.StarterKit.Portal.Modules.DAL
+namespace Portal.Modules.DAL
 {
     public interface IAnnouncementsDb
     {

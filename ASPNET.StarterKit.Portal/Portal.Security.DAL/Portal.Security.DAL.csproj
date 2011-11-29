@@ -8,7 +8,7 @@
     <ProjectGuid>{201E9CD6-51D1-4707-9A49-13E9D2973453}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASPNET.StarterKit.Portal.Security.DAL</RootNamespace>
+    <RootNamespace>Portal.Security.DAL</RootNamespace>
     <AssemblyName>Portal.Security.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

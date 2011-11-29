@@ -2,8 +2,8 @@ using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ASPNET.StarterKit.Portal.Security.DAL;
-using DataAccess = ASPNET.StarterKit.Portal.Modules.DAL.ModulesDataAccess;
+using Portal.Security.DAL;
+using DataAccess = Portal.Modules.DAL.ModulesDataAccess;
 
 namespace ASPNET.StarterKit.Portal
 {

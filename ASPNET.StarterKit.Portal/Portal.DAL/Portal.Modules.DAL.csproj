@@ -8,7 +8,7 @@
     <ProjectGuid>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASPNET.StarterKit.Portal.Modules.DAL</RootNamespace>
+    <RootNamespace>Portal.Modules.DAL</RootNamespace>
     <AssemblyName>Portal.Modules.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -1,7 +1,7 @@
-﻿using System.Data;
+using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal.Security.DAL.SqlServer
+namespace Portal.Security.DAL.SqlServer
 {
     internal class DbHelper : SqlParameterHelper
     {

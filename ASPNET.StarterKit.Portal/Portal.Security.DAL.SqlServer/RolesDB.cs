@@ -1,7 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal.Security.DAL.SqlServer
+namespace Portal.Security.DAL.SqlServer
 {
     /// <summary>
     /// Class that encapsulates all data logic necessary to add/query/delete

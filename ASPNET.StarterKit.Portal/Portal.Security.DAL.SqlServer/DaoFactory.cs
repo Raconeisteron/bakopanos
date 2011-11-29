@@ -1,6 +1,6 @@
 using System.Configuration;
 
-namespace ASPNET.StarterKit.Portal.Security.DAL.SqlServer
+namespace Portal.Security.DAL.SqlServer
 {
     /// <summary>
     /// Sql Server specific factory that creates Sql Server specific data access objects.

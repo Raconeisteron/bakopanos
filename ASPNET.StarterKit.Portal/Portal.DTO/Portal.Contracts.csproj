@@ -8,8 +8,8 @@
     <ProjectGuid>{2343B0ED-E37C-4401-BA8A-96880AF036C9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASPNET.StarterKit.Portal.DTO</RootNamespace>
-    <AssemblyName>Portal.DTO</AssemblyName>
+    <RootNamespace>Portal.Contracts</RootNamespace>
+    <AssemblyName>Portal.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

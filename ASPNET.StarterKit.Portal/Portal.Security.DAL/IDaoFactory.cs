@@ -1,4 +1,4 @@
-namespace ASPNET.StarterKit.Portal.Security.DAL
+namespace Portal.Security.DAL
 {
     /// <remarks>
     /// GoF Design Pattern: Factory.
