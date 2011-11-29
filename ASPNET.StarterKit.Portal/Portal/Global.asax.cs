@@ -6,6 +6,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Security;
 using ASPNET.StarterKit.Portal.DAL;
+using ASPNET.StarterKit.Portal.Security.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -82,7 +83,7 @@ namespace ASPNET.StarterKit.Portal
                 if ((Request.Cookies["portalroles"] == null) || (Request.Cookies["portalroles"].Value == string.Empty))
                 {
                     // Get roles from UserRoles table, and add to cookie
-                    IUsersDb user = DataAccess.UsersDb;
+                    IUsersDb user = SecurityDataAccess.UsersDb;
                     roles = user.GetRoles(User.Identity.Name);
 
                     // Create a string to persist the roles

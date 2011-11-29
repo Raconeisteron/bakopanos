@@ -1,7 +1,7 @@
 using System;
 using System.Data;
 
-namespace ASPNET.StarterKit.Portal.DAL
+namespace ASPNET.StarterKit.Portal.Security.DAL
 {
     public interface IRolesDb
     {

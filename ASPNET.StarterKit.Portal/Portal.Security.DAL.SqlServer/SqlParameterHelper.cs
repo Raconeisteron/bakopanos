@@ -2,7 +2,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal.DAL.SqlServer
+namespace ASPNET.StarterKit.Portal.Security.DAL.SqlServer
 {
     internal class SqlParameterHelper
     {
@@ -39,6 +39,21 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
         public static SqlParameter InputViewOrder(int viewOrder)
         {
             return new SqlParameter("@ViewOrder", SqlDbType.Int, 4) { Value = viewOrder};
+        }
+
+        public static SqlParameter ReturnValueUserId()
+        {
+            return new SqlParameter("@UserID", SqlDbType.Int, 4) {Direction = ParameterDirection.ReturnValue};                        
+        }
+
+        public static SqlParameter InputRoleId(int roleId)
+        {
+            return new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};            
+        }
+
+        public static SqlParameter ReturnValueRoleId()
+        {
+            return new SqlParameter("@RoleID", SqlDbType.Int, 4) {Direction = ParameterDirection.ReturnValue};            
         }
 
         public static SqlParameter InputUserName(string userName)

@@ -2,6 +2,7 @@ using System;
 using System.Web.Security;
 using System.Web.UI;
 using ASPNET.StarterKit.Portal.DAL;
+using ASPNET.StarterKit.Portal.Security.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -10,7 +11,7 @@ namespace ASPNET.StarterKit.Portal
         protected void LoginBtn_Click(Object sender, ImageClickEventArgs e)
         {
             // Attempt to Validate User Credentials using UsersDB
-            IUsersDb accountSystem = DataAccess.UsersDb;
+            IUsersDb accountSystem = SecurityDataAccess.UsersDb;
             string userId = accountSystem.Login(email.Text, PortalSecurity.Encrypt(password.Text));
 
             if (!string.IsNullOrEmpty(userId))

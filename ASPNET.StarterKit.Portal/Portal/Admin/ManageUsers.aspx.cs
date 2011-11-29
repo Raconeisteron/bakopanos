@@ -2,7 +2,8 @@ using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ASPNET.StarterKit.Portal.DAL;
+using ASPNET.StarterKit.Portal.Security.DAL;
+using DataAccess = ASPNET.StarterKit.Portal.DAL.DataAccess;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -58,7 +59,7 @@ namespace ASPNET.StarterKit.Portal
                 // new user?
                 if (userName == "")
                 {
-                    IUsersDb users = DataAccess.UsersDb;
+                    IUsersDb users = SecurityDataAccess.UsersDb;
 
                     // make a unique new user record
                     int uid = -1;
@@ -112,7 +113,7 @@ namespace ASPNET.StarterKit.Portal
             roleId = Int32.Parse(allRoles.SelectedItem.Value);
 
             // Add a new userRole to the database
-            IRolesDb roles = DataAccess.RolesDb;
+            IRolesDb roles = SecurityDataAccess.RolesDb;
             roles.AddUserRole(roleId, userId);
 
             // Rebind list
@@ -129,7 +130,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateUser_Click(Object sender, EventArgs e)
         {
             // update the user record in the database
-            IUsersDb users = DataAccess.UsersDb;
+            IUsersDb users = SecurityDataAccess.UsersDb;
             users.UpdateUser(userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
 
             // redirect to this page with the corrected querystring args
@@ -147,7 +148,7 @@ namespace ASPNET.StarterKit.Portal
 
         private void UserRoles_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            IRolesDb roles = DataAccess.RolesDb;
+            IRolesDb roles = SecurityDataAccess.RolesDb;
             var roleId = (int) userRoles.DataKeys[e.Item.ItemIndex];
 
             // update database
@@ -170,7 +171,7 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Bind the Email and Password
-            IUsersDb users = DataAccess.UsersDb;
+            IUsersDb users = SecurityDataAccess.UsersDb;
             IDataReader dr = users.GetSingleUser(userName);
 
             // Read first row from database
@@ -194,7 +195,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Get the portal's roles from the database
-            IRolesDb roles = DataAccess.RolesDb;
+            IRolesDb roles = SecurityDataAccess.RolesDb;
 
             // bind all portal roles to dropdownlist
             allRoles.DataSource = roles.GetPortalRoles(portalSettings.PortalId);

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal.DAL.SqlServer
+namespace ASPNET.StarterKit.Portal.Security.DAL.SqlServer
 {
     /// <summary>
     /// The UsersDB class encapsulates all data logic necessary to add/login/query

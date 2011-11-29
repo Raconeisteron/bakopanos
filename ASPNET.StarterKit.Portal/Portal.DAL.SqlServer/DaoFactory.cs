@@ -81,24 +81,7 @@ namespace ASPNET.StarterKit.Portal.DAL.SqlServer
             {
                 return new LinkDb { ConnectionString = _connectionString };
             }
-        }
-
-        public IRolesDb RolesDb
-        {
-            get
-            {
-                return new RolesDb { ConnectionString = _connectionString };
-            }
-        }
-
-        public IUsersDb UsersDb
-        {
-            get
-            {
-                return new UsersDb { ConnectionString = _connectionString };
-            }
-        }
-
+        }        
         #endregion
     }
 }

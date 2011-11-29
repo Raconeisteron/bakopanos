@@ -68,15 +68,5 @@ namespace ASPNET.StarterKit.Portal.DAL
         {
             get { return Factory.HtmlTextDb; }
         }
-
-        public static IRolesDb RolesDb
-        {
-            get { return Factory.RolesDb; }
-        }
-
-        public static IUsersDb UsersDb
-        {
-            get { return Factory.UsersDb; }
-        }
     }
 }

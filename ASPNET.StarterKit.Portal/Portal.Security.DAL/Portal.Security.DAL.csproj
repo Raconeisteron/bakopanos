@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</ProjectGuid>
+    <ProjectGuid>{201E9CD6-51D1-4707-9A49-13E9D2973453}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASPNET.StarterKit.Portal.DAL</RootNamespace>
-    <AssemblyName>Portal.DAL</AssemblyName>
+    <RootNamespace>ASPNET.StarterKit.Portal.Security.DAL</RootNamespace>
+    <AssemblyName>Portal.Security.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,16 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPortalDB.cs" />
     <Compile Include="DataAccess.cs" />
-    <Compile Include="IAnnouncementsDB.cs" />
-    <Compile Include="IContactsDB.cs" />
     <Compile Include="IDaoFactory.cs" />
-    <Compile Include="IDiscussionsDb.cs" />
-    <Compile Include="IDocumentsDb.cs" />
-    <Compile Include="IEventsDB.cs" />
-    <Compile Include="IHtmlTextDB.cs" />
-    <Compile Include="ILinksDb.cs" />
+    <Compile Include="IRolesDB.cs" />
+    <Compile Include="IUsersDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

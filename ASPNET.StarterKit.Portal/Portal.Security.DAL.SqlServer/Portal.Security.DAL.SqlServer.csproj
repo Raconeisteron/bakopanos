@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</ProjectGuid>
+    <ProjectGuid>{43D5AF16-7A22-4C0C-845B-404D85721CE4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASPNET.StarterKit.Portal.DAL</RootNamespace>
-    <AssemblyName>Portal.DAL</AssemblyName>
+    <RootNamespace>ASPNET.StarterKit.Portal.Security.DAL.SqlServer</RootNamespace>
+    <AssemblyName>Portal.Security.DAL.SqlServer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,19 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPortalDB.cs" />
-    <Compile Include="DataAccess.cs" />
-    <Compile Include="IAnnouncementsDB.cs" />
-    <Compile Include="IContactsDB.cs" />
-    <Compile Include="IDaoFactory.cs" />
-    <Compile Include="IDiscussionsDb.cs" />
-    <Compile Include="IDocumentsDb.cs" />
-    <Compile Include="IEventsDB.cs" />
-    <Compile Include="IHtmlTextDB.cs" />
-    <Compile Include="ILinksDb.cs" />
+    <Compile Include="DbHelper.cs" />
+    <Compile Include="SqlParameterHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolesDB.cs" />
+    <Compile Include="DaoFactory.cs" />
+    <Compile Include="UsersDB.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Portal.Security.DAL\Portal.Security.DAL.csproj">
+      <Project>{201E9CD6-51D1-4707-9A49-13E9D2973453}</Project>
+      <Name>Portal.Security.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>COPY $(TargetPath) $(SolutionDir)$(SolutionName)\Bin\$(TargetFileName) /Y</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

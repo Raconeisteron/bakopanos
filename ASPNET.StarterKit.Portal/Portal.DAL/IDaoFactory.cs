@@ -13,7 +13,5 @@ namespace ASPNET.StarterKit.Portal.DAL
         IEventsDb EventsDb { get; }
         IHtmlTextDb HtmlTextDb { get; }
         ILinksDb LinkDb { get; }
-        IRolesDb RolesDb { get; }
-        IUsersDb UsersDb { get; }
     }
 }

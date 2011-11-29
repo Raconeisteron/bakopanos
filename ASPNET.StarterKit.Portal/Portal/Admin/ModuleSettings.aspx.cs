@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ASPNET.StarterKit.Portal.DAL;
+using ASPNET.StarterKit.Portal.Security.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -88,7 +89,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                IRolesDb rolesObj = DataAccess.RolesDb;
+                IRolesDb rolesObj = SecurityDataAccess.RolesDb;
                 IDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist
@@ -148,7 +149,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                IRolesDb rolesObj = DataAccess.RolesDb;
+                IRolesDb rolesObj = SecurityDataAccess.RolesDb;
                 IDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist

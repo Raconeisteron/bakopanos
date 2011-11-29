@@ -2,6 +2,7 @@ using System;
 using System.Web.Security;
 using System.Web.UI;
 using ASPNET.StarterKit.Portal.DAL;
+using ASPNET.StarterKit.Portal.Security.DAL;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -21,7 +22,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Add New User to Portal User Database
-                IUsersDb accountSystem = DataAccess.UsersDb;
+                IUsersDb accountSystem = SecurityDataAccess.UsersDb;
 
                 if ((accountSystem.AddUser(Name.Text, Email.Text, PortalSecurity.Encrypt(Password.Text))) > -1)
                 {
