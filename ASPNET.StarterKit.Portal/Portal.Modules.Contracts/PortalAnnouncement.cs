@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace Portal.Modules.Contracts
+namespace Portal.Modules.Service.Contracts
 {
     public class PortalAnnouncement
     {

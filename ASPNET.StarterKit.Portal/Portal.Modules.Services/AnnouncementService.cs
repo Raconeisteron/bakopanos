@@ -1,7 +1,7 @@
-﻿using Portal.Modules.Contracts;
-using Portal.Modules.DAL;
+using Portal.Modules.Data;
+using Portal.Modules.Service.Contracts;
 
-namespace Portal.Modules.Services
+namespace Portal.Modules.Service
 {
     internal class AnnouncementService : IAnnouncementService
     {

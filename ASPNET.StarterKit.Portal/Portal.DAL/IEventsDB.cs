@@ -1,7 +1,7 @@
 using System;
 using System.Data;
 
-namespace Portal.Modules.DAL
+namespace Portal.Modules.Data
 {
     public interface IEventsDb
     {

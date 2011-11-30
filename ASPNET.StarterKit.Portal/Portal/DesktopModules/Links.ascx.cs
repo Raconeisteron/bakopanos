@@ -1,5 +1,5 @@
 using System;
-using Portal.Modules.DAL;
+using Portal.Modules.Data;
 
 namespace ASPNET.StarterKit.Portal
 {

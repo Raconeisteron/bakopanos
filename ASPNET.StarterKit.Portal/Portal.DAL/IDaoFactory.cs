@@ -1,4 +1,4 @@
-namespace Portal.Modules.DAL
+namespace Portal.Modules.Data
 {
     /// <remarks>
     /// GoF Design Pattern: Factory.

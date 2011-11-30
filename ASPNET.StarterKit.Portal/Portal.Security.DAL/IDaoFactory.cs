@@ -1,4 +1,4 @@
-namespace Portal.Security.DAL
+namespace Portal.Security.Data
 {
     /// <remarks>
     /// GoF Design Pattern: Factory.

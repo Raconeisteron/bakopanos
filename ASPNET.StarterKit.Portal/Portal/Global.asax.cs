@@ -5,7 +5,7 @@ using System.Security.Principal;
 using System.Threading;
 using System.Web;
 using System.Web.Security;
-using Portal.Security.DAL;
+using Portal.Security.Data;
 
 namespace ASPNET.StarterKit.Portal
 {

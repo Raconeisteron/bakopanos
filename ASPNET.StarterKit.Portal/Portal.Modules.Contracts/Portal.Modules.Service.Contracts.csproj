@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{43D5AF16-7A22-4C0C-845B-404D85721CE4}</ProjectGuid>
+    <ProjectGuid>{2343B0ED-E37C-4401-BA8A-96880AF036C9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Portal.Security.DAL.SqlServer</RootNamespace>
-    <AssemblyName>Portal.Security.DAL.SqlServer</AssemblyName>
+    <RootNamespace>Portal.Modules.Service.Contracts</RootNamespace>
+    <AssemblyName>Portal.Modules.Service.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,22 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SqlDbHelper.cs" />
+    <Compile Include="IAnnouncementService.cs" />
+    <Compile Include="IContactService.cs" />
+    <Compile Include="ILinkService.cs" />
+    <Compile Include="PortalAnnouncement.cs" />
+    <Compile Include="PortalContact.cs" />
+    <Compile Include="PortalLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RolesDB.cs" />
-    <Compile Include="DaoFactory.cs" />
-    <Compile Include="UsersDB.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Portal.Security.DAL\Portal.Security.DAL.csproj">
-      <Project>{201E9CD6-51D1-4707-9A49-13E9D2973453}</Project>
-      <Name>Portal.Security.DAL</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>COPY $(TargetPath) $(SolutionDir)$(SolutionName)\Bin\$(TargetFileName) /Y</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

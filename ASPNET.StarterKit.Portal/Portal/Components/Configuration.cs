@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Caching;
-using Portal.Modules.DAL;
+using Portal.Modules.Data;
 
 namespace ASPNET.StarterKit.Portal
 {

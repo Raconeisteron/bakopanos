@@ -1,6 +1,6 @@
-using Portal.Modules.Contracts;
+using Portal.Modules.Service.Contracts;
 
-namespace Portal.Modules.Services
+namespace Portal.Modules.Service
 {
     /// <remarks>
     /// GoF Design Pattern: Factory.

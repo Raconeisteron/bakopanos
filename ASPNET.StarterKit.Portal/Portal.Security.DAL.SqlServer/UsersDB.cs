@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Portal.Security.DAL.SqlServer
+namespace Portal.Security.Data.SqlServer
 {
     /// <summary>
     /// The UsersDB class encapsulates all data logic necessary to add/login/query

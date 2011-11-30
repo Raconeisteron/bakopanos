@@ -2,7 +2,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Portal.Modules.DAL.SqlServer
+namespace Portal.Modules.Data.SqlServer
 {
     internal class SqlDbHelper
     {

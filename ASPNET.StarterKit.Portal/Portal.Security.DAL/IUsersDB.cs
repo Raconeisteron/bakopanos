@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace Portal.Security.DAL
+namespace Portal.Security.Data
 {
     public interface IUsersDb
     {

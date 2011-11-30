@@ -8,8 +8,8 @@
     <ProjectGuid>{20FD75EF-D541-42BF-ACC8-FD22F200FF57}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Portal.Modules.Services</RootNamespace>
-    <AssemblyName>Portal.Modules.Services</AssemblyName>
+    <RootNamespace>Portal.Modules.Service</RootNamespace>
+    <AssemblyName>Portal.Modules.Service</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -50,13 +50,13 @@
     <Compile Include="ServiceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Portal.DAL\Portal.Modules.DAL.csproj">
+    <ProjectReference Include="..\Portal.DAL\Portal.Modules.Data.csproj">
       <Project>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</Project>
-      <Name>Portal.Modules.DAL</Name>
+      <Name>Portal.Modules.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Portal.Modules.Contracts\Portal.Modules.Contracts.csproj">
+    <ProjectReference Include="..\Portal.Modules.Contracts\Portal.Modules.Service.Contracts.csproj">
       <Project>{2343B0ED-E37C-4401-BA8A-96880AF036C9}</Project>
-      <Name>Portal.Modules.Contracts</Name>
+      <Name>Portal.Modules.Service.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

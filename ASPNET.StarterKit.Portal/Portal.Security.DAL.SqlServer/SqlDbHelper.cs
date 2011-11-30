@@ -1,7 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Portal.Security.DAL.SqlServer
+namespace Portal.Security.Data.SqlServer
 {
     internal class SqlDbHelper
     {

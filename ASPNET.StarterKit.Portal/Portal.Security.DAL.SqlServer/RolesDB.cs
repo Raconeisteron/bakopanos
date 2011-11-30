@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace Portal.Security.DAL.SqlServer
+namespace Portal.Security.Data.SqlServer
 {
     /// <summary>
     /// Class that encapsulates all data logic necessary to add/query/delete

@@ -1,6 +1,6 @@
 using System;
 
-namespace Portal.Modules.Contracts
+namespace Portal.Modules.Service.Contracts
 {
     public class PortalContact
     {

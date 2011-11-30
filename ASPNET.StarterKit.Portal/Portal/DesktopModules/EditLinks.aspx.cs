@@ -1,9 +1,9 @@
 using System;
 using System.Data;
 using System.Web.UI;
-using Portal.Modules.Contracts;
-using Portal.Modules.DAL;
-using Portal.Modules.Services;
+using Portal.Modules.Data;
+using Portal.Modules.Service;
+using Portal.Modules.Service.Contracts;
 
 namespace ASPNET.StarterKit.Portal
 {

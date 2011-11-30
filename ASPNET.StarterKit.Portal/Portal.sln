@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal", "Portal\Portal.csproj", "{B5DDF1C4-7178-4035-BCC1-C746076F979A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.DAL", "Portal.DAL\Portal.Modules.DAL.csproj", "{D12F1EEC-928D-4876-A8D6-15D2CADFB460}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.Data", "Portal.DAL\Portal.Modules.Data.csproj", "{D12F1EEC-928D-4876-A8D6-15D2CADFB460}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.DAL.SqlServer", "Portal.DAL.SqlServer\Portal.Modules.DAL.SqlServer.csproj", "{030CAA4B-3EA8-4522-A979-E983B3885F1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.Data.SqlServer", "Portal.DAL.SqlServer\Portal.Modules.Data.SqlServer.csproj", "{030CAA4B-3EA8-4522-A979-E983B3885F1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.Services", "Portal.Modules.Services\Portal.Modules.Services.csproj", "{20FD75EF-D541-42BF-ACC8-FD22F200FF57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.Service", "Portal.Modules.Services\Portal.Modules.Service.csproj", "{20FD75EF-D541-42BF-ACC8-FD22F200FF57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.Contracts", "Portal.Modules.Contracts\Portal.Modules.Contracts.csproj", "{2343B0ED-E37C-4401-BA8A-96880AF036C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.Service.Contracts", "Portal.Modules.Contracts\Portal.Modules.Service.Contracts.csproj", "{2343B0ED-E37C-4401-BA8A-96880AF036C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Presentation", "Portal.Presentation\Portal.Presentation.csproj", "{726EAAC3-A645-482C-895A-96E2547B1A4F}"
 EndProject
@@ -21,9 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Data Access Layer", "3. 
 EndProject
 Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "SqlServerDatabaseSetup", "SqlServerDatabaseSetup\SqlServerDatabaseSetup.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Security.DAL", "Portal.Security.DAL\Portal.Security.DAL.csproj", "{201E9CD6-51D1-4707-9A49-13E9D2973453}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Security.Data", "Portal.Security.DAL\Portal.Security.Data.csproj", "{201E9CD6-51D1-4707-9A49-13E9D2973453}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Security.DAL.SqlServer", "Portal.Security.DAL.SqlServer\Portal.Security.DAL.SqlServer.csproj", "{43D5AF16-7A22-4C0C-845B-404D85721CE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Security.Data.SqlServer", "Portal.Security.DAL.SqlServer\Portal.Security.Data.SqlServer.csproj", "{43D5AF16-7A22-4C0C-845B-404D85721CE4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Database", "4. Database", "{38A82B5A-541F-4253-A369-49B54C3FD631}"
 EndProject

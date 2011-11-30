@@ -1,7 +1,7 @@
 using System;
 using System.Configuration;
 
-namespace Portal.Modules.DAL
+namespace Portal.Modules.Data
 {
     /// <summary>
     /// This class shields the client from the details of database specific 

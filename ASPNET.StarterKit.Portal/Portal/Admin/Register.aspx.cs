@@ -1,7 +1,7 @@
 using System;
 using System.Web.Security;
 using System.Web.UI;
-using Portal.Security.DAL;
+using Portal.Security.Data;
 
 namespace ASPNET.StarterKit.Portal
 {
