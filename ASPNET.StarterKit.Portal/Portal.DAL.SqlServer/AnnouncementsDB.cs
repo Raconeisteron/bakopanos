@@ -43,7 +43,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// The AddAnnouncement method adds a new announcement to the
         /// Announcements database table, and returns the ItemId value as a result.
         /// </summary>        
-        public int AddAnnouncement(int moduleId, int itemId, string userName, string title, DateTime expireDate,
+        public int AddAnnouncement(int moduleId, string userName, string title, DateTime expireDate,
                                    string description, string moreLink, string mobileMoreLink)
         {
             if (userName.Length < 1)
@@ -65,7 +65,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// The UpdateAnnouncement method updates the specified announcement within
         /// the Announcements database table.
         /// </summary>        
-        public void UpdateAnnouncement(int moduleId, int itemId, string userName, string title, DateTime expireDate,
+        public void UpdateAnnouncement(int itemId, string userName, string title, DateTime expireDate,
                                        string description, string moreLink, string mobileMoreLink)
         {
             if (userName.Length < 1)

@@ -1,7 +1,9 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using Portal.Contracts;
 using Portal.Modules.DAL;
+using Portal.Services;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -90,23 +92,21 @@ namespace ASPNET.StarterKit.Portal
             // Only Update if the Entered Data is Valid
             if (Page.IsValid)
             {
-                // Create an instance of the Announcement DB component
-                IAnnouncementsDb announcementDB = ModulesDataAccess.AnnouncementsDb;
+                IAnnouncementService announcementService = ServiceAccess.AnnouncementService;
 
-                if (itemId == 0)
-                {
-                    // Add the announcement within the Announcements table
-                    announcementDB.AddAnnouncement(moduleId, itemId, Context.User.Identity.Name, TitleField.Text,
-                                                   DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                                   MoreLinkField.Text, MobileMoreField.Text);
-                }
-                else
-                {
-                    // Update the announcement within the Announcements table
-                    announcementDB.UpdateAnnouncement(moduleId, itemId, Context.User.Identity.Name, TitleField.Text,
-                                                      DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                                      MoreLinkField.Text, MobileMoreField.Text);
-                }
+                var announcement = new PortalAnnouncement
+                                       {
+                                           ItemId = itemId,
+                                           ModuleId = moduleId,
+                                           CreatedByUser = Context.User.Identity.Name,
+                                           Title = TitleField.Text,
+                                           ExpireDate = DateTime.Parse(ExpireField.Text),
+                                           Description = DescriptionField.Text,
+                                           MoreLink = MoreLinkField.Text,
+                                           MobileMoreLink = MobileMoreField.Text
+                                       };
+
+                announcementService.CreateOrUpdate(announcement);
 
                 // Redirect back to the portal home page
                 Response.Redirect((string) ViewState["UrlReferrer"]);
