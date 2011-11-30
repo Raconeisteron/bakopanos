@@ -1,7 +1,9 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using Portal.Contracts;
 using Portal.Modules.DAL;
+using Portal.Services;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -90,21 +92,22 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Link DB component
-                ILinksDb links = ModulesDataAccess.LinkDb;
+                ILinkService links = ServiceAccess.LinkService;
 
-                if (itemId == 0)
-                {
-                    // Add the link within the Links table
-                    links.AddLink(moduleId, itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
-                                  MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
-                }
-                else
-                {
-                    // Update the link within the Links table
-                    links.UpdateLink(moduleId, itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
-                                     MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
-                }
+                var link = new PortalLink
+                               {
+                                   ItemId = itemId,
+                                   ModuleId = moduleId,
+                                   CreatedByUser = Context.User.Identity.Name,
+                                   Title = TitleField.Text,
+                                   Url = UrlField.Text,
+                                   MobileUrl = MobileUrlField.Text,
+                                   ViewOrder = Int32.Parse(ViewOrderField.Text),
+                                   Description = DescriptionField.Text
+                               };
 
+                links.CreateOrUpdate(link);
+                
                 // Redirect back to the portal home page
                 Response.Redirect((string) ViewState["UrlReferrer"]);
             }

@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAnnouncementService.cs" />
+    <Compile Include="ILinkService.cs" />
     <Compile Include="PortalAnnouncement.cs" />
+    <Compile Include="PortalLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,6 +8,7 @@ namespace Portal.Services
     public interface IServiceFactory
     {
         IAnnouncementService AnnouncementService { get; }
+        ILinkService LinkService { get; }
         
     }
 }

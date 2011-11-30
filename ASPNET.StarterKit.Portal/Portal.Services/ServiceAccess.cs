@@ -26,6 +26,11 @@ namespace Portal.Services
         {
             get { return Factory.AnnouncementService; }
         }
+
+        public static ILinkService LinkService
+        {
+            get { return Factory.LinkService; }
+        }
        
     }
 }

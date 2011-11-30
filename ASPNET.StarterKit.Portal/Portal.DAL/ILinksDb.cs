@@ -8,10 +8,10 @@ namespace Portal.Modules.DAL
         IDataReader GetSingleLink(int itemId);
         void DeleteLink(int itemId);
 
-        int AddLink(int moduleId, int itemId, string userName, string title, string url, string mobileUrl,
+        int AddLink(int moduleId, string userName, string title, string url, string mobileUrl,
                     int viewOrder, string description);
 
-        void UpdateLink(int moduleId, int itemId, string userName, string title, string url, string mobileUrl,
+        void UpdateLink(int itemId, string userName, string title, string url, string mobileUrl,
                         int viewOrder, string description);
     }
 }

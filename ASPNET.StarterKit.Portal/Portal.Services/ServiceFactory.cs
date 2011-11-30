@@ -11,5 +11,10 @@ namespace Portal.Services
         {
             get { return new AnnouncementService(); }
         }
+
+        public ILinkService LinkService
+        {
+            get { return new LinkService(); }
+        }
     }
 }

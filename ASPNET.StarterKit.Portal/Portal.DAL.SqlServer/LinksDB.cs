@@ -42,7 +42,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// The AddLink method adds a new link within the
         /// links database table, and returns ItemID value as a result.
         /// </summary>
-        public int AddLink(int moduleId, int itemId, string userName, string title, string url, string mobileUrl,
+        public int AddLink(int moduleId, string userName, string title, string url, string mobileUrl,
                            int viewOrder, string description)
         {
             if (userName.Length < 1)
@@ -63,7 +63,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// // The UpdateLink method updates a specified link within
         /// the Links database table.
         /// </summary>        
-        public void UpdateLink(int moduleId, int itemId, string userName, string title, string url, string mobileUrl,
+        public void UpdateLink(int itemId, string userName, string title, string url, string mobileUrl,
                                int viewOrder, string description)
         {
             if (userName.Length < 1)
