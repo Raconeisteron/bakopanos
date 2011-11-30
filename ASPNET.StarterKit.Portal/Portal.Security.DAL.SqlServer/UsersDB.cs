@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -15,7 +15,7 @@ namespace Portal.Security.DAL.SqlServer
     /// authentication is used instead, then either the Windows SAM or Active Directory
     /// is used to store and validate all username/password credentials.
     /// </remarks>
-    internal class UsersDb : DbHelper, IUsersDb
+    internal class UsersDb : SqlDbHelper, IUsersDb
     {
         #region IUsersDb Members
 
@@ -25,46 +25,20 @@ namespace Portal.Security.DAL.SqlServer
         /// <returns>New user Id</returns>
         public int AddUser(string fullName, string email, string password)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_AddUser", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterFullName = new SqlParameter("@Name", SqlDbType.NVarChar, 50);
-            parameterFullName.Value = fullName;
-            myCommand.Parameters.Add(parameterFullName);
-
-            myCommand.Parameters.Add(InputEmail(email));
-
-            var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
-            parameterPassword.Value = password;
-            myCommand.Parameters.Add(parameterPassword);
-
-            SqlParameter parameterUserId = myCommand.Parameters.Add(ReturnValueUserId());
+            int retValue;
 
             // Execute the command in a try/catch to catch duplicate username errors);
             try
             {
-                // Open the connection and execute the Command
-                myConnection.Open();
-                myCommand.ExecuteNonQuery();
+                retValue = CreateItem("Portal_AddUser", ReturnValueUserId(), InputName(fullName), InputEmail(email), InputPassword(password));
             }
             catch
             {
                 // failed to create a new user
                 return -1;
             }
-            finally
-            {
-                // Close the Connection
-                if (myConnection.State == ConnectionState.Open)
-                    myConnection.Close();
-            }
 
-            return (int) parameterUserId.Value;
+            return retValue;
         }
 
         /// <summary>
@@ -72,19 +46,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>
         public void DeleteUser(int userId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_DeleteUser", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            myCommand.Parameters.Add(InputUserId(userId));
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            ExecuteNonQuery("Portal_DeleteUser", InputUserId(userId));
         }
 
         /// <summary>
@@ -92,43 +54,12 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>
         public void UpdateUser(int userId, string email, string password)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_UpdateUser", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            myCommand.Parameters.Add(InputUserId(userId));
-            myCommand.Parameters.Add(InputEmail(email));
-
-            var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
-            parameterPassword.Value = password;
-            myCommand.Parameters.Add(parameterPassword);
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            ExecuteNonQuery("Portal_UpdateUser", InputUserId(userId), InputEmail(email), InputPassword(password));
         }
 
         public IDataReader GetRolesByUser(string email)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetRolesByUser", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            myCommand.Parameters.Add(InputEmail(email));
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            IDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader
-            return dr;
+            return GetItems("Portal_GetRolesByUser", InputEmail(email));         
         }
 
         /// <summary>
@@ -137,22 +68,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>
         public IDataReader GetSingleUser(string email)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetSingleUser", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputEmail(email));
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            IDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader
-            return dr;
+            return GetSingleItem("Portal_GetSingleUser", InputEmail(email));
         }
 
         /// <summary>
@@ -160,33 +76,20 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>        
         public string[] GetRoles(string email)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetRolesByUser", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputEmail(email));
-
-            // Open the database connection and execute the command
-
-            myConnection.Open();
-            IDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader dr = GetItems("Portal_GetRolesByUser", InputEmail(email));
 
             // create a String array from the data
-            var userRoles = new ArrayList();
+            var userRoles = new List<string>();
 
             while (dr.Read())
             {
-                userRoles.Add(dr["RoleName"]);
+                userRoles.Add(dr["RoleName"] as string);
             }
 
             dr.Close();
 
             // Return the String array of roles
-            return (string[]) userRoles.ToArray(typeof (string));
+            return userRoles.ToArray();
         }
 
         /// <summary>
@@ -232,19 +135,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>        
         public IDataReader GetUsers()
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetUsers", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            IDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader
-            return dr;
+            return GetItems("Portal_GetUsers");            
         }
 
         #endregion

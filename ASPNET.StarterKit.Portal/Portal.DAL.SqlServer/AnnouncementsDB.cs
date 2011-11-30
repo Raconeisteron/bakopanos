@@ -7,7 +7,7 @@ namespace Portal.Modules.DAL.SqlServer
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// announcements within the Portal database.
     /// </summary>
-    internal class AnnouncementsDb : DbHelper, IAnnouncementsDb
+    internal class AnnouncementsDb : SqlDbHelper, IAnnouncementsDb
     {
         #region IAnnouncementsDb Members
 
@@ -18,7 +18,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>        
         public IDataReader GetAnnouncements(int moduleId)
         {
-            return GetItems("Portal_GetAnnouncements", moduleId);
+            return GetItems("Portal_GetAnnouncements", InputModuleId(moduleId));
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>        
         public void DeleteAnnouncement(int itemId)
         {
-            DeleteItem("Portal_DeleteAnnouncement", itemId);
+            ExecuteNonQuery("Portal_DeleteAnnouncement", InputItemId(itemId));
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Portal.Modules.DAL.SqlServer
             }
 
             // Add Parameters to SPROC
-            return CreateItem("Portal_AddAnnouncement", InputModuleId(moduleId),
+            return CreateItem("Portal_AddAnnouncement",ReturnValueItemId(), InputModuleId(moduleId),
                               InputUserName(userName),
                               InputTitle(title),
                               InputMoreLink(moreLink),
@@ -73,7 +73,7 @@ namespace Portal.Modules.DAL.SqlServer
                 userName = "unknown";
             }
 
-            UpdateItem("Portal_UpdateAnnouncement", itemId,
+            ExecuteNonQuery("Portal_UpdateAnnouncement", InputItemId(itemId),
                        InputUserName(userName),
                        InputTitle(title),
                        InputMoreLink(moreLink),

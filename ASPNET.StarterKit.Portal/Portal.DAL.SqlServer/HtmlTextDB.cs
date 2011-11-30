@@ -1,5 +1,4 @@
 using System.Data;
-using System.Data.SqlClient;
 
 namespace Portal.Modules.DAL.SqlServer
 {
@@ -7,7 +6,7 @@ namespace Portal.Modules.DAL.SqlServer
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// HTML/text within the Portal database.
     /// </summary>
-    internal class HtmlTextDb : DbHelper, IHtmlTextDb
+    internal class HtmlTextDb : SqlDbHelper, IHtmlTextDb
     {
         #region IHtmlTextDb Members
 
@@ -17,7 +16,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>        
         public IDataReader GetHtmlText(int moduleId)
         {
-            return GetItems("Portal_GetHtmlText", moduleId);
+            return GetItems("Portal_GetHtmlText", InputModuleId(moduleId));
         }
 
         /// <summary>
@@ -26,22 +25,10 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>        
         public void UpdateHtmlText(int moduleId, string desktopHtml, string mobileSummary, string mobileDetails)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_UpdateHtmlText", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputModuleId(moduleId));
-            myCommand.Parameters.Add(InputDesktopHtml(desktopHtml));
-            myCommand.Parameters.Add(InputMobileSummary(mobileSummary));
-            myCommand.Parameters.Add(InputMobileDetails(mobileDetails));
-
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            ExecuteNonQuery("Portal_UpdateHtmlText", ReturnValueItemId(), InputModuleId(moduleId),
+                       InputDesktopHtml(desktopHtml),
+                       InputMobileSummary(mobileSummary),
+                       InputMobileDetails(mobileDetails));
         }
 
         #endregion

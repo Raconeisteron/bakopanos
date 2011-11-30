@@ -7,7 +7,7 @@ namespace Portal.Modules.DAL.SqlServer
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// events within the Portal database.
     /// </summary>
-    internal class EventsDb : DbHelper, IEventsDb
+    internal class EventsDb : SqlDbHelper, IEventsDb
     {
         #region IEventsDb Members
 
@@ -18,7 +18,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>        
         public IDataReader GetEvents(int moduleId)
         {
-            return GetItems("Portal_GetEvents", moduleId);
+            return GetItems("Portal_GetEvents", InputModuleId(moduleId));
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>        
         public void DeleteEvent(int itemId)
         {
-            DeleteItem("Portal_DeleteEvent", itemId);
+            ExecuteNonQuery("Portal_DeleteEvent", InputItemId(itemId));
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Portal.Modules.DAL.SqlServer
                 userName = "unknown";
             }
 
-            return CreateItem("Portal_AddEvent", InputModuleId(moduleId),
+            return CreateItem("Portal_AddEvent", ReturnValueItemId(), InputModuleId(moduleId),
                               InputUserName(userName),
                               InputTitle(title),
                               InputWhereWhen(wherewhen),
@@ -72,7 +72,8 @@ namespace Portal.Modules.DAL.SqlServer
                 userName = "unknown";
             }
 
-            UpdateItem("Portal_UpdateEvent", itemId,
+            ExecuteNonQuery("Portal_UpdateEvent", 
+                InputItemId(itemId),
                        InputUserName(userName),
                        InputTitle(title),
                        InputWhereWhen(wherewhen),

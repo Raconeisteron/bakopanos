@@ -6,7 +6,7 @@ namespace Portal.Modules.DAL.SqlServer
     /// // Class that encapsulates all data logic necessary to add/query/delete
     /// links within the Portal database.
     /// </summary>
-    internal class LinkDb : DbHelper, ILinksDb
+    internal class LinkDb : SqlDbHelper, ILinksDb
     {
         #region ILinksDb Members
 
@@ -17,7 +17,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>        
         public IDataReader GetLinks(int moduleId)
         {
-            return GetItems("Portal_GetLinks", moduleId);
+            return GetItems("Portal_GetLinks", InputModuleId(moduleId));
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>
         public void DeleteLink(int itemId)
         {
-            DeleteItem("Portal_DeleteLink", itemId);
+            ExecuteNonQuery("Portal_DeleteLink", InputItemId(itemId));
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Portal.Modules.DAL.SqlServer
                 userName = "unknown";
             }
 
-            return CreateItem("Portal_AddLink", InputModuleId(moduleId),
+            return CreateItem("Portal_AddLink", ReturnValueItemId(), InputModuleId(moduleId),
                               InputUserName(userName),
                               InputTitle(title),
                               InputDescription(description),
@@ -71,7 +71,7 @@ namespace Portal.Modules.DAL.SqlServer
                 userName = "unknown";
             }
 
-            UpdateItem("Portal_UpdateLink", itemId,
+            ExecuteNonQuery("Portal_UpdateLink", InputItemId(itemId),
                        InputUserName(userName),
                        InputTitle(title),
                        InputDescription(description),

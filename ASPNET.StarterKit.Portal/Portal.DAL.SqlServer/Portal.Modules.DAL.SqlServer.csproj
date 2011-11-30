@@ -43,11 +43,10 @@
   <ItemGroup>
     <Compile Include="AnnouncementsDB.cs" />
     <Compile Include="ContactsDB.cs" />
-    <Compile Include="DbHelper.cs" />
+    <Compile Include="SqlDbHelper.cs" />
     <Compile Include="DiscussionsDb.cs" />
     <Compile Include="DocumentsDb.cs" />
     <Compile Include="EventsDB.cs" />
-    <Compile Include="SqlParameterHelper.cs" />
     <Compile Include="HtmlTextDB.cs" />
     <Compile Include="LinksDB.cs" />
     <Compile Include="PortalDB.cs" />

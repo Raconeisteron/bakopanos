@@ -1,5 +1,4 @@
 using System.Data;
-using System.Data.SqlClient;
 
 namespace Portal.Modules.DAL.SqlServer
 {
@@ -7,7 +6,7 @@ namespace Portal.Modules.DAL.SqlServer
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// discussions within the Portal database.
     /// </summary>
-    internal class DiscussionsDb : DbHelper, IDiscussionsDb
+    internal class DiscussionsDb : SqlDbHelper, IDiscussionsDb
     {
         #region IDiscussionsDb Members
 
@@ -16,7 +15,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>
         public IDataReader GetTopLevelMessages(int moduleId)
         {
-            return GetItems("Portal_GetTopLevelMessages", moduleId);
+            return GetItems("Portal_GetTopLevelMessages", InputModuleId(moduleId));
         }
 
         /// <summary>
@@ -24,22 +23,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>
         public IDataReader GetThreadMessages(string parent)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetThreadMessages", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC            
-            myCommand.Parameters.Add(InputParent(parent));
-
-            // Execute the command
-            myConnection.Open();
-            IDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader 
-            return result;
+            return GetItems("Portal_GetThreadMessages", InputParent(parent));         
         }
 
         /// <summary>
@@ -62,7 +46,7 @@ namespace Portal.Modules.DAL.SqlServer
                 userName = "unknown";
             }
 
-            return CreateItem("Portal_AddMessage", InputTitle(title), InputBody(body), InputParentId(parentId),
+            return CreateItem("Portal_AddMessage", ReturnValueItemId(), InputTitle(title), InputBody(body), InputParentId(parentId),
                               InputUserName(userName), InputModuleId(moduleId));
         }
 

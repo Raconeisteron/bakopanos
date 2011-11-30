@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess.cs" />
+    <Compile Include="SecurityDataAccess.cs" />
     <Compile Include="IDaoFactory.cs" />
     <Compile Include="IRolesDB.cs" />
     <Compile Include="IUsersDB.cs" />

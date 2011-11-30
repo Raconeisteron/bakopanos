@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPortalDB.cs" />
-    <Compile Include="DataAccess.cs" />
+    <Compile Include="ModulesDataAccess.cs" />
     <Compile Include="IAnnouncementsDB.cs" />
     <Compile Include="IContactsDB.cs" />
     <Compile Include="IDaoFactory.cs" />

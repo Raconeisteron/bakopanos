@@ -6,7 +6,7 @@ namespace Portal.Modules.DAL.SqlServer
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// contacts within the Portal database.
     /// </summary>
-    internal class ContactsDb : DbHelper, IContactsDb
+    internal class ContactsDb : SqlDbHelper, IContactsDb
     {
         #region IContactsDb Members
 
@@ -17,7 +17,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>        
         public IDataReader GetContacts(int moduleId)
         {
-            return GetItems("Portal_GetContacts", moduleId);
+            return GetItems("Portal_GetContacts", InputModuleId(moduleId));
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>        
         public void DeleteContact(int itemId)
         {
-            DeleteItem("Portal_DeleteContact", itemId);
+            ExecuteNonQuery("Portal_DeleteContact", InputItemId(itemId));
         }
 
         /// <summary>
@@ -52,6 +52,7 @@ namespace Portal.Modules.DAL.SqlServer
             }
 
             return CreateItem("Portal_AddContact",
+                               ReturnValueItemId(),
                               InputModuleId(moduleId),
                               InputUserName(userName),
                               InputName(name),
@@ -73,8 +74,8 @@ namespace Portal.Modules.DAL.SqlServer
                 userName = "unknown";
             }
 
-            UpdateItem("Portal_UpdateContact",
-                       itemId,
+            ExecuteNonQuery("Portal_UpdateContact",
+                       InputItemId(itemId),
                        InputUserName(userName),
                        InputName(name),
                        InputRole(role),

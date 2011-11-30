@@ -1,5 +1,4 @@
 using System.Data;
-using System.Data.SqlClient;
 
 namespace Portal.Modules.DAL.SqlServer
 {
@@ -7,7 +6,7 @@ namespace Portal.Modules.DAL.SqlServer
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// documents within the Portal database.
     /// </summary>
-    internal class DocumentsDb : DbHelper, IDocumentsDb
+    internal class DocumentsDb : SqlDbHelper, IDocumentsDb
     {
         #region IDocumentsDb Members
 
@@ -18,7 +17,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>        
         public IDataReader GetDocuments(int moduleId)
         {
-            return GetItems("Portal_GetDocuments", moduleId);
+            return GetItems("Portal_GetDocuments", InputModuleId(moduleId));
         }
 
         /// <summary>
@@ -45,7 +44,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>        
         public void DeleteDocument(int itemId)
         {
-            DeleteItem("Portal_DeleteDocument", itemId);
+            ExecuteNonQuery("Portal_DeleteDocument", InputItemId(itemId));
         }
 
         /// <summary>
@@ -60,45 +59,15 @@ namespace Portal.Modules.DAL.SqlServer
                 userName = "unknown";
             }
 
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_UpdateDocument", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputItemId(itemId));
-            myCommand.Parameters.Add(InputModuleId(moduleId));
-            myCommand.Parameters.Add(InputUserName(userName));
-
-            var parameterName = new SqlParameter("@FileFriendlyName", SqlDbType.NVarChar, 150);
-            parameterName.Value = name;
-            myCommand.Parameters.Add(parameterName);
-
-            var parameterFileUrl = new SqlParameter("@FileNameUrl", SqlDbType.NVarChar, 250);
-            parameterFileUrl.Value = url;
-            myCommand.Parameters.Add(parameterFileUrl);
-
-            var parameterCategory = new SqlParameter("@Category", SqlDbType.NVarChar, 50);
-            parameterCategory.Value = category;
-            myCommand.Parameters.Add(parameterCategory);
-
-            var parameterContent = new SqlParameter("@Content", SqlDbType.Image);
-            parameterContent.Value = content;
-            myCommand.Parameters.Add(parameterContent);
-
-            var parameterContentType = new SqlParameter("@ContentType", SqlDbType.NVarChar, 50);
-            parameterContentType.Value = contentType;
-            myCommand.Parameters.Add(parameterContentType);
-
-            var parameterContentSize = new SqlParameter("@ContentSize", SqlDbType.Int, 4);
-            parameterContentSize.Value = size;
-            myCommand.Parameters.Add(parameterContentSize);
-
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            ExecuteNonQuery("Portal_UpdateDocument", InputItemId(itemId), 
+                InputModuleId(moduleId),
+                       InputUserName(userName),
+                       InputFileFriendlyName(name),
+                       InputFileNameUrl(url),
+                       InputCategory(category),
+                       InputContent(content),
+                       InputContentType(contentType),
+                       InputContentSize(size));
         }
 
         #endregion

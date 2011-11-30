@@ -1,5 +1,4 @@
 using System.Data;
-using System.Data.SqlClient;
 
 namespace Portal.Security.DAL.SqlServer
 {
@@ -7,7 +6,7 @@ namespace Portal.Security.DAL.SqlServer
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// Users, Roles and security settings values within the Portal database.
     /// </summary>
-    internal class RolesDb : DbHelper, IRolesDb
+    internal class RolesDb : SqlDbHelper, IRolesDb
     {
         #region IRolesDb Members
 
@@ -17,22 +16,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>        
         public IDataReader GetPortalRoles(int portalId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetPortalRoles", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputPortalId(portalId));
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            IDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader
-            return dr;
+            return GetItems("Portal_GetPortalRoles", InputPortalId(portalId));            
         }
 
         /// <summary>
@@ -41,29 +25,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>
         public int AddRole(int portalId, string roleName)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_AddRole", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputPortalId(portalId));
-
-            var parameterRoleName = new SqlParameter("@RoleName", SqlDbType.NVarChar, 50);
-            parameterRoleName.Value = roleName;
-            myCommand.Parameters.Add(parameterRoleName);
-
-            SqlParameter parameterRoleId = myCommand.Parameters.Add(ReturnValueRoleId());
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
-
-            // return the role id 
-            return (int) parameterRoleId.Value;
+            return CreateItem("Portal_AddRole", ReturnValueRoleId(), InputRoleName(roleName));            
         }
 
         /// <summary>
@@ -71,20 +33,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>
         public void DeleteRole(int roleId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_DeleteRole", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC            
-            myCommand.Parameters.Add(InputRoleId(roleId));
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            ExecuteNonQuery("Portal_DeleteRole",InputRoleId(roleId));            
         }
 
         /// <summary>
@@ -92,24 +41,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>        
         public void UpdateRole(int roleId, string roleName)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_UpdateRole", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputRoleId(roleId));
-
-            var parameterRoleName = new SqlParameter("@RoleName", SqlDbType.NVarChar, 50);
-            parameterRoleName.Value = roleName;
-            myCommand.Parameters.Add(parameterRoleName);
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            ExecuteNonQuery("Portal_UpdateRole", InputRoleId(roleId), InputRoleName(roleName));
         }
 
 
@@ -123,21 +55,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>        
         public IDataReader GetRoleMembers(int roleId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetRoleMembership", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            myCommand.Parameters.Add(InputRoleId(roleId));
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            IDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader
-            return dr;
+            return GetItems("Portal_GetRoleMembership", InputRoleId(roleId));
         }
 
         /// <summary>
@@ -145,21 +63,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>
         public void AddUserRole(int roleId, int userId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_AddUserRole", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputRoleId(roleId));
-            myCommand.Parameters.Add(InputUserId(userId));
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            ExecuteNonQuery("Portal_AddUserRole", InputRoleId(roleId), InputUserId(userId));            
         }
 
         /// <summary>
@@ -167,21 +71,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>
         public void DeleteUserRole(int roleId, int userId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand("Portal_DeleteUserRole", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.Parameters.Add(InputRoleId(roleId));
-            myCommand.Parameters.Add(InputUserId(userId));
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            ExecuteNonQuery("Portal_DeleteUserRole",InputRoleId(roleId),InputUserId(userId));
         }
 
         #endregion
