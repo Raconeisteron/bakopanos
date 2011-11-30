@@ -1,4 +1,4 @@
-namespace Portal.Contracts
+namespace Portal.Modules.Contracts
 {
     public interface IContactService
     {

@@ -1,16 +1,16 @@
 ﻿using System;
 
-namespace Portal.Contracts
+namespace Portal.Modules.Contracts
 {
     public class PortalAnnouncement
     {
-        public int ItemId;
-        public int ModuleId;
-        public string CreatedByUser;        
-        public string Title;
-        public string MoreLink;
-        public string MobileMoreLink;
-        public DateTime ExpireDate;
+        public string CreatedByUser;
         public string Description;
+        public DateTime ExpireDate;
+        public int ItemId;
+        public string MobileMoreLink;
+        public int ModuleId;
+        public string MoreLink;
+        public string Title;
     }
 }

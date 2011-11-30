@@ -50,7 +50,7 @@ namespace Portal.Modules.DAL.SqlServer
                 userName = "unknown";
             }
 
-            return CreateItem("Portal_AddLink", ReturnValueItemId(), InputModuleId(moduleId),
+            return CreateItem("Portal_AddLink", OutputItemId(), InputModuleId(moduleId),
                               InputUserName(userName),
                               InputTitle(title),
                               InputDescription(description),
@@ -72,12 +72,12 @@ namespace Portal.Modules.DAL.SqlServer
             }
 
             ExecuteNonQuery("Portal_UpdateLink", InputItemId(itemId),
-                       InputUserName(userName),
-                       InputTitle(title),
-                       InputDescription(description),
-                       InputUrl(url),
-                       InputMobileUrl(mobileUrl),
-                       InputViewOrder(viewOrder));
+                            InputUserName(userName),
+                            InputTitle(title),
+                            InputDescription(description),
+                            InputUrl(url),
+                            InputMobileUrl(mobileUrl),
+                            InputViewOrder(viewOrder));
         }
 
         #endregion

@@ -1,6 +1,6 @@
-using Portal.Contracts;
+using Portal.Modules.Contracts;
 
-namespace Portal.Services
+namespace Portal.Modules.Services
 {
     /// <remarks>
     /// GoF Design Patterns: Factory, Singleton, Proxy.

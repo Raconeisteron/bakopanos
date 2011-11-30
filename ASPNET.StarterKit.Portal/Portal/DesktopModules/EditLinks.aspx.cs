@@ -1,9 +1,9 @@
 using System;
 using System.Data;
 using System.Web.UI;
-using Portal.Contracts;
+using Portal.Modules.Contracts;
 using Portal.Modules.DAL;
-using Portal.Services;
+using Portal.Modules.Services;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -107,7 +107,7 @@ namespace ASPNET.StarterKit.Portal
                                };
 
                 links.CreateOrUpdate(link);
-                
+
                 // Redirect back to the portal home page
                 Response.Redirect((string) ViewState["UrlReferrer"]);
             }

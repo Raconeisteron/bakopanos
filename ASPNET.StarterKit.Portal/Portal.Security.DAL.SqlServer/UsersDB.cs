@@ -30,7 +30,8 @@ namespace Portal.Security.DAL.SqlServer
             // Execute the command in a try/catch to catch duplicate username errors);
             try
             {
-                retValue = CreateItem("Portal_AddUser", ReturnValueUserId(), InputName(fullName), InputEmail(email), InputPassword(password));
+                retValue = CreateItem("Portal_AddUser", ReturnValueUserId(), InputName(fullName), InputEmail(email),
+                                      InputPassword(password));
             }
             catch
             {
@@ -59,7 +60,7 @@ namespace Portal.Security.DAL.SqlServer
 
         public IDataReader GetRolesByUser(string email)
         {
-            return GetItems("Portal_GetRolesByUser", InputEmail(email));         
+            return GetItems("Portal_GetRolesByUser", InputEmail(email));
         }
 
         /// <summary>
@@ -135,7 +136,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>        
         public IDataReader GetUsers()
         {
-            return GetItems("Portal_GetUsers");            
+            return GetItems("Portal_GetUsers");
         }
 
         #endregion

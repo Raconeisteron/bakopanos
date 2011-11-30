@@ -1,17 +1,17 @@
 using System;
 
-namespace Portal.Contracts
+namespace Portal.Modules.Contracts
 {
     public class PortalContact
     {
-        public int ItemId;
-        public int ModuleId;
-        public string CreatedByUser;
-        public DateTime CreatedDate;
-        public string Name;
-        public string Role;
-        public string Email;
         public string Contact1;
         public string Contact2;
+        public string CreatedByUser;
+        public DateTime CreatedDate;
+        public string Email;
+        public int ItemId;
+        public int ModuleId;
+        public string Name;
+        public string Role;
     }
 }

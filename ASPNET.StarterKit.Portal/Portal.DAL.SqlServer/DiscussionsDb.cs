@@ -23,7 +23,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>
         public IDataReader GetThreadMessages(string parent)
         {
-            return GetItems("Portal_GetThreadMessages", InputParent(parent));         
+            return GetItems("Portal_GetThreadMessages", InputParent(parent));
         }
 
         /// <summary>
@@ -46,7 +46,8 @@ namespace Portal.Modules.DAL.SqlServer
                 userName = "unknown";
             }
 
-            return CreateItem("Portal_AddMessage", ReturnValueItemId(), InputTitle(title), InputBody(body), InputParentId(parentId),
+            return CreateItem("Portal_AddMessage", OutputItemId(), InputTitle(title), InputBody(body),
+                              InputParentId(parentId),
                               InputUserName(userName), InputModuleId(moduleId));
         }
 

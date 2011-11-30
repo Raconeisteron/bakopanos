@@ -52,7 +52,7 @@ namespace Portal.Modules.DAL.SqlServer
             }
 
             // Add Parameters to SPROC
-            return CreateItem("Portal_AddAnnouncement",ReturnValueItemId(), InputModuleId(moduleId),
+            return CreateItem("Portal_AddAnnouncement", OutputItemId(), InputModuleId(moduleId),
                               InputUserName(userName),
                               InputTitle(title),
                               InputMoreLink(moreLink),
@@ -74,12 +74,12 @@ namespace Portal.Modules.DAL.SqlServer
             }
 
             ExecuteNonQuery("Portal_UpdateAnnouncement", InputItemId(itemId),
-                       InputUserName(userName),
-                       InputTitle(title),
-                       InputMoreLink(moreLink),
-                       InputMobileMoreLink(mobileMoreLink),
-                       InputExpireDate(expireDate),
-                       InputDescription(description));
+                            InputUserName(userName),
+                            InputTitle(title),
+                            InputMoreLink(moreLink),
+                            InputMobileMoreLink(mobileMoreLink),
+                            InputExpireDate(expireDate),
+                            InputDescription(description));
         }
 
         #endregion

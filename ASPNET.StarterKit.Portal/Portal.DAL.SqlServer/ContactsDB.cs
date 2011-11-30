@@ -52,7 +52,7 @@ namespace Portal.Modules.DAL.SqlServer
             }
 
             return CreateItem("Portal_AddContact",
-                               ReturnValueItemId(),
+                              OutputItemId(),
                               InputModuleId(moduleId),
                               InputUserName(userName),
                               InputName(name),
@@ -75,13 +75,13 @@ namespace Portal.Modules.DAL.SqlServer
             }
 
             ExecuteNonQuery("Portal_UpdateContact",
-                       InputItemId(itemId),
-                       InputUserName(userName),
-                       InputName(name),
-                       InputRole(role),
-                       InputEmail(email),
-                       InputContact1(contact1),
-                       InputContact2(contact2));
+                            InputItemId(itemId),
+                            InputUserName(userName),
+                            InputName(name),
+                            InputRole(role),
+                            InputEmail(email),
+                            InputContact1(contact1),
+                            InputContact2(contact2));
         }
 
         #endregion

@@ -52,7 +52,7 @@ namespace Portal.Modules.DAL.SqlServer
                 userName = "unknown";
             }
 
-            return CreateItem("Portal_AddEvent", ReturnValueItemId(), InputModuleId(moduleId),
+            return CreateItem("Portal_AddEvent", OutputItemId(), InputModuleId(moduleId),
                               InputUserName(userName),
                               InputTitle(title),
                               InputWhereWhen(wherewhen),
@@ -72,13 +72,13 @@ namespace Portal.Modules.DAL.SqlServer
                 userName = "unknown";
             }
 
-            ExecuteNonQuery("Portal_UpdateEvent", 
-                InputItemId(itemId),
-                       InputUserName(userName),
-                       InputTitle(title),
-                       InputWhereWhen(wherewhen),
-                       InputExpireDate(expireDate),
-                       InputDescription(description));
+            ExecuteNonQuery("Portal_UpdateEvent",
+                            InputItemId(itemId),
+                            InputUserName(userName),
+                            InputTitle(title),
+                            InputWhereWhen(wherewhen),
+                            InputExpireDate(expireDate),
+                            InputDescription(description));
         }
 
         #endregion

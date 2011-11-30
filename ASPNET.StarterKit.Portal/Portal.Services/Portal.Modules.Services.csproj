@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2343B0ED-E37C-4401-BA8A-96880AF036C9}</ProjectGuid>
+    <ProjectGuid>{20FD75EF-D541-42BF-ACC8-FD22F200FF57}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Portal.Contracts</RootNamespace>
-    <AssemblyName>Portal.Contracts</AssemblyName>
+    <RootNamespace>Portal.Modules.Services</RootNamespace>
+    <AssemblyName>Portal.Modules.Services</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,13 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAnnouncementService.cs" />
-    <Compile Include="IContactService.cs" />
-    <Compile Include="ILinkService.cs" />
-    <Compile Include="PortalAnnouncement.cs" />
-    <Compile Include="PortalContact.cs" />
-    <Compile Include="PortalLink.cs" />
+    <Compile Include="AnnouncementService.cs" />
+    <Compile Include="ContactService.cs" />
+    <Compile Include="IServiceFactory.cs" />
+    <Compile Include="LinkService.cs" />
+    <Compile Include="ServiceAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Portal.DAL\Portal.Modules.DAL.csproj">
+      <Project>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</Project>
+      <Name>Portal.Modules.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Portal.DTO\Portal.Modules.Contracts.csproj">
+      <Project>{2343B0ED-E37C-4401-BA8A-96880AF036C9}</Project>
+      <Name>Portal.Modules.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -59,15 +59,15 @@ namespace Portal.Modules.DAL.SqlServer
                 userName = "unknown";
             }
 
-            ExecuteNonQuery("Portal_UpdateDocument", InputItemId(itemId), 
-                InputModuleId(moduleId),
-                       InputUserName(userName),
-                       InputFileFriendlyName(name),
-                       InputFileNameUrl(url),
-                       InputCategory(category),
-                       InputContent(content),
-                       InputContentType(contentType),
-                       InputContentSize(size));
+            ExecuteNonQuery("Portal_UpdateDocument", InputItemId(itemId),
+                            InputModuleId(moduleId),
+                            InputUserName(userName),
+                            InputFileFriendlyName(name),
+                            InputFileNameUrl(url),
+                            InputCategory(category),
+                            InputContent(content),
+                            InputContentType(contentType),
+                            InputContentSize(size));
         }
 
         #endregion

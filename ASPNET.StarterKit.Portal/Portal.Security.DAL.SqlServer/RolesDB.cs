@@ -16,7 +16,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>        
         public IDataReader GetPortalRoles(int portalId)
         {
-            return GetItems("Portal_GetPortalRoles", InputPortalId(portalId));            
+            return GetItems("Portal_GetPortalRoles", InputPortalId(portalId));
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>
         public int AddRole(int portalId, string roleName)
         {
-            return CreateItem("Portal_AddRole", ReturnValueRoleId(), InputRoleName(roleName));            
+            return CreateItem("Portal_AddRole", ReturnValueRoleId(), InputRoleName(roleName));
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>
         public void DeleteRole(int roleId)
         {
-            ExecuteNonQuery("Portal_DeleteRole",InputRoleId(roleId));            
+            ExecuteNonQuery("Portal_DeleteRole", InputRoleId(roleId));
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>
         public void AddUserRole(int roleId, int userId)
         {
-            ExecuteNonQuery("Portal_AddUserRole", InputRoleId(roleId), InputUserId(userId));            
+            ExecuteNonQuery("Portal_AddUserRole", InputRoleId(roleId), InputUserId(userId));
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Portal.Security.DAL.SqlServer
         /// </summary>
         public void DeleteUserRole(int roleId, int userId)
         {
-            ExecuteNonQuery("Portal_DeleteUserRole",InputRoleId(roleId),InputUserId(userId));
+            ExecuteNonQuery("Portal_DeleteUserRole", InputRoleId(roleId), InputUserId(userId));
         }
 
         #endregion

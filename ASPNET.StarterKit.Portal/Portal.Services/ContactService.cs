@@ -1,10 +1,12 @@
-using Portal.Contracts;
+using Portal.Modules.Contracts;
 using Portal.Modules.DAL;
 
-namespace Portal.Services
+namespace Portal.Modules.Services
 {
     internal class ContactService : IContactService
     {
+        #region IContactService Members
+
         public void CreateOrUpdate(PortalContact item)
         {
             IContactsDb contactsDb = ModulesDataAccess.ContactsDb;
@@ -20,5 +22,7 @@ namespace Portal.Services
                                          item.Contact1, item.Contact2);
             }
         }
+
+        #endregion
     }
 }

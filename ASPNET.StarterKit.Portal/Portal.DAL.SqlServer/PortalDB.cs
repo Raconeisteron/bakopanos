@@ -1,4 +1,3 @@
-
 namespace Portal.Modules.DAL.SqlServer
 {
     internal class PortalDb : SqlDbHelper, IPortalDb

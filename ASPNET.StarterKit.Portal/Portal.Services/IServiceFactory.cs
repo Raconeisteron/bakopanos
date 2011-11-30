@@ -1,6 +1,6 @@
-using Portal.Contracts;
+using Portal.Modules.Contracts;
 
-namespace Portal.Services
+namespace Portal.Modules.Services
 {
     /// <remarks>
     /// GoF Design Pattern: Factory.
@@ -10,6 +10,5 @@ namespace Portal.Services
         IAnnouncementService AnnouncementService { get; }
         ILinkService LinkService { get; }
         IContactService ContactService { get; }
-        
     }
 }

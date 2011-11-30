@@ -25,10 +25,10 @@ namespace Portal.Modules.DAL.SqlServer
         /// </summary>        
         public void UpdateHtmlText(int moduleId, string desktopHtml, string mobileSummary, string mobileDetails)
         {
-            ExecuteNonQuery("Portal_UpdateHtmlText", ReturnValueItemId(), InputModuleId(moduleId),
-                       InputDesktopHtml(desktopHtml),
-                       InputMobileSummary(mobileSummary),
-                       InputMobileDetails(mobileDetails));
+            ExecuteNonQuery("Portal_UpdateHtmlText", OutputItemId(), InputModuleId(moduleId),
+                            InputDesktopHtml(desktopHtml),
+                            InputMobileSummary(mobileSummary),
+                            InputMobileDetails(mobileDetails));
         }
 
         #endregion

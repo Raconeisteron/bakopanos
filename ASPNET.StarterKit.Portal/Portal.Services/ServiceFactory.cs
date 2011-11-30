@@ -1,12 +1,14 @@
-﻿using Portal.Contracts;
+﻿using Portal.Modules.Contracts;
 
-namespace Portal.Services
+namespace Portal.Modules.Services
 {
     /// <remarks>
     /// GoF Design Pattern: Factory.
     /// </remarks>
-    internal class ServiceFactory:IServiceFactory
+    internal class ServiceFactory : IServiceFactory
     {
+        #region IServiceFactory Members
+
         public IAnnouncementService AnnouncementService
         {
             get { return new AnnouncementService(); }
@@ -21,5 +23,7 @@ namespace Portal.Services
         {
             get { return new ContactService(); }
         }
+
+        #endregion
     }
 }

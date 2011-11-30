@@ -1,14 +1,12 @@
-﻿using Portal.Contracts;
+﻿using Portal.Modules.Contracts;
 using Portal.Modules.DAL;
 
-namespace Portal.Services
+namespace Portal.Modules.Services
 {
     internal class AnnouncementService : IAnnouncementService
     {
-        public AnnouncementService()
-        {
-            
-        }
+        #region IAnnouncementService Members
+
         public void CreateOrUpdate(PortalAnnouncement announcement)
         {
             // Create an instance of the Announcement DB component
@@ -24,9 +22,11 @@ namespace Portal.Services
             {
                 // Update the announcement within the Announcements table
                 announcementDb.UpdateAnnouncement(announcement.ItemId, announcement.CreatedByUser, announcement.Title,
-                                               announcement.ExpireDate, announcement.Description,
-                                               announcement.MoreLink, announcement.MobileMoreLink);
+                                                  announcement.ExpireDate, announcement.Description,
+                                                  announcement.MoreLink, announcement.MobileMoreLink);
             }
         }
+
+        #endregion
     }
 }

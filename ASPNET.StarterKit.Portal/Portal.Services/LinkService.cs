@@ -1,15 +1,12 @@
-using System;
-using Portal.Contracts;
+using Portal.Modules.Contracts;
 using Portal.Modules.DAL;
 
-namespace Portal.Services
+namespace Portal.Modules.Services
 {
     internal class LinkService : ILinkService
     {
-        public LinkService()
-        {
+        #region ILinkService Members
 
-        }
         public void CreateOrUpdate(PortalLink item)
         {
             ILinksDb linksDb = ModulesDataAccess.LinkDb;
@@ -24,5 +21,7 @@ namespace Portal.Services
                                    item.ViewOrder, item.Description);
             }
         }
+
+        #endregion
     }
 }
