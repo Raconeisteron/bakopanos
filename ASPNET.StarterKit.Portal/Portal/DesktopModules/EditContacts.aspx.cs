@@ -1,7 +1,9 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using Portal.Contracts;
 using Portal.Modules.DAL;
+using Portal.Services;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -96,20 +98,21 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the ContactsDB component
-                IContactsDb contacts = ModulesDataAccess.ContactsDb;
+                IContactService contacts = ServiceAccess.ContactService;
 
-                if (itemId == 0)
-                {
-                    // Add the contact within the contacts table
-                    contacts.AddContact(moduleId, itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
-                                        EmailField.Text, Contact1Field.Text, Contact2Field.Text);
-                }
-                else
-                {
-                    // Update the contact within the contacts table
-                    contacts.UpdateContact(moduleId, itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
-                                           EmailField.Text, Contact1Field.Text, Contact2Field.Text);
-                }
+                var contact = new PortalContact
+                                  {
+                                      ModuleId = moduleId,
+                                      ItemId = itemId,
+                                      CreatedByUser = Context.User.Identity.Name,
+                                      Name = NameField.Text,
+                                      Role = RoleField.Text,
+                                      Email = EmailField.Text,
+                                      Contact1 = Contact1Field.Text,
+                                      Contact2 = Contact2Field.Text
+                                  };
+
+                contacts.CreateOrUpdate(contact);
 
                 // Redirect back to the portal home page
                 Response.Redirect((string) ViewState["UrlReferrer"]);

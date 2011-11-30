@@ -43,7 +43,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// The AddContact method adds a new contact to the Contacts
         /// database table, and returns the ItemId value as a result.
         /// </summary>        
-        public int AddContact(int moduleId, int itemId, string userName, string name, string role, string email,
+        public int AddContact(int moduleId, string userName, string name, string role, string email,
                               string contact1, string contact2)
         {
             if (userName.Length < 1)
@@ -66,7 +66,7 @@ namespace Portal.Modules.DAL.SqlServer
         /// The UpdateContact method updates the specified contact within
         /// the Contacts database table.
         /// </summary>        
-        public void UpdateContact(int moduleId, int itemId, string userName, string name, string role, string email,
+        public void UpdateContact(int itemId, string userName, string name, string role, string email,
                                   string contact1, string contact2)
         {
             if (userName.Length < 1)

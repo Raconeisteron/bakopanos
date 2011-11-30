@@ -9,6 +9,7 @@ namespace Portal.Services
     {
         IAnnouncementService AnnouncementService { get; }
         ILinkService LinkService { get; }
+        IContactService ContactService { get; }
         
     }
 }

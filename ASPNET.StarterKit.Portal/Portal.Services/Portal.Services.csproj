@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnnouncementService.cs" />
+    <Compile Include="ContactService.cs" />
     <Compile Include="IServiceFactory.cs" />
+    <Compile Include="LinkService.cs" />
     <Compile Include="ServiceAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceFactory.cs" />

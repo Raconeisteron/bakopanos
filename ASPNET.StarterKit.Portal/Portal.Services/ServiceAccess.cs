@@ -31,6 +31,10 @@ namespace Portal.Services
         {
             get { return Factory.LinkService; }
         }
-       
+
+        public static IContactService ContactService
+        {
+            get { return Factory.ContactService; }
+        }
     }
 }

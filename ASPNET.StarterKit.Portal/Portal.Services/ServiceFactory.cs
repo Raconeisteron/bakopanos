@@ -16,5 +16,10 @@ namespace Portal.Services
         {
             get { return new LinkService(); }
         }
+
+        public IContactService ContactService
+        {
+            get { return new ContactService(); }
+        }
     }
 }

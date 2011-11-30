@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAnnouncementService.cs" />
+    <Compile Include="IContactService.cs" />
     <Compile Include="ILinkService.cs" />
     <Compile Include="PortalAnnouncement.cs" />
+    <Compile Include="PortalContact.cs" />
     <Compile Include="PortalLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
