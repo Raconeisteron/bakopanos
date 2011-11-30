@@ -482,17 +482,17 @@
       <Project>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</Project>
       <Name>Portal.Modules.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Portal.DTO\Portal.Modules.Contracts.csproj">
+    <ProjectReference Include="..\Portal.Modules.Contracts\Portal.Modules.Contracts.csproj">
       <Project>{2343B0ED-E37C-4401-BA8A-96880AF036C9}</Project>
       <Name>Portal.Modules.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Portal.Modules.Services\Portal.Modules.Services.csproj">
+      <Project>{20FD75EF-D541-42BF-ACC8-FD22F200FF57}</Project>
+      <Name>Portal.Modules.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\Portal.Security.DAL\Portal.Security.DAL.csproj">
       <Project>{201E9CD6-51D1-4707-9A49-13E9D2973453}</Project>
       <Name>Portal.Security.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Portal.Services\Portal.Modules.Services.csproj">
-      <Project>{20FD75EF-D541-42BF-ACC8-FD22F200FF57}</Project>
-      <Name>Portal.Modules.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
