@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.ServiceModel;
 
 namespace Portal.Modules.Service.Contracts
@@ -7,5 +8,8 @@ namespace Portal.Modules.Service.Contracts
     {
         [OperationContract]
         void CreateOrUpdate(PortalLink item);
+
+        [OperationContract]
+        Collection<PortalLink> Read(int moduleId);
     }
 }

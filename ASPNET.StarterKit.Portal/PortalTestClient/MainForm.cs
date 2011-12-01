@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 using Portal.Modules.Service.Contracts;
 
@@ -59,6 +60,17 @@ namespace Portal
                                           Contact2 = "c2",
                                           Email = "a@a.com"
                                       });
+        }
+
+        private void buttonAnnouncements_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void buttonLinks_Click(object sender, EventArgs e)
+        {
+            var client = new LinkServiceClient();
+            bindingSource1.DataSource = client.Read(1);            
         }
         
         

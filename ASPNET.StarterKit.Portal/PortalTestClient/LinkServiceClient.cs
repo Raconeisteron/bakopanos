@@ -1,4 +1,6 @@
-﻿using System.ServiceModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ServiceModel;
 using Portal.Modules.Service.Contracts;
 
 namespace Portal
@@ -24,6 +26,11 @@ namespace Portal
         public void CreateOrUpdate(PortalLink item)
         {
             Channel.CreateOrUpdate(item);
+        }
+
+        public Collection<PortalLink> Read(int moduleId)
+        {
+            return Channel.Read(moduleId);
         }
     }
 }
