@@ -1,9 +1,11 @@
+using System;
+
 namespace Portal.Modules.Service.Contracts
 {
     public class PortalLink
     {
         public string CreatedByUser;
-        public string CreatedDate;
+        public DateTime CreatedDate;
         public string Description;
         public int ItemId;
         public string MobileUrl;

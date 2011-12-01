@@ -30,6 +30,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Testing", "0. Testing", "{8733DFA2-1BBA-4E92-B7C8-3B084316A3C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalTestClient", "PortalTestClient\PortalTestClient.csproj", "{EB3FF8E5-BF5C-45B3-8190-CE7386C87193}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B5DDF1C4-7178-4035-BCC1-C746076F979A} = {B5DDF1C4-7178-4035-BCC1-C746076F979A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
