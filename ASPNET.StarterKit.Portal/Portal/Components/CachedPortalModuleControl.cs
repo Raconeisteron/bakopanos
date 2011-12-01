@@ -2,7 +2,7 @@
 using System.IO;
 using System.Web.UI;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.Components
 {
     /// <summary>
     /// The CachedPortalModuleControl class is a custom server control that

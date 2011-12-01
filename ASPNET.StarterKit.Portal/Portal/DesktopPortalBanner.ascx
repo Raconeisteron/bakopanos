@@ -1,5 +1,6 @@
-<%@ Control CodeBehind="DesktopPortalBanner.ascx.cs" Language="c#" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.DesktopPortalBanner" %>
-<%@ Import Namespace="ASPNET.StarterKit.Portal" %>
+<%@ Control CodeBehind="DesktopPortalBanner.ascx.cs" Language="c#" AutoEventWireup="True" Inherits="Portal.DesktopPortalBanner" %>
+<%@ Import Namespace="Portal" %>
+<%@ Import Namespace="Portal.Components" %>
 <%--
 
    The DesktopPortalBanner User Control is responsible for displaying the standard Portal
@@ -15,7 +16,7 @@
 			<asp:label id="WelcomeMessage" forecolor="#eeeeee" runat="server" />
 			<a href="<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx" class="SiteLink">Portal Home</a>
 			<span class="Accent">
-                |</span>
+				|</span>
 			<a href="<%= Global.GetApplicationPath(Request) %>/Docs/Docs.htm" target="_blank" class="SiteLink">
 				Portal Documentation</a>
 			<%= LogoffLink %>

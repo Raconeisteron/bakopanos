@@ -1,9 +1,10 @@
 using System;
 using System.Web.Security;
 using System.Web.UI;
+using Portal.Components;
 using Portal.Security.Data;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.DesktopModules
 {
     public partial class Signin : PortalModuleControl
     {

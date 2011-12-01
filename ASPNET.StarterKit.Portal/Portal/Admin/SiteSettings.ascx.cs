@@ -1,6 +1,7 @@
 using System;
+using Portal.Components;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.Admin
 {
     public partial class SiteSettings : PortalModuleControl
     {

@@ -10,7 +10,7 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASPNET.StarterKit.Portal</RootNamespace>
+    <RootNamespace>Portal</RootNamespace>
     <AssemblyName>Portal</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
@@ -478,15 +478,15 @@
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Portal.DAL\Portal.Modules.Data.csproj">
+    <ProjectReference Include="..\Portal.Modules.Data\Portal.Modules.Data.csproj">
       <Project>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</Project>
       <Name>Portal.Modules.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Portal.Modules.Contracts\Portal.Modules.Service.Contracts.csproj">
+    <ProjectReference Include="..\Portal.Modules.Service.Contracts\Portal.Modules.Service.Contracts.csproj">
       <Project>{2343B0ED-E37C-4401-BA8A-96880AF036C9}</Project>
       <Name>Portal.Modules.Service.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Portal.Modules.Services\Portal.Modules.Service.csproj">
+    <ProjectReference Include="..\Portal.Modules.Service\Portal.Modules.Service.csproj">
       <Project>{20FD75EF-D541-42BF-ACC8-FD22F200FF57}</Project>
       <Name>Portal.Modules.Service</Name>
     </ProjectReference>

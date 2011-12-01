@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ASPNET.StarterKit.Portal {
+namespace Portal {
     
     
     public partial class DesktopDefault {
@@ -19,7 +19,7 @@ namespace ASPNET.StarterKit.Portal {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ASPNET.StarterKit.Portal.DesktopPortalBanner Banner;
+        protected global::Portal.DesktopPortalBanner Banner;
         
         /// <summary>
         /// LeftPane control.

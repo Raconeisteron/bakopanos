@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ASPNET.StarterKit.Portal {
+namespace Portal.Admin {
     
     
     public partial class Logoff {

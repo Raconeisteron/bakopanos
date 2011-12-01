@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.Components
 {
     /// <summary>
     /// The PortalSecurity class encapsulates two helper methods that enable

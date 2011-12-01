@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ASPNET.StarterKit.Portal {
+namespace Portal.Admin {
     
     
     public partial class EditAccessDenied {
@@ -19,6 +19,6 @@ namespace ASPNET.StarterKit.Portal {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ASPNET.StarterKit.Portal.DesktopPortalBanner Banner1;
+        protected global::Portal.DesktopPortalBanner Banner1;
     }
 }

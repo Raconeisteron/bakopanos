@@ -1,6 +1,6 @@
-<%@ Page language="c#" CodeBehind="ManageUsers.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.ManageUsers" %>
+<%@ Page language="c#" CodeBehind="ManageUsers.aspx.cs" AutoEventWireup="True" Inherits="Portal.Admin.ManageUsers" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
-<%@ Import Namespace="ASPNET.StarterKit.Portal" %>
+<%@ Import Namespace="Portal" %>
 <HTML>
 	<HEAD>
 		<%--

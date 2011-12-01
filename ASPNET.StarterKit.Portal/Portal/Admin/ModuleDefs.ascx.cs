@@ -1,7 +1,8 @@
 using System;
 using System.Web.UI.WebControls;
+using Portal.Components;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.Admin
 {
     public partial class ModuleDefs : PortalModuleControl
     {

@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Caching;
 using Portal.Modules.Data;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.Components
 {
     //*********************************************************************
     //

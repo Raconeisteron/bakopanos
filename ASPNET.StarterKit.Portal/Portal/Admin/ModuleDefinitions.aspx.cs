@@ -1,7 +1,8 @@
 using System;
 using System.Web.UI;
+using Portal.Components;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.Admin
 {
     public partial class ModuleDefinitions : Page
     {

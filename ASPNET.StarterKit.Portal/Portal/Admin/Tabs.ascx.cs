@@ -3,8 +3,9 @@ using System.Collections;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Portal.Components;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.Admin
 {
     public partial class Tabs : PortalModuleControl
     {

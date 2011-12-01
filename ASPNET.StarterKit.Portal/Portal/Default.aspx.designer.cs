@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ASPNET.StarterKit.Portal {
+namespace Portal {
     
     
     public partial class CDefault {

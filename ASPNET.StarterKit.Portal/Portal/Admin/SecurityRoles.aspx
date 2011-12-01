@@ -1,6 +1,6 @@
-<%@ Page language="c#" CodeBehind="SecurityRoles.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.SecurityRoles" %>
+<%@ Page language="c#" CodeBehind="SecurityRoles.aspx.cs" AutoEventWireup="True" Inherits="Portal.Admin.SecurityRoles" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
-<%@ Import Namespace="ASPNET.StarterKit.Portal" %>
+<%@ Import Namespace="Portal" %>
 
 <%--
     The SecurityRoles.aspx page is used to create and edit security roles within

@@ -3,9 +3,10 @@ using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Portal.Components;
 using Portal.Security.Data;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.Admin
 {
     public partial class ModuleSettingsPage : Page
     {

@@ -1,6 +1,7 @@
 using System;
+using Portal.Components;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.DesktopModules
 {
     public partial class ImageModule : PortalModuleControl
     {

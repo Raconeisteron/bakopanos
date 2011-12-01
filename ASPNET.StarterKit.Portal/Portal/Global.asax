@@ -1,1 +1,1 @@
-<%@ Application Codebehind="Global.asax.cs" Inherits="ASPNET.StarterKit.Portal.Global" %>
+<%@ Application Codebehind="Global.asax.cs" Inherits="Portal.Global" %>

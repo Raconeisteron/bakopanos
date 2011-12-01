@@ -54,7 +54,7 @@
     <Compile Include="DaoFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Portal.DAL\Portal.Modules.Data.csproj">
+    <ProjectReference Include="..\Portal.Modules.Data\Portal.Modules.Data.csproj">
       <Project>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</Project>
       <Name>Portal.Modules.Data</Name>
     </ProjectReference>

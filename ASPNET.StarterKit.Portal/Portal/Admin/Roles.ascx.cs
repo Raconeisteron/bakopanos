@@ -1,8 +1,9 @@
 using System;
 using System.Web.UI.WebControls;
+using Portal.Components;
 using Portal.Security.Data;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.Admin
 {
     public partial class Roles : PortalModuleControl
     {

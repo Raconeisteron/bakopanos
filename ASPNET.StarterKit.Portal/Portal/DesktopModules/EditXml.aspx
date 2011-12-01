@@ -1,5 +1,5 @@
-<%@ Page language="c#" CodeBehind="EditXml.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.EditXml" %>
-<%@ Import Namespace="ASPNET.StarterKit.Portal" %>
+<%@ Page language="c#" CodeBehind="EditXml.aspx.cs" AutoEventWireup="True" Inherits="Portal.DesktopModules.EditXml" %>
+<%@ Import Namespace="Portal" %>
 <%@ Register TagPrefix="portal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 
 <HTML>

@@ -1,4 +1,4 @@
-<%@ Control language="c#" Inherits="ASPNET.StarterKit.Portal.Events" CodeBehind="Events.ascx.cs" AutoEventWireup="True" %>
+<%@ Control language="c#" Inherits="Portal.DesktopModules.Events" CodeBehind="Events.ascx.cs" AutoEventWireup="True" %>
 <%@ Register TagPrefix="Portal" TagName="Title" Src="~/DesktopModuleTitle.ascx"%>
 
 <portal:title EditText="Add New Event" EditUrl="~/DesktopModules/EditEvents.aspx" runat="server" id=Title1 />

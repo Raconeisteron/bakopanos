@@ -1,7 +1,7 @@
 using System;
 using System.Web.UI;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal
 {
     public partial class CDefault : Page
     {

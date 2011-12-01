@@ -1,8 +1,9 @@
 using System;
 using System.IO;
 using System.Web.UI;
+using Portal.Components;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.DesktopModules
 {
     public partial class XmlModule : PortalModuleControl
     {

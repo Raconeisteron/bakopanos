@@ -1,4 +1,4 @@
-<%@ Control language="c#" Inherits="ASPNET.StarterKit.Portal.QuickLinks" CodeBehind="QuickLinks.ascx.cs" AutoEventWireup="True" %>
+<%@ Control language="c#" Inherits="Portal.DesktopModules.QuickLinks" CodeBehind="QuickLinks.ascx.cs" AutoEventWireup="True" %>
 <hr noshade size="1pt" width="98%">
 <span class="SubSubHead">Quick Launch</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

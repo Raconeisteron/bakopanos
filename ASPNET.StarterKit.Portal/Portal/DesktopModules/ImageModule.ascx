@@ -1,4 +1,4 @@
-<%@ Control language="c#" Inherits="ASPNET.StarterKit.Portal.ImageModule" CodeBehind="ImageModule.ascx.cs" AutoEventWireup="True" %>
+<%@ Control language="c#" Inherits="Portal.DesktopModules.ImageModule" CodeBehind="ImageModule.ascx.cs" AutoEventWireup="True" %>
 <%@ Register TagPrefix="Portal" TagName="Title" Src="~/DesktopModuleTitle.ascx"%>
 
 <portal:title EditText="Edit" EditUrl="~/DesktopModules/EditImage.aspx" runat="server" id=Title1 />

@@ -5,9 +5,10 @@ using System.Security.Principal;
 using System.Threading;
 using System.Web;
 using System.Web.Security;
+using Portal.Components;
 using Portal.Security.Data;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal
 {
     public class Global : HttpApplication
     {

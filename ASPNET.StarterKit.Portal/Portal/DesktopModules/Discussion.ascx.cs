@@ -1,9 +1,10 @@
 using System;
 using System.Data;
 using System.Web.UI.WebControls;
+using Portal.Components;
 using Portal.Modules.Data;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.DesktopModules
 {
     public partial class Discussion : PortalModuleControl
     {

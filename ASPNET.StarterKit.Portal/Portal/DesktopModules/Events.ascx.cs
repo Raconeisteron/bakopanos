@@ -1,7 +1,8 @@
 using System;
+using Portal.Components;
 using Portal.Modules.Data;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.DesktopModules
 {
     public partial class Events : PortalModuleControl
     {

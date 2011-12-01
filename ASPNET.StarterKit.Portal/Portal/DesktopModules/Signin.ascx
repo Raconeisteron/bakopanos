@@ -1,4 +1,4 @@
-<%@ Control language="c#" Inherits="ASPNET.StarterKit.Portal.Signin" CodeBehind="Signin.ascx.cs" AutoEventWireup="True" %>
+<%@ Control language="c#" Inherits="Portal.DesktopModules.Signin" CodeBehind="Signin.ascx.cs" AutoEventWireup="True" %>
 <%--
 
    The SignIn User Control enables clients to authenticate themselves using 

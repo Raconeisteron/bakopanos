@@ -2,7 +2,7 @@ using System;
 using System.Web.Security;
 using System.Web.UI;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.Admin
 {
     public partial class Logoff : Page
     {

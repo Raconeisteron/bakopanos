@@ -3,7 +3,7 @@ using System.Data;
 using System.Web.UI;
 using Portal.Modules.Data;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.DesktopModules
 {
     public partial class ViewDocument : Page
     {

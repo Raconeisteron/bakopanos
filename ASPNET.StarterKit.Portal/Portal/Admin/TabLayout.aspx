@@ -1,6 +1,6 @@
-<%@ Page language="c#" CodeBehind="TabLayout.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.TabLayout" %>
+<%@ Page language="c#" CodeBehind="TabLayout.aspx.cs" AutoEventWireup="True" Inherits="Portal.Admin.TabLayout" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
-<%@ Import Namespace="ASPNET.StarterKit.Portal" %>
+<%@ Import Namespace="Portal" %>
 
 <HTML>
   <HEAD>

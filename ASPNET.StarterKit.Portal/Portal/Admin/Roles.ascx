@@ -1,4 +1,4 @@
-<%@ Control Inherits="ASPNET.StarterKit.Portal.Roles" CodeBehind="Roles.ascx.cs" Language="c#" AutoEventWireup="True" %>
+<%@ Control Inherits="Portal.Admin.Roles" CodeBehind="Roles.ascx.cs" Language="c#" AutoEventWireup="True" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Title" Src="~/DesktopModuleTitle.ascx"%>
 
 <ASPNETPortal:title runat="server" id="Title1" />

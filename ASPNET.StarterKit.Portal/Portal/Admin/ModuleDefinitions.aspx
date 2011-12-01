@@ -1,5 +1,5 @@
-<%@ Page language="c#" CodeBehind="ModuleDefinitions.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.ModuleDefinitions" %>
-<%@ Import Namespace="ASPNET.StarterKit.Portal" %>
+<%@ Page language="c#" CodeBehind="ModuleDefinitions.aspx.cs" AutoEventWireup="True" Inherits="Portal.Admin.ModuleDefinitions" %>
+<%@ Import Namespace="Portal" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 
 <%--

@@ -1,11 +1,12 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using Portal.Components;
 using Portal.Modules.Data;
 using Portal.Modules.Service;
 using Portal.Modules.Service.Contracts;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.DesktopModules
 {
     public partial class EditAnnouncements : Page
     {

@@ -1,6 +1,6 @@
-<%@ Control language="c#" Inherits="ASPNET.StarterKit.Portal.Discussion" CodeBehind="Discussion.ascx.cs" AutoEventWireup="True" %>
+<%@ Control language="c#" Inherits="Portal.DesktopModules.Discussion" CodeBehind="Discussion.ascx.cs" AutoEventWireup="True" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Title" Src="~/DesktopModuleTitle.ascx"%>
-<%@ Import Namespace="ASPNET.StarterKit.Portal" %>
+<%@ Import Namespace="Portal" %>
 <ASPNETPortal:title id="Title1" runat="server" EditTarget="_new" EditUrl="~/DesktopModules/DiscussDetails.aspx" EditText="Add New Thread"></ASPNETPortal:title>
 <%-- discussion list --%>
 <asp:datalist id="TopLevelList" runat="server" DataKeyField="Parent" ItemStyle-Cssclass="Normal" width="98%">
