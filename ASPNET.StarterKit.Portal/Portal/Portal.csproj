@@ -34,6 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -151,6 +154,9 @@
     <Content Include="Images\spacer.gif" />
     <Content Include="Images\up.gif" />
     <Content Include="PortalCfg.xml" />
+    <Content Include="Services\AnnouncementService.svc" />
+    <Content Include="Services\ContactService.svc" />
+    <Content Include="Services\LinkService.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -475,6 +481,7 @@
     <None Include="PortalCfg.xss">
       <DependentUpon>PortalCfg.xsd</DependentUpon>
     </None>
+    <Content Include="Services\Web.config" />
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
   <ItemGroup>
@@ -495,6 +502,7 @@
       <Name>Portal.Security.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

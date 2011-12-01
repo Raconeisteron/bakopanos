@@ -680,7 +680,7 @@ namespace Portal.Components
 
                 // Retrieve the location of the XML configuration file
                 string configFile = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["configFile"]);
-
+                
                 // Set the AutoIncrement property to true for easier adding of rows
                 siteSettings.Tab.TabIdColumn.AutoIncrement = true;
                 siteSettings.Module.ModuleIdColumn.AutoIncrement = true;
