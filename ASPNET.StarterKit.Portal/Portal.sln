@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.Data.SqlServ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.Service", "Portal.Modules.Service\Portal.Modules.Service.csproj", "{20FD75EF-D541-42BF-ACC8-FD22F200FF57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.ServiceContract", "Portal.Modules.Service.Contracts\Portal.Modules.ServiceContract.csproj", "{2343B0ED-E37C-4401-BA8A-96880AF036C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.ServiceContract", "Portal.Modules.ServiceContract\Portal.Modules.ServiceContract.csproj", "{2343B0ED-E37C-4401-BA8A-96880AF036C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Presentation", "Portal.Presentation\Portal.Presentation.csproj", "{726EAAC3-A645-482C-895A-96E2547B1A4F}"
 EndProject

@@ -98,7 +98,7 @@ namespace Portal.DesktopModules
             if (Page.IsValid)
             {
                 // Create an instance of the ContactsDB component
-                IContactService contacts = ServiceAccess.ContactService;
+                IContactService contacts = ModulesServiceAccess.ContactService;
 
                 var contact = new PortalContact
                                   {

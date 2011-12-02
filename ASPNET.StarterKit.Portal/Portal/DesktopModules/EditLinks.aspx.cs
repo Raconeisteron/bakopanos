@@ -92,7 +92,7 @@ namespace Portal.DesktopModules
             if (Page.IsValid)
             {
                 // Create an instance of the Link DB component
-                ILinkService links = ServiceAccess.LinkService;
+                ILinkService links = ModulesServiceAccess.LinkService;
 
                 var link = new PortalLink
                                {

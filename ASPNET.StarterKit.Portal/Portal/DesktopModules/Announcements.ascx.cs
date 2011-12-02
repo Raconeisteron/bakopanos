@@ -20,7 +20,7 @@ namespace Portal.DesktopModules
         {
             // Obtain announcement information from Announcements table
             // and bind to the datalist control
-            IAnnouncementService announcements = ServiceAccess.AnnouncementService;
+            IAnnouncementService announcements = ModulesServiceAccess.AnnouncementService;
 
             // DataBind Announcements to DataList Control
             myDataList.DataSource = announcements.GetAnnouncements(ModuleId);

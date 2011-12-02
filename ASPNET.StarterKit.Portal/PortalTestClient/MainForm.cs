@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 using Portal.Modules.Service;
 
@@ -13,7 +9,7 @@ namespace Portal
         public MainForm()
         {
             InitializeComponent();
-            dataGridView1.AutoGenerateColumns = true;  
+            dataGridView1.AutoGenerateColumns = true;
         }
 
         private void buttonCreateAnnouncement_Click(object sender, EventArgs e)
@@ -77,7 +73,5 @@ namespace Portal
             var client = new LinkServiceClient();
             dataGridView1.DataSource = client.GetLinks(1);
         }
-
     }
-
 }

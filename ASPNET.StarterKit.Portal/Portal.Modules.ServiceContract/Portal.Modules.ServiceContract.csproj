@@ -44,9 +44,18 @@
   <ItemGroup>
     <Compile Include="IAnnouncementService.cs" />
     <Compile Include="IContactService.cs" />
+    <Compile Include="IDiscussionService.cs" />
+    <Compile Include="IHtmlTextService.cs" />
+    <Compile Include="PortalDocument.cs" />
+    <Compile Include="IDocumentService.cs" />
+    <Compile Include="IEventService.cs" />
+    <Compile Include="PortalHtmlText.cs" />
     <Compile Include="ILinkService.cs" />
+    <Compile Include="IPortalService.cs" />
     <Compile Include="PortalAnnouncement.cs" />
     <Compile Include="PortalContact.cs" />
+    <Compile Include="PortalDiscussion.cs" />
+    <Compile Include="PortalEvent.cs" />
     <Compile Include="PortalLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

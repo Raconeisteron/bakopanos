@@ -11,11 +11,11 @@ namespace Portal.Modules.Service
     /// 
     /// This class is a Proxy as it 'stands in' for the actual Data Access Object Factory.
     /// </remarks>
-    public static class ServiceAccess
+    public static class ModulesServiceAccess
     {
         private static readonly IServiceFactory Factory;
 
-        static ServiceAccess()
+        static ModulesServiceAccess()
         {
             Factory = new ServiceFactory();
         }

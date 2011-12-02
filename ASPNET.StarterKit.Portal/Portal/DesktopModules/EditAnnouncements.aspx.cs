@@ -92,7 +92,7 @@ namespace Portal.DesktopModules
             // Only Update if the Entered Data is Valid
             if (Page.IsValid)
             {
-                IAnnouncementService announcementService = ServiceAccess.AnnouncementService;
+                IAnnouncementService announcementService = ModulesServiceAccess.AnnouncementService;
 
                 var announcement = new PortalAnnouncement
                                        {

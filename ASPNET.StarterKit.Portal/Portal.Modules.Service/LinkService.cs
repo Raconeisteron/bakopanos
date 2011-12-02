@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Data;
 using Portal.Modules.Data;
 
 namespace Portal.Modules.Service
@@ -14,19 +15,19 @@ namespace Portal.Modules.Service
             if (item.ItemId == 0)
             {
                 db.AddLink(item.ModuleId, item.CreatedByUser, item.Title, item.Url, item.MobileUrl,
-                                item.ViewOrder, item.Description);
+                           item.ViewOrder, item.Description);
             }
             else
             {
                 db.UpdateLink(item.ItemId, item.CreatedByUser, item.Title, item.Url, item.MobileUrl,
-                                   item.ViewOrder, item.Description);
+                              item.ViewOrder, item.Description);
             }
         }
 
         public Collection<PortalLink> GetLinks(int moduleId)
         {
             ILinksDb linksDb = ModulesDataAccess.LinkDb;
-            var reader = linksDb.GetLinks(moduleId);
+            IDataReader reader = linksDb.GetLinks(moduleId);
 
             var items = new Collection<PortalLink>();
 
@@ -36,7 +37,7 @@ namespace Portal.Modules.Service
                                {
                                    ItemId = Convert.ToInt32(reader["ItemId"]),
                                    ModuleId = moduleId,
-                                   Title = (string)reader["Title"],
+                                   Title = (string) reader["Title"],
                                    Description = (string) reader["Description"],
                                    Url = (string) reader["Url"],
                                    //MobileUrl = (string) reader["MobileUrl"],

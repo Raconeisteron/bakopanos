@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Data;
 using Portal.Modules.Data;
 
 namespace Portal.Modules.Service
@@ -33,10 +34,10 @@ namespace Portal.Modules.Service
         public Collection<PortalAnnouncement> GetAnnouncements(int moduleId)
         {
             IAnnouncementsDb db = ModulesDataAccess.AnnouncementsDb;
-            var reader = db.GetAnnouncements(moduleId);
+            IDataReader reader = db.GetAnnouncements(moduleId);
 
             var items = new Collection<PortalAnnouncement>();
-    
+
             while (reader.Read())
             {
                 var item = new PortalAnnouncement
@@ -58,6 +59,7 @@ namespace Portal.Modules.Service
 
             return items;
         }
+
         #endregion
     }
 }

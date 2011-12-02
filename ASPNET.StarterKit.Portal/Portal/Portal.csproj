@@ -489,7 +489,7 @@
       <Project>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</Project>
       <Name>Portal.Modules.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Portal.Modules.Service.Contracts\Portal.Modules.ServiceContract.csproj">
+    <ProjectReference Include="..\Portal.Modules.ServiceContract\Portal.Modules.ServiceContract.csproj">
       <Project>{2343B0ED-E37C-4401-BA8A-96880AF036C9}</Project>
       <Name>Portal.Modules.ServiceContract</Name>
     </ProjectReference>

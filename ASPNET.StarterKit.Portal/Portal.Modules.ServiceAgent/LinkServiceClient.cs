@@ -5,6 +5,8 @@ namespace Portal.Modules.Service
 {
     public class LinkServiceClient : ClientBase<ILinkService>, ILinkService
     {
+        #region ILinkService Members
+
         public void CreateOrUpdate(PortalLink item)
         {
             Channel.CreateOrUpdate(item);
@@ -14,6 +16,7 @@ namespace Portal.Modules.Service
         {
             return Channel.GetLinks(moduleId);
         }
-    }
 
+        #endregion
+    }
 }
