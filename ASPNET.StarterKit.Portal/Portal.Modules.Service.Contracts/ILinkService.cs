@@ -10,6 +10,6 @@ namespace Portal.Modules.Service.Contracts
         void CreateOrUpdate(PortalLink item);
 
         [OperationContract]
-        Collection<PortalLink> Read(int moduleId);
+        Collection<PortalLink> GetLinks(int moduleId);
     }
 }

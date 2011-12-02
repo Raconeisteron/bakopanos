@@ -1,6 +1,8 @@
 using System;
 using Portal.Components;
 using Portal.Modules.Data;
+using Portal.Modules.Service;
+using Portal.Modules.Service.Contracts;
 
 namespace Portal.DesktopModules
 {
@@ -33,7 +35,7 @@ namespace Portal.DesktopModules
 
             // Obtain links information from the Links table
             // and bind to the list control
-            ILinksDb links = ModulesDataAccess.LinkDb;
+            ILinkService links = ServiceAccess.LinkService;
 
             myDataList.DataSource = links.GetLinks(ModuleId);
             myDataList.DataBind();

@@ -1,6 +1,7 @@
 using System;
 using Portal.Components;
-using Portal.Modules.Data;
+using Portal.Modules.Service;
+using Portal.Modules.Service.Contracts;
 
 namespace Portal.DesktopModules
 {
@@ -20,7 +21,7 @@ namespace Portal.DesktopModules
         {
             // Obtain announcement information from Announcements table
             // and bind to the datalist control
-            IAnnouncementsDb announcements = ModulesDataAccess.AnnouncementsDb;
+            IAnnouncementService announcements = ServiceAccess.AnnouncementService;
 
             // DataBind Announcements to DataList Control
             myDataList.DataSource = announcements.GetAnnouncements(ModuleId);

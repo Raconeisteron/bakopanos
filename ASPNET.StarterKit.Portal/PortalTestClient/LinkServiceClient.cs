@@ -15,10 +15,20 @@ namespace Portal
 
     public class AnnouncementServiceClient : ClientBase<IAnnouncementService>, IAnnouncementService
     {
-        public void CreateOrUpdate(PortalAnnouncement item)
+        public PortalAnnouncement CreateOrUpdate(PortalAnnouncement item)
         {
-            Channel.CreateOrUpdate(item);
+            return Channel.CreateOrUpdate(item);
         }
+
+        public Collection<PortalAnnouncement> GetAnnouncements(int moduleId)
+        {
+            return Channel.GetAnnouncements(moduleId);
+        }
+    }
+
+    public class PortalLinks : Collection<PortalLink>
+    {
+
     }
 
     public class LinkServiceClient : ClientBase<ILinkService>, ILinkService
@@ -28,9 +38,9 @@ namespace Portal
             Channel.CreateOrUpdate(item);
         }
 
-        public Collection<PortalLink> Read(int moduleId)
+        public Collection<PortalLink> GetLinks(int moduleId)
         {
-            return Channel.Read(moduleId);
+            return Channel.GetLinks(moduleId);
         }
     }
 }

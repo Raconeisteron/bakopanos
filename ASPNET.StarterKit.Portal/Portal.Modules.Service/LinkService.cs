@@ -11,20 +11,20 @@ namespace Portal.Modules.Service
 
         public void CreateOrUpdate(PortalLink item)
         {
-            ILinksDb linksDb = ModulesDataAccess.LinkDb;
+            ILinksDb db = ModulesDataAccess.LinkDb;
             if (item.ItemId == 0)
             {
-                linksDb.AddLink(item.ModuleId, item.CreatedByUser, item.Title, item.Url, item.MobileUrl,
+                db.AddLink(item.ModuleId, item.CreatedByUser, item.Title, item.Url, item.MobileUrl,
                                 item.ViewOrder, item.Description);
             }
             else
             {
-                linksDb.UpdateLink(item.ItemId, item.CreatedByUser, item.Title, item.Url, item.MobileUrl,
+                db.UpdateLink(item.ItemId, item.CreatedByUser, item.Title, item.Url, item.MobileUrl,
                                    item.ViewOrder, item.Description);
             }
         }
 
-        public Collection<PortalLink> Read(int moduleId)
+        public Collection<PortalLink> GetLinks(int moduleId)
         {
             ILinksDb linksDb = ModulesDataAccess.LinkDb;
             var reader = linksDb.GetLinks(moduleId);

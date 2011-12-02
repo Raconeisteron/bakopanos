@@ -4,14 +4,14 @@ namespace Portal.Modules.Service.Contracts
 {
     public class PortalLink
     {
-        public string CreatedByUser;
-        public DateTime CreatedDate;
-        public string Description;
-        public int ItemId;
-        public string MobileUrl;
-        public int ModuleId;
-        public string Title;
-        public string Url;
-        public int ViewOrder;
+        public string CreatedByUser { get; set; }
+        public DateTime CreatedDate{ get; set; }
+        public string Description { get; set; }
+        public int ItemId { get; set; }
+        public string MobileUrl { get; set; }
+        public int ModuleId { get; set; }
+        public string Title { get; set; }
+        public string Url { get; set; }
+        public int ViewOrder { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.ServiceModel;
 
 namespace Portal.Modules.Service.Contracts
@@ -6,6 +7,9 @@ namespace Portal.Modules.Service.Contracts
     public interface IAnnouncementService
     {
         [OperationContract]
-        void CreateOrUpdate(PortalAnnouncement announcement);
+        PortalAnnouncement CreateOrUpdate(PortalAnnouncement announcement);
+
+        [OperationContract]
+        Collection<PortalAnnouncement> GetAnnouncements(int moduleId);
     }
 }

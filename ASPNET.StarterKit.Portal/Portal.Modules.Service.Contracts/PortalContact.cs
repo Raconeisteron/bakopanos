@@ -4,14 +4,14 @@ namespace Portal.Modules.Service.Contracts
 {
     public class PortalContact
     {
-        public string Contact1;
-        public string Contact2;
-        public string CreatedByUser;
-        public DateTime CreatedDate;
-        public string Email;
-        public int ItemId;
-        public int ModuleId;
-        public string Name;
-        public string Role;
+        public string Contact1 { get; set; }
+        public string Contact2 { get; set; }
+        public string CreatedByUser { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public string Email { get; set; }
+        public int ItemId { get; set; }
+        public int ModuleId { get; set; }
+        public string Name { get; set; }
+        public string Role { get; set; }
     }
 }

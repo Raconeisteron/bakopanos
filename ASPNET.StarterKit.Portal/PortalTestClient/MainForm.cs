@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 using Portal.Modules.Service.Contracts;
 
@@ -10,6 +13,7 @@ namespace Portal
         public MainForm()
         {
             InitializeComponent();
+            dataGridView1.AutoGenerateColumns = true;  
         }
 
         private void buttonCreateAnnouncement_Click(object sender, EventArgs e)
@@ -64,15 +68,16 @@ namespace Portal
 
         private void buttonAnnouncements_Click(object sender, EventArgs e)
         {
-            
+            var client = new AnnouncementServiceClient();
+            dataGridView1.DataSource = client.GetAnnouncements(8);
         }
 
         private void buttonLinks_Click(object sender, EventArgs e)
         {
             var client = new LinkServiceClient();
-            bindingSource1.DataSource = client.Read(1);            
+            dataGridView1.DataSource = client.GetLinks(1);
         }
-        
-        
+
     }
+
 }
