@@ -54,7 +54,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LinkServiceClient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -82,9 +81,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Portal.Modules.Service.Contracts\Portal.Modules.Service.Contracts.csproj">
+    <ProjectReference Include="..\Portal.Modules.Service.Contracts\Portal.Modules.ServiceContract.csproj">
       <Project>{2343B0ED-E37C-4401-BA8A-96880AF036C9}</Project>
-      <Name>Portal.Modules.Service.Contracts</Name>
+      <Name>Portal.Modules.ServiceContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Portal.Modules.ServiceAgent\Portal.Modules.ServiceAgent.csproj">
+      <Project>{20381CBB-525B-406A-8972-D85BD6D650AF}</Project>
+      <Name>Portal.Modules.ServiceAgent</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

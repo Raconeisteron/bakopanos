@@ -1,7 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
 using Portal.Modules.Data;
-using Portal.Modules.Service.Contracts;
 
 namespace Portal.Modules.Service
 {

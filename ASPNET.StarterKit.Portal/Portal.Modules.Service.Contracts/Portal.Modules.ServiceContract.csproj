@@ -8,8 +8,8 @@
     <ProjectGuid>{2343B0ED-E37C-4401-BA8A-96880AF036C9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Portal.Modules.Service.Contracts</RootNamespace>
-    <AssemblyName>Portal.Modules.Service.Contracts</AssemblyName>
+    <RootNamespace>Portal.Modules.Service</RootNamespace>
+    <AssemblyName>Portal.Modules.ServiceContract</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.Data.SqlServ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.Service", "Portal.Modules.Service\Portal.Modules.Service.csproj", "{20FD75EF-D541-42BF-ACC8-FD22F200FF57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.Service.Contracts", "Portal.Modules.Service.Contracts\Portal.Modules.Service.Contracts.csproj", "{2343B0ED-E37C-4401-BA8A-96880AF036C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.ServiceContract", "Portal.Modules.Service.Contracts\Portal.Modules.ServiceContract.csproj", "{2343B0ED-E37C-4401-BA8A-96880AF036C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Presentation", "Portal.Presentation\Portal.Presentation.csproj", "{726EAAC3-A645-482C-895A-96E2547B1A4F}"
 EndProject
@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalTestClient", "PortalT
 	ProjectSection(ProjectDependencies) = postProject
 		{B5DDF1C4-7178-4035-BCC1-C746076F979A} = {B5DDF1C4-7178-4035-BCC1-C746076F979A}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Modules.ServiceAgent", "Portal.Modules.ServiceAgent\Portal.Modules.ServiceAgent.csproj", "{20381CBB-525B-406A-8972-D85BD6D650AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -148,6 +150,16 @@ Global
 		{EB3FF8E5-BF5C-45B3-8190-CE7386C87193}.Release|Mixed Platforms.Build.0 = Release|x86
 		{EB3FF8E5-BF5C-45B3-8190-CE7386C87193}.Release|x86.ActiveCfg = Release|x86
 		{EB3FF8E5-BF5C-45B3-8190-CE7386C87193}.Release|x86.Build.0 = Release|x86
+		{20381CBB-525B-406A-8972-D85BD6D650AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20381CBB-525B-406A-8972-D85BD6D650AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20381CBB-525B-406A-8972-D85BD6D650AF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{20381CBB-525B-406A-8972-D85BD6D650AF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{20381CBB-525B-406A-8972-D85BD6D650AF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{20381CBB-525B-406A-8972-D85BD6D650AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20381CBB-525B-406A-8972-D85BD6D650AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20381CBB-525B-406A-8972-D85BD6D650AF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{20381CBB-525B-406A-8972-D85BD6D650AF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{20381CBB-525B-406A-8972-D85BD6D650AF}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -161,6 +173,7 @@ Global
 		{43D5AF16-7A22-4C0C-845B-404D85721CE4} = {D7A289AE-52DA-4F11-AD67-3D789967893C}
 		{2343B0ED-E37C-4401-BA8A-96880AF036C9} = {3F1C2108-D72E-4B15-8E09-00EA0053FBED}
 		{20FD75EF-D541-42BF-ACC8-FD22F200FF57} = {3F1C2108-D72E-4B15-8E09-00EA0053FBED}
+		{20381CBB-525B-406A-8972-D85BD6D650AF} = {3F1C2108-D72E-4B15-8E09-00EA0053FBED}
 		{67CBC824-A49E-4E9B-A947-360F3DFE65C3} = {38A82B5A-541F-4253-A369-49B54C3FD631}
 		{EB3FF8E5-BF5C-45B3-8190-CE7386C87193} = {8733DFA2-1BBA-4E92-B7C8-3B084316A3C5}
 	EndGlobalSection

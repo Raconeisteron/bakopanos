@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using Portal.Modules.Service.Contracts;
+using Portal.Modules.Service;
 
 namespace Portal
 {

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{20FD75EF-D541-42BF-ACC8-FD22F200FF57}</ProjectGuid>
+    <ProjectGuid>{20381CBB-525B-406A-8972-D85BD6D650AF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Portal.Modules.Service</RootNamespace>
-    <AssemblyName>Portal.Modules.Service</AssemblyName>
+    <AssemblyName>Portal.Modules.ServiceAgent</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,8 +32,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,19 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnnouncementService.cs" />
-    <Compile Include="ContactService.cs" />
-    <Compile Include="IServiceFactory.cs" />
-    <Compile Include="LinkService.cs" />
-    <Compile Include="ServiceAccess.cs" />
+    <Compile Include="AnnouncementServiceClient.cs" />
+    <Compile Include="ContactServiceClient.cs" />
+    <Compile Include="LinkServiceClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Portal.Modules.Data\Portal.Modules.Data.csproj">
-      <Project>{D12F1EEC-928D-4876-A8D6-15D2CADFB460}</Project>
-      <Name>Portal.Modules.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Portal.Modules.Service.Contracts\Portal.Modules.ServiceContract.csproj">
       <Project>{2343B0ED-E37C-4401-BA8A-96880AF036C9}</Project>
       <Name>Portal.Modules.ServiceContract</Name>

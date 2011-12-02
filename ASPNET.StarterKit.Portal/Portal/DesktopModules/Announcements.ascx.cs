@@ -1,7 +1,6 @@
 using System;
 using Portal.Components;
 using Portal.Modules.Service;
-using Portal.Modules.Service.Contracts;
 
 namespace Portal.DesktopModules
 {

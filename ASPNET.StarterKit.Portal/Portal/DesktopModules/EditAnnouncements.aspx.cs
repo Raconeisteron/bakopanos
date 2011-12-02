@@ -4,7 +4,6 @@ using System.Web.UI;
 using Portal.Components;
 using Portal.Modules.Data;
 using Portal.Modules.Service;
-using Portal.Modules.Service.Contracts;
 
 namespace Portal.DesktopModules
 {

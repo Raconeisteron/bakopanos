@@ -1,5 +1,3 @@
-using Portal.Modules.Service.Contracts;
-
 namespace Portal.Modules.Service
 {
     /// <remarks>

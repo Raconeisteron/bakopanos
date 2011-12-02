@@ -1,6 +1,6 @@
 using System.ServiceModel;
 
-namespace Portal.Modules.Service.Contracts
+namespace Portal.Modules.Service
 {
     [ServiceContract]
     public interface IContactService
