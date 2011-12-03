@@ -6,20 +6,15 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-    //*********************************************************************
-    //
-    // UsersDB Class
-    //
-    // The UsersDB class encapsulates all data logic necessary to add/login/query
-    // users within the Portal Users database.
-    //
-    // Important Note: The UsersDB class is only used when forms-based cookie
-    // authentication is enabled within the portal.  When windows based
-    // authentication is used instead, then either the Windows SAM or Active Directory
-    // is used to store and validate all username/password credentials.
-    //
-    //*********************************************************************
-
+    /// <summary>
+    /// The UsersDB class encapsulates all data logic necessary to add/login/query
+    /// users within the Portal Users database.
+    ///
+    /// Important Note: The UsersDB class is only used when forms-based cookie
+    /// authentication is enabled within the portal.  When windows based
+    /// authentication is used instead, then either the Windows SAM or Active Directory
+    /// is used to store and validate all username/password credentials.
+    /// </summary>
     public class UsersDB
     {
         //*********************************************************************
@@ -36,7 +31,8 @@ namespace ASPNET.StarterKit.Portal
         public int AddUser(String fullName, String email, String password)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_AddUser", myConnection);
 
             // Mark the Command as a SPROC
@@ -95,7 +91,8 @@ namespace ASPNET.StarterKit.Portal
         public void DeleteUser(int userId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_DeleteUser", myConnection);
 
             // Mark the Command as a SPROC
@@ -125,7 +122,8 @@ namespace ASPNET.StarterKit.Portal
         public void UpdateUser(int userId, String email, String password)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_UpdateUser", myConnection);
 
             // Mark the Command as a SPROC
@@ -163,7 +161,8 @@ namespace ASPNET.StarterKit.Portal
         public SqlDataReader GetRolesByUser(String email)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_GetRolesByUser", myConnection);
 
             // Mark the Command as a SPROC
@@ -193,7 +192,8 @@ namespace ASPNET.StarterKit.Portal
         public SqlDataReader GetSingleUser(String email)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_GetSingleUser", myConnection);
 
             // Mark the Command as a SPROC
@@ -226,7 +226,8 @@ namespace ASPNET.StarterKit.Portal
         public String[] GetRoles(String email)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_GetRolesByUser", myConnection);
 
             // Mark the Command as a SPROC
@@ -273,7 +274,8 @@ namespace ASPNET.StarterKit.Portal
         public String Login(String email, String password)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_UserLogin", myConnection);
 
             // Mark the Command as a SPROC

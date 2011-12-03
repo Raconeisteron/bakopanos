@@ -6,7 +6,7 @@
 <asp:datalist id="myDataList" cellpadding="4" width="100%" enableviewstate="false" runat="server">
 	<itemtemplate>
 		<span class="Normal">
-			<asp:hyperlink id="editLink" imageurl="<%# linkImage %>" navigateurl='<%# ChooseURL(Convert.ToString(DataBinder.Eval(Container.DataItem,"ItemID")), ModuleId.ToString(), (string)DataBinder.Eval(Container.DataItem,"Url")) %>' runat="server" />
+			<asp:hyperlink id="editLink" imageurl="<%# LinkImage %>" navigateurl='<%# ChooseURL(Convert.ToString(DataBinder.Eval(Container.DataItem,"ItemID")), ModuleId.ToString(), (string)DataBinder.Eval(Container.DataItem,"Url")) %>' runat="server" />
 			<a href='<%# DataBinder.Eval(Container.DataItem,"Url") %>'>
 				<%# DataBinder.Eval(Container.DataItem,"Title") %>
 			</a>

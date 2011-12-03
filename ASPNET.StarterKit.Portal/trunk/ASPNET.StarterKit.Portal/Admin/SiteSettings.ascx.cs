@@ -11,11 +11,6 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        public SiteSettings()
-        {
-            Init += Page_Init;
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             // Verify that the current user has access to access this page
@@ -54,24 +49,5 @@ namespace ASPNET.StarterKit.Portal
             // Redirect to this site to refresh
             Response.Redirect(Request.RawUrl);
         }
-
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        ///		Required method for Designer support - do not modify
-        ///		the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

@@ -6,40 +6,32 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class EditXml : Page
     {
-        private int moduleId;
+        private int _moduleId;
 
-        public EditXml()
-        {
-            Page.Init += Page_Init;
-        }
-
-        //****************************************************************
-        //
-        // The Page_Load event on this Page is used to obtain the ModuleId
-        // xml module to edit.
-        //
-        // It then uses the ASP.NET configuration system to populate the page's
-        // edit controls with the xml details.
-        //
-        //****************************************************************
-
+        /// <summary>
+        /// The Page_Load event on this Page is used to obtain the ModuleId
+        /// xml module to edit.
+        ///
+        /// It then uses the ASP.NET configuration system to populate the page's
+        /// edit controls with the xml details.
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             // Determine ModuleId of Announcements Portal Module
-            moduleId = Int32.Parse(Request.Params["Mid"]);
+            _moduleId = Int32.Parse(Request.Params["Mid"]);
 
             // Verify that the current user has access to edit this module
-            if (PortalSecurity.HasEditPermissions(moduleId) == false)
+            if (PortalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
 
             if (Page.IsPostBack == false)
             {
-                if (moduleId > 0)
+                if (_moduleId > 0)
                 {
                     // Get settings from the database
-                    Hashtable settings = Configuration.GetModuleSettings(moduleId);
+                    Hashtable settings = Configuration.GetModuleSettings(_moduleId);
 
                     XmlDataSrc.Text = (String) settings["xmlsrc"];
                     XslTransformSrc.Text = (String) settings["xslsrc"];
@@ -62,8 +54,8 @@ namespace ASPNET.StarterKit.Portal
             // Update settings in the database
             var config = new Configuration();
 
-            config.UpdateModuleSetting(moduleId, "xmlsrc", XmlDataSrc.Text);
-            config.UpdateModuleSetting(moduleId, "xslsrc", XslTransformSrc.Text);
+            config.UpdateModuleSetting(_moduleId, "xmlsrc", XmlDataSrc.Text);
+            config.UpdateModuleSetting(_moduleId, "xslsrc", XslTransformSrc.Text);
 
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
@@ -82,25 +74,5 @@ namespace ASPNET.StarterKit.Portal
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
-
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

@@ -5,15 +5,10 @@ using System.Web;
 
 namespace ASPNET.StarterKit.Portal
 {
-    //*********************************************************************
-    //
-    // PortalSecurity Class
-    //
-    // The PortalSecurity class encapsulates two helper methods that enable
-    // developers to easily check the role status of the current browser client.
-    //
-    //*********************************************************************
-
+    /// <summary>
+    /// The PortalSecurity class encapsulates two helper methods that enable
+    /// developers to easily check the role status of the current browser client.
+    /// </summary>
     public class PortalSecurity
     {
         //*********************************************************************

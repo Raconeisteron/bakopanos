@@ -10,11 +10,6 @@ namespace ASPNET.StarterKit.Portal
         public String EditText;
         public String EditUrl;
 
-        public DesktopModuleTitle()
-        {
-            Init += Page_Init;
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain PortalSettings from Current Context
@@ -36,24 +31,5 @@ namespace ASPNET.StarterKit.Portal
                 EditButton.Target = EditTarget;
             }
         }
-
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        ///		Required method for Designer support - do not modify
-        ///		the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

@@ -5,14 +5,10 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class ModuleDefinitions : Page
     {
-        private int defId = -1;
-        private int tabId;
-        private int tabIndex;
+        private int _defId = -1;
+        private int _tabId;
+        private int _tabIndex;
 
-        public ModuleDefinitions()
-        {
-            Page.Init += Page_Init;
-        }
 
         //*******************************************************
         //
@@ -32,22 +28,22 @@ namespace ASPNET.StarterKit.Portal
             // Calculate security defId
             if (Request.Params["defid"] != null)
             {
-                defId = Int32.Parse(Request.Params["defid"]);
+                _defId = Int32.Parse(Request.Params["defid"]);
             }
             if (Request.Params["tabid"] != null)
             {
-                tabId = Int32.Parse(Request.Params["tabid"]);
+                _tabId = Int32.Parse(Request.Params["tabid"]);
             }
             if (Request.Params["tabindex"] != null)
             {
-                tabIndex = Int32.Parse(Request.Params["tabindex"]);
+                _tabIndex = Int32.Parse(Request.Params["tabindex"]);
             }
 
 
             // If this is the first visit to the page, bind the definition data 
             if (Page.IsPostBack == false)
             {
-                if (defId == -1)
+                if (_defId == -1)
                 {
                     // new module definition
                     FriendlyName.Text = "New Definition";
@@ -58,7 +54,7 @@ namespace ASPNET.StarterKit.Portal
                 {
                     // Obtain the module definition to edit from the database
                     var config = new Configuration();
-                    SiteConfiguration.ModuleDefinitionRow modDefRow = config.GetSingleModuleDefinition(defId);
+                    SiteConfiguration.ModuleDefinitionRow modDefRow = config.GetSingleModuleDefinition(_defId);
 
                     // Read in information
                     FriendlyName.Text = modDefRow.FriendlyName;
@@ -82,7 +78,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 var config = new Configuration();
 
-                if (defId == -1)
+                if (_defId == -1)
                 {
                     // Obtain PortalSettings from Current Context
                     var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
@@ -94,11 +90,11 @@ namespace ASPNET.StarterKit.Portal
                 else
                 {
                     // update the module definition
-                    config.UpdateModuleDefinition(defId, FriendlyName.Text, DesktopSrc.Text, MobileSrc.Text);
+                    config.UpdateModuleDefinition(_defId, FriendlyName.Text, DesktopSrc.Text, MobileSrc.Text);
                 }
 
                 // Redirect back to the portal admin page
-                Response.Redirect("~/DesktopDefault.aspx?tabindex=" + tabIndex + "&tabid=" + tabId);
+                Response.Redirect("~/DesktopDefault.aspx?tabindex=" + _tabIndex + "&tabid=" + _tabId);
             }
         }
 
@@ -114,10 +110,10 @@ namespace ASPNET.StarterKit.Portal
         {
             // delete definition
             var config = new Configuration();
-            config.DeleteModuleDefinition(defId);
+            config.DeleteModuleDefinition(_defId);
 
             // Redirect back to the portal admin page
-            Response.Redirect("~/DesktopDefault.aspx?tabindex=" + tabIndex + "&tabid=" + tabId);
+            Response.Redirect("~/DesktopDefault.aspx?tabindex=" + _tabIndex + "&tabid=" + _tabId);
         }
 
         //****************************************************************
@@ -131,27 +127,7 @@ namespace ASPNET.StarterKit.Portal
         protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
-            Response.Redirect("~/DesktopDefault.aspx?tabindex=" + tabIndex + "&tabid=" + tabId);
+            Response.Redirect("~/DesktopDefault.aspx?tabindex=" + _tabIndex + "&tabid=" + _tabId);
         }
-
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

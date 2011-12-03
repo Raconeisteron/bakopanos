@@ -144,7 +144,7 @@
                                                             <table border="0" cellspacing="2" cellpadding="0">
                                                                 <tr valign="top">
                                                                     <td rowspan="2">
-                                                                        <asp:ListBox id="leftPane" DataSource="<%# leftList %>" DataTextField="ModuleTitle" DataValueField="ModuleId" width="110" rows="7" runat="server" />
+                                                                        <asp:ListBox id="leftPane" DataSource="<%# LeftList %>" DataTextField="ModuleTitle" DataValueField="ModuleId" width="110" rows="7" runat="server" />
                                                                     </td>
                                                                     <td valign="top" nowrap>
                                                                         <asp:ImageButton ImageUrl="~/images/up.gif" CommandName="up" CommandArgument="leftPane" AlternateText="Move selected module up in list" runat="server" id="LeftUpBtn" onclick="UpDown_Click" />
@@ -179,7 +179,7 @@
                                                             <table border="0" cellspacing="2" cellpadding="0">
                                                                 <tr valign="top">
                                                                     <td rowspan="2">
-                                                                        <asp:ListBox id="contentPane" DataSource="<%# contentList %>" DataTextField="ModuleTitle" DataValueField="ModuleId" width="170" rows="7" runat="server" />
+                                                                        <asp:ListBox id="contentPane" DataSource="<%# ContentList %>" DataTextField="ModuleTitle" DataValueField="ModuleId" width="170" rows="7" runat="server" />
                                                                     </td>
                                                                     <td valign="top" nowrap>
                                                                         <asp:ImageButton ImageUrl="~/images/up.gif" CommandName="up" CommandArgument="contentPane" AlternateText="Move selected module up in list" runat="server" id="ContentUpBtn" onclick="UpDown_Click" />
@@ -216,7 +216,7 @@
                                                             <table border="0" cellspacing="2" cellpadding="0">
                                                                 <tr valign="top">
                                                                     <td rowspan="2">
-                                                                        <asp:ListBox id="rightPane" DataSource="<%# rightList %>" DataTextField="ModuleTitle" DataValueField="ModuleId" width="110" rows="7" runat="server" />
+                                                                        <asp:ListBox id="rightPane" DataSource="<%# RightList %>" DataTextField="ModuleTitle" DataValueField="ModuleId" width="110" rows="7" runat="server" />
                                                                     </td>
                                                                     <td valign="top" nowrap>
                                                                         <asp:ImageButton ImageUrl="~/images/up.gif" CommandName="up" CommandArgument="rightPane" AlternateText="Move selected module up in list" runat="server" id="RightUpBtn" onclick="UpDown_Click" />

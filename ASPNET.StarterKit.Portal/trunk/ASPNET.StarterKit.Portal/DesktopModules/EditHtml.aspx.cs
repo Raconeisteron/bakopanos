@@ -6,12 +6,7 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class EditHtml : Page
     {
-        private int moduleId;
-
-        public EditHtml()
-        {
-            Page.Init += Page_Init;
-        }
+        private int _moduleId;
 
         //****************************************************************
         //
@@ -26,10 +21,10 @@ namespace ASPNET.StarterKit.Portal
         protected void Page_Load(object sender, EventArgs e)
         {
             // Determine ModuleId of Announcements Portal Module
-            moduleId = Int32.Parse(Request.Params["Mid"]);
+            _moduleId = Int32.Parse(Request.Params["Mid"]);
 
             // Verify that the current user has access to edit this module
-            if (PortalSecurity.HasEditPermissions(moduleId) == false)
+            if (PortalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -38,7 +33,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 // Obtain a single row of text information
                 var text = new HtmlTextDB();
-                SqlDataReader dr = text.GetHtmlText(moduleId);
+                SqlDataReader dr = text.GetHtmlText(_moduleId);
 
                 if (dr.Read())
                 {
@@ -73,7 +68,7 @@ namespace ASPNET.StarterKit.Portal
             var text = new HtmlTextDB();
 
             // Update the text within the HtmlText table
-            text.UpdateHtmlText(moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text),
+            text.UpdateHtmlText(_moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text),
                                 Server.HtmlEncode(MobileDetails.Text));
 
             // Redirect back to the portal home page
@@ -93,25 +88,5 @@ namespace ASPNET.StarterKit.Portal
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
-
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

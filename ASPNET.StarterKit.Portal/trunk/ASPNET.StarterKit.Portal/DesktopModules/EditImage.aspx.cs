@@ -6,12 +6,8 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class EditImage : Page
     {
-        private int moduleId;
+        private int _moduleId;
 
-        public EditImage()
-        {
-            Page.Init += Page_Init;
-        }
 
         //****************************************************************
         //
@@ -26,22 +22,20 @@ namespace ASPNET.StarterKit.Portal
         protected void Page_Load(object sender, EventArgs e)
         {
             // Determine ModuleId of Announcements Portal Module
-            moduleId = Int32.Parse(Request.Params["Mid"]);
+            _moduleId = Int32.Parse(Request.Params["Mid"]);
 
             // Verify that the current user has access to edit this module
-            if (PortalSecurity.HasEditPermissions(moduleId) == false)
+            if (PortalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
 
             if (Page.IsPostBack == false)
             {
-                if (moduleId > 0)
+                if (_moduleId > 0)
                 {
-                    Hashtable settings;
-
                     // Get settings from the database
-                    settings = Configuration.GetModuleSettings(moduleId);
+                    Hashtable settings = Configuration.GetModuleSettings(_moduleId);
 
                     Src.Text = (String) settings["src"];
                     Width.Text = (String) settings["width"];
@@ -67,9 +61,9 @@ namespace ASPNET.StarterKit.Portal
             // Update settings in the database
             var config = new Configuration();
 
-            config.UpdateModuleSetting(moduleId, "src", Src.Text);
-            config.UpdateModuleSetting(moduleId, "height", Height.Text);
-            config.UpdateModuleSetting(moduleId, "width", Width.Text);
+            config.UpdateModuleSetting(_moduleId, "src", Src.Text);
+            config.UpdateModuleSetting(_moduleId, "height", Height.Text);
+            config.UpdateModuleSetting(_moduleId, "width", Width.Text);
 
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
@@ -88,25 +82,5 @@ namespace ASPNET.StarterKit.Portal
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
-
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

@@ -5,13 +5,9 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class ModuleDefs : PortalModuleControl
     {
-        private int tabId;
-        private int tabIndex;
+        private int _tabId;
+        private int _tabIndex;
 
-        public ModuleDefs()
-        {
-            Init += Page_Init;
-        }
 
         //*******************************************************
         //
@@ -30,11 +26,11 @@ namespace ASPNET.StarterKit.Portal
 
             if (Request.Params["tabid"] != null)
             {
-                tabId = Int32.Parse(Request.Params["tabid"]);
+                _tabId = Int32.Parse(Request.Params["tabid"]);
             }
             if (Request.Params["tabindex"] != null)
             {
-                tabIndex = Int32.Parse(Request.Params["tabindex"]);
+                _tabIndex = Int32.Parse(Request.Params["tabindex"]);
             }
 
             // If this is the first visit to the page, bind the definition data to the datalist
@@ -54,7 +50,7 @@ namespace ASPNET.StarterKit.Portal
         protected void AddDef_Click(Object Sender, EventArgs e)
         {
             // redirect to edit page
-            Response.Redirect("~/Admin/ModuleDefinitions.aspx?defId=-1&tabindex=" + tabIndex + "&tabid=" + tabId);
+            Response.Redirect("~/Admin/ModuleDefinitions.aspx?defId=-1&tabindex=" + _tabIndex + "&tabid=" + _tabId);
         }
 
         //*******************************************************
@@ -70,8 +66,8 @@ namespace ASPNET.StarterKit.Portal
             var moduleDefId = (int) defsList.DataKeys[e.Item.ItemIndex];
 
             // redirect to edit page
-            Response.Redirect("~/Admin/ModuleDefinitions.aspx?defId=" + moduleDefId + "&tabindex=" + tabIndex +
-                              "&tabid=" + tabId);
+            Response.Redirect("~/Admin/ModuleDefinitions.aspx?defId=" + moduleDefId + "&tabindex=" + _tabIndex +
+                              "&tabid=" + _tabId);
         }
 
         //*******************************************************
@@ -95,23 +91,7 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
+            defsList.ItemCommand += DefsList_ItemCommand;
         }
-
-        #region Web Form Designer generated code
-
-        ///		Required method for Designer support - do not modify
-        ///		the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            this.defsList.ItemCommand +=
-                new System.Web.UI.WebControls.DataListCommandEventHandler(this.DefsList_ItemCommand);
-        }
-
-        #endregion
     }
 }

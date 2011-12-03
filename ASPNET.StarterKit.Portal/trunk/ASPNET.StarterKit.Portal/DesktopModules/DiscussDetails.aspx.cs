@@ -6,13 +6,8 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class DiscussDetails : Page
     {
-        private int itemId;
-        private int moduleId;
-
-        public DiscussDetails()
-        {
-            Page.Init += Page_Init;
-        }
+        private int _itemId;
+        private int _moduleId;
 
         //*******************************************************
         //
@@ -25,28 +20,28 @@ namespace ASPNET.StarterKit.Portal
         protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain moduleId and ItemId from QueryString
-            moduleId = Int32.Parse(Request.Params["Mid"]);
+            _moduleId = Int32.Parse(Request.Params["Mid"]);
 
             if (Request.Params["ItemId"] != null)
             {
-                itemId = Int32.Parse(Request.Params["ItemId"]);
+                _itemId = Int32.Parse(Request.Params["ItemId"]);
             }
             else
             {
-                itemId = 0;
+                _itemId = 0;
                 EditPanel.Visible = true;
                 ButtonPanel.Visible = false;
             }
 
             // Populate message contents if this is the first visit to the page
-            if (Page.IsPostBack == false && itemId != 0)
+            if (Page.IsPostBack == false && _itemId != 0)
             {
                 BindData();
             }
 
-            if (PortalSecurity.HasEditPermissions(moduleId) == false)
+            if (PortalSecurity.HasEditPermissions(_moduleId) == false)
             {
-                if (itemId == 0)
+                if (_itemId == 0)
                 {
                     Response.Redirect("~/Admin/EditAccessDenied.aspx");
                 }
@@ -65,7 +60,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        protected void ReplyBtn_Click(Object Sender, EventArgs e)
+        protected void ReplyBtn_Click(Object sender, EventArgs e)
         {
             EditPanel.Visible = true;
             ButtonPanel.Visible = false;
@@ -85,8 +80,8 @@ namespace ASPNET.StarterKit.Portal
             var discuss = new DiscussionDB();
 
             // Add new message (updating the "itemId" on the page)
-            itemId = discuss.AddMessage(moduleId, itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
-                                        Server.HtmlEncode(BodyField.Text));
+            _itemId = discuss.AddMessage(_moduleId, _itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
+                                         Server.HtmlEncode(BodyField.Text));
 
             // Update visibility of page elements
             EditPanel.Visible = false;
@@ -124,14 +119,14 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain the selected item from the Discussion table
             var discuss = new DiscussionDB();
-            SqlDataReader dr = discuss.GetSingleMessage(itemId);
+            SqlDataReader dr = discuss.GetSingleMessage(_itemId);
 
             // Load first row from database
             dr.Read();
 
             // Security check.  verify that itemid is within the module.
-            int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
-            if (dbModuleID != moduleId)
+            int dbModuleId = Convert.ToInt32(dr["ModuleID"]);
+            if (dbModuleId != _moduleId)
             {
                 dr.Close();
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
@@ -153,7 +148,7 @@ namespace ASPNET.StarterKit.Portal
             if (id1 != DBNull.Value)
             {
                 prevId = (int) id1;
-                prevItem.HRef = Request.Path + "?ItemId=" + prevId + "&mid=" + moduleId;
+                prevItem.HRef = Request.Path + "?ItemId=" + prevId + "&mid=" + _moduleId;
             }
 
             object id2 = dr["NextMessageID"];
@@ -161,7 +156,7 @@ namespace ASPNET.StarterKit.Portal
             if (id2 != DBNull.Value)
             {
                 nextId = (int) id2;
-                nextItem.HRef = Request.Path + "?ItemId=" + nextId + "&mid=" + moduleId;
+                nextItem.HRef = Request.Path + "?ItemId=" + nextId + "&mid=" + _moduleId;
             }
 
             // close the datareader
@@ -195,25 +190,5 @@ namespace ASPNET.StarterKit.Portal
 
             return title;
         }
-
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

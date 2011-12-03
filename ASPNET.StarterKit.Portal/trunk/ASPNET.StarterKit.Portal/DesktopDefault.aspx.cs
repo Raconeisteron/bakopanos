@@ -6,32 +6,17 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class DesktopDefault : Page
     {
-        public DesktopDefault()
-        {
-            Page.Init += Page_Init;
-        }
-
+        /// <summary>
+        /// The Page_Init event handler executes at the very beginning of each page
+        /// request (immediately before Page_Load).
+        ///
+        /// The Page_Init event handler below determines the tab index of the currently
+        /// requested portal view, and then calls the PopulatePortalSection utility
+        /// method to dynamically populate the left, center and right hand sections
+        /// of the portal tab.
+        /// </summary>
         protected void Page_Init(object sender, EventArgs e)
         {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-
-            //*********************************************************************
-            //
-            // Page_Init Event Handler
-            //
-            // The Page_Init event handler executes at the very beginning of each page
-            // request (immediately before Page_Load).
-            //
-            // The Page_Init event handler below determines the tab index of the currently
-            // requested portal view, and then calls the PopulatePortalSection utility
-            // method to dynamically populate the left, center and right hand sections
-            // of the portal tab.
-            //
-            //*********************************************************************
-
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
 
@@ -53,20 +38,20 @@ namespace ASPNET.StarterKit.Portal
             if (portalSettings.ActiveTab.Modules.Count > 0)
             {
                 // Loop through each entry in the configuration system for this tab
-                foreach (ModuleSettings _moduleSettings in portalSettings.ActiveTab.Modules)
+                foreach (ModuleSettings moduleSettings in portalSettings.ActiveTab.Modules)
                 {
-                    Control parent = Page.FindControl(_moduleSettings.PaneName);
+                    Control parent = Page.FindControl(moduleSettings.PaneName);
 
                     // If no caching is specified, create the user control instance and dynamically
                     // inject it into the page.  Otherwise, create a cached module instance that
                     // may or may not optionally inject the module into the tree
 
-                    if ((_moduleSettings.CacheTime) == 0)
+                    if ((moduleSettings.CacheTime) == 0)
                     {
-                        var portalModule = (PortalModuleControl) Page.LoadControl(_moduleSettings.DesktopSrc);
+                        var portalModule = (PortalModuleControl) Page.LoadControl(moduleSettings.DesktopSrc);
 
                         portalModule.PortalId = portalSettings.PortalId;
-                        portalModule.ModuleConfiguration = _moduleSettings;
+                        portalModule.ModuleConfiguration = moduleSettings;
 
                         parent.Controls.Add(portalModule);
                     }
@@ -75,7 +60,7 @@ namespace ASPNET.StarterKit.Portal
                         var portalModule = new CachedPortalModuleControl();
 
                         portalModule.PortalId = portalSettings.PortalId;
-                        portalModule.ModuleConfiguration = _moduleSettings;
+                        portalModule.ModuleConfiguration = moduleSettings;
 
                         parent.Controls.Add(portalModule);
                     }
@@ -86,17 +71,5 @@ namespace ASPNET.StarterKit.Portal
                 }
             }
         }
-
-        #region Web Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

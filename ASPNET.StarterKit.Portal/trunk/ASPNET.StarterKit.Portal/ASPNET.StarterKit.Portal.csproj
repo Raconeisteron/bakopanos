@@ -270,16 +270,17 @@
     <Compile Include="Components\AnnouncementsDB.cs" />
     <Compile Include="Components\Configuration.cs" />
     <Compile Include="Components\ContactsDB.cs" />
-    <Compile Include="Components\DesktopControls.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    <Compile Include="Components\CachedPortalModuleControl.cs" />
     <Compile Include="Components\DiscussionDB.cs" />
     <Compile Include="Components\DocumentDB.cs" />
     <Compile Include="Components\EventsDB.cs" />
     <Compile Include="Components\HtmlTextDB.cs" />
     <Compile Include="Components\LinksDB.cs" />
+    <Compile Include="Components\PortalModuleControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Components\RolesDB.cs" />
-    <Compile Include="Components\Security.cs" />
+    <Compile Include="Components\PortalSecurity.cs" />
     <Compile Include="Components\UsersDB.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

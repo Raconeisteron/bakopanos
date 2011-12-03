@@ -9,12 +9,7 @@ namespace ASPNET.StarterKit.Portal
     {
         protected String LogoffLink = "";
         public bool ShowTabs = true;
-        public int tabIndex;
-
-        public DesktopPortalBanner()
-        {
-            Init += Page_Init;
-        }
+        public int TabIndex;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,54 +35,34 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Dynamically render portal tab strip
-            if (ShowTabs)
+            if (!ShowTabs) return;
+
+            TabIndex = portalSettings.ActiveTab.TabIndex;
+
+            // Build list of tabs to be shown to user                                   
+            var authorizedTabs = new ArrayList();
+            int addedTabs = 0;
+
+            foreach (object t in portalSettings.DesktopTabs)
             {
-                tabIndex = portalSettings.ActiveTab.TabIndex;
+                var tab = (TabStripDetails) t;
 
-                // Build list of tabs to be shown to user                                   
-                var authorizedTabs = new ArrayList();
-                int addedTabs = 0;
-
-                for (int i = 0; i < portalSettings.DesktopTabs.Count; i++)
+                if (PortalSecurity.IsInRoles(tab.AuthorizedRoles))
                 {
-                    var tab = (TabStripDetails) portalSettings.DesktopTabs[i];
-
-                    if (PortalSecurity.IsInRoles(tab.AuthorizedRoles))
-                    {
-                        authorizedTabs.Add(tab);
-                    }
-
-                    if (addedTabs == tabIndex)
-                    {
-                        tabs.SelectedIndex = addedTabs;
-                    }
-
-                    addedTabs++;
+                    authorizedTabs.Add(tab);
                 }
 
-                // Populate Tab List at Top of the Page with authorized tabs
-                tabs.DataSource = authorizedTabs;
-                tabs.DataBind();
+                if (addedTabs == TabIndex)
+                {
+                    tabs.SelectedIndex = addedTabs;
+                }
+
+                addedTabs++;
             }
+
+            // Populate Tab List at Top of the Page with authorized tabs
+            tabs.DataSource = authorizedTabs;
+            tabs.DataBind();
         }
-
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        ///		Required method for Designer support - do not modify
-        ///		the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

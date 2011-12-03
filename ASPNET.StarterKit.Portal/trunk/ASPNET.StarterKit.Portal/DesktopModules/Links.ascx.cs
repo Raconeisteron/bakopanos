@@ -4,12 +4,7 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class Links : PortalModuleControl
     {
-        protected String linkImage = "";
-
-        public Links()
-        {
-            Init += Page_Init;
-        }
+        protected String LinkImage = "";
 
         //*******************************************************
         //
@@ -26,11 +21,11 @@ namespace ASPNET.StarterKit.Portal
             // Set the link image type
             if (IsEditable)
             {
-                linkImage = "~/images/edit.gif";
+                LinkImage = "~/images/edit.gif";
             }
             else
             {
-                linkImage = "~/images/navlink.gif";
+                LinkImage = "~/images/navlink.gif";
             }
 
             // Obtain links information from the Links table
@@ -64,24 +59,5 @@ namespace ASPNET.StarterKit.Portal
             else
                 return desc;
         }
-
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        ///		Required method for Designer support - do not modify
-        ///		the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

@@ -4,33 +4,25 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class QuickLinks : PortalModuleControl
     {
-        protected String linkImage = "";
+        protected String LinkImage = "";
 
-        public QuickLinks()
-        {
-            Init += Page_Init;
-        }
-
-        //*******************************************************
-        //
-        // The Page_Load event handler on this User Control is used to
-        // obtain a DataReader of link information from the Links
-        // table, and then databind the results to a templated DataList
-        // server control.  It uses the ASPNET.StarterKit.Portal.LinkDB()
-        // data component to encapsulate all data functionality.
-        //
-        //*******************************************************
-
+        /// <summary>
+        /// The Page_Load event handler on this User Control is used to
+        /// obtain a DataReader of link information from the Links
+        /// table, and then databind the results to a templated DataList
+        /// server control.  It uses the ASPNET.StarterKit.Portal.LinkDB()
+        /// data component to encapsulate all data functionality.
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             // Set the link image type
             if (IsEditable)
             {
-                linkImage = "~/images/edit.gif";
+                LinkImage = "~/images/edit.gif";
             }
             else
             {
-                linkImage = "~/images/navlink.gif";
+                LinkImage = "~/images/navlink.gif";
             }
 
             // Obtain links information from the Links table
@@ -55,24 +47,5 @@ namespace ASPNET.StarterKit.Portal
             else
                 return URL;
         }
-
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        ///		Required method for Designer support - do not modify
-        ///		the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

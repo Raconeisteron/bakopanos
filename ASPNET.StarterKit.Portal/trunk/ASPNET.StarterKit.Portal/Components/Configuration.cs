@@ -8,15 +8,11 @@ using System.Web.Caching;
 
 namespace ASPNET.StarterKit.Portal
 {
-    //*********************************************************************
-    //
-    // Configuration Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // tab configuration settings, module configuration settings and module 
-    // definition configuration settings from the PortalCfg.xml file.
-    //
-    //*********************************************************************
+    /// <summary>
+    /// Class that encapsulates all data logic necessary to add/query/delete
+    /// tab configuration settings, module configuration settings and module 
+    /// definition configuration settings from the PortalCfg.xml file.
+    /// </summary>
     public class Configuration
     {
         //
@@ -185,7 +181,8 @@ namespace ASPNET.StarterKit.Portal
             //
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
 
             // Mark the Command as a SPROC
@@ -350,7 +347,8 @@ namespace ASPNET.StarterKit.Portal
             //
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
 
             // Mark the Command as a SPROC
@@ -615,7 +613,8 @@ namespace ASPNET.StarterKit.Portal
             //
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
 
             // Mark the Command as a SPROC

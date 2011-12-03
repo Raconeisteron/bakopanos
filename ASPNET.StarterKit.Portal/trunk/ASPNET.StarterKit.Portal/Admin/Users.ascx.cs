@@ -6,13 +6,8 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class Users : PortalModuleControl
     {
-        private int tabId;
-        private int tabIndex;
-
-        public Users()
-        {
-            Init += Page_Init;
-        }
+        private int _tabId;
+        private int _tabIndex;
 
         //*******************************************************
         //
@@ -31,11 +26,11 @@ namespace ASPNET.StarterKit.Portal
 
             if (Request.Params["tabid"] != null)
             {
-                tabId = Int32.Parse(Request.Params["tabid"]);
+                _tabId = Int32.Parse(Request.Params["tabid"]);
             }
             if (Request.Params["tabindex"] != null)
             {
-                tabIndex = Int32.Parse(Request.Params["tabindex"]);
+                _tabIndex = Int32.Parse(Request.Params["tabindex"]);
             }
 
             // If this is the first visit to the page, bind the role data to the datalist
@@ -52,7 +47,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        protected void DeleteUser_Click(Object Sender, ImageClickEventArgs e)
+        protected void DeleteUser_Click(Object sender, ImageClickEventArgs e)
         {
             // get user id from dropdownlist of users
             var users = new UsersDB();
@@ -69,21 +64,21 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void EditUser_Click(Object Sender, CommandEventArgs e)
+        private void EditUser_Click(Object sender, CommandEventArgs e)
         {
             // get user id from dropdownlist of users
             int userId = -1;
-            String _userName = "";
+            String userName = "";
 
             if (e.CommandName == "edit")
             {
                 userId = Int32.Parse(allUsers.SelectedItem.Value);
-                _userName = allUsers.SelectedItem.Text;
+                userName = allUsers.SelectedItem.Text;
             }
 
             // redirect to edit page
-            Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + userId + "&username=" + _userName + "&tabindex=" +
-                              tabIndex + "&tabid=" + tabId);
+            Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + userId + "&username=" + userName + "&tabindex=" +
+                              _tabIndex + "&tabid=" + _tabId);
         }
 
         //*******************************************************
@@ -113,23 +108,8 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
+            EditBtn.Command += EditUser_Click;
+            addNew.Command += EditUser_Click;
         }
-
-        #region Web Form Designer generated code
-
-        ///		Required method for Designer support - do not modify
-        ///		the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            this.EditBtn.Command += new System.Web.UI.WebControls.CommandEventHandler(this.EditUser_Click);
-            this.addNew.Command += new System.Web.UI.WebControls.CommandEventHandler(this.EditUser_Click);
-        }
-
-        #endregion
     }
 }

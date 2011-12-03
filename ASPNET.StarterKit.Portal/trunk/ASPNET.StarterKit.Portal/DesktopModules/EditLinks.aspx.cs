@@ -6,13 +6,8 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class EditLinks : Page
     {
-        private int itemId;
-        private int moduleId;
-
-        public EditLinks()
-        {
-            Page.Init += Page_Init;
-        }
+        private int _itemId;
+        private int _moduleId;
 
         //****************************************************************
         //
@@ -27,10 +22,10 @@ namespace ASPNET.StarterKit.Portal
         protected void Page_Load(object sender, EventArgs e)
         {
             // Determine ModuleId of Links Portal Module
-            moduleId = Int32.Parse(Request.Params["Mid"]);
+            _moduleId = Int32.Parse(Request.Params["Mid"]);
 
             // Verify that the current user has access to edit this module
-            if (PortalSecurity.HasEditPermissions(moduleId) == false)
+            if (PortalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -38,7 +33,7 @@ namespace ASPNET.StarterKit.Portal
             // Determine ItemId of Link to Update
             if (Request.Params["ItemId"] != null)
             {
-                itemId = Int32.Parse(Request.Params["ItemId"]);
+                _itemId = Int32.Parse(Request.Params["ItemId"]);
             }
 
             // If the page is being requested the first time, determine if an
@@ -47,18 +42,18 @@ namespace ASPNET.StarterKit.Portal
 
             if (Page.IsPostBack == false)
             {
-                if (itemId != 0)
+                if (_itemId != 0)
                 {
                     // Obtain a single row of link information
                     var links = new LinkDB();
-                    SqlDataReader dr = links.GetSingleLink(itemId);
+                    SqlDataReader dr = links.GetSingleLink(_itemId);
 
                     // Read in first row from database
                     dr.Read();
 
                     // Security check.  verify that itemid is within the module.
                     int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
-                    if (dbModuleID != moduleId)
+                    if (dbModuleID != _moduleId)
                     {
                         dr.Close();
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
@@ -96,16 +91,16 @@ namespace ASPNET.StarterKit.Portal
                 // Create an instance of the Link DB component
                 var links = new LinkDB();
 
-                if (itemId == 0)
+                if (_itemId == 0)
                 {
                     // Add the link within the Links table
-                    links.AddLink(moduleId, itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    links.AddLink(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                   MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
                 else
                 {
                     // Update the link within the Links table
-                    links.UpdateLink(moduleId, itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    links.UpdateLink(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                      MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
 
@@ -127,10 +122,10 @@ namespace ASPNET.StarterKit.Portal
             // Only attempt to delete the item if it is an existing item
             // (new items will have "ItemId" of 0)
 
-            if (itemId != 0)
+            if (_itemId != 0)
             {
                 var links = new LinkDB();
-                links.DeleteLink(itemId);
+                links.DeleteLink(_itemId);
             }
 
             // Redirect back to the portal home page
@@ -150,25 +145,5 @@ namespace ASPNET.StarterKit.Portal
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
         }
-
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

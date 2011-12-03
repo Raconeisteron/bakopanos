@@ -9,15 +9,10 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class TabLayout : Page
     {
-        protected ArrayList contentList;
-        protected ArrayList leftList;
-        protected ArrayList rightList;
-        private int tabId;
-
-        public TabLayout()
-        {
-            Page.Init += Page_Init;
-        }
+        protected ArrayList ContentList;
+        protected ArrayList LeftList;
+        protected ArrayList RightList;
+        private int _tabId;
 
         //*******************************************************
         //
@@ -37,7 +32,7 @@ namespace ASPNET.StarterKit.Portal
             // Determine Tab to Edit
             if (Request.Params["tabid"] != null)
             {
-                tabId = Int32.Parse(Request.Params["tabid"]);
+                _tabId = Int32.Parse(Request.Params["tabid"]);
             }
 
             // If first visit to the page, update all entries
@@ -64,14 +59,14 @@ namespace ASPNET.StarterKit.Portal
 
             // save to database
             var config = new Configuration();
-            m.ModuleId = config.AddModule(tabId, m.ModuleOrder, "ContentPane", m.ModuleTitle, m.ModuleDefId, 0, "Admins",
+            m.ModuleId = config.AddModule(_tabId, m.ModuleOrder, "ContentPane", m.ModuleTitle, m.ModuleDefId, 0, "Admins",
                                           false);
 
             // Obtain portalId from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // reload the portalSettings from the database
-            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, tabId);
+            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, _tabId);
 
             // reorder the modules in the content pane
             ArrayList modules = GetModules("ContentPane");
@@ -177,7 +172,7 @@ namespace ASPNET.StarterKit.Portal
                 var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
                 // reload the portalSettings from the database
-                HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, tabId);
+                HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, _tabId);
 
                 // reorder the modules in the source pane
                 sourceList = GetModules(sourcePane);
@@ -212,10 +207,10 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        protected void Apply_Click(Object Sender, EventArgs e)
+        protected void Apply_Click(Object sender, EventArgs e)
         {
             // Save changes then navigate back to admin.  
-            String id = ((LinkButton) Sender).ID;
+            String id = ((LinkButton) sender).ID;
 
             SaveTabData();
 
@@ -270,7 +265,7 @@ namespace ASPNET.StarterKit.Portal
 
             // update Tab info in the database
             var config = new Configuration();
-            config.UpdateTab(portalSettings.PortalId, tabId, tabName.Text, portalSettings.ActiveTab.TabOrder,
+            config.UpdateTab(portalSettings.PortalId, _tabId, tabName.Text, portalSettings.ActiveTab.TabOrder,
                              authorizedRoles, mobileTabName.Text, showMobile.Checked);
         }
 
@@ -291,7 +286,7 @@ namespace ASPNET.StarterKit.Portal
                 int mid = Int32.Parse(_listbox.SelectedItem.Value);
 
                 // Redirect to module settings page
-                Response.Redirect("ModuleSettings.aspx?mid=" + mid + "&tabid=" + tabId);
+                Response.Redirect("ModuleSettings.aspx?mid=" + mid + "&tabid=" + _tabId);
             }
         }
 
@@ -305,12 +300,12 @@ namespace ASPNET.StarterKit.Portal
         protected void DeleteBtn_Click(Object sender, ImageClickEventArgs e)
         {
             String pane = ((ImageButton) sender).CommandArgument;
-            var _listbox = (ListBox) Page.FindControl(pane);
+            var listbox = (ListBox) Page.FindControl(pane);
             ArrayList modules = GetModules(pane);
 
-            if (_listbox.SelectedIndex != -1)
+            if (listbox.SelectedIndex != -1)
             {
-                var m = (ModuleItem) modules[_listbox.SelectedIndex];
+                var m = (ModuleItem) modules[listbox.SelectedIndex];
                 if (m.ModuleId > -1)
                 {
                     // must delete from database too
@@ -380,15 +375,15 @@ namespace ASPNET.StarterKit.Portal
             moduleType.DataBind();
 
             // Populate Right Hand Module Data
-            rightList = GetModules("RightPane");
+            RightList = GetModules("RightPane");
             rightPane.DataBind();
 
             // Populate Content Pane Module Data
-            contentList = GetModules("ContentPane");
+            ContentList = GetModules("ContentPane");
             contentPane.DataBind();
 
             // Populate Left Hand Pane Module Data
-            leftList = GetModules("LeftPane");
+            LeftList = GetModules("LeftPane");
             leftPane.DataBind();
         }
 
@@ -428,7 +423,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void OrderModules(ArrayList list)
+        private static void OrderModules(ArrayList list)
         {
             int i = 1;
 
@@ -445,24 +440,5 @@ namespace ASPNET.StarterKit.Portal
             }
         }
 
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

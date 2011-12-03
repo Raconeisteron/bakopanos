@@ -8,13 +8,8 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class ModuleSettingsPage : Page
     {
-        private int moduleId;
-        private int tabId;
-
-        public ModuleSettingsPage()
-        {
-            Page.Init += Page_Init;
-        }
+        private int _moduleId;
+        private int _tabId;
 
         //*******************************************************
         //
@@ -34,12 +29,12 @@ namespace ASPNET.StarterKit.Portal
             // Determine Module to Edit
             if (Request.Params["mid"] != null)
             {
-                moduleId = Int32.Parse(Request.Params["mid"]);
+                _moduleId = Int32.Parse(Request.Params["mid"]);
             }
             // Determine Tab to Edit
             if (Request.Params["tabid"] != null)
             {
-                tabId = Int32.Parse(Request.Params["tabid"]);
+                _tabId = Int32.Parse(Request.Params["tabid"]);
             }
 
             if (Page.IsPostBack == false)
@@ -55,7 +50,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        protected void ApplyChanges_Click(Object Sender, EventArgs e)
+        protected void ApplyChanges_Click(Object sender, EventArgs e)
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
@@ -78,7 +73,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // update module
                 var config = new Configuration();
-                config.UpdateModule(moduleId, m.ModuleOrder, m.PaneName, moduleTitle.Text, Int32.Parse(cacheTime.Text),
+                config.UpdateModule(_moduleId, m.ModuleOrder, m.PaneName, moduleTitle.Text, Int32.Parse(cacheTime.Text),
                                     editRoles, showMobile.Checked);
 
                 // Update Textbox Settings
@@ -119,7 +114,7 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Navigate back to admin page
-            Response.Redirect("TabLayout.aspx?tabid=" + tabId);
+            Response.Redirect("TabLayout.aspx?tabid=" + _tabId);
         }
 
         //*******************************************************
@@ -185,32 +180,12 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
 
             // Obtain selected module data
-            foreach (ModuleSettings _module in portalSettings.ActiveTab.Modules)
+            foreach (ModuleSettings module in portalSettings.ActiveTab.Modules)
             {
-                if (_module.ModuleId == moduleId)
-                    return _module;
+                if (module.ModuleId == _moduleId)
+                    return module;
             }
             return null;
         }
-
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-        }
-
-        #region Web Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-        }
-
-        #endregion
     }
 }

@@ -35,7 +35,8 @@ namespace ASPNET.StarterKit.Portal
         public DataSet GetContacts(int moduleId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlDataAdapter("Portal_GetContacts", myConnection);
 
             // Mark the Command as a SPROC
@@ -69,7 +70,8 @@ namespace ASPNET.StarterKit.Portal
         public SqlDataReader GetSingleContact(int itemId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_GetSingleContact", myConnection);
 
             // Mark the Command as a SPROC
@@ -103,7 +105,8 @@ namespace ASPNET.StarterKit.Portal
         public void DeleteContact(int itemID)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_DeleteContact", myConnection);
 
             // Mark the Command as a SPROC
@@ -140,7 +143,8 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_AddContact", myConnection);
 
             // Mark the Command as a SPROC
@@ -207,7 +211,8 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var myConnection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             var myCommand = new SqlCommand("Portal_UpdateContact", myConnection);
 
             // Mark the Command as a SPROC

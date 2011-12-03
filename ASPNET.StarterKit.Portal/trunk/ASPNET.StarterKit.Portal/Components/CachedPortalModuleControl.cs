@@ -1,117 +1,27 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
 using System.IO;
-using System.Web;
 using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
 {
-    //*********************************************************************
-    //
-    // PortalModuleControl Class
-    //
-    // The PortalModuleControl class defines a custom base class inherited by all
-    // desktop portal modules within the Portal.
-    // 
-    // The PortalModuleControl class defines portal specific properties
-    // that are used by the portal framework to correctly display portal modules
-    //
-    //*********************************************************************
-
-    public class PortalModuleControl : UserControl
-    {
-        // Private field variables
-
-        private int _isEditable;
-        private ModuleSettings _moduleConfiguration;
-        private Hashtable _settings;
-
-        // Public property accessors
-
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int ModuleId
-        {
-            get { return _moduleConfiguration.ModuleId; }
-        }
-
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int PortalId { get; set; }
-
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public bool IsEditable
-        {
-            get
-            {
-                // Perform tri-state switch check to avoid having to perform a security
-                // role lookup on every property access (instead caching the result)
-
-                if (_isEditable == 0)
-                {
-                    // Obtain PortalSettings from Current Context
-
-                    var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
-
-                    if (portalSettings.AlwaysShowEditButton ||
-                        PortalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles))
-                    {
-                        _isEditable = 1;
-                    }
-                    else
-                    {
-                        _isEditable = 2;
-                    }
-                }
-
-                return (_isEditable == 1);
-            }
-        }
-
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public ModuleSettings ModuleConfiguration
-        {
-            get { return _moduleConfiguration; }
-            set { _moduleConfiguration = value; }
-        }
-
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Hashtable Settings
-        {
-            get
-            {
-                if (_settings == null)
-                {
-                    _settings = Configuration.GetModuleSettings(ModuleId);
-                }
-
-                return _settings;
-            }
-        }
-    }
-
-    //*********************************************************************
-    //
-    // CachedPortalModuleControl Class
-    //
-    // The CachedPortalModuleControl class is a custom server control that
-    // the Portal framework uses to optionally enable output caching of 
-    // individual portal module's content.
-    //
-    // If a CacheTime value greater than 0 seconds is specified within the 
-    // ASPNET.StarterKit.Portal.Config configuration file, then the CachePortalModuleControl
-    // will automatically capture the output of the Portal Module User Control
-    // it wraps.  It will then store this captured output within the ASP.NET
-    // Cache API.  On subsequent requests (either by the same browser -- or
-    // by other browsers visiting the same portal page), the CachedPortalModuleControl
-    // will attempt to resolve the cached output out of the cache.
-    //
-    // Note: In the event that previously cached output can't be found in the
-    // ASP.NET Cache, the CachedPortalModuleControl will automatically instatiate
-    // the appropriate portal module user control and place it within the
-    // portal page.
-    //
-    //*********************************************************************
-
+    /// <summary>
+    /// The CachedPortalModuleControl class is a custom server control that
+    /// the Portal framework uses to optionally enable output caching of 
+    /// individual portal module's content.
+    ///
+    /// If a CacheTime value greater than 0 seconds is specified within the 
+    /// ASPNET.StarterKit.Portal.Config configuration file, then the CachePortalModuleControl
+    /// will automatically capture the output of the Portal Module User Control
+    /// it wraps.  It will then store this captured output within the ASP.NET
+    /// Cache API.  On subsequent requests (either by the same browser -- or
+    /// by other browsers visiting the same portal page), the CachedPortalModuleControl
+    /// will attempt to resolve the cached output out of the cache.
+    ///
+    /// Note: In the event that previously cached output can't be found in the
+    /// ASP.NET Cache, the CachedPortalModuleControl will automatically instatiate
+    /// the appropriate portal module user control and place it within the
+    /// portal page.
+    /// </summary>
     public class CachedPortalModuleControl : Control
     {
         // Private field variables

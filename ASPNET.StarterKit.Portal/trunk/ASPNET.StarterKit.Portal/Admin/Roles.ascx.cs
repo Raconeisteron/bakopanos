@@ -5,13 +5,8 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class Roles : PortalModuleControl
     {
-        private int tabId;
-        private int tabIndex;
-
-        public Roles()
-        {
-            Init += Page_Init;
-        }
+        private int _tabId;
+        private int _tabIndex;
 
         //*******************************************************
         //
@@ -30,11 +25,11 @@ namespace ASPNET.StarterKit.Portal
 
             if (Request.Params["tabid"] != null)
             {
-                tabId = Int32.Parse(Request.Params["tabid"]);
+                _tabId = Int32.Parse(Request.Params["tabid"]);
             }
             if (Request.Params["tabindex"] != null)
             {
-                tabIndex = Int32.Parse(Request.Params["tabindex"]);
+                _tabIndex = Int32.Parse(Request.Params["tabindex"]);
             }
 
             // If this is the first visit to the page, bind the role data to the datalist
@@ -51,7 +46,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        protected void AddRole_Click(Object Sender, EventArgs e)
+        protected void AddRole_Click(Object sender, EventArgs e)
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
@@ -91,10 +86,10 @@ namespace ASPNET.StarterKit.Portal
             else if (e.CommandName == "apply")
             {
                 // Apply changes
-                String _roleName = ((TextBox) e.Item.FindControl("roleName")).Text;
+                String roleName = ((TextBox) e.Item.FindControl("roleName")).Text;
 
                 // update database
-                roles.UpdateRole(roleId, _roleName);
+                roles.UpdateRole(roleId, roleName);
 
                 // Disable editable list item access
                 rolesList.EditItemIndex = -1;
@@ -116,12 +111,12 @@ namespace ASPNET.StarterKit.Portal
             else if (e.CommandName == "members")
             {
                 // Save role name changes first
-                String _roleName = ((TextBox) e.Item.FindControl("roleName")).Text;
-                roles.UpdateRole(roleId, _roleName);
+                String roleName = ((TextBox) e.Item.FindControl("roleName")).Text;
+                roles.UpdateRole(roleId, roleName);
 
                 // redirect to edit page
-                Response.Redirect("~/Admin/SecurityRoles.aspx?roleId=" + roleId + "&rolename=" + _roleName +
-                                  "&tabindex=" + tabIndex + "&tabid=" + tabId);
+                Response.Redirect("~/Admin/SecurityRoles.aspx?roleId=" + roleId + "&rolename=" + roleName +
+                                  "&tabindex=" + _tabIndex + "&tabid=" + _tabId);
             }
         }
 
@@ -146,23 +141,7 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
+            rolesList.ItemCommand += RolesList_ItemCommand;
         }
-
-        #region Web Form Designer generated code
-
-        ///		Required method for Designer support - do not modify
-        ///		the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            this.rolesList.ItemCommand +=
-                new System.Web.UI.WebControls.DataListCommandEventHandler(this.RolesList_ItemCommand);
-        }
-
-        #endregion
     }
 }

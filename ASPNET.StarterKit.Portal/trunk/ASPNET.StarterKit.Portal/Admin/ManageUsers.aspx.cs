@@ -7,15 +7,11 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class ManageUsers : Page
     {
-        private int tabId;
-        private int tabIndex;
-        private int userId = -1;
-        private String userName = "";
+        private int _tabId;
+        private int _tabIndex;
+        private int _userId = -1;
+        private String _userName = "";
 
-        public ManageUsers()
-        {
-            Page.Init += Page_Init;
-        }
 
         //*******************************************************
         //
@@ -35,19 +31,19 @@ namespace ASPNET.StarterKit.Portal
             // Calculate userid
             if (Request.Params["userid"] != null)
             {
-                userId = Int32.Parse(Request.Params["userid"]);
+                _userId = Int32.Parse(Request.Params["userid"]);
             }
             if (Request.Params["username"] != null)
             {
-                userName = Request.Params["username"];
+                _userName = Request.Params["username"];
             }
             if (Request.Params["tabid"] != null)
             {
-                tabId = Int32.Parse(Request.Params["tabid"]);
+                _tabId = Int32.Parse(Request.Params["tabid"]);
             }
             if (Request.Params["tabindex"] != null)
             {
-                tabIndex = Int32.Parse(Request.Params["tabindex"]);
+                _tabIndex = Int32.Parse(Request.Params["tabindex"]);
             }
 
 
@@ -55,7 +51,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsPostBack == false)
             {
                 // new user?
-                if (userName == "")
+                if (_userName == "")
                 {
                     var users = new UsersDB();
 
@@ -66,14 +62,14 @@ namespace ASPNET.StarterKit.Portal
                     while (uid == -1)
                     {
                         String friendlyName = "New User created " + DateTime.Now;
-                        userName = "New User" + i;
-                        uid = users.AddUser(friendlyName, userName, "");
+                        _userName = "New User" + i;
+                        uid = users.AddUser(friendlyName, _userName, "");
                         i++;
                     }
 
                     // redirect to this page with the corrected querystring args
-                    Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + uid + "&username=" + userName + "&tabindex=" +
-                                      tabIndex + "&tabid=" + tabId);
+                    Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + uid + "&username=" + _userName + "&tabindex=" +
+                                      _tabIndex + "&tabid=" + _tabId);
                 }
 
                 BindData();
@@ -93,7 +89,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Navigate back to admin page
-            Response.Redirect("~/DesktopDefault.aspx?tabindex=" + tabIndex + "&tabid=" + tabId);
+            Response.Redirect("~/DesktopDefault.aspx?tabindex=" + _tabIndex + "&tabid=" + _tabId);
         }
 
         //*******************************************************
@@ -105,14 +101,12 @@ namespace ASPNET.StarterKit.Portal
 
         protected void AddRole_Click(Object sender, EventArgs e)
         {
-            int roleId;
-
             //get user id from dropdownlist of existing users
-            roleId = Int32.Parse(allRoles.SelectedItem.Value);
+            int roleId = Int32.Parse(allRoles.SelectedItem.Value);
 
             // Add a new userRole to the database
             var roles = new RolesDB();
-            roles.AddUserRole(roleId, userId);
+            roles.AddUserRole(roleId, _userId);
 
             // Rebind list
             BindData();
@@ -129,11 +123,11 @@ namespace ASPNET.StarterKit.Portal
         {
             // update the user record in the database
             var users = new UsersDB();
-            users.UpdateUser(userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
+            users.UpdateUser(_userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
 
             // redirect to this page with the corrected querystring args
-            Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + userId + "&username=" + Email.Text + "&tabindex=" +
-                              tabIndex + "&tabid=" + tabId);
+            Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + _userId + "&username=" + Email.Text + "&tabindex=" +
+                              _tabIndex + "&tabid=" + _tabId);
         }
 
         //*******************************************************
@@ -150,7 +144,7 @@ namespace ASPNET.StarterKit.Portal
             var roleId = (int) userRoles.DataKeys[e.Item.ItemIndex];
 
             // update database
-            roles.DeleteUserRole(roleId, userId);
+            roles.DeleteUserRole(roleId, _userId);
 
             // Ensure that item is not editable
             userRoles.EditItemIndex = -1;
@@ -170,7 +164,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Bind the Email and Password
             var users = new UsersDB();
-            SqlDataReader dr = users.GetSingleUser(userName);
+            SqlDataReader dr = users.GetSingleUser(_userName);
 
             // Read first row from database
             dr.Read();
@@ -180,13 +174,13 @@ namespace ASPNET.StarterKit.Portal
             dr.Close();
 
             // add the user name to the title
-            if (userName != "")
+            if (_userName != "")
             {
-                title.InnerText = "Manage User: " + userName;
+                title.InnerText = "Manage User: " + _userName;
             }
 
             // bind users in role to DataList
-            userRoles.DataSource = users.GetRolesByUser(userName);
+            userRoles.DataSource = users.GetRolesByUser(_userName);
             userRoles.DataBind();
 
             // Obtain PortalSettings from Current Context
@@ -202,24 +196,7 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
+            userRoles.ItemCommand += UserRoles_ItemCommand;
         }
-
-        #region Web Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            this.userRoles.ItemCommand +=
-                new System.Web.UI.WebControls.DataListCommandEventHandler(this.UserRoles_ItemCommand);
-        }
-
-        #endregion
     }
 }

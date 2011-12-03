@@ -6,15 +6,10 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class SecurityRoles : Page
     {
-        private int roleId = -1;
-        private String roleName = "";
-        private int tabId;
-        private int tabIndex;
-
-        public SecurityRoles()
-        {
-            Page.Init += Page_Init;
-        }
+        private int _roleId = -1;
+        private String _roleName = "";
+        private int _tabId;
+        private int _tabIndex;
 
         //*******************************************************
         //
@@ -34,19 +29,19 @@ namespace ASPNET.StarterKit.Portal
             // Calculate security roleId
             if (Request.Params["roleid"] != null)
             {
-                roleId = Int32.Parse(Request.Params["roleid"]);
+                _roleId = Int32.Parse(Request.Params["roleid"]);
             }
             if (Request.Params["rolename"] != null)
             {
-                roleName = Request.Params["rolename"];
+                _roleName = Request.Params["rolename"];
             }
             if (Request.Params["tabid"] != null)
             {
-                tabId = Int32.Parse(Request.Params["tabid"]);
+                _tabId = Int32.Parse(Request.Params["tabid"]);
             }
             if (Request.Params["tabindex"] != null)
             {
-                tabIndex = Int32.Parse(Request.Params["tabindex"]);
+                _tabIndex = Int32.Parse(Request.Params["tabindex"]);
             }
 
 
@@ -64,13 +59,13 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        protected void Save_Click(Object Sender, EventArgs e)
+        protected void Save_Click(Object sender, EventArgs e)
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Navigate back to admin page
-            Response.Redirect("~/DesktopDefault.aspx?tabindex=" + tabIndex + "&tabid=" + tabId);
+            Response.Redirect("~/DesktopDefault.aspx?tabindex=" + _tabIndex + "&tabid=" + _tabId);
         }
 
         //*******************************************************
@@ -105,7 +100,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 // Add a new userRole to the database
                 var roles = new RolesDB();
-                roles.AddUserRole(roleId, userId);
+                roles.AddUserRole(_roleId, userId);
             }
 
             // Rebind list
@@ -120,7 +115,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void usersInRole_ItemCommand(object sender, DataListCommandEventArgs e)
+        private void UsersInRoleItemCommand(object sender, DataListCommandEventArgs e)
         {
             var roles = new RolesDB();
             var userId = (int) usersInRole.DataKeys[e.Item.ItemIndex];
@@ -128,7 +123,7 @@ namespace ASPNET.StarterKit.Portal
             if (e.CommandName == "delete")
             {
                 // update database
-                roles.DeleteUserRole(roleId, userId);
+                roles.DeleteUserRole(_roleId, userId);
 
                 // Ensure that item is not editable
                 usersInRole.EditItemIndex = -1;
@@ -155,16 +150,16 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // add the role name to the title
-            if (roleName != "")
+            if (_roleName != "")
             {
-                title.InnerText = "Role Membership: " + roleName;
+                title.InnerText = "Role Membership: " + _roleName;
             }
 
             // Get the portal's roles from the database
             var roles = new RolesDB();
 
             // bind users in role to DataList
-            usersInRole.DataSource = roles.GetRoleMembers(roleId);
+            usersInRole.DataSource = roles.GetRoleMembers(_roleId);
             usersInRole.DataBind();
 
             // bind all portal users to dropdownlist
@@ -174,24 +169,7 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
+            usersInRole.ItemCommand += UsersInRoleItemCommand;
         }
-
-        #region Web Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            this.usersInRole.ItemCommand +=
-                new System.Web.UI.WebControls.DataListCommandEventHandler(this.usersInRole_ItemCommand);
-        }
-
-        #endregion
     }
 }

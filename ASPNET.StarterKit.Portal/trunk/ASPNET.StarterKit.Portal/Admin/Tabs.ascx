@@ -20,7 +20,7 @@
             <table cellpadding=0 cellspacing=0 border=0>
                 <tr valign="top">
                     <td>
-                        <asp:ListBox id="tabList" width=200 DataSource="<%# portalTabs %>" DataTextField="TabName" DataValueField="TabId" rows=5 runat="server" />
+                        <asp:ListBox id="tabList" width=200 DataSource="<%# PortalTabs %>" DataTextField="TabName" DataValueField="TabId" rows=5 runat="server" />
                     </td>
                     <td>
                         &nbsp;

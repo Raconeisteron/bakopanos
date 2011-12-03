@@ -14,11 +14,6 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        public Discussion()
-        {
-            Init += Page_Init;
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Page.IsPostBack == false)
@@ -75,7 +70,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private void TopLevelList_Select(object Sender, DataListCommandEventArgs e)
+        private void TopLevelList_Select(object sender, DataListCommandEventArgs e)
         {
             // Determine the command of the button (either "select" or "collapse")
             String command = ((ImageButton) e.CommandSource).CommandName;
@@ -135,23 +130,7 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
+            TopLevelList.ItemCommand += TopLevelList_Select;
         }
-
-        #region Web Form Designer generated code
-
-        ///		Required method for Designer support - do not modify
-        ///		the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            this.TopLevelList.ItemCommand +=
-                new System.Web.UI.WebControls.DataListCommandEventHandler(this.TopLevelList_Select);
-        }
-
-        #endregion
     }
 }

@@ -10,22 +10,17 @@ namespace ASPNET.StarterKit.Portal
 {
     public class Global : HttpApplication
     {
-        //*********************************************************************
-        //
-        // Application_BeginRequest Event
-        //
-        // The Application_BeginRequest method is an ASP.NET event that executes 
-        // on each web request into the portal application.  The below method
-        // obtains the current tabIndex and TabId from the querystring of the 
-        // request -- and then obtains the configuration necessary to process
-        // and render the request.
-        //
-        // This portal configuration is stored within the application's "Context"
-        // object -- which is available to all pages, controls and components
-        // during the processing of a single request.
-        // 
-        //*********************************************************************
-
+        /// <summary>
+        /// The Application_BeginRequest method is an ASP.NET event that executes 
+        /// on each web request into the portal application.  The below method
+        /// obtains the current tabIndex and TabId from the querystring of the 
+        /// request -- and then obtains the configuration necessary to process
+        /// and render the request.
+        ///
+        /// This portal configuration is stored within the application's "Context"
+        /// object -- which is available to all pages, controls and components
+        /// during the processing of a single request.
+        /// </summary>
         protected void Application_BeginRequest(Object sender, EventArgs e)
         {
             int tabIndex = 0;
@@ -61,26 +56,21 @@ namespace ASPNET.StarterKit.Portal
 
                 Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
             }
-            catch (Exception ex)
+            catch
             {
                 Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
             }
         }
 
-        //*********************************************************************
-        //
-        // Application_AuthenticateRequest Event
-        //
-        // If the client is authenticated with the application, then determine
-        // which security roles he/she belongs to and replace the "User" intrinsic
-        // with a custom IPrincipal security object that permits "User.IsInRole"
-        // role checks within the application
-        //
-        // Roles are cached in the browser in an in-memory encrypted cookie.  If the
-        // cookie doesn't exist yet for this session, create it.
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// If the client is authenticated with the application, then determine
+        /// which security roles he/she belongs to and replace the "User" intrinsic
+        /// with a custom IPrincipal security object that permits "User.IsInRole"
+        /// role checks within the application
+        ///
+        /// Roles are cached in the browser in an in-memory encrypted cookie.  If the
+        /// cookie doesn't exist yet for this session, create it.
+        /// </summary>
         protected void Application_AuthenticateRequest(Object sender, EventArgs e)
         {
             if (Request.IsAuthenticated)
@@ -142,14 +132,10 @@ namespace ASPNET.StarterKit.Portal
             }
         }
 
-        //*********************************************************************
-        //
-        // GetApplicationPath Method
-        //
-        // This method returns the correct relative path when installing
-        // the portal on a root web site instead of virtual directory
-        //
-        //*********************************************************************
+        /// <summary>
+        /// This method returns the correct relative path when installing
+        /// the portal on a root web site instead of virtual directory
+        /// </summary>
         public static string GetApplicationPath(HttpRequest request)
         {
             string path = string.Empty;
