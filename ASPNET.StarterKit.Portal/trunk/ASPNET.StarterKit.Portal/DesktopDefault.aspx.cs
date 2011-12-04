@@ -40,7 +40,23 @@ namespace ASPNET.StarterKit.Portal
                 // Loop through each entry in the configuration system for this tab
                 foreach (ModuleSettings moduleSettings in portalSettings.ActiveTab.Modules)
                 {
-                    Control parent = Page.FindControl(moduleSettings.PaneName);
+                    Control parent;
+
+                    switch (moduleSettings.PaneName)
+                    {
+                        case "LeftPane":
+                            parent = LeftPane;
+                            break;
+                        case "ContentPane":
+                            parent = ContentPane;
+                            break;
+                        case "RightPane":
+                            parent = RightPane;
+                            break;
+                        default:
+                            parent = ContentPane;
+                            break;
+                    }
 
                     // If no caching is specified, create the user control instance and dynamically
                     // inject it into the page.  Otherwise, create a cached module instance that

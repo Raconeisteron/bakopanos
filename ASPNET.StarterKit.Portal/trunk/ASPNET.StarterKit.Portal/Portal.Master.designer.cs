@@ -10,33 +10,42 @@
 namespace ASPNET.StarterKit.Portal {
     
     
-    public partial class DesktopDefault {
+    public partial class Portal {
         
         /// <summary>
-        /// LeftPane control.
+        /// Head1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell LeftPane;
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
         
         /// <summary>
-        /// ContentPane control.
+        /// Form2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell ContentPane;
+        protected global::System.Web.UI.HtmlControls.HtmlForm Form2;
         
         /// <summary>
-        /// RightPane control.
+        /// Banner control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell RightPane;
+        protected global::ASPNET.StarterKit.Portal.DesktopPortalBanner Banner;
+        
+        /// <summary>
+        /// MainContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
     }
 }

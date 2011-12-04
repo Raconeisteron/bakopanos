@@ -8,8 +8,9 @@ namespace ASPNET.StarterKit.Portal
     public partial class DesktopPortalBanner : UserControl
     {
         protected String LogoffLink = "";
-        public bool ShowTabs = true;
-        public int TabIndex;
+        private int _tabIndex;
+
+        public bool ShowTabs { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,7 +38,7 @@ namespace ASPNET.StarterKit.Portal
             // Dynamically render portal tab strip
             if (!ShowTabs) return;
 
-            TabIndex = portalSettings.ActiveTab.TabIndex;
+            _tabIndex = portalSettings.ActiveTab.TabIndex;
 
             // Build list of tabs to be shown to user                                   
             var authorizedTabs = new ArrayList();
@@ -52,7 +53,7 @@ namespace ASPNET.StarterKit.Portal
                     authorizedTabs.Add(tab);
                 }
 
-                if (addedTabs == TabIndex)
+                if (addedTabs == _tabIndex)
                 {
                     tabs.SelectedIndex = addedTabs;
                 }

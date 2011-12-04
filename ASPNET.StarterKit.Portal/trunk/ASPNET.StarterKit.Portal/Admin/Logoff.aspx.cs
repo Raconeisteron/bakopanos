@@ -17,7 +17,7 @@ namespace ASPNET.StarterKit.Portal
             Response.Cookies["portalroles"].Path = "/";
 
             // Redirect user back to the Portal Home Page
-            Response.Redirect(Global.GetApplicationPath(Request));
+            Response.Redirect(Global.GetApplicationPath(Request) + "/DesktopDefault.aspx");
         }
     }
 }

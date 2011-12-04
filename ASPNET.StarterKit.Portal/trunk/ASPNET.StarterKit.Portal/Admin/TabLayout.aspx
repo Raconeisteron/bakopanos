@@ -175,7 +175,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td align="middle">
+                                                        <td align="center">
                                                             <table border="0" cellspacing="2" cellpadding="0">
                                                                 <tr valign="top">
                                                                     <td rowspan="2">

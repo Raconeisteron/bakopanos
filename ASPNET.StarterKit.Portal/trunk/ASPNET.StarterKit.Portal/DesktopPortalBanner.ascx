@@ -14,10 +14,8 @@
 		<td colspan="3" class="SiteLink" background="<%= Global.GetApplicationPath(Request) %>/images/bars.gif" align="right">
 			<asp:label id="WelcomeMessage" forecolor="#eeeeee" runat="server" />
 			<a href="<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx" class="SiteLink">Portal Home</a>
-			<span class="Accent">
-                |</span>
-			<a href="<%= Global.GetApplicationPath(Request) %>/Docs/Docs.htm" target="_blank" class="SiteLink">
-				Portal Documentation</a>
+			<%-- <span class="Accent">|</span>
+                <a href="<%= Global.GetApplicationPath(Request) %>/Docs/Docs.htm" target="_blank" class="SiteLink">Portal Documentation</a> --%>
 			<%= LogoffLink %>
 			&nbsp;&nbsp;
 		</td>
@@ -29,7 +27,7 @@
 		<td height="40">
 			<asp:label id="siteName" CssClass="SiteTitle" EnableViewState="false" runat="server" />
 		</td>
-		<td align="middle" rowspan="2">
+		<td align="center" rowspan="2">
 			<!--ASP.NET Logo was here//-->
 		</td>
 	</tr>
