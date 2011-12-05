@@ -1,106 +1,91 @@
-<%@ Page language="c#" CodeBehind="DiscussDetails.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.DiscussDetails" %>
-<%@ Import Namespace="ASPNET.StarterKit.Portal" %>
-<%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
+<%@ Page Language="c#" CodeBehind="DiscussDetails.aspx.cs" AutoEventWireup="True"
+    Inherits="ASPNET.StarterKit.Portal.DiscussDetails" MasterPageFile="~/Portal.Master" %>
 
-<HTML>
-    <HEAD>
-        <link href='<%=Global.GetApplicationPath(Request) + "/ASPNETPortal.css"%>' type="text/css" rel="stylesheet">
-    </HEAD>
-    <body bottomMargin="0" leftMargin="0" topMargin="0" rightMargin="0" marginwidth="0" marginheight="0">
-        <form name="form1" runat="server">
-            <table cellSpacing="0" cellPadding="0" width="100%" border="0">
-                <tr vAlign="top">
-                    <td colSpan="2">
-                        <ASPNETPortal:banner id="Banner1" runat="server" ShowTabs="false">
-                        </ASPNETPortal:banner>
-                    </td>
-                </tr>
-                <tr vAlign="top">
-                    <td width="10%">
-                        &nbsp;
-                    </td>
-                    <td>
-                        <br>
-                        <table cellSpacing="0" cellPadding="0" width="600">
-                            <tr>
-                                <td align="left">
-                                    <span class="Head">Message Detail</span>
-                                </td>
-                                <td align="right">
-                                    <asp:panel id="ButtonPanel" runat="server"><A class="CommandButton" id="prevItem" title="Previous Message" runat="server">
-                                            <IMG src='<%=Global.GetApplicationPath(Request) + "/images/rew.gif"%>' border="0"></A>&nbsp; <A class="CommandButton" id="nextItem" title="Next Message" runat="server"><IMG src='<%=Global.GetApplicationPath(Request) + "/images/fwd.gif"%>' border="0"></A>&nbsp; 
-                                            <asp:LinkButton id="ReplyBtn" runat="server" EnableViewState="false" Cssclass="CommandButton" Text="Reply to this Message" onclick="ReplyBtn_Click"></asp:LinkButton>
-                                    </asp:panel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colSpan="2">
-                                    <hr noShade SIZE="1">
-                                </td>
-                            </tr>
-                        </table>
-                        <asp:panel id="EditPanel" runat="server" Visible="false">
-                            <TABLE cellSpacing="0" cellPadding="4" width="600" border="0">
-                                <TR vAlign="top">
-                                    <TD class="SubHead" width="150">
-                                        Title:
-                                    </TD>
-                                    <TD rowSpan="4">
-                                        &nbsp;
-                                    </TD>
-                                    <TD width="*">
-                                        <asp:TextBox id="TitleField" runat="server" maxlength="100" columns="40" width="500" cssclass="NormalTextBox"></asp:TextBox>
-                                    </TD>
-                                </TR>
-                                <TR vAlign="top">
-                                    <TD class="SubHead">
-                                        Body:
-                                    </TD>
-                                    <TD width="*">
-                                        <asp:TextBox id="BodyField" runat="server" columns="59" width="500" Rows="15" TextMode="Multiline"></asp:TextBox>
-                                    </TD>
-                                </TR>
-                                <TR vAlign="top">
-                                    <TD>
-                                        &nbsp;
-                                    </TD>
-                                    <TD>
-                                        <asp:LinkButton class="CommandButton" id="updateButton" runat="server" Text="Submit" onclick="UpdateBtn_Click"></asp:LinkButton>
-                                        &nbsp;
-                                        <asp:LinkButton class="CommandButton" id="cancelButton" runat="server" Text="Cancel" CausesValidation="False" onclick="CancelBtn_Click"></asp:LinkButton>
-                                        &nbsp;
-                                    </TD>
-                                </TR>
-                                <TR vAlign="top">
-                                    <TD class="SubHead">
-                                        Original Message:
-                                    </TD>
-                                    <TD>
-                                        &nbsp;
-                                    </TD>
-                                </TR>
-                            </TABLE>
-                        </asp:panel>
-                        <table cellSpacing="0" cellPadding="4" width="600" border="0">
-                            <tr vAlign="top">
-                                <td class="Message" align="left">
-                                    <b>Subject: </b>
-                                    <asp:label id="Title" runat="server"></asp:label>
-                                    <br>
-                                    <b>Author: </b>
-                                    <asp:label id="CreatedByUser" runat="server"></asp:label>
-                                    <br>
-                                    <b>Date: </b>
-                                    <asp:label id="CreatedDate" runat="server"></asp:label>
-                                    <br>
-                                    <br>
-                                    <asp:label id="Body" runat="server"></asp:label>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </body>
-</HTML>
+<%@ Import Namespace="ASPNET.StarterKit.Portal" %>
+
+<asp:Content ContentPlaceHolderID="MainContent" runat="Server">
+    <table cellspacing="0" cellpadding="0" width="600">
+        <tr>
+            <td align="left">
+                <span class="Head">Message Detail</span>
+            </td>
+            <td align="right">
+                <asp:Panel ID="ButtonPanel" runat="server">
+                    <a class="CommandButton" id="prevItem" title="Previous Message" runat="server">
+                        <img src='<%=Global.GetApplicationPath(Request) + "/images/rew.gif"%>' border="0"></a>&nbsp;
+                    <a class="CommandButton" id="nextItem" title="Next Message" runat="server">
+                        <img src='<%=Global.GetApplicationPath(Request) + "/images/fwd.gif"%>' border="0"></a>&nbsp;
+                    <asp:LinkButton ID="ReplyBtn" runat="server" EnableViewState="false" CssClass="CommandButton"
+                        Text="Reply to this Message" OnClick="ReplyBtn_Click"></asp:LinkButton>
+                </asp:Panel>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <hr noshade="noshade" size="1" />
+            </td>
+        </tr>
+    </table>
+    <asp:Panel ID="EditPanel" runat="server" Visible="false">
+        <table cellspacing="0" cellpadding="4" width="600" border="0">
+            <tr valign="top">
+                <td class="SubHead" width="150">
+                    Title:
+                </td>
+                <td rowspan="4">
+                    &nbsp;
+                </td>
+                <td width="*">
+                    <asp:TextBox ID="TitleField" runat="server" MaxLength="100" Columns="40" Width="500"
+                        CssClass="NormalTextBox"></asp:TextBox>
+                </td>
+            </tr>
+            <tr valign="top">
+                <td class="SubHead">
+                    Body:
+                </td>
+                <td width="*">
+                    <asp:TextBox ID="BodyField" runat="server" Columns="59" Width="500" Rows="15" TextMode="Multiline"></asp:TextBox>
+                </td>
+            </tr>
+            <tr valign="top">
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    <asp:LinkButton class="CommandButton" ID="updateButton" runat="server" Text="Submit"
+                        OnClick="UpdateBtn_Click"></asp:LinkButton>
+                    &nbsp;
+                    <asp:LinkButton class="CommandButton" ID="cancelButton" runat="server" Text="Cancel"
+                        CausesValidation="False" OnClick="CancelBtn_Click"></asp:LinkButton>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr valign="top">
+                <td class="SubHead">
+                    Original Message:
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+        </table>
+    </asp:Panel>
+    <table cellspacing="0" cellpadding="4" width="600" border="0">
+        <tr valign="top">
+            <td class="Message" align="left">
+                <b>Subject: </b>
+                <asp:Label ID="Title" runat="server"></asp:Label>
+                <br>
+                <b>Author: </b>
+                <asp:Label ID="CreatedByUser" runat="server"></asp:Label>
+                <br>
+                <b>Date: </b>
+                <asp:Label ID="CreatedDate" runat="server"></asp:Label>
+                <br>
+                <br>
+                <asp:Label ID="Body" runat="server"></asp:Label>
+            </td>
+        </tr>
+    </table>
+</asp:Content>

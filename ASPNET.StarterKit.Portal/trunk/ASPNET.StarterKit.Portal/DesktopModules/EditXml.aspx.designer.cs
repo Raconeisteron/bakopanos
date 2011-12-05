@@ -13,15 +13,6 @@ namespace ASPNET.StarterKit.Portal {
     public partial class EditXml {
         
         /// <summary>
-        /// SiteHeader control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ASPNET.StarterKit.Portal.DesktopPortalBanner SiteHeader;
-        
-        /// <summary>
         /// XmlDataSrc control.
         /// </summary>
         /// <remarks>
