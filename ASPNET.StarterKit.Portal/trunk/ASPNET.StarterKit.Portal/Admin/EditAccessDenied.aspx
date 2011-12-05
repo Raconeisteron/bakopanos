@@ -2,7 +2,10 @@
     Inherits="ASPNET.StarterKit.Portal.EditAccessDenied" MasterPageFile="~/Portal.Master" %>
 <%@ OutputCache Duration="36000" VaryByParam="none" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
-
+<%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="Server">
+    <ASPNETPortal:Banner ID="Banner" SelectedTabIndex="0" ShowTabs="false" runat="server" />
+</asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="Server">
     <center>
         <table width="500" border="0">

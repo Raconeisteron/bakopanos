@@ -1,4 +1,5 @@
-<%@ Control CodeBehind="DesktopPortalBanner.ascx.cs" Language="c#" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.DesktopPortalBanner" %>
+<%@ Control CodeBehind="DesktopPortalBanner.ascx.cs" Language="c#" AutoEventWireup="True"
+	Inherits="ASPNET.StarterKit.Portal.DesktopPortalBanner" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 <%--
 
@@ -11,11 +12,13 @@
 --%>
 <table width="100%" cellspacing="0" class="HeadBg" border="0">
 	<tr valign="top">
-		<td colspan="3" class="SiteLink" background="<%= Global.GetApplicationPath(Request) %>/images/bars.gif" align="right">
-			<asp:label id="WelcomeMessage" forecolor="#eeeeee" runat="server" />
-			<a href="<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx" class="SiteLink">Portal Home</a>
+		<td colspan="3" class="SiteLink" background="<%= Global.GetApplicationPath(Request) %>/images/bars.gif"
+			align="right">
+			<asp:Label ID="WelcomeMessage" ForeColor="#eeeeee" runat="server" />
+			<a href="<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx" class="SiteLink">
+				Portal Home</a>
 			<%-- <span class="Accent">|</span>
-                <a href="<%= Global.GetApplicationPath(Request) %>/Docs/Docs.htm" target="_blank" class="SiteLink">Portal Documentation</a> --%>
+				<a href="<%= Global.GetApplicationPath(Request) %>/Docs/Docs.htm" target="_blank" class="SiteLink">Portal Documentation</a> --%>
 			<%= LogoffLink %>
 			&nbsp;&nbsp;
 		</td>
@@ -25,7 +28,7 @@
 			&nbsp;
 		</td>
 		<td height="40">
-			<asp:label id="siteName" CssClass="SiteTitle" EnableViewState="false" runat="server" />
+			<asp:Label ID="siteName" CssClass="SiteTitle" EnableViewState="false" runat="server" />
 		</td>
 		<td align="center" rowspan="2">
 			<!--ASP.NET Logo was here//-->
@@ -33,14 +36,17 @@
 	</tr>
 	<tr>
 		<td>
-			<asp:datalist id="tabs" cssclass="OtherTabsBg" repeatdirection="horizontal" ItemStyle-Height="25" SelectedItemStyle-CssClass="TabBg" ItemStyle-BorderWidth="1" EnableViewState="false" runat="server">
+			<asp:DataList ID="tabs" CssClass="OtherTabsBg" RepeatDirection="horizontal" ItemStyle-Height="25"
+				SelectedItemStyle-CssClass="TabBg" ItemStyle-BorderWidth="1" EnableViewState="false"
+				runat="server">
 				<ItemTemplate>
-					&nbsp;<a href='<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx?tabindex=<%# Container.ItemIndex %>&tabid=<%# ((TabStripDetails) Container.DataItem).TabId %>' class="OtherTabs"><%# ((TabStripDetails) Container.DataItem).TabName %></a>&nbsp;
+					&nbsp;<a href='<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx?tabindex=<%# Container.ItemIndex %>&tabid=<%# ((TabStripDetails) Container.DataItem).TabId %>'
+						class="OtherTabs"><%# ((TabStripDetails) Container.DataItem).TabName %></a>&nbsp;
 				</ItemTemplate>
 				<SelectedItemTemplate>
 					&nbsp;<span class="SelectedTab"><%# ((TabStripDetails) Container.DataItem).TabName %></span>&nbsp;
 				</SelectedItemTemplate>
-			</asp:datalist>
+			</asp:DataList>
 		</td>
 	</tr>
 </table>

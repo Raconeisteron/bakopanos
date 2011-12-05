@@ -31,13 +31,13 @@ namespace ASPNET.StarterKit.Portal {
         protected global::System.Web.UI.HtmlControls.HtmlForm Form2;
         
         /// <summary>
-        /// Banner control.
+        /// BannerContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ASPNET.StarterKit.Portal.DesktopPortalBanner Banner;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder BannerContent;
         
         /// <summary>
         /// MainContent control.

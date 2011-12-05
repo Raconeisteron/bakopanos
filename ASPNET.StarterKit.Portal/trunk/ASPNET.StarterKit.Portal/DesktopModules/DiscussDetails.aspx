@@ -2,7 +2,10 @@
     Inherits="ASPNET.StarterKit.Portal.DiscussDetails" MasterPageFile="~/Portal.Master" %>
 
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
-
+<%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="Server">
+    <ASPNETPortal:Banner ID="Banner" SelectedTabIndex="0" ShowTabs="false" runat="server" />
+</asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="Server">
     <table cellspacing="0" cellpadding="0" width="600">
         <tr>

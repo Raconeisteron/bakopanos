@@ -2,9 +2,14 @@
     Inherits="ASPNET.StarterKit.Portal.NotImplemented" MasterPageFile="~/Portal.Master" %>
 <%@ OutputCache Duration="600" VaryByParam="title" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
+<%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%--
    This page is the target for the fictious links in the sample data.
 --%>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="BannerContent" runat="Server">
+    <ASPNETPortal:Banner ID="Banner" SelectedTabIndex="0" ShowTabs="false" runat="server" />
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <center>
         <table width="500" border="0">

@@ -1,10 +1,14 @@
 <%@ Page Language="c#" CodeBehind="TabLayout.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.TabLayout"
     MasterPageFile="~/Portal.Master" %>
-
+<%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%--
      The TabLayout.aspx page is used to control the layout settings of an
      individual tab within the portal.
 --%>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="BannerContent" runat="Server">
+    <ASPNETPortal:Banner ID="Banner" SelectedTabIndex="0" ShowTabs="false" runat="server" />
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <table width="98%" cellspacing="0" cellpadding="4">
         <tr valign="top">

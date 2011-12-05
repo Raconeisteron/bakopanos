@@ -13,6 +13,15 @@ namespace ASPNET.StarterKit.Portal {
     public partial class DesktopDefault {
         
         /// <summary>
+        /// Banner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ASPNET.StarterKit.Portal.DesktopPortalBanner Banner;
+        
+        /// <summary>
         /// LeftPane control.
         /// </summary>
         /// <remarks>

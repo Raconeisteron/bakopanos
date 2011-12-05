@@ -1,6 +1,11 @@
 <%@ Page Language="c#" CodeBehind="EditImage.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.EditImage"
     MasterPageFile="~/Portal.Master" %>
 
+<%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="Server">
+    <ASPNETPortal:Banner ID="Banner" SelectedTabIndex="0" ShowTabs="false" runat="server" />
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="MainContent" runat="Server">
     <table width="98%" cellspacing="0" cellpadding="4" border="0">
         <tr valign="top">

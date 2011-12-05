@@ -1,10 +1,14 @@
 <%@ Page Language="c#" CodeBehind="SecurityRoles.aspx.cs" AutoEventWireup="True"
     Inherits="ASPNET.StarterKit.Portal.SecurityRoles" MasterPageFile="~/Portal.Master" %>
-
+<%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%--
     The SecurityRoles.aspx page is used to create and edit security roles within
     the Portal application.
 --%>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="BannerContent" runat="Server">
+    <ASPNETPortal:Banner ID="Banner" SelectedTabIndex="0" ShowTabs="false" runat="server" />
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <table width="98%" cellspacing="0" cellpadding="4" border="0">
         <tr height="*" valign="top">

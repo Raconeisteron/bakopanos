@@ -1,10 +1,14 @@
 <%@ Page CodeBehind="ModuleSettings.aspx.cs" Language="c#" AutoEventWireup="True"
     Inherits="ASPNET.StarterKit.Portal.ModuleSettingsPage" MasterPageFile="~/Portal.Master" %>
-
+<%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%--
     The ModuleSettings.aspx page is used to enable administrators to view/edit/update
     a portal module's settings (title, output cache properties, edit access)
 --%>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="BannerContent" runat="Server">
+    <ASPNETPortal:Banner ID="Banner" SelectedTabIndex="0" ShowTabs="false" runat="server" />
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <table width="98%" cellspacing="0" cellpadding="4" border="0">
         <tr valign="top">
