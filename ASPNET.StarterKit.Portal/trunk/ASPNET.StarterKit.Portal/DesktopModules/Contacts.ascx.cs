@@ -19,9 +19,9 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain contact information from Contacts table
             // and bind to the DataGrid Control
-            var contacts = new ContactsDB();
+            var contacts = new ContactsDb();
 
-            myDataGrid.DataSource = contacts.GetContacts(ModuleId);
+            myDataGrid.DataSource = ContactsDb.GetContacts(ModuleId);
             myDataGrid.DataBind();
         }
     }
