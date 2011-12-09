@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
 
@@ -46,30 +47,22 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of announcement information
-                var announcementDb = new AnnouncementsDB();
-                SqlDataReader dr = announcementDb.GetSingleAnnouncement(_itemId);
-
-                // Load first row into DataReader
-                dr.Read();
+                DataRow row = AnnouncementsDb.GetSingleAnnouncement(_itemId);
 
                 // Security check.  verify that itemid is within the module.
-                int dbModuleId = Convert.ToInt32(dr["ModuleID"]);
+                int dbModuleId = Convert.ToInt32(row["ModuleID"]);
                 if (dbModuleId != _moduleId)
                 {
-                    dr.Close();
                     Response.Redirect("~/Admin/EditAccessDenied.aspx");
                 }
 
-                TitleField.Text = (String) dr["Title"];
-                MoreLinkField.Text = (String) dr["MoreLink"];
-                MobileMoreField.Text = (String) dr["MobileMoreLink"];
-                DescriptionField.Text = (String) dr["Description"];
-                ExpireField.Text = ((DateTime) dr["ExpireDate"]).ToShortDateString();
-                CreatedBy.Text = (String) dr["CreatedByUser"];
-                CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
-
-                // Close the datareader
-                dr.Close();
+                TitleField.Text = (String) row["Title"];
+                MoreLinkField.Text = (String)row["MoreLink"];
+                MobileMoreField.Text = (String)row["MobileMoreLink"];
+                DescriptionField.Text = (String)row["Description"];
+                ExpireField.Text = ((DateTime)row["ExpireDate"]).ToShortDateString();
+                CreatedBy.Text = (String)row["CreatedByUser"];
+                CreatedDate.Text = ((DateTime)row["CreatedDate"]).ToShortDateString();
             }
 
             // Store URL Referrer to return to portal
@@ -90,19 +83,19 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Announcement DB component
-                var announcementDb = new AnnouncementsDB();
+                var announcementDb = new AnnouncementsDb();
 
                 if (_itemId == 0)
                 {
                     // Add the announcement within the Announcements table
-                    announcementDb.AddAnnouncement(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                    AnnouncementsDb.AddAnnouncement(_moduleId, Context.User.Identity.Name, TitleField.Text,
                                                    DateTime.Parse(ExpireField.Text), DescriptionField.Text,
                                                    MoreLinkField.Text, MobileMoreField.Text);
                 }
                 else
                 {
                     // Update the announcement within the Announcements table
-                    announcementDb.UpdateAnnouncement(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                    AnnouncementsDb.UpdateAnnouncement(_itemId, Context.User.Identity.Name, TitleField.Text,
                                                       DateTime.Parse(ExpireField.Text), DescriptionField.Text,
                                                       MoreLinkField.Text, MobileMoreField.Text);
                 }
@@ -127,8 +120,8 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var announcementDb = new AnnouncementsDB();
-                announcementDb.DeleteAnnouncement(_itemId);
+                var announcementDb = new AnnouncementsDb();
+                AnnouncementsDb.DeleteAnnouncement(_itemId);
             }
 
             // Redirect back to the portal home page

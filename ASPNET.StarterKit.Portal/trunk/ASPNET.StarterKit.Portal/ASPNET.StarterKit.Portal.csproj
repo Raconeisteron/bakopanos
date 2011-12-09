@@ -271,6 +271,7 @@
     <Compile Include="Components\Configuration.cs" />
     <Compile Include="Components\ContactsDB.cs" />
     <Compile Include="Components\CachedPortalModuleControl.cs" />
+    <Compile Include="Components\DbHelper.cs" />
     <Compile Include="Components\DiscussionDB.cs" />
     <Compile Include="Components\DocumentDB.cs" />
     <Compile Include="Components\EventsDB.cs" />
