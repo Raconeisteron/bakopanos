@@ -2,6 +2,7 @@
     MasterPageFile="~/Portal.Master" %>
 
 <%@ OutputCache Duration="36000" VaryByParam="none" %>
+
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="Server">

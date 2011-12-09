@@ -59,7 +59,8 @@ namespace ASPNET.StarterKit.Portal
 
             // save to database
             var config = new Configuration();
-            m.ModuleId = config.AddModule(_tabId, m.ModuleOrder, "ContentPane", m.ModuleTitle, m.ModuleDefId, 0, "Admins",
+            m.ModuleId = config.AddModule(_tabId, m.ModuleOrder, "ContentPane", m.ModuleTitle, m.ModuleDefId, 0,
+                                          "Admins",
                                           false);
 
             // Obtain portalId from Current Context
@@ -439,6 +440,5 @@ namespace ASPNET.StarterKit.Portal
                 i += 2;
             }
         }
-
     }
 }

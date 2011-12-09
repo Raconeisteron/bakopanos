@@ -1,6 +1,5 @@
 <%@ Page Language="c#" CodeBehind="DiscussDetails.aspx.cs" AutoEventWireup="True"
     Inherits="ASPNET.StarterKit.Portal.DiscussDetails" MasterPageFile="~/Portal.Master" %>
-
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="Server">
