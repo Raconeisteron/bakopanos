@@ -164,8 +164,9 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public static void UpdateDocument(int moduleId, int itemId, String userName, String name, String url, String category,
-                                   byte[] content, int size, String contentType)
+        public static void UpdateDocument(int moduleId, int itemId, String userName, String name, String url,
+                                          String category,
+                                          byte[] content, int size, String contentType)
         {
             if (userName.Length < 1)
             {

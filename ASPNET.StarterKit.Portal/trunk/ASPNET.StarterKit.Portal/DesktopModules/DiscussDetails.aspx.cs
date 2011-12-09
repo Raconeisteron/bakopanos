@@ -81,7 +81,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Add new message (updating the "itemId" on the page)
             _itemId = DiscussionDb.AddMessage(_moduleId, _itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
-                                         Server.HtmlEncode(BodyField.Text));
+                                              Server.HtmlEncode(BodyField.Text));
 
             // Update visibility of page elements
             EditPanel.Visible = false;

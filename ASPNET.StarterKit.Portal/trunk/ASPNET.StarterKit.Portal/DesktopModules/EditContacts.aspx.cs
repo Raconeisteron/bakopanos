@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
@@ -82,19 +81,19 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the ContactsDB component
-                
+
                 if (_itemId == 0)
                 {
                     // Add the contact within the contacts table
                     ContactsDb.AddContact(_moduleId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
-                                        EmailField.Text, Contact1Field.Text, Contact2Field.Text);
+                                          EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
                 else
                 {
                     // Update the contact within the contacts table
                     ContactsDb.UpdateContact(_itemId, Context.User.Identity.Name, NameField.Text,
-                                           RoleField.Text,
-                                           EmailField.Text, Contact1Field.Text, Contact2Field.Text);
+                                             RoleField.Text,
+                                             EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
 
                 // Redirect back to the portal home page

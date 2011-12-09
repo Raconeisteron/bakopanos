@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
@@ -57,12 +56,12 @@ namespace ASPNET.StarterKit.Portal
                 }
 
                 TitleField.Text = (String) row["Title"];
-                MoreLinkField.Text = (String)row["MoreLink"];
-                MobileMoreField.Text = (String)row["MobileMoreLink"];
-                DescriptionField.Text = (String)row["Description"];
-                ExpireField.Text = ((DateTime)row["ExpireDate"]).ToShortDateString();
-                CreatedBy.Text = (String)row["CreatedByUser"];
-                CreatedDate.Text = ((DateTime)row["CreatedDate"]).ToShortDateString();
+                MoreLinkField.Text = (String) row["MoreLink"];
+                MobileMoreField.Text = (String) row["MobileMoreLink"];
+                DescriptionField.Text = (String) row["Description"];
+                ExpireField.Text = ((DateTime) row["ExpireDate"]).ToShortDateString();
+                CreatedBy.Text = (String) row["CreatedByUser"];
+                CreatedDate.Text = ((DateTime) row["CreatedDate"]).ToShortDateString();
             }
 
             // Store URL Referrer to return to portal
@@ -89,15 +88,15 @@ namespace ASPNET.StarterKit.Portal
                 {
                     // Add the announcement within the Announcements table
                     AnnouncementsDb.AddAnnouncement(_moduleId, Context.User.Identity.Name, TitleField.Text,
-                                                   DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                                   MoreLinkField.Text, MobileMoreField.Text);
+                                                    DateTime.Parse(ExpireField.Text), DescriptionField.Text,
+                                                    MoreLinkField.Text, MobileMoreField.Text);
                 }
                 else
                 {
                     // Update the announcement within the Announcements table
                     AnnouncementsDb.UpdateAnnouncement(_itemId, Context.User.Identity.Name, TitleField.Text,
-                                                      DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                                      MoreLinkField.Text, MobileMoreField.Text);
+                                                       DateTime.Parse(ExpireField.Text), DescriptionField.Text,
+                                                       MoreLinkField.Text, MobileMoreField.Text);
                 }
 
                 // Redirect back to the portal home page

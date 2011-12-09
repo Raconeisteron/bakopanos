@@ -26,7 +26,7 @@ namespace ASPNET.StarterKit.Portal
         /// about a specific announcement from the Announcements database table.
         /// </returns>
         public static DataRow GetSingleAnnouncement(int itemId)
-        {   
+        {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
             return GetDataRow("Portal_GetSingleAnnouncement", parameterItemId);
@@ -48,7 +48,7 @@ namespace ASPNET.StarterKit.Portal
         /// Announcements database table, and returns the ItemId value as a result.
         /// </summary>
         public static int AddAnnouncement(int moduleId, String userName, String title, DateTime expireDate,
-                                   String description, String moreLink, String mobileMoreLink)
+                                          String description, String moreLink, String mobileMoreLink)
         {
             if (userName.Length < 1)
             {
@@ -75,13 +75,13 @@ namespace ASPNET.StarterKit.Portal
         /// the Announcements database table.
         /// </summary>
         public static void UpdateAnnouncement(int itemId, String userName, String title, DateTime expireDate,
-                                       String description, String moreLink, String mobileMoreLink)
+                                              String description, String moreLink, String mobileMoreLink)
         {
             if (userName.Length < 1)
             {
                 userName = "unknown";
             }
-            
+
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
             var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};
             var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 150) {Value = title};

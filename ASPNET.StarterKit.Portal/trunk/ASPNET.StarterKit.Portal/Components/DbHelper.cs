@@ -22,7 +22,7 @@ namespace ASPNET.StarterKit.Portal
 
         protected static DataRow GetDataRow(string myCommandText, params SqlParameter[] sqlParameters)
         {
-            foreach (DataRow row in GetDataTable(myCommandText,sqlParameters).Rows)
+            foreach (DataRow row in GetDataTable(myCommandText, sqlParameters).Rows)
             {
                 return row;
             }
@@ -49,13 +49,14 @@ namespace ASPNET.StarterKit.Portal
             return myDataSet;
         }
 
-        protected static T ExecuteNonQuery<T>(string myCommandText, SqlParameter outSqlParameter, params SqlParameter[] sqlParameters)
+        protected static T ExecuteNonQuery<T>(string myCommandText, SqlParameter outSqlParameter,
+                                              params SqlParameter[] sqlParameters)
         {
             var parameters = new List<SqlParameter> {outSqlParameter};
             parameters.AddRange(sqlParameters);
             ExecuteNonQuery(myCommandText, parameters.ToArray());
 
-            return (T)outSqlParameter.Value;
+            return (T) outSqlParameter.Value;
         }
 
         protected static void ExecuteNonQuery(string myCommandText, params SqlParameter[] sqlParameters)
@@ -71,7 +72,5 @@ namespace ASPNET.StarterKit.Portal
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
-
-
     }
 }

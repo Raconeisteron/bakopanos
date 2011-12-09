@@ -68,8 +68,9 @@ namespace ASPNET.StarterKit.Portal
             var text = new HtmlTextDb();
 
             // Update the text within the HtmlText table
-            HtmlTextDb.UpdateHtmlText(_moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text),
-                                Server.HtmlEncode(MobileDetails.Text));
+            HtmlTextDb.UpdateHtmlText(_moduleId, Server.HtmlEncode(DesktopText.Text),
+                                      Server.HtmlEncode(MobileSummary.Text),
+                                      Server.HtmlEncode(MobileDetails.Text));
 
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);
