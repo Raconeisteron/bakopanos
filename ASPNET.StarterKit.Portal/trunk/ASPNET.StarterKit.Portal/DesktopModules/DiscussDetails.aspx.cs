@@ -77,10 +77,10 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create new discussion database component
-            var discuss = new DiscussionDB();
+            var discuss = new DiscussionDb();
 
             // Add new message (updating the "itemId" on the page)
-            _itemId = discuss.AddMessage(_moduleId, _itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
+            _itemId = DiscussionDb.AddMessage(_moduleId, _itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
                                          Server.HtmlEncode(BodyField.Text));
 
             // Update visibility of page elements
@@ -118,8 +118,8 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Obtain the selected item from the Discussion table
-            var discuss = new DiscussionDB();
-            SqlDataReader dr = discuss.GetSingleMessage(_itemId);
+            var discuss = new DiscussionDb();
+            SqlDataReader dr = DiscussionDb.GetSingleMessage(_itemId);
 
             // Load first row from database
             dr.Read();

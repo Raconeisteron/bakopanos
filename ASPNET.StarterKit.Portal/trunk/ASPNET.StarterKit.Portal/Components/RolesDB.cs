@@ -13,7 +13,7 @@ namespace ASPNET.StarterKit.Portal
     // Users, Roles and security settings values within the Portal database.
     //
     //*********************************************************************
-    public class RolesDB
+    public class RolesDb
     {
         //*********************************************************************
         //
@@ -27,7 +27,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetPortalRoles(int portalId)
+        public static SqlDataReader GetPortalRoles(int portalId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -38,9 +38,8 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterPortalID = new SqlParameter("@PortalID", SqlDbType.Int, 4);
-            parameterPortalID.Value = portalId;
-            myCommand.Parameters.Add(parameterPortalID);
+            var parameterPortalId = new SqlParameter("@PortalID", SqlDbType.Int, 4) {Value = portalId};
+            myCommand.Parameters.Add(parameterPortalId);
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -62,7 +61,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public int AddRole(int portalId, String roleName)
+        public static int AddRole(int portalId, String roleName)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -73,17 +72,14 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterPortalID = new SqlParameter("@PortalID", SqlDbType.Int, 4);
-            parameterPortalID.Value = portalId;
-            myCommand.Parameters.Add(parameterPortalID);
+            var parameterPortalId = new SqlParameter("@PortalID", SqlDbType.Int, 4) {Value = portalId};
+            myCommand.Parameters.Add(parameterPortalId);
 
-            var parameterRoleName = new SqlParameter("@RoleName", SqlDbType.NVarChar, 50);
-            parameterRoleName.Value = roleName;
+            var parameterRoleName = new SqlParameter("@RoleName", SqlDbType.NVarChar, 50) {Value = roleName};
             myCommand.Parameters.Add(parameterRoleName);
 
-            var parameterRoleID = new SqlParameter("@RoleID", SqlDbType.Int, 4);
-            parameterRoleID.Direction = ParameterDirection.Output;
-            myCommand.Parameters.Add(parameterRoleID);
+            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Direction = ParameterDirection.Output};
+            myCommand.Parameters.Add(parameterRoleId);
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -91,7 +87,7 @@ namespace ASPNET.StarterKit.Portal
             myConnection.Close();
 
             // return the role id 
-            return (int) parameterRoleID.Value;
+            return (int) parameterRoleId.Value;
         }
 
         //*********************************************************************
@@ -105,7 +101,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void DeleteRole(int roleId)
+        public static void DeleteRole(int roleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -116,9 +112,8 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterRoleID = new SqlParameter("@RoleID", SqlDbType.Int, 4);
-            parameterRoleID.Value = roleId;
-            myCommand.Parameters.Add(parameterRoleID);
+            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};
+            myCommand.Parameters.Add(parameterRoleId);
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -137,7 +132,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void UpdateRole(int roleId, String roleName)
+        public static void UpdateRole(int roleId, String roleName)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -148,12 +143,10 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterRoleID = new SqlParameter("@RoleID", SqlDbType.Int, 4);
-            parameterRoleID.Value = roleId;
-            myCommand.Parameters.Add(parameterRoleID);
+            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};
+            myCommand.Parameters.Add(parameterRoleId);
 
-            var parameterRoleName = new SqlParameter("@RoleName", SqlDbType.NVarChar, 50);
-            parameterRoleName.Value = roleName;
+            var parameterRoleName = new SqlParameter("@RoleName", SqlDbType.NVarChar, 50) {Value = roleName};
             myCommand.Parameters.Add(parameterRoleName);
 
             // Open the database connection and execute the command
@@ -179,7 +172,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetRoleMembers(int roleId)
+        public static SqlDataReader GetRoleMembers(int roleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -189,9 +182,8 @@ namespace ASPNET.StarterKit.Portal
             // Mark the Command as a SPROC
             myCommand.CommandType = CommandType.StoredProcedure;
 
-            var parameterRoleID = new SqlParameter("@RoleID", SqlDbType.Int, 4);
-            parameterRoleID.Value = roleId;
-            myCommand.Parameters.Add(parameterRoleID);
+            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};
+            myCommand.Parameters.Add(parameterRoleId);
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -212,7 +204,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void AddUserRole(int roleId, int userId)
+        public static void AddUserRole(int roleId, int userId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -223,13 +215,11 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterRoleID = new SqlParameter("@RoleID", SqlDbType.Int, 4);
-            parameterRoleID.Value = roleId;
-            myCommand.Parameters.Add(parameterRoleID);
+            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};
+            myCommand.Parameters.Add(parameterRoleId);
 
-            var parameterUserID = new SqlParameter("@UserID", SqlDbType.Int, 4);
-            parameterUserID.Value = userId;
-            myCommand.Parameters.Add(parameterUserID);
+            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int, 4) {Value = userId};
+            myCommand.Parameters.Add(parameterUserId);
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -248,7 +238,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void DeleteUserRole(int roleId, int userId)
+        public static void DeleteUserRole(int roleId, int userId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -259,13 +249,11 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterRoleID = new SqlParameter("@RoleID", SqlDbType.Int, 4);
-            parameterRoleID.Value = roleId;
-            myCommand.Parameters.Add(parameterRoleID);
+            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};
+            myCommand.Parameters.Add(parameterRoleId);
 
-            var parameterUserID = new SqlParameter("@UserID", SqlDbType.Int, 4);
-            parameterUserID.Value = userId;
-            myCommand.Parameters.Add(parameterUserID);
+            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int, 4) {Value = userId};
+            myCommand.Parameters.Add(parameterUserId);
 
             // Open the database connection and execute the command
             myConnection.Open();
@@ -290,7 +278,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetUsers()
+        public static SqlDataReader GetUsers()
         {
             // Create Instance of Connection and Command Object
             var myConnection =

@@ -85,7 +85,7 @@ namespace ASPNET.StarterKit.Portal
             // Get the portal's defs from the database
             var config = new Configuration();
 
-            defsList.DataSource = config.GetModuleDefinitions(portalSettings.PortalId);
+            defsList.DataSource = Configuration.GetModuleDefinitions(portalSettings.PortalId);
             defsList.DataBind();
         }
 

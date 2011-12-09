@@ -15,9 +15,9 @@ namespace ASPNET.StarterKit.Portal
             if (!Page.IsValid) return;
 
             // Add New User to Portal User Database
-            var accountSystem = new UsersDB();
+            var accountSystem = new UsersDb();
 
-            if ((accountSystem.AddUser(Name.Text, Email.Text, PortalSecurity.Encrypt(Password.Text))) > -1)
+            if ((UsersDb.AddUser(Name.Text, Email.Text, PortalSecurity.Encrypt(Password.Text))) > -1)
             {
                 // Set the user's authentication name to the userId
                 FormsAuthentication.SetAuthCookie(Email.Text, false);

@@ -9,7 +9,7 @@ namespace ASPNET.StarterKit.Portal
     /// The PortalSecurity class encapsulates two helper methods that enable
     /// developers to easily check the role status of the current browser client.
     /// </summary>
-    public class PortalSecurity
+    public static class PortalSecurity
     {
         //*********************************************************************
         //
@@ -56,7 +56,7 @@ namespace ASPNET.StarterKit.Portal
 
             foreach (String role in roles.Split(new[] {';'}))
             {
-                if (role != "" && role != null && ((role == "All Users") || (context.User.IsInRole(role))))
+                if (!string.IsNullOrEmpty(role) && ((role == "All Users") || (context.User.IsInRole(role))))
                 {
                     return true;
                 }
@@ -77,17 +77,14 @@ namespace ASPNET.StarterKit.Portal
 
         public static bool HasEditPermissions(int moduleId)
         {
-            string accessRoles;
-            string editRoles;
-
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
             // Find the appropriate Module in the Module table
             SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
 
-            editRoles = moduleRow.EditRoles;
-            accessRoles = moduleRow.TabRow.AccessRoles;
+            string editRoles = moduleRow.EditRoles;
+            string accessRoles = moduleRow.TabRow.AccessRoles;
 
             if (IsInRoles(accessRoles) == false || IsInRoles(editRoles) == false)
                 return false;

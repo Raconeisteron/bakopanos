@@ -53,7 +53,7 @@ namespace ASPNET.StarterKit.Portal
                 // new user?
                 if (_userName == "")
                 {
-                    var users = new UsersDB();
+                    var users = new UsersDb();
 
                     // make a unique new user record
                     int uid = -1;
@@ -63,7 +63,7 @@ namespace ASPNET.StarterKit.Portal
                     {
                         String friendlyName = "New User created " + DateTime.Now;
                         _userName = "New User" + i;
-                        uid = users.AddUser(friendlyName, _userName, "");
+                        uid = UsersDb.AddUser(friendlyName, _userName, "");
                         i++;
                     }
 
@@ -105,8 +105,8 @@ namespace ASPNET.StarterKit.Portal
             int roleId = Int32.Parse(allRoles.SelectedItem.Value);
 
             // Add a new userRole to the database
-            var roles = new RolesDB();
-            roles.AddUserRole(roleId, _userId);
+            var roles = new RolesDb();
+            RolesDb.AddUserRole(roleId, _userId);
 
             // Rebind list
             BindData();
@@ -122,8 +122,8 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateUser_Click(Object sender, EventArgs e)
         {
             // update the user record in the database
-            var users = new UsersDB();
-            users.UpdateUser(_userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
+            var users = new UsersDb();
+            UsersDb.UpdateUser(_userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
 
             // redirect to this page with the corrected querystring args
             Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + _userId + "&username=" + Email.Text + "&tabindex=" +
@@ -140,11 +140,11 @@ namespace ASPNET.StarterKit.Portal
 
         private void UserRoles_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            var roles = new RolesDB();
+            var roles = new RolesDb();
             var roleId = (int) userRoles.DataKeys[e.Item.ItemIndex];
 
             // update database
-            roles.DeleteUserRole(roleId, _userId);
+            RolesDb.DeleteUserRole(roleId, _userId);
 
             // Ensure that item is not editable
             userRoles.EditItemIndex = -1;
@@ -163,8 +163,8 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Bind the Email and Password
-            var users = new UsersDB();
-            SqlDataReader dr = users.GetSingleUser(_userName);
+            var users = new UsersDb();
+            SqlDataReader dr = UsersDb.GetSingleUser(_userName);
 
             // Read first row from database
             dr.Read();
@@ -180,17 +180,17 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // bind users in role to DataList
-            userRoles.DataSource = users.GetRolesByUser(_userName);
+            userRoles.DataSource = UsersDb.GetRolesByUser(_userName);
             userRoles.DataBind();
 
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Get the portal's roles from the database
-            var roles = new RolesDB();
+            var roles = new RolesDb();
 
             // bind all portal roles to dropdownlist
-            allRoles.DataSource = roles.GetPortalRoles(portalSettings.PortalId);
+            allRoles.DataSource = RolesDb.GetPortalRoles(portalSettings.PortalId);
             allRoles.DataBind();
         }
 

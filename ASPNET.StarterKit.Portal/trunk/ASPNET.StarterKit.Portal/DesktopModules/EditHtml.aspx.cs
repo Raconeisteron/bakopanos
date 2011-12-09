@@ -32,8 +32,8 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsPostBack == false)
             {
                 // Obtain a single row of text information
-                var text = new HtmlTextDB();
-                SqlDataReader dr = text.GetHtmlText(_moduleId);
+                var text = new HtmlTextDb();
+                SqlDataReader dr = HtmlTextDb.GetHtmlText(_moduleId);
 
                 if (dr.Read())
                 {
@@ -65,10 +65,10 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create an instance of the HtmlTextDB component
-            var text = new HtmlTextDB();
+            var text = new HtmlTextDb();
 
             // Update the text within the HtmlText table
-            text.UpdateHtmlText(_moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text),
+            HtmlTextDb.UpdateHtmlText(_moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text),
                                 Server.HtmlEncode(MobileDetails.Text));
 
             // Redirect back to the portal home page

@@ -14,7 +14,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class DocumentDB
+    public class DocumentDb
     {
         //*********************************************************************
         //
@@ -29,7 +29,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetDocuments(int moduleId)
+        public static SqlDataReader GetDocuments(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -40,8 +40,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
             myCommand.Parameters.Add(parameterModuleId);
 
             // Execute the command
@@ -64,7 +63,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleDocument(int itemId)
+        public static SqlDataReader GetSingleDocument(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -75,8 +74,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemId;
+            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
             myCommand.Parameters.Add(parameterItemId);
 
             // Execute the command
@@ -99,7 +97,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetDocumentContent(int itemId)
+        public static SqlDataReader GetDocumentContent(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -110,8 +108,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemId;
+            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
             myCommand.Parameters.Add(parameterItemId);
 
             // Execute the command
@@ -135,7 +132,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void DeleteDocument(int itemID)
+        public static void DeleteDocument(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -146,9 +143,8 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemID.Value = itemID;
-            myCommand.Parameters.Add(parameterItemID);
+            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
+            myCommand.Parameters.Add(parameterItemId);
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();
@@ -168,7 +164,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void UpdateDocument(int moduleId, int itemId, String userName, String name, String url, String category,
+        public static void UpdateDocument(int moduleId, int itemId, String userName, String name, String url, String category,
                                    byte[] content, int size, String contentType)
         {
             if (userName.Length < 1)
@@ -185,40 +181,31 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemID.Value = itemId;
-            myCommand.Parameters.Add(parameterItemID);
+            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
+            myCommand.Parameters.Add(parameterItemId);
 
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleID.Value = moduleId;
-            myCommand.Parameters.Add(parameterModuleID);
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
+            myCommand.Parameters.Add(parameterModuleId);
 
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
-            parameterUserName.Value = userName;
+            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};
             myCommand.Parameters.Add(parameterUserName);
 
-            var parameterName = new SqlParameter("@FileFriendlyName", SqlDbType.NVarChar, 150);
-            parameterName.Value = name;
+            var parameterName = new SqlParameter("@FileFriendlyName", SqlDbType.NVarChar, 150) {Value = name};
             myCommand.Parameters.Add(parameterName);
 
-            var parameterFileUrl = new SqlParameter("@FileNameUrl", SqlDbType.NVarChar, 250);
-            parameterFileUrl.Value = url;
+            var parameterFileUrl = new SqlParameter("@FileNameUrl", SqlDbType.NVarChar, 250) {Value = url};
             myCommand.Parameters.Add(parameterFileUrl);
 
-            var parameterCategory = new SqlParameter("@Category", SqlDbType.NVarChar, 50);
-            parameterCategory.Value = category;
+            var parameterCategory = new SqlParameter("@Category", SqlDbType.NVarChar, 50) {Value = category};
             myCommand.Parameters.Add(parameterCategory);
 
-            var parameterContent = new SqlParameter("@Content", SqlDbType.Image);
-            parameterContent.Value = content;
+            var parameterContent = new SqlParameter("@Content", SqlDbType.Image) {Value = content};
             myCommand.Parameters.Add(parameterContent);
 
-            var parameterContentType = new SqlParameter("@ContentType", SqlDbType.NVarChar, 50);
-            parameterContentType.Value = contentType;
+            var parameterContentType = new SqlParameter("@ContentType", SqlDbType.NVarChar, 50) {Value = contentType};
             myCommand.Parameters.Add(parameterContentType);
 
-            var parameterContentSize = new SqlParameter("@ContentSize", SqlDbType.Int, 4);
-            parameterContentSize.Value = size;
+            var parameterContentSize = new SqlParameter("@ContentSize", SqlDbType.Int, 4) {Value = size};
             myCommand.Parameters.Add(parameterContentSize);
 
             myConnection.Open();

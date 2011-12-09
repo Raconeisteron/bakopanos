@@ -45,8 +45,8 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of link information
-                    var links = new LinkDB();
-                    SqlDataReader dr = links.GetSingleLink(_itemId);
+                    var links = new LinkDb();
+                    SqlDataReader dr = LinkDb.GetSingleLink(_itemId);
 
                     // Read in first row from database
                     dr.Read();
@@ -89,18 +89,18 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Link DB component
-                var links = new LinkDB();
+                var links = new LinkDb();
 
                 if (_itemId == 0)
                 {
                     // Add the link within the Links table
-                    links.AddLink(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    LinkDb.AddLink(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                   MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
                 else
                 {
                     // Update the link within the Links table
-                    links.UpdateLink(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    LinkDb.UpdateLink(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                      MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
 
@@ -124,8 +124,8 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var links = new LinkDB();
-                links.DeleteLink(_itemId);
+                var links = new LinkDb();
+                LinkDb.DeleteLink(_itemId);
             }
 
             // Redirect back to the portal home page

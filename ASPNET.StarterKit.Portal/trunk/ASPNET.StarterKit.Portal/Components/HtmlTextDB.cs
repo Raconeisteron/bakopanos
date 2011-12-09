@@ -14,7 +14,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class HtmlTextDB
+    public class HtmlTextDb
     {
         //*********************************************************************
         //
@@ -28,7 +28,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetHtmlText(int moduleId)
+        public static SqlDataReader GetHtmlText(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -39,9 +39,8 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleID.Value = moduleId;
-            myCommand.Parameters.Add(parameterModuleID);
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
+            myCommand.Parameters.Add(parameterModuleId);
 
             // Execute the command
             myConnection.Open();
@@ -64,7 +63,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void UpdateHtmlText(int moduleId, String desktopHtml, String mobileSummary, String mobileDetails)
+        public static void UpdateHtmlText(int moduleId, String desktopHtml, String mobileSummary, String mobileDetails)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -75,20 +74,16 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleID.Value = moduleId;
-            myCommand.Parameters.Add(parameterModuleID);
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
+            myCommand.Parameters.Add(parameterModuleId);
 
-            var parameterDesktopHtml = new SqlParameter("@DesktopHtml", SqlDbType.NText);
-            parameterDesktopHtml.Value = desktopHtml;
+            var parameterDesktopHtml = new SqlParameter("@DesktopHtml", SqlDbType.NText) {Value = desktopHtml};
             myCommand.Parameters.Add(parameterDesktopHtml);
 
-            var parameterMobileSummary = new SqlParameter("@MobileSummary", SqlDbType.NText);
-            parameterMobileSummary.Value = mobileSummary;
+            var parameterMobileSummary = new SqlParameter("@MobileSummary", SqlDbType.NText) {Value = mobileSummary};
             myCommand.Parameters.Add(parameterMobileSummary);
 
-            var parameterMobileDetails = new SqlParameter("@MobileDetails", SqlDbType.NText);
-            parameterMobileDetails.Value = mobileDetails;
+            var parameterMobileDetails = new SqlParameter("@MobileDetails", SqlDbType.NText) {Value = mobileDetails};
             myCommand.Parameters.Add(parameterMobileDetails);
 
             myConnection.Open();

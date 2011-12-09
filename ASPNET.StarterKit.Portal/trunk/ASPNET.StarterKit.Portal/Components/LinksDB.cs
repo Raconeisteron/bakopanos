@@ -14,7 +14,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class LinkDB
+    public class LinkDb
     {
         //*********************************************************************
         //
@@ -29,7 +29,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetLinks(int moduleId)
+        public static SqlDataReader GetLinks(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -40,8 +40,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
             myCommand.Parameters.Add(parameterModuleId);
 
             // Execute the command
@@ -64,7 +63,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleLink(int itemId)
+        public static SqlDataReader GetSingleLink(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -75,8 +74,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemId;
+            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
             myCommand.Parameters.Add(parameterItemId);
 
             // Execute the command
@@ -99,7 +97,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void DeleteLink(int itemID)
+        public static void DeleteLink(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -110,9 +108,8 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemID.Value = itemID;
-            myCommand.Parameters.Add(parameterItemID);
+            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
+            myCommand.Parameters.Add(parameterItemId);
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();
@@ -131,7 +128,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public int AddLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
+        public static int AddLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
                            int viewOrder, String description)
         {
             if (userName.Length < 1)
@@ -148,43 +145,35 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemID.Direction = ParameterDirection.Output;
-            myCommand.Parameters.Add(parameterItemID);
+            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Direction = ParameterDirection.Output};
+            myCommand.Parameters.Add(parameterItemId);
 
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleID.Value = moduleId;
-            myCommand.Parameters.Add(parameterModuleID);
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
+            myCommand.Parameters.Add(parameterModuleId);
 
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
-            parameterUserName.Value = userName;
+            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};
             myCommand.Parameters.Add(parameterUserName);
 
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
-            parameterTitle.Value = title;
+            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100) {Value = title};
             myCommand.Parameters.Add(parameterTitle);
 
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100);
-            parameterDescription.Value = description;
+            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100) {Value = description};
             myCommand.Parameters.Add(parameterDescription);
 
-            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
-            parameterUrl.Value = url;
+            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100) {Value = url};
             myCommand.Parameters.Add(parameterUrl);
 
-            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100);
-            parameterMobileUrl.Value = mobileUrl;
+            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100) {Value = mobileUrl};
             myCommand.Parameters.Add(parameterMobileUrl);
 
-            var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4);
-            parameterViewOrder.Value = viewOrder;
+            var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4) {Value = viewOrder};
             myCommand.Parameters.Add(parameterViewOrder);
 
             myConnection.Open();
             myCommand.ExecuteNonQuery();
             myConnection.Close();
 
-            return (int) parameterItemID.Value;
+            return (int) parameterItemId.Value;
         }
 
         //*********************************************************************
@@ -199,7 +188,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void UpdateLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
+        public static void UpdateLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
                                int viewOrder, String description)
         {
             if (userName.Length < 1)
@@ -216,32 +205,25 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemID.Value = itemId;
-            myCommand.Parameters.Add(parameterItemID);
+            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
+            myCommand.Parameters.Add(parameterItemId);
 
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
-            parameterUserName.Value = userName;
+            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};
             myCommand.Parameters.Add(parameterUserName);
 
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
-            parameterTitle.Value = title;
+            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100) {Value = title};
             myCommand.Parameters.Add(parameterTitle);
 
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100);
-            parameterDescription.Value = description;
+            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100) {Value = description};
             myCommand.Parameters.Add(parameterDescription);
 
-            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
-            parameterUrl.Value = url;
+            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100) {Value = url};
             myCommand.Parameters.Add(parameterUrl);
 
-            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100);
-            parameterMobileUrl.Value = mobileUrl;
+            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100) {Value = mobileUrl};
             myCommand.Parameters.Add(parameterMobileUrl);
 
-            var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4);
-            parameterViewOrder.Value = viewOrder;
+            var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4) {Value = viewOrder};
             myCommand.Parameters.Add(parameterViewOrder);
 
             myConnection.Open();

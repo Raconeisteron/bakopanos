@@ -189,14 +189,14 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             myConnection.Open();
 
             foreach (SiteConfiguration.ModuleRow moduleRow in tabRow.GetModuleRows())
             {
                 myCommand.Parameters.Clear();
-                parameterModuleID.Value = moduleRow.ModuleId;
-                myCommand.Parameters.Add(parameterModuleID);
+                parameterModuleId.Value = moduleRow.ModuleId;
+                myCommand.Parameters.Add(parameterModuleId);
 
                 // Open the database connection and execute the command
                 myCommand.ExecuteNonQuery();
@@ -229,15 +229,15 @@ namespace ASPNET.StarterKit.Portal
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public void UpdateModuleOrder(int ModuleId, int ModuleOrder, String pane)
+        public void UpdateModuleOrder(int moduleId, int moduleOrder, String pane)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
             // Find the appropriate Module in the Module table and update the properties
-            SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(ModuleId);
+            SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
 
-            moduleRow.ModuleOrder = ModuleOrder;
+            moduleRow.ModuleOrder = moduleOrder;
             moduleRow.PaneName = pane;
 
             // Save the changes 
@@ -355,11 +355,11 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             myConnection.Open();
 
-            parameterModuleID.Value = moduleId;
-            myCommand.Parameters.Add(parameterModuleID);
+            parameterModuleId.Value = moduleId;
+            myCommand.Parameters.Add(parameterModuleId);
 
             // Open the database connection and execute the command
             myCommand.ExecuteNonQuery();
@@ -501,7 +501,7 @@ namespace ASPNET.StarterKit.Portal
         public static Hashtable GetModuleSettings(int moduleId)
         {
             // Create a new Hashtable
-            var _settingsHT = new Hashtable();
+            var settingsHt = new Hashtable();
 
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -519,12 +519,12 @@ namespace ASPNET.StarterKit.Portal
                     // Find the child setting elements and add to the hashtable
                     foreach (SiteConfiguration.SettingRow sRow in settingsRow.GetSettingRows())
                     {
-                        _settingsHT[sRow.Name] = sRow.Setting_Text;
+                        settingsHt[sRow.Name] = sRow.Setting_Text;
                     }
                 }
             }
 
-            return _settingsHT;
+            return settingsHt;
         }
 
         //
@@ -543,7 +543,7 @@ namespace ASPNET.StarterKit.Portal
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public DataRow[] GetModuleDefinitions(int portalId)
+        public static DataRow[] GetModuleDefinitions(int portalId)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -621,7 +621,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             myConnection.Open();
 
             foreach (SiteConfiguration.ModuleRow moduleRow in siteSettings.Module.Select())
@@ -629,8 +629,8 @@ namespace ASPNET.StarterKit.Portal
                 if (moduleRow.ModuleDefId == defId)
                 {
                     myCommand.Parameters.Clear();
-                    parameterModuleID.Value = moduleRow.ModuleId;
-                    myCommand.Parameters.Add(parameterModuleID);
+                    parameterModuleId.Value = moduleRow.ModuleId;
+                    myCommand.Parameters.Add(parameterModuleId);
 
                     // Delete the xml module associated with the ModuleDef
                     // in the configuration file
@@ -692,7 +692,7 @@ namespace ASPNET.StarterKit.Portal
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public SiteConfiguration.ModuleDefinitionRow GetSingleModuleDefinition(int defId)
+        public static SiteConfiguration.ModuleDefinitionRow GetSingleModuleDefinition(int defId)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -759,7 +759,7 @@ namespace ASPNET.StarterKit.Portal
         // time GetSiteSettings() is called.
         //
         //*********************************************************************
-        public void SaveSiteSettings()
+        private static void SaveSiteSettings()
         {
             // Obtain SiteSettings from the Cache
             var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];

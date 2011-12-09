@@ -36,9 +36,9 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain a list of discussion messages for the module
             // and bind to datalist
-            var discuss = new DiscussionDB();
+            var discuss = new DiscussionDb();
 
-            TopLevelList.DataSource = discuss.GetTopLevelMessages(ModuleId);
+            TopLevelList.DataSource = DiscussionDb.GetTopLevelMessages(ModuleId);
             TopLevelList.DataBind();
         }
 
@@ -55,8 +55,8 @@ namespace ASPNET.StarterKit.Portal
         protected SqlDataReader GetThreadMessages()
         {
             // Obtain a list of discussion messages for the module
-            var discuss = new DiscussionDB();
-            SqlDataReader dr = discuss.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
+            var discuss = new DiscussionDb();
+            SqlDataReader dr = DiscussionDb.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
 
             // Return the filtered DataView
             return dr;

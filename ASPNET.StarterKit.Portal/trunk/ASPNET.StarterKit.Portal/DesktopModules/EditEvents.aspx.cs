@@ -50,8 +50,8 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of event information
-                    var events = new EventsDB();
-                    SqlDataReader dr = events.GetSingleEvent(_itemId);
+                    var events = new EventsDb();
+                    SqlDataReader dr = EventsDb.GetSingleEvent(_itemId);
 
                     // Read first row from database
                     dr.Read();
@@ -93,18 +93,18 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Event DB component
-                var events = new EventsDB();
+                var events = new EventsDb();
 
                 if (_itemId == 0)
                 {
                     // Add the event within the Events table
-                    events.AddEvent(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                    EventsDb.AddEvent(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
                                     DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
                 }
                 else
                 {
                     // Update the event within the Events table
-                    events.UpdateEvent(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                    EventsDb.UpdateEvent(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
                                        DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
                 }
 
@@ -128,8 +128,8 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var events = new EventsDB();
-                events.DeleteEvent(_itemId);
+                var events = new EventsDb();
+                EventsDb.DeleteEvent(_itemId);
             }
 
             // Redirect back to the portal home page

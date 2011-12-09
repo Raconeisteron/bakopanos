@@ -46,8 +46,8 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of document information
-                    var documents = new DocumentDB();
-                    SqlDataReader dr = documents.GetSingleDocument(_itemId);
+                    var documents = new DocumentDb();
+                    SqlDataReader dr = DocumentDb.GetSingleDocument(_itemId);
 
                     // Load first row into Datareader
                     dr.Read();
@@ -88,7 +88,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Document DB component
-                var documents = new DocumentDB();
+                var documents = new DocumentDb();
 
                 // Determine whether a file was uploaded
 
@@ -102,7 +102,7 @@ namespace ASPNET.StarterKit.Portal
                     FileUpload.PostedFile.InputStream.Read(content, 0, length);
 
                     // Update the document within the Documents table
-                    documents.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
+                    DocumentDb.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
                                              PathField.Text, CategoryField.Text, content, length, contentType);
                 }
                 else
@@ -121,7 +121,7 @@ namespace ASPNET.StarterKit.Portal
                         // Update PathFile with uploaded virtual file location
                         PathField.Text = virtualPath;
                     }
-                    documents.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
+                    DocumentDb.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
                                              PathField.Text, CategoryField.Text, new byte[0], 0, "");
                 }
 
@@ -145,8 +145,8 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var documents = new DocumentDB();
-                documents.DeleteDocument(_itemId);
+                var documents = new DocumentDb();
+                DocumentDb.DeleteDocument(_itemId);
             }
 
             // Redirect back to the portal home page
