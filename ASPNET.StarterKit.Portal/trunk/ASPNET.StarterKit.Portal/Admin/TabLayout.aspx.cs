@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Web;
 using System.Web.UI;
@@ -9,9 +10,9 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class TabLayout : Page
     {
-        protected ArrayList ContentList;
-        protected ArrayList LeftList;
-        protected ArrayList RightList;
+        protected List<ModuleItem> ContentList;
+        protected List<ModuleItem> LeftList;
+        protected List<ModuleItem> RightList;
         private int _tabId;
 
         //*******************************************************
@@ -70,7 +71,7 @@ namespace ASPNET.StarterKit.Portal
             HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, _tabId);
 
             // reorder the modules in the content pane
-            ArrayList modules = GetModules("ContentPane");
+            List<ModuleItem> modules = GetModules("ContentPane");
             OrderModules(modules);
 
             // resave the order
@@ -96,7 +97,7 @@ namespace ASPNET.StarterKit.Portal
             String pane = ((ImageButton) sender).CommandArgument;
             var listbox = (ListBox) Page.FindControl(pane);
 
-            ArrayList modules = GetModules(pane);
+            List<ModuleItem> modules = GetModules(pane);
 
             if (listbox.SelectedIndex != -1)
             {
@@ -155,7 +156,7 @@ namespace ASPNET.StarterKit.Portal
             if (sourceBox.SelectedIndex != -1)
             {
                 // get source arraylist
-                ArrayList sourceList = GetModules(sourcePane);
+                List<ModuleItem> sourceList = GetModules(sourcePane);
 
                 // get a reference to the module to move
                 // and assign a high order number to send it to the end of the target list
@@ -185,7 +186,7 @@ namespace ASPNET.StarterKit.Portal
                 }
 
                 // reorder the modules in the target pane
-                ArrayList targetList = GetModules(targetPane);
+                List<ModuleItem> targetList = GetModules(targetPane);
                 OrderModules(targetList);
 
                 // resave the order
@@ -301,11 +302,11 @@ namespace ASPNET.StarterKit.Portal
         {
             String pane = ((ImageButton) sender).CommandArgument;
             var listbox = (ListBox) Page.FindControl(pane);
-            ArrayList modules = GetModules(pane);
+            List<ModuleItem> modules = GetModules(pane);
 
             if (listbox.SelectedIndex != -1)
             {
-                var m = (ModuleItem) modules[listbox.SelectedIndex];
+                var m = modules[listbox.SelectedIndex];
                 if (m.ModuleId > -1)
                 {
                     // must delete from database too
@@ -344,8 +345,7 @@ namespace ASPNET.StarterKit.Portal
             // Clear existing items in checkboxlist
             authRoles.Items.Clear();
 
-            var allItem = new ListItem();
-            allItem.Text = "All Users";
+            var allItem = new ListItem {Text = "All Users"};
 
             if (tab.AuthorizedRoles.LastIndexOf("All Users") > -1)
             {
@@ -356,9 +356,11 @@ namespace ASPNET.StarterKit.Portal
 
             while (roles.Read())
             {
-                var item = new ListItem();
-                item.Text = (String) roles["RoleName"];
-                item.Value = roles["RoleID"].ToString();
+                var item = new ListItem
+                               {
+                                   Text = (String) roles["RoleName"], 
+                                   Value = roles["RoleID"].ToString()
+                               };
 
                 if ((tab.AuthorizedRoles.LastIndexOf(item.Text)) > -1)
                 {
@@ -385,28 +387,27 @@ namespace ASPNET.StarterKit.Portal
             leftPane.DataBind();
         }
 
-        //*******************************************************
-        //
-        // The GetModules helper method is used to get the modules
-        // for a single pane within the tab
-        //
-        //*******************************************************
-
-        private ArrayList GetModules(String pane)
+        /// <summary>
+        /// The GetModules helper method is used to get the modules
+        /// for a single pane within the tab
+        /// </summary>
+        private List<ModuleItem> GetModules(String pane)
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
-            var paneModules = new ArrayList();
+            var paneModules = new List<ModuleItem>();
 
             foreach (ModuleSettings module in portalSettings.ActiveTab.Modules)
             {
                 if ((module.PaneName).ToLower() == pane.ToLower())
                 {
-                    var m = new ModuleItem();
-                    m.ModuleTitle = module.ModuleTitle;
-                    m.ModuleId = module.ModuleId;
-                    m.ModuleDefId = module.ModuleDefId;
-                    m.ModuleOrder = module.ModuleOrder;
+                    var m = new ModuleItem
+                                {
+                                    ModuleTitle = module.ModuleTitle,
+                                    ModuleId = module.ModuleId,
+                                    ModuleDefId = module.ModuleDefId,
+                                    ModuleOrder = module.ModuleOrder
+                                };
                     paneModules.Add(m);
                 }
             }
@@ -414,14 +415,11 @@ namespace ASPNET.StarterKit.Portal
             return paneModules;
         }
 
-        //*******************************************************
-        //
-        // The OrderModules helper method is used to reset the display
-        // order for modules within a pane
-        //
-        //*******************************************************
-
-        private static void OrderModules(ArrayList list)
+        /// <summary>
+        /// The OrderModules helper method is used to reset the display
+        /// order for modules within a pane
+        /// </summary>
+        private static void OrderModules(List<ModuleItem> list)
         {
             int i = 1;
 

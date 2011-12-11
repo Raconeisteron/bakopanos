@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -8,7 +9,7 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class Tabs : PortalModuleControl
     {
-        protected ArrayList PortalTabs;
+        protected List<TabItem> PortalTabs;
         private int _tabId;
         private int _tabIndex;
 
@@ -39,19 +40,21 @@ namespace ASPNET.StarterKit.Portal
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
-            PortalTabs = new ArrayList();
+            PortalTabs = new List<TabItem>();
             foreach (TabStripDetails tab in portalSettings.DesktopTabs)
             {
-                var t = new TabItem();
-                t.TabName = tab.TabName;
-                t.TabId = tab.TabId;
-                t.TabOrder = tab.TabOrder;
+                var t = new TabItem
+                            {
+                                TabName = tab.TabName,
+                                TabId = tab.TabId,
+                                TabOrder = tab.TabOrder
+                            };
                 PortalTabs.Add(t);
             }
 
             // Give the admin tab a big sort order number, to ensure it's
             // always at the end
-            var adminTab = (TabItem) PortalTabs[PortalTabs.Count - 1];
+            var adminTab = PortalTabs[PortalTabs.Count - 1];
             adminTab.TabOrder = 99999;
 
             // If this is the first visit to the page, bind the tab data to the page listbox
@@ -88,8 +91,7 @@ namespace ASPNET.StarterKit.Portal
                     delta = -3;
                 }
 
-                TabItem t;
-                t = (TabItem) PortalTabs[tabList.SelectedIndex];
+                TabItem t = PortalTabs[tabList.SelectedIndex];
                 t.TabOrder += delta;
 
                 // Reset the order numbers for the tabs within the portal  
