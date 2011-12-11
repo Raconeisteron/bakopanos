@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -140,7 +141,6 @@ namespace ASPNET.StarterKit.Portal
 
         private void UserRoles_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            var roles = new RolesDb();
             var roleId = (int) userRoles.DataKeys[e.Item.ItemIndex];
 
             // update database
@@ -163,15 +163,9 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Bind the Email and Password
-            var users = new UsersDb();
-            SqlDataReader dr = UsersDb.GetSingleUser(_userName);
+            DataRow row = UsersDb.GetSingleUser(_userName);
 
-            // Read first row from database
-            dr.Read();
-
-            Email.Text = (String) dr["Email"];
-
-            dr.Close();
+            Email.Text = (String) row["Email"];
 
             // add the user name to the title
             if (_userName != "")
@@ -187,8 +181,6 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Get the portal's roles from the database
-            var roles = new RolesDb();
-
             // bind all portal roles to dropdownlist
             allRoles.DataSource = RolesDb.GetPortalRoles(portalSettings.PortalId);
             allRoles.DataBind();

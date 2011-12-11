@@ -15,19 +15,11 @@ namespace ASPNET.StarterKit.Portal
     /// authentication is used instead, then either the Windows SAM or Active Directory
     /// is used to store and validate all username/password credentials.
     /// </summary>
-    public class UsersDb
+    public class UsersDb : DbHelper
     {
-        //*********************************************************************
-        //
-        // UsersDB.AddUser() Method <a name="AddUser"></a>
-        //
-        // The AddUser method inserts a new user record into the "Users" database table.
-        //
-        // Other relevant sources:
-        //     + <a href="AddUser.htm" style="color:green">AddUser Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The AddUser method inserts a new user record into the "Users" database table.
+        /// </summary>
         public static int AddUser(String fullName, String email, String password)
         {
             // Create Instance of Connection and Command Object
@@ -73,146 +65,52 @@ namespace ASPNET.StarterKit.Portal
             return (int) parameterUserId.Value;
         }
 
-        //*********************************************************************
-        //
-        // UsersDB.DeleteUser() Method <a name="DeleteUser"></a>
-        //
-        // The DeleteUser method deleted a  user record from the "Users" database table.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteUser.htm" style="color:green">DeleteUser Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The DeleteUser method deleted a  user record from the "Users" database table.
+        /// </summary>
         public static void DeleteUser(int userId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_DeleteUser", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
             var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int) {Value = userId};
-            myCommand.Parameters.Add(parameterUserId);
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+           
+            ExecuteNonQuery("Portal_DeleteUser", parameterUserId);
         }
 
-        //*********************************************************************
-        //
-        // UsersDB.UpdateUser() Method <a name="DeleteUser"></a>
-        //
-        // The UpdateUser method deleted a  user record from the "Users" database table.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateUser.htm" style="color:green">UpdateUser Stored Procedure</a>
-        //
-        //*********************************************************************
-
+       /// <summary>
+        /// The UpdateUser method deleted a  user record from the "Users" database table.
+       /// </summary>
         public static void UpdateUser(int userId, String email, String password)
+       {
+           var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int) {Value = userId};
+           var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
+           var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50) {Value = password};
+
+           ExecuteNonQuery("Portal_UpdateUser", parameterUserId, parameterEmail, parameterPassword);
+       }
+
+        /// <summary>
+        /// The DeleteUser method deleted a  user record from the "Users" database table.
+        /// </summary>
+        public static DataTable GetRolesByUser(String email)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_UpdateUser", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int) {Value = userId};
-            myCommand.Parameters.Add(parameterUserId);
-
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
-            myCommand.Parameters.Add(parameterEmail);
-
-            var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50) {Value = password};
-            myCommand.Parameters.Add(parameterPassword);
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            
+            return GetDataTable("Portal_GetRolesByUser", parameterEmail);
         }
 
-        //*********************************************************************
-        //
-        // UsersDB.GetRolesByUser() Method <a name="GetRolesByUser"></a>
-        //
-        // The DeleteUser method deleted a  user record from the "Users" database table.
-        //
-        // Other relevant sources:
-        //     + <a href="GetRolesByUser.htm" style="color:green">GetRolesByUser Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public static SqlDataReader GetRolesByUser(String email)
+        /// <summary>
+        /// The GetSingleUser method returns a SqlDataReader containing details
+        /// about a specific user from the Users database table.
+        /// </summary>
+        public static DataRow GetSingleUser(String email)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetRolesByUser", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
-            myCommand.Parameters.Add(parameterEmail);
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader
-            return dr;
+            
+            return GetDataRow("Portal_GetSingleUser", parameterEmail);
         }
 
-        //*********************************************************************
-        //
-        // GetSingleUser Method
-        //
-        // The GetSingleUser method returns a SqlDataReader containing details
-        // about a specific user from the Users database table.
-        //
-        //*********************************************************************
-
-        public static SqlDataReader GetSingleUser(String email)
-        {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetSingleUser", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
-            myCommand.Parameters.Add(parameterEmail);
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader
-            return dr;
-        }
-
-        //*********************************************************************
-        //
-        // GetRoles() Method <a name="GetRoles"></a>
-        //
-        // The GetRoles method returns a list of role names for the user.
-        //
-        // Other relevant sources:
-        //     + <a href="GetRolesByUser.htm" style="color:green">GetRolesByUser Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The GetRoles method returns a list of role names for the user.
+        /// </summary>
         public static String[] GetRoles(String email)
         {
             // Create Instance of Connection and Command Object
@@ -247,19 +145,11 @@ namespace ASPNET.StarterKit.Portal
             return (String[]) userRoles.ToArray(typeof (String));
         }
 
-        //*********************************************************************
-        //
-        // UsersDB.Login() Method <a name="Login"></a>
-        //
-        // The Login method validates a email/password pair against credentials
-        // stored in the users database.  If the email/password pair is valid,
-        // the method returns user's name.
-        //
-        // Other relevant sources:
-        //     + <a href="UserLogin.htm" style="color:green">UserLogin Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The Login method validates a email/password pair against credentials
+        /// stored in the users database.  If the email/password pair is valid,
+        /// the method returns user's name.
+        /// </summary>
         public static String Login(String email, String password)
         {
             // Create Instance of Connection and Command Object
@@ -290,10 +180,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 return ((String) parameterUserName.Value).Trim();
             }
-            else
-            {
-                return String.Empty;
-            }
+            return String.Empty;
         }
     }
 }
