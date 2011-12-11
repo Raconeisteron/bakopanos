@@ -14,7 +14,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class DocumentDb
+    public class DocumentDb : DbHelper
     {
         //*********************************************************************
         //
@@ -120,35 +120,15 @@ namespace ASPNET.StarterKit.Portal
         }
 
 
-        //*********************************************************************
-        //
-        // DeleteDocument Method
-        //
-        // The DeleteDocument method deletes the specified document from
-        // the Documents database table.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteDocument.htm" style="color:green">DeleteDocument Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The DeleteDocument method deletes the specified document from
+        /// the Documents database table.
+        /// </summary>
         public static void DeleteDocument(int itemId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_DeleteDocument", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
-            myCommand.Parameters.Add(parameterItemId);
 
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            ExecuteNonQuery("Portal_DeleteDocument", parameterItemId);
         }
 
 

@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
@@ -45,30 +45,23 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of link information
-                    var links = new LinkDb();
-                    SqlDataReader dr = LinkDb.GetSingleLink(_itemId);
-
-                    // Read in first row from database
-                    dr.Read();
+                    DataRow row = LinkDb.GetSingleLink(_itemId);
 
                     // Security check.  verify that itemid is within the module.
-                    int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
-                    if (dbModuleID != _moduleId)
+                    int dbModuleId = Convert.ToInt32(row["ModuleID"]);
+                    if (dbModuleId != _moduleId)
                     {
-                        dr.Close();
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
                     }
 
-                    TitleField.Text = (String) dr["Title"];
-                    DescriptionField.Text = (String) dr["Description"];
-                    UrlField.Text = (String) dr["Url"];
-                    MobileUrlField.Text = (String) dr["MobileUrl"];
-                    ViewOrderField.Text = dr["ViewOrder"].ToString();
-                    CreatedBy.Text = (String) dr["CreatedByUser"];
-                    CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
+                    TitleField.Text = (String) row["Title"];
+                    DescriptionField.Text = (String) row["Description"];
+                    UrlField.Text = (String) row["Url"];
+                    MobileUrlField.Text = (String) row["MobileUrl"];
+                    ViewOrderField.Text = row["ViewOrder"].ToString();
+                    CreatedBy.Text = (String) row["CreatedByUser"];
+                    CreatedDate.Text = ((DateTime) row["CreatedDate"]).ToShortDateString();
 
-                    // Close datareader
-                    dr.Close();
                 }
 
                 // Store URL Referrer to return to portal
@@ -88,19 +81,16 @@ namespace ASPNET.StarterKit.Portal
         {
             if (Page.IsValid)
             {
-                // Create an instance of the Link DB component
-                var links = new LinkDb();
-
                 if (_itemId == 0)
                 {
                     // Add the link within the Links table
-                    LinkDb.AddLink(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    LinkDb.AddLink(_moduleId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                    MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
                 else
                 {
                     // Update the link within the Links table
-                    LinkDb.UpdateLink(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    LinkDb.UpdateLink(_itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                       MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
 

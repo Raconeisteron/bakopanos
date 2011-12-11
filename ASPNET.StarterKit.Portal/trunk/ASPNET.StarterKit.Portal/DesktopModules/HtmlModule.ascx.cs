@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
@@ -16,18 +16,16 @@ namespace ASPNET.StarterKit.Portal
         protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain the selected item from the HtmlText table
-            var text = new HtmlTextDb();
-            SqlDataReader dr = HtmlTextDb.GetHtmlText(ModuleId);
+            DataTable table = HtmlTextDb.GetHtmlText(ModuleId);
 
-            if (dr.Read())
+            if (table.Rows.Count > 0)
             {
+                DataRow row = table.Rows[0];
                 // Dynamically add the file content into the page
-                String content = Server.HtmlDecode((String) dr["DesktopHtml"]);
+                String content = Server.HtmlDecode((String)row["DesktopHtml"]);
                 HtmlHolder.Controls.Add(new LiteralControl(content));
             }
 
-            // Close the datareader
-            dr.Close();
         }
     }
 }

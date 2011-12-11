@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
+using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -11,7 +11,12 @@ namespace ASPNET.StarterKit.Portal
         private static readonly string ConnectionString =
             ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
 
-        protected static DataTable GetDataTable(string myCommandText, params SqlParameter[] sqlParameters)
+        private static readonly string ProviderName =
+            ConfigurationManager.ConnectionStrings["connectionString"].ProviderName;
+
+        private static readonly DbProviderFactory Factory = DbProviderFactories.GetFactory(ProviderName);
+
+        protected static DataTable GetDataTable(string myCommandText, params DbParameter[] sqlParameters)
         {
             foreach (DataTable table in GetDataSet(myCommandText, sqlParameters).Tables)
             {
@@ -20,7 +25,7 @@ namespace ASPNET.StarterKit.Portal
             throw new ApplicationException("Command returned no result");
         }
 
-        protected static DataRow GetDataRow(string myCommandText, params SqlParameter[] sqlParameters)
+        protected static DataRow GetDataRow(string myCommandText, params DbParameter[] sqlParameters)
         {
             foreach (DataRow row in GetDataTable(myCommandText, sqlParameters).Rows)
             {
@@ -29,14 +34,16 @@ namespace ASPNET.StarterKit.Portal
             throw new ApplicationException("Command returned no result");
         }
 
-        private static DataSet GetDataSet(string myCommandText, params SqlParameter[] sqlParameters)
+        private static DataSet GetDataSet(string myCommandText, params DbParameter[] sqlParameters)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlDataAdapter(myCommandText, myConnection)
-                                {
-                                    SelectCommand = {CommandType = CommandType.StoredProcedure}
-                                };
+            DbConnection myConnection = Factory.CreateConnection();
+            myConnection.ConnectionString = ConnectionString;
+            DbDataAdapter myCommand = Factory.CreateDataAdapter();
+            myCommand.SelectCommand = Factory.CreateCommand();
+            myCommand.SelectCommand.CommandText = myCommandText;
+            myCommand.SelectCommand.Connection = myConnection;
+            myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
             myCommand.SelectCommand.Parameters.AddRange(sqlParameters);
@@ -49,21 +56,25 @@ namespace ASPNET.StarterKit.Portal
             return myDataSet;
         }
 
-        protected static T ExecuteNonQuery<T>(string myCommandText, SqlParameter outSqlParameter,
-                                              params SqlParameter[] sqlParameters)
+        protected static T ExecuteNonQuery<T>(string myCommandText, DbParameter outSqlParameter,
+                                              params DbParameter[] sqlParameters)
         {
-            var parameters = new List<SqlParameter> {outSqlParameter};
+            var parameters = new List<DbParameter> {outSqlParameter};
             parameters.AddRange(sqlParameters);
             ExecuteNonQuery(myCommandText, parameters.ToArray());
 
             return (T) outSqlParameter.Value;
         }
 
-        protected static void ExecuteNonQuery(string myCommandText, params SqlParameter[] sqlParameters)
+        protected static void ExecuteNonQuery(string myCommandText, params DbParameter[] sqlParameters)
         {
             // Create Instance of Connection and Command Object
-            var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlCommand(myCommandText, myConnection) {CommandType = CommandType.StoredProcedure};
+            DbConnection myConnection = Factory.CreateConnection();
+            myConnection.ConnectionString = ConnectionString;
+            DbCommand myCommand = Factory.CreateCommand();
+            myCommand.CommandText = myCommandText;
+            myCommand.Connection = myConnection;
+            myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
             myCommand.Parameters.AddRange(sqlParameters);

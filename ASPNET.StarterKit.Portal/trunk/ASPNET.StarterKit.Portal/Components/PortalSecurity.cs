@@ -88,8 +88,8 @@ namespace ASPNET.StarterKit.Portal
 
             if (IsInRoles(accessRoles) == false || IsInRoles(editRoles) == false)
                 return false;
-            else
-                return true;
+
+            return true;
         }
     }
 }

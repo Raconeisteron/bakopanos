@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
 
@@ -32,14 +33,14 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsPostBack == false)
             {
                 // Obtain a single row of text information
-                var text = new HtmlTextDb();
-                SqlDataReader dr = HtmlTextDb.GetHtmlText(_moduleId);
+                DataTable table = HtmlTextDb.GetHtmlText(_moduleId);
 
-                if (dr.Read())
+                if (table.Rows.Count > 0)
                 {
-                    DesktopText.Text = Server.HtmlDecode((String) dr["DesktopHtml"]);
-                    MobileSummary.Text = Server.HtmlDecode((String) dr["MobileSummary"]);
-                    MobileDetails.Text = Server.HtmlDecode((String) dr["MobileDetails"]);
+                    DataRow row = table.Rows[0];
+                    DesktopText.Text = Server.HtmlDecode((String)row["DesktopHtml"]);
+                    MobileSummary.Text = Server.HtmlDecode((String)row["MobileSummary"]);
+                    MobileDetails.Text = Server.HtmlDecode((String)row["MobileDetails"]);
                 }
                 else
                 {
@@ -47,8 +48,6 @@ namespace ASPNET.StarterKit.Portal
                     MobileSummary.Text = "Todo: Add Content...";
                     MobileDetails.Text = "Todo: Add Content...";
                 }
-
-                dr.Close();
 
                 // Store URL Referrer to return to portal
                 ViewState["UrlReferrer"] = Request.UrlReferrer.ToString();

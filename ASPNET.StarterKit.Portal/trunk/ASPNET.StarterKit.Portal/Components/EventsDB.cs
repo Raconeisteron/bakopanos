@@ -14,7 +14,7 @@ namespace ASPNET.StarterKit.Portal
     //
     //*********************************************************************
 
-    public class EventsDb
+    public class EventsDb : DbHelper
     {
         //*********************************************************************
         //
