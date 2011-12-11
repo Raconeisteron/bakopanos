@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -54,8 +53,6 @@ namespace ASPNET.StarterKit.Portal
                 // new user?
                 if (_userName == "")
                 {
-                    var users = new UsersDb();
-
                     // make a unique new user record
                     int uid = -1;
                     int i = 0;
@@ -106,7 +103,6 @@ namespace ASPNET.StarterKit.Portal
             int roleId = Int32.Parse(allRoles.SelectedItem.Value);
 
             // Add a new userRole to the database
-            var roles = new RolesDb();
             RolesDb.AddUserRole(roleId, _userId);
 
             // Rebind list
@@ -123,7 +119,6 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateUser_Click(Object sender, EventArgs e)
         {
             // update the user record in the database
-            var users = new UsersDb();
             UsersDb.UpdateUser(_userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
 
             // redirect to this page with the corrected querystring args

@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
@@ -38,9 +37,9 @@ namespace ASPNET.StarterKit.Portal
                 if (table.Rows.Count > 0)
                 {
                     DataRow row = table.Rows[0];
-                    DesktopText.Text = Server.HtmlDecode((String)row["DesktopHtml"]);
-                    MobileSummary.Text = Server.HtmlDecode((String)row["MobileSummary"]);
-                    MobileDetails.Text = Server.HtmlDecode((String)row["MobileDetails"]);
+                    DesktopText.Text = Server.HtmlDecode((String) row["DesktopHtml"]);
+                    MobileSummary.Text = Server.HtmlDecode((String) row["MobileSummary"]);
+                    MobileDetails.Text = Server.HtmlDecode((String) row["MobileDetails"]);
                 }
                 else
                 {
@@ -64,8 +63,6 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create an instance of the HtmlTextDB component
-            var text = new HtmlTextDb();
-
             // Update the text within the HtmlText table
             HtmlTextDb.UpdateHtmlText(_moduleId, Server.HtmlEncode(DesktopText.Text),
                                       Server.HtmlEncode(MobileSummary.Text),

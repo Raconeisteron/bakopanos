@@ -53,7 +53,6 @@ namespace ASPNET.StarterKit.Portal
                 else
                 {
                     // Obtain the module definition to edit from the database
-                    var config = new Configuration();
                     SiteConfiguration.ModuleDefinitionRow modDefRow = Configuration.GetSingleModuleDefinition(_defId);
 
                     // Read in information

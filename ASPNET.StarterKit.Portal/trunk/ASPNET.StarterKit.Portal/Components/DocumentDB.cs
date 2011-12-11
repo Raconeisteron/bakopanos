@@ -5,118 +5,44 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-    //*********************************************************************
-    //
-    // DocumentDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // documents within the Portal database.
-    //
-    //*********************************************************************
-
+    /// <summary>
+    /// Class that encapsulates all data logic necessary to add/query/delete
+    /// documents within the Portal database.
+    /// </summary>
     public class DocumentDb : DbHelper
     {
-        //*********************************************************************
-        //
-        // GetDocuments Method
-        //
-        // The GetDocuments method returns a SqlDataReader containing all of the
-        // documents for a specific portal module from the documents
-        // database.
-        //
-        // Other relevant sources:
-        //     + <a href="GetDocuments.htm" style="color:green">GetDocuments Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public static SqlDataReader GetDocuments(int moduleId)
+        /// <returns>
+        /// The GetDocuments method returns a SqlDataReader containing all of the
+        /// documents for a specific portal module from the documents
+        /// database.
+        /// </returns>
+        public static DataTable GetDocuments(int moduleId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetDocuments", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
-            myCommand.Parameters.Add(parameterModuleId);
-
-            // Execute the command
-            myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader 
-            return result;
+            
+            return GetDataTable("Portal_GetDocuments", parameterModuleId);
         }
 
-        //*********************************************************************
-        //
-        // GetSingleDocument Method
-        //
-        // The GetSingleDocument method returns a SqlDataReader containing details
-        // about a specific document from the Documents database table.
-        //
-        // Other relevant sources:
-        //     + <a href="GetSingleDocument.htm" style="color:green">GetSingleDocument Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public static SqlDataReader GetSingleDocument(int itemId)
+        /// <returns>
+        /// The GetSingleDocument method returns a SqlDataReader containing details
+        /// about a specific document from the Documents database table.
+        /// </returns>
+        public static DataRow GetSingleDocument(int itemId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetSingleDocument", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
-            myCommand.Parameters.Add(parameterItemId);
-
-            // Execute the command
-            myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader 
-            return result;
+            
+            return GetDataRow("Portal_GetSingleDocument", parameterItemId);
         }
 
-        //*********************************************************************
-        //
-        // GetDocumentContent Method
-        //
-        // The GetDocumentContent method returns the contents of the specified
-        // document from the Documents database table.
-        //
-        // Other relevant sources:
-        //     + <a href="GetDocumentContent.htm" style="color:green">GetDocumentContent</a>
-        //
-        //*********************************************************************
-
-        public static SqlDataReader GetDocumentContent(int itemId)
+        /// <returns>
+        /// The GetDocumentContent method returns the contents of the specified
+        /// document from the Documents database table.
+        /// </returns>
+        public static DataRow GetDocumentContent(int itemId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetDocumentContent", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
-            myCommand.Parameters.Add(parameterItemId);
-
-            // Execute the command
-            myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader 
-            return result;
+            
+            return GetDataRow("Portal_GetDocumentContent", parameterItemId);
         }
 
 

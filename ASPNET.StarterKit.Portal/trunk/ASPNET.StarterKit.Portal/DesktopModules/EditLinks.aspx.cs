@@ -61,7 +61,6 @@ namespace ASPNET.StarterKit.Portal
                     ViewOrderField.Text = row["ViewOrder"].ToString();
                     CreatedBy.Text = (String) row["CreatedByUser"];
                     CreatedDate.Text = ((DateTime) row["CreatedDate"]).ToShortDateString();
-
                 }
 
                 // Store URL Referrer to return to portal
@@ -114,7 +113,6 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var links = new LinkDb();
                 LinkDb.DeleteLink(_itemId);
             }
 

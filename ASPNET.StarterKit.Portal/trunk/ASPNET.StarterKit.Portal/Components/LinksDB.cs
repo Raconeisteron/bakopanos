@@ -1,5 +1,4 @@
 using System;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -11,12 +10,11 @@ namespace ASPNET.StarterKit.Portal
     /// </summary>
     public class LinkDb : DbHelper
     {
-       
-       /// <returns>
-       /// The GetLinks method returns a SqlDataReader containing all of the
-       /// links for a specific portal module from the announcements
-       /// database.
-       /// </returns>
+        /// <returns>
+        /// The GetLinks method returns a SqlDataReader containing all of the
+        /// links for a specific portal module from the announcements
+        /// database.
+        /// </returns>
         public static DataTable GetLinks(int moduleId)
         {
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
@@ -42,7 +40,7 @@ namespace ASPNET.StarterKit.Portal
         public static void DeleteLink(int itemId)
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
-            
+
             ExecuteNonQuery("Portal_DeleteLink", parameterItemId);
         }
 
@@ -84,18 +82,17 @@ namespace ASPNET.StarterKit.Portal
                 userName = "unknown";
             }
 
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};           
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};           
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100) {Value = title};            
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100) {Value = description};            
-            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100) {Value = url};            
-            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100) {Value = mobileUrl};            
+            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
+            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};
+            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100) {Value = title};
+            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100) {Value = description};
+            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100) {Value = url};
+            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100) {Value = mobileUrl};
             var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4) {Value = viewOrder};
 
             ExecuteNonQuery("Portal_UpdateLink", parameterItemId, parameterUserName, parameterTitle,
                             parameterDescription,
                             parameterUrl, parameterMobileUrl, parameterViewOrder);
-
         }
     }
 }

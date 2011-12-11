@@ -125,11 +125,11 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Update labels with message contents
-            Title.Text = (String)row["Title"];
-            Body.Text = (String)row["Body"];
-            CreatedByUser.Text = (String)row["CreatedByUser"];
+            DiscussDetailsTitle.Text = (String) row["Title"];
+            Body.Text = (String) row["Body"];
+            CreatedByUser.Text = (String) row["CreatedByUser"];
             CreatedDate.Text = String.Format("{0:d}", row["CreatedDate"]);
-            TitleField.Text = ReTitle(Title.Text);
+            TitleField.Text = ReTitle(DiscussDetailsTitle.Text);
 
             int prevId = 0;
             int nextId = 0;

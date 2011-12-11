@@ -5,119 +5,44 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-    //*********************************************************************
-    //
-    // EventDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // events within the Portal database.
-    //
-    //*********************************************************************
-
+    /// <summary>
+    /// Class that encapsulates all data logic necessary to add/query/delete
+    /// events within the Portal database.
+    /// </summary>
     public class EventsDb : DbHelper
     {
-        //*********************************************************************
-        //
-        // GetEvents Method
-        //
-        // The GetEvents method returns a DataSet containing all of the
-        // events for a specific portal module from the events
-        // database.
-        //
-        // NOTE: A DataSet is returned from this method to allow this method to support
-        // both desktop and mobile Web UI.
-        //
-        // Other relevant sources:
-        //     + <a href="GetEvents.htm" style="color:green">GetEvents Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public static DataSet GetEvents(int moduleId)
+        /// <returns>
+        /// The GetEvents method returns a DataSet containing all of the
+        /// events for a specific portal module from the events
+        /// database.
+        /// </returns>
+        public static DataTable GetEvents(int moduleId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlDataAdapter("Portal_GetEvents", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
-            myCommand.SelectCommand.Parameters.Add(parameterModuleId);
 
-            // Create and Fill the DataSet
-            var myDataSet = new DataSet();
-            myCommand.Fill(myDataSet);
-
-            // Return the DataSet
-            return myDataSet;
+            return GetDataTable("Portal_GetEvents", parameterModuleId);
         }
 
-        //*********************************************************************
-        //
-        // GetSingleEvent Method
-        //
-        // The GetSingleEvent method returns a SqlDataReader containing details
-        // about a specific event from the events database.
-        //
-        // Other relevant sources:
-        //     + <a href="GetSingleEvent.htm" style="color:green">GetSingleEvent Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public static SqlDataReader GetSingleEvent(int itemId)
+        /// <returns>
+        /// The GetSingleEvent method returns a SqlDataReader containing details
+        /// about a specific event from the events database.
+        /// </returns>
+        public static DataRow GetSingleEvent(int itemId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetSingleEvent", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
-            myCommand.Parameters.Add(parameterItemId);
 
-            // Execute the command
-            myConnection.Open();
-            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader 
-            return result;
+            return GetDataRow("Portal_GetSingleEvent", parameterItemId);
         }
 
-        //*********************************************************************
-        //
-        // DeleteEvent Method
-        //
-        // The DeleteEvent method deletes a specified event from
-        // the events database.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteEvent.htm" style="color:green">DeleteEvent Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The DeleteEvent method deletes a specified event from
+        /// the events database.
+        /// </summary>
         public static void DeleteEvent(int itemId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_DeleteEvent", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
-            myCommand.Parameters.Add(parameterItemId);
 
-            // Open the database connection and execute SQL Command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            ExecuteNonQuery("Portal_DeleteEvent", parameterItemId);
         }
 
         //*********************************************************************

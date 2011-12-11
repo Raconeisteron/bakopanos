@@ -22,10 +22,9 @@ namespace ASPNET.StarterKit.Portal
             {
                 DataRow row = table.Rows[0];
                 // Dynamically add the file content into the page
-                String content = Server.HtmlDecode((String)row["DesktopHtml"]);
+                String content = Server.HtmlDecode((String) row["DesktopHtml"]);
                 HtmlHolder.Controls.Add(new LiteralControl(content));
             }
-
         }
     }
 }

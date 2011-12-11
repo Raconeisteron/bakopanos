@@ -94,11 +94,11 @@ namespace ASPNET.StarterKit.Portal
         {
             String cmd = ((ImageButton) sender).CommandName;
             String pane = ((ImageButton) sender).CommandArgument;
-            var _listbox = (ListBox) Page.FindControl(pane);
+            var listbox = (ListBox) Page.FindControl(pane);
 
             ArrayList modules = GetModules(pane);
 
-            if (_listbox.SelectedIndex != -1)
+            if (listbox.SelectedIndex != -1)
             {
                 int delta;
                 int selection = -1;
@@ -109,18 +109,17 @@ namespace ASPNET.StarterKit.Portal
                 if (cmd == "down")
                 {
                     delta = 3;
-                    if (_listbox.SelectedIndex < _listbox.Items.Count - 1)
-                        selection = _listbox.SelectedIndex + 1;
+                    if (listbox.SelectedIndex < listbox.Items.Count - 1)
+                        selection = listbox.SelectedIndex + 1;
                 }
                 else
                 {
                     delta = -3;
-                    if (_listbox.SelectedIndex > 0)
-                        selection = _listbox.SelectedIndex - 1;
+                    if (listbox.SelectedIndex > 0)
+                        selection = listbox.SelectedIndex - 1;
                 }
 
-                ModuleItem m;
-                m = (ModuleItem) modules[_listbox.SelectedIndex];
+                var m = (ModuleItem) modules[listbox.SelectedIndex];
                 m.ModuleOrder += delta;
 
                 // reorder the modules in the content pane
@@ -280,11 +279,11 @@ namespace ASPNET.StarterKit.Portal
         protected void EditBtn_Click(Object sender, ImageClickEventArgs e)
         {
             String pane = ((ImageButton) sender).CommandArgument;
-            var _listbox = (ListBox) Page.FindControl(pane);
+            var listbox = (ListBox) Page.FindControl(pane);
 
-            if (_listbox.SelectedIndex != -1)
+            if (listbox.SelectedIndex != -1)
             {
-                int mid = Int32.Parse(_listbox.SelectedItem.Value);
+                int mid = Int32.Parse(listbox.SelectedItem.Value);
 
                 // Redirect to module settings page
                 Response.Redirect("ModuleSettings.aspx?mid=" + mid + "&tabid=" + _tabId);
@@ -340,7 +339,6 @@ namespace ASPNET.StarterKit.Portal
 
             // Populate checkbox list with all security roles for this portal
             // and "check" the ones already configured for this tab
-            var rolesObj = new RolesDb();
             SqlDataReader roles = RolesDb.GetPortalRoles(portalSettings.PortalId);
 
             // Clear existing items in checkboxlist
@@ -371,7 +369,6 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Populate the "Add Module" Data
-            var config = new Configuration();
             moduleType.DataSource = Configuration.GetModuleDefinitions(portalSettings.PortalId);
             moduleType.DataBind();
 

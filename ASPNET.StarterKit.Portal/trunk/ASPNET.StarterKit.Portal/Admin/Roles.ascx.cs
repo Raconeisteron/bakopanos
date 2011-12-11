@@ -52,7 +52,6 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Add a new role to the database
-            var roles = new RolesDb();
             RolesDb.AddRole(portalSettings.PortalId, "New Role");
 
             // set the edit item index to the last item
@@ -72,7 +71,6 @@ namespace ASPNET.StarterKit.Portal
 
         private void RolesList_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            var roles = new RolesDb();
             var roleId = (int) rolesList.DataKeys[e.Item.ItemIndex];
 
             if (e.CommandName == "edit")
@@ -133,8 +131,6 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Get the portal's roles from the database
-            var roles = new RolesDb();
-
             rolesList.DataSource = RolesDb.GetPortalRoles(portalSettings.PortalId);
             rolesList.DataBind();
         }

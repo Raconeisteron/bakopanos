@@ -71,21 +71,21 @@ namespace ASPNET.StarterKit.Portal
         public static void DeleteUser(int userId)
         {
             var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int) {Value = userId};
-           
+
             ExecuteNonQuery("Portal_DeleteUser", parameterUserId);
         }
 
-       /// <summary>
+        /// <summary>
         /// The UpdateUser method deleted a  user record from the "Users" database table.
-       /// </summary>
+        /// </summary>
         public static void UpdateUser(int userId, String email, String password)
-       {
-           var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int) {Value = userId};
-           var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
-           var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50) {Value = password};
+        {
+            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int) {Value = userId};
+            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
+            var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50) {Value = password};
 
-           ExecuteNonQuery("Portal_UpdateUser", parameterUserId, parameterEmail, parameterPassword);
-       }
+            ExecuteNonQuery("Portal_UpdateUser", parameterUserId, parameterEmail, parameterPassword);
+        }
 
         /// <summary>
         /// The DeleteUser method deleted a  user record from the "Users" database table.
@@ -93,7 +93,7 @@ namespace ASPNET.StarterKit.Portal
         public static DataTable GetRolesByUser(String email)
         {
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
-            
+
             return GetDataTable("Portal_GetRolesByUser", parameterEmail);
         }
 
@@ -104,7 +104,7 @@ namespace ASPNET.StarterKit.Portal
         public static DataRow GetSingleUser(String email)
         {
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
-            
+
             return GetDataRow("Portal_GetSingleUser", parameterEmail);
         }
 

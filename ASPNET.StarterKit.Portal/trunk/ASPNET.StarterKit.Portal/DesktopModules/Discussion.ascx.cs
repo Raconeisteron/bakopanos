@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Web.UI.WebControls;
 
 namespace ASPNET.StarterKit.Portal
@@ -37,8 +36,6 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain a list of discussion messages for the module
             // and bind to datalist
-            var discuss = new DiscussionDb();
-
             TopLevelList.DataSource = DiscussionDb.GetTopLevelMessages(ModuleId);
             TopLevelList.DataBind();
         }

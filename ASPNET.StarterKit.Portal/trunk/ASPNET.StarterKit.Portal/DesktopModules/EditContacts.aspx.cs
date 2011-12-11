@@ -116,7 +116,6 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var contacts = new ContactsDb();
                 ContactsDb.DeleteContact(_itemId);
             }
 

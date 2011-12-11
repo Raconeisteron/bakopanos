@@ -82,8 +82,6 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Announcement DB component
-                var announcementDb = new AnnouncementsDb();
-
                 if (_itemId == 0)
                 {
                     // Add the announcement within the Announcements table
@@ -119,7 +117,6 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var announcementDb = new AnnouncementsDb();
                 AnnouncementsDb.DeleteAnnouncement(_itemId);
             }
 

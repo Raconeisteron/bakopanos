@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -50,28 +50,21 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of event information
-                    var events = new EventsDb();
-                    SqlDataReader dr = EventsDb.GetSingleEvent(_itemId);
-
-                    // Read first row from database
-                    dr.Read();
+                    DataRow row = EventsDb.GetSingleEvent(_itemId);
 
                     // Security check.  verify that itemid is within the module.
-                    int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
-                    if (dbModuleID != _moduleId)
+                    int dbModuleId = Convert.ToInt32(row["ModuleID"]);
+                    if (dbModuleId != _moduleId)
                     {
-                        dr.Close();
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
                     }
 
-                    TitleField.Text = (String) dr["Title"];
-                    DescriptionField.Text = (String) dr["Description"];
-                    ExpireField.Text = ((DateTime) dr["ExpireDate"]).ToShortDateString();
-                    CreatedBy.Text = (String) dr["CreatedByUser"];
-                    WhereWhenField.Text = (String) dr["WhereWhen"];
-                    CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
-
-                    dr.Close();
+                    TitleField.Text = (String) row["Title"];
+                    DescriptionField.Text = (String) row["Description"];
+                    ExpireField.Text = ((DateTime) row["ExpireDate"]).ToShortDateString();
+                    CreatedBy.Text = (String) row["CreatedByUser"];
+                    WhereWhenField.Text = (String) row["WhereWhen"];
+                    CreatedDate.Text = ((DateTime) row["CreatedDate"]).ToShortDateString();
                 }
 
                 // Store URL Referrer to return to portal
@@ -93,8 +86,6 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Event DB component
-                var events = new EventsDb();
-
                 if (_itemId == 0)
                 {
                     // Add the event within the Events table
@@ -128,7 +119,6 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var events = new EventsDb();
                 EventsDb.DeleteEvent(_itemId);
             }
 

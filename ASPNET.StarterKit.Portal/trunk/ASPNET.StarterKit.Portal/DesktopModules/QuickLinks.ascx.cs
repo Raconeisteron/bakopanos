@@ -27,8 +27,6 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the list control
-            var links = new LinkDb();
-
             myDataList.DataSource = LinkDb.GetLinks(ModuleId);
             myDataList.DataBind();
 

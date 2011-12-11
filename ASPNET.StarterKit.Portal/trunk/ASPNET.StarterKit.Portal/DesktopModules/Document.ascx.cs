@@ -18,8 +18,6 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain Document Data from Documents table
             // and bind to the datalist control
-            var documents = new DocumentDb();
-
             myDataGrid.DataSource = DocumentDb.GetDocuments(ModuleId);
             myDataGrid.DataBind();
         }

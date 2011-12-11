@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Web.UI;
@@ -46,27 +47,20 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of document information
-                    var documents = new DocumentDb();
-                    SqlDataReader dr = DocumentDb.GetSingleDocument(_itemId);
-
-                    // Load first row into Datareader
-                    dr.Read();
+                    DataRow row = DocumentDb.GetSingleDocument(_itemId);
 
                     // Security check.  verify that itemid is within the module.
-                    int dbModuleId = Convert.ToInt32(dr["ModuleID"]);
+                    int dbModuleId = Convert.ToInt32(row["ModuleID"]);
                     if (dbModuleId != _moduleId)
                     {
-                        dr.Close();
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
                     }
 
-                    NameField.Text = (String) dr["FileFriendlyName"];
-                    PathField.Text = (String) dr["FileNameUrl"];
-                    CategoryField.Text = (String) dr["Category"];
-                    CreatedBy.Text = (String) dr["CreatedByUser"];
-                    CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
-
-                    dr.Close();
+                    NameField.Text = (String) row["FileFriendlyName"];
+                    PathField.Text = (String) row["FileNameUrl"];
+                    CategoryField.Text = (String) row["Category"];
+                    CreatedBy.Text = (String) row["CreatedByUser"];
+                    CreatedDate.Text = ((DateTime) row["CreatedDate"]).ToShortDateString();
                 }
 
                 // Store URL Referrer to return to portal
@@ -88,10 +82,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Document DB component
-                var documents = new DocumentDb();
-
                 // Determine whether a file was uploaded
-
                 if (storeInDatabase.Checked && (FileUpload.PostedFile != null))
                 {
                     // for web farm support
@@ -145,7 +136,6 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var documents = new DocumentDb();
                 DocumentDb.DeleteDocument(_itemId);
             }
 
