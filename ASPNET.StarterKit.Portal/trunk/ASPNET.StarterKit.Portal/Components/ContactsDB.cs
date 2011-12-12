@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -16,7 +15,7 @@ namespace ASPNET.StarterKit.Portal
         /// </returns>
         public DataTable GetContacts(int moduleId)
         {
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
+            var parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
             return GetDataTable("Portal_GetContacts", parameterModuleId);
         }
@@ -27,7 +26,7 @@ namespace ASPNET.StarterKit.Portal
         /// </returns>
         public DataRow GetSingleContact(int itemId)
         {
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
+            var parameterItemId = CreateParameter("@ItemID", itemId);
 
             return GetDataRow("Portal_GetSingleContact", parameterItemId);
         }
@@ -39,7 +38,7 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         public void DeleteContact(int itemId)
         {
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
+            var parameterItemId = CreateParameter("@ItemID", itemId);
 
             ExecuteNonQuery("Portal_DeleteContact", parameterItemId);
         }
@@ -56,14 +55,14 @@ namespace ASPNET.StarterKit.Portal
                 userName = "unknown";
             }
 
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Direction = ParameterDirection.Output};
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};
-            var parameterName = new SqlParameter("@Name", SqlDbType.NVarChar, 100) {Value = name};
-            var parameterRole = new SqlParameter("@Role", SqlDbType.NVarChar, 100) {Value = role};
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
-            var parameterContact1 = new SqlParameter("@Contact1", SqlDbType.NVarChar, 100) {Value = contact1};
-            var parameterContact2 = new SqlParameter("@Contact2", SqlDbType.NVarChar, 100) {Value = contact2};
+            var parameterItemId = CreateOutputParameter("@ItemID");
+            var parameterModuleId = CreateParameter("@ModuleID", moduleId);
+            var parameterUserName = CreateParameter("@UserName", userName);
+            var parameterName = CreateParameter("@Name", name);
+            var parameterRole = CreateParameter("@Role", role);
+            var parameterEmail = CreateParameter("@Email", email);
+            var parameterContact1 = CreateParameter("@Contact1", contact1);
+            var parameterContact2 = CreateParameter("@Contact2", contact2);
 
             return ExecuteNonQuery<int>("Portal_AddContact", parameterItemId, parameterModuleId, parameterUserName,
                                         parameterName, parameterRole, parameterEmail, parameterContact1,
@@ -82,13 +81,13 @@ namespace ASPNET.StarterKit.Portal
                 userName = "unknown";
             }
 
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};
-            var parameterName = new SqlParameter("@Name", SqlDbType.NVarChar, 100) {Value = name};
-            var parameterRole = new SqlParameter("@Role", SqlDbType.NVarChar, 100) {Value = role};
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
-            var parameterContact1 = new SqlParameter("@Contact1", SqlDbType.NVarChar, 100) {Value = contact1};
-            var parameterContact2 = new SqlParameter("@Contact2", SqlDbType.NVarChar, 100) {Value = contact2};
+            var parameterItemId = CreateParameter("@ItemID", itemId);
+            var parameterUserName = CreateParameter("@UserName", userName);
+            var parameterName = CreateParameter("@Name", name);
+            var parameterRole = CreateParameter("@Role", role);
+            var parameterEmail = CreateParameter("@Email", email);
+            var parameterContact1 = CreateParameter("@Contact1", contact1);
+            var parameterContact2 = CreateParameter("@Contact2", contact2);
 
             ExecuteNonQuery("Portal_UpdateContact", parameterItemId, parameterUserName, parameterName,
                             parameterRole, parameterEmail, parameterContact1, parameterContact2);
