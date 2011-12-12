@@ -11,8 +11,7 @@
 --%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>ASP.NET Portal Starter Kit</title>
-    <link href="ASPNETPortal.css" type="text/css" rel="stylesheet" />
+    <title>ASP.NET Portal Starter Kit</title>    
 </head>
 <body leftmargin="0" bottommargin="0" rightmargin="0" topmargin="0" marginheight="0"
     marginwidth="0">
