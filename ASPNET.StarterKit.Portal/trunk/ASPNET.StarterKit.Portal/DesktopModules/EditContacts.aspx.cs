@@ -4,7 +4,7 @@ using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class EditContacts : Page
+    public partial class EditContacts : PortalPage<IContactsDb>
     {
         private int _itemId;
         private int _moduleId;
@@ -45,7 +45,7 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of contact information
-                DataRow row = ContactsDb.GetSingleContact(_itemId);
+                DataRow row = DataAccess.GetSingleContact(_itemId);
 
                 // Security check.  verify that itemid is within the module.
                 int dbModuleId = Convert.ToInt32(row["ModuleID"]);
@@ -85,13 +85,13 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId == 0)
                 {
                     // Add the contact within the contacts table
-                    ContactsDb.AddContact(_moduleId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
+                    DataAccess.AddContact(_moduleId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
                                           EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
                 else
                 {
                     // Update the contact within the contacts table
-                    ContactsDb.UpdateContact(_itemId, Context.User.Identity.Name, NameField.Text,
+                    DataAccess.UpdateContact(_itemId, Context.User.Identity.Name, NameField.Text,
                                              RoleField.Text,
                                              EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
@@ -116,7 +116,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                ContactsDb.DeleteContact(_itemId);
+                DataAccess.DeleteContact(_itemId);
             }
 
             // Redirect back to the portal home page

@@ -8,12 +8,12 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// discussions within the Portal database.
     /// </summary>
-    public class DiscussionDb : DbHelper
+    public class DiscussionDb : DbHelper, IDiscussionDb
     {
         /// <returns>
         /// Returns details for all of the messages in the discussion specified by ModuleID.
         /// </returns>
-        public static DataTable GetTopLevelMessages(int moduleId)
+        public DataTable GetTopLevelMessages(int moduleId)
         {
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
 
@@ -23,7 +23,7 @@ namespace ASPNET.StarterKit.Portal
         /// <returns>
         /// Returns details for all of the messages the thread, as identified by the Parent id string.
         /// </returns>
-        public static DataTable GetThreadMessages(String parent)
+        public DataTable GetThreadMessages(String parent)
         {
             var parameterParent = new SqlParameter("@Parent", SqlDbType.NVarChar, 750) {Value = parent};
 
@@ -34,7 +34,7 @@ namespace ASPNET.StarterKit.Portal
         /// The GetSingleMessage method returns the details for the message
         /// specified by the itemId parameter.
         /// </returns>
-        public static DataRow GetSingleMessage(int itemId)
+        public DataRow GetSingleMessage(int itemId)
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
@@ -45,7 +45,7 @@ namespace ASPNET.StarterKit.Portal
         /// The AddMessage method adds a new message within the
         /// Discussions database table, and returns ItemID value as a result.
         /// </summary>
-        public static int AddMessage(int moduleId, int parentId, String userName, String title, String body)
+        public int AddMessage(int moduleId, int parentId, String userName, String title, String body)
         {
             if (userName.Length < 1)
             {

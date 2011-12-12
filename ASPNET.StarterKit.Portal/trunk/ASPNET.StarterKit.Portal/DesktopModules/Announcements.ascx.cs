@@ -2,7 +2,7 @@ using System;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Announcements : PortalModuleControl
+    public partial class Announcements : PortalModuleControl<IAnnouncementsDb>
     {
         /// <summary>
         /// The Page_Load event handler on this User Control is used to
@@ -16,7 +16,7 @@ namespace ASPNET.StarterKit.Portal
             // Obtain announcement information from Announcements table
             // and bind to the datalist control
             // DataBind Announcements to DataList Control
-            myDataList.DataSource = AnnouncementsDb.GetAnnouncements(ModuleId);
+            myDataList.DataSource = DataAccess.GetAnnouncements(ModuleId);
             myDataList.DataBind();
         }
     }

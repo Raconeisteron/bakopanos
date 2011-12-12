@@ -4,7 +4,7 @@ using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class EditLinks : Page
+    public partial class EditLinks : PortalPage<ILinkDb>
     {
         private int _itemId;
         private int _moduleId;
@@ -45,7 +45,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of link information
-                    DataRow row = LinkDb.GetSingleLink(_itemId);
+                    DataRow row = DataAccess.GetSingleLink(_itemId);
 
                     // Security check.  verify that itemid is within the module.
                     int dbModuleId = Convert.ToInt32(row["ModuleID"]);
@@ -83,13 +83,13 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId == 0)
                 {
                     // Add the link within the Links table
-                    LinkDb.AddLink(_moduleId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    DataAccess.AddLink(_moduleId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                    MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
                 else
                 {
                     // Update the link within the Links table
-                    LinkDb.UpdateLink(_itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    DataAccess.UpdateLink(_itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                       MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
 
@@ -113,7 +113,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                LinkDb.DeleteLink(_itemId);
+                DataAccess.DeleteLink(_itemId);
             }
 
             // Redirect back to the portal home page

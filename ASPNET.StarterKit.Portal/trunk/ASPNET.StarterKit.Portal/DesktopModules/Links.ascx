@@ -4,7 +4,7 @@
 <asp:datalist id="myDataList" cellpadding="4" width="100%" runat="server">
 	<itemtemplate>
 		<span class="Normal">
-			<asp:hyperlink id="editLink" imageurl="<%# LinkImage %>" navigateurl='<%# ChooseURL(Convert.ToString(DataBinder.Eval(Container.DataItem,"ItemID")), ModuleId.ToString(), (string)DataBinder.Eval(Container.DataItem,"Url")) %>' target='<%# ChooseTarget() %>' tooltip='<%# ChooseTip((string)DataBinder.Eval(Container.DataItem,"Description")) %>' runat="server" />
+			<asp:hyperlink id="editLink" imageurl="<%# LinkImage %>" navigateurl='<%# ChooseUrl(Convert.ToString(DataBinder.Eval(Container.DataItem,"ItemID")), ModuleId.ToString(), (string)DataBinder.Eval(Container.DataItem,"Url")) %>' target='<%# ChooseTarget() %>' tooltip='<%# ChooseTip((string)DataBinder.Eval(Container.DataItem,"Description")) %>' runat="server" />
 			<asp:hyperlink text='<%# DataBinder.Eval(Container.DataItem,"Title") %>' navigateurl='<%# DataBinder.Eval(Container.DataItem,"Url") %>' tooltip='<%# DataBinder.Eval(Container.DataItem,"Description") %>' target="_new" runat="server"/>
 		</span>
 		<br>

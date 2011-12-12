@@ -4,7 +4,7 @@ using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class ViewDocument : Page
+    public partial class ViewDocument : PortalPage<IDocumentDb>
     {
         private int _documentId = -1;
 
@@ -27,7 +27,7 @@ namespace ASPNET.StarterKit.Portal
             if (_documentId != -1)
             {
                 // Obtain Document Data from Documents table
-                DataRow dBContent = DocumentDb.GetDocumentContent(_documentId);
+                DataRow dBContent = DataAccess.GetDocumentContent(_documentId);
 
                 // Serve up the file by name
                 Response.AppendHeader("content-disposition", "filename=" + (String) dBContent["FileName"]);

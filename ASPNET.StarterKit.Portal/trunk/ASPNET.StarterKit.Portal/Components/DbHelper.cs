@@ -16,6 +16,23 @@ namespace ASPNET.StarterKit.Portal
 
         private static readonly DbProviderFactory Factory = DbProviderFactories.GetFactory(ProviderName);
 
+
+        protected static DbParameter CreateParameter(string parameterName, object value)
+        {
+            DbParameter parameter = Factory.CreateParameter();
+            parameter.ParameterName = parameterName;
+            parameter.Value = value;
+            return parameter;
+        }
+
+        protected static DbParameter CreateOutputParameter(string parameterName)
+        {
+            DbParameter parameter = Factory.CreateParameter();
+            parameter.ParameterName = parameterName;                        
+            parameter.Direction = ParameterDirection.Output;
+            return parameter;
+        }
+
         protected static DataTable GetDataTable(string myCommandText, params DbParameter[] sqlParameters)
         {
             foreach (DataTable table in GetDataSet(myCommandText, sqlParameters).Tables)
@@ -36,21 +53,24 @@ namespace ASPNET.StarterKit.Portal
 
         private static DataSet GetDataSet(string myCommandText, params DbParameter[] sqlParameters)
         {
-            // Create Instance of Connection and Command Object
-            DbConnection myConnection = Factory.CreateConnection();
-            myConnection.ConnectionString = ConnectionString;
-            DbDataAdapter myCommand = Factory.CreateDataAdapter();
-            myCommand.SelectCommand = Factory.CreateCommand();
-            myCommand.SelectCommand.CommandText = myCommandText;
-            myCommand.SelectCommand.Connection = myConnection;
-            myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            myCommand.SelectCommand.Parameters.AddRange(sqlParameters);
-
-            // Create and Fill the DataSet
             var myDataSet = new DataSet();
-            myCommand.Fill(myDataSet);
+
+            // Create Instance of Connection and Command Object
+            using (DbConnection myConnection = Factory.CreateConnection())
+            {
+                myConnection.ConnectionString = ConnectionString;
+                DbDataAdapter myCommand = Factory.CreateDataAdapter();
+                myCommand.SelectCommand = Factory.CreateCommand();
+                myCommand.SelectCommand.CommandText = myCommandText;
+                myCommand.SelectCommand.Connection = myConnection;
+                myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                // Add Parameters to SPROC
+                myCommand.SelectCommand.Parameters.AddRange(sqlParameters);
+
+                // Create and Fill the DataSet                
+                myCommand.Fill(myDataSet);
+            }
 
             // Return the DataSet
             return myDataSet;
@@ -69,19 +89,21 @@ namespace ASPNET.StarterKit.Portal
         protected static void ExecuteNonQuery(string myCommandText, params DbParameter[] sqlParameters)
         {
             // Create Instance of Connection and Command Object
-            DbConnection myConnection = Factory.CreateConnection();
-            myConnection.ConnectionString = ConnectionString;
-            DbCommand myCommand = Factory.CreateCommand();
-            myCommand.CommandText = myCommandText;
-            myCommand.Connection = myConnection;
-            myCommand.CommandType = CommandType.StoredProcedure;
+            using (DbConnection myConnection = Factory.CreateConnection())
+            {
+                myConnection.ConnectionString = ConnectionString;
+                DbCommand myCommand = Factory.CreateCommand();
+                myCommand.CommandText = myCommandText;
+                myCommand.Connection = myConnection;
+                myCommand.CommandType = CommandType.StoredProcedure;
 
-            // Add Parameters to SPROC
-            myCommand.Parameters.AddRange(sqlParameters);
+                // Add Parameters to SPROC
+                myCommand.Parameters.AddRange(sqlParameters);
 
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+                myConnection.Open();
+                myCommand.ExecuteNonQuery();
+                myConnection.Close();
+            }
         }
     }
 }

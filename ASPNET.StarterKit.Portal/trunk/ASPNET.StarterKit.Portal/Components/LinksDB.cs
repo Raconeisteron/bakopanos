@@ -8,14 +8,14 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// links within the Portal database.
     /// </summary>
-    public class LinkDb : DbHelper
+    public class LinkDb : DbHelper, ILinkDb
     {
         /// <returns>
         /// The GetLinks method returns a SqlDataReader containing all of the
         /// links for a specific portal module from the announcements
         /// database.
         /// </returns>
-        public static DataTable GetLinks(int moduleId)
+        public DataTable GetLinks(int moduleId)
         {
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
 
@@ -26,7 +26,7 @@ namespace ASPNET.StarterKit.Portal
         /// The GetSingleLink method returns a SqlDataReader containing details
         /// about a specific link from the Links database table.
         /// </returns>
-        public static DataRow GetSingleLink(int itemId)
+        public DataRow GetSingleLink(int itemId)
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
@@ -37,7 +37,7 @@ namespace ASPNET.StarterKit.Portal
         /// The DeleteLink method deletes a specified link from
         /// the Links database table.
         /// </summary>
-        public static void DeleteLink(int itemId)
+        public void DeleteLink(int itemId)
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
@@ -48,7 +48,7 @@ namespace ASPNET.StarterKit.Portal
         /// The AddLink method adds a new link within the
         /// links database table, and returns ItemID value as a result.
         /// </summary>
-        public static int AddLink(int moduleId, String userName, String title, String url, String mobileUrl,
+        public int AddLink(int moduleId, String userName, String title, String url, String mobileUrl,
                                   int viewOrder, String description)
         {
             if (userName.Length < 1)
@@ -74,7 +74,7 @@ namespace ASPNET.StarterKit.Portal
         /// The UpdateLink method updates a specified link within
         /// the Links database table.
         /// </summary>
-        public static void UpdateLink(int itemId, String userName, String title, String url,
+        public void UpdateLink(int itemId, String userName, String title, String url,
                                       String mobileUrl, int viewOrder, String description)
         {
             if (userName.Length < 1)

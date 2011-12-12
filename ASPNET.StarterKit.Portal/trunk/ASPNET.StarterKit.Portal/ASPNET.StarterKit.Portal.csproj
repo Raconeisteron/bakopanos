@@ -274,15 +274,24 @@
     <Compile Include="Components\ConfigurationDb.cs" />
     <Compile Include="Components\ContactsDB.cs" />
     <Compile Include="Components\CachedPortalModuleControl.cs" />
+    <Compile Include="Components\DataAccess.cs" />
     <Compile Include="Components\DbHelper.cs" />
     <Compile Include="Components\DiscussionDB.cs" />
     <Compile Include="Components\DocumentDB.cs" />
     <Compile Include="Components\EventsDB.cs" />
     <Compile Include="Components\HtmlTextDB.cs" />
+    <Compile Include="Components\IAnnouncementsDb.cs" />
+    <Compile Include="Components\IContactsDb.cs" />
+    <Compile Include="Components\IDiscussionDb.cs" />
+    <Compile Include="Components\IDocumentDb.cs" />
+    <Compile Include="Components\ILinkDb.cs" />
     <Compile Include="Components\LinksDB.cs" />
     <Compile Include="Components\ModuleItem.cs" />
     <Compile Include="Components\ModuleSettings.cs" />
     <Compile Include="Components\PortalModuleControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\PortalPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Components\PortalSettings.cs" />

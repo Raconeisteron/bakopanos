@@ -2,7 +2,7 @@ using System;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Contacts : PortalModuleControl
+    public partial class Contacts : PortalModuleControl<IContactsDb>
     {
         //*******************************************************
         //
@@ -19,7 +19,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain contact information from Contacts table
             // and bind to the DataGrid Control
-            myDataGrid.DataSource = ContactsDb.GetContacts(ModuleId);
+            myDataGrid.DataSource = DataAccess.GetContacts(ModuleId);
             myDataGrid.DataBind();
         }
     }

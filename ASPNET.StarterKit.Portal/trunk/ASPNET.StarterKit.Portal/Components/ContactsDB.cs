@@ -8,13 +8,13 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// contacts within the Portal database.
     /// </summary>
-    public class ContactsDb : DbHelper
+    public class ContactsDb : DbHelper, IContactsDb
     {
         /// <returns>
         /// The GetContacts method returns a DataSet containing all of the
         /// contacts for a specific portal module from the contacts database.
         /// </returns>
-        public static DataTable GetContacts(int moduleId)
+        public DataTable GetContacts(int moduleId)
         {
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
 
@@ -25,7 +25,7 @@ namespace ASPNET.StarterKit.Portal
         /// The GetSingleContact method returns a SqlDataReader containing details
         /// about a specific contact from the Contacts database table.
         /// </returns>
-        public static DataRow GetSingleContact(int itemId)
+        public DataRow GetSingleContact(int itemId)
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
@@ -37,7 +37,7 @@ namespace ASPNET.StarterKit.Portal
         /// The DeleteContact method deletes the specified contact from
         /// the Contacts database table.
         /// </summary>
-        public static void DeleteContact(int itemId)
+        public void DeleteContact(int itemId)
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
@@ -48,7 +48,7 @@ namespace ASPNET.StarterKit.Portal
         /// The AddContact method adds a new contact to the Contacts
         /// database table, and returns the ItemId value as a result.
         /// </summary>
-        public static int AddContact(int moduleId, String userName, String name, String role, String email,
+        public int AddContact(int moduleId, String userName, String name, String role, String email,
                                      String contact1, String contact2)
         {
             if (userName.Length < 1)
@@ -74,7 +74,7 @@ namespace ASPNET.StarterKit.Portal
         /// The UpdateContact method updates the specified contact within
         /// the Contacts database table.
         /// </summary>
-        public static void UpdateContact(int itemId, String userName, String name, String role, String email,
+        public void UpdateContact(int itemId, String userName, String name, String role, String email,
                                          String contact1, String contact2)
         {
             if (userName.Length < 1)

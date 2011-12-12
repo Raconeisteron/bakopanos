@@ -5,7 +5,7 @@ using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class EditDocs : Page
+    public partial class EditDocs : PortalPage<IDocumentDb>
     {
         private int _itemId;
         private int _moduleId;
@@ -46,7 +46,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of document information
-                    DataRow row = DocumentDb.GetSingleDocument(_itemId);
+                    DataRow row = DataAccess.GetSingleDocument(_itemId);
 
                     // Security check.  verify that itemid is within the module.
                     int dbModuleId = Convert.ToInt32(row["ModuleID"]);
@@ -92,7 +92,7 @@ namespace ASPNET.StarterKit.Portal
                     FileUpload.PostedFile.InputStream.Read(content, 0, length);
 
                     // Update the document within the Documents table
-                    DocumentDb.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
+                    DataAccess.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
                                               PathField.Text, CategoryField.Text, content, length, contentType);
                 }
                 else
@@ -111,7 +111,7 @@ namespace ASPNET.StarterKit.Portal
                         // Update PathFile with uploaded virtual file location
                         PathField.Text = virtualPath;
                     }
-                    DocumentDb.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
+                    DataAccess.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
                                               PathField.Text, CategoryField.Text, new byte[0], 0, "");
                 }
 
@@ -135,7 +135,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                DocumentDb.DeleteDocument(_itemId);
+                DataAccess.DeleteDocument(_itemId);
             }
 
             // Redirect back to the portal home page

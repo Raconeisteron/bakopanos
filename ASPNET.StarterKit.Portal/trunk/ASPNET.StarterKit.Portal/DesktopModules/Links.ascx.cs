@@ -2,7 +2,7 @@ using System;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Links : PortalModuleControl
+    public partial class Links : PortalModuleControl<ILinkDb>
     {
         protected String LinkImage = "";
 
@@ -30,32 +30,29 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the datalist control
-            myDataList.DataSource = LinkDb.GetLinks(ModuleId);
+            myDataList.DataSource = DataAccess.GetLinks(ModuleId);
             myDataList.DataBind();
         }
 
-        protected string ChooseURL(string itemID, string modID, string URL)
+        protected string ChooseUrl(string itemId, string modId, string url)
         {
             if (IsEditable)
-                return "~/DesktopModules/EditLinks.aspx?ItemID=" + itemID + "&mid=" + modID;
-            else
-                return URL;
+                return "~/DesktopModules/EditLinks.aspx?ItemID=" + itemId + "&mid=" + modId;
+            return url;
         }
 
         protected string ChooseTarget()
         {
             if (IsEditable)
                 return "_self";
-            else
-                return "_new";
+            return "_new";
         }
 
         protected string ChooseTip(string desc)
         {
             if (IsEditable)
                 return "Edit";
-            else
-                return desc;
+            return desc;
         }
     }
 }

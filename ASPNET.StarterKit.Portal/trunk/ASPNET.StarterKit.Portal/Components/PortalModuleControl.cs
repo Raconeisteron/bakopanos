@@ -12,6 +12,18 @@ namespace ASPNET.StarterKit.Portal
     /// The PortalModuleControl class defines portal specific properties
     /// that are used by the portal framework to correctly display portal modules
     /// </summary>
+    public class PortalModuleControl<T> : PortalModuleControl
+    {
+        protected T DataAccess { get; private set; }
+
+        protected override void OnInit(System.EventArgs e)
+        {
+            base.OnInit(e);
+
+            DataAccess = StarterKit.Portal.DataAccess.Resolve<T>();
+        }
+    }
+
     public class PortalModuleControl : UserControl
     {
         // Private field variables
@@ -80,5 +92,6 @@ namespace ASPNET.StarterKit.Portal
                 return _settings;
             }
         }
+
     }
 }

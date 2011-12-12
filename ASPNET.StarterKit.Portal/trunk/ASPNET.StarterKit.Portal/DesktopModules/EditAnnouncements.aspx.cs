@@ -4,7 +4,7 @@ using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class EditAnnouncements : Page
+    public partial class EditAnnouncements : PortalPage<IAnnouncementsDb>
     {
         private int _itemId;
         private int _moduleId;
@@ -46,7 +46,7 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of announcement information
-                DataRow row = AnnouncementsDb.GetSingleAnnouncement(_itemId);
+                DataRow row = DataAccess.GetSingleAnnouncement(_itemId);
 
                 // Security check.  verify that itemid is within the module.
                 int dbModuleId = Convert.ToInt32(row["ModuleID"]);
@@ -85,14 +85,14 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId == 0)
                 {
                     // Add the announcement within the Announcements table
-                    AnnouncementsDb.AddAnnouncement(_moduleId, Context.User.Identity.Name, TitleField.Text,
+                    DataAccess.AddAnnouncement(_moduleId, Context.User.Identity.Name, TitleField.Text,
                                                     DateTime.Parse(ExpireField.Text), DescriptionField.Text,
                                                     MoreLinkField.Text, MobileMoreField.Text);
                 }
                 else
                 {
                     // Update the announcement within the Announcements table
-                    AnnouncementsDb.UpdateAnnouncement(_itemId, Context.User.Identity.Name, TitleField.Text,
+                    DataAccess.UpdateAnnouncement(_itemId, Context.User.Identity.Name, TitleField.Text,
                                                        DateTime.Parse(ExpireField.Text), DescriptionField.Text,
                                                        MoreLinkField.Text, MobileMoreField.Text);
                 }
@@ -117,7 +117,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                AnnouncementsDb.DeleteAnnouncement(_itemId);
+                DataAccess.DeleteAnnouncement(_itemId);
             }
 
             // Redirect back to the portal home page

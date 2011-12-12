@@ -4,7 +4,7 @@ using System.Web.UI.WebControls;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Discussion : PortalModuleControl
+    public partial class Discussion : PortalModuleControl<IDiscussionDb>
     {
         //*******************************************************
         //
@@ -36,7 +36,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain a list of discussion messages for the module
             // and bind to datalist
-            TopLevelList.DataSource = DiscussionDb.GetTopLevelMessages(ModuleId);
+            TopLevelList.DataSource = DataAccess.GetTopLevelMessages(ModuleId);
             TopLevelList.DataBind();
         }
 
@@ -54,7 +54,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain a list of discussion messages for the module
             // Return the filtered DataView
-            return DiscussionDb.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
+            return DataAccess.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
         }
 
         //*******************************************************

@@ -9,14 +9,14 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// documents within the Portal database.
     /// </summary>
-    public class DocumentDb : DbHelper
+    public class DocumentDb : DbHelper, IDocumentDb
     {
         /// <returns>
         /// The GetDocuments method returns a SqlDataReader containing all of the
         /// documents for a specific portal module from the documents
         /// database.
         /// </returns>
-        public static DataTable GetDocuments(int moduleId)
+        public DataTable GetDocuments(int moduleId)
         {
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
 
@@ -27,7 +27,7 @@ namespace ASPNET.StarterKit.Portal
         /// The GetSingleDocument method returns a SqlDataReader containing details
         /// about a specific document from the Documents database table.
         /// </returns>
-        public static DataRow GetSingleDocument(int itemId)
+        public DataRow GetSingleDocument(int itemId)
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
@@ -38,7 +38,7 @@ namespace ASPNET.StarterKit.Portal
         /// The GetDocumentContent method returns the contents of the specified
         /// document from the Documents database table.
         /// </returns>
-        public static DataRow GetDocumentContent(int itemId)
+        public DataRow GetDocumentContent(int itemId)
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
@@ -50,7 +50,7 @@ namespace ASPNET.StarterKit.Portal
         /// The DeleteDocument method deletes the specified document from
         /// the Documents database table.
         /// </summary>
-        public static void DeleteDocument(int itemId)
+        public void DeleteDocument(int itemId)
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
@@ -70,7 +70,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public static void UpdateDocument(int moduleId, int itemId, String userName, String name, String url,
+        public void UpdateDocument(int moduleId, int itemId, String userName, String name, String url,
                                           String category,
                                           byte[] content, int size, String contentType)
         {

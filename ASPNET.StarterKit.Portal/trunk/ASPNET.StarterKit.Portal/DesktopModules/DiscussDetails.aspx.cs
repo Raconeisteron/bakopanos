@@ -4,7 +4,7 @@ using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class DiscussDetails : Page
+    public partial class DiscussDetails : PortalPage<IDiscussionDb>
     {
         private int _itemId;
         private int _moduleId;
@@ -77,7 +77,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Add new message (updating the "itemId" on the page)
-            _itemId = DiscussionDb.AddMessage(_moduleId, _itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
+            _itemId = DataAccess.AddMessage(_moduleId, _itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
                                               Server.HtmlEncode(BodyField.Text));
 
             // Update visibility of page elements
@@ -115,7 +115,7 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Obtain the selected item from the Discussion table
-            DataRow row = DiscussionDb.GetSingleMessage(_itemId);
+            DataRow row = DataAccess.GetSingleMessage(_itemId);
 
             // Security check.  verify that itemid is within the module.
             int dbModuleId = Convert.ToInt32(row["ModuleID"]);
