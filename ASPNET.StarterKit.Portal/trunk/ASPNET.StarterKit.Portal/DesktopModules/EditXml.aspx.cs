@@ -31,7 +31,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_moduleId > 0)
                 {
                     // Get settings from the database
-                    Hashtable settings = Configuration.GetModuleSettings(_moduleId);
+                    Hashtable settings = ConfigurationDb.GetModuleSettings(_moduleId);
 
                     XmlDataSrc.Text = (String) settings["xmlsrc"];
                     XslTransformSrc.Text = (String) settings["xslsrc"];
@@ -52,10 +52,8 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Update settings in the database
-            var config = new Configuration();
-
-            config.UpdateModuleSetting(_moduleId, "xmlsrc", XmlDataSrc.Text);
-            config.UpdateModuleSetting(_moduleId, "xslsrc", XslTransformSrc.Text);
+            ConfigurationDb.UpdateModuleSetting(_moduleId, "xmlsrc", XmlDataSrc.Text);
+            ConfigurationDb.UpdateModuleSetting(_moduleId, "xslsrc", XslTransformSrc.Text);
 
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);

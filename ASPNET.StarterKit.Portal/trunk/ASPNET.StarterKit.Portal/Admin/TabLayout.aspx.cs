@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Web;
@@ -59,10 +58,9 @@ namespace ASPNET.StarterKit.Portal
             m.ModuleOrder = 999;
 
             // save to database
-            var config = new Configuration();
-            m.ModuleId = config.AddModule(_tabId, m.ModuleOrder, "ContentPane", m.ModuleTitle, m.ModuleDefId, 0,
-                                          "Admins",
-                                          false);
+            m.ModuleId = ConfigurationDb.AddModule(_tabId, m.ModuleOrder, "ContentPane", m.ModuleTitle, m.ModuleDefId, 0,
+                                                   "Admins",
+                                                   false);
 
             // Obtain portalId from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
@@ -77,7 +75,7 @@ namespace ASPNET.StarterKit.Portal
             // resave the order
             foreach (ModuleItem item in modules)
             {
-                config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, "ContentPane");
+                ConfigurationDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, "ContentPane");
             }
 
             // Redirect to the same page to pick up changes
@@ -120,17 +118,16 @@ namespace ASPNET.StarterKit.Portal
                         selection = listbox.SelectedIndex - 1;
                 }
 
-                var m = (ModuleItem) modules[listbox.SelectedIndex];
+                ModuleItem m = modules[listbox.SelectedIndex];
                 m.ModuleOrder += delta;
 
                 // reorder the modules in the content pane
                 OrderModules(modules);
 
                 // resave the order
-                var config = new Configuration();
                 foreach (ModuleItem item in modules)
                 {
-                    config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, pane);
+                    ConfigurationDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, pane);
                 }
             }
 
@@ -160,11 +157,10 @@ namespace ASPNET.StarterKit.Portal
 
                 // get a reference to the module to move
                 // and assign a high order number to send it to the end of the target list
-                var m = (ModuleItem) sourceList[sourceBox.SelectedIndex];
+                ModuleItem m = sourceList[sourceBox.SelectedIndex];
 
                 // add it to the database
-                var config = new Configuration();
-                config.UpdateModuleOrder(m.ModuleId, 998, targetPane);
+                ConfigurationDb.UpdateModuleOrder(m.ModuleId, 998, targetPane);
 
                 // delete it from the source list
                 sourceList.RemoveAt(sourceBox.SelectedIndex);
@@ -182,7 +178,7 @@ namespace ASPNET.StarterKit.Portal
                 // resave the order
                 foreach (ModuleItem item in sourceList)
                 {
-                    config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, sourcePane);
+                    ConfigurationDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, sourcePane);
                 }
 
                 // reorder the modules in the target pane
@@ -192,7 +188,7 @@ namespace ASPNET.StarterKit.Portal
                 // resave the order
                 foreach (ModuleItem item in targetList)
                 {
-                    config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, targetPane);
+                    ConfigurationDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, targetPane);
                 }
 
                 // Redirect to the same page to pick up changes
@@ -222,7 +218,7 @@ namespace ASPNET.StarterKit.Portal
             int adminIndex = portalSettings.DesktopTabs.Count - 1;
 
             Response.Redirect("~/DesktopDefault.aspx?tabindex=" + adminIndex + "&tabid=" +
-                              ((TabStripDetails) portalSettings.DesktopTabs[adminIndex]).TabId);
+                              (portalSettings.DesktopTabs[adminIndex]).TabId);
         }
 
         //*******************************************************
@@ -265,9 +261,8 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // update Tab info in the database
-            var config = new Configuration();
-            config.UpdateTab(portalSettings.PortalId, _tabId, tabName.Text, portalSettings.ActiveTab.TabOrder,
-                             authorizedRoles, mobileTabName.Text, showMobile.Checked);
+            ConfigurationDb.UpdateTab(portalSettings.PortalId, _tabId, tabName.Text, portalSettings.ActiveTab.TabOrder,
+                                      authorizedRoles, mobileTabName.Text, showMobile.Checked);
         }
 
         //*******************************************************
@@ -306,12 +301,11 @@ namespace ASPNET.StarterKit.Portal
 
             if (listbox.SelectedIndex != -1)
             {
-                var m = modules[listbox.SelectedIndex];
+                ModuleItem m = modules[listbox.SelectedIndex];
                 if (m.ModuleId > -1)
                 {
                     // must delete from database too
-                    var config = new Configuration();
-                    config.DeleteModule(m.ModuleId);
+                    ConfigurationDb.DeleteModule(m.ModuleId);
                 }
             }
 
@@ -358,7 +352,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 var item = new ListItem
                                {
-                                   Text = (String) roles["RoleName"], 
+                                   Text = (String) roles["RoleName"],
                                    Value = roles["RoleID"].ToString()
                                };
 
@@ -371,7 +365,7 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Populate the "Add Module" Data
-            moduleType.DataSource = Configuration.GetModuleDefinitions(portalSettings.PortalId);
+            moduleType.DataSource = ConfigurationDb.GetModuleDefinitions(portalSettings.PortalId);
             moduleType.DataBind();
 
             // Populate Right Hand Module Data

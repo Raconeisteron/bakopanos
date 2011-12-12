@@ -35,7 +35,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_moduleId > 0)
                 {
                     // Get settings from the database
-                    Hashtable settings = Configuration.GetModuleSettings(_moduleId);
+                    Hashtable settings = ConfigurationDb.GetModuleSettings(_moduleId);
 
                     Src.Text = (String) settings["src"];
                     Width.Text = (String) settings["width"];
@@ -59,11 +59,9 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Update settings in the database
-            var config = new Configuration();
-
-            config.UpdateModuleSetting(_moduleId, "src", Src.Text);
-            config.UpdateModuleSetting(_moduleId, "height", Height.Text);
-            config.UpdateModuleSetting(_moduleId, "width", Width.Text);
+            ConfigurationDb.UpdateModuleSetting(_moduleId, "src", Src.Text);
+            ConfigurationDb.UpdateModuleSetting(_moduleId, "height", Height.Text);
+            ConfigurationDb.UpdateModuleSetting(_moduleId, "width", Width.Text);
 
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);

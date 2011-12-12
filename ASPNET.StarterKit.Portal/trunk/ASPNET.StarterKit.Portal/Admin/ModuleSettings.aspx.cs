@@ -72,9 +72,9 @@ namespace ASPNET.StarterKit.Portal
                 }
 
                 // update module
-                var config = new Configuration();
-                config.UpdateModule(_moduleId, m.ModuleOrder, m.PaneName, moduleTitle.Text, Int32.Parse(cacheTime.Text),
-                                    editRoles, showMobile.Checked);
+                ConfigurationDb.UpdateModule(_moduleId, m.ModuleOrder, m.PaneName, moduleTitle.Text,
+                                             Int32.Parse(cacheTime.Text),
+                                             editRoles, showMobile.Checked);
 
                 // Update Textbox Settings
                 moduleTitle.Text = m.ModuleTitle;

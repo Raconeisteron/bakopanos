@@ -25,7 +25,7 @@
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\Portal.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -271,7 +271,7 @@
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
     <Compile Include="Components\AnnouncementsDB.cs" />
-    <Compile Include="Components\Configuration.cs" />
+    <Compile Include="Components\ConfigurationDb.cs" />
     <Compile Include="Components\ContactsDB.cs" />
     <Compile Include="Components\CachedPortalModuleControl.cs" />
     <Compile Include="Components\DbHelper.cs" />
@@ -280,11 +280,17 @@
     <Compile Include="Components\EventsDB.cs" />
     <Compile Include="Components\HtmlTextDB.cs" />
     <Compile Include="Components\LinksDB.cs" />
+    <Compile Include="Components\ModuleItem.cs" />
+    <Compile Include="Components\ModuleSettings.cs" />
     <Compile Include="Components\PortalModuleControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Components\PortalSettings.cs" />
     <Compile Include="Components\RolesDB.cs" />
     <Compile Include="Components\PortalSecurity.cs" />
+    <Compile Include="Components\TabItem.cs" />
+    <Compile Include="Components\TabSettings.cs" />
+    <Compile Include="Components\TabStripDetails.cs" />
     <Compile Include="Components\UsersDB.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

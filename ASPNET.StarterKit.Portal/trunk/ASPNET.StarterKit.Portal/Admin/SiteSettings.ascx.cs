@@ -43,8 +43,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // update Tab info in the database
-            var config = new Configuration();
-            config.UpdatePortalInfo(portalSettings.PortalId, siteName.Text, showEdit.Checked);
+            ConfigurationDb.UpdatePortalInfo(portalSettings.PortalId, siteName.Text, showEdit.Checked);
 
             // Redirect to this site to refresh
             Response.Redirect(Request.RawUrl);

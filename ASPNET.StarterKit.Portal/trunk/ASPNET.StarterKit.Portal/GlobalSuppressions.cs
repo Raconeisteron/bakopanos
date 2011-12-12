@@ -8,8 +8,26 @@
 // "In Project Suppression File".
 // You do not need to add suppressions to this file manually.
 
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1804:RemoveUnusedLocals", MessageId = "portalSettings", Scope = "member", Target = "ASPNET.StarterKit.Portal.ManageUsers.#Save_Click(System.Object,System.EventArgs)")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1804:RemoveUnusedLocals", MessageId = "portalSettings", Scope = "member", Target = "ASPNET.StarterKit.Portal.SecurityRoles.#Save_Click(System.Object,System.EventArgs)")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1804:RemoveUnusedLocals", MessageId = "id", Scope = "member", Target = "ASPNET.StarterKit.Portal.TabLayout.#Apply_Click(System.Object,System.EventArgs)")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1804:RemoveUnusedLocals", MessageId = "targetBox", Scope = "member", Target = "ASPNET.StarterKit.Portal.TabLayout.#RightLeft_Click(System.Object,System.Web.UI.ImageClickEventArgs)")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1804:RemoveUnusedLocals", MessageId = "selection", Scope = "member", Target = "ASPNET.StarterKit.Portal.TabLayout.#UpDown_Click(System.Object,System.Web.UI.ImageClickEventArgs)")]
+using System.Diagnostics.CodeAnalysis;
+
+[assembly:
+    SuppressMessage("Microsoft.Usage", "CA2240:ImplementISerializableCorrectly", Scope = "type",
+        Target = "ASPNET.StarterKit.Portal.SiteConfiguration+GlobalDataTable")]
+[assembly:
+    SuppressMessage("Microsoft.Usage", "CA2240:ImplementISerializableCorrectly", Scope = "type",
+        Target = "ASPNET.StarterKit.Portal.SiteConfiguration+ModuleDataTable")]
+[assembly:
+    SuppressMessage("Microsoft.Usage", "CA2240:ImplementISerializableCorrectly", Scope = "type",
+        Target = "ASPNET.StarterKit.Portal.SiteConfiguration+ModuleDefinitionDataTable")]
+[assembly:
+    SuppressMessage("Microsoft.Usage", "CA2240:ImplementISerializableCorrectly", Scope = "type",
+        Target = "ASPNET.StarterKit.Portal.SiteConfiguration+SettingDataTable")]
+[assembly:
+    SuppressMessage("Microsoft.Usage", "CA2240:ImplementISerializableCorrectly", Scope = "type",
+        Target = "ASPNET.StarterKit.Portal.SiteConfiguration+SettingsDataTable")]
+[assembly:
+    SuppressMessage("Microsoft.Usage", "CA2240:ImplementISerializableCorrectly", Scope = "type",
+        Target = "ASPNET.StarterKit.Portal.SiteConfiguration+TabDataTable")]
+[assembly:
+    SuppressMessage("Microsoft.Usage", "CA2240:ImplementISerializableCorrectly", Scope = "type",
+        Target = "ASPNET.StarterKit.Portal.SiteConfiguration")]

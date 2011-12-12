@@ -19,7 +19,7 @@ namespace ASPNET.StarterKit.Portal
         public static DataTable GetDocuments(int moduleId)
         {
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
-            
+
             return GetDataTable("Portal_GetDocuments", parameterModuleId);
         }
 
@@ -30,7 +30,7 @@ namespace ASPNET.StarterKit.Portal
         public static DataRow GetSingleDocument(int itemId)
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
-            
+
             return GetDataRow("Portal_GetSingleDocument", parameterItemId);
         }
 
@@ -41,7 +41,7 @@ namespace ASPNET.StarterKit.Portal
         public static DataRow GetDocumentContent(int itemId)
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
-            
+
             return GetDataRow("Portal_GetDocumentContent", parameterItemId);
         }
 

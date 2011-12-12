@@ -53,7 +53,7 @@ namespace ASPNET.StarterKit.Portal
                 else
                 {
                     // Obtain the module definition to edit from the database
-                    SiteConfiguration.ModuleDefinitionRow modDefRow = Configuration.GetSingleModuleDefinition(_defId);
+                    SiteConfiguration.ModuleDefinitionRow modDefRow = ConfigurationDb.GetSingleModuleDefinition(_defId);
 
                     // Read in information
                     FriendlyName.Text = modDefRow.FriendlyName;
@@ -75,21 +75,19 @@ namespace ASPNET.StarterKit.Portal
         {
             if (Page.IsValid)
             {
-                var config = new Configuration();
-
                 if (_defId == -1)
                 {
                     // Obtain PortalSettings from Current Context
                     var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
                     // Add a new module definition to the database
-                    config.AddModuleDefinition(portalSettings.PortalId, FriendlyName.Text, DesktopSrc.Text,
-                                               MobileSrc.Text);
+                    ConfigurationDb.AddModuleDefinition(portalSettings.PortalId, FriendlyName.Text, DesktopSrc.Text,
+                                                        MobileSrc.Text);
                 }
                 else
                 {
                     // update the module definition
-                    config.UpdateModuleDefinition(_defId, FriendlyName.Text, DesktopSrc.Text, MobileSrc.Text);
+                    ConfigurationDb.UpdateModuleDefinition(_defId, FriendlyName.Text, DesktopSrc.Text, MobileSrc.Text);
                 }
 
                 // Redirect back to the portal admin page
@@ -108,8 +106,7 @@ namespace ASPNET.StarterKit.Portal
         protected void DeleteBtn_Click(Object sender, EventArgs e)
         {
             // delete definition
-            var config = new Configuration();
-            config.DeleteModuleDefinition(_defId);
+            ConfigurationDb.DeleteModuleDefinition(_defId);
 
             // Redirect back to the portal admin page
             Response.Redirect("~/DesktopDefault.aspx?tabindex=" + _tabIndex + "&tabid=" + _tabId);
