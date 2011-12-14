@@ -46,7 +46,7 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of announcement information
-                DataRow row = DataAccess.GetSingleAnnouncement(_itemId);
+                DataRow row = Model.GetSingleAnnouncement(_itemId);
 
                 // Security check.  verify that itemid is within the module.
                 int dbModuleId = Convert.ToInt32(row["ModuleID"]);
@@ -85,14 +85,14 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId == 0)
                 {
                     // Add the announcement within the Announcements table
-                    DataAccess.AddAnnouncement(_moduleId, Context.User.Identity.Name, TitleField.Text,
+                    Model.AddAnnouncement(_moduleId, Context.User.Identity.Name, TitleField.Text,
                                                     DateTime.Parse(ExpireField.Text), DescriptionField.Text,
                                                     MoreLinkField.Text, MobileMoreField.Text);
                 }
                 else
                 {
                     // Update the announcement within the Announcements table
-                    DataAccess.UpdateAnnouncement(_itemId, Context.User.Identity.Name, TitleField.Text,
+                    Model.UpdateAnnouncement(_itemId, Context.User.Identity.Name, TitleField.Text,
                                                        DateTime.Parse(ExpireField.Text), DescriptionField.Text,
                                                        MoreLinkField.Text, MobileMoreField.Text);
                 }
@@ -117,7 +117,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                DataAccess.DeleteAnnouncement(_itemId);
+                Model.DeleteAnnouncement(_itemId);
             }
 
             // Redirect back to the portal home page

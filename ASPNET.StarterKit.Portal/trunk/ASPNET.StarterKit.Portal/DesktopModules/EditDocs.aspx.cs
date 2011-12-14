@@ -46,7 +46,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of document information
-                    DataRow row = DataAccess.GetSingleDocument(_itemId);
+                    DataRow row = Model.GetSingleDocument(_itemId);
 
                     // Security check.  verify that itemid is within the module.
                     int dbModuleId = Convert.ToInt32(row["ModuleID"]);
@@ -92,7 +92,7 @@ namespace ASPNET.StarterKit.Portal
                     FileUpload.PostedFile.InputStream.Read(content, 0, length);
 
                     // Update the document within the Documents table
-                    DataAccess.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
+                    Model.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
                                               PathField.Text, CategoryField.Text, content, length, contentType);
                 }
                 else
@@ -111,7 +111,7 @@ namespace ASPNET.StarterKit.Portal
                         // Update PathFile with uploaded virtual file location
                         PathField.Text = virtualPath;
                     }
-                    DataAccess.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
+                    Model.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
                                               PathField.Text, CategoryField.Text, new byte[0], 0, "");
                 }
 
@@ -135,7 +135,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                DataAccess.DeleteDocument(_itemId);
+                Model.DeleteDocument(_itemId);
             }
 
             // Redirect back to the portal home page

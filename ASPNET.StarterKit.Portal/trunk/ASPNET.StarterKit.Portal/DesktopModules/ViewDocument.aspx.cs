@@ -27,7 +27,7 @@ namespace ASPNET.StarterKit.Portal
             if (_documentId != -1)
             {
                 // Obtain Document Data from Documents table
-                DataRow dBContent = DataAccess.GetDocumentContent(_documentId);
+                DataRow dBContent = Model.GetDocumentContent(_documentId);
 
                 // Serve up the file by name
                 Response.AppendHeader("content-disposition", "filename=" + (String) dBContent["FileName"]);

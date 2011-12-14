@@ -45,7 +45,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of link information
-                    DataRow row = DataAccess.GetSingleLink(_itemId);
+                    DataRow row = Model.GetSingleLink(_itemId);
 
                     // Security check.  verify that itemid is within the module.
                     int dbModuleId = Convert.ToInt32(row["ModuleID"]);
@@ -83,13 +83,13 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId == 0)
                 {
                     // Add the link within the Links table
-                    DataAccess.AddLink(_moduleId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    Model.AddLink(_moduleId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                    MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
                 else
                 {
                     // Update the link within the Links table
-                    DataAccess.UpdateLink(_itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    Model.UpdateLink(_itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                       MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
 
@@ -113,7 +113,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                DataAccess.DeleteLink(_itemId);
+                Model.DeleteLink(_itemId);
             }
 
             // Redirect back to the portal home page

@@ -45,7 +45,7 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of contact information
-                DataRow row = DataAccess.GetSingleContact(_itemId);
+                DataRow row = Model.GetSingleContact(_itemId);
 
                 // Security check.  verify that itemid is within the module.
                 int dbModuleId = Convert.ToInt32(row["ModuleID"]);
@@ -85,13 +85,13 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId == 0)
                 {
                     // Add the contact within the contacts table
-                    DataAccess.AddContact(_moduleId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
+                    Model.AddContact(_moduleId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
                                           EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
                 else
                 {
                     // Update the contact within the contacts table
-                    DataAccess.UpdateContact(_itemId, Context.User.Identity.Name, NameField.Text,
+                    Model.UpdateContact(_itemId, Context.User.Identity.Name, NameField.Text,
                                              RoleField.Text,
                                              EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
@@ -116,7 +116,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                DataAccess.DeleteContact(_itemId);
+                Model.DeleteContact(_itemId);
             }
 
             // Redirect back to the portal home page
