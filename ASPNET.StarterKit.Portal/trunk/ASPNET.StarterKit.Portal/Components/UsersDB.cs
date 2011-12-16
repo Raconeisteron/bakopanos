@@ -15,12 +15,12 @@ namespace ASPNET.StarterKit.Portal
     /// authentication is used instead, then either the Windows SAM or Active Directory
     /// is used to store and validate all username/password credentials.
     /// </summary>
-    public class UsersDb : DbHelper
+    public class UsersDb : DbHelper, IUsersDb
     {
         /// <summary>
         /// The AddUser method inserts a new user record into the "Users" database table.
         /// </summary>
-        public static int AddUser(String fullName, String email, String password)
+        public int AddUser(String fullName, String email, String password)
         {
             var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int) { Direction = ParameterDirection.Output };
             
@@ -43,7 +43,7 @@ namespace ASPNET.StarterKit.Portal
         /// <summary>
         /// The DeleteUser method deleted a  user record from the "Users" database table.
         /// </summary>
-        public static void DeleteUser(int userId)
+        public void DeleteUser(int userId)
         {
             var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int) {Value = userId};
 
@@ -53,7 +53,7 @@ namespace ASPNET.StarterKit.Portal
         /// <summary>
         /// The UpdateUser method deleted a  user record from the "Users" database table.
         /// </summary>
-        public static void UpdateUser(int userId, String email, String password)
+        public void UpdateUser(int userId, String email, String password)
         {
             var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int) {Value = userId};
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
@@ -65,7 +65,7 @@ namespace ASPNET.StarterKit.Portal
         /// <summary>
         /// The DeleteUser method deleted a  user record from the "Users" database table.
         /// </summary>
-        public static DataTable GetRolesByUser(String email)
+        public DataTable GetRolesByUser(String email)
         {
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
 
@@ -76,7 +76,7 @@ namespace ASPNET.StarterKit.Portal
         /// The GetSingleUser method returns a SqlDataReader containing details
         /// about a specific user from the Users database table.
         /// </summary>
-        public static DataRow GetSingleUser(String email)
+        public DataRow GetSingleUser(String email)
         {
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
 
@@ -86,7 +86,7 @@ namespace ASPNET.StarterKit.Portal
         /// <summary>
         /// The GetRoles method returns a list of role names for the user.
         /// </summary>
-        public static List<string> GetRoles(String email)
+        public List<string> GetRoles(String email)
         {
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
 
@@ -101,7 +101,7 @@ namespace ASPNET.StarterKit.Portal
         /// stored in the users database.  If the email/password pair is valid,
         /// the method returns user's name.
         /// </summary>
-        public static String Login(String email, String password)
+        public String Login(String email, String password)
         {
             var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) { Direction = ParameterDirection.Output };
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};

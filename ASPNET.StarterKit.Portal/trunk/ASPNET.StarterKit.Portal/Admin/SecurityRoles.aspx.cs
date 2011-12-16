@@ -82,7 +82,7 @@ namespace ASPNET.StarterKit.Portal
             if (((LinkButton) sender).ID == "addNew")
             {
                 // add new user to users table
-                if ((userId = UsersDb.AddUser(windowsUserName.Text, windowsUserName.Text, "acme")) == -1)
+                if ((userId = DataAccess.Users.AddUser(windowsUserName.Text, windowsUserName.Text, "acme")) == -1)
                 {
                     Message.Text = "Add New Failed!  There is already an entry for <" + "u" + ">" + windowsUserName.Text +
                                    "<" + "/u" + "> in the Users database." + "<" + "br" + ">" +

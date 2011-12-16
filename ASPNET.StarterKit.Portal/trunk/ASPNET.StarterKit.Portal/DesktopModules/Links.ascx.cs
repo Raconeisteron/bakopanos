@@ -30,7 +30,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the datalist control
-            myDataList.DataSource = DataAccess.GetLinks(ModuleId);
+            myDataList.DataSource = Model.GetLinks(ModuleId);
             myDataList.DataBind();
         }
 

@@ -50,7 +50,7 @@ namespace ASPNET.StarterKit.Portal
         protected void DeleteUser_Click(Object sender, ImageClickEventArgs e)
         {
             // get user id from dropdownlist of users
-            UsersDb.DeleteUser(Int32.Parse(allUsers.SelectedItem.Value));
+            DataAccess.Users.DeleteUser(Int32.Parse(allUsers.SelectedItem.Value));
 
             // Rebind list
             BindData();

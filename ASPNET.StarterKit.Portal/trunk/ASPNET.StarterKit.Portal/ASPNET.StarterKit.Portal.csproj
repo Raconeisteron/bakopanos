@@ -285,6 +285,7 @@
     <Compile Include="Components\IDiscussionDb.cs" />
     <Compile Include="Components\IDocumentDb.cs" />
     <Compile Include="Components\ILinkDb.cs" />
+    <Compile Include="Components\IUsersDb.cs" />
     <Compile Include="Components\LinksDB.cs" />
     <Compile Include="Components\ModuleItem.cs" />
     <Compile Include="Components\ModuleSettings.cs" />

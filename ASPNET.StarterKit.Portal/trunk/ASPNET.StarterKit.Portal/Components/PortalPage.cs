@@ -1,17 +1,7 @@
 ﻿using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace ASPNET.StarterKit.Portal
 {
-
-    public class PortalDataSource : ObjectDataSource
-    {
-        public PortalDataSource()
-        {
-            
-        }
-    }
-
     public class PortalPage<T> : Page
     {
         protected T Model { get; private set; }

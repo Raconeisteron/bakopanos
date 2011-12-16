@@ -61,7 +61,7 @@ namespace ASPNET.StarterKit.Portal
                     {
                         String friendlyName = "New User created " + DateTime.Now;
                         _userName = "New User" + i;
-                        uid = UsersDb.AddUser(friendlyName, _userName, "");
+                        uid = DataAccess.Users.AddUser(friendlyName, _userName, "");
                         i++;
                     }
 
@@ -119,7 +119,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateUser_Click(Object sender, EventArgs e)
         {
             // update the user record in the database
-            UsersDb.UpdateUser(_userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
+            DataAccess.Users.UpdateUser(_userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
 
             // redirect to this page with the corrected querystring args
             Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + _userId + "&username=" + Email.Text + "&tabindex=" +
@@ -158,7 +158,7 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Bind the Email and Password
-            DataRow row = UsersDb.GetSingleUser(_userName);
+            DataRow row = DataAccess.Users.GetSingleUser(_userName);
 
             Email.Text = (String) row["Email"];
 
@@ -169,7 +169,7 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // bind users in role to DataList
-            userRoles.DataSource = UsersDb.GetRolesByUser(_userName);
+            userRoles.DataSource = DataAccess.Users.GetRolesByUser(_userName);
             userRoles.DataBind();
 
             // Obtain PortalSettings from Current Context

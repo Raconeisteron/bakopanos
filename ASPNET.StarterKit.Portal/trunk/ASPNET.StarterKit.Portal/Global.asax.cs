@@ -77,7 +77,7 @@ namespace ASPNET.StarterKit.Portal
                 if ((Request.Cookies["portalroles"] == null) || (Request.Cookies["portalroles"].Value == ""))
                 {
                     // Get roles from UserRoles table, and add to cookie
-                    roles = UsersDb.GetRoles(User.Identity.Name).ToArray();
+                    roles = DataAccess.Users.GetRoles(User.Identity.Name).ToArray();
 
                     // Create a string to persist the roles
                     String roleStr = "";

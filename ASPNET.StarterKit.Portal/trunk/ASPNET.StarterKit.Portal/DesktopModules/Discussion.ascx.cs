@@ -36,7 +36,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain a list of discussion messages for the module
             // and bind to datalist
-            TopLevelList.DataSource = DataAccess.GetTopLevelMessages(ModuleId);
+            TopLevelList.DataSource = Model.GetTopLevelMessages(ModuleId);
             TopLevelList.DataBind();
         }
 
@@ -54,7 +54,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain a list of discussion messages for the module
             // Return the filtered DataView
-            return DataAccess.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
+            return Model.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
         }
 
         //*******************************************************
