@@ -1,5 +1,6 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -82,7 +83,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                SqlDataReader roles = RolesDb.GetPortalRoles(portalSettings.PortalId);
+                DataTable roles = RolesDb.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();
@@ -97,11 +98,11 @@ namespace ASPNET.StarterKit.Portal
 
                 authEditRoles.Items.Add(allItem);
 
-                while (roles.Read())
+                foreach (DataRow role in roles.Rows)
                 {
                     var item = new ListItem();
-                    item.Text = (String) roles["RoleName"];
-                    item.Value = roles["RoleID"].ToString();
+                    item.Text = (String) role["RoleName"];
+                    item.Value = role["RoleID"].ToString();
 
                     if ((m.AuthorizedEditRoles.LastIndexOf(item.Text)) > -1)
                     {
@@ -141,7 +142,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                SqlDataReader roles = RolesDb.GetPortalRoles(portalSettings.PortalId);
+                DataTable roles = RolesDb.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();
@@ -156,11 +157,11 @@ namespace ASPNET.StarterKit.Portal
 
                 authEditRoles.Items.Add(allItem);
 
-                while (roles.Read())
+                foreach (DataRow role in roles.Rows)
                 {
                     var item = new ListItem();
-                    item.Text = (String) roles["RoleName"];
-                    item.Value = roles["RoleID"].ToString();
+                    item.Text = (String) role["RoleName"];
+                    item.Value = role["RoleID"].ToString();
 
                     if ((m.AuthorizedEditRoles.LastIndexOf(item.Text)) > -1)
                     {
@@ -178,12 +179,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
 
             // Obtain selected module data
-            foreach (ModuleSettings module in portalSettings.ActiveTab.Modules)
-            {
-                if (module.ModuleId == _moduleId)
-                    return module;
-            }
-            return null;
+            return portalSettings.ActiveTab.Modules.FirstOrDefault(module => module.ModuleId == _moduleId);
         }
     }
 }

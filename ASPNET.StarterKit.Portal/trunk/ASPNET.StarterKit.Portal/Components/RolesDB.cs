@@ -5,295 +5,105 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-    //*********************************************************************
-    //
-    // RolesDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // Users, Roles and security settings values within the Portal database.
-    //
-    //*********************************************************************
-    public class RolesDb
+    /// <summary>
+    /// Class that encapsulates all data logic necessary to add/query/delete
+    /// Users, Roles and security settings values within the Portal database.
+    /// </summary>
+    public class RolesDb : DbHelper
     {
-        //*********************************************************************
-        //
-        // GetPortalRoles() Method <a name="GetPortalRoles"></a>
-        //
-        // The GetPortalRoles method returns a list of all role names for the 
-        // specified portal.
-        //
-        // Other relevant sources:
-        //     + <a href="GetRolesByUser.htm" style="color:green">GetPortalRoles Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public static SqlDataReader GetPortalRoles(int portalId)
+        #region ROLES
+        /// <summary>
+        /// The GetPortalRoles method returns a list of all role names for the 
+        /// specified portal.
+        /// </summary>
+        public static DataTable GetPortalRoles(int portalId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetPortalRoles", myConnection);
+            var parameterPortalId = CreateParameter("@PortalID", portalId);
 
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterPortalId = new SqlParameter("@PortalID", SqlDbType.Int, 4) {Value = portalId};
-            myCommand.Parameters.Add(parameterPortalId);
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader
-            return dr;
+            return GetDataTable("Portal_GetPortalRoles", parameterPortalId);
         }
 
-        //*********************************************************************
-        //
-        // AddRole() Method <a name="AddRole"></a>
-        //
-        // The AddRole method creates a new security role for the specified portal,
-        // and returns the new RoleID value.
-        //
-        // Other relevant sources:
-        //     + <a href="AddRole.htm" style="color:green">AddRole Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The AddRole method creates a new security role for the specified portal,
+        /// and returns the new RoleID value.
+        /// </summary>
         public static int AddRole(int portalId, String roleName)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_AddRole", myConnection);
+            var parameterRoleId = CreateOutputParameter("@RoleID");
+            var parameterPortalId = CreateParameter("@PortalID", portalId);
+            var parameterRoleName = CreateParameter("@RoleName", roleName);
 
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterPortalId = new SqlParameter("@PortalID", SqlDbType.Int, 4) {Value = portalId};
-            myCommand.Parameters.Add(parameterPortalId);
-
-            var parameterRoleName = new SqlParameter("@RoleName", SqlDbType.NVarChar, 50) {Value = roleName};
-            myCommand.Parameters.Add(parameterRoleName);
-
-            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Direction = ParameterDirection.Output};
-            myCommand.Parameters.Add(parameterRoleId);
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
-
-            // return the role id 
-            return (int) parameterRoleId.Value;
+            return ExecuteNonQuery<int>("Portal_AddRole", parameterRoleId, parameterPortalId, parameterRoleName);
         }
 
-        //*********************************************************************
-        //
-        // DeleteRole() Method <a name="DeleteRole"></a>
-        //
-        // The DeleteRole deletes the specified role from the portal database.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteRole.htm" style="color:green">DeleteRole Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The DeleteRole deletes the specified role from the portal database.
+        /// </summary>
         public static void DeleteRole(int roleId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_DeleteRole", myConnection);
+            var parameterRoleId = CreateParameter("@RoleID", roleId);
 
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};
-            myCommand.Parameters.Add(parameterRoleId);
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            ExecuteNonQuery("Portal_DeleteRole", parameterRoleId);
         }
 
-        //*********************************************************************
-        //
-        // UpdateRole() Method <a name="UpdateRole"></a>
-        //
-        // The UpdateRole method updates the friendly name of the specified role.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateRole.htm" style="color:green">UpdateRole Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The UpdateRole method updates the friendly name of the specified role.
+        /// </summary>
         public static void UpdateRole(int roleId, String roleName)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_UpdateRole", myConnection);
+            var parameterRoleId = CreateParameter("@RoleID", roleId);
+            var parameterRoleName = CreateParameter("@RoleName", roleName);
 
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};
-            myCommand.Parameters.Add(parameterRoleId);
-
-            var parameterRoleName = new SqlParameter("@RoleName", SqlDbType.NVarChar, 50) {Value = roleName};
-            myCommand.Parameters.Add(parameterRoleName);
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            ExecuteNonQuery("Portal_UpdateRole", parameterRoleId, parameterRoleName);
         }
+        
+        #endregion
 
-
-        //
-        // USER ROLES
-        //
-
-        //*********************************************************************
-        //
-        // GetRoleMembers() Method <a name="GetRoleMembers"></a>
-        //
-        // The GetRoleMembers method returns a list of all members in the specified
-        // security role.
-        //
-        // Other relevant sources:
-        //     + <a href="GetRoleMembers.htm" style="color:green">GetRoleMembers Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public static SqlDataReader GetRoleMembers(int roleId)
+        #region USER ROLES
+        /// <summary>
+        /// The GetRoleMembers method returns a list of all members in the specified
+        /// security role.
+        /// </summary>
+        public static DataTable GetRoleMembers(int roleId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetRoleMembership", myConnection);
+            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) { Value = roleId };
 
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};
-            myCommand.Parameters.Add(parameterRoleId);
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader
-            return dr;
+            return GetDataTable("Portal_GetRoleMembership", parameterRoleId);
         }
 
-        //*********************************************************************
-        //
-        // AddUserRole() Method <a name="AddUserRole"></a>
-        //
-        // The AddUserRole method adds the user to the specified security role.
-        //
-        // Other relevant sources:
-        //     + <a href="AddUserRole.htm" style="color:green">AddUserRole Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The AddUserRole method adds the user to the specified security role.
+        /// </summary>
         public static void AddUserRole(int roleId, int userId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_AddUserRole", myConnection);
+            var parameterRoleId = CreateParameter("@RoleID", roleId);
+            var parameterUserId = CreateParameter("@UserID", userId);
 
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};
-            myCommand.Parameters.Add(parameterRoleId);
-
-            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int, 4) {Value = userId};
-            myCommand.Parameters.Add(parameterUserId);
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            ExecuteNonQuery("Portal_AddUserRole", parameterRoleId, parameterUserId);
         }
 
-        //*********************************************************************
-        //
-        // DeleteUserRole() Method <a name="DeleteUserRole"></a>
-        //
-        // The DeleteUserRole method deletes the user from the specified role.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteUserRole.htm" style="color:green">DeleteUserRole Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// The DeleteUserRole method deletes the user from the specified role.
+        /// </summary>
         public static void DeleteUserRole(int roleId, int userId)
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_DeleteUserRole", myConnection);
+            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) { Value = roleId };
+            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int, 4) { Value = userId };
 
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};
-            myCommand.Parameters.Add(parameterRoleId);
-
-            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int, 4) {Value = userId};
-            myCommand.Parameters.Add(parameterUserId);
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            ExecuteNonQuery("Portal_DeleteUserRole", parameterRoleId, parameterUserId);
         }
+        
+        #endregion
 
-
-        //
-        // USERS
-        //
-
-        //*********************************************************************
-        //
-        // GetUsers() Method <a name="GetUsers"></a>
-        //
-        // The GetUsers method returns returns the UserID, Name and Email for 
-        // all registered users.
-        //
-        // Other relevant sources:
-        //     + <a href="GetUsers.htm" style="color:green">GetUsers Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public static SqlDataReader GetUsers()
+        #region USERS
+        /// <summary>
+        /// The GetUsers method returns returns the UserID, Name and Email for 
+        /// all registered users.
+        /// </summary>
+        public static DataTable GetUsers()
         {
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetUsers", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Open the database connection and execute the command
-            myConnection.Open();
-            SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader
-            return dr;
-        }
+            return GetDataTable("Portal_GetUsers");
+        } 
+        #endregion
     }
 }

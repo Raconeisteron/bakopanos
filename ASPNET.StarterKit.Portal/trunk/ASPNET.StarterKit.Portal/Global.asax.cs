@@ -1,6 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Security.Principal;
 using System.Threading;
 using System.Web;
@@ -48,11 +48,7 @@ namespace ASPNET.StarterKit.Portal
 
             try
             {
-                if (Request.UserLanguages != null)
-                    Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Request.UserLanguages[0]);
-                else
-                    // Default to English if there are no user languages
-                    Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
+                Thread.CurrentThread.CurrentCulture = Request.UserLanguages != null ? CultureInfo.CreateSpecificCulture(Request.UserLanguages[0]) : new CultureInfo("en-us");
 
                 Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
             }
@@ -81,7 +77,7 @@ namespace ASPNET.StarterKit.Portal
                 if ((Request.Cookies["portalroles"] == null) || (Request.Cookies["portalroles"].Value == ""))
                 {
                     // Get roles from UserRoles table, and add to cookie
-                    roles = UsersDb.GetRoles(User.Identity.Name);
+                    roles = UsersDb.GetRoles(User.Identity.Name).ToArray();
 
                     // Create a string to persist the roles
                     String roleStr = "";
@@ -116,14 +112,7 @@ namespace ASPNET.StarterKit.Portal
                         FormsAuthentication.Decrypt(Context.Request.Cookies["portalroles"].Value);
 
                     //convert the string representation of the role data into a string array
-                    var userRoles = new List<string>();
-
-                    foreach (String role in ticket.UserData.Split(new[] {';'}))
-                    {
-                        userRoles.Add(role);
-                    }
-
-                    roles = userRoles.ToArray();
+                    roles = ticket.UserData.Split(new[] {';'}).ToArray();
                 }
 
                 // Add our own custom principal to the request containing the roles in the auth ticket
