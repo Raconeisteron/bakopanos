@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNET.StarterKit.Portal", 
 EndProject
 Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "SqlServerDatabase", "SqlServerDatabase\SqlServerDatabase.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Web", "Unity.Web\Unity.Web.csproj", "{3478C9AE-1CB1-4CBE-BE27-BFB1F982400A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3478C9AE-1CB1-4CBE-BE27-BFB1F982400A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3478C9AE-1CB1-4CBE-BE27-BFB1F982400A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3478C9AE-1CB1-4CBE-BE27-BFB1F982400A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3478C9AE-1CB1-4CBE-BE27-BFB1F982400A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

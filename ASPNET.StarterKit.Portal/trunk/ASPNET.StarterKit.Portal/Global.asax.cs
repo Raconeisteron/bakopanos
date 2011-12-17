@@ -1,15 +1,40 @@
 using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Security.Principal;
 using System.Threading;
 using System.Web;
 using System.Web.Security;
+using System.Web.UI;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Unity;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
+using Unity.Web;
 
 namespace ASPNET.StarterKit.Portal
 {
+    
     public class Global : HttpApplication
     {
+        protected void Application_Start(object sender, EventArgs e)
+        {
+            // Create a Unity container and load the Enterprise Library extension.
+            IUnityContainer myContainer = Application.GetContainer();
+            var section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
+            section.Configure(myContainer);
+            myContainer.AddExtension(new EnterpriseLibraryCoreExtension());
+
+            // Perform any container initialization you require. 
+
+            myContainer.RegisterType<IAnnouncementsDb, AnnouncementsDb>(new ContainerControlledLifetimeManager());
+            myContainer.RegisterType<IContactsDb, ContactsDb>(new ContainerControlledLifetimeManager());
+            myContainer.RegisterType<IDiscussionDb, DiscussionDb>(new ContainerControlledLifetimeManager());
+            myContainer.RegisterType<IDocumentDb, DocumentDb>(new ContainerControlledLifetimeManager());
+            //myContainer.RegisterType<ILinkDb, LinkDb>(new ContainerControlledLifetimeManager());
+        }
+
         /// <summary>
         /// The Application_BeginRequest method is an ASP.NET event that executes 
         /// on each web request into the portal application.  The below method

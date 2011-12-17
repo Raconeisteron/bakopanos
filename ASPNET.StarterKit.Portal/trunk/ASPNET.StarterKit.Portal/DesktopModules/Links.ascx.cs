@@ -1,10 +1,14 @@
 using System;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Links : PortalModuleControl<ILinkDb>
+    public partial class Links : PortalModuleControl
     {
         protected String LinkImage = "";
+
+        [Dependency]
+        public ILinkDb Model { private get; set; }
 
         //*******************************************************
         //

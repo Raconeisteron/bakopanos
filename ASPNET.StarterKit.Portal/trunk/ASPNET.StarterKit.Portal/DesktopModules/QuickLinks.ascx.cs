@@ -1,10 +1,14 @@
 using System;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class QuickLinks : PortalModuleControl<ILinkDb>
+    public partial class QuickLinks : PortalModuleControl
     {
         protected String LinkImage = "";
+
+        [Dependency]
+        public ILinkDb Model { private get; set; }
 
         /// <summary>
         /// The Page_Load event handler on this User Control is used to

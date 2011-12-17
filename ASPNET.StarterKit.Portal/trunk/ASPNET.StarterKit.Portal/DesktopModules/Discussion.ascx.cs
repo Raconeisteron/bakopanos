@@ -1,11 +1,15 @@
 using System;
 using System.Data;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Discussion : PortalModuleControl<IDiscussionDb>
+    public partial class Discussion : PortalModuleControl
     {
+        [Dependency]
+        public IDiscussionDb Model { private get; set; }
+
         //*******************************************************
         //
         // The Page_Load server event handler on this User Control is used

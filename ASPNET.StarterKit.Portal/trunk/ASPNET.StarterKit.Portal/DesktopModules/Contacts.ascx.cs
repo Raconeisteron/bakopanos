@@ -1,9 +1,13 @@
 using System;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Contacts : PortalModuleControl<IContactsDb>
+    public partial class Contacts : PortalModuleControl
     {
+        [Dependency]
+        public IContactsDb Model { private get; set; }
+
         //*******************************************************
         //
         // The Page_Load event handler on this User Control is used to

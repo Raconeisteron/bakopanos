@@ -1,9 +1,13 @@
 using System;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class Document : PortalModuleControl<IDocumentDb>
+    public partial class Document : PortalModuleControl
     {
+        [Dependency]
+        public IDocumentDb Model { private get; set; }
+
         //*******************************************************
         //
         // The Page_Load event handler on this User Control is used to
