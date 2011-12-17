@@ -2,13 +2,17 @@ using System;
 using System.Data;
 using System.IO;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class EditDocs : PortalPage<IDocumentDb>
+    public partial class EditDocs : Page
     {
         private int _itemId;
         private int _moduleId;
+
+        [Dependency]
+        public IDocumentDb Model { private get; set; }
 
         //****************************************************************
         //

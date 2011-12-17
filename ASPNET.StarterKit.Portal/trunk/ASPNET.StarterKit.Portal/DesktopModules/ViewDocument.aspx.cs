@@ -1,12 +1,16 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class ViewDocument : PortalPage<IDocumentDb>
+    public partial class ViewDocument : Page
     {
         private int _documentId = -1;
+
+        [Dependency]
+        public IDocumentDb Model { private get; set; }
 
         /// <summary>
         /// The Page_Load event handler on this Page is used to

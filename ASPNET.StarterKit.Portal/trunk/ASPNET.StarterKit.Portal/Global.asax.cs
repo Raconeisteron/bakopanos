@@ -26,13 +26,8 @@ namespace ASPNET.StarterKit.Portal
             section.Configure(myContainer);
             myContainer.AddExtension(new EnterpriseLibraryCoreExtension());
 
-            // Perform any container initialization you require. 
+            // Perform any additional container initialization you require. 
 
-            myContainer.RegisterType<IAnnouncementsDb, AnnouncementsDb>(new ContainerControlledLifetimeManager());
-            myContainer.RegisterType<IContactsDb, ContactsDb>(new ContainerControlledLifetimeManager());
-            myContainer.RegisterType<IDiscussionDb, DiscussionDb>(new ContainerControlledLifetimeManager());
-            myContainer.RegisterType<IDocumentDb, DocumentDb>(new ContainerControlledLifetimeManager());
-            //myContainer.RegisterType<ILinkDb, LinkDb>(new ContainerControlledLifetimeManager());
         }
 
         /// <summary>
@@ -94,6 +89,8 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         protected void Application_AuthenticateRequest(Object sender, EventArgs e)
         {
+            var model = HttpContext.Current.Application.GetContainer().Resolve<IUsersDb>();
+
             if (Request.IsAuthenticated)
             {
                 String[] roles;
@@ -102,7 +99,7 @@ namespace ASPNET.StarterKit.Portal
                 if ((Request.Cookies["portalroles"] == null) || (Request.Cookies["portalroles"].Value == ""))
                 {
                     // Get roles from UserRoles table, and add to cookie
-                    roles = DataAccess.Users.GetRoles(User.Identity.Name).ToArray();
+                    roles = model.GetRoles(User.Identity.Name).ToArray();
 
                     // Create a string to persist the roles
                     String roleStr = "";

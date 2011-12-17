@@ -9,14 +9,14 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// Users, Roles and security settings values within the Portal database.
     /// </summary>
-    public class RolesDb : DbHelper
+    public class RolesDb : DbHelper, IRolesDb
     {
         #region ROLES
         /// <summary>
         /// The GetPortalRoles method returns a list of all role names for the 
         /// specified portal.
         /// </summary>
-        public static DataTable GetPortalRoles(int portalId)
+        public DataTable GetPortalRoles(int portalId)
         {
             var parameterPortalId = CreateParameter("@PortalID", portalId);
 
@@ -27,7 +27,7 @@ namespace ASPNET.StarterKit.Portal
         /// The AddRole method creates a new security role for the specified portal,
         /// and returns the new RoleID value.
         /// </summary>
-        public static int AddRole(int portalId, String roleName)
+        public int AddRole(int portalId, String roleName)
         {
             var parameterRoleId = CreateOutputParameter("@RoleID");
             var parameterPortalId = CreateParameter("@PortalID", portalId);
@@ -39,7 +39,7 @@ namespace ASPNET.StarterKit.Portal
         /// <summary>
         /// The DeleteRole deletes the specified role from the portal database.
         /// </summary>
-        public static void DeleteRole(int roleId)
+        public void DeleteRole(int roleId)
         {
             var parameterRoleId = CreateParameter("@RoleID", roleId);
 
@@ -49,7 +49,7 @@ namespace ASPNET.StarterKit.Portal
         /// <summary>
         /// The UpdateRole method updates the friendly name of the specified role.
         /// </summary>
-        public static void UpdateRole(int roleId, String roleName)
+        public void UpdateRole(int roleId, String roleName)
         {
             var parameterRoleId = CreateParameter("@RoleID", roleId);
             var parameterRoleName = CreateParameter("@RoleName", roleName);
@@ -64,7 +64,7 @@ namespace ASPNET.StarterKit.Portal
         /// The GetRoleMembers method returns a list of all members in the specified
         /// security role.
         /// </summary>
-        public static DataTable GetRoleMembers(int roleId)
+        public DataTable GetRoleMembers(int roleId)
         {
             var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) { Value = roleId };
 
@@ -74,7 +74,7 @@ namespace ASPNET.StarterKit.Portal
         /// <summary>
         /// The AddUserRole method adds the user to the specified security role.
         /// </summary>
-        public static void AddUserRole(int roleId, int userId)
+        public void AddUserRole(int roleId, int userId)
         {
             var parameterRoleId = CreateParameter("@RoleID", roleId);
             var parameterUserId = CreateParameter("@UserID", userId);
@@ -85,7 +85,7 @@ namespace ASPNET.StarterKit.Portal
         /// <summary>
         /// The DeleteUserRole method deletes the user from the specified role.
         /// </summary>
-        public static void DeleteUserRole(int roleId, int userId)
+        public void DeleteUserRole(int roleId, int userId)
         {
             var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) { Value = roleId };
             var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int, 4) { Value = userId };
@@ -100,7 +100,7 @@ namespace ASPNET.StarterKit.Portal
         /// The GetUsers method returns returns the UserID, Name and Email for 
         /// all registered users.
         /// </summary>
-        public static DataTable GetUsers()
+        public DataTable GetUsers()
         {
             return GetDataTable("Portal_GetUsers");
         } 

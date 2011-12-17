@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -14,6 +15,9 @@ namespace ASPNET.StarterKit.Portal
         protected List<ModuleItem> LeftList;
         protected List<ModuleItem> RightList;
         private int _tabId;
+
+        [Dependency]
+        public IRolesDb Model { private get; set; }
 
         //*******************************************************
         //
@@ -335,7 +339,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Populate checkbox list with all security roles for this portal
             // and "check" the ones already configured for this tab
-            DataTable roles = RolesDb.GetPortalRoles(portalSettings.PortalId);
+            DataTable roles = Model.GetPortalRoles(portalSettings.PortalId);
 
             // Clear existing items in checkboxlist
             authRoles.Items.Clear();

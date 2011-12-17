@@ -1,6 +1,7 @@
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -8,6 +9,12 @@ namespace ASPNET.StarterKit.Portal
     {
         private int _tabId;
         private int _tabIndex;
+
+        [Dependency]
+        public IUsersDb Model { private get; set; }
+
+        [Dependency]
+        public IRolesDb RolesModel { private get; set; }
 
         //*******************************************************
         //
@@ -50,7 +57,7 @@ namespace ASPNET.StarterKit.Portal
         protected void DeleteUser_Click(Object sender, ImageClickEventArgs e)
         {
             // get user id from dropdownlist of users
-            DataAccess.Users.DeleteUser(Int32.Parse(allUsers.SelectedItem.Value));
+            Model.DeleteUser(Int32.Parse(allUsers.SelectedItem.Value));
 
             // Rebind list
             BindData();
@@ -99,7 +106,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Get the list of registered users from the database
             // bind all portal users to dropdownlist
-            allUsers.DataSource = RolesDb.GetUsers();
+            allUsers.DataSource = RolesModel.GetUsers();
             allUsers.DataBind();
         }
 

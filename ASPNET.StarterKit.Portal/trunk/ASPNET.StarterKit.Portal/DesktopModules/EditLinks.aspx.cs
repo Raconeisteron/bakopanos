@@ -1,13 +1,18 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class EditLinks : PortalPage<ILinkDb>
+    public partial class EditLinks : Page
     {
         private int _itemId;
         private int _moduleId;
+
+        [Dependency]
+        public ILinkDb Model { private get; set; }
+
 
         //****************************************************************
         //

@@ -1,5 +1,6 @@
 using System;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -7,6 +8,9 @@ namespace ASPNET.StarterKit.Portal
     {
         private int _tabId;
         private int _tabIndex;
+
+        [Dependency]
+        public IRolesDb Model { private get; set; }
 
         //*******************************************************
         //
@@ -52,7 +56,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Add a new role to the database
-            RolesDb.AddRole(portalSettings.PortalId, "New Role");
+            Model.AddRole(portalSettings.PortalId, "New Role");
 
             // set the edit item index to the last item
             rolesList.EditItemIndex = rolesList.Items.Count;
@@ -87,7 +91,7 @@ namespace ASPNET.StarterKit.Portal
                 String roleName = ((TextBox) e.Item.FindControl("roleName")).Text;
 
                 // update database
-                RolesDb.UpdateRole(roleId, roleName);
+                Model.UpdateRole(roleId, roleName);
 
                 // Disable editable list item access
                 rolesList.EditItemIndex = -1;
@@ -98,7 +102,7 @@ namespace ASPNET.StarterKit.Portal
             else if (e.CommandName == "delete")
             {
                 // update database
-                RolesDb.DeleteRole(roleId);
+                Model.DeleteRole(roleId);
 
                 // Ensure that item is not editable
                 rolesList.EditItemIndex = -1;
@@ -110,7 +114,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 // Save role name changes first
                 String roleName = ((TextBox) e.Item.FindControl("roleName")).Text;
-                RolesDb.UpdateRole(roleId, roleName);
+                Model.UpdateRole(roleId, roleName);
 
                 // redirect to edit page
                 Response.Redirect("~/Admin/SecurityRoles.aspx?roleId=" + roleId + "&rolename=" + roleName +
@@ -131,7 +135,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Get the portal's roles from the database
-            rolesList.DataSource = RolesDb.GetPortalRoles(portalSettings.PortalId);
+            rolesList.DataSource = Model.GetPortalRoles(portalSettings.PortalId);
             rolesList.DataBind();
         }
 
