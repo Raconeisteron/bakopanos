@@ -15,7 +15,7 @@ namespace ASPNET.StarterKit.Portal
             container.RegisterType<IHtmlTextDb, HtmlTextDb>(new ContainerControlledLifetimeManager());
             container.RegisterType<IUsersDb, UsersDb>(new ContainerControlledLifetimeManager());
             container.RegisterType<IRolesDb, RolesDb>(new ContainerControlledLifetimeManager());
-
+            container.RegisterType<IDbHelper, DbHelper>(new ContainerControlledLifetimeManager());
         }
     }
 }

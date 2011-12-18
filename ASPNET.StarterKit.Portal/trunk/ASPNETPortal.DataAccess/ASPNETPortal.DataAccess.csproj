@@ -56,6 +56,7 @@
     <Compile Include="HtmlTextDB.cs" />
     <Compile Include="IAnnouncementsDb.cs" />
     <Compile Include="IContactsDb.cs" />
+    <Compile Include="IDbHelper.cs" />
     <Compile Include="IDiscussionDb.cs" />
     <Compile Include="IDocumentDb.cs" />
     <Compile Include="IEventsDb.cs" />

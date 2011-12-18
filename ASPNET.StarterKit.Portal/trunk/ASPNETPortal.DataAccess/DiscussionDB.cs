@@ -8,8 +8,15 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// discussions within the Portal database.
     /// </summary>
-    internal class DiscussionDb : DbHelper, IDiscussionDb
+    internal class DiscussionDb : IDiscussionDb
     {
+        private readonly IDbHelper _db;
+
+        public DiscussionDb(IDbHelper db)
+        {
+            _db = db;
+        }
+
         #region IDiscussionDb Members
 
         /// <returns>
@@ -19,7 +26,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
 
-            return GetDataTable("Portal_GetTopLevelMessages", parameterModuleId);
+            return _db.GetDataTable("Portal_GetTopLevelMessages", parameterModuleId);
         }
 
         /// <returns>
@@ -29,7 +36,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterParent = new SqlParameter("@Parent", SqlDbType.NVarChar, 750) {Value = parent};
 
-            return GetDataTable("Portal_GetThreadMessages", parameterParent);
+            return _db.GetDataTable("Portal_GetThreadMessages", parameterParent);
         }
 
         /// <returns>
@@ -40,7 +47,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
-            return GetDataRow("Portal_GetSingleMessage", parameterItemId);
+            return _db.GetDataRow("Portal_GetSingleMessage", parameterItemId);
         }
 
         /// <summary>
@@ -61,7 +68,7 @@ namespace ASPNET.StarterKit.Portal
             var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
 
-            return ExecuteNonQuery<int>("Portal_AddMessage", parameterItemId, parameterTitle, parameterBody,
+            return _db.ExecuteNonQuery<int>("Portal_AddMessage", parameterItemId, parameterTitle, parameterBody,
                                         parameterParentId,
                                         parameterUserName, parameterModuleId);
         }

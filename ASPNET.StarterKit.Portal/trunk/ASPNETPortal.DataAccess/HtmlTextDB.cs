@@ -8,8 +8,15 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// HTML/text within the Portal database.
     /// </summary>
-    internal class HtmlTextDb : DbHelper, IHtmlTextDb
+    internal class HtmlTextDb : IHtmlTextDb
     {
+        private readonly IDbHelper _db;
+
+        public HtmlTextDb(IDbHelper db)
+        {
+            _db = db;
+        }
+
         /// <returns>
         /// The GetHtmlText method returns a SqlDataReader containing details
         /// about a specific item from the HtmlText database table.
@@ -18,7 +25,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
 
-            return GetDataTable("Portal_GetHtmlText", parameterModuleId);
+            return _db.GetDataTable("Portal_GetHtmlText", parameterModuleId);
         }
 
 
@@ -33,7 +40,7 @@ namespace ASPNET.StarterKit.Portal
             var parameterMobileSummary = new SqlParameter("@MobileSummary", SqlDbType.NText) {Value = mobileSummary};
             var parameterMobileDetails = new SqlParameter("@MobileDetails", SqlDbType.NText) {Value = mobileDetails};
 
-            ExecuteNonQuery("Portal_UpdateHtmlText", parameterModuleId, parameterDesktopHtml, parameterMobileSummary,
+            _db.ExecuteNonQuery("Portal_UpdateHtmlText", parameterModuleId, parameterDesktopHtml, parameterMobileSummary,
                             parameterMobileDetails);
         }
     }

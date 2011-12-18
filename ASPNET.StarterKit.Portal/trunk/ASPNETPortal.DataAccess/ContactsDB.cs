@@ -8,8 +8,15 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// contacts within the Portal database.
     /// </summary>
-    internal class ContactsDb : DbHelper, IContactsDb
+    internal class ContactsDb : IContactsDb
     {
+        private readonly IDbHelper _db;
+
+        public ContactsDb(IDbHelper db)
+        {
+            _db = db;
+        }
+
         #region IContactsDb Members
 
         /// <returns>
@@ -18,9 +25,9 @@ namespace ASPNET.StarterKit.Portal
         /// </returns>
         public DataTable GetContacts(int moduleId)
         {
-            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
+            DbParameter parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
 
-            return GetDataTable("Portal_GetContacts", parameterModuleId);
+            return _db.GetDataTable("Portal_GetContacts", parameterModuleId);
         }
 
         /// <returns>
@@ -29,9 +36,9 @@ namespace ASPNET.StarterKit.Portal
         /// </returns>
         public DataRow GetSingleContact(int itemId)
         {
-            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
+            DbParameter parameterItemId = _db.CreateParameter("@ItemID", itemId);
 
-            return GetDataRow("Portal_GetSingleContact", parameterItemId);
+            return _db.GetDataRow("Portal_GetSingleContact", parameterItemId);
         }
 
 
@@ -41,9 +48,9 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         public void DeleteContact(int itemId)
         {
-            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
+            DbParameter parameterItemId = _db.CreateParameter("@ItemID", itemId);
 
-            ExecuteNonQuery("Portal_DeleteContact", parameterItemId);
+            _db.ExecuteNonQuery("Portal_DeleteContact", parameterItemId);
         }
 
         /// <summary>
@@ -58,16 +65,16 @@ namespace ASPNET.StarterKit.Portal
                 userName = "unknown";
             }
 
-            DbParameter parameterItemId = CreateOutputParameter("@ItemID");
-            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
-            DbParameter parameterUserName = CreateParameter("@UserName", userName);
-            DbParameter parameterName = CreateParameter("@Name", name);
-            DbParameter parameterRole = CreateParameter("@Role", role);
-            DbParameter parameterEmail = CreateParameter("@Email", email);
-            DbParameter parameterContact1 = CreateParameter("@Contact1", contact1);
-            DbParameter parameterContact2 = CreateParameter("@Contact2", contact2);
+            DbParameter parameterItemId = _db.CreateOutputParameter("@ItemID");
+            DbParameter parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
+            DbParameter parameterUserName = _db.CreateParameter("@UserName", userName);
+            DbParameter parameterName = _db.CreateParameter("@Name", name);
+            DbParameter parameterRole = _db.CreateParameter("@Role", role);
+            DbParameter parameterEmail = _db.CreateParameter("@Email", email);
+            DbParameter parameterContact1 = _db.CreateParameter("@Contact1", contact1);
+            DbParameter parameterContact2 = _db.CreateParameter("@Contact2", contact2);
 
-            return ExecuteNonQuery<int>("Portal_AddContact", parameterItemId, parameterModuleId, parameterUserName,
+            return _db.ExecuteNonQuery<int>("Portal_AddContact", parameterItemId, parameterModuleId, parameterUserName,
                                         parameterName, parameterRole, parameterEmail, parameterContact1,
                                         parameterContact2);
         }
@@ -84,15 +91,15 @@ namespace ASPNET.StarterKit.Portal
                 userName = "unknown";
             }
 
-            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
-            DbParameter parameterUserName = CreateParameter("@UserName", userName);
-            DbParameter parameterName = CreateParameter("@Name", name);
-            DbParameter parameterRole = CreateParameter("@Role", role);
-            DbParameter parameterEmail = CreateParameter("@Email", email);
-            DbParameter parameterContact1 = CreateParameter("@Contact1", contact1);
-            DbParameter parameterContact2 = CreateParameter("@Contact2", contact2);
+            DbParameter parameterItemId = _db.CreateParameter("@ItemID", itemId);
+            DbParameter parameterUserName = _db.CreateParameter("@UserName", userName);
+            DbParameter parameterName = _db.CreateParameter("@Name", name);
+            DbParameter parameterRole = _db.CreateParameter("@Role", role);
+            DbParameter parameterEmail = _db.CreateParameter("@Email", email);
+            DbParameter parameterContact1 = _db.CreateParameter("@Contact1", contact1);
+            DbParameter parameterContact2 = _db.CreateParameter("@Contact2", contact2);
 
-            ExecuteNonQuery("Portal_UpdateContact", parameterItemId, parameterUserName, parameterName,
+            _db.ExecuteNonQuery("Portal_UpdateContact", parameterItemId, parameterUserName, parameterName,
                             parameterRole, parameterEmail, parameterContact1, parameterContact2);
         }
 

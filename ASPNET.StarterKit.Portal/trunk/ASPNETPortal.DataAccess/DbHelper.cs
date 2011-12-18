@@ -6,34 +6,34 @@ using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class DbHelper
+    public class DbHelper : IDbHelper
     {
-        private static readonly string ConnectionString =
-            ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+        private readonly string _connectionString;
+        private readonly DbProviderFactory _factory;
 
-        private static readonly string ProviderName =
-            ConfigurationManager.ConnectionStrings["connectionString"].ProviderName;
-
-        private static readonly DbProviderFactory Factory = DbProviderFactories.GetFactory(ProviderName);
-
-
-        protected static DbParameter CreateParameter(string parameterName, object value)
+        public DbHelper(ConnectionStringSettings connectionStringSettings)
         {
-            DbParameter parameter = Factory.CreateParameter();
+            _connectionString = connectionStringSettings.ConnectionString;
+            _factory = DbProviderFactories.GetFactory(connectionStringSettings.ProviderName);
+        }
+
+        public DbParameter CreateParameter(string parameterName, object value)
+        {
+            DbParameter parameter = _factory.CreateParameter();
             parameter.ParameterName = parameterName;
             parameter.Value = value;
             return parameter;
         }
 
-        protected static DbParameter CreateOutputParameter(string parameterName)
+        public DbParameter CreateOutputParameter(string parameterName)
         {
-            DbParameter parameter = Factory.CreateParameter();
+            DbParameter parameter = _factory.CreateParameter();
             parameter.ParameterName = parameterName;
             parameter.Direction = ParameterDirection.Output;
             return parameter;
         }
 
-        protected static DataTable GetDataTable(string myCommandText, params DbParameter[] sqlParameters)
+        public DataTable GetDataTable(string myCommandText, params DbParameter[] sqlParameters)
         {
             foreach (DataTable table in GetDataSet(myCommandText, sqlParameters).Tables)
             {
@@ -42,7 +42,7 @@ namespace ASPNET.StarterKit.Portal
             throw new ApplicationException("Command returned no result");
         }
 
-        protected static DataRow GetDataRow(string myCommandText, params DbParameter[] sqlParameters)
+        public DataRow GetDataRow(string myCommandText, params DbParameter[] sqlParameters)
         {
             foreach (DataRow row in GetDataTable(myCommandText, sqlParameters).Rows)
             {
@@ -51,16 +51,16 @@ namespace ASPNET.StarterKit.Portal
             throw new ApplicationException("Command returned no result");
         }
 
-        private static DataSet GetDataSet(string myCommandText, params DbParameter[] sqlParameters)
+        private DataSet GetDataSet(string myCommandText, params DbParameter[] sqlParameters)
         {
             var myDataSet = new DataSet();
 
             // Create Instance of Connection and Command Object
-            using (DbConnection myConnection = Factory.CreateConnection())
+            using (DbConnection myConnection = _factory.CreateConnection())
             {
-                myConnection.ConnectionString = ConnectionString;
-                DbDataAdapter myCommand = Factory.CreateDataAdapter();
-                myCommand.SelectCommand = Factory.CreateCommand();
+                myConnection.ConnectionString = _connectionString;
+                DbDataAdapter myCommand = _factory.CreateDataAdapter();
+                myCommand.SelectCommand = _factory.CreateCommand();
                 myCommand.SelectCommand.CommandText = myCommandText;
                 myCommand.SelectCommand.Connection = myConnection;
                 myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -76,7 +76,7 @@ namespace ASPNET.StarterKit.Portal
             return myDataSet;
         }
 
-        protected static T ExecuteNonQuery<T>(string myCommandText, DbParameter outSqlParameter,
+        public T ExecuteNonQuery<T>(string myCommandText, DbParameter outSqlParameter,
                                               params DbParameter[] sqlParameters)
         {
             var parameters = new List<DbParameter> {outSqlParameter};
@@ -86,13 +86,13 @@ namespace ASPNET.StarterKit.Portal
             return (T) outSqlParameter.Value;
         }
 
-        protected static void ExecuteNonQuery(string myCommandText, params DbParameter[] sqlParameters)
+        public void ExecuteNonQuery(string myCommandText, params DbParameter[] sqlParameters)
         {
             // Create Instance of Connection and Command Object
-            using (DbConnection myConnection = Factory.CreateConnection())
+            using (DbConnection myConnection = _factory.CreateConnection())
             {
-                myConnection.ConnectionString = ConnectionString;
-                DbCommand myCommand = Factory.CreateCommand();
+                myConnection.ConnectionString = _connectionString;
+                DbCommand myCommand = _factory.CreateCommand();
                 myCommand.CommandText = myCommandText;
                 myCommand.Connection = myConnection;
                 myCommand.CommandType = CommandType.StoredProcedure;

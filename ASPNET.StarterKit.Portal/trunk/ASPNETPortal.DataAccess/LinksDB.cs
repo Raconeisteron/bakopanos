@@ -8,8 +8,15 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// links within the Portal database.
     /// </summary>
-    internal class LinkDb : DbHelper, ILinkDb
+    internal class LinkDb : ILinkDb
     {
+        private readonly IDbHelper _db;
+
+        public LinkDb(IDbHelper db)
+        {
+            _db = db;
+        }
+
         #region ILinkDb Members
 
         /// <returns>
@@ -21,7 +28,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
 
-            return GetDataTable("Portal_GetLinks", parameterModuleId);
+            return _db.GetDataTable("Portal_GetLinks", parameterModuleId);
         }
 
         /// <returns>
@@ -32,7 +39,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
-            return GetDataRow("Portal_GetSingleLink", parameterItemId);
+            return _db.GetDataRow("Portal_GetSingleLink", parameterItemId);
         }
 
         /// <summary>
@@ -43,7 +50,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
-            ExecuteNonQuery("Portal_DeleteLink", parameterItemId);
+            _db.ExecuteNonQuery("Portal_DeleteLink", parameterItemId);
         }
 
         /// <summary>
@@ -67,7 +74,7 @@ namespace ASPNET.StarterKit.Portal
             var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100) {Value = mobileUrl};
             var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4) {Value = viewOrder};
 
-            return ExecuteNonQuery<int>("Portal_AddLink", parameterItemId, parameterModuleId, parameterUserName,
+            return _db.ExecuteNonQuery<int>("Portal_AddLink", parameterItemId, parameterModuleId, parameterUserName,
                                         parameterTitle, parameterDescription, parameterUrl, parameterMobileUrl,
                                         parameterViewOrder);
         }
@@ -92,7 +99,7 @@ namespace ASPNET.StarterKit.Portal
             var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100) {Value = mobileUrl};
             var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4) {Value = viewOrder};
 
-            ExecuteNonQuery("Portal_UpdateLink", parameterItemId, parameterUserName, parameterTitle,
+            _db.ExecuteNonQuery("Portal_UpdateLink", parameterItemId, parameterUserName, parameterTitle,
                             parameterDescription,
                             parameterUrl, parameterMobileUrl, parameterViewOrder);
         }

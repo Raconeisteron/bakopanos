@@ -8,8 +8,15 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// announcements within the Portal database.
     /// </summary>
-    internal class AnnouncementsDb : DbHelper, IAnnouncementsDb
+    internal class AnnouncementsDb : IAnnouncementsDb
     {
+        private readonly IDbHelper _db;
+
+        public AnnouncementsDb(IDbHelper db)
+        {
+            _db = db;
+        }
+
         #region IAnnouncementsDb Members
 
         /// <returns>
@@ -18,9 +25,9 @@ namespace ASPNET.StarterKit.Portal
         ///</returns>
         public DataTable GetAnnouncements(int moduleId)
         {
-            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
+            DbParameter parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
 
-            return GetDataTable("Portal_GetAnnouncements", parameterModuleId);
+            return _db.GetDataTable("Portal_GetAnnouncements", parameterModuleId);
         }
 
         /// <returns>
@@ -29,9 +36,9 @@ namespace ASPNET.StarterKit.Portal
         /// </returns>
         public DataRow GetSingleAnnouncement(int itemId)
         {
-            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
+            DbParameter parameterItemId = _db.CreateParameter("@ItemID", itemId);
 
-            return GetDataRow("Portal_GetSingleAnnouncement", parameterItemId);
+            return _db.GetDataRow("Portal_GetSingleAnnouncement", parameterItemId);
         }
 
         /// <summary>
@@ -40,9 +47,9 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         public void DeleteAnnouncement(int itemId)
         {
-            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
+            DbParameter parameterItemId = _db.CreateParameter("@ItemID", itemId);
 
-            ExecuteNonQuery("Portal_DeleteAnnouncement", parameterItemId);
+            _db.ExecuteNonQuery("Portal_DeleteAnnouncement", parameterItemId);
         }
 
         /// <summary>
@@ -57,16 +64,16 @@ namespace ASPNET.StarterKit.Portal
                 userName = "unknown";
             }
 
-            DbParameter parameterItemId = CreateOutputParameter("@ItemID");
-            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
-            DbParameter parameterUserName = CreateParameter("@UserName", userName);
-            DbParameter parameterTitle = CreateParameter("@Title", title);
-            DbParameter parameterMoreLink = CreateParameter("@MoreLink", moreLink);
-            DbParameter parameterMobileMoreLink = CreateParameter("@MobileMoreLink", mobileMoreLink);
-            DbParameter parameterExpireDate = CreateParameter("@ExpireDate", expireDate);
-            DbParameter parameterDescription = CreateParameter("@Description", description);
+            DbParameter parameterItemId = _db.CreateOutputParameter("@ItemID");
+            DbParameter parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
+            DbParameter parameterUserName = _db.CreateParameter("@UserName", userName);
+            DbParameter parameterTitle = _db.CreateParameter("@Title", title);
+            DbParameter parameterMoreLink = _db.CreateParameter("@MoreLink", moreLink);
+            DbParameter parameterMobileMoreLink = _db.CreateParameter("@MobileMoreLink", mobileMoreLink);
+            DbParameter parameterExpireDate = _db.CreateParameter("@ExpireDate", expireDate);
+            DbParameter parameterDescription = _db.CreateParameter("@Description", description);
 
-            return ExecuteNonQuery<int>("Portal_AddAnnouncement", parameterItemId, parameterModuleId, parameterUserName,
+            return _db.ExecuteNonQuery<int>("Portal_AddAnnouncement", parameterItemId, parameterModuleId, parameterUserName,
                                         parameterTitle, parameterMoreLink, parameterMobileMoreLink,
                                         parameterExpireDate, parameterDescription);
         }
@@ -83,15 +90,15 @@ namespace ASPNET.StarterKit.Portal
                 userName = "unknown";
             }
 
-            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
-            DbParameter parameterUserName = CreateParameter("@UserName", userName);
-            DbParameter parameterTitle = CreateParameter("@Title", title);
-            DbParameter parameterMoreLink = CreateParameter("@MoreLink", moreLink);
-            DbParameter parameterMobileMoreLink = CreateParameter("@MobileMoreLink", mobileMoreLink);
-            DbParameter parameterExpireDate = CreateParameter("@ExpireDate", expireDate);
-            DbParameter parameterDescription = CreateParameter("@Description", description);
+            DbParameter parameterItemId = _db.CreateParameter("@ItemID", itemId);
+            DbParameter parameterUserName = _db.CreateParameter("@UserName", userName);
+            DbParameter parameterTitle = _db.CreateParameter("@Title", title);
+            DbParameter parameterMoreLink = _db.CreateParameter("@MoreLink", moreLink);
+            DbParameter parameterMobileMoreLink = _db.CreateParameter("@MobileMoreLink", mobileMoreLink);
+            DbParameter parameterExpireDate = _db.CreateParameter("@ExpireDate", expireDate);
+            DbParameter parameterDescription = _db.CreateParameter("@Description", description);
 
-            ExecuteNonQuery("Portal_UpdateAnnouncement", parameterItemId, parameterUserName, parameterTitle,
+            _db.ExecuteNonQuery("Portal_UpdateAnnouncement", parameterItemId, parameterUserName, parameterTitle,
                             parameterMoreLink, parameterMobileMoreLink,
                             parameterExpireDate, parameterDescription);
         }

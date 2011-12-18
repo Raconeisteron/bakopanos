@@ -23,15 +23,17 @@ namespace ASPNET.StarterKit.Portal
             section.Configure(myContainer);
             myContainer.AddExtension(new EnterpriseLibraryCoreExtension());
 
-            // additional container initialization required
+            // bootstrapp unity modules
             foreach (ContainerRegistration containerRegistration in myContainer.Registrations)
             {
                 if (containerRegistration.RegisteredType.Name == "UnityModule")
                 {
                     myContainer.Resolve(containerRegistration.RegisteredType);
                 }
-            }  
-            
+            }
+
+            // additional container initialization 
+            myContainer.RegisterInstance<ConnectionStringSettings>(ConfigurationManager.ConnectionStrings["connectionString"]);
         }
 
         /// <summary>
