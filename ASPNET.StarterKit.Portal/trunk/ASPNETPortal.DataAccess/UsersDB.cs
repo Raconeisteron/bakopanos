@@ -15,23 +15,26 @@ namespace ASPNET.StarterKit.Portal
     /// authentication is used instead, then either the Windows SAM or Active Directory
     /// is used to store and validate all username/password credentials.
     /// </summary>
-    public class UsersDb : DbHelper, IUsersDb
+    internal class UsersDb : DbHelper, IUsersDb
     {
+        #region IUsersDb Members
+
         /// <summary>
         /// The AddUser method inserts a new user record into the "Users" database table.
         /// </summary>
         public int AddUser(String fullName, String email, String password)
         {
-            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int) { Direction = ParameterDirection.Output };
-            
+            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int) {Direction = ParameterDirection.Output};
+
             var parameterFullName = new SqlParameter("@Name", SqlDbType.NVarChar, 50) {Value = fullName};
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50) {Value = password};
-        
+
             // Execute the command in a try/catch to catch duplicate username errors
             try
             {
-                return ExecuteNonQuery<int>("Portal_AddUser", parameterUserId, parameterFullName, parameterEmail, parameterPassword);
+                return ExecuteNonQuery<int>("Portal_AddUser", parameterUserId, parameterFullName, parameterEmail,
+                                            parameterPassword);
             }
             catch
             {
@@ -103,7 +106,8 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         public String Login(String email, String password)
         {
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) { Direction = ParameterDirection.Output };
+            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100)
+                                        {Direction = ParameterDirection.Output};
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50) {Value = password};
 
@@ -115,5 +119,7 @@ namespace ASPNET.StarterKit.Portal
             }
             return String.Empty;
         }
+
+        #endregion
     }
 }

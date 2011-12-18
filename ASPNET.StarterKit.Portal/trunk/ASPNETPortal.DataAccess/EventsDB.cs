@@ -9,14 +9,16 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// events within the Portal database.
     /// </summary>
-    public class EventsDb : DbHelper
+    internal class EventsDb : DbHelper, IEventsDb
     {
+        #region IEventsDb Members
+
         /// <returns>
         /// The GetEvents method returns a DataSet containing all of the
         /// events for a specific portal module from the events
         /// database.
         /// </returns>
-        public static DataTable GetEvents(int moduleId)
+        public DataTable GetEvents(int moduleId)
         {
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
 
@@ -27,7 +29,7 @@ namespace ASPNET.StarterKit.Portal
         /// The GetSingleEvent method returns a SqlDataReader containing details
         /// about a specific event from the events database.
         /// </returns>
-        public static DataRow GetSingleEvent(int itemId)
+        public DataRow GetSingleEvent(int itemId)
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
@@ -38,7 +40,7 @@ namespace ASPNET.StarterKit.Portal
         /// The DeleteEvent method deletes a specified event from
         /// the events database.
         /// </summary>
-        public static void DeleteEvent(int itemId)
+        public void DeleteEvent(int itemId)
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
@@ -57,8 +59,8 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public static int AddEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
-                                   String description, String wherewhen)
+        public int AddEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
+                            String description, String wherewhen)
         {
             if (userName.Length < 1)
             {
@@ -116,8 +118,8 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public static void UpdateEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
-                                       String description, String wherewhen)
+        public void UpdateEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
+                                String description, String wherewhen)
         {
             if (userName.Length < 1)
             {
@@ -155,5 +157,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
+
+        #endregion
     }
 }

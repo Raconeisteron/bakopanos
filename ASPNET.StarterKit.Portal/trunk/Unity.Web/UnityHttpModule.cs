@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
@@ -14,19 +12,26 @@ namespace Unity.Web
     public class UnityHttpModule : IHttpModule
     {
         private HttpApplication _context;
+
+        #region IHttpModule Members
+
         public void Init(HttpApplication context)
         {
             _context = context;
             context.PreRequestHandlerExecute += OnPreRequestHandlerExecute;
         }
 
-        public void Dispose() { }
+        public void Dispose()
+        {
+        }
+
+        #endregion
 
         private void OnPreRequestHandlerExecute(object sender, EventArgs e)
         {
             IHttpHandler currentHandler = HttpContext.Current.Handler;
             HttpContext.Current.Application.GetContainer().BuildUp(
-                                currentHandler.GetType(), currentHandler);
+                currentHandler.GetType(), currentHandler);
 
             // User Controls are ready to be built up after page initialization is complete
             var currentPage = HttpContext.Current.Handler as Page;
@@ -39,14 +44,14 @@ namespace Unity.Web
         // Build up each control in the page's control tree
         private void OnPageInitComplete(object sender, EventArgs e)
         {
-            var currentPage = (Page)sender;
+            var currentPage = (Page) sender;
             IUnityContainer container = HttpContext.Current.Application.GetContainer();
 
             IEnumerable<Control> controls = GetControlTree(currentPage);
 
             foreach (Control control in controls)
             {
-                if(control is IUnityControl)
+                if (control is IUnityControl)
                 {
                     container.BuildUp(control.GetType(), control);
                 }

@@ -28,13 +28,13 @@ namespace ASPNET.StarterKit.Portal
         /// database table, and returns the ItemId value as a result.
         /// </summary>
         int AddContact(int moduleId, String userName, String name, String role, String email,
-                                       String contact1, String contact2);
+                       String contact1, String contact2);
 
         /// <summary>
         /// The UpdateContact method updates the specified contact within
         /// the Contacts database table.
         /// </summary>
         void UpdateContact(int itemId, String userName, String name, String role, String email,
-                                           String contact1, String contact2);
+                           String contact1, String contact2);
     }
 }

@@ -89,15 +89,15 @@ namespace ASPNET.StarterKit.Portal
                 {
                     // Add the announcement within the Announcements table
                     Model.AddAnnouncement(_moduleId, Context.User.Identity.Name, TitleField.Text,
-                                                    DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                                    MoreLinkField.Text, MobileMoreField.Text);
+                                          DateTime.Parse(ExpireField.Text), DescriptionField.Text,
+                                          MoreLinkField.Text, MobileMoreField.Text);
                 }
                 else
                 {
                     // Update the announcement within the Announcements table
                     Model.UpdateAnnouncement(_itemId, Context.User.Identity.Name, TitleField.Text,
-                                                       DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                                       MoreLinkField.Text, MobileMoreField.Text);
+                                             DateTime.Parse(ExpireField.Text), DescriptionField.Text,
+                                             MoreLinkField.Text, MobileMoreField.Text);
                 }
 
                 // Redirect back to the portal home page

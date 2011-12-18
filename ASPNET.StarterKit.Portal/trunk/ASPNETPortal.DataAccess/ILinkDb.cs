@@ -29,13 +29,13 @@ namespace ASPNET.StarterKit.Portal
         /// links database table, and returns ItemID value as a result.
         /// </summary>
         int AddLink(int moduleId, String userName, String title, String url, String mobileUrl,
-                                    int viewOrder, String description);
+                    int viewOrder, String description);
 
         /// <summary>
         /// The UpdateLink method updates a specified link within
         /// the Links database table.
         /// </summary>
         void UpdateLink(int itemId, String userName, String title, String url,
-                                        String mobileUrl, int viewOrder, String description);
+                        String mobileUrl, int viewOrder, String description);
     }
 }

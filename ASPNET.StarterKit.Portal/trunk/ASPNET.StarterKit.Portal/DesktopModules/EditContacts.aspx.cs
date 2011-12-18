@@ -90,14 +90,14 @@ namespace ASPNET.StarterKit.Portal
                 {
                     // Add the contact within the contacts table
                     Model.AddContact(_moduleId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
-                                          EmailField.Text, Contact1Field.Text, Contact2Field.Text);
+                                     EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
                 else
                 {
                     // Update the contact within the contacts table
                     Model.UpdateContact(_itemId, Context.User.Identity.Name, NameField.Text,
-                                             RoleField.Text,
-                                             EmailField.Text, Contact1Field.Text, Contact2Field.Text);
+                                        RoleField.Text,
+                                        EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
 
                 // Redirect back to the portal home page

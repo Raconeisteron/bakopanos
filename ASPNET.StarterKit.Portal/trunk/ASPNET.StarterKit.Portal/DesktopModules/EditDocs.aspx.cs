@@ -97,7 +97,7 @@ namespace ASPNET.StarterKit.Portal
 
                     // Update the document within the Documents table
                     Model.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
-                                              PathField.Text, CategoryField.Text, content, length, contentType);
+                                         PathField.Text, CategoryField.Text, content, length, contentType);
                 }
                 else
                 {
@@ -116,7 +116,7 @@ namespace ASPNET.StarterKit.Portal
                         PathField.Text = virtualPath;
                     }
                     Model.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
-                                              PathField.Text, CategoryField.Text, new byte[0], 0, "");
+                                         PathField.Text, CategoryField.Text, new byte[0], 0, "");
                 }
 
                 // Redirect back to the portal home page

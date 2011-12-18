@@ -31,7 +31,7 @@ namespace ASPNET.StarterKit.Portal
         void DeleteDocument(int itemId);
 
         void UpdateDocument(int moduleId, int itemId, String userName, String name, String url,
-                                            String category,
-                                            byte[] content, int size, String contentType);
+                            String category,
+                            byte[] content, int size, String contentType);
     }
 }

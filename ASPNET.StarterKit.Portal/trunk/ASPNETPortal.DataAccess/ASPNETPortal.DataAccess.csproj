@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3478C9AE-1CB1-4CBE-BE27-BFB1F982400A}</ProjectGuid>
+    <ProjectGuid>{340D5FA6-AA31-4405-9AC0-5A60F2D89131}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Unity.Web</RootNamespace>
-    <AssemblyName>Unity.Web</AssemblyName>
+    <RootNamespace>ASPNET.StarterKit.Portal</RootNamespace>
+    <AssemblyName>ASPNETPortal.DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -38,8 +38,8 @@
       <HintPath>..\ThirdParty\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,10 +47,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IUnityControl.cs" />
-    <Compile Include="UnityHttpModule.cs" />
-    <Compile Include="HttpApplicationStateExtensions.cs" />
+    <Compile Include="AnnouncementsDB.cs" />
+    <Compile Include="ContactsDB.cs" />
+    <Compile Include="DbHelper.cs" />
+    <Compile Include="DiscussionDB.cs" />
+    <Compile Include="DocumentDB.cs" />
+    <Compile Include="EventsDB.cs" />
+    <Compile Include="HtmlTextDB.cs" />
+    <Compile Include="IAnnouncementsDb.cs" />
+    <Compile Include="IContactsDb.cs" />
+    <Compile Include="IDiscussionDb.cs" />
+    <Compile Include="IDocumentDb.cs" />
+    <Compile Include="IEventsDb.cs" />
+    <Compile Include="IHtmlTextDb.cs" />
+    <Compile Include="ILinkDb.cs" />
+    <Compile Include="IRolesDb.cs" />
+    <Compile Include="IUsersDb.cs" />
+    <Compile Include="LinksDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolesDB.cs" />
+    <Compile Include="UnityModule.cs" />
+    <Compile Include="UsersDB.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

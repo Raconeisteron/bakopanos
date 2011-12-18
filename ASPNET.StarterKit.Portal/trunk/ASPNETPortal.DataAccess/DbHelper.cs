@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -28,7 +28,7 @@ namespace ASPNET.StarterKit.Portal
         protected static DbParameter CreateOutputParameter(string parameterName)
         {
             DbParameter parameter = Factory.CreateParameter();
-            parameter.ParameterName = parameterName;                        
+            parameter.ParameterName = parameterName;
             parameter.Direction = ParameterDirection.Output;
             return parameter;
         }

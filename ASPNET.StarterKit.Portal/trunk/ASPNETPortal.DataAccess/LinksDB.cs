@@ -8,8 +8,10 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// links within the Portal database.
     /// </summary>
-    public class LinkDb : DbHelper, ILinkDb
+    internal class LinkDb : DbHelper, ILinkDb
     {
+        #region ILinkDb Members
+
         /// <returns>
         /// The GetLinks method returns a SqlDataReader containing all of the
         /// links for a specific portal module from the announcements
@@ -49,7 +51,7 @@ namespace ASPNET.StarterKit.Portal
         /// links database table, and returns ItemID value as a result.
         /// </summary>
         public int AddLink(int moduleId, String userName, String title, String url, String mobileUrl,
-                                  int viewOrder, String description)
+                           int viewOrder, String description)
         {
             if (userName.Length < 1)
             {
@@ -75,7 +77,7 @@ namespace ASPNET.StarterKit.Portal
         /// the Links database table.
         /// </summary>
         public void UpdateLink(int itemId, String userName, String title, String url,
-                                      String mobileUrl, int viewOrder, String description)
+                               String mobileUrl, int viewOrder, String description)
         {
             if (userName.Length < 1)
             {
@@ -94,5 +96,7 @@ namespace ASPNET.StarterKit.Portal
                             parameterDescription,
                             parameterUrl, parameterMobileUrl, parameterViewOrder);
         }
+
+        #endregion
     }
 }

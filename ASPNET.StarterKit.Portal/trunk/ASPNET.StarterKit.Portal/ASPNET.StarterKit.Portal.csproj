@@ -286,35 +286,18 @@
     <Compile Include="Admin\Users.ascx.designer.cs">
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Components\AnnouncementsDB.cs" />
     <Compile Include="Components\ConfigurationDb.cs" />
-    <Compile Include="Components\ContactsDB.cs" />
     <Compile Include="Components\CachedPortalModuleControl.cs" />
-    <Compile Include="Components\DbHelper.cs" />
-    <Compile Include="Components\DiscussionDB.cs" />
-    <Compile Include="Components\DocumentDB.cs" />
-    <Compile Include="Components\EventsDB.cs" />
-    <Compile Include="Components\HtmlTextDB.cs" />
-    <Compile Include="Components\IAnnouncementsDb.cs" />
-    <Compile Include="Components\IContactsDb.cs" />
-    <Compile Include="Components\IDiscussionDb.cs" />
-    <Compile Include="Components\IDocumentDb.cs" />
-    <Compile Include="Components\ILinkDb.cs" />
-    <Compile Include="Components\IRolesDb.cs" />
-    <Compile Include="Components\IUsersDb.cs" />
-    <Compile Include="Components\LinksDB.cs" />
     <Compile Include="Components\ModuleItem.cs" />
     <Compile Include="Components\ModuleSettings.cs" />
     <Compile Include="Components\PortalModuleControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Components\PortalSettings.cs" />
-    <Compile Include="Components\RolesDB.cs" />
     <Compile Include="Components\PortalSecurity.cs" />
     <Compile Include="Components\TabItem.cs" />
     <Compile Include="Components\TabSettings.cs" />
     <Compile Include="Components\TabStripDetails.cs" />
-    <Compile Include="Components\UsersDB.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -524,6 +507,10 @@
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ASPNETPortal.DataAccess\ASPNETPortal.DataAccess.csproj">
+      <Project>{340D5FA6-AA31-4405-9AC0-5A60F2D89131}</Project>
+      <Name>ASPNETPortal.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Unity.Web\Unity.Web.csproj">
       <Project>{3478C9AE-1CB1-4CBE-BE27-BFB1F982400A}</Project>
       <Name>Unity.Web</Name>

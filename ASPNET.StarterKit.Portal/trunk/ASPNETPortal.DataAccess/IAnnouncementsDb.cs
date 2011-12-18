@@ -28,13 +28,13 @@ namespace ASPNET.StarterKit.Portal
         /// Announcements database table, and returns the ItemId value as a result.
         /// </summary>
         int AddAnnouncement(int moduleId, String userName, String title, DateTime expireDate,
-                                            String description, String moreLink, String mobileMoreLink);
+                            String description, String moreLink, String mobileMoreLink);
 
         /// <summary>
         /// The UpdateAnnouncement method updates the specified announcement within
         /// the Announcements database table.
         /// </summary>
         void UpdateAnnouncement(int itemId, String userName, String title, DateTime expireDate,
-                                                String description, String moreLink, String mobileMoreLink);
+                                String description, String moreLink, String mobileMoreLink);
     }
 }

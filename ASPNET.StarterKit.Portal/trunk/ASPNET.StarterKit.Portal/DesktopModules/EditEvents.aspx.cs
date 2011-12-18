@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -13,6 +14,9 @@ namespace ASPNET.StarterKit.Portal
 
         private int _itemId;
         private int _moduleId;
+
+        [Dependency]
+        public IEventsDb Model { get; set; }
 
         //****************************************************************
         //
@@ -50,7 +54,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of event information
-                    DataRow row = EventsDb.GetSingleEvent(_itemId);
+                    DataRow row = Model.GetSingleEvent(_itemId);
 
                     // Security check.  verify that itemid is within the module.
                     int dbModuleId = Convert.ToInt32(row["ModuleID"]);
@@ -89,14 +93,14 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId == 0)
                 {
                     // Add the event within the Events table
-                    EventsDb.AddEvent(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
-                                      DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
+                    Model.AddEvent(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                                   DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
                 }
                 else
                 {
                     // Update the event within the Events table
-                    EventsDb.UpdateEvent(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
-                                         DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
+                    Model.UpdateEvent(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                                      DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
                 }
 
                 // Redirect back to the portal home page
@@ -119,7 +123,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                EventsDb.DeleteEvent(_itemId);
+                Model.DeleteEvent(_itemId);
             }
 
             // Redirect back to the portal home page

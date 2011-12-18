@@ -8,8 +8,10 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// discussions within the Portal database.
     /// </summary>
-    public class DiscussionDb : DbHelper, IDiscussionDb
+    internal class DiscussionDb : DbHelper, IDiscussionDb
     {
+        #region IDiscussionDb Members
+
         /// <returns>
         /// Returns details for all of the messages in the discussion specified by ModuleID.
         /// </returns>
@@ -63,5 +65,7 @@ namespace ASPNET.StarterKit.Portal
                                         parameterParentId,
                                         parameterUserName, parameterModuleId);
         }
+
+        #endregion
     }
 }

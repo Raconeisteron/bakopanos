@@ -80,6 +80,5 @@ namespace ASPNET.StarterKit.Portal
                 return _settings;
             }
         }
-
     }
 }

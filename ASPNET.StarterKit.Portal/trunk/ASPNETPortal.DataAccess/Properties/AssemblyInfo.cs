@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Unity.Web")]
+[assembly: AssemblyTitle("ASPNETPortal.DataAccess")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Unity.Web")]
+[assembly: AssemblyProduct("ASPNETPortal.DataAccess")]
 [assembly: AssemblyCopyright("Copyright ©  2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 
-[assembly: Guid("7f499497-2df4-46cf-9bd3-d3611070d893")]
+[assembly: Guid("f5443f27-7529-480c-96bd-d6c5f105c6df")]
 
 // Version information for an assembly consists of the following four values:
 //

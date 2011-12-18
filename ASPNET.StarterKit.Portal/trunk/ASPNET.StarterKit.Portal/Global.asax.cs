@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
@@ -7,7 +6,6 @@ using System.Security.Principal;
 using System.Threading;
 using System.Web;
 using System.Web.Security;
-using System.Web.UI;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Unity;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
@@ -15,19 +13,25 @@ using Unity.Web;
 
 namespace ASPNET.StarterKit.Portal
 {
-    
     public class Global : HttpApplication
     {
         protected void Application_Start(object sender, EventArgs e)
         {
             // Create a Unity container and load the Enterprise Library extension.
             IUnityContainer myContainer = Application.GetContainer();
-            var section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
+            var section = (UnityConfigurationSection) ConfigurationManager.GetSection("unity");
             section.Configure(myContainer);
             myContainer.AddExtension(new EnterpriseLibraryCoreExtension());
 
-            // Perform any additional container initialization you require. 
-
+            // additional container initialization required
+            foreach (ContainerRegistration containerRegistration in myContainer.Registrations)
+            {
+                if (containerRegistration.RegisteredType.Name == "UnityModule")
+                {
+                    myContainer.Resolve(containerRegistration.RegisteredType);
+                }
+            }  
+            
         }
 
         /// <summary>
@@ -68,7 +72,9 @@ namespace ASPNET.StarterKit.Portal
 
             try
             {
-                Thread.CurrentThread.CurrentCulture = Request.UserLanguages != null ? CultureInfo.CreateSpecificCulture(Request.UserLanguages[0]) : new CultureInfo("en-us");
+                Thread.CurrentThread.CurrentCulture = Request.UserLanguages != null
+                                                          ? CultureInfo.CreateSpecificCulture(Request.UserLanguages[0])
+                                                          : new CultureInfo("en-us");
 
                 Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
             }

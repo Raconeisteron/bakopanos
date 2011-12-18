@@ -1,12 +1,16 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditHtml : Page
     {
         private int _moduleId;
+
+        [Dependency]
+        public IHtmlTextDb Model { get; set; }
 
         //****************************************************************
         //
@@ -32,7 +36,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsPostBack == false)
             {
                 // Obtain a single row of text information
-                DataTable table = HtmlTextDb.GetHtmlText(_moduleId);
+                DataTable table = Model.GetHtmlText(_moduleId);
 
                 if (table.Rows.Count > 0)
                 {
@@ -64,7 +68,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Create an instance of the HtmlTextDB component
             // Update the text within the HtmlText table
-            HtmlTextDb.UpdateHtmlText(_moduleId, Server.HtmlEncode(DesktopText.Text),
+            Model.UpdateHtmlText(_moduleId, Server.HtmlEncode(DesktopText.Text),
                                       Server.HtmlEncode(MobileSummary.Text),
                                       Server.HtmlEncode(MobileDetails.Text));
 

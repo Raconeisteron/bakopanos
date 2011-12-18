@@ -9,8 +9,10 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// documents within the Portal database.
     /// </summary>
-    public class DocumentDb : DbHelper, IDocumentDb
+    internal class DocumentDb : DbHelper, IDocumentDb
     {
+        #region IDocumentDb Members
+
         /// <returns>
         /// The GetDocuments method returns a SqlDataReader containing all of the
         /// documents for a specific portal module from the documents
@@ -71,8 +73,8 @@ namespace ASPNET.StarterKit.Portal
         //*********************************************************************
 
         public void UpdateDocument(int moduleId, int itemId, String userName, String name, String url,
-                                          String category,
-                                          byte[] content, int size, String contentType)
+                                   String category,
+                                   byte[] content, int size, String contentType)
         {
             if (userName.Length < 1)
             {
@@ -119,5 +121,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
+
+        #endregion
     }
 }
