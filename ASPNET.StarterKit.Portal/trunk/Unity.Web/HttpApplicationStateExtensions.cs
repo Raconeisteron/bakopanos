@@ -8,24 +8,24 @@ namespace Unity.Web
     /// </summary>
     public static class HttpApplicationStateExtensions
     {
-        private const string GlobalContainerKey = "Your global Unity container";
+        private const string GlobalContainerKey = "EntLibContainer";
 
-        public static IUnityContainer GetContainer(this HttpApplicationState application)
+        public static IUnityContainer GetContainer(this HttpApplicationState appState)
         {
-            application.Lock();
+            appState.Lock();
             try
             {
-                IUnityContainer container = application[GlobalContainerKey] as IUnityContainer;
-                if (container == null)
+                var myContainer = appState[GlobalContainerKey] as IUnityContainer;
+                if (myContainer == null)
                 {
-                    container = new UnityContainer();
-                    application[GlobalContainerKey] = container;
+                    myContainer = new UnityContainer();
+                    appState[GlobalContainerKey] = myContainer;
                 }
-                return container;
+                return myContainer;
             }
             finally
             {
-                application.UnLock();
+                appState.UnLock();
             }
         }
     }

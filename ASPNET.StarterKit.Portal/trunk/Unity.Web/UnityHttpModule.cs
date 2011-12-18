@@ -41,15 +41,21 @@ namespace Unity.Web
         {
             var currentPage = (Page)sender;
             IUnityContainer container = HttpContext.Current.Application.GetContainer();
-            foreach (Control c in GetControlTree(currentPage))
+
+            IEnumerable<Control> controls = GetControlTree(currentPage);
+
+            foreach (Control control in controls)
             {
-                container.BuildUp(c.GetType(), c);
+                if(control is IUnityControl)
+                {
+                    container.BuildUp(control.GetType(), control);
+                }
             }
             _context.PreRequestHandlerExecute -= OnPreRequestHandlerExecute;
         }
 
         // Get the controls in the page's control tree excluding the page itself
-        private IEnumerable<Control> GetControlTree(Control root)
+        private static IEnumerable<Control> GetControlTree(Control root)
         {
             foreach (Control child in root.Controls)
             {

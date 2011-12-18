@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IUnityControl.cs" />
     <Compile Include="UnityHttpModule.cs" />
     <Compile Include="HttpApplicationStateExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -2,6 +2,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Web;
 using System.Web.UI;
+using Unity.Web;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -12,7 +13,7 @@ namespace ASPNET.StarterKit.Portal
     /// The PortalModuleControl class defines portal specific properties
     /// that are used by the portal framework to correctly display portal modules
     /// </summary>
-    public class PortalModuleControl : UserControl
+    public class PortalModuleControl : UserControl, IUnityControl
     {
         // Private field variables
         private int _isEditable;
