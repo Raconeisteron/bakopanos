@@ -32,11 +32,8 @@ namespace ASPNET.StarterKit.Portal
         //       
         //*********************************************************************
 
-        public PortalSettings(int tabIndex, int tabId)
+        public PortalSettings(SiteConfiguration siteSettings, int tabIndex, int tabId)
         {
-            // Get the configuration data
-            SiteConfiguration siteSettings = ConfigurationDb.GetSiteSettings();
-
             // Read the Desktop Tab Information, and sort by Tab Order
             foreach (SiteConfiguration.TabRow tRow in siteSettings.Tab.Select("", "TabOrder"))
             {

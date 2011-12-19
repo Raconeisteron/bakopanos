@@ -17,6 +17,8 @@ namespace ASPNET.StarterKit.Portal
             _db = db;
         }
 
+        #region IHtmlTextDb Members
+
         /// <returns>
         /// The GetHtmlText method returns a SqlDataReader containing details
         /// about a specific item from the HtmlText database table.
@@ -41,7 +43,9 @@ namespace ASPNET.StarterKit.Portal
             var parameterMobileDetails = new SqlParameter("@MobileDetails", SqlDbType.NText) {Value = mobileDetails};
 
             _db.ExecuteNonQuery("Portal_UpdateHtmlText", parameterModuleId, parameterDesktopHtml, parameterMobileSummary,
-                            parameterMobileDetails);
+                                parameterMobileDetails);
         }
+
+        #endregion
     }
 }

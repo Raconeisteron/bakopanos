@@ -9,8 +9,15 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// Users, Roles and security settings values within the Portal database.
     /// </summary>
-    internal class RolesDb : DbHelper, IRolesDb
+    internal class RolesDb : IRolesDb
     {
+        private readonly IDbHelper _db;
+
+        public RolesDb(IDbHelper db)
+        {
+            _db = db;
+        }
+
         #region ROLES
 
         /// <summary>
@@ -19,9 +26,9 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         public DataTable GetPortalRoles(int portalId)
         {
-            DbParameter parameterPortalId = CreateParameter("@PortalID", portalId);
+            DbParameter parameterPortalId = _db.CreateParameter("@PortalID", portalId);
 
-            return GetDataTable("Portal_GetPortalRoles", parameterPortalId);
+            return _db.GetDataTable("Portal_GetPortalRoles", parameterPortalId);
         }
 
         /// <summary>
@@ -30,11 +37,11 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         public int AddRole(int portalId, String roleName)
         {
-            DbParameter parameterRoleId = CreateOutputParameter("@RoleID");
-            DbParameter parameterPortalId = CreateParameter("@PortalID", portalId);
-            DbParameter parameterRoleName = CreateParameter("@RoleName", roleName);
+            DbParameter parameterRoleId = _db.CreateOutputParameter("@RoleID");
+            DbParameter parameterPortalId = _db.CreateParameter("@PortalID", portalId);
+            DbParameter parameterRoleName = _db.CreateParameter("@RoleName", roleName);
 
-            return ExecuteNonQuery<int>("Portal_AddRole", parameterRoleId, parameterPortalId, parameterRoleName);
+            return _db.ExecuteNonQuery<int>("Portal_AddRole", parameterRoleId, parameterPortalId, parameterRoleName);
         }
 
         /// <summary>
@@ -42,9 +49,9 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         public void DeleteRole(int roleId)
         {
-            DbParameter parameterRoleId = CreateParameter("@RoleID", roleId);
+            DbParameter parameterRoleId = _db.CreateParameter("@RoleID", roleId);
 
-            ExecuteNonQuery("Portal_DeleteRole", parameterRoleId);
+            _db.ExecuteNonQuery("Portal_DeleteRole", parameterRoleId);
         }
 
         /// <summary>
@@ -52,10 +59,10 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         public void UpdateRole(int roleId, String roleName)
         {
-            DbParameter parameterRoleId = CreateParameter("@RoleID", roleId);
-            DbParameter parameterRoleName = CreateParameter("@RoleName", roleName);
+            DbParameter parameterRoleId = _db.CreateParameter("@RoleID", roleId);
+            DbParameter parameterRoleName = _db.CreateParameter("@RoleName", roleName);
 
-            ExecuteNonQuery("Portal_UpdateRole", parameterRoleId, parameterRoleName);
+            _db.ExecuteNonQuery("Portal_UpdateRole", parameterRoleId, parameterRoleName);
         }
 
         #endregion
@@ -70,7 +77,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};
 
-            return GetDataTable("Portal_GetRoleMembership", parameterRoleId);
+            return _db.GetDataTable("Portal_GetRoleMembership", parameterRoleId);
         }
 
         /// <summary>
@@ -78,10 +85,10 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         public void AddUserRole(int roleId, int userId)
         {
-            DbParameter parameterRoleId = CreateParameter("@RoleID", roleId);
-            DbParameter parameterUserId = CreateParameter("@UserID", userId);
+            DbParameter parameterRoleId = _db.CreateParameter("@RoleID", roleId);
+            DbParameter parameterUserId = _db.CreateParameter("@UserID", userId);
 
-            ExecuteNonQuery("Portal_AddUserRole", parameterRoleId, parameterUserId);
+            _db.ExecuteNonQuery("Portal_AddUserRole", parameterRoleId, parameterUserId);
         }
 
         /// <summary>
@@ -92,7 +99,7 @@ namespace ASPNET.StarterKit.Portal
             var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};
             var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int, 4) {Value = userId};
 
-            ExecuteNonQuery("Portal_DeleteUserRole", parameterRoleId, parameterUserId);
+            _db.ExecuteNonQuery("Portal_DeleteUserRole", parameterRoleId, parameterUserId);
         }
 
         #endregion
@@ -105,7 +112,7 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         public DataTable GetUsers()
         {
-            return GetDataTable("Portal_GetUsers");
+            return _db.GetDataTable("Portal_GetUsers");
         }
 
         #endregion

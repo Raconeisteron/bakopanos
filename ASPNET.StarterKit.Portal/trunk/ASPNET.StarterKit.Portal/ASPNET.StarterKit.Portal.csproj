@@ -288,6 +288,7 @@
     </Compile>
     <Compile Include="Components\ConfigurationDb.cs" />
     <Compile Include="Components\CachedPortalModuleControl.cs" />
+    <Compile Include="Components\IConfigurationDb.cs" />
     <Compile Include="Components\ModuleItem.cs" />
     <Compile Include="Components\ModuleSettings.cs" />
     <Compile Include="Components\PortalModuleControl.cs">

@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditXml : Page
     {
         private int _moduleId;
+
+        [Dependency]
+        public IConfigurationDb ConfigModel { get; set; }
 
         /// <summary>
         /// The Page_Load event on this Page is used to obtain the ModuleId
@@ -31,7 +35,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_moduleId > 0)
                 {
                     // Get settings from the database
-                    Hashtable settings = ConfigurationDb.GetModuleSettings(_moduleId);
+                    Hashtable settings = ConfigModel.GetModuleSettings(_moduleId);
 
                     XmlDataSrc.Text = (String) settings["xmlsrc"];
                     XslTransformSrc.Text = (String) settings["xslsrc"];
@@ -52,8 +56,8 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Update settings in the database
-            ConfigurationDb.UpdateModuleSetting(_moduleId, "xmlsrc", XmlDataSrc.Text);
-            ConfigurationDb.UpdateModuleSetting(_moduleId, "xslsrc", XslTransformSrc.Text);
+            ConfigModel.UpdateModuleSetting(_moduleId, "xmlsrc", XmlDataSrc.Text);
+            ConfigModel.UpdateModuleSetting(_moduleId, "xslsrc", XslTransformSrc.Text);
 
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);

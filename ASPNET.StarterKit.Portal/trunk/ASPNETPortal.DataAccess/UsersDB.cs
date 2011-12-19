@@ -15,8 +15,15 @@ namespace ASPNET.StarterKit.Portal
     /// authentication is used instead, then either the Windows SAM or Active Directory
     /// is used to store and validate all username/password credentials.
     /// </summary>
-    internal class UsersDb : DbHelper, IUsersDb
+    internal class UsersDb : IUsersDb
     {
+        private readonly IDbHelper _db;
+
+        public UsersDb(IDbHelper db)
+        {
+            _db = db;
+        }
+
         #region IUsersDb Members
 
         /// <summary>
@@ -33,8 +40,8 @@ namespace ASPNET.StarterKit.Portal
             // Execute the command in a try/catch to catch duplicate username errors
             try
             {
-                return ExecuteNonQuery<int>("Portal_AddUser", parameterUserId, parameterFullName, parameterEmail,
-                                            parameterPassword);
+                return _db.ExecuteNonQuery<int>("Portal_AddUser", parameterUserId, parameterFullName, parameterEmail,
+                                                parameterPassword);
             }
             catch
             {
@@ -50,7 +57,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int) {Value = userId};
 
-            ExecuteNonQuery("Portal_DeleteUser", parameterUserId);
+            _db.ExecuteNonQuery("Portal_DeleteUser", parameterUserId);
         }
 
         /// <summary>
@@ -62,7 +69,7 @@ namespace ASPNET.StarterKit.Portal
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50) {Value = password};
 
-            ExecuteNonQuery("Portal_UpdateUser", parameterUserId, parameterEmail, parameterPassword);
+            _db.ExecuteNonQuery("Portal_UpdateUser", parameterUserId, parameterEmail, parameterPassword);
         }
 
         /// <summary>
@@ -72,7 +79,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
 
-            return GetDataTable("Portal_GetRolesByUser", parameterEmail);
+            return _db.GetDataTable("Portal_GetRolesByUser", parameterEmail);
         }
 
         /// <summary>
@@ -83,7 +90,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
 
-            return GetDataRow("Portal_GetSingleUser", parameterEmail);
+            return _db.GetDataRow("Portal_GetSingleUser", parameterEmail);
         }
 
         /// <summary>
@@ -93,7 +100,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
 
-            DataTable userRoles = GetDataTable("Portal_GetRolesByUser", parameterEmail);
+            DataTable userRoles = _db.GetDataTable("Portal_GetRolesByUser", parameterEmail);
 
             // Return the String array of roles
             return userRoles.Rows.Cast<DataRow>().Select(userRole => userRole["RoleName"] as string).ToList();
@@ -111,7 +118,7 @@ namespace ASPNET.StarterKit.Portal
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50) {Value = password};
 
-            ExecuteNonQuery<string>("Portal_UserLogin", parameterUserName, parameterEmail, parameterPassword);
+            _db.ExecuteNonQuery<string>("Portal_UserLogin", parameterUserName, parameterEmail, parameterPassword);
 
             if ((parameterUserName.Value != null) && (parameterUserName.Value != DBNull.Value))
             {

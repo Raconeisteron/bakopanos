@@ -69,8 +69,8 @@ namespace ASPNET.StarterKit.Portal
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
 
             return _db.ExecuteNonQuery<int>("Portal_AddMessage", parameterItemId, parameterTitle, parameterBody,
-                                        parameterParentId,
-                                        parameterUserName, parameterModuleId);
+                                            parameterParentId,
+                                            parameterUserName, parameterModuleId);
         }
 
         #endregion

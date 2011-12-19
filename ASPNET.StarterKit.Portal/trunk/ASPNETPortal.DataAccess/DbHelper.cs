@@ -17,6 +17,8 @@ namespace ASPNET.StarterKit.Portal
             _factory = DbProviderFactories.GetFactory(connectionStringSettings.ProviderName);
         }
 
+        #region IDbHelper Members
+
         public DbParameter CreateParameter(string parameterName, object value)
         {
             DbParameter parameter = _factory.CreateParameter();
@@ -51,33 +53,8 @@ namespace ASPNET.StarterKit.Portal
             throw new ApplicationException("Command returned no result");
         }
 
-        private DataSet GetDataSet(string myCommandText, params DbParameter[] sqlParameters)
-        {
-            var myDataSet = new DataSet();
-
-            // Create Instance of Connection and Command Object
-            using (DbConnection myConnection = _factory.CreateConnection())
-            {
-                myConnection.ConnectionString = _connectionString;
-                DbDataAdapter myCommand = _factory.CreateDataAdapter();
-                myCommand.SelectCommand = _factory.CreateCommand();
-                myCommand.SelectCommand.CommandText = myCommandText;
-                myCommand.SelectCommand.Connection = myConnection;
-                myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
-
-                // Add Parameters to SPROC
-                myCommand.SelectCommand.Parameters.AddRange(sqlParameters);
-
-                // Create and Fill the DataSet                
-                myCommand.Fill(myDataSet);
-            }
-
-            // Return the DataSet
-            return myDataSet;
-        }
-
         public T ExecuteNonQuery<T>(string myCommandText, DbParameter outSqlParameter,
-                                              params DbParameter[] sqlParameters)
+                                    params DbParameter[] sqlParameters)
         {
             var parameters = new List<DbParameter> {outSqlParameter};
             parameters.AddRange(sqlParameters);
@@ -104,6 +81,33 @@ namespace ASPNET.StarterKit.Portal
                 myCommand.ExecuteNonQuery();
                 myConnection.Close();
             }
+        }
+
+        #endregion
+
+        private DataSet GetDataSet(string myCommandText, params DbParameter[] sqlParameters)
+        {
+            var myDataSet = new DataSet();
+
+            // Create Instance of Connection and Command Object
+            using (DbConnection myConnection = _factory.CreateConnection())
+            {
+                myConnection.ConnectionString = _connectionString;
+                DbDataAdapter myCommand = _factory.CreateDataAdapter();
+                myCommand.SelectCommand = _factory.CreateCommand();
+                myCommand.SelectCommand.CommandText = myCommandText;
+                myCommand.SelectCommand.Connection = myConnection;
+                myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                // Add Parameters to SPROC
+                myCommand.SelectCommand.Parameters.AddRange(sqlParameters);
+
+                // Create and Fill the DataSet                
+                myCommand.Fill(myDataSet);
+            }
+
+            // Return the DataSet
+            return myDataSet;
         }
     }
 }

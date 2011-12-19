@@ -16,6 +16,9 @@ namespace ASPNET.StarterKit.Portal
         [Dependency]
         public IRolesDb Model { private get; set; }
 
+        [Dependency]
+        public IConfigurationDb ConfigModel { get; set; }
+
         //*******************************************************
         //
         // The Page_Load server event handler on this page is used
@@ -77,9 +80,9 @@ namespace ASPNET.StarterKit.Portal
                 }
 
                 // update module
-                ConfigurationDb.UpdateModule(_moduleId, m.ModuleOrder, m.PaneName, moduleTitle.Text,
-                                             Int32.Parse(cacheTime.Text),
-                                             editRoles, showMobile.Checked);
+                ConfigModel.UpdateModule(_moduleId, m.ModuleOrder, m.PaneName, moduleTitle.Text,
+                                         Int32.Parse(cacheTime.Text),
+                                         editRoles, showMobile.Checked);
 
                 // Update Textbox Settings
                 moduleTitle.Text = m.ModuleTitle;

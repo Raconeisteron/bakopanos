@@ -1,5 +1,6 @@
 using System;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -9,6 +10,8 @@ namespace ASPNET.StarterKit.Portal
         private int _tabId;
         private int _tabIndex;
 
+        [Dependency]
+        public IConfigurationDb Model { get; set; }
 
         //*******************************************************
         //
@@ -81,13 +84,13 @@ namespace ASPNET.StarterKit.Portal
                     var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
                     // Add a new module definition to the database
-                    ConfigurationDb.AddModuleDefinition(portalSettings.PortalId, FriendlyName.Text, DesktopSrc.Text,
-                                                        MobileSrc.Text);
+                    Model.AddModuleDefinition(portalSettings.PortalId, FriendlyName.Text, DesktopSrc.Text,
+                                              MobileSrc.Text);
                 }
                 else
                 {
                     // update the module definition
-                    ConfigurationDb.UpdateModuleDefinition(_defId, FriendlyName.Text, DesktopSrc.Text, MobileSrc.Text);
+                    Model.UpdateModuleDefinition(_defId, FriendlyName.Text, DesktopSrc.Text, MobileSrc.Text);
                 }
 
                 // Redirect back to the portal admin page
@@ -106,7 +109,7 @@ namespace ASPNET.StarterKit.Portal
         protected void DeleteBtn_Click(Object sender, EventArgs e)
         {
             // delete definition
-            ConfigurationDb.DeleteModuleDefinition(_defId);
+            Model.DeleteModuleDefinition(_defId);
 
             // Redirect back to the portal admin page
             Response.Redirect("~/DesktopDefault.aspx?tabindex=" + _tabIndex + "&tabid=" + _tabId);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -8,6 +9,8 @@ namespace ASPNET.StarterKit.Portal
     {
         private int _moduleId;
 
+        [Dependency]
+        public IConfigurationDb ConfigModel { get; set; }
 
         //****************************************************************
         //
@@ -35,7 +38,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_moduleId > 0)
                 {
                     // Get settings from the database
-                    Hashtable settings = ConfigurationDb.GetModuleSettings(_moduleId);
+                    Hashtable settings = ConfigModel.GetModuleSettings(_moduleId);
 
                     Src.Text = (String) settings["src"];
                     Width.Text = (String) settings["width"];
@@ -59,9 +62,9 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Update settings in the database
-            ConfigurationDb.UpdateModuleSetting(_moduleId, "src", Src.Text);
-            ConfigurationDb.UpdateModuleSetting(_moduleId, "height", Height.Text);
-            ConfigurationDb.UpdateModuleSetting(_moduleId, "width", Width.Text);
+            ConfigModel.UpdateModuleSetting(_moduleId, "src", Src.Text);
+            ConfigModel.UpdateModuleSetting(_moduleId, "height", Height.Text);
+            ConfigModel.UpdateModuleSetting(_moduleId, "width", Width.Text);
 
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);

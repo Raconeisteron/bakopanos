@@ -75,8 +75,8 @@ namespace ASPNET.StarterKit.Portal
             DbParameter parameterContact2 = _db.CreateParameter("@Contact2", contact2);
 
             return _db.ExecuteNonQuery<int>("Portal_AddContact", parameterItemId, parameterModuleId, parameterUserName,
-                                        parameterName, parameterRole, parameterEmail, parameterContact1,
-                                        parameterContact2);
+                                            parameterName, parameterRole, parameterEmail, parameterContact1,
+                                            parameterContact2);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace ASPNET.StarterKit.Portal
             DbParameter parameterContact2 = _db.CreateParameter("@Contact2", contact2);
 
             _db.ExecuteNonQuery("Portal_UpdateContact", parameterItemId, parameterUserName, parameterName,
-                            parameterRole, parameterEmail, parameterContact1, parameterContact2);
+                                parameterRole, parameterEmail, parameterContact1, parameterContact2);
         }
 
         #endregion

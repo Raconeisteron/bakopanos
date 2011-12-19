@@ -13,7 +13,7 @@ namespace ASPNET.StarterKit.Portal
     /// tab configuration settings, module configuration settings and module 
     /// definition configuration settings from the PortalCfg.xml file.
     /// </summary>
-    public static class ConfigurationDb
+    public class ConfigurationDb : IConfigurationDb
     {
         #region PORTAL
 
@@ -21,7 +21,7 @@ namespace ASPNET.StarterKit.Portal
         /// The UpdatePortalInfo method updates the name and access settings for the portal.
         /// These settings are stored in the Xml file PortalCfg.xml.
         /// </summary>        
-        public static void UpdatePortalInfo(int portalId, String portalName, bool alwaysShow)
+        public void UpdatePortalInfo(int portalId, String portalName, bool alwaysShow)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -46,7 +46,7 @@ namespace ASPNET.StarterKit.Portal
         /// The AddTab method adds a new tab to the portal.  These settings are 
         /// stored in the Xml file PortalCfg.xml.
         /// </summary>        
-        public static int AddTab(int portalId, String tabName, int tabOrder)
+        public int AddTab(int portalId, String tabName, int tabOrder)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -75,8 +75,8 @@ namespace ASPNET.StarterKit.Portal
         /// The UpdateTab method updates the settings for the specified tab. 
         /// These settings are stored in the Xml file PortalCfg.xml.
         /// </summary>        
-        public static void UpdateTab(int portalId, int tabId, String tabName, int tabOrder, String authorizedRoles,
-                                     String mobileTabName, bool showMobile)
+        public void UpdateTab(int portalId, int tabId, String tabName, int tabOrder, String authorizedRoles,
+                              String mobileTabName, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -99,7 +99,7 @@ namespace ASPNET.StarterKit.Portal
         /// to other tabs in the portal.  These settings are stored in the Xml 
         /// file PortalCfg.xml.
         /// </summary>        
-        public static void UpdateTabOrder(int tabId, int tabOrder)
+        public void UpdateTabOrder(int tabId, int tabOrder)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -119,7 +119,7 @@ namespace ASPNET.StarterKit.Portal
         /// method also deletes any data from the database associated with all 
         /// modules within this tab.
         /// </summary>
-        public static void DeleteTab(int tabId)
+        public void DeleteTab(int tabId)
         {
             //
             // Delete the Tab in the XML file
@@ -177,7 +177,7 @@ namespace ASPNET.StarterKit.Portal
         /// in a tab are displayed.  These settings are stored in the Xml file 
         /// PortalCfg.xml.
         /// </summary>        
-        public static void UpdateModuleOrder(int moduleId, int moduleOrder, String pane)
+        public void UpdateModuleOrder(int moduleId, int moduleOrder, String pane)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -196,9 +196,9 @@ namespace ASPNET.StarterKit.Portal
         /// The AddModule method adds Portal Settings for a new Module within
         /// a Tab.  These settings are stored in the Xml file PortalCfg.xml.
         /// </summary>        
-        public static int AddModule(int tabId, int moduleOrder, String paneName, String title, int moduleDefId,
-                                    int cacheTime,
-                                    String editRoles, bool showMobile)
+        public int AddModule(int tabId, int moduleOrder, String paneName, String title, int moduleDefId,
+                             int cacheTime,
+                             String editRoles, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -231,8 +231,8 @@ namespace ASPNET.StarterKit.Portal
         /// Module within a Tab.  These settings are stored in the Xml file
         /// PortalCfg.xml.
         /// </summary>
-        public static int UpdateModule(int moduleId, int moduleOrder, String paneName, String title, int cacheTime,
-                                       String editRoles, bool showMobile)
+        public int UpdateModule(int moduleId, int moduleOrder, String paneName, String title, int cacheTime,
+                                String editRoles, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -259,7 +259,7 @@ namespace ASPNET.StarterKit.Portal
         /// stored in the Xml file PortalCfg.xml.  This method also deletes any 
         /// data from the database associated with this module.
         /// </summary>        
-        public static void DeleteModule(int moduleId)
+        public void DeleteModule(int moduleId)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -301,7 +301,7 @@ namespace ASPNET.StarterKit.Portal
         /// matching Setting element is updated, or a new Setting element is 
         /// created.
         /// </summary>
-        public static void UpdateModuleSetting(int moduleId, String key, String val)
+        public void UpdateModuleSetting(int moduleId, String key, String val)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -403,7 +403,7 @@ namespace ASPNET.StarterKit.Portal
         /// used by some user control modules (Xml, Image, etc) to access misc
         /// settings.
         /// </summary>        
-        public static Hashtable GetModuleSettings(int moduleId)
+        public Hashtable GetModuleSettings(int moduleId)
         {
             // Create a new Hashtable
             var settingsHt = new Hashtable();
@@ -440,7 +440,7 @@ namespace ASPNET.StarterKit.Portal
         /// The GetModuleDefinitions method returns a list of all module type 
         /// definitions for the portal.
         /// </summary>        
-        public static DataRow[] GetModuleDefinitions(int portalId)
+        public DataRow[] GetModuleDefinitions(int portalId)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -453,7 +453,7 @@ namespace ASPNET.StarterKit.Portal
         /// The AddModuleDefinition add the definition for a new module type
         /// to the portal.
         /// </summary>        
-        public static int AddModuleDefinition(int portalId, String name, String desktopSrc, String mobileSrc)
+        public int AddModuleDefinition(int portalId, String name, String desktopSrc, String mobileSrc)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -483,7 +483,7 @@ namespace ASPNET.StarterKit.Portal
         /// file, and all data relating to each module is deleted from the
         /// database.
         /// </summary>        
-        public static void DeleteModuleDefinition(int defId)
+        public void DeleteModuleDefinition(int defId)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -535,7 +535,7 @@ namespace ASPNET.StarterKit.Portal
         /// The UpdateModuleDefinition method updates the settings for the 
         /// specified module type definition.
         /// </summary>
-        public static void UpdateModuleDefinition(int defId, String name, String desktopSrc, String mobileSrc)
+        public void UpdateModuleDefinition(int defId, String name, String desktopSrc, String mobileSrc)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -567,6 +567,8 @@ namespace ASPNET.StarterKit.Portal
 
         #endregion
 
+        #region IConfigurationDb Members
+
         /// <summary>
         /// The Configuration.GetSiteSettings Method returns a typed
         /// dataset of the all of the site configuration settings from the
@@ -583,7 +585,7 @@ namespace ASPNET.StarterKit.Portal
         /// this method runs, it will read from the XML file again and insert a
         /// fresh copy of the SiteConfiguration into the cache.
         /// </summary>
-        public static SiteConfiguration GetSiteSettings()
+        public SiteConfiguration GetSiteSettings()
         {
             var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
@@ -617,7 +619,7 @@ namespace ASPNET.StarterKit.Portal
         /// turn be evicted from the cache and be reloaded from the XML file the next
         /// time GetSiteSettings() is called.
         /// </summary>
-        private static void SaveSiteSettings()
+        public void SaveSiteSettings()
         {
             // Obtain SiteSettings from the Cache
             var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
@@ -635,5 +637,7 @@ namespace ASPNET.StarterKit.Portal
             // Object is evicted from the Cache here.  
             siteSettings.WriteXml(configFile);
         }
+
+        #endregion
     }
 }

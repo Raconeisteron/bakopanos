@@ -2,6 +2,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Web;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 using Unity.Web;
 
 namespace ASPNET.StarterKit.Portal
@@ -21,6 +22,8 @@ namespace ASPNET.StarterKit.Portal
         private Hashtable _settings;
 
         // Public property accessors
+        [Dependency]
+        public IConfigurationDb ConfigModel { get; set; }
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int ModuleId
@@ -74,7 +77,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 if (_settings == null)
                 {
-                    _settings = ConfigurationDb.GetModuleSettings(ModuleId);
+                    _settings = ConfigModel.GetModuleSettings(ModuleId);
                 }
 
                 return _settings;

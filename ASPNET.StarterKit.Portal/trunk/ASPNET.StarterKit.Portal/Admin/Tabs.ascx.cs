@@ -115,7 +115,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 // must delete from database too
                 TabItem t = PortalTabs[tabList.SelectedIndex];
-                ConfigurationDb.DeleteTab(t.TabId);
+                ConfigModel.DeleteTab(t.TabId);
 
                 // remove item from list
                 PortalTabs.RemoveAt(tabList.SelectedIndex);
@@ -149,10 +149,13 @@ namespace ASPNET.StarterKit.Portal
             PortalTabs.Add(t);
 
             // write tab to database
-            t.TabId = ConfigurationDb.AddTab(portalSettings.PortalId, t.TabName, t.TabOrder);
+            t.TabId = ConfigModel.AddTab(portalSettings.PortalId, t.TabName, t.TabOrder);
+
+            SiteConfiguration siteSettings = ConfigModel.GetSiteSettings();
 
             // reload the _portalSettings from the database
-            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, t.TabId);
+            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(siteSettings, portalSettings.PortalId,
+                                                                             t.TabId);
 
             // Reset the order numbers for the tabs within the list  
             OrderTabs();
@@ -203,7 +206,7 @@ namespace ASPNET.StarterKit.Portal
                 i += 2;
 
                 // rewrite tab to database
-                ConfigurationDb.UpdateTabOrder(t.TabId, t.TabOrder);
+                ConfigModel.UpdateTabOrder(t.TabId, t.TabOrder);
             }
         }
     }

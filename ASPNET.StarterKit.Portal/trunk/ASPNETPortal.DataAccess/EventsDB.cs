@@ -9,8 +9,15 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// events within the Portal database.
     /// </summary>
-    internal class EventsDb : DbHelper, IEventsDb
+    internal class EventsDb : IEventsDb
     {
+        private readonly IDbHelper _db;
+
+        public EventsDb(IDbHelper db)
+        {
+            _db = db;
+        }
+
         #region IEventsDb Members
 
         /// <returns>
@@ -22,7 +29,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
 
-            return GetDataTable("Portal_GetEvents", parameterModuleId);
+            return _db.GetDataTable("Portal_GetEvents", parameterModuleId);
         }
 
         /// <returns>
@@ -33,7 +40,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
-            return GetDataRow("Portal_GetSingleEvent", parameterItemId);
+            return _db.GetDataRow("Portal_GetSingleEvent", parameterItemId);
         }
 
         /// <summary>
@@ -44,7 +51,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
-            ExecuteNonQuery("Portal_DeleteEvent", parameterItemId);
+            _db.ExecuteNonQuery("Portal_DeleteEvent", parameterItemId);
         }
 
         //*********************************************************************

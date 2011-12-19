@@ -73,9 +73,10 @@ namespace ASPNET.StarterKit.Portal
             DbParameter parameterExpireDate = _db.CreateParameter("@ExpireDate", expireDate);
             DbParameter parameterDescription = _db.CreateParameter("@Description", description);
 
-            return _db.ExecuteNonQuery<int>("Portal_AddAnnouncement", parameterItemId, parameterModuleId, parameterUserName,
-                                        parameterTitle, parameterMoreLink, parameterMobileMoreLink,
-                                        parameterExpireDate, parameterDescription);
+            return _db.ExecuteNonQuery<int>("Portal_AddAnnouncement", parameterItemId, parameterModuleId,
+                                            parameterUserName,
+                                            parameterTitle, parameterMoreLink, parameterMobileMoreLink,
+                                            parameterExpireDate, parameterDescription);
         }
 
         /// <summary>
@@ -99,8 +100,8 @@ namespace ASPNET.StarterKit.Portal
             DbParameter parameterDescription = _db.CreateParameter("@Description", description);
 
             _db.ExecuteNonQuery("Portal_UpdateAnnouncement", parameterItemId, parameterUserName, parameterTitle,
-                            parameterMoreLink, parameterMobileMoreLink,
-                            parameterExpireDate, parameterDescription);
+                                parameterMoreLink, parameterMobileMoreLink,
+                                parameterExpireDate, parameterDescription);
         }
 
         #endregion

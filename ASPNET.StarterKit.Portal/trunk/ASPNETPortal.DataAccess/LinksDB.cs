@@ -75,8 +75,8 @@ namespace ASPNET.StarterKit.Portal
             var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4) {Value = viewOrder};
 
             return _db.ExecuteNonQuery<int>("Portal_AddLink", parameterItemId, parameterModuleId, parameterUserName,
-                                        parameterTitle, parameterDescription, parameterUrl, parameterMobileUrl,
-                                        parameterViewOrder);
+                                            parameterTitle, parameterDescription, parameterUrl, parameterMobileUrl,
+                                            parameterViewOrder);
         }
 
         /// <summary>
@@ -100,8 +100,8 @@ namespace ASPNET.StarterKit.Portal
             var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4) {Value = viewOrder};
 
             _db.ExecuteNonQuery("Portal_UpdateLink", parameterItemId, parameterUserName, parameterTitle,
-                            parameterDescription,
-                            parameterUrl, parameterMobileUrl, parameterViewOrder);
+                                parameterDescription,
+                                parameterUrl, parameterMobileUrl, parameterViewOrder);
         }
 
         #endregion

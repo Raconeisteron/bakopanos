@@ -9,8 +9,15 @@ namespace ASPNET.StarterKit.Portal
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// documents within the Portal database.
     /// </summary>
-    internal class DocumentDb : DbHelper, IDocumentDb
+    internal class DocumentDb : IDocumentDb
     {
+        private readonly IDbHelper _db;
+
+        public DocumentDb(IDbHelper db)
+        {
+            _db = db;
+        }
+
         #region IDocumentDb Members
 
         /// <returns>
@@ -22,7 +29,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
 
-            return GetDataTable("Portal_GetDocuments", parameterModuleId);
+            return _db.GetDataTable("Portal_GetDocuments", parameterModuleId);
         }
 
         /// <returns>
@@ -33,7 +40,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
-            return GetDataRow("Portal_GetSingleDocument", parameterItemId);
+            return _db.GetDataRow("Portal_GetSingleDocument", parameterItemId);
         }
 
         /// <returns>
@@ -44,7 +51,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
-            return GetDataRow("Portal_GetDocumentContent", parameterItemId);
+            return _db.GetDataRow("Portal_GetDocumentContent", parameterItemId);
         }
 
 
@@ -56,7 +63,7 @@ namespace ASPNET.StarterKit.Portal
         {
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
 
-            ExecuteNonQuery("Portal_DeleteDocument", parameterItemId);
+            _db.ExecuteNonQuery("Portal_DeleteDocument", parameterItemId);
         }
 
 

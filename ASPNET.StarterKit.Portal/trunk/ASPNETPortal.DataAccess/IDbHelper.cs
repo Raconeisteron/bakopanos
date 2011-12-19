@@ -11,7 +11,7 @@ namespace ASPNET.StarterKit.Portal
         DataRow GetDataRow(string myCommandText, params DbParameter[] sqlParameters);
 
         T ExecuteNonQuery<T>(string myCommandText, DbParameter outSqlParameter,
-                                             params DbParameter[] sqlParameters);
+                             params DbParameter[] sqlParameters);
 
         void ExecuteNonQuery(string myCommandText, params DbParameter[] sqlParameters);
     }

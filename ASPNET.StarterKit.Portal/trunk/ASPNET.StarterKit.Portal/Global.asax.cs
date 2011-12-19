@@ -33,7 +33,8 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // additional container initialization 
-            myContainer.RegisterInstance<ConnectionStringSettings>(ConfigurationManager.ConnectionStrings["connectionString"]);
+            myContainer.RegisterInstance(ConfigurationManager.ConnectionStrings["connectionString"]);
+            myContainer.RegisterType<IConfigurationDb, ConfigurationDb>(new ContainerControlledLifetimeManager());
         }
 
         /// <summary>
@@ -66,11 +67,14 @@ namespace ASPNET.StarterKit.Portal
                 tabId = Int32.Parse(Request.Params["tabid"]);
             }
 
+            var model = HttpContext.Current.Application.GetContainer().Resolve<IConfigurationDb>();
+            SiteConfiguration siteSettings = model.GetSiteSettings();
             // Build and add the PortalSettings object to the current Context
-            Context.Items.Add("PortalSettings", new PortalSettings(tabIndex, tabId));
+            Context.Items.Add("PortalSettings", new PortalSettings(siteSettings, tabIndex, tabId));
 
             // Retrieve and add the SiteConfiguration DataSet to the current Context
-            HttpContext.Current.Items.Add("SiteSettings", ConfigurationDb.GetSiteSettings());
+
+            HttpContext.Current.Items.Add("SiteSettings", model.GetSiteSettings());
 
             try
             {
