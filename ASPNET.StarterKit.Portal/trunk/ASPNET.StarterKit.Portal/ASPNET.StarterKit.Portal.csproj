@@ -286,9 +286,7 @@
     <Compile Include="Admin\Users.ascx.designer.cs">
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Components\ConfigurationDb.cs" />
     <Compile Include="Components\CachedPortalModuleControl.cs" />
-    <Compile Include="Components\IConfigurationDb.cs" />
     <Compile Include="Components\ModuleItem.cs" />
     <Compile Include="Components\ModuleSettings.cs" />
     <Compile Include="Components\PortalModuleControl.cs">
@@ -485,32 +483,28 @@
     <Compile Include="Portal.Master.designer.cs">
       <DependentUpon>Portal.Master</DependentUpon>
     </Compile>
-    <Compile Include="PortalCfg.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PortalCfg.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Portal.Master" />
-    <None Include="PortalCfg.xsc">
-      <DependentUpon>PortalCfg.xsd</DependentUpon>
-    </None>
-    <None Include="PortalCfg.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>PortalCfg.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="PortalCfg.xss">
-      <DependentUpon>PortalCfg.xsd</DependentUpon>
-    </None>
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ASPNETPortal.DataAccess\ASPNETPortal.DataAccess.csproj">
+    <ProjectReference Include="..\ASPNETPortal.DataAccess\PortalDesktopModules.csproj">
       <Project>{340D5FA6-AA31-4405-9AC0-5A60F2D89131}</Project>
-      <Name>ASPNETPortal.DataAccess</Name>
+      <Name>PortalDesktopModules</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Data\Framework.Data.csproj">
+      <Project>{70DE6CB2-0140-40D9-A26A-5C9270739026}</Project>
+      <Name>Framework.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortalConfiguration\PortalConfiguration.csproj">
+      <Project>{6BE38D23-B172-4369-834E-F11C6D4F3538}</Project>
+      <Name>PortalConfiguration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortalSecurity\PortalSecurity.csproj">
+      <Project>{31ECF97A-2A69-4988-B0E4-93A8105348B2}</Project>
+      <Name>PortalSecurity</Name>
     </ProjectReference>
     <ProjectReference Include="..\Unity.Web\Unity.Web.csproj">
       <Project>{3478C9AE-1CB1-4CBE-BE27-BFB1F982400A}</Project>

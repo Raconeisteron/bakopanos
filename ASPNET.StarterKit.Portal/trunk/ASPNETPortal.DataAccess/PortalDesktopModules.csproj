@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ASPNET.StarterKit.Portal</RootNamespace>
-    <AssemblyName>ASPNETPortal.DataAccess</AssemblyName>
+    <AssemblyName>PortalDesktopModules</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -49,26 +49,26 @@
   <ItemGroup>
     <Compile Include="AnnouncementsDB.cs" />
     <Compile Include="ContactsDB.cs" />
-    <Compile Include="DbHelper.cs" />
     <Compile Include="DiscussionDB.cs" />
     <Compile Include="DocumentDB.cs" />
     <Compile Include="EventsDB.cs" />
     <Compile Include="HtmlTextDB.cs" />
     <Compile Include="IAnnouncementsDb.cs" />
     <Compile Include="IContactsDb.cs" />
-    <Compile Include="IDbHelper.cs" />
     <Compile Include="IDiscussionDb.cs" />
     <Compile Include="IDocumentDb.cs" />
     <Compile Include="IEventsDb.cs" />
     <Compile Include="IHtmlTextDb.cs" />
     <Compile Include="ILinkDb.cs" />
-    <Compile Include="IRolesDb.cs" />
-    <Compile Include="IUsersDb.cs" />
     <Compile Include="LinksDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RolesDB.cs" />
     <Compile Include="UnityModule.cs" />
-    <Compile Include="UsersDB.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.Data\Framework.Data.csproj">
+      <Project>{70DE6CB2-0140-40D9-A26A-5C9270739026}</Project>
+      <Name>Framework.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

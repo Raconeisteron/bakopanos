@@ -34,7 +34,8 @@ namespace ASPNET.StarterKit.Portal
 
             // additional container initialization 
             myContainer.RegisterInstance(ConfigurationManager.ConnectionStrings["connectionString"]);
-            myContainer.RegisterType<IConfigurationDb, ConfigurationDb>(new ContainerControlledLifetimeManager());
+            myContainer.RegisterType<IDbHelper, DbHelper>(new ContainerControlledLifetimeManager());
+
         }
 
         /// <summary>
