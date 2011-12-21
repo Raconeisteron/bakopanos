@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -11,6 +12,9 @@ namespace ASPNET.StarterKit.Portal
         protected List<TabItem> PortalTabs;
         private int _tabId;
         private int _tabIndex;
+
+        [Dependency]
+        public IConfigurationDb Model { get; set; }
 
         //*******************************************************
         //
@@ -151,10 +155,10 @@ namespace ASPNET.StarterKit.Portal
             // write tab to database
             t.TabId = ConfigModel.AddTab(portalSettings.PortalId, t.TabName, t.TabOrder);
 
-            SiteConfiguration siteSettings = ConfigModel.GetSiteSettings();
+            //SiteConfiguration siteSettings = ConfigModel.GetSiteSettings();
 
             // reload the _portalSettings from the database
-            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(siteSettings, portalSettings.PortalId,
+            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(Model, portalSettings.PortalId,
                                                                              t.TabId);
 
             // Reset the order numbers for the tabs within the list  

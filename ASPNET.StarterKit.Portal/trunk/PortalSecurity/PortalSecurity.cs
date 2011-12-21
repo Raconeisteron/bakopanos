@@ -13,7 +13,7 @@ namespace ASPNET.StarterKit.Portal
     public class PortalSecurity : IPortalSecurity
     {
         [Dependency]
-        public IConfigurationDb Model { get; set; }
+        public IAccessRolesDb Model { get; set; }
 
         //*********************************************************************
         //
@@ -82,13 +82,14 @@ namespace ASPNET.StarterKit.Portal
         public bool HasEditPermissions(int moduleId)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = Model.GetSiteSettings();
+            //var siteSettings = Model.GetSiteSettings();
 
             // Find the appropriate Module in the Module table
-            SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
+            ModuleItem moduleRow = Model.GetModuleByModuleId(moduleId);
 
             string editRoles = moduleRow.EditRoles;
-            string accessRoles = moduleRow.TabRow.AccessRoles;
+
+            string accessRoles = Model.GetSingleTabByTabId(moduleRow.TabId).AccessRoles;
 
             if (IsInRoles(accessRoles) == false || IsInRoles(editRoles) == false)
                 return false;

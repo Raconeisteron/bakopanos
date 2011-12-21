@@ -6,7 +6,9 @@ namespace ASPNET.StarterKit.Portal
     {
         public UnityModule(IUnityContainer container)
         {
-            container.RegisterType<IConfigurationDb, ConfigurationDb>(new ContainerControlledLifetimeManager());
+            container.RegisterType<ConfigurationDb, ConfigurationDb>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IConfigurationDb, ConfigurationDb>();
+            container.RegisterType<IAccessRolesDb, ConfigurationDb>();
         }
     }
 }

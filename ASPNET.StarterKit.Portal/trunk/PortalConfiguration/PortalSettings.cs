@@ -17,25 +17,19 @@ namespace ASPNET.StarterKit.Portal
         public int PortalId;
         public String PortalName;
 
-        //*********************************************************************
-        //
-        // PortalSettings Constructor
-        //
-        // The PortalSettings Constructor encapsulates all of the logic
-        // necessary to obtain configuration settings necessary to render
-        // a Portal Tab view for a given request.
-        //
-        // These Portal Settings are stored within PortalCFG.xml, and are
-        // fetched below by calling config.GetSiteSettings().
-        // The method config.GetSiteSettings() fills the SiteConfiguration
-        // class, derived from a DataSet, which PortalSettings accesses.
-        //       
-        //*********************************************************************
-
-        public PortalSettings(SiteConfiguration siteSettings, int tabIndex, int tabId)
+        /// <summary>
+        /// The PortalSettings Constructor encapsulates all of the logic
+        /// necessary to obtain configuration settings necessary to render
+        /// a Portal Tab view for a given request.
+        /// These Portal Settings are stored within PortalCFG.xml, and are
+        /// fetched below by calling config.GetSiteSettings().
+        /// The method config.GetSiteSettings() fills the SiteConfiguration
+        /// class, derived from a DataSet, which PortalSettings accesses.
+        /// </summary>
+        public PortalSettings(IConfigurationDb configurationDb, int tabIndex, int tabId)
         {
             // Read the Desktop Tab Information, and sort by Tab Order
-            foreach (SiteConfiguration.TabRow tRow in siteSettings.Tab.Select("", "TabOrder"))
+            foreach (TabItem tRow in configurationDb.GetTabs())
             {
                 var tabDetails = new TabStripDetails();
 
@@ -54,7 +48,7 @@ namespace ASPNET.StarterKit.Portal
 
 
             // Read the Mobile Tab Information, and sort by Tab Order
-            foreach (SiteConfiguration.TabRow mRow in siteSettings.Tab.Select("ShowMobile='true'", "TabOrder"))
+            foreach (TabItem mRow in configurationDb.GetMobileTabs())
             {
                 var tabDetails = new TabStripDetails();
 
@@ -66,10 +60,10 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Read the Module Information for the current (Active) tab
-            SiteConfiguration.TabRow activeTab = siteSettings.Tab.FindByTabId(tabId);
+            TabItem activeTab = configurationDb.GetSingleTabByTabId(tabId);
 
             // Get Modules for this Tab based on the Data Relation
-            foreach (SiteConfiguration.ModuleRow moduleRow in activeTab.GetModuleRows())
+            foreach (ModuleItem moduleRow in configurationDb.GetModulesByTabId(tabId))
             {
                 var moduleSettings = new ModuleSettings();
 
@@ -84,8 +78,8 @@ namespace ASPNET.StarterKit.Portal
                 moduleSettings.ShowMobile = moduleRow.ShowMobile;
 
                 // ModuleDefinition data
-                SiteConfiguration.ModuleDefinitionRow modDefRow =
-                    siteSettings.ModuleDefinition.FindByModuleDefId(moduleSettings.ModuleDefId);
+                ModuleDefinitionItem modDefRow =
+                    configurationDb.GetModuleDefinitionByModuleDefId(moduleSettings.ModuleDefId);
 
                 moduleSettings.DesktopSrc = modDefRow.DesktopSourceFile;
                 moduleSettings.MobileSrc = modDefRow.MobileSourceFile;
@@ -97,7 +91,7 @@ namespace ASPNET.StarterKit.Portal
             ActiveTab.Modules.Sort();
 
             // Get the first row in the Global table
-            var globalSettings = (SiteConfiguration.GlobalRow) siteSettings.Global.Rows[0];
+            GlobalItem globalSettings = configurationDb.GetGlobalByPortalId(0);
 
             // Read Portal global settings 
             PortalId = globalSettings.PortalId;

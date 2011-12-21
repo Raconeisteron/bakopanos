@@ -22,7 +22,7 @@ namespace ASPNET.StarterKit.Portal {
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
     [global::System.Xml.Serialization.XmlRootAttribute("SiteConfiguration")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class SiteConfiguration : global::System.Data.DataSet {
+    internal partial class SiteConfiguration : global::System.Data.DataSet {
         
         private GlobalDataTable tableGlobal;
         
@@ -331,6 +331,7 @@ namespace ASPNET.StarterKit.Portal {
             this.DataSetName = "SiteConfiguration";
             this.Prefix = "";
             this.Namespace = "http://tempuri.org/PortalCfg.xsd";
+            this.Locale = new global::System.Globalization.CultureInfo("en-US");
             this.EnforceConstraints = false;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableGlobal = new GlobalDataTable();
@@ -498,7 +499,7 @@ namespace ASPNET.StarterKit.Portal {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class GlobalDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
+        public partial class GlobalDataTable : global::System.Data.TypedTableBase<GlobalRow> {
             
             private global::System.Data.DataColumn columnPortalId;
             
@@ -616,12 +617,6 @@ namespace ASPNET.StarterKit.Portal {
             public GlobalRow FindByPortalId(int PortalId) {
                 return ((GlobalRow)(this.Rows.Find(new object[] {
                             PortalId})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public virtual global::System.Collections.IEnumerator GetEnumerator() {
-                return this.Rows.GetEnumerator();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -793,7 +788,7 @@ namespace ASPNET.StarterKit.Portal {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class TabDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
+        public partial class TabDataTable : global::System.Data.TypedTableBase<TabRow> {
             
             private global::System.Data.DataColumn columnTabId;
             
@@ -944,12 +939,6 @@ namespace ASPNET.StarterKit.Portal {
             public TabRow FindByTabId(int TabId) {
                 return ((TabRow)(this.Rows.Find(new object[] {
                             TabId})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public virtual global::System.Collections.IEnumerator GetEnumerator() {
-                return this.Rows.GetEnumerator();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1133,7 +1122,7 @@ namespace ASPNET.StarterKit.Portal {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ModuleDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
+        public partial class ModuleDataTable : global::System.Data.TypedTableBase<ModuleRow> {
             
             private global::System.Data.DataColumn columnModuleId;
             
@@ -1324,12 +1313,6 @@ namespace ASPNET.StarterKit.Portal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public virtual global::System.Collections.IEnumerator GetEnumerator() {
-                return this.Rows.GetEnumerator();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 ModuleDataTable cln = ((ModuleDataTable)(base.Clone()));
                 cln.InitVars();
@@ -1389,6 +1372,7 @@ namespace ASPNET.StarterKit.Portal {
                 this.columnCacheTimeout.Namespace = "";
                 this.columnModuleOrder.Namespace = "";
                 this.columnShowMobile.Namespace = "";
+                this.columnTabId.Namespace = "http://tempuri.org/PortalCfg.xsd";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1520,7 +1504,7 @@ namespace ASPNET.StarterKit.Portal {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SettingsDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
+        public partial class SettingsDataTable : global::System.Data.TypedTableBase<SettingsRow> {
             
             private global::System.Data.DataColumn columnSettings_Id;
             
@@ -1627,12 +1611,6 @@ namespace ASPNET.StarterKit.Portal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public virtual global::System.Collections.IEnumerator GetEnumerator() {
-                return this.Rows.GetEnumerator();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 SettingsDataTable cln = ((SettingsDataTable)(base.Clone()));
                 cln.InitVars();
@@ -1664,6 +1642,8 @@ namespace ASPNET.StarterKit.Portal {
                 this.columnSettings_Id.AutoIncrement = true;
                 this.columnSettings_Id.AllowDBNull = false;
                 this.columnSettings_Id.Unique = true;
+                this.columnSettings_Id.Namespace = "http://tempuri.org/PortalCfg.xsd";
+                this.columnModuleId.Namespace = "http://tempuri.org/PortalCfg.xsd";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1795,7 +1775,7 @@ namespace ASPNET.StarterKit.Portal {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SettingDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
+        public partial class SettingDataTable : global::System.Data.TypedTableBase<SettingRow> {
             
             private global::System.Data.DataColumn columnName;
             
@@ -1913,12 +1893,6 @@ namespace ASPNET.StarterKit.Portal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public virtual global::System.Collections.IEnumerator GetEnumerator() {
-                return this.Rows.GetEnumerator();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 SettingDataTable cln = ((SettingDataTable)(base.Clone()));
                 cln.InitVars();
@@ -1949,6 +1923,7 @@ namespace ASPNET.StarterKit.Portal {
                 this.columnSettings_Id = new global::System.Data.DataColumn("Settings_Id", typeof(int), null, global::System.Data.MappingType.Hidden);
                 base.Columns.Add(this.columnSettings_Id);
                 this.columnName.Namespace = "";
+                this.columnSettings_Id.Namespace = "http://tempuri.org/PortalCfg.xsd";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2080,7 +2055,7 @@ namespace ASPNET.StarterKit.Portal {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ModuleDefinitionDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
+        public partial class ModuleDefinitionDataTable : global::System.Data.TypedTableBase<ModuleDefinitionRow> {
             
             private global::System.Data.DataColumn columnFriendlyName;
             
@@ -2209,12 +2184,6 @@ namespace ASPNET.StarterKit.Portal {
             public ModuleDefinitionRow FindByModuleDefId(int ModuleDefId) {
                 return ((ModuleDefinitionRow)(this.Rows.Find(new object[] {
                             ModuleDefId})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public virtual global::System.Collections.IEnumerator GetEnumerator() {
-                return this.Rows.GetEnumerator();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -69,10 +69,9 @@ namespace ASPNET.StarterKit.Portal
             }
 
             var model = HttpContext.Current.Application.GetContainer().Resolve<IConfigurationDb>();
-            SiteConfiguration siteSettings = model.GetSiteSettings();
 
             // Build and add the PortalSettings object to the current Context
-            Context.Items.Add("PortalSettings", new PortalSettings(siteSettings, tabIndex, tabId));
+            Context.Items.Add("PortalSettings", new PortalSettings(model, tabIndex, tabId));
 
             try
             {

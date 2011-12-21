@@ -289,17 +289,9 @@
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
     <Compile Include="Components\CachedPortalModuleControl.cs" />
-    <Compile Include="Components\IPortalSecurity.cs" />
-    <Compile Include="Components\ModuleItem.cs" />
-    <Compile Include="Components\ModuleSettings.cs" />
     <Compile Include="Components\PortalModuleControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Components\PortalSecurity.cs" />
-    <Compile Include="Components\PortalSettings.cs" />
-    <Compile Include="Components\TabItem.cs" />
-    <Compile Include="Components\TabSettings.cs" />
-    <Compile Include="Components\TabStripDetails.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -504,6 +496,10 @@
     <ProjectReference Include="..\PortalConfiguration\PortalConfiguration.csproj">
       <Project>{6BE38D23-B172-4369-834E-F11C6D4F3538}</Project>
       <Name>PortalConfiguration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortalCore\PortalCore.csproj">
+      <Project>{1BD961EF-EC7D-4763-ADCA-2E4C2012CC0E}</Project>
+      <Name>PortalCore</Name>
     </ProjectReference>
     <ProjectReference Include="..\PortalSecurity\PortalSecurity.csproj">
       <Project>{31ECF97A-2A69-4988-B0E4-93A8105348B2}</Project>

@@ -1,16 +1,34 @@
 using System;
 using System.Collections;
 using System.Data;
+using System.Collections.Generic;
 
 namespace ASPNET.StarterKit.Portal
 {
     public interface IConfigurationDb
     {
+        GlobalItem GetGlobalByPortalId(int portalId);
+
         /// <summary>
         /// The UpdatePortalInfo method updates the name and access settings for the portal.
         /// These settings are stored in the Xml file PortalCfg.xml.
         /// </summary>        
         void UpdatePortalInfo(int portalId, String portalName, bool alwaysShow);
+
+        /// <summary>
+        /// Returns a list of all tabs for the portal.
+        /// </summary>        
+        IEnumerable<TabItem> GetTabs();
+
+        /// <summary>
+        /// Returns a list of all mobile tabs for the portal.
+        /// </summary>        
+        IEnumerable<TabItem> GetMobileTabs();
+
+        /// <summary>
+        /// Returns a tab by tabid
+        /// </summary>        
+        TabItem GetSingleTabByTabId(int tabId);
 
         /// <summary>
         /// The AddTab method adds a new tab to the portal.  These settings are 
@@ -39,6 +57,10 @@ namespace ASPNET.StarterKit.Portal
         /// modules within this tab.
         /// </summary>
         void DeleteTab(int tabId);
+
+        ModuleItem GetModuleByModuleId(int moduleId);
+
+        IEnumerable<ModuleItem> GetModulesByTabId(int tabId);
 
         /// <summary>
         /// The UpdateModuleOrder method updates the order in which the modules
@@ -87,11 +109,13 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>        
         Hashtable GetModuleSettings(int moduleId);
 
+        ModuleDefinitionItem GetModuleDefinitionByModuleDefId(int moduleDefId);
+
         /// <summary>
         /// The GetModuleDefinitions method returns a list of all module type 
         /// definitions for the portal.
         /// </summary>        
-        DataRow[] GetModuleDefinitions(int portalId);
+        IEnumerable<ModuleDefinitionItem> GetModuleDefinitions(int portalId);
 
         /// <summary>
         /// The AddModuleDefinition add the definition for a new module type
@@ -119,32 +143,7 @@ namespace ASPNET.StarterKit.Portal
         /// object containing details about a specific module definition in the
         /// configuration file.
         /// </summary>        
-        SiteConfiguration.ModuleDefinitionRow GetSingleModuleDefinition(int defId);
+        ModuleDefinitionItem GetSingleModuleDefinition(int defId);
 
-        /// <summary>
-        /// The Configuration.GetSiteSettings Method returns a typed
-        /// dataset of the all of the site configuration settings from the
-        /// XML configuration file.  This method is used in Global.asax to
-        /// push the settings into the current HttpContext, so that all of the 
-        /// pages, content modules and classes throughout the rest of the request
-        /// may access them.
-        ///
-        /// The SiteConfiguration object is cached using the ASP.NET Cache API,
-        /// with a file-change dependency on the XML configuration file.  Normallly,
-        /// this method just returns a copy of the object in the cache.  When the
-        /// configuration is updated and changes are saved to the the XML file,
-        /// the SiteConfiguration object is evicted from the cache.  The next time 
-        /// this method runs, it will read from the XML file again and insert a
-        /// fresh copy of the SiteConfiguration into the cache.
-        /// </summary>
-        SiteConfiguration GetSiteSettings();
-
-        /// <summary>
-        /// The Configuration.SaveSiteSettings overwrites the the XML file with the
-        /// settings in the SiteConfiguration object in context.  The object will in 
-        /// turn be evicted from the cache and be reloaded from the XML file the next
-        /// time GetSiteSettings() is called.
-        /// </summary>
-        void SaveSiteSettings();
     }
 }

@@ -16,6 +16,12 @@ namespace ASPNET.StarterKit.Portal
 
         public int TabId { get; set; }
 
+        public string AccessRoles { get; set; }
+
+        public bool ShowMobile { get; set; }
+
+        public string MobileTabName { get; set; }
+
         #region IComparable Members
 
         public int CompareTo(object value)

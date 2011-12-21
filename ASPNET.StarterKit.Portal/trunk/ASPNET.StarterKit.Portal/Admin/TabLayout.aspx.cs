@@ -72,10 +72,10 @@ namespace ASPNET.StarterKit.Portal
             // Obtain portalId from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
-            SiteConfiguration siteSettings = ConfigModel.GetSiteSettings();
+            //SiteConfiguration siteSettings = ConfigModel.GetSiteSettings();
 
             // reload the portalSettings from the database
-            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(siteSettings, portalSettings.PortalId,
+            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(ConfigModel, portalSettings.PortalId,
                                                                              _tabId);
 
             // reorder the modules in the content pane
@@ -178,10 +178,10 @@ namespace ASPNET.StarterKit.Portal
                 // Obtain portalId from Current Context
                 var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
-                SiteConfiguration siteSettings = ConfigModel.GetSiteSettings();
+                //SiteConfiguration siteSettings = ConfigModel.GetSiteSettings();
 
                 // reload the portalSettings from the database
-                HttpContext.Current.Items["PortalSettings"] = new PortalSettings(siteSettings, portalSettings.PortalId,
+                HttpContext.Current.Items["PortalSettings"] = new PortalSettings(ConfigModel, portalSettings.PortalId,
                                                                                  _tabId);
 
                 // reorder the modules in the source pane

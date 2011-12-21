@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,8 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPortalSecurity.cs" />
     <Compile Include="IRolesDb.cs" />
     <Compile Include="IUsersDb.cs" />
+    <Compile Include="PortalSecurity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolesDB.cs" />
     <Compile Include="UnityModule.cs" />
@@ -54,6 +57,10 @@
     <ProjectReference Include="..\Framework.Data\Framework.Data.csproj">
       <Project>{70DE6CB2-0140-40D9-A26A-5C9270739026}</Project>
       <Name>Framework.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortalCore\PortalCore.csproj">
+      <Project>{1BD961EF-EC7D-4763-ADCA-2E4C2012CC0E}</Project>
+      <Name>PortalCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
