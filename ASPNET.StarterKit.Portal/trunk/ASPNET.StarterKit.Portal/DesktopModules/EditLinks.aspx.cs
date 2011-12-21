@@ -13,6 +13,8 @@ namespace ASPNET.StarterKit.Portal
         [Dependency]
         public ILinkDb Model { private get; set; }
 
+        [Dependency]
+        public IPortalSecurity PortalSecurity { private get; set; }
 
         //****************************************************************
         //

@@ -15,13 +15,11 @@ namespace ASPNET.StarterKit.Portal
     internal class ConfigurationDb : IConfigurationDb
     {
         private readonly IPortalModulesDb _portalModulesDb;
-        private readonly IDbHelper _db;
         private readonly string _configFile;
 
-        public ConfigurationDb(IPortalModulesDb portalModulesDb, IDbHelper db, [Dependency("ConfigFile")]string configFile)
+        public ConfigurationDb(IPortalModulesDb portalModulesDb, [Dependency("ConfigFile")]string configFile)
         {
             _portalModulesDb = portalModulesDb;
-            _db = db;
             _configFile = configFile;
         }
 
@@ -36,7 +34,7 @@ namespace ASPNET.StarterKit.Portal
         public void UpdatePortalInfo(int portalId, String portalName, bool alwaysShow)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             // Get first record of the "Global" element 
             SiteConfiguration.GlobalRow globalRow = siteSettings.Global.FindByPortalId(portalId);
@@ -61,7 +59,7 @@ namespace ASPNET.StarterKit.Portal
         public int AddTab(int portalId, String tabName, int tabOrder)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             // Create a new TabRow from the Tab table
             SiteConfiguration.TabRow newRow = siteSettings.Tab.NewTabRow();
@@ -91,7 +89,7 @@ namespace ASPNET.StarterKit.Portal
                               String mobileTabName, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             // Find the appropriate tab in the Tab table and set the properties
             SiteConfiguration.TabRow tabRow = siteSettings.Tab.FindByTabId(tabId);
@@ -114,7 +112,7 @@ namespace ASPNET.StarterKit.Portal
         public void UpdateTabOrder(int tabId, int tabOrder)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             // Find the appropriate tab in the Tab table and set the property
             SiteConfiguration.TabRow tabRow = siteSettings.Tab.FindByTabId(tabId);
@@ -138,7 +136,7 @@ namespace ASPNET.StarterKit.Portal
             //
 
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             // Find the appropriate tab in the Tab table
             SiteConfiguration.TabDataTable tabTable = siteSettings.Tab;
@@ -171,7 +169,7 @@ namespace ASPNET.StarterKit.Portal
         public void UpdateModuleOrder(int moduleId, int moduleOrder, String pane)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             // Find the appropriate Module in the Module table and update the properties
             SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
@@ -192,7 +190,7 @@ namespace ASPNET.StarterKit.Portal
                              String editRoles, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             // Create a new ModuleRow from the Module table
             SiteConfiguration.ModuleRow newModule = siteSettings.Module.NewModuleRow();
@@ -226,7 +224,7 @@ namespace ASPNET.StarterKit.Portal
                                 String editRoles, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             // Find the appropriate Module in the Module table and update the properties
             SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
@@ -253,7 +251,7 @@ namespace ASPNET.StarterKit.Portal
         public void DeleteModule(int moduleId)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             //
             // Delete information in the Database relating to Module being deleted
@@ -277,7 +275,7 @@ namespace ASPNET.StarterKit.Portal
         public void UpdateModuleSetting(int moduleId, String key, String val)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             // Find the appropriate Module in the Module table
             SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
@@ -382,7 +380,7 @@ namespace ASPNET.StarterKit.Portal
             var settingsHt = new Hashtable();
 
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             // Find the appropriate Module in the Module table
             SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
@@ -416,7 +414,7 @@ namespace ASPNET.StarterKit.Portal
         public DataRow[] GetModuleDefinitions(int portalId)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             // Find the appropriate Module in the Module table
             return siteSettings.ModuleDefinition.Select();
@@ -429,7 +427,7 @@ namespace ASPNET.StarterKit.Portal
         public int AddModuleDefinition(int portalId, String name, String desktopSrc, String mobileSrc)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             // Create new ModuleDefinitionRow
             SiteConfiguration.ModuleDefinitionRow newModuleDef = siteSettings.ModuleDefinition.NewModuleDefinitionRow();
@@ -459,7 +457,7 @@ namespace ASPNET.StarterKit.Portal
         public void DeleteModuleDefinition(int defId)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             //
             // Delete information in the Database relating to each Module being deleted
@@ -491,7 +489,7 @@ namespace ASPNET.StarterKit.Portal
         public void UpdateModuleDefinition(int defId, String name, String desktopSrc, String mobileSrc)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             // Find the appropriate Module in the Module table and update the properties
             SiteConfiguration.ModuleDefinitionRow modDefRow = siteSettings.ModuleDefinition.FindByModuleDefId(defId);
@@ -512,7 +510,7 @@ namespace ASPNET.StarterKit.Portal
         public SiteConfiguration.ModuleDefinitionRow GetSingleModuleDefinition(int defId)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
             // Find the appropriate Module in the Module table
             return siteSettings.ModuleDefinition.FindByModuleDefId(defId);

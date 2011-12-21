@@ -18,6 +18,9 @@ namespace ASPNET.StarterKit.Portal
         [Dependency]
         public IEventsDb Model { get; set; }
 
+        [Dependency]
+        public IPortalSecurity PortalSecurity { private get; set; }
+
         //****************************************************************
         //
         // The Page_Load event on this Page is used to obtain the ModuleId

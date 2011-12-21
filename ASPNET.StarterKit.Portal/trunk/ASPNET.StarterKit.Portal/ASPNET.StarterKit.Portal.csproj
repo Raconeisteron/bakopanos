@@ -289,13 +289,14 @@
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
     <Compile Include="Components\CachedPortalModuleControl.cs" />
+    <Compile Include="Components\IPortalSecurity.cs" />
     <Compile Include="Components\ModuleItem.cs" />
     <Compile Include="Components\ModuleSettings.cs" />
     <Compile Include="Components\PortalModuleControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Components\PortalSettings.cs" />
     <Compile Include="Components\PortalSecurity.cs" />
+    <Compile Include="Components\PortalSettings.cs" />
     <Compile Include="Components\TabItem.cs" />
     <Compile Include="Components\TabSettings.cs" />
     <Compile Include="Components\TabStripDetails.cs" />

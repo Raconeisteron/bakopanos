@@ -2,6 +2,7 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -9,8 +10,11 @@ namespace ASPNET.StarterKit.Portal
     /// The PortalSecurity class encapsulates two helper methods that enable
     /// developers to easily check the role status of the current browser client.
     /// </summary>
-    public static class PortalSecurity
+    public class PortalSecurity : IPortalSecurity
     {
+        [Dependency]
+        public IConfigurationDb Model { get; set; }
+
         //*********************************************************************
         //
         // Security.Encrypt() Method
@@ -75,10 +79,10 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public static bool HasEditPermissions(int moduleId)
+        public bool HasEditPermissions(int moduleId)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = Model.GetSiteSettings();
 
             // Find the appropriate Module in the Module table
             SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);

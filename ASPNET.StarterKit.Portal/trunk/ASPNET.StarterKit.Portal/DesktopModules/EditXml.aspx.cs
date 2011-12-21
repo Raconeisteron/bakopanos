@@ -12,6 +12,9 @@ namespace ASPNET.StarterKit.Portal
         [Dependency]
         public IConfigurationDb ConfigModel { get; set; }
 
+        [Dependency]
+        public IPortalSecurity PortalSecurity { private get; set; }
+
         /// <summary>
         /// The Page_Load event on this Page is used to obtain the ModuleId
         /// xml module to edit.

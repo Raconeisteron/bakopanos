@@ -25,6 +25,7 @@ namespace ASPNET.StarterKit.Portal
             myContainer.RegisterInstance<string>("ConfigFile", HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["configFile"]));
             myContainer.RegisterInstance<ConnectionStringSettings>(ConfigurationManager.ConnectionStrings["connectionString"]);
             myContainer.RegisterType<IDbHelper, DbHelper>(new ContainerControlledLifetimeManager());
+            myContainer.RegisterType<IPortalSecurity, PortalSecurity>(new ContainerControlledLifetimeManager());
 
             // bootstrapp unity modules
             foreach (ContainerRegistration containerRegistration in myContainer.Registrations)
@@ -69,12 +70,9 @@ namespace ASPNET.StarterKit.Portal
 
             var model = HttpContext.Current.Application.GetContainer().Resolve<IConfigurationDb>();
             SiteConfiguration siteSettings = model.GetSiteSettings();
+
             // Build and add the PortalSettings object to the current Context
             Context.Items.Add("PortalSettings", new PortalSettings(siteSettings, tabIndex, tabId));
-
-            // Retrieve and add the SiteConfiguration DataSet to the current Context
-
-            HttpContext.Current.Items.Add("SiteSettings", model.GetSiteSettings());
 
             try
             {
