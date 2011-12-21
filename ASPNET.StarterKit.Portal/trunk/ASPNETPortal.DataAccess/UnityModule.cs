@@ -13,6 +13,7 @@ namespace ASPNET.StarterKit.Portal
             container.RegisterType<IDocumentDb, DocumentDb>(new ContainerControlledLifetimeManager());
             container.RegisterType<IEventsDb, EventsDb>(new ContainerControlledLifetimeManager());
             container.RegisterType<IHtmlTextDb, HtmlTextDb>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IPortalModulesDb, PortalModulesDb>(new ContainerControlledLifetimeManager());
         }
     }
 }

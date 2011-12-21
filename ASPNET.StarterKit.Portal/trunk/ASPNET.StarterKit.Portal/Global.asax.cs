@@ -6,7 +6,6 @@ using System.Security.Principal;
 using System.Threading;
 using System.Web;
 using System.Web.Security;
-using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Unity;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using Unity.Web;
@@ -21,7 +20,11 @@ namespace ASPNET.StarterKit.Portal
             IUnityContainer myContainer = Application.GetContainer();
             var section = (UnityConfigurationSection) ConfigurationManager.GetSection("unity");
             section.Configure(myContainer);
-            myContainer.AddExtension(new EnterpriseLibraryCoreExtension());
+
+            // additional container initialization 
+            myContainer.RegisterInstance<string>("ConfigFile", HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["configFile"]));
+            myContainer.RegisterInstance<ConnectionStringSettings>(ConfigurationManager.ConnectionStrings["connectionString"]);
+            myContainer.RegisterType<IDbHelper, DbHelper>(new ContainerControlledLifetimeManager());
 
             // bootstrapp unity modules
             foreach (ContainerRegistration containerRegistration in myContainer.Registrations)
@@ -31,10 +34,6 @@ namespace ASPNET.StarterKit.Portal
                     myContainer.Resolve(containerRegistration.RegisteredType);
                 }
             }
-
-            // additional container initialization 
-            myContainer.RegisterInstance(ConfigurationManager.ConnectionStrings["connectionString"]);
-            myContainer.RegisterType<IDbHelper, DbHelper>(new ContainerControlledLifetimeManager());
 
         }
 

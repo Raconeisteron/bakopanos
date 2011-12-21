@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Web;
 using System.Web.Caching;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -13,8 +12,21 @@ namespace ASPNET.StarterKit.Portal
     /// tab configuration settings, module configuration settings and module 
     /// definition configuration settings from the PortalCfg.xml file.
     /// </summary>
-    public class ConfigurationDb : IConfigurationDb
+    internal class ConfigurationDb : IConfigurationDb
     {
+        private readonly IPortalModulesDb _portalModulesDb;
+        private readonly IDbHelper _db;
+        private readonly string _configFile;
+
+        public ConfigurationDb(IPortalModulesDb portalModulesDb, IDbHelper db, [Dependency("ConfigFile")]string configFile)
+        {
+            _portalModulesDb = portalModulesDb;
+            _db = db;
+            _configFile = configFile;
+        }
+
+        #region IConfigurationDb Members
+
         #region PORTAL
 
         /// <summary>
@@ -135,31 +147,10 @@ namespace ASPNET.StarterKit.Portal
             //
             // Delete information in the Database relating to each Module being deleted
             //
-
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            myConnection.Open();
-
             foreach (SiteConfiguration.ModuleRow moduleRow in tabRow.GetModuleRows())
             {
-                myCommand.Parameters.Clear();
-                parameterModuleId.Value = moduleRow.ModuleId;
-                myCommand.Parameters.Add(parameterModuleId);
-
-                // Open the database connection and execute the command
-                myCommand.ExecuteNonQuery();
+                _portalModulesDb.DeletePortalModule(moduleRow.ModuleId);
             }
-
-            // Close the connection
-            myConnection.Close();
 
             // Finish removing the Tab row from the Xml file
             tabTable.RemoveTabRow(tabRow);
@@ -266,27 +257,9 @@ namespace ASPNET.StarterKit.Portal
 
             //
             // Delete information in the Database relating to Module being deleted
-            //
-
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            myConnection.Open();
-
-            parameterModuleId.Value = moduleId;
-            myCommand.Parameters.Add(parameterModuleId);
-
-            // Open the database connection and execute the command
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
-
+            //            
+            _portalModulesDb.DeletePortalModule(moduleId);
+            
             // Finish removing Module
             siteSettings.Module.RemoveModuleRow(siteSettings.Module.FindByModuleId(moduleId));
 
@@ -491,37 +464,17 @@ namespace ASPNET.StarterKit.Portal
             //
             // Delete information in the Database relating to each Module being deleted
             //
-
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
-
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            myConnection.Open();
-
             foreach (SiteConfiguration.ModuleRow moduleRow in siteSettings.Module.Select())
             {
                 if (moduleRow.ModuleDefId == defId)
                 {
-                    myCommand.Parameters.Clear();
-                    parameterModuleId.Value = moduleRow.ModuleId;
-                    myCommand.Parameters.Add(parameterModuleId);
+                    _portalModulesDb.DeletePortalModule(moduleRow.ModuleId);
 
                     // Delete the xml module associated with the ModuleDef
                     // in the configuration file
-                    siteSettings.Module.RemoveModuleRow(moduleRow);
-
-                    // Open the database connection and execute the command
-                    myCommand.ExecuteNonQuery();
+                    siteSettings.Module.RemoveModuleRow(moduleRow);                    
                 }
             }
-
-            myConnection.Close();
 
             // Finish removing Module Definition
             siteSettings.ModuleDefinition.RemoveModuleDefinitionRow(
@@ -556,7 +509,7 @@ namespace ASPNET.StarterKit.Portal
         /// object containing details about a specific module definition in the
         /// configuration file.
         /// </summary>        
-        public static SiteConfiguration.ModuleDefinitionRow GetSingleModuleDefinition(int defId)
+        public SiteConfiguration.ModuleDefinitionRow GetSingleModuleDefinition(int defId)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -566,8 +519,6 @@ namespace ASPNET.StarterKit.Portal
         }
 
         #endregion
-
-        #region IConfigurationDb Members
 
         /// <summary>
         /// The Configuration.GetSiteSettings Method returns a typed
@@ -595,19 +546,16 @@ namespace ASPNET.StarterKit.Portal
                 // Create the dataset
                 siteSettings = new SiteConfiguration();
 
-                // Retrieve the location of the XML configuration file
-                string configFile = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["configFile"]);
-
                 // Set the AutoIncrement property to true for easier adding of rows
                 siteSettings.Tab.TabIdColumn.AutoIncrement = true;
                 siteSettings.Module.ModuleIdColumn.AutoIncrement = true;
                 siteSettings.ModuleDefinition.ModuleDefIdColumn.AutoIncrement = true;
 
                 // Load the XML data into the DataSet
-                siteSettings.ReadXml(configFile);
+                siteSettings.ReadXml(_configFile);
 
                 // Store the dataset in the cache
-                HttpContext.Current.Cache.Insert("SiteSettings", siteSettings, new CacheDependency(configFile));
+                HttpContext.Current.Cache.Insert("SiteSettings", siteSettings, new CacheDependency(_configFile));
             }
 
             return siteSettings;
@@ -632,10 +580,9 @@ namespace ASPNET.StarterKit.Portal
                 // which reloads the cache, the siteSettings object will be Null 
                 siteSettings = GetSiteSettings();
             }
-            string configFile = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["configFile"]);
 
             // Object is evicted from the Cache here.  
-            siteSettings.WriteXml(configFile);
+            siteSettings.WriteXml(_configFile);
         }
 
         #endregion

@@ -115,6 +115,13 @@ namespace ASPNET.StarterKit.Portal
         void UpdateModuleDefinition(int defId, String name, String desktopSrc, String mobileSrc);
 
         /// <summary>
+        /// The GetSingleModuleDefinition method returns a ModuleDefinitionRow
+        /// object containing details about a specific module definition in the
+        /// configuration file.
+        /// </summary>        
+        SiteConfiguration.ModuleDefinitionRow GetSingleModuleDefinition(int defId);
+
+        /// <summary>
         /// The Configuration.GetSiteSettings Method returns a typed
         /// dataset of the all of the site configuration settings from the
         /// XML configuration file.  This method is used in Global.asax to

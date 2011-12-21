@@ -56,7 +56,7 @@ namespace ASPNET.StarterKit.Portal
                 else
                 {
                     // Obtain the module definition to edit from the database
-                    SiteConfiguration.ModuleDefinitionRow modDefRow = ConfigurationDb.GetSingleModuleDefinition(_defId);
+                    SiteConfiguration.ModuleDefinitionRow modDefRow = Model.GetSingleModuleDefinition(_defId);
 
                     // Read in information
                     FriendlyName.Text = modDefRow.FriendlyName;
