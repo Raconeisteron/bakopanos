@@ -9,7 +9,8 @@ namespace ASPNET.StarterKit.Portal
             
             container.RegisterType<IUsersDb, UsersDb>(new ContainerControlledLifetimeManager());
             container.RegisterType<IRolesDb, RolesDb>(new ContainerControlledLifetimeManager());
-            
+
+            container.RegisterType<IPortalSecurity, PortalSecurity>(new ContainerControlledLifetimeManager());
         }
     }
 }

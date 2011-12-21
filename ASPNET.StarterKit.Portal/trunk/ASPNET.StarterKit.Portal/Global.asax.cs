@@ -25,7 +25,6 @@ namespace ASPNET.StarterKit.Portal
             myContainer.RegisterInstance<string>("ConfigFile", HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["configFile"]));
             myContainer.RegisterInstance<ConnectionStringSettings>(ConfigurationManager.ConnectionStrings["connectionString"]);
             myContainer.RegisterType<IDbHelper, DbHelper>(new ContainerControlledLifetimeManager());
-            myContainer.RegisterType<IPortalSecurity, PortalSecurity>(new ContainerControlledLifetimeManager());
 
             // bootstrapp unity modules
             foreach (ContainerRegistration containerRegistration in myContainer.Registrations)
