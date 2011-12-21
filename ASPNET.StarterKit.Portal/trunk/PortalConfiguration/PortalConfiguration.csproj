@@ -67,9 +67,9 @@
       <DependentUpon>PortalCfg.xsd</DependentUpon>
     </None>
     <None Include="PortalCfg.xsd">
+      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>PortalCfg.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </None>
     <None Include="PortalCfg.xss">
       <DependentUpon>PortalCfg.xsd</DependentUpon>
