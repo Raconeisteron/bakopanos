@@ -1,6 +1,7 @@
 using System;
 using System.Web;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -9,6 +10,9 @@ namespace ASPNET.StarterKit.Portal
         public String EditTarget;
         public String EditText;
         public String EditUrl;
+
+        [Dependency]
+        public IPortalSecurity PortalSecurity { private get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {

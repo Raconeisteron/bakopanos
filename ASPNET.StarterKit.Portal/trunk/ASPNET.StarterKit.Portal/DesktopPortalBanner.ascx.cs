@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -9,6 +10,9 @@ namespace ASPNET.StarterKit.Portal
     {
         protected String LogoffLink = "";
         private int _tabIndex;
+
+        [Dependency]
+        public IPortalSecurity PortalSecurity { private get; set; }
 
         public bool ShowTabs { get; set; }
 

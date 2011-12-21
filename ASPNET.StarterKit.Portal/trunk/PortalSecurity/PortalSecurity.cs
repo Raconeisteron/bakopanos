@@ -10,7 +10,7 @@ namespace ASPNET.StarterKit.Portal
     /// The PortalSecurity class encapsulates two helper methods that enable
     /// developers to easily check the role status of the current browser client.
     /// </summary>
-    public class PortalSecurity : IPortalSecurity
+    internal class PortalSecurity : IPortalSecurity
     {
         [Dependency]
         public IAccessRolesDb Model { get; set; }
@@ -23,7 +23,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public static string Encrypt(string cleanString)
+        public string Encrypt(string cleanString)
         {
             Byte[] clearBytes = new UnicodeEncoding().GetBytes(cleanString);
             Byte[] hashedBytes = ((HashAlgorithm) CryptoConfig.CreateFromName("MD5")).ComputeHash(clearBytes);
@@ -40,7 +40,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public static bool IsInRole(String role)
+        public bool IsInRole(String role)
         {
             return HttpContext.Current.User.IsInRole(role);
         }
@@ -54,7 +54,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public static bool IsInRoles(String roles)
+        public bool IsInRoles(String roles)
         {
             HttpContext context = HttpContext.Current;
 

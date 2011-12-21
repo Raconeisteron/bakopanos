@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -31,6 +32,9 @@ namespace ASPNET.StarterKit.Portal
 
 
         // Public property accessors
+        
+        [Dependency]
+        public IPortalSecurity PortalSecurity { private get; set; }
 
         public ModuleSettings ModuleConfiguration
         {

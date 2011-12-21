@@ -21,6 +21,9 @@ namespace ASPNET.StarterKit.Portal
         [Dependency]
         public IConfigurationDb ConfigModel { get; set; }
 
+        [Dependency]
+        public IPortalSecurity PortalSecurity { private get; set; }
+
         //*******************************************************
         //
         // The Page_Load server event handler on this page is used

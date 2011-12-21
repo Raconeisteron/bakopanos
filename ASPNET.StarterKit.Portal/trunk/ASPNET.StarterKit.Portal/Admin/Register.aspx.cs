@@ -13,6 +13,9 @@ namespace ASPNET.StarterKit.Portal
         [Dependency]
         public IUsersDb Model { private get; set; }
 
+        [Dependency]
+        public IPortalSecurity PortalSecurity { private get; set; }
+
         protected void RegisterBtn_Click(object sender, EventArgs e)
         {
             // Only attempt a login if all form fields on the page are valid

@@ -25,6 +25,9 @@ namespace ASPNET.StarterKit.Portal
         [Dependency]
         public IConfigurationDb ConfigModel { get; set; }
 
+        [Dependency]
+        public IPortalSecurity PortalSecurity { get; set; }
+
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int ModuleId
         {
