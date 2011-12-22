@@ -22,8 +22,10 @@ namespace ASPNET.StarterKit.Portal
             section.Configure(myContainer);
 
             // additional container initialization 
-            myContainer.RegisterInstance<string>("ConfigFile", HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["configFile"]));
-            myContainer.RegisterInstance<ConnectionStringSettings>(ConfigurationManager.ConnectionStrings["connectionString"]);
+            myContainer.RegisterInstance("ConfigFile",
+                                         HttpContext.Current.Server.MapPath(
+                                             ConfigurationManager.AppSettings["configFile"]));
+            myContainer.RegisterInstance(ConfigurationManager.ConnectionStrings["connectionString"]);
             myContainer.RegisterType<IDbHelper, DbHelper>(new ContainerControlledLifetimeManager());
 
             // bootstrapp unity modules
@@ -34,7 +36,6 @@ namespace ASPNET.StarterKit.Portal
                     myContainer.Resolve(containerRegistration.RegisteredType);
                 }
             }
-
         }
 
         /// <summary>
@@ -67,10 +68,13 @@ namespace ASPNET.StarterKit.Portal
                 tabId = Int32.Parse(Request.Params["tabid"]);
             }
 
-            var model = HttpContext.Current.Application.GetContainer().Resolve<IConfigurationDb>();
+            var model = HttpContext.Current.Application.GetContainer().Resolve<IModuleDefinitionDb>();
+            var globalDb = HttpContext.Current.Application.GetContainer().Resolve<IGlobalDb>();
+            var tabDb = HttpContext.Current.Application.GetContainer().Resolve<ITabDb>();
+            var moduleDb = HttpContext.Current.Application.GetContainer().Resolve<IModuleDb>();
 
             // Build and add the PortalSettings object to the current Context
-            Context.Items.Add("PortalSettings", new PortalSettings(model, tabIndex, tabId));
+            Context.Items.Add("PortalSettings", new PortalSettings(globalDb, tabDb, moduleDb, model, tabIndex, tabId));
 
             try
             {

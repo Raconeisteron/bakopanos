@@ -19,7 +19,16 @@ namespace ASPNET.StarterKit.Portal
         public IRolesDb Model { private get; set; }
 
         [Dependency]
-        public IConfigurationDb ConfigModel { get; set; }
+        public IModuleDefinitionDb ConfigModel { get; set; }
+
+        [Dependency]
+        public IModuleDb ModuleDb { get; set; }
+
+        [Dependency]
+        public ITabDb TabDb { get; set; }
+
+        [Dependency]
+        public IGlobalDb GlobalDb { get; set; }
 
         [Dependency]
         public IPortalSecurity PortalSecurity { private get; set; }
@@ -68,17 +77,16 @@ namespace ASPNET.StarterKit.Portal
             m.ModuleOrder = 999;
 
             // save to database
-            m.ModuleId = ConfigModel.AddModule(_tabId, m.ModuleOrder, "ContentPane", m.ModuleTitle, m.ModuleDefId, 0,
-                                               "Admins",
-                                               false);
+            m.ModuleId = ModuleDb.AddModule(_tabId, m.ModuleOrder, "ContentPane", m.ModuleTitle, m.ModuleDefId, 0,
+                                            "Admins",
+                                            false);
 
             // Obtain portalId from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
-            //SiteConfiguration siteSettings = ConfigModel.GetSiteSettings();
-
             // reload the portalSettings from the database
-            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(ConfigModel, portalSettings.PortalId,
+            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(GlobalDb, TabDb, ModuleDb, ConfigModel,
+                                                                             portalSettings.PortalId,
                                                                              _tabId);
 
             // reorder the modules in the content pane
@@ -88,7 +96,7 @@ namespace ASPNET.StarterKit.Portal
             // resave the order
             foreach (ModuleItem item in modules)
             {
-                ConfigModel.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, "ContentPane");
+                ModuleDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, "ContentPane");
             }
 
             // Redirect to the same page to pick up changes
@@ -140,7 +148,7 @@ namespace ASPNET.StarterKit.Portal
                 // resave the order
                 foreach (ModuleItem item in modules)
                 {
-                    ConfigModel.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, pane);
+                    ModuleDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, pane);
                 }
             }
 
@@ -173,7 +181,7 @@ namespace ASPNET.StarterKit.Portal
                 ModuleItem m = sourceList[sourceBox.SelectedIndex];
 
                 // add it to the database
-                ConfigModel.UpdateModuleOrder(m.ModuleId, 998, targetPane);
+                ModuleDb.UpdateModuleOrder(m.ModuleId, 998, targetPane);
 
                 // delete it from the source list
                 sourceList.RemoveAt(sourceBox.SelectedIndex);
@@ -184,7 +192,8 @@ namespace ASPNET.StarterKit.Portal
                 //SiteConfiguration siteSettings = ConfigModel.GetSiteSettings();
 
                 // reload the portalSettings from the database
-                HttpContext.Current.Items["PortalSettings"] = new PortalSettings(ConfigModel, portalSettings.PortalId,
+                HttpContext.Current.Items["PortalSettings"] = new PortalSettings(GlobalDb, TabDb, ModuleDb, ConfigModel,
+                                                                                 portalSettings.PortalId,
                                                                                  _tabId);
 
                 // reorder the modules in the source pane
@@ -194,7 +203,7 @@ namespace ASPNET.StarterKit.Portal
                 // resave the order
                 foreach (ModuleItem item in sourceList)
                 {
-                    ConfigModel.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, sourcePane);
+                    ModuleDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, sourcePane);
                 }
 
                 // reorder the modules in the target pane
@@ -204,7 +213,7 @@ namespace ASPNET.StarterKit.Portal
                 // resave the order
                 foreach (ModuleItem item in targetList)
                 {
-                    ConfigModel.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, targetPane);
+                    ModuleDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, targetPane);
                 }
 
                 // Redirect to the same page to pick up changes
@@ -277,8 +286,8 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // update Tab info in the database
-            ConfigModel.UpdateTab(portalSettings.PortalId, _tabId, tabName.Text, portalSettings.ActiveTab.TabOrder,
-                                  authorizedRoles, mobileTabName.Text, showMobile.Checked);
+            TabDb.UpdateTab(portalSettings.PortalId, _tabId, tabName.Text, portalSettings.ActiveTab.TabOrder,
+                            authorizedRoles, mobileTabName.Text, showMobile.Checked);
         }
 
         //*******************************************************
@@ -321,7 +330,7 @@ namespace ASPNET.StarterKit.Portal
                 if (m.ModuleId > -1)
                 {
                     // must delete from database too
-                    ConfigModel.DeleteModule(m.ModuleId);
+                    ModuleDb.DeleteModule(m.ModuleId);
                 }
             }
 

@@ -19,7 +19,7 @@ namespace ASPNET.StarterKit.Portal
         public int ModuleId { get; set; }
 
         public int ModuleDefId { get; set; }
-        
+
         public string EditRoles { get; set; }
 
         public int CacheTimeout { get; set; }

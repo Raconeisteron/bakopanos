@@ -26,10 +26,11 @@ namespace ASPNET.StarterKit.Portal
         /// The method config.GetSiteSettings() fills the SiteConfiguration
         /// class, derived from a DataSet, which PortalSettings accesses.
         /// </summary>
-        public PortalSettings(IConfigurationDb configurationDb, int tabIndex, int tabId)
+        public PortalSettings(IGlobalDb globalDb, ITabDb tabDb, IModuleDb moduleDb, IModuleDefinitionDb configurationDb,
+                              int tabIndex, int tabId)
         {
             // Read the Desktop Tab Information, and sort by Tab Order
-            foreach (TabItem tRow in configurationDb.GetTabs())
+            foreach (TabItem tRow in tabDb.GetTabs())
             {
                 var tabDetails = new TabStripDetails();
 
@@ -48,7 +49,7 @@ namespace ASPNET.StarterKit.Portal
 
 
             // Read the Mobile Tab Information, and sort by Tab Order
-            foreach (TabItem mRow in configurationDb.GetMobileTabs())
+            foreach (TabItem mRow in tabDb.GetMobileTabs())
             {
                 var tabDetails = new TabStripDetails();
 
@@ -60,10 +61,10 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Read the Module Information for the current (Active) tab
-            TabItem activeTab = configurationDb.GetSingleTabByTabId(tabId);
+            TabItem activeTab = tabDb.GetSingleTabByTabId(tabId);
 
             // Get Modules for this Tab based on the Data Relation
-            foreach (ModuleItem moduleRow in configurationDb.GetModulesByTabId(tabId))
+            foreach (ModuleItem moduleRow in moduleDb.GetModulesByTabId(tabId))
             {
                 var moduleSettings = new ModuleSettings();
 
@@ -91,7 +92,7 @@ namespace ASPNET.StarterKit.Portal
             ActiveTab.Modules.Sort();
 
             // Get the first row in the Global table
-            GlobalItem globalSettings = configurationDb.GetGlobalByPortalId(0);
+            GlobalItem globalSettings = globalDb.GetGlobalByPortalId(0);
 
             // Read Portal global settings 
             PortalId = globalSettings.PortalId;

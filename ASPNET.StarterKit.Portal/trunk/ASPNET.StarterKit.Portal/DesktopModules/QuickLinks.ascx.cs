@@ -10,7 +10,7 @@ namespace ASPNET.StarterKit.Portal
         [Dependency]
         public ILinkDb Model { private get; set; }
 
-        
+
         /// <summary>
         /// The Page_Load event handler on this User Control is used to
         /// obtain a DataReader of link information from the Links

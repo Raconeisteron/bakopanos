@@ -17,7 +17,7 @@ namespace ASPNET.StarterKit.Portal
         public IRolesDb Model { private get; set; }
 
         [Dependency]
-        public IConfigurationDb ConfigModel { get; set; }
+        public IModuleDb ConfigModel { get; set; }
 
         [Dependency]
         public IPortalSecurity PortalSecurity { private get; set; }

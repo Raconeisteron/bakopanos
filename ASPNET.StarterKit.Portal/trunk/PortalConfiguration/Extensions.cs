@@ -11,6 +11,7 @@ namespace ASPNET.StarterKit.Portal
                            AlwaysShowEditButton = row.AlwaysShowEditButton
                        };
         }
+
         internal static TabItem ToTabItem(this SiteConfiguration.TabRow row)
         {
             return new TabItem
@@ -23,6 +24,7 @@ namespace ASPNET.StarterKit.Portal
                            ShowMobile = row.ShowMobile
                        };
         }
+
         internal static ModuleItem ToModuleItem(this SiteConfiguration.ModuleRow row)
         {
             return new ModuleItem
@@ -38,6 +40,7 @@ namespace ASPNET.StarterKit.Portal
                            ShowMobile = row.ShowMobile
                        };
         }
+
         internal static ModuleDefinitionItem ToModuleDefinitionItem(this SiteConfiguration.ModuleDefinitionRow row)
         {
             return new ModuleDefinitionItem

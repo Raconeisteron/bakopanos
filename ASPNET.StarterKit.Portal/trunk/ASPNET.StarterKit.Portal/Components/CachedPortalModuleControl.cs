@@ -32,7 +32,7 @@ namespace ASPNET.StarterKit.Portal
 
 
         // Public property accessors
-        
+
         [Dependency]
         public IPortalSecurity PortalSecurity { private get; set; }
 

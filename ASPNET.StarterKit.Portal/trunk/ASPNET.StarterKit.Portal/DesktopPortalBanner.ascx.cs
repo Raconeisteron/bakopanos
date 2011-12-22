@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
+using Unity.Web;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class DesktopPortalBanner : UserControl
+    public partial class DesktopPortalBanner : UserControl, IUnityControl
     {
         protected String LogoffLink = "";
         private int _tabIndex;

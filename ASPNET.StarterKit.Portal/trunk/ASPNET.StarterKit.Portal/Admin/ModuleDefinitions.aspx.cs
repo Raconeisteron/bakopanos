@@ -11,7 +11,7 @@ namespace ASPNET.StarterKit.Portal
         private int _tabIndex;
 
         [Dependency]
-        public IConfigurationDb Model { get; set; }
+        public IModuleDefinitionDb Model { get; set; }
 
         [Dependency]
         public IPortalSecurity PortalSecurity { private get; set; }

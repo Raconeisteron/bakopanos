@@ -10,7 +10,7 @@ namespace ASPNET.StarterKit.Portal
         [Dependency]
         public IUsersDb Model { private get; set; }
 
-        
+
         protected void LoginBtn_Click(Object sender, ImageClickEventArgs e)
         {
             // Attempt to Validate User Credentials using UsersDB

@@ -12,7 +12,7 @@ namespace ASPNET.StarterKit.Portal
 
         [Dependency]
         public IDiscussionDb Model { private get; set; }
-        
+
         [Dependency]
         public IPortalSecurity PortalSecurity { private get; set; }
 

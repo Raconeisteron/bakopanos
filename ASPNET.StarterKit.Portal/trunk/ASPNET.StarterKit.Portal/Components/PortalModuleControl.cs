@@ -23,7 +23,7 @@ namespace ASPNET.StarterKit.Portal
 
         // Public property accessors
         [Dependency]
-        public IConfigurationDb ConfigModel { get; set; }
+        public IModuleDb ConfigModel { get; set; }
 
         [Dependency]
         public IPortalSecurity PortalSecurity { get; set; }

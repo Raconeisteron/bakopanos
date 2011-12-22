@@ -1,4 +1,6 @@
-﻿namespace ASPNET.StarterKit.Portal
+﻿using System.Data.Common;
+
+namespace ASPNET.StarterKit.Portal
 {
     internal class PortalModulesDb : IPortalModulesDb
     {
@@ -9,10 +11,14 @@
             _db = db;
         }
 
+        #region IPortalModulesDb Members
+
         public void DeletePortalModule(int moduleId)
         {
-            var parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
+            DbParameter parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
             _db.ExecuteNonQuery("Portal_DeleteModule", parameterModuleId);
         }
+
+        #endregion
     }
 }

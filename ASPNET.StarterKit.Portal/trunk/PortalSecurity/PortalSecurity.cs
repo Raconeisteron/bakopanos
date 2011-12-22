@@ -13,7 +13,7 @@ namespace ASPNET.StarterKit.Portal
     internal class PortalSecurity : IPortalSecurity
     {
         [Dependency]
-        public IAccessRolesDb Model { get; set; }
+        public IAuthorizationDb Model { get; set; }
 
         //*********************************************************************
         //
@@ -22,6 +22,8 @@ namespace ASPNET.StarterKit.Portal
         // The Encrypt method encrypts a clean string into a hashed string
         //
         //*********************************************************************
+
+        #region IPortalSecurity Members
 
         public string Encrypt(string cleanString)
         {
@@ -81,20 +83,16 @@ namespace ASPNET.StarterKit.Portal
 
         public bool HasEditPermissions(int moduleId)
         {
-            // Obtain SiteSettings from Current Context
-            //var siteSettings = Model.GetSiteSettings();
-
-            // Find the appropriate Module in the Module table
-            ModuleItem moduleRow = Model.GetModuleByModuleId(moduleId);
-
-            string editRoles = moduleRow.EditRoles;
-
-            string accessRoles = Model.GetSingleTabByTabId(moduleRow.TabId).AccessRoles;
+            // Find the appropriate roles for moduleid
+            string editRoles = Model.GetEditRolesByModuleId(moduleId);
+            string accessRoles = Model.GetAccessRolesByModuleId(moduleId);
 
             if (IsInRoles(accessRoles) == false || IsInRoles(editRoles) == false)
                 return false;
 
             return true;
         }
+
+        #endregion
     }
 }

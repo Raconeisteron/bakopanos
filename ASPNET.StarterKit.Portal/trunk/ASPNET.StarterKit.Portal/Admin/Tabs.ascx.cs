@@ -14,7 +14,16 @@ namespace ASPNET.StarterKit.Portal
         private int _tabIndex;
 
         [Dependency]
-        public IConfigurationDb Model { get; set; }
+        public IModuleDefinitionDb Model { get; set; }
+
+        [Dependency]
+        public ITabDb TabDb { get; set; }
+
+        [Dependency]
+        public IModuleDb ModuleDb { get; set; }
+
+        [Dependency]
+        public IGlobalDb GlobalDb { get; set; }
 
         //*******************************************************
         //
@@ -119,7 +128,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 // must delete from database too
                 TabItem t = PortalTabs[tabList.SelectedIndex];
-                ConfigModel.DeleteTab(t.TabId);
+                TabDb.DeleteTab(t.TabId);
 
                 // remove item from list
                 PortalTabs.RemoveAt(tabList.SelectedIndex);
@@ -153,12 +162,11 @@ namespace ASPNET.StarterKit.Portal
             PortalTabs.Add(t);
 
             // write tab to database
-            t.TabId = ConfigModel.AddTab(portalSettings.PortalId, t.TabName, t.TabOrder);
-
-            //SiteConfiguration siteSettings = ConfigModel.GetSiteSettings();
+            t.TabId = TabDb.AddTab(portalSettings.PortalId, t.TabName, t.TabOrder);
 
             // reload the _portalSettings from the database
-            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(Model, portalSettings.PortalId,
+            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(GlobalDb, TabDb, ModuleDb, Model,
+                                                                             portalSettings.PortalId,
                                                                              t.TabId);
 
             // Reset the order numbers for the tabs within the list  
@@ -210,7 +218,7 @@ namespace ASPNET.StarterKit.Portal
                 i += 2;
 
                 // rewrite tab to database
-                ConfigModel.UpdateTabOrder(t.TabId, t.TabOrder);
+                TabDb.UpdateTabOrder(t.TabId, t.TabOrder);
             }
         }
     }

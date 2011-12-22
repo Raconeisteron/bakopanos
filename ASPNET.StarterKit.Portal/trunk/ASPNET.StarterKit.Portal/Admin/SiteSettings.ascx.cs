@@ -6,7 +6,7 @@ namespace ASPNET.StarterKit.Portal
     public partial class SiteSettings : PortalModuleControl
     {
         [Dependency]
-        public IConfigurationDb Model { get; set; }
+        public IGlobalDb Model { get; set; }
 
         //*******************************************************
         //
