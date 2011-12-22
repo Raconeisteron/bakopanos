@@ -485,7 +485,7 @@
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ASPNETPortal.DataAccess\PortalModules.csproj">
+    <ProjectReference Include="..\PortalModules\PortalModules.csproj">
       <Project>{340D5FA6-AA31-4405-9AC0-5A60F2D89131}</Project>
       <Name>PortalModules</Name>
     </ProjectReference>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNETPortal
 {
     /// <summary>
     /// This class encapsulates the basic attributes of a Module, and is used

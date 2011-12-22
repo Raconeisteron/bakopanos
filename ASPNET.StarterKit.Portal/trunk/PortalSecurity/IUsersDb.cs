@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNETPortal
 {
     public interface IUsersDb
     {

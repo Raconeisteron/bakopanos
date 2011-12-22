@@ -1,4 +1,4 @@
-namespace ASPNET.StarterKit.Portal
+namespace ASPNETPortal
 {
     internal static class Extensions
     {

@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.Common;
 
-namespace ASPNET.StarterKit.Portal
+namespace Framework.Data
 {
     public class DbHelper : IDbHelper
     {

@@ -1,6 +1,7 @@
 <%@ Control CodeBehind="DesktopPortalBanner.ascx.cs" Language="c#" AutoEventWireup="True"
 	Inherits="ASPNET.StarterKit.Portal.DesktopPortalBanner" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
+<%@ Import Namespace="ASPNETPortal" %>
 <%--
 
    The DesktopPortalBanner User Control is responsible for displaying the standard Portal

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNETPortal
 {
     /// <summary>
     /// Class that encapsulates the detailed settings for a specific Tab 

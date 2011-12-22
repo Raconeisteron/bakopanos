@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNETPortal {
     
     
     /// <summary>
@@ -499,7 +499,7 @@ namespace ASPNET.StarterKit.Portal {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class GlobalDataTable : global::System.Data.TypedTableBase<GlobalRow> {
+        public partial class GlobalDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
             
             private global::System.Data.DataColumn columnPortalId;
             
@@ -617,6 +617,12 @@ namespace ASPNET.StarterKit.Portal {
             public GlobalRow FindByPortalId(int PortalId) {
                 return ((GlobalRow)(this.Rows.Find(new object[] {
                             PortalId})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public virtual global::System.Collections.IEnumerator GetEnumerator() {
+                return this.Rows.GetEnumerator();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -788,7 +794,7 @@ namespace ASPNET.StarterKit.Portal {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class TabDataTable : global::System.Data.TypedTableBase<TabRow> {
+        public partial class TabDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
             
             private global::System.Data.DataColumn columnTabId;
             
@@ -939,6 +945,12 @@ namespace ASPNET.StarterKit.Portal {
             public TabRow FindByTabId(int TabId) {
                 return ((TabRow)(this.Rows.Find(new object[] {
                             TabId})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public virtual global::System.Collections.IEnumerator GetEnumerator() {
+                return this.Rows.GetEnumerator();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1122,7 +1134,7 @@ namespace ASPNET.StarterKit.Portal {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ModuleDataTable : global::System.Data.TypedTableBase<ModuleRow> {
+        public partial class ModuleDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
             
             private global::System.Data.DataColumn columnModuleId;
             
@@ -1309,6 +1321,12 @@ namespace ASPNET.StarterKit.Portal {
             public ModuleRow FindByModuleId(int ModuleId) {
                 return ((ModuleRow)(this.Rows.Find(new object[] {
                             ModuleId})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public virtual global::System.Collections.IEnumerator GetEnumerator() {
+                return this.Rows.GetEnumerator();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1504,7 +1522,7 @@ namespace ASPNET.StarterKit.Portal {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SettingsDataTable : global::System.Data.TypedTableBase<SettingsRow> {
+        public partial class SettingsDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
             
             private global::System.Data.DataColumn columnSettings_Id;
             
@@ -1607,6 +1625,12 @@ namespace ASPNET.StarterKit.Portal {
                 rowSettingsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSettingsRow);
                 return rowSettingsRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public virtual global::System.Collections.IEnumerator GetEnumerator() {
+                return this.Rows.GetEnumerator();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1775,7 +1799,7 @@ namespace ASPNET.StarterKit.Portal {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SettingDataTable : global::System.Data.TypedTableBase<SettingRow> {
+        public partial class SettingDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
             
             private global::System.Data.DataColumn columnName;
             
@@ -1889,6 +1913,12 @@ namespace ASPNET.StarterKit.Portal {
                 rowSettingRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSettingRow);
                 return rowSettingRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public virtual global::System.Collections.IEnumerator GetEnumerator() {
+                return this.Rows.GetEnumerator();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2055,7 +2085,7 @@ namespace ASPNET.StarterKit.Portal {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ModuleDefinitionDataTable : global::System.Data.TypedTableBase<ModuleDefinitionRow> {
+        public partial class ModuleDefinitionDataTable : global::System.Data.DataTable, global::System.Collections.IEnumerable {
             
             private global::System.Data.DataColumn columnFriendlyName;
             
@@ -2184,6 +2214,12 @@ namespace ASPNET.StarterKit.Portal {
             public ModuleDefinitionRow FindByModuleDefId(int ModuleDefId) {
                 return ((ModuleDefinitionRow)(this.Rows.Find(new object[] {
                             ModuleDefId})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public virtual global::System.Collections.IEnumerator GetEnumerator() {
+                return this.Rows.GetEnumerator();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -4,7 +4,7 @@ using System.Text;
 using System.Web;
 using Microsoft.Practices.Unity;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNETPortal
 {
     /// <summary>
     /// The PortalSecurity class encapsulates two helper methods that enable
@@ -15,16 +15,11 @@ namespace ASPNET.StarterKit.Portal
         [Dependency]
         public IAuthorizationDb Model { get; set; }
 
-        //*********************************************************************
-        //
-        // Security.Encrypt() Method
-        //
-        // The Encrypt method encrypts a clean string into a hashed string
-        //
-        //*********************************************************************
-
         #region IPortalSecurity Members
 
+        /// <summary>
+        /// encrypts a clean string into a hashed string
+        /// </summary>        
         public string Encrypt(string cleanString)
         {
             Byte[] clearBytes = new UnicodeEncoding().GetBytes(cleanString);
@@ -33,29 +28,20 @@ namespace ASPNET.StarterKit.Portal
             return BitConverter.ToString(hashedBytes);
         }
 
-        //*********************************************************************
-        //
-        // PortalSecurity.IsInRole() Method
-        //
-        // The IsInRole method enables developers to easily check the role
-        // status of the current browser client.
-        //
-        //*********************************************************************
-
+        /*
+        /// <summary>
+        /// check the role
+        /// status of the current browser client.
+        /// </summary>        
         public bool IsInRole(String role)
         {
             return HttpContext.Current.User.IsInRole(role);
-        }
+        }*/
 
-        //*********************************************************************
-        //
-        // PortalSecurity.IsInRoles() Method
-        //
-        // The IsInRoles method enables developers to easily check the role
-        // status of the current browser client against an array of roles
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// check the role
+        /// status of the current browser client against an array of roles
+        /// </summary>        
         public bool IsInRoles(String roles)
         {
             HttpContext context = HttpContext.Current;
@@ -71,16 +57,11 @@ namespace ASPNET.StarterKit.Portal
             return false;
         }
 
-        //*********************************************************************
-        //
-        // PortalSecurity.HasEditPermissions() Method
-        //
-        // The HasEditPermissions method enables developers to easily check 
-        // whether the current browser client has access to edit the settings
-        // of a specified portal module
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// check 
+        /// whether the current browser client has access to edit the settings
+        /// of a specified portal module
+        /// </summary>        
         public bool HasEditPermissions(int moduleId)
         {
             // Find the appropriate roles for moduleid

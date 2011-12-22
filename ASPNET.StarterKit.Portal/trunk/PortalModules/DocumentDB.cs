@@ -2,8 +2,9 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using Framework.Data;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNETPortal
 {
     /// <summary>
     /// Class that encapsulates all data logic necessary to add/query/delete

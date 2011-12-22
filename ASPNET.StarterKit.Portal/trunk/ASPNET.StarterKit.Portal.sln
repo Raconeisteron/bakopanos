@@ -7,7 +7,7 @@ Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "SqlServerDatabase", "SqlSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Web", "Unity.Web\Unity.Web.csproj", "{3478C9AE-1CB1-4CBE-BE27-BFB1F982400A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalModules", "ASPNETPortal.DataAccess\PortalModules.csproj", "{340D5FA6-AA31-4405-9AC0-5A60F2D89131}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalModules", "PortalModules\PortalModules.csproj", "{340D5FA6-AA31-4405-9AC0-5A60F2D89131}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalConfiguration", "PortalConfiguration\PortalConfiguration.csproj", "{6BE38D23-B172-4369-834E-F11C6D4F3538}"
 EndProject

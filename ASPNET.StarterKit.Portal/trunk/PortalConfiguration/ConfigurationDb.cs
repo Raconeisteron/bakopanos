@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Caching;
 using Microsoft.Practices.Unity;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNETPortal
 {
     /// <summary>
     /// Class that encapsulates all data logic necessary to add/query/delete

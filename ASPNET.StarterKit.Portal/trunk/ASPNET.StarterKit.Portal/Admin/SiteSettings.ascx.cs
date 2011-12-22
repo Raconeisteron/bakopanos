@@ -1,4 +1,5 @@
 using System;
+using ASPNETPortal;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal

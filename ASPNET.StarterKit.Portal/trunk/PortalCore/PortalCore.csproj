@@ -8,7 +8,7 @@
     <ProjectGuid>{1BD961EF-EC7D-4763-ADCA-2E4C2012CC0E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASPNET.StarterKit.Portal</RootNamespace>
+    <RootNamespace>ASPNETPortal</RootNamespace>
     <AssemblyName>PortalCore</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

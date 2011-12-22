@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNETPortal
 {
     public interface IGlobalDb
     {

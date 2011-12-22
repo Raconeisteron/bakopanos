@@ -1,7 +1,7 @@
 using System.Data;
 using System.Data.Common;
 
-namespace ASPNET.StarterKit.Portal
+namespace Framework.Data
 {
     public interface IDbHelper
     {
