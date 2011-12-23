@@ -28,8 +28,12 @@ namespace ASPNET.StarterKit.Portal
                                          HttpContext.Current.Server.MapPath(
                                              ConfigurationManager.AppSettings["configFile"]));
             myContainer.RegisterInstance(ConfigurationManager.ConnectionStrings["connectionString"]);
-            myContainer.RegisterType<IDbHelper, DbHelper>(new ContainerControlledLifetimeManager());
 
+            var wrapper = new HttpContextWrapper(HttpContext.Current);
+            myContainer.RegisterInstance<HttpContextBase>(wrapper);
+
+            myContainer.RegisterType<IDbHelper, DbHelper>(new ContainerControlledLifetimeManager());
+            
             // bootstrapp unity modules
             foreach (ContainerRegistration containerRegistration in myContainer.Registrations)
             {

@@ -67,10 +67,6 @@
     <Compile Include="UnityModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PortalModules\PortalModules.csproj">
-      <Project>{340D5FA6-AA31-4405-9AC0-5A60F2D89131}</Project>
-      <Name>PortalModules</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework.Data\Framework.Data.csproj">
       <Project>{70DE6CB2-0140-40D9-A26A-5C9270739026}</Project>
       <Name>Framework.Data</Name>

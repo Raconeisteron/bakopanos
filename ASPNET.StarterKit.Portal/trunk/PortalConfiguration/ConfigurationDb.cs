@@ -17,9 +17,11 @@ namespace ASPNETPortal
     {
         private readonly string _configFile;
         private readonly IPortalModulesDb _portalModulesDb;
+        private HttpContextBase _context;
 
-        public ConfigurationDb(IPortalModulesDb portalModulesDb, [Dependency("ConfigFile")] string configFile)
+        public ConfigurationDb(HttpContextBase context, IPortalModulesDb portalModulesDb, [Dependency("ConfigFile")] string configFile)
         {
+            _context = context;
             _portalModulesDb = portalModulesDb;
             _configFile = configFile;
         }
@@ -629,7 +631,7 @@ namespace ASPNETPortal
         /// </summary>
         private SiteConfiguration GetSiteSettings()
         {
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
+            var siteSettings = (SiteConfiguration) _context.Cache["SiteSettings"];
 
             // If the SiteConfiguration isn't cached, load it from the XML file and add it into the cache.
             if (siteSettings == null)
@@ -646,7 +648,7 @@ namespace ASPNETPortal
                 siteSettings.ReadXml(_configFile);
 
                 // Store the dataset in the cache
-                HttpContext.Current.Cache.Insert("SiteSettings", siteSettings, new CacheDependency(_configFile));
+                _context.Cache.Insert("SiteSettings", siteSettings, new CacheDependency(_configFile));
             }
 
             return siteSettings;
