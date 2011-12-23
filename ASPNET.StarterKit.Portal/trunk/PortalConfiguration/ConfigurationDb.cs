@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Caching;
 using Microsoft.Practices.Unity;
 
 namespace ASPNETPortal
@@ -17,11 +15,10 @@ namespace ASPNETPortal
     {
         private readonly string _configFile;
         private readonly IPortalModulesDb _portalModulesDb;
-        private HttpContextBase _context;
+        private SiteConfiguration _siteConfiguration;
 
-        public ConfigurationDb(HttpContextBase context, IPortalModulesDb portalModulesDb, [Dependency("ConfigFile")] string configFile)
+        public ConfigurationDb(IPortalModulesDb portalModulesDb, [Dependency("ConfigFile")] string configFile)
         {
-            _context = context;
             _portalModulesDb = portalModulesDb;
             _configFile = configFile;
         }
@@ -631,27 +628,22 @@ namespace ASPNETPortal
         /// </summary>
         private SiteConfiguration GetSiteSettings()
         {
-            var siteSettings = (SiteConfiguration) _context.Cache["SiteSettings"];
-
             // If the SiteConfiguration isn't cached, load it from the XML file and add it into the cache.
-            if (siteSettings == null)
+            if (_siteConfiguration == null)
             {
                 // Create the dataset
-                siteSettings = new SiteConfiguration();
+                _siteConfiguration = new SiteConfiguration();
 
                 // Set the AutoIncrement property to true for easier adding of rows
-                siteSettings.Tab.TabIdColumn.AutoIncrement = true;
-                siteSettings.Module.ModuleIdColumn.AutoIncrement = true;
-                siteSettings.ModuleDefinition.ModuleDefIdColumn.AutoIncrement = true;
+                _siteConfiguration.Tab.TabIdColumn.AutoIncrement = true;
+                _siteConfiguration.Module.ModuleIdColumn.AutoIncrement = true;
+                _siteConfiguration.ModuleDefinition.ModuleDefIdColumn.AutoIncrement = true;
 
                 // Load the XML data into the DataSet
-                siteSettings.ReadXml(_configFile);
-
-                // Store the dataset in the cache
-                _context.Cache.Insert("SiteSettings", siteSettings, new CacheDependency(_configFile));
+                _siteConfiguration.ReadXml(_configFile);
             }
 
-            return siteSettings;
+            return _siteConfiguration;
         }
 
         /// <summary>

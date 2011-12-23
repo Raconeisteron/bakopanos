@@ -5,7 +5,6 @@ using System.Web.Caching;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using NUnit.Framework;
-using Rhino.Mocks;
 
 namespace ASPNETPortal
 {
@@ -34,10 +33,6 @@ namespace ASPNETPortal
             container.RegisterInstance("ConfigFile", ConfigurationManager.AppSettings["configFile"]);
             container.RegisterType<IPortalModulesDb, PortalModulesDbFake>(new ContainerControlledLifetimeManager());
 
-            var mocks=new MockRepository();
-            var wrapper = mocks.Stub<HttpContextBase>();
-            container.RegisterInstance<HttpContextBase>(wrapper);
-
             // bootstrapp unity modules)
             foreach (ContainerRegistration containerRegistration in container.Registrations)
             {
@@ -47,23 +42,9 @@ namespace ASPNETPortal
                 }
             }
 
-            using (mocks.Record())
-            {
-                Expect
-                    .Call(wrapper.Cache)
-                    .Return(new Cache());
-
-                Expect
-                    .Call(wrapper.Cache["SiteSettings"])
-                    .Return(null);
-            }
-
-            using (mocks.Playback())
-            {
+            
                 GlobalItem item = container.Resolve<IGlobalDb>().GetGlobalByPortalId(0);
-            }
-
-
+            
         }
 
         [Test]
