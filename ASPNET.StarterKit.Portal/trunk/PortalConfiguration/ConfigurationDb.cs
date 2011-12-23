@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.Caching;
 using Microsoft.Practices.Unity;
 
 namespace ASPNETPortal
@@ -15,10 +17,11 @@ namespace ASPNETPortal
     {
         private readonly string _configFile;
         private readonly IPortalModulesDb _portalModulesDb;
-        private SiteConfiguration _siteConfiguration;
+        private readonly HttpContextBase _context;
 
-        public ConfigurationDb(IPortalModulesDb portalModulesDb, [Dependency("ConfigFile")] string configFile)
+        public ConfigurationDb(HttpContextBase context, IPortalModulesDb portalModulesDb, [Dependency("ConfigFile")] string configFile)
         {
+            _context = context;
             _portalModulesDb = portalModulesDb;
             _configFile = configFile;
         }
@@ -52,7 +55,7 @@ namespace ASPNETPortal
             globalRow.AlwaysShowEditButton = alwaysShow;
 
             // Save the changes 
-            SaveSiteSettings();
+            SaveSiteSettings(siteSettings);
         }
 
         #endregion
@@ -122,7 +125,7 @@ namespace ASPNETPortal
             siteSettings.Tab.AddTabRow(newRow);
 
             // Save the changes 
-            SaveSiteSettings();
+            SaveSiteSettings(siteSettings);
 
             // Return the new TabID
             return newRow.TabId;
@@ -148,7 +151,7 @@ namespace ASPNETPortal
             tabRow.ShowMobile = showMobile;
 
             // Save the changes 
-            SaveSiteSettings();
+            SaveSiteSettings(siteSettings);
         }
 
         /// <summary>
@@ -167,7 +170,7 @@ namespace ASPNETPortal
             tabRow.TabOrder = tabOrder;
 
             // Save the changes 
-            SaveSiteSettings();
+            SaveSiteSettings(siteSettings);
         }
 
         /// <summary>
@@ -201,7 +204,7 @@ namespace ASPNETPortal
             tabTable.RemoveTabRow(tabRow);
 
             // Save the changes 
-            SaveSiteSettings();
+            SaveSiteSettings(siteSettings);
         }
 
         #endregion
@@ -235,7 +238,7 @@ namespace ASPNETPortal
             moduleRow.PaneName = pane;
 
             // Save the changes 
-            SaveSiteSettings();
+            SaveSiteSettings(siteSettings);
         }
 
         /// <summary>
@@ -266,7 +269,7 @@ namespace ASPNETPortal
             siteSettings.Module.AddModuleRow(newModule);
 
             // Save the changes
-            SaveSiteSettings();
+            SaveSiteSettings(siteSettings);
 
             // Return the new Module ID
             return newModule.ModuleId;
@@ -294,7 +297,7 @@ namespace ASPNETPortal
             moduleRow.ShowMobile = showMobile;
 
             // Save the changes 
-            SaveSiteSettings();
+            SaveSiteSettings(siteSettings);
 
             // Return the existing Module ID
             return moduleId;
@@ -319,7 +322,7 @@ namespace ASPNETPortal
             siteSettings.Module.RemoveModuleRow(siteSettings.Module.FindByModuleId(moduleId));
 
             // Save the changes 
-            SaveSiteSettings();
+            SaveSiteSettings(siteSettings);
         }
 
         /// <summary>
@@ -422,7 +425,7 @@ namespace ASPNETPortal
             }
 
             // Save the changes 
-            SaveSiteSettings();
+            SaveSiteSettings(siteSettings);
         }
 
         /// <summary>
@@ -518,7 +521,7 @@ namespace ASPNETPortal
             siteSettings.ModuleDefinition.AddModuleDefinitionRow(newModuleDef);
 
             // Save the changes
-            SaveSiteSettings();
+            SaveSiteSettings(siteSettings);
 
             // Return the new ModuleDefID
             return newModuleDef.ModuleDefId;
@@ -556,7 +559,7 @@ namespace ASPNETPortal
                 siteSettings.ModuleDefinition.FindByModuleDefId(defId));
 
             // Save the changes 
-            SaveSiteSettings();
+            SaveSiteSettings(siteSettings);
         }
 
         /// <summary>
@@ -576,7 +579,7 @@ namespace ASPNETPortal
             modDefRow.MobileSourceFile = mobileSrc;
 
             // Save the changes 
-            SaveSiteSettings();
+            SaveSiteSettings(siteSettings);
         }
 
         /// <summary>
@@ -628,22 +631,38 @@ namespace ASPNETPortal
         /// </summary>
         private SiteConfiguration GetSiteSettings()
         {
-            // If the SiteConfiguration isn't cached, load it from the XML file and add it into the cache.
-            if (_siteConfiguration == null)
+            //only a hack for unit tests...
+            if (_context.Cache == null)
             {
-                // Create the dataset
-                _siteConfiguration = new SiteConfiguration();
-
-                // Set the AutoIncrement property to true for easier adding of rows
-                _siteConfiguration.Tab.TabIdColumn.AutoIncrement = true;
-                _siteConfiguration.Module.ModuleIdColumn.AutoIncrement = true;
-                _siteConfiguration.ModuleDefinition.ModuleDefIdColumn.AutoIncrement = true;
-
-                // Load the XML data into the DataSet
-                _siteConfiguration.ReadXml(_configFile);
+                return CreateSiteSettings();
             }
 
-            return _siteConfiguration;
+            var siteSettings = (SiteConfiguration)_context.Cache["SiteSettings"];
+
+            // If the SiteConfiguration isn't cached, load it from the XML file and add it into the cache.
+            if (siteSettings == null)
+            {
+                siteSettings = CreateSiteSettings();
+
+                // Store the dataset in the cache
+                _context.Cache.Insert("SiteSettings", siteSettings, new CacheDependency(_configFile));
+            }
+
+            return siteSettings;
+        }
+
+        private SiteConfiguration CreateSiteSettings()
+        {
+            var siteSettings = new SiteConfiguration();
+
+            // Set the AutoIncrement property to true for easier adding of rows
+            siteSettings.Tab.TabIdColumn.AutoIncrement = true;
+            siteSettings.Module.ModuleIdColumn.AutoIncrement = true;
+            siteSettings.ModuleDefinition.ModuleDefIdColumn.AutoIncrement = true;
+
+            // Load the XML data into the DataSet
+            siteSettings.ReadXml(_configFile);
+            return siteSettings;
         }
 
         /// <summary>
@@ -652,22 +671,30 @@ namespace ASPNETPortal
         /// turn be evicted from the cache and be reloaded from the XML file the next
         /// time GetSiteSettings() is called.
         /// </summary>
-        private void SaveSiteSettings()
+        private void SaveSiteSettings(SiteConfiguration siteSettings)
         {
-            // Obtain SiteSettings from the Cache
-            SiteConfiguration siteSettings = GetSiteSettings();
+            //// Obtain SiteSettings from the Cache
+            //SiteConfiguration siteSettings = GetSiteSettings();
 
-            // Check the object
-            if (siteSettings == null)
-            {
-                // If SaveSiteSettings() is called once, the cache is cleared.  If it is
-                // then called again before Global.Application_BeginRequest is called, 
-                // which reloads the cache, the siteSettings object will be Null 
-                siteSettings = GetSiteSettings();
-            }
+            //// Check the object
+            //if (siteSettings == null)
+            //{
+            //    // If SaveSiteSettings() is called once, the cache is cleared.  If it is
+            //    // then called again before Global.Application_BeginRequest is called, 
+            //    // which reloads the cache, the siteSettings object will be Null 
+            //    siteSettings = GetSiteSettings();
+            //}
 
             // Object is evicted from the Cache here.  
             siteSettings.WriteXml(_configFile);
+
+            //only a hack for unit tests...
+            if (_context.Cache != null)
+            {
+                // Store the dataset in the cache
+                _context.Cache.Insert("SiteSettings", siteSettings, new CacheDependency(_configFile));
+            }
+            
         }
     }
 }
