@@ -6,21 +6,27 @@ namespace ASPNETPortal
     public class GlobalDbFixture:BaseFixture<IGlobalDb>
     {
         [Test]
-        public void GetAndUpdate()
+        public void GetGlobalByPortalId()
         {
+            //act
+            GlobalItem item = Db.GetGlobalByPortalId(0);
+            //assert
+            Assert.AreEqual(item.AlwaysShowEditButton, false);
+            Assert.AreEqual(item.PortalName, "ASP.NET Portal Starter Kit");
+        }
+
+
+        [Test]
+        public void UpdatePortalInfo()
+        {
+            //act
             Db.UpdatePortalInfo(0, "test1", true);
-            {
-                GlobalItem item = Db.GetGlobalByPortalId(0);
-                Assert.IsTrue(item.AlwaysShowEditButton);
-                Assert.AreEqual(item.PortalName, "test1");
-                
-            }
-            Db.UpdatePortalInfo(0, "test2", false);
-            {
-                GlobalItem item = Db.GetGlobalByPortalId(0);
-                Assert.IsTrue(!item.AlwaysShowEditButton);
-                Assert.AreEqual(item.PortalName, "test2");
-            }
+            //assert
+            GlobalItem item = Db.GetGlobalByPortalId(0);
+            Assert.AreEqual(item.AlwaysShowEditButton, true);
+            Assert.AreEqual(item.PortalName, "test1");
+
+
         }
 
     }
