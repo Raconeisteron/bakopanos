@@ -2,11 +2,10 @@ using System.Collections;
 using System.ComponentModel;
 using System.Web;
 using System.Web.UI;
-using ASPNETPortal;
 using Microsoft.Practices.Unity;
 using Unity.Web;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNETPortal
 {
     /// <summary>
     /// The PortalModuleControl class defines a custom base class inherited by all

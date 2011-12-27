@@ -290,10 +290,6 @@
     <Compile Include="Admin\Users.ascx.designer.cs">
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Components\CachedPortalModuleControl.cs" />
-    <Compile Include="Components\PortalModuleControl.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -487,6 +483,10 @@
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PortalControls\PortalControls.csproj">
+      <Project>{29D730BD-457E-436A-BD56-315E26B4C07C}</Project>
+      <Name>PortalControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PortalModules\PortalModules.csproj">
       <Project>{340D5FA6-AA31-4405-9AC0-5A60F2D89131}</Project>
       <Name>PortalModules</Name>
