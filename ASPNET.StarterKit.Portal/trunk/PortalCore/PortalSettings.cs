@@ -10,12 +10,12 @@ namespace ASPNETPortal
     /// </summary>
     public class PortalSettings
     {
-        public TabSettings ActiveTab = new TabSettings();
-        public bool AlwaysShowEditButton;
-        public List<TabStripDetails> DesktopTabs = new List<TabStripDetails>();
-        public List<TabStripDetails> MobileTabs = new List<TabStripDetails>();
-        public int PortalId;
-        public String PortalName;
+        public TabSettings ActiveTab { get; set; }
+        public bool AlwaysShowEditButton { get; set; }
+        public List<TabStripDetails> DesktopTabs { get; set; }
+        public List<TabStripDetails> MobileTabs { get; set; }
+        public int PortalId { get; set; }
+        public String PortalName { get; set; }
 
         /// <summary>
         /// The PortalSettings Constructor encapsulates all of the logic
@@ -29,6 +29,12 @@ namespace ASPNETPortal
         public PortalSettings(IGlobalDb globalDb, ITabDb tabDb, IModuleDb moduleDb, IModuleDefinitionDb configurationDb,
                               int tabIndex, int tabId)
         {
+
+              ActiveTab = new TabSettings();
+          DesktopTabs = new List<TabStripDetails>();
+          MobileTabs = new List<TabStripDetails>();
+       
+
             // Read the Desktop Tab Information, and sort by Tab Order
             foreach (TabItem tRow in tabDb.GetTabs())
             {

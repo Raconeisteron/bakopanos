@@ -13,7 +13,7 @@ namespace ASPNETPortal
     internal class PortalSecurity : IPortalSecurity
     {
         [Dependency]
-        public IAuthorizationDb Model { get; set; }
+        public IModuleDb Model { get; set; }
 
         #region IPortalSecurity Members
 

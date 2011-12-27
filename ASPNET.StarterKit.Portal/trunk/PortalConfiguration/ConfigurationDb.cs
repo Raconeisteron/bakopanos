@@ -13,7 +13,7 @@ namespace ASPNETPortal
     /// tab configuration settings, module configuration settings and module 
     /// definition configuration settings from the PortalCfg.xml file.
     /// </summary>
-    internal class ConfigurationDb : IGlobalDb, ITabDb, IModuleDb, IModuleDefinitionDb, IAuthorizationDb
+    internal class ConfigurationDb : IGlobalDb, ITabDb, IModuleDb, IModuleDefinitionDb
     {
         private readonly string _configFile;
         private readonly IPortalModulesDb _portalModulesDb;

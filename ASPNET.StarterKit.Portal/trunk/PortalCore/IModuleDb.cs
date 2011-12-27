@@ -54,5 +54,9 @@ namespace ASPNETPortal
         /// settings.
         /// </summary>        
         Hashtable GetModuleSettings(int moduleId);
+
+        string GetEditRolesByModuleId(int moduleId);
+
+        string GetAccessRolesByModuleId(int moduleId);
     }
 }

@@ -483,10 +483,6 @@
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PortalControls\PortalControls.csproj">
-      <Project>{29D730BD-457E-436A-BD56-315E26B4C07C}</Project>
-      <Name>PortalControls</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PortalModules\PortalModules.csproj">
       <Project>{340D5FA6-AA31-4405-9AC0-5A60F2D89131}</Project>
       <Name>PortalModules</Name>
@@ -495,17 +491,9 @@
       <Project>{70DE6CB2-0140-40D9-A26A-5C9270739026}</Project>
       <Name>Framework.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PortalConfiguration\PortalConfiguration.csproj">
-      <Project>{6BE38D23-B172-4369-834E-F11C6D4F3538}</Project>
-      <Name>PortalConfiguration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PortalCore\PortalCore.csproj">
       <Project>{1BD961EF-EC7D-4763-ADCA-2E4C2012CC0E}</Project>
       <Name>PortalCore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PortalSecurity\PortalSecurity.csproj">
-      <Project>{31ECF97A-2A69-4988-B0E4-93A8105348B2}</Project>
-      <Name>PortalSecurity</Name>
     </ProjectReference>
     <ProjectReference Include="..\Unity.Web\Unity.Web.csproj">
       <Project>{3478C9AE-1CB1-4CBE-BE27-BFB1F982400A}</Project>

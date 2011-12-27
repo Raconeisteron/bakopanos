@@ -8,7 +8,6 @@ namespace ASPNETPortal
         {
             container.RegisterType<ConfigurationDb, ConfigurationDb>(new ContainerControlledLifetimeManager());
             container.RegisterType<IModuleDefinitionDb, ConfigurationDb>();
-            container.RegisterType<IAuthorizationDb, ConfigurationDb>();
             container.RegisterType<IGlobalDb, ConfigurationDb>();
             container.RegisterType<ITabDb, ConfigurationDb>();
             container.RegisterType<IModuleDb, ConfigurationDb>();
