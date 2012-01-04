@@ -17,7 +17,7 @@ namespace ASPNET.StarterKit.Portal
         private String _userName = "";
 
         [Dependency]
-        public IUsersDb UsersModel { private get; set; }
+        public IPortalUsersService UsersModel { private get; set; }
 
         [Dependency]
         public IPortalRolesService RolesModel { private get; set; }
@@ -170,9 +170,9 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Bind the Email and Password
-            DataRow row = UsersModel.GetSingleUser(_userName);
+            PortalUser user = UsersModel.GetSingleUser(_userName);
 
-            Email.Text = (String) row["Email"];
+            Email.Text = user.Email;
 
             // add the user name to the title
             if (_userName != "")

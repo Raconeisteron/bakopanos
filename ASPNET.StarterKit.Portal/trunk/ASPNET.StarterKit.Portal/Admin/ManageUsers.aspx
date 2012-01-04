@@ -69,7 +69,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<asp:DropDownList ID="allRoles" DataTextField="RoleName" DataValueField="Id"
+				<asp:DropDownList ID="allRoles" DataTextField="Name" DataValueField="Id"
 					runat="server" />
 				&nbsp;<asp:LinkButton ID="addExisting" CssClass="CommandButton" Text="Add user to this role"
 					runat="server" CausesValidation="False" OnClick="AddRole_Click">
@@ -87,7 +87,7 @@
 						&nbsp;&nbsp;
 						<asp:ImageButton ImageUrl="~/images/delete.gif" CommandName="delete" AlternateText="Remove user from this role"
 							runat="server" ID="Imagebutton1" />
-						<asp:Label Text='<%# DataBinder.Eval(Container.DataItem, "RoleName") %>' CssClass="Normal"
+						<asp:Label Text='<%# DataBinder.Eval(Container.DataItem, "Name") %>' CssClass="Normal"
 							runat="server" ID="Label1" />
 					</ItemTemplate>
 				</asp:DataList>

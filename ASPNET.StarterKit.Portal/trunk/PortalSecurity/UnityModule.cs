@@ -13,6 +13,7 @@ namespace ASPNETPortal.Security
 
             container.RegisterType<IPortalSecurity, PortalSecurity>(new ContainerControlledLifetimeManager());
 
+            container.RegisterType<IPortalUsersService, PortalUsersService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IPortalRolesService, PortalRolesService>(new ContainerControlledLifetimeManager());
         }
     }

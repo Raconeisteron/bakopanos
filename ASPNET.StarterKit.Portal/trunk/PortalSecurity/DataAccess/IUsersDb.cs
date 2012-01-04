@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 
-namespace ASPNETPortal.Security
+namespace ASPNETPortal.Security.DataAccess
 {
-    public interface IUsersDb
+    internal interface IUsersDb
     {
         /// <summary>
         /// The AddUser method inserts a new user record into the "Users" database table.

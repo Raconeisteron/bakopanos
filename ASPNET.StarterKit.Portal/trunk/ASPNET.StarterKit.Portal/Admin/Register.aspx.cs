@@ -2,6 +2,7 @@ using System;
 using System.Web.Security;
 using System.Web.UI;
 using ASPNETPortal.Security;
+using ASPNETPortal.Security.Model;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -12,7 +13,7 @@ namespace ASPNET.StarterKit.Portal
     public partial class Register : Page
     {
         [Dependency]
-        public IUsersDb Model { private get; set; }
+        public IPortalUsersService Model { private get; set; }
 
         [Dependency]
         public IPortalSecurity PortalSecurity { private get; set; }

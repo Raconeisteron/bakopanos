@@ -45,9 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\IRolesDb.cs" />
-    <Compile Include="IUsersDb.cs" />
+    <Compile Include="DataAccess\IUsersDb.cs" />
+    <Compile Include="Model\Extensions.cs" />
     <Compile Include="Model\IPortalRolesService.cs" />
+    <Compile Include="Model\IPortalUsersService.cs" />
     <Compile Include="Model\PortalRole.cs" />
+    <Compile Include="Model\PortalRolesService.cs" />
+    <Compile Include="Model\PortalUser.cs" />
+    <Compile Include="Model\PortalUsersService.cs" />
     <Compile Include="PortalSecurity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataAccess\RolesDB.cs" />

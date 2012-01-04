@@ -3,6 +3,7 @@ using System.Web.Security;
 using System.Web.UI;
 using ASPNETPortal;
 using ASPNETPortal.Security;
+using ASPNETPortal.Security.Model;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -10,7 +11,7 @@ namespace ASPNET.StarterKit.Portal
     public partial class Signin : PortalModuleControl
     {
         [Dependency]
-        public IUsersDb Model { private get; set; }
+        public IPortalUsersService Model { private get; set; }
 
 
         protected void LoginBtn_Click(Object sender, ImageClickEventArgs e)

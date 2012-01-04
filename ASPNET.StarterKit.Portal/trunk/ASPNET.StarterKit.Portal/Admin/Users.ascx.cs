@@ -14,7 +14,7 @@ namespace ASPNET.StarterKit.Portal
         private int _tabIndex;
 
         [Dependency]
-        public IUsersDb Model { private get; set; }
+        public IPortalUsersService Model { private get; set; }
 
         [Dependency]
         public IPortalRolesService RolesModel { private get; set; }

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Security;
 using ASPNETPortal.Configuration;
 using ASPNETPortal.Security;
+using ASPNETPortal.Security.Model;
 using Framework.Data;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
@@ -108,7 +109,7 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         protected void Application_AuthenticateRequest(Object sender, EventArgs e)
         {
-            var model = HttpContext.Current.Application.GetContainer().Resolve<IUsersDb>();
+            var model = HttpContext.Current.Application.GetContainer().Resolve<IPortalUsersService>();
 
             if (Request.IsAuthenticated)
             {

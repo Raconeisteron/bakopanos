@@ -18,7 +18,7 @@
         </td>
         <td class="Normal">
             Registered Users:&nbsp;
-            <asp:DropDownList id="allUsers" DataTextField="Email" DataValueField="UserID" runat="server" />
+            <asp:DropDownList id="allUsers" DataTextField="Email" DataValueField="Id" runat="server" />
             &nbsp;
             <asp:ImageButton ImageUrl="~/images/edit.gif" CommandName="edit" AlternateText="Edit this user" runat="server" ID="EditBtn" />
             <asp:ImageButton ImageUrl="~/images/delete.gif" AlternateText="Delete this user" runat="server" ID="DeleteBtn" onclick="DeleteUser_Click" />
