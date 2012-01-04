@@ -62,7 +62,7 @@ namespace ASPNETPortal
                 userName = "unknown";
             }
 
-            DbParameter parameterItemId = _db.CreateOutputParameter("@ItemID", DbType.Int32);
+            DbParameter parameterItemId = _db.CreateOutputParameter("@ItemID", DbType.Int32, 4);
             DbParameter parameterTitle = _db.CreateParameter("@Title", title);
             DbParameter parameterBody = _db.CreateParameter("@Body", body);
             DbParameter parameterParentId = _db.CreateParameter("@ParentID", parentId);

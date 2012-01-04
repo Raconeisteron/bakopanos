@@ -27,88 +27,110 @@ namespace Framework.Data
             return parameter;
         }
 
-        public DbParameter CreateOutputParameter(string parameterName, DbType type)
+        public DbParameter CreateOutputParameter(string parameterName, DbType type, int size)
         {
             DbParameter parameter = _factory.CreateParameter();
             parameter.ParameterName = parameterName;
             parameter.Direction = ParameterDirection.Output;
+            parameter.Size = size;
             parameter.DbType = type;
             return parameter;
         }
 
-        public DataTable GetDataTable(string myCommandText, params DbParameter[] sqlParameters)
+        public DataTable GetDataTable(string commandText, CommandType commandType, params DbParameter[] parameters)
         {
-            foreach (DataTable table in GetDataSet(myCommandText, sqlParameters).Tables)
+            DataSet dataSet = GetDataSet(commandText, commandType, parameters);
+            foreach (DataTable table in dataSet.Tables)
             {
                 return table;
             }
             throw new ApplicationException("Command returned no result");
         }
 
-        public DataRow GetDataRow(string myCommandText, params DbParameter[] sqlParameters)
+        public DataTable GetDataTable(string commandText, params DbParameter[] parameters)
         {
-            foreach (DataRow row in GetDataTable(myCommandText, sqlParameters).Rows)
+            DataSet dataSet = GetDataSet(commandText, parameters);
+            foreach (DataTable table in dataSet.Tables)
+            {
+                return table;
+            }
+            throw new ApplicationException("Command returned no result");
+        }
+
+        public DataRow GetDataRow(string commandText,CommandType commandType, params DbParameter[] parameters)
+        {
+            foreach (DataRow row in GetDataTable(commandText, parameters).Rows)
             {
                 return row;
             }
             throw new ApplicationException("Command returned no result");
         }
 
-        public T ExecuteNonQuery<T>(string myCommandText, DbParameter outSqlParameter,
-                                    params DbParameter[] sqlParameters)
+        public DataRow GetDataRow(string commandText, params DbParameter[] parameters)
         {
-            var parameters = new List<DbParameter> {outSqlParameter};
-            parameters.AddRange(sqlParameters);
-            ExecuteNonQuery(myCommandText, parameters.ToArray());
-
-            return (T) outSqlParameter.Value;
+            return GetDataRow(commandText, CommandType.StoredProcedure, parameters);
         }
 
-        public void ExecuteNonQuery(string myCommandText, params DbParameter[] sqlParameters)
+        public T ExecuteNonQuery<T>(string commandText, DbParameter outParameter,
+                                    params DbParameter[] sqlParameters)
+        {
+            var parameters = new List<DbParameter> {outParameter};
+            parameters.AddRange(sqlParameters);
+            ExecuteNonQuery(commandText, parameters.ToArray());
+
+            return (T) outParameter.Value;
+        }
+
+        public void ExecuteNonQuery(string commandText, params DbParameter[] parameters)
         {
             // Create Instance of Connection and Command Object
-            using (DbConnection myConnection = _factory.CreateConnection())
+            using (DbConnection connection = _factory.CreateConnection())
             {
-                myConnection.ConnectionString = _connectionString;
+                connection.ConnectionString = _connectionString;
                 DbCommand myCommand = _factory.CreateCommand();
-                myCommand.CommandText = myCommandText;
-                myCommand.Connection = myConnection;
+                myCommand.CommandText = commandText;
+                myCommand.Connection = connection;
                 myCommand.CommandType = CommandType.StoredProcedure;
 
                 // Add Parameters to SPROC
-                myCommand.Parameters.AddRange(sqlParameters);
+                myCommand.Parameters.AddRange(parameters);
 
-                myConnection.Open();
+                connection.Open();
                 myCommand.ExecuteNonQuery();
-                myConnection.Close();
+                connection.Close();
             }
         }
 
         #endregion
 
-        private DataSet GetDataSet(string myCommandText, params DbParameter[] sqlParameters)
+        private DataSet GetDataSet(string commandText, CommandType commandType, params DbParameter[] parameters)
         {
-            var myDataSet = new DataSet();
+            var dataSet = new DataSet();
 
             // Create Instance of Connection and Command Object
-            using (DbConnection myConnection = _factory.CreateConnection())
+            using (DbConnection connection = _factory.CreateConnection())
             {
-                myConnection.ConnectionString = _connectionString;
-                DbDataAdapter myCommand = _factory.CreateDataAdapter();
-                myCommand.SelectCommand = _factory.CreateCommand();
-                myCommand.SelectCommand.CommandText = myCommandText;
-                myCommand.SelectCommand.Connection = myConnection;
-                myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
+                connection.ConnectionString = _connectionString;
+                DbDataAdapter command = _factory.CreateDataAdapter();
+                command.SelectCommand = _factory.CreateCommand();
+                command.SelectCommand.CommandText = commandText;
+                command.SelectCommand.Connection = connection;
+                command.SelectCommand.CommandType = commandType;
 
                 // Add Parameters to SPROC
-                myCommand.SelectCommand.Parameters.AddRange(sqlParameters);
+                command.SelectCommand.Parameters.AddRange(parameters);
 
                 // Create and Fill the DataSet                
-                myCommand.Fill(myDataSet);
+                command.Fill(dataSet);
             }
 
             // Return the DataSet
-            return myDataSet;
+            return dataSet;
+        }
+
+        private DataSet GetDataSet(string commandText, params DbParameter[] parameters)
+        {
+            return GetDataSet(commandText, CommandType.StoredProcedure, parameters);
         }
     }
 }

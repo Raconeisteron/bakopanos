@@ -31,7 +31,7 @@ namespace ASPNETPortal.Security
         /// </summary>
         public int AddUser(String fullName, String email, String password)
         {
-            var parameterUserId = _db.CreateOutputParameter("@UserID", DbType.Int32);
+            var parameterUserId = _db.CreateOutputParameter("@UserID", DbType.Int32, 4);
 
             var parameterFullName = _db.CreateParameter("@Name", fullName);
             var parameterEmail = _db.CreateParameter("@Email", email);
@@ -113,7 +113,7 @@ namespace ASPNETPortal.Security
         /// </summary>
         public String Login(String email, String password)
         {
-            var parameterUserName = _db.CreateOutputParameter("@UserName", DbType.String);
+            var parameterUserName = _db.CreateOutputParameter("@UserName", DbType.String, 50);
 
             var parameterEmail = _db.CreateParameter("@Email", email);
             var parameterPassword = _db.CreateParameter("@Password", password);

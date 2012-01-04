@@ -37,7 +37,7 @@ namespace ASPNETPortal.Security
         /// </summary>
         public int AddRole(int portalId, String roleName)
         {
-            DbParameter parameterRoleId = _db.CreateOutputParameter("@RoleID", DbType.Int32);
+            DbParameter parameterRoleId = _db.CreateOutputParameter("@RoleID", DbType.Int32, 4);
             DbParameter parameterPortalId = _db.CreateParameter("@PortalID", portalId);
             DbParameter parameterRoleName = _db.CreateParameter("@RoleName", roleName);
 

@@ -46,9 +46,9 @@
   <ItemGroup>
     <Compile Include="PortalSecurity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RolesDB.cs" />
+    <Compile Include="DataAccess\RolesDB.cs" />
     <Compile Include="UnityModule.cs" />
-    <Compile Include="UsersDB.cs" />
+    <Compile Include="DataAccess\UsersDB.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Data\Framework.Data.csproj">
