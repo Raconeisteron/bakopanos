@@ -5,7 +5,7 @@ using System.Web;
 using ASPNETPortal.Configuration;
 using Microsoft.Practices.Unity;
 
-namespace ASPNETPortal.Security
+namespace ASPNETPortal.Security.Model
 {
     /// <summary>
     /// The PortalSecurity class encapsulates two helper methods that enable
