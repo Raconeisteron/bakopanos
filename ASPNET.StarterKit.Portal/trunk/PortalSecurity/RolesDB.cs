@@ -38,7 +38,7 @@ namespace ASPNETPortal
         /// </summary>
         public int AddRole(int portalId, String roleName)
         {
-            DbParameter parameterRoleId = _db.CreateOutputParameter("@RoleID");
+            DbParameter parameterRoleId = _db.CreateIdentityParameter("@RoleID");
             DbParameter parameterPortalId = _db.CreateParameter("@PortalID", portalId);
             DbParameter parameterRoleName = _db.CreateParameter("@RoleName", roleName);
 

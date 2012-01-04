@@ -1,7 +1,5 @@
 using System;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using Framework.Data;
 
 namespace ASPNETPortal
@@ -28,7 +26,7 @@ namespace ASPNETPortal
         /// </returns>
         public DataTable GetEvents(int moduleId)
         {
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
+            var parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
 
             return _db.GetDataTable("Portal_GetEvents", parameterModuleId);
         }
@@ -39,7 +37,7 @@ namespace ASPNETPortal
         /// </returns>
         public DataRow GetSingleEvent(int itemId)
         {
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
+            var parameterItemId = _db.CreateParameter("@ItemID",  itemId);
 
             return _db.GetDataRow("Portal_GetSingleEvent", parameterItemId);
         }
@@ -50,23 +48,14 @@ namespace ASPNETPortal
         /// </summary>
         public void DeleteEvent(int itemId)
         {
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
+            var parameterItemId = _db.CreateParameter("@ItemID",  itemId);
 
             _db.ExecuteNonQuery("Portal_DeleteEvent", parameterItemId);
         }
 
-        //*********************************************************************
-        //
-        // AddEvent Method
-        //
-        // The AddEvent method adds a new event within the Events database table, 
-        // and returns the ItemID value as a result.
-        //
-        // Other relevant sources:
-        //     + <a href="AddEvent.htm" style="color:green">AddEvent Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// adds a new event within the Events database table, and returns the ItemID value as a result.
+        /// </summary>
         public int AddEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
                             String description, String wherewhen)
         {
@@ -74,58 +63,25 @@ namespace ASPNETPortal
             {
                 userName = "unknown";
             }
+            var parameterItemId = _db.CreateIdentityParameter("@ItemID");
 
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_AddEvent", myConnection);
+            var parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
+            var parameterUserName = _db.CreateParameter("@UserName", userName);
+            var parameterTitle = _db.CreateParameter("@Title",  title);
+            var parameterWhereWhen = _db.CreateParameter("@WhereWhen", wherewhen);
+            var parameterExpireDate = _db.CreateParameter("@ExpireDate", expireDate);
+            var parameterDescription = _db.CreateParameter("@Description", description);
 
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
+            _db.ExecuteNonQuery<int>("Portal_AddEvent", parameterItemId, parameterDescription, parameterModuleId, parameterUserName,
+                                     parameterTitle, parameterWhereWhen, parameterExpireDate);
 
-            // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Direction = ParameterDirection.Output};
-            myCommand.Parameters.Add(parameterItemId);
-
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
-            myCommand.Parameters.Add(parameterModuleId);
-
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};
-            myCommand.Parameters.Add(parameterUserName);
-
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100) {Value = title};
-            myCommand.Parameters.Add(parameterTitle);
-
-            var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100) {Value = wherewhen};
-            myCommand.Parameters.Add(parameterWhereWhen);
-
-            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8) {Value = expireDate};
-            myCommand.Parameters.Add(parameterExpireDate);
-
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000) {Value = description};
-            myCommand.Parameters.Add(parameterDescription);
-
-            // Open the database connection and execute SQL Command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
-
-            // Return the new Event ItemID
+            // Return the new Event ItemID)
             return (int) parameterItemId.Value;
         }
 
-        //*********************************************************************
-        //
-        // UpdateEvent Method
-        //
-        // The UpdateEvent method updates the specified event within
-        // the Events database table.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateEvent.htm" style="color:green">UpdateEvent Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// updates the specified event within the Events database table.
+        /// </summary>
         public void UpdateEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
                                 String description, String wherewhen)
         {
@@ -134,36 +90,15 @@ namespace ASPNETPortal
                 userName = "unknown";
             }
 
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_UpdateEvent", myConnection);
+            var parameterItemId =  _db.CreateParameter("@ItemID",  itemId);
+           
+            var parameterUserName = _db.CreateParameter("@UserName",  userName);
+            var parameterTitle = _db.CreateParameter("@Title",  title);
+            var parameterWhereWhen = _db.CreateParameter("@WhereWhen",  wherewhen);
+            var parameterExpireDate = _db.CreateParameter("@ExpireDate",  expireDate);
+            var parameterDescription = _db.CreateParameter("@Description", description);
 
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
-            myCommand.Parameters.Add(parameterItemId);
-
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};
-            myCommand.Parameters.Add(parameterUserName);
-
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100) {Value = title};
-            myCommand.Parameters.Add(parameterTitle);
-
-            var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100) {Value = wherewhen};
-            myCommand.Parameters.Add(parameterWhereWhen);
-
-            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8) {Value = expireDate};
-            myCommand.Parameters.Add(parameterExpireDate);
-
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000) {Value = description};
-            myCommand.Parameters.Add(parameterDescription);
-
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            _db.ExecuteNonQuery("Portal_UpdateEvent", parameterItemId, parameterUserName, parameterTitle, parameterWhereWhen, parameterExpireDate, parameterDescription);
         }
 
         #endregion

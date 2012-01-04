@@ -6,7 +6,7 @@ namespace Framework.Data
     public interface IDbHelper
     {
         DbParameter CreateParameter(string parameterName, object value);
-        DbParameter CreateOutputParameter(string parameterName);
+        DbParameter CreateIdentityParameter(string parameterName);
         DataTable GetDataTable(string myCommandText, params DbParameter[] sqlParameters);
         DataRow GetDataRow(string myCommandText, params DbParameter[] sqlParameters);
 
