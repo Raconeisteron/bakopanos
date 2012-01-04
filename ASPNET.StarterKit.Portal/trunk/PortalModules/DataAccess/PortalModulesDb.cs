@@ -1,7 +1,7 @@
 using System.Data.Common;
 using Framework.Data;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.DataAccess
 {
     internal class PortalModulesDb : IPortalModulesDb
     {

@@ -13,7 +13,7 @@ namespace ASPNET.StarterKit.Portal
         private int _moduleId;
 
         [Dependency]
-        public IDiscussionDb Model { private get; set; }
+        public IDiscussionsDb Model { private get; set; }
 
         [Dependency]
         public IPortalSecurity PortalSecurity { private get; set; }

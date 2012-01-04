@@ -3,17 +3,17 @@ using System.Data;
 using System.Data.Common;
 using Framework.Data;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.DataAccess
 {
     /// <summary>
     /// Class that encapsulates all data logic necessary to add/query/delete
     /// discussions within the Portal database.
     /// </summary>
-    internal class DiscussionDb : IDiscussionDb
+    internal class DiscussionsDb : IDiscussionsDb
     {
         private readonly IDbHelper _db;
 
-        public DiscussionDb(IDbHelper db)
+        public DiscussionsDb(IDbHelper db)
         {
             _db = db;
         }

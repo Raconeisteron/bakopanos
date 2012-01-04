@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.Common;
 using Framework.Data;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.DataAccess
 {
     /// <summary>
     /// Class that encapsulates all data logic necessary to add/query/delete

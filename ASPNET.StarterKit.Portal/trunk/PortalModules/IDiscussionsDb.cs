@@ -3,7 +3,7 @@ using System.Data;
 
 namespace ASPNETPortal
 {
-    public interface IDiscussionDb
+    public interface IDiscussionsDb
     {
         /// <returns>
         /// Returns details for all of the messages in the discussion specified by ModuleID.

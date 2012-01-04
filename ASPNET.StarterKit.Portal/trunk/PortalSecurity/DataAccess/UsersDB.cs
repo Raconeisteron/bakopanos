@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using Framework.Data;
 
-namespace ASPNETPortal.Security
+namespace ASPNETPortal.Security.DataAccess
 {
     /// <summary>
     /// The UsersDB class encapsulates all data logic necessary to add/login/query

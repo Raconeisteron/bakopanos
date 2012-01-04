@@ -46,21 +46,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnnouncementsDB.cs" />
-    <Compile Include="ContactsDB.cs" />
-    <Compile Include="DiscussionDB.cs" />
-    <Compile Include="DocumentDB.cs" />
-    <Compile Include="EventsDB.cs" />
-    <Compile Include="HtmlTextDB.cs" />
+    <Compile Include="DataAccess\AnnouncementsDB.cs" />
+    <Compile Include="DataAccess\ContactsDB.cs" />
+    <Compile Include="DataAccess\DiscussionsDb.cs" />
+    <Compile Include="DataAccess\DocumentDB.cs" />
+    <Compile Include="DataAccess\EventsDB.cs" />
+    <Compile Include="DataAccess\HtmlTextDB.cs" />
     <Compile Include="IAnnouncementsDb.cs" />
     <Compile Include="IContactsDb.cs" />
-    <Compile Include="IDiscussionDb.cs" />
+    <Compile Include="IDiscussionsDb.cs" />
     <Compile Include="IDocumentDb.cs" />
     <Compile Include="IEventsDb.cs" />
     <Compile Include="IHtmlTextDb.cs" />
     <Compile Include="ILinkDb.cs" />
-    <Compile Include="LinksDB.cs" />
-    <Compile Include="PortalModulesDb.cs" />
+    <Compile Include="DataAccess\LinksDB.cs" />
+    <Compile Include="DataAccess\PortalModulesDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnityModule.cs" />
   </ItemGroup>

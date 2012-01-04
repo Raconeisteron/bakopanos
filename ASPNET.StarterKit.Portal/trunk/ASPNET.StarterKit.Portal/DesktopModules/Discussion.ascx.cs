@@ -9,7 +9,7 @@ namespace ASPNET.StarterKit.Portal
     public partial class Discussion : PortalModuleControl
     {
         [Dependency]
-        public IDiscussionDb Model { private get; set; }
+        public IDiscussionsDb Model { private get; set; }
 
         //*******************************************************
         //
