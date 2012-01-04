@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -6,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ASPNETPortal.Configuration;
 using ASPNETPortal.Security;
+using ASPNETPortal.Security.Model;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -16,7 +18,7 @@ namespace ASPNET.StarterKit.Portal
         private int _tabId;
 
         [Dependency]
-        public IRolesDb Model { private get; set; }
+        public IPortalRolesService Model { private get; set; }
 
         [Dependency]
         public IModuleDb ConfigModel { get; set; }
@@ -95,13 +97,12 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                DataTable roles = Model.GetPortalRoles(portalSettings.PortalId);
+                IEnumerable<PortalRole> roles = Model.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();
 
-                var allItem = new ListItem();
-                allItem.Text = "All Users";
+                var allItem = new ListItem {Text = "All Users"};
 
                 if (m.AuthorizedEditRoles.LastIndexOf("All Users") > -1)
                 {
@@ -110,11 +111,9 @@ namespace ASPNET.StarterKit.Portal
 
                 authEditRoles.Items.Add(allItem);
 
-                foreach (DataRow role in roles.Rows)
+                foreach (PortalRole role in roles)
                 {
-                    var item = new ListItem();
-                    item.Text = (String) role["RoleName"];
-                    item.Value = role["RoleID"].ToString();
+                    var item = new ListItem {Text = role.Name, Value = role.Id.ToString()};
 
                     if ((m.AuthorizedEditRoles.LastIndexOf(item.Text)) > -1)
                     {
@@ -154,13 +153,12 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                DataTable roles = Model.GetPortalRoles(portalSettings.PortalId);
+                IEnumerable<PortalRole> roles = Model.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();
 
-                var allItem = new ListItem();
-                allItem.Text = "All Users";
+                var allItem = new ListItem {Text = "All Users"};
 
                 if (m.AuthorizedEditRoles.LastIndexOf("All Users") > -1)
                 {
@@ -169,11 +167,9 @@ namespace ASPNET.StarterKit.Portal
 
                 authEditRoles.Items.Add(allItem);
 
-                foreach (DataRow role in roles.Rows)
+                foreach (PortalRole role in roles)
                 {
-                    var item = new ListItem();
-                    item.Text = (String) role["RoleName"];
-                    item.Value = role["RoleID"].ToString();
+                    var item = new ListItem {Text = role.Name, Value = role.Id.ToString()};
 
                     if ((m.AuthorizedEditRoles.LastIndexOf(item.Text)) > -1)
                     {

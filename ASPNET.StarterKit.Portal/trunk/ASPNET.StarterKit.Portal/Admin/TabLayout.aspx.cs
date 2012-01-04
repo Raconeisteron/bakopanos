@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ASPNETPortal.Configuration;
 using ASPNETPortal.Security;
+using ASPNETPortal.Security.Model;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -18,7 +19,7 @@ namespace ASPNET.StarterKit.Portal
         private int _tabId;
 
         [Dependency]
-        public IRolesDb Model { private get; set; }
+        public IPortalRolesService Model { private get; set; }
 
         [Dependency]
         public IModuleDefinitionDb ConfigModel { get; set; }
@@ -361,7 +362,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Populate checkbox list with all security roles for this portal
             // and "check" the ones already configured for this tab
-            DataTable roles = Model.GetPortalRoles(portalSettings.PortalId);
+            IEnumerable<PortalRole> roles = Model.GetPortalRoles(portalSettings.PortalId);
 
             // Clear existing items in checkboxlist
             authRoles.Items.Clear();
@@ -375,12 +376,12 @@ namespace ASPNET.StarterKit.Portal
 
             authRoles.Items.Add(allItem);
 
-            foreach (DataRow role in roles.Rows)
+            foreach (PortalRole role in roles)
             {
                 var item = new ListItem
                                {
-                                   Text = (String) role["RoleName"],
-                                   Value = role["RoleID"].ToString()
+                                   Text = role.Name,
+                                   Value = role.Id.ToString()
                                };
 
                 if ((tab.AuthorizedRoles.LastIndexOf(item.Text)) > -1)

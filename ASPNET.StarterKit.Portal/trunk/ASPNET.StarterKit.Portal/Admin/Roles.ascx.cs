@@ -3,6 +3,7 @@ using System.Web.UI.WebControls;
 using ASPNETPortal;
 using ASPNETPortal.Configuration;
 using ASPNETPortal.Security;
+using ASPNETPortal.Security.Model;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -13,7 +14,7 @@ namespace ASPNET.StarterKit.Portal
         private int _tabIndex;
 
         [Dependency]
-        public IRolesDb Model { private get; set; }
+        public IPortalRolesService Model { private get; set; }
 
 
         //*******************************************************

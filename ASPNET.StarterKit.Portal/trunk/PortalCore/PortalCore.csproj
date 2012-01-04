@@ -51,10 +51,7 @@
     <Compile Include="Configuration\IModuleDb.cs" />
     <Compile Include="Configuration\IModuleDefinitionDb.cs" />
     <Compile Include="IPortalModulesDb.cs" />
-    <Compile Include="Security\IPortalSecurity.cs" />
-    <Compile Include="Security\IRolesDb.cs" />
     <Compile Include="Configuration\ITabDb.cs" />
-    <Compile Include="Security\IUsersDb.cs" />
     <Compile Include="Configuration\ModuleDefinitionItem.cs" />
     <Compile Include="Configuration\ModuleItem.cs" />
     <Compile Include="Configuration\ModuleSettings.cs" />
@@ -66,6 +63,7 @@
     <Compile Include="Configuration\TabItem.cs" />
     <Compile Include="Configuration\TabSettings.cs" />
     <Compile Include="Configuration\TabStripDetails.cs" />
+    <Compile Include="Security\IPortalSecurity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Unity.Web\Unity.Web.csproj">
@@ -73,6 +71,7 @@
       <Name>Unity.Web</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

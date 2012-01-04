@@ -1,9 +1,9 @@
 using System;
 using System.Data;
 
-namespace ASPNETPortal.Security
+namespace ASPNETPortal.Security.DataAccess
 {
-    public interface IRolesDb
+    internal interface IRolesDb
     {
         /// <summary>
         /// The GetPortalRoles method returns a list of all role names for the 

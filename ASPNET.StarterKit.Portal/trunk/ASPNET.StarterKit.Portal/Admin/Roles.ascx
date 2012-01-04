@@ -9,7 +9,7 @@
             &nbsp;
         </td>
         <td>
-            <asp:DataList id="rolesList" DataKeyField="RoleID" runat="server">
+            <asp:DataList id="rolesList" DataKeyField="Id" runat="server">
                 <ItemTemplate>
                     <asp:ImageButton ImageUrl="~/images/edit.gif" CommandName="edit" AlternateText="Edit this item" runat="server" />
                     <asp:ImageButton ImageUrl="~/images/delete.gif" CommandName="delete" AlternateText="Delete this item" runat="server" />

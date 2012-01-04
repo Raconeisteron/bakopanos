@@ -69,7 +69,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<asp:DropDownList ID="allRoles" DataTextField="RoleName" DataValueField="RoleID"
+				<asp:DropDownList ID="allRoles" DataTextField="RoleName" DataValueField="Id"
 					runat="server" />
 				&nbsp;<asp:LinkButton ID="addExisting" CssClass="CommandButton" Text="Add user to this role"
 					runat="server" CausesValidation="False" OnClick="AddRole_Click">
@@ -81,7 +81,7 @@
 				&nbsp;
 			</td>
 			<td>
-				<asp:DataList ID="userRoles" RepeatColumns="2" DataKeyField="RoleId" runat="server">
+				<asp:DataList ID="userRoles" RepeatColumns="2" DataKeyField="Id" runat="server">
 					<ItemStyle Width="225" />
 					<ItemTemplate>
 						&nbsp;&nbsp;

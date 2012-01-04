@@ -1,4 +1,5 @@
 using ASPNETPortal.Security.DataAccess;
+using ASPNETPortal.Security.Model;
 using Microsoft.Practices.Unity;
 
 namespace ASPNETPortal.Security
@@ -11,6 +12,8 @@ namespace ASPNETPortal.Security
             container.RegisterType<IRolesDb, RolesDb>(new ContainerControlledLifetimeManager());
 
             container.RegisterType<IPortalSecurity, PortalSecurity>(new ContainerControlledLifetimeManager());
+
+            container.RegisterType<IPortalRolesService, PortalRolesService>(new ContainerControlledLifetimeManager());
         }
     }
 }

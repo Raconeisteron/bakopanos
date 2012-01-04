@@ -495,6 +495,10 @@
       <Project>{1BD961EF-EC7D-4763-ADCA-2E4C2012CC0E}</Project>
       <Name>PortalCore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PortalSecurity\PortalSecurity.csproj">
+      <Project>{31ECF97A-2A69-4988-B0E4-93A8105348B2}</Project>
+      <Name>PortalSecurity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Unity.Web\Unity.Web.csproj">
       <Project>{3478C9AE-1CB1-4CBE-BE27-BFB1F982400A}</Project>
       <Name>Unity.Web</Name>

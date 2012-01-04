@@ -3,6 +3,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ASPNETPortal;
 using ASPNETPortal.Security;
+using ASPNETPortal.Security.Model;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -16,7 +17,7 @@ namespace ASPNET.StarterKit.Portal
         public IUsersDb Model { private get; set; }
 
         [Dependency]
-        public IRolesDb RolesModel { private get; set; }
+        public IPortalRolesService RolesModel { private get; set; }
 
         //*******************************************************
         //
