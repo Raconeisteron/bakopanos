@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using Framework.Data;
 
@@ -32,11 +31,11 @@ namespace ASPNETPortal.Security
         /// </summary>
         public int AddUser(String fullName, String email, String password)
         {
-            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int) {Direction = ParameterDirection.Output};
+            var parameterUserId = _db.CreateOutputParameter("@UserID", DbType.Int32);
 
-            var parameterFullName = new SqlParameter("@Name", SqlDbType.NVarChar, 50) {Value = fullName};
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
-            var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50) {Value = password};
+            var parameterFullName = _db.CreateParameter("@Name", fullName);
+            var parameterEmail = _db.CreateParameter("@Email", email);
+            var parameterPassword = _db.CreateParameter("@Password", password);
 
             // Execute the command in a try/catch to catch duplicate username errors
             try
@@ -56,7 +55,7 @@ namespace ASPNETPortal.Security
         /// </summary>
         public void DeleteUser(int userId)
         {
-            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int) {Value = userId};
+            var parameterUserId = _db.CreateParameter("@UserID", userId);
 
             _db.ExecuteNonQuery("Portal_DeleteUser", parameterUserId);
         }
@@ -66,9 +65,9 @@ namespace ASPNETPortal.Security
         /// </summary>
         public void UpdateUser(int userId, String email, String password)
         {
-            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int) {Value = userId};
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
-            var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50) {Value = password};
+            var parameterUserId = _db.CreateParameter("@UserID", userId);
+            var parameterEmail = _db.CreateParameter("@Email", email);
+            var parameterPassword = _db.CreateParameter("@Password", password);
 
             _db.ExecuteNonQuery("Portal_UpdateUser", parameterUserId, parameterEmail, parameterPassword);
         }
@@ -78,7 +77,7 @@ namespace ASPNETPortal.Security
         /// </summary>
         public DataTable GetRolesByUser(String email)
         {
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
+            var parameterEmail = _db.CreateParameter("@Email", email);
 
             return _db.GetDataTable("Portal_GetRolesByUser", parameterEmail);
         }
@@ -89,7 +88,7 @@ namespace ASPNETPortal.Security
         /// </summary>
         public DataRow GetSingleUser(String email)
         {
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
+            var parameterEmail = _db.CreateParameter("@Email", email);
 
             return _db.GetDataRow("Portal_GetSingleUser", parameterEmail);
         }
@@ -99,7 +98,7 @@ namespace ASPNETPortal.Security
         /// </summary>
         public List<string> GetRoles(String email)
         {
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
+            var parameterEmail = _db.CreateParameter("@Email", email);
 
             DataTable userRoles = _db.GetDataTable("Portal_GetRolesByUser", parameterEmail);
 
@@ -114,10 +113,10 @@ namespace ASPNETPortal.Security
         /// </summary>
         public String Login(String email, String password)
         {
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100)
-                                        {Direction = ParameterDirection.Output};
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100) {Value = email};
-            var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50) {Value = password};
+            var parameterUserName = _db.CreateOutputParameter("@UserName", DbType.String);
+
+            var parameterEmail = _db.CreateParameter("@Email", email);
+            var parameterPassword = _db.CreateParameter("@Password", password);
 
             _db.ExecuteNonQuery<string>("Portal_UserLogin", parameterUserName, parameterEmail, parameterPassword);
 

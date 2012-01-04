@@ -1,7 +1,5 @@
 using System;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using Framework.Data;
 
 namespace ASPNETPortal
@@ -28,7 +26,7 @@ namespace ASPNETPortal
         /// </returns>
         public DataTable GetDocuments(int moduleId)
         {
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
+            var parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
 
             return _db.GetDataTable("Portal_GetDocuments", parameterModuleId);
         }
@@ -39,7 +37,7 @@ namespace ASPNETPortal
         /// </returns>
         public DataRow GetSingleDocument(int itemId)
         {
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
+            var parameterItemId = _db.CreateParameter("@ItemID", itemId);
 
             return _db.GetDataRow("Portal_GetSingleDocument", parameterItemId);
         }
@@ -50,7 +48,7 @@ namespace ASPNETPortal
         /// </returns>
         public DataRow GetDocumentContent(int itemId)
         {
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
+            var parameterItemId = _db.CreateParameter("@ItemID", itemId);
 
             return _db.GetDataRow("Portal_GetDocumentContent", parameterItemId);
         }
@@ -62,24 +60,15 @@ namespace ASPNETPortal
         /// </summary>
         public void DeleteDocument(int itemId)
         {
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
+            var parameterItemId = _db.CreateParameter("@ItemID", itemId);
 
             _db.ExecuteNonQuery("Portal_DeleteDocument", parameterItemId);
         }
 
 
-        //*********************************************************************
-        //
-        // UpdateDocument Method
-        //
-        // The UpdateDocument method updates the specified document within
-        // the Documents database table.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateDocument.htm" style="color:green">UpdateDocument Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        ///  updates the specified document within the Documents database table.
+        /// </summary>
         public void UpdateDocument(int moduleId, int itemId, String userName, String name, String url,
                                    String category,
                                    byte[] content, int size, String contentType)
@@ -89,45 +78,19 @@ namespace ASPNETPortal
                 userName = "unknown";
             }
 
-            // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_UpdateDocument", myConnection);
+            var parameterItemId = _db.CreateParameter("@ItemID", itemId);
+            var parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
+            var parameterUserName = _db.CreateParameter("@UserName", userName);
+            var parameterName = _db.CreateParameter("@FileFriendlyName", name);
+            var parameterFileUrl = _db.CreateParameter("@FileNameUrl", url);
+            var parameterCategory = _db.CreateParameter("@Category", category);
+            var parameterContent = _db.CreateParameter("@Content", content);
+            var parameterContentType = _db.CreateParameter("@ContentType", contentType);
+            var parameterContentSize = _db.CreateParameter("@ContentSize", size);
 
-            // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
-            myCommand.Parameters.Add(parameterItemId);
-
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
-            myCommand.Parameters.Add(parameterModuleId);
-
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};
-            myCommand.Parameters.Add(parameterUserName);
-
-            var parameterName = new SqlParameter("@FileFriendlyName", SqlDbType.NVarChar, 150) {Value = name};
-            myCommand.Parameters.Add(parameterName);
-
-            var parameterFileUrl = new SqlParameter("@FileNameUrl", SqlDbType.NVarChar, 250) {Value = url};
-            myCommand.Parameters.Add(parameterFileUrl);
-
-            var parameterCategory = new SqlParameter("@Category", SqlDbType.NVarChar, 50) {Value = category};
-            myCommand.Parameters.Add(parameterCategory);
-
-            var parameterContent = new SqlParameter("@Content", SqlDbType.Image) {Value = content};
-            myCommand.Parameters.Add(parameterContent);
-
-            var parameterContentType = new SqlParameter("@ContentType", SqlDbType.NVarChar, 50) {Value = contentType};
-            myCommand.Parameters.Add(parameterContentType);
-
-            var parameterContentSize = new SqlParameter("@ContentSize", SqlDbType.Int, 4) {Value = size};
-            myCommand.Parameters.Add(parameterContentSize);
-
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            _db.ExecuteNonQuery("Portal_UpdateDocument", parameterItemId, parameterModuleId, parameterUserName, parameterName,
+                                parameterFileUrl, parameterCategory, parameterContent, parameterContentType,
+                                parameterContentSize);
         }
 
         #endregion

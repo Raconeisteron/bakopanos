@@ -50,7 +50,7 @@
     <Compile Include="Configuration\IGlobalDb.cs" />
     <Compile Include="Configuration\IModuleDb.cs" />
     <Compile Include="Configuration\IModuleDefinitionDb.cs" />
-    <Compile Include="Configuration\IPortalModulesDb.cs" />
+    <Compile Include="IPortalModulesDb.cs" />
     <Compile Include="Security\IPortalSecurity.cs" />
     <Compile Include="Security\IRolesDb.cs" />
     <Compile Include="Configuration\ITabDb.cs" />

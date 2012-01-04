@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using Framework.Data;
 
 namespace ASPNETPortal
@@ -27,7 +26,7 @@ namespace ASPNETPortal
         /// </returns>
         public DataTable GetLinks(int moduleId)
         {
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
+            var parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
 
             return _db.GetDataTable("Portal_GetLinks", parameterModuleId);
         }
@@ -38,7 +37,7 @@ namespace ASPNETPortal
         /// </returns>
         public DataRow GetSingleLink(int itemId)
         {
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
+            var parameterItemId = _db.CreateParameter("@ItemID", itemId);
 
             return _db.GetDataRow("Portal_GetSingleLink", parameterItemId);
         }
@@ -49,7 +48,7 @@ namespace ASPNETPortal
         /// </summary>
         public void DeleteLink(int itemId)
         {
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
+            var parameterItemId = _db.CreateParameter("@ItemID",  itemId);
 
             _db.ExecuteNonQuery("Portal_DeleteLink", parameterItemId);
         }
@@ -66,14 +65,14 @@ namespace ASPNETPortal
                 userName = "unknown";
             }
 
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Direction = ParameterDirection.Output};
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100) {Value = title};
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100) {Value = description};
-            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100) {Value = url};
-            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100) {Value = mobileUrl};
-            var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4) {Value = viewOrder};
+            var parameterItemId = _db.CreateOutputParameter("@ItemID", DbType.Int32);
+            var parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
+            var parameterUserName = _db.CreateParameter("@UserName", userName);
+            var parameterTitle = _db.CreateParameter("@Title", title);
+            var parameterDescription = _db.CreateParameter("@Description",  description);
+            var parameterUrl = _db.CreateParameter("@Url",  url);
+            var parameterMobileUrl = _db.CreateParameter("@MobileUrl", mobileUrl);
+            var parameterViewOrder = _db.CreateParameter("@ViewOrder", viewOrder);
 
             return _db.ExecuteNonQuery<int>("Portal_AddLink", parameterItemId, parameterModuleId, parameterUserName,
                                             parameterTitle, parameterDescription, parameterUrl, parameterMobileUrl,
@@ -92,13 +91,13 @@ namespace ASPNETPortal
                 userName = "unknown";
             }
 
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4) {Value = itemId};
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100) {Value = userName};
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100) {Value = title};
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100) {Value = description};
-            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100) {Value = url};
-            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100) {Value = mobileUrl};
-            var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4) {Value = viewOrder};
+            var parameterItemId = _db.CreateParameter("@ItemID",  itemId);
+            var parameterUserName = _db.CreateParameter("@UserName", userName);
+            var parameterTitle = _db.CreateParameter("@Title",  title);
+            var parameterDescription = _db.CreateParameter("@Description",  description);
+            var parameterUrl = _db.CreateParameter("@Url",  url);
+            var parameterMobileUrl = _db.CreateParameter("@MobileUrl",  mobileUrl);
+            var parameterViewOrder = _db.CreateParameter("@ViewOrder", viewOrder);
 
             _db.ExecuteNonQuery("Portal_UpdateLink", parameterItemId, parameterUserName, parameterTitle,
                                 parameterDescription,

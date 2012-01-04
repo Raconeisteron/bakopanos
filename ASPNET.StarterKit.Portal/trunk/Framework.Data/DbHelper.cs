@@ -27,12 +27,12 @@ namespace Framework.Data
             return parameter;
         }
 
-        public DbParameter CreateIdentityParameter(string parameterName)
+        public DbParameter CreateOutputParameter(string parameterName, DbType type)
         {
             DbParameter parameter = _factory.CreateParameter();
             parameter.ParameterName = parameterName;
             parameter.Direction = ParameterDirection.Output;
-            parameter.DbType = DbType.Int32;
+            parameter.DbType = type;
             return parameter;
         }
 

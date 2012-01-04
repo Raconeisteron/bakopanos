@@ -1,7 +1,6 @@
 using System;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
 using Framework.Data;
 
 namespace ASPNETPortal.Security
@@ -38,7 +37,7 @@ namespace ASPNETPortal.Security
         /// </summary>
         public int AddRole(int portalId, String roleName)
         {
-            DbParameter parameterRoleId = _db.CreateIdentityParameter("@RoleID");
+            DbParameter parameterRoleId = _db.CreateOutputParameter("@RoleID", DbType.Int32);
             DbParameter parameterPortalId = _db.CreateParameter("@PortalID", portalId);
             DbParameter parameterRoleName = _db.CreateParameter("@RoleName", roleName);
 
@@ -76,7 +75,7 @@ namespace ASPNETPortal.Security
         /// </summary>
         public DataTable GetRoleMembers(int roleId)
         {
-            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};
+            var parameterRoleId = _db.CreateParameter("@RoleID",  roleId);
 
             return _db.GetDataTable("Portal_GetRoleMembership", parameterRoleId);
         }
@@ -97,8 +96,8 @@ namespace ASPNETPortal.Security
         /// </summary>
         public void DeleteUserRole(int roleId, int userId)
         {
-            var parameterRoleId = new SqlParameter("@RoleID", SqlDbType.Int, 4) {Value = roleId};
-            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int, 4) {Value = userId};
+            var parameterRoleId = _db.CreateParameter("@RoleID", roleId);
+            var parameterUserId = _db.CreateParameter("@UserID", userId);
 
             _db.ExecuteNonQuery("Portal_DeleteUserRole", parameterRoleId, parameterUserId);
         }

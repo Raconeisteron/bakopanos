@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using Framework.Data;
 
 namespace ASPNETPortal
@@ -26,7 +25,7 @@ namespace ASPNETPortal
         /// </returns>
         public DataTable GetHtmlText(int moduleId)
         {
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
+            var parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
 
             return _db.GetDataTable("Portal_GetHtmlText", parameterModuleId);
         }
@@ -38,10 +37,10 @@ namespace ASPNETPortal
         /// </summary>
         public void UpdateHtmlText(int moduleId, String desktopHtml, String mobileSummary, String mobileDetails)
         {
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4) {Value = moduleId};
-            var parameterDesktopHtml = new SqlParameter("@DesktopHtml", SqlDbType.NText) {Value = desktopHtml};
-            var parameterMobileSummary = new SqlParameter("@MobileSummary", SqlDbType.NText) {Value = mobileSummary};
-            var parameterMobileDetails = new SqlParameter("@MobileDetails", SqlDbType.NText) {Value = mobileDetails};
+            var parameterModuleId = _db.CreateParameter("@ModuleID",  moduleId);
+            var parameterDesktopHtml = _db.CreateParameter("@DesktopHtml",  desktopHtml);
+            var parameterMobileSummary = _db.CreateParameter("@MobileSummary", mobileSummary);
+            var parameterMobileDetails = _db.CreateParameter("@MobileDetails",  mobileDetails);
 
             _db.ExecuteNonQuery("Portal_UpdateHtmlText", parameterModuleId, parameterDesktopHtml, parameterMobileSummary,
                                 parameterMobileDetails);

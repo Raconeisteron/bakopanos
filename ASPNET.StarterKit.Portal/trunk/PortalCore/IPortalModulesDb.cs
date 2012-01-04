@@ -1,4 +1,4 @@
-namespace ASPNETPortal.Configuration
+namespace ASPNETPortal
 {
     public interface IPortalModulesDb
     {

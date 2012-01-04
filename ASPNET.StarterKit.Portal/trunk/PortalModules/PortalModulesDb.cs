@@ -1,5 +1,4 @@
 using System.Data.Common;
-using ASPNETPortal.Configuration;
 using Framework.Data;
 
 namespace ASPNETPortal
