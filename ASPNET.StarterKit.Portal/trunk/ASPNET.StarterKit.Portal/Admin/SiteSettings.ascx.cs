@@ -1,5 +1,6 @@
 using System;
 using ASPNETPortal;
+using ASPNETPortal.Configuration;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal

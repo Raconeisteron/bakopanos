@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Configuration
 {
     public interface IModuleDb
     {

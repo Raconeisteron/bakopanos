@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Configuration
 {
     public interface IGlobalDb
     {

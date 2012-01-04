@@ -4,7 +4,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using Framework.Data;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Security
 {
     /// <summary>
     /// Class that encapsulates all data logic necessary to add/query/delete

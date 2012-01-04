@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Web.UI;
+using ASPNETPortal.Configuration;
+using ASPNETPortal.Security;
 using Microsoft.Practices.Unity;
 
 namespace ASPNETPortal

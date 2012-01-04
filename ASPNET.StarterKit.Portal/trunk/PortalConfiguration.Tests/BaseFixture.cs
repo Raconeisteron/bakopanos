@@ -5,7 +5,7 @@ using Microsoft.Practices.Unity;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Configuration
 {
     public class BaseFixture<T>
     {

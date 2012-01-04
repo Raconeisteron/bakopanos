@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Configuration
 {
     /// <summary>
     /// This class encapsulates the basic attributes of a Module, and is used

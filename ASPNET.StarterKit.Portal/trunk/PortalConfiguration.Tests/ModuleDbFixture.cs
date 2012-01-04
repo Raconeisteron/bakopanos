@@ -2,36 +2,14 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Configuration
 {
     [TestFixture]
     public class ModuleDbFixture : BaseFixture<IModuleDb>
     {
         [Test]
-        public void GetModulesByTabId()
-        {
-            //act
-            IEnumerable<ModuleItem> modules = Db.GetModulesByTabId(1);
-            //assert
-            Assert.AreEqual(modules.Count(), 6);
-        }
-
-        [Test]
-        public void UpdateModuleOrder()
-        {
-
-        }
-
-        [Test]
         public void AddModule()
         {
-
-        }
-
-        [Test]
-        public void UpdateModule()
-        {
-
         }
 
         [Test]
@@ -47,15 +25,32 @@ namespace ASPNETPortal
         }
 
         [Test]
-        public void UpdateModuleSetting()
+        public void GetModuleSettings()
         {
-
         }
 
         [Test]
-        public void GetModuleSettings()
+        public void GetModulesByTabId()
         {
+            //act
+            IEnumerable<ModuleItem> modules = Db.GetModulesByTabId(1);
+            //assert
+            Assert.AreEqual(modules.Count(), 6);
+        }
 
+        [Test]
+        public void UpdateModule()
+        {
+        }
+
+        [Test]
+        public void UpdateModuleOrder()
+        {
+        }
+
+        [Test]
+        public void UpdateModuleSetting()
+        {
         }
     }
 }

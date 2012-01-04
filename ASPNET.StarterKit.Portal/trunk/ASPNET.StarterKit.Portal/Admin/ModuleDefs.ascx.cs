@@ -1,6 +1,7 @@
 using System;
 using System.Web.UI.WebControls;
 using ASPNETPortal;
+using ASPNETPortal.Configuration;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal

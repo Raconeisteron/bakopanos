@@ -2,9 +2,10 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using ASPNETPortal.Configuration;
 using Microsoft.Practices.Unity;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Security
 {
     /// <summary>
     /// The PortalSecurity class encapsulates two helper methods that enable

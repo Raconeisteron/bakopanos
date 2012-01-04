@@ -1,4 +1,4 @@
-namespace ASPNETPortal
+namespace ASPNETPortal.Configuration
 {
     internal static class Extensions
     {

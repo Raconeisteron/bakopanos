@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Caching;
 using Microsoft.Practices.Unity;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Configuration
 {
     /// <summary>
     /// Class that encapsulates all data logic necessary to add/query/delete
@@ -16,10 +16,11 @@ namespace ASPNETPortal
     internal class ConfigurationDb : IGlobalDb, ITabDb, IModuleDb, IModuleDefinitionDb
     {
         private readonly string _configFile;
-        private readonly IPortalModulesDb _portalModulesDb;
         private readonly HttpContextBase _context;
+        private readonly IPortalModulesDb _portalModulesDb;
 
-        public ConfigurationDb(HttpContextBase context, IPortalModulesDb portalModulesDb, [Dependency("ConfigFile")] string configFile)
+        public ConfigurationDb(HttpContextBase context, IPortalModulesDb portalModulesDb,
+                               [Dependency("ConfigFile")] string configFile)
         {
             _context = context;
             _portalModulesDb = portalModulesDb;
@@ -598,7 +599,7 @@ namespace ASPNETPortal
 
         #endregion
 
-        #region IAuthorizationDb Members
+        #region IModuleDb Members
 
         public string GetEditRolesByModuleId(int moduleId)
         {
@@ -637,7 +638,7 @@ namespace ASPNETPortal
                 return CreateSiteSettings();
             }
 
-            var siteSettings = (SiteConfiguration)_context.Cache["SiteSettings"];
+            var siteSettings = (SiteConfiguration) _context.Cache["SiteSettings"];
 
             // If the SiteConfiguration isn't cached, load it from the XML file and add it into the cache.
             if (siteSettings == null)
@@ -694,7 +695,6 @@ namespace ASPNETPortal
                 // Store the dataset in the cache
                 _context.Cache.Insert("SiteSettings", siteSettings, new CacheDependency(_configFile));
             }
-            
         }
     }
 }

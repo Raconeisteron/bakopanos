@@ -1,7 +1,7 @@
 using System;
 using System.Data;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Security
 {
     public interface IRolesDb
     {

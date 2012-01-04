@@ -1,6 +1,6 @@
 using Microsoft.Practices.Unity;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Configuration
 {
     internal class UnityModule
     {

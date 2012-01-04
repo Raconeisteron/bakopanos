@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using Framework.Data;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Security
 {
     /// <summary>
     /// The UsersDB class encapsulates all data logic necessary to add/login/query

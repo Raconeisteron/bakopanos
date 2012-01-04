@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Configuration
 {
     /// <summary>
     /// Class that encapsulates the just the tabstrip details -- TabName, TabId and TabOrder 

@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Data.Common;
 using Framework.Data;
 
 namespace ASPNETPortal
@@ -24,7 +25,7 @@ namespace ASPNETPortal
         /// </returns>
         public DataTable GetTopLevelMessages(int moduleId)
         {
-            var parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
+            DbParameter parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
 
             return _db.GetDataTable("Portal_GetTopLevelMessages", parameterModuleId);
         }
@@ -34,7 +35,7 @@ namespace ASPNETPortal
         /// </returns>
         public DataTable GetThreadMessages(String parent)
         {
-            var parameterParent = _db.CreateParameter("@Parent", parent);
+            DbParameter parameterParent = _db.CreateParameter("@Parent", parent);
 
             return _db.GetDataTable("Portal_GetThreadMessages", parameterParent);
         }
@@ -45,7 +46,7 @@ namespace ASPNETPortal
         /// </returns>
         public DataRow GetSingleMessage(int itemId)
         {
-            var parameterItemId = _db.CreateParameter("@ItemID", itemId);
+            DbParameter parameterItemId = _db.CreateParameter("@ItemID", itemId);
 
             return _db.GetDataRow("Portal_GetSingleMessage", parameterItemId);
         }
@@ -61,12 +62,12 @@ namespace ASPNETPortal
                 userName = "unknown";
             }
 
-            var parameterItemId = _db.CreateIdentityParameter("@ItemID");
-            var parameterTitle = _db.CreateParameter("@Title", title);
-            var parameterBody = _db.CreateParameter("@Body", body);
-            var parameterParentId = _db.CreateParameter("@ParentID",  parentId);
-            var parameterUserName = _db.CreateParameter("@UserName", userName);
-            var parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
+            DbParameter parameterItemId = _db.CreateIdentityParameter("@ItemID");
+            DbParameter parameterTitle = _db.CreateParameter("@Title", title);
+            DbParameter parameterBody = _db.CreateParameter("@Body", body);
+            DbParameter parameterParentId = _db.CreateParameter("@ParentID", parentId);
+            DbParameter parameterUserName = _db.CreateParameter("@UserName", userName);
+            DbParameter parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
 
             return _db.ExecuteNonQuery<int>("Portal_AddMessage", parameterItemId, parameterTitle, parameterBody,
                                             parameterParentId,

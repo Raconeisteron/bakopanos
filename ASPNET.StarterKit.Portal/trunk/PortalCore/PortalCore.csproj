@@ -46,26 +46,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CachedPortalModuleControl.cs" />
-    <Compile Include="GlobalItem.cs" />
-    <Compile Include="IGlobalDb.cs" />
-    <Compile Include="IModuleDb.cs" />
-    <Compile Include="IModuleDefinitionDb.cs" />
-    <Compile Include="IPortalModulesDb.cs" />
-    <Compile Include="IPortalSecurity.cs" />
-    <Compile Include="IRolesDb.cs" />
-    <Compile Include="ITabDb.cs" />
-    <Compile Include="IUsersDb.cs" />
-    <Compile Include="ModuleDefinitionItem.cs" />
-    <Compile Include="ModuleItem.cs" />
-    <Compile Include="ModuleSettings.cs" />
+    <Compile Include="Configuration\GlobalItem.cs" />
+    <Compile Include="Configuration\IGlobalDb.cs" />
+    <Compile Include="Configuration\IModuleDb.cs" />
+    <Compile Include="Configuration\IModuleDefinitionDb.cs" />
+    <Compile Include="Configuration\IPortalModulesDb.cs" />
+    <Compile Include="Security\IPortalSecurity.cs" />
+    <Compile Include="Security\IRolesDb.cs" />
+    <Compile Include="Configuration\ITabDb.cs" />
+    <Compile Include="Security\IUsersDb.cs" />
+    <Compile Include="Configuration\ModuleDefinitionItem.cs" />
+    <Compile Include="Configuration\ModuleItem.cs" />
+    <Compile Include="Configuration\ModuleSettings.cs" />
     <Compile Include="PortalModuleControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PortalSettings.cs" />
+    <Compile Include="Configuration\PortalSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TabItem.cs" />
-    <Compile Include="TabSettings.cs" />
-    <Compile Include="TabStripDetails.cs" />
+    <Compile Include="Configuration\TabItem.cs" />
+    <Compile Include="Configuration\TabSettings.cs" />
+    <Compile Include="Configuration\TabStripDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Unity.Web\Unity.Web.csproj">

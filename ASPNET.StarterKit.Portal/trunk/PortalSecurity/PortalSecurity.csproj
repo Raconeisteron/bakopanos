@@ -8,7 +8,7 @@
     <ProjectGuid>{31ECF97A-2A69-4988-B0E4-93A8105348B2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASPNETPortal</RootNamespace>
+    <RootNamespace>ASPNETPortal.Security</RootNamespace>
     <AssemblyName>PortalSecurity</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

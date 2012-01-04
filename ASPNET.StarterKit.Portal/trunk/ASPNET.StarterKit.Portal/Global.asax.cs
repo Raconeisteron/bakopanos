@@ -6,7 +6,8 @@ using System.Security.Principal;
 using System.Threading;
 using System.Web;
 using System.Web.Security;
-using ASPNETPortal;
+using ASPNETPortal.Configuration;
+using ASPNETPortal.Security;
 using Framework.Data;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
@@ -33,7 +34,7 @@ namespace ASPNET.StarterKit.Portal
             myContainer.RegisterInstance<HttpContextBase>(wrapper);
 
             myContainer.RegisterType<IDbHelper, DbHelper>(new ContainerControlledLifetimeManager());
-            
+
             // bootstrapp unity modules
             foreach (ContainerRegistration containerRegistration in myContainer.Registrations)
             {

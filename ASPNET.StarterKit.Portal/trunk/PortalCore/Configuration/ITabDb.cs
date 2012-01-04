@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Configuration
 {
     public interface ITabDb
     {

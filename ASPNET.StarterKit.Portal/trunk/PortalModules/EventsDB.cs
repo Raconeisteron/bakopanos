@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Data.Common;
 using Framework.Data;
 
 namespace ASPNETPortal
@@ -26,7 +27,7 @@ namespace ASPNETPortal
         /// </returns>
         public DataTable GetEvents(int moduleId)
         {
-            var parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
+            DbParameter parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
 
             return _db.GetDataTable("Portal_GetEvents", parameterModuleId);
         }
@@ -37,7 +38,7 @@ namespace ASPNETPortal
         /// </returns>
         public DataRow GetSingleEvent(int itemId)
         {
-            var parameterItemId = _db.CreateParameter("@ItemID",  itemId);
+            DbParameter parameterItemId = _db.CreateParameter("@ItemID", itemId);
 
             return _db.GetDataRow("Portal_GetSingleEvent", parameterItemId);
         }
@@ -48,7 +49,7 @@ namespace ASPNETPortal
         /// </summary>
         public void DeleteEvent(int itemId)
         {
-            var parameterItemId = _db.CreateParameter("@ItemID",  itemId);
+            DbParameter parameterItemId = _db.CreateParameter("@ItemID", itemId);
 
             _db.ExecuteNonQuery("Portal_DeleteEvent", parameterItemId);
         }
@@ -63,16 +64,17 @@ namespace ASPNETPortal
             {
                 userName = "unknown";
             }
-            var parameterItemId = _db.CreateIdentityParameter("@ItemID");
+            DbParameter parameterItemId = _db.CreateIdentityParameter("@ItemID");
 
-            var parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
-            var parameterUserName = _db.CreateParameter("@UserName", userName);
-            var parameterTitle = _db.CreateParameter("@Title",  title);
-            var parameterWhereWhen = _db.CreateParameter("@WhereWhen", wherewhen);
-            var parameterExpireDate = _db.CreateParameter("@ExpireDate", expireDate);
-            var parameterDescription = _db.CreateParameter("@Description", description);
+            DbParameter parameterModuleId = _db.CreateParameter("@ModuleID", moduleId);
+            DbParameter parameterUserName = _db.CreateParameter("@UserName", userName);
+            DbParameter parameterTitle = _db.CreateParameter("@Title", title);
+            DbParameter parameterWhereWhen = _db.CreateParameter("@WhereWhen", wherewhen);
+            DbParameter parameterExpireDate = _db.CreateParameter("@ExpireDate", expireDate);
+            DbParameter parameterDescription = _db.CreateParameter("@Description", description);
 
-            _db.ExecuteNonQuery<int>("Portal_AddEvent", parameterItemId, parameterDescription, parameterModuleId, parameterUserName,
+            _db.ExecuteNonQuery<int>("Portal_AddEvent", parameterItemId, parameterDescription, parameterModuleId,
+                                     parameterUserName,
                                      parameterTitle, parameterWhereWhen, parameterExpireDate);
 
             // Return the new Event ItemID)
@@ -90,15 +92,16 @@ namespace ASPNETPortal
                 userName = "unknown";
             }
 
-            var parameterItemId =  _db.CreateParameter("@ItemID",  itemId);
-           
-            var parameterUserName = _db.CreateParameter("@UserName",  userName);
-            var parameterTitle = _db.CreateParameter("@Title",  title);
-            var parameterWhereWhen = _db.CreateParameter("@WhereWhen",  wherewhen);
-            var parameterExpireDate = _db.CreateParameter("@ExpireDate",  expireDate);
-            var parameterDescription = _db.CreateParameter("@Description", description);
+            DbParameter parameterItemId = _db.CreateParameter("@ItemID", itemId);
 
-            _db.ExecuteNonQuery("Portal_UpdateEvent", parameterItemId, parameterUserName, parameterTitle, parameterWhereWhen, parameterExpireDate, parameterDescription);
+            DbParameter parameterUserName = _db.CreateParameter("@UserName", userName);
+            DbParameter parameterTitle = _db.CreateParameter("@Title", title);
+            DbParameter parameterWhereWhen = _db.CreateParameter("@WhereWhen", wherewhen);
+            DbParameter parameterExpireDate = _db.CreateParameter("@ExpireDate", expireDate);
+            DbParameter parameterDescription = _db.CreateParameter("@Description", description);
+
+            _db.ExecuteNonQuery("Portal_UpdateEvent", parameterItemId, parameterUserName, parameterTitle,
+                                parameterWhereWhen, parameterExpireDate, parameterDescription);
         }
 
         #endregion

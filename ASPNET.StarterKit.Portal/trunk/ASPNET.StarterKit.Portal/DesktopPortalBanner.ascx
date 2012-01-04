@@ -2,6 +2,7 @@
 	Inherits="ASPNET.StarterKit.Portal.DesktopPortalBanner" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 <%@ Import Namespace="ASPNETPortal" %>
+<%@ Import Namespace="ASPNETPortal.Configuration" %>
 <%--
 
    The DesktopPortalBanner User Control is responsible for displaying the standard Portal

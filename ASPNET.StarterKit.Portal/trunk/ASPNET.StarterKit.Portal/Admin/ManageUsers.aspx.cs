@@ -2,7 +2,8 @@ using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ASPNETPortal;
+using ASPNETPortal.Configuration;
+using ASPNETPortal.Security;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal

@@ -2,18 +2,33 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Configuration
 {
     [TestFixture]
     public class TabDbFixture : BaseFixture<ITabDb>
     {
         [Test]
-        public void GetTabs()
+        public void AddTab()
         {
             //act
-            IEnumerable<TabItem> tabs = Db.GetTabs();
+            int tabId = Db.AddTab(0, "sometab", 2);
+            //
+            TabItem tab = Db.GetSingleTabByTabId(tabId);
+            Assert.AreEqual(tab.TabName, "sometab");
+            Assert.AreEqual(tab.MobileTabName, "");
+            Assert.AreEqual(tab.AccessRoles, "All Users;");
+            Assert.AreEqual(tab.TabOrder, 2);
+            Assert.AreEqual(tab.ShowMobile, true);
+        }
+
+        [Test]
+        private void DeleteTab()
+        {
+            //act
+            Db.DeleteTab(1);
             //assert
-            Assert.AreEqual(tabs.Count(), 6);
+            IEnumerable<TabItem> tabs = Db.GetTabs();
+            Assert.AreEqual(tabs.Count(), 5);
         }
 
         [Test]
@@ -39,24 +54,19 @@ namespace ASPNETPortal
         }
 
         [Test]
-        public void AddTab()
+        public void GetTabs()
         {
             //act
-            int tabId = Db.AddTab(0, "sometab", 2);
-            //
-            TabItem tab = Db.GetSingleTabByTabId(tabId);
-            Assert.AreEqual(tab.TabName, "sometab");
-            Assert.AreEqual(tab.MobileTabName, "");
-            Assert.AreEqual(tab.AccessRoles, "All Users;");
-            Assert.AreEqual(tab.TabOrder, 2);
-            Assert.AreEqual(tab.ShowMobile, true);
+            IEnumerable<TabItem> tabs = Db.GetTabs();
+            //assert
+            Assert.AreEqual(tabs.Count(), 6);
         }
 
-        [Test]            
+        [Test]
         public void UpdateTab()
         {
             //act
-            Db.UpdateTab(0, 1, "sometab",2,"Guest;","sometab",false);
+            Db.UpdateTab(0, 1, "sometab", 2, "Guest;", "sometab", false);
             //
             TabItem tab = Db.GetSingleTabByTabId(1);
             Assert.AreEqual(tab.TabName, "sometab");
@@ -66,7 +76,7 @@ namespace ASPNETPortal
             Assert.AreEqual(tab.ShowMobile, false);
         }
 
-        [Test]       
+        [Test]
         public void UpdateTabOrder()
         {
             //act
@@ -74,16 +84,6 @@ namespace ASPNETPortal
             //
             TabItem tab = Db.GetSingleTabByTabId(1);
             Assert.AreEqual(tab.TabOrder, 20);
-        }
-
-        [Test]        
-        void DeleteTab()
-        {
-            //act
-            Db.DeleteTab(1);
-            //assert
-            IEnumerable<TabItem> tabs = Db.GetTabs();
-            Assert.AreEqual(tabs.Count(), 5);
         }
     }
 }

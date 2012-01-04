@@ -1,9 +1,9 @@
 using NUnit.Framework;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Configuration
 {
     [TestFixture]
-    public class GlobalDbFixture:BaseFixture<IGlobalDb>
+    public class GlobalDbFixture : BaseFixture<IGlobalDb>
     {
         [Test]
         public void GetGlobalByPortalId()
@@ -25,9 +25,6 @@ namespace ASPNETPortal
             GlobalItem item = Db.GetGlobalByPortalId(0);
             Assert.AreEqual(item.AlwaysShowEditButton, true);
             Assert.AreEqual(item.PortalName, "test1");
-
-
         }
-
     }
 }

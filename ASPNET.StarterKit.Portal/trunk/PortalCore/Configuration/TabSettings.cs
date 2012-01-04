@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Configuration
 {
     /// <summary>
     /// Class that encapsulates the detailed settings for a specific Tab 

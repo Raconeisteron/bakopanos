@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
-using ASPNETPortal;
+using ASPNETPortal.Configuration;
+using ASPNETPortal.Security;
 using Microsoft.Practices.Unity;
 using Unity.Web;
 

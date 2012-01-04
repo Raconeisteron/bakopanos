@@ -1,3 +1,4 @@
+using ASPNETPortal.Configuration;
 using Microsoft.Practices.Unity;
 
 namespace ASPNETPortal

@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Configuration
 {
     /// <summary>
     /// This class encapsulates all of the settings for the Portal, as well
@@ -10,13 +10,6 @@ namespace ASPNETPortal
     /// </summary>
     public class PortalSettings
     {
-        public TabSettings ActiveTab { get; set; }
-        public bool AlwaysShowEditButton { get; set; }
-        public List<TabStripDetails> DesktopTabs { get; set; }
-        public List<TabStripDetails> MobileTabs { get; set; }
-        public int PortalId { get; set; }
-        public String PortalName { get; set; }
-
         /// <summary>
         /// The PortalSettings Constructor encapsulates all of the logic
         /// necessary to obtain configuration settings necessary to render
@@ -29,11 +22,10 @@ namespace ASPNETPortal
         public PortalSettings(IGlobalDb globalDb, ITabDb tabDb, IModuleDb moduleDb, IModuleDefinitionDb configurationDb,
                               int tabIndex, int tabId)
         {
+            ActiveTab = new TabSettings();
+            DesktopTabs = new List<TabStripDetails>();
+            MobileTabs = new List<TabStripDetails>();
 
-              ActiveTab = new TabSettings();
-          DesktopTabs = new List<TabStripDetails>();
-          MobileTabs = new List<TabStripDetails>();
-       
 
             // Read the Desktop Tab Information, and sort by Tab Order
             foreach (TabItem tRow in tabDb.GetTabs())
@@ -112,5 +104,12 @@ namespace ASPNETPortal
             ActiveTab.TabName = activeTab.TabName;
             ActiveTab.ShowMobile = activeTab.ShowMobile;
         }
+
+        public TabSettings ActiveTab { get; set; }
+        public bool AlwaysShowEditButton { get; set; }
+        public List<TabStripDetails> DesktopTabs { get; set; }
+        public List<TabStripDetails> MobileTabs { get; set; }
+        public int PortalId { get; set; }
+        public String PortalName { get; set; }
     }
 }

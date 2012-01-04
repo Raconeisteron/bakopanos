@@ -1,6 +1,6 @@
 using System;
 
-namespace ASPNETPortal
+namespace ASPNETPortal.Security
 {
     public interface IPortalSecurity
     {
