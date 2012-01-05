@@ -27,7 +27,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <hr noshade size="1">
+                                        <hr noshade="noshade" size="1">
                                     </td>
                                 </tr>
                             </table>
@@ -55,7 +55,7 @@
                             &nbsp;
                         </td>
                         <td colspan="3">
-                            <hr noshade size="1">
+                            <hr noshade="noshade" size="1">
                         </td>
                     </tr>
                     <tr>
@@ -78,7 +78,7 @@
                     </tr>
                     <tr>
                         <td colspan="4">
-                            <hr noshade size="1">
+                            <hr noshade="noshade" size="1">
                         </td>
                     </tr>
                     <tr>
@@ -119,7 +119,7 @@
                             &nbsp;
                         </td>
                         <td colspan="3">
-                            <hr noshade size="1">
+                            <hr noshade="noshade" size="1">
                         </td>
                     </tr>
                     <tr valign="top">
@@ -145,11 +145,11 @@
                                                     <asp:ImageButton ImageUrl="~/images/up.gif" CommandName="up" CommandArgument="leftPane"
                                                         AlternateText="Move selected module up in list" runat="server" ID="LeftUpBtn"
                                                         OnClick="UpDown_Click" />
-                                                    <br>
+                                                    <br />
                                                     <asp:ImageButton ImageUrl="~/images/rt.gif" CommandName="right" sourcepane="leftPane"
                                                         targetpane="contentPane" AlternateText="Move selected module to the content pane"
                                                         runat="server" ID="LeftRightBtn" OnClick="RightLeft_Click" />
-                                                    <br>
+                                                    <br />
                                                     <asp:ImageButton ImageUrl="~/images/dn.gif" CommandName="down" CommandArgument="leftPane"
                                                         AlternateText="Move selected module down in list" runat="server" ID="LeftDownBtn"
                                                         OnClick="UpDown_Click" />
@@ -160,7 +160,7 @@
                                                 <td valign="bottom" nowrap>
                                                     <asp:ImageButton ImageUrl="~/images/edit.gif" CommandName="edit" CommandArgument="leftPane"
                                                         AlternateText="Edit this item" runat="server" ID="LeftEditBtn" OnClick="EditBtn_Click" />
-                                                    <br>
+                                                    <br />
                                                     <asp:ImageButton ImageUrl="~/images/delete.gif" CommandName="delete" CommandArgument="leftPane"
                                                         AlternateText="Delete this item" runat="server" ID="LeftDeleteBtn" OnClick="DeleteBtn_Click" />
                                                 </td>
@@ -189,15 +189,15 @@
                                                     <asp:ImageButton ImageUrl="~/images/up.gif" CommandName="up" CommandArgument="contentPane"
                                                         AlternateText="Move selected module up in list" runat="server" ID="ContentUpBtn"
                                                         OnClick="UpDown_Click" />
-                                                    <br>
+                                                    <br />
                                                     <asp:ImageButton ImageUrl="~/images/lt.gif" sourcepane="contentPane" targetpane="leftPane"
                                                         AlternateText="Move selected module to the left pane" runat="server" ID="ContentLeftBtn"
                                                         OnClick="RightLeft_Click" />
-                                                    <br>
+                                                    <br />
                                                     <asp:ImageButton ImageUrl="~/images/rt.gif" sourcepane="contentPane" targetpane="rightPane"
                                                         AlternateText="Move selected module to the right pane" runat="server" ID="ContentRightBtn"
                                                         OnClick="RightLeft_Click" />
-                                                    <br>
+                                                    <br />
                                                     <asp:ImageButton ImageUrl="~/images/dn.gif" CommandName="down" CommandArgument="contentPane"
                                                         AlternateText="Move selected module down in list" runat="server" ID="ContentDownBtn"
                                                         OnClick="UpDown_Click" />
@@ -208,7 +208,7 @@
                                                 <td valign="bottom" nowrap>
                                                     <asp:ImageButton ImageUrl="~/images/edit.gif" CommandName="edit" CommandArgument="contentPane"
                                                         AlternateText="Edit this item" runat="server" ID="ContentEditBtn" OnClick="EditBtn_Click" />
-                                                    <br>
+                                                    <br />
                                                     <asp:ImageButton ImageUrl="~/images/delete.gif" CommandName="delete" CommandArgument="contentPane"
                                                         AlternateText="Delete this item" runat="server" ID="ContentDeleteBtn" OnClick="DeleteBtn_Click" />
                                                 </td>
@@ -237,11 +237,11 @@
                                                     <asp:ImageButton ImageUrl="~/images/up.gif" CommandName="up" CommandArgument="rightPane"
                                                         AlternateText="Move selected module up in list" runat="server" ID="RightUpBtn"
                                                         OnClick="UpDown_Click" />
-                                                    <br>
+                                                    <br />
                                                     <asp:ImageButton ImageUrl="~/images/lt.gif" sourcepane="rightPane" targetpane="contentPane"
                                                         AlternateText="Move selected module to the left pane" runat="server" ID="RightLeftBtn"
                                                         OnClick="RightLeft_Click" />
-                                                    <br>
+                                                    <br />
                                                     <asp:ImageButton ImageUrl="~/images/dn.gif" CommandName="down" CommandArgument="rightPane"
                                                         AlternateText="Move selected module down in list" runat="server" ID="RightDownBtn"
                                                         OnClick="UpDown_Click" />
@@ -251,7 +251,7 @@
                                                 <td valign="bottom" nowrap>
                                                     <asp:ImageButton ImageUrl="~/images/edit.gif" CommandName="edit" CommandArgument="rightPane"
                                                         AlternateText="Edit this item" runat="server" ID="RightEditBtn" OnClick="EditBtn_Click" />
-                                                    <br>
+                                                    <br />
                                                     <asp:ImageButton ImageUrl="~/images/delete.gif" CommandName="delete" CommandArgument="rightPane"
                                                         AlternateText="Delete this item" runat="server" ID="RightDeleteBtn" OnClick="DeleteBtn_Click" />
                                                 </td>
@@ -264,7 +264,7 @@
                     </tr>
                     <tr>
                         <td colspan="4">
-                            <hr noshade size="1">
+                            <hr noshade="noshade" size="1">
                         </td>
                     </tr>
                     <tr>

@@ -112,7 +112,7 @@
                         <asp:Label ID="CreatedBy" runat="server" />
                         on
                         <asp:Label ID="CreatedDate" runat="server" />
-                        <br>
+                        <br />
                     </span>
                     <p>
                     </p>

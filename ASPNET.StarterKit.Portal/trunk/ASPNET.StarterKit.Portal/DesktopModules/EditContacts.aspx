@@ -21,7 +21,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <hr noshade size="1">
+                            <hr noshade="noshade" size="1">
                         </td>
                     </tr>
                 </table>
@@ -91,12 +91,12 @@
                     &nbsp;
                     <asp:LinkButton ID="deleteButton" Text="Delete this item" CausesValidation="False"
                         runat="server" class="CommandButton" BorderStyle="none" OnClick="DeleteBtn_Click" />
-                    <hr noshade size="1" width="500">
+                    <hr noshade="noshade" size="1" width="500">
                     <span class="Normal">Created by
                         <asp:Label ID="CreatedBy" runat="server" />
                         on
                         <asp:Label ID="CreatedDate" runat="server" />
-                        <br>
+                        <br />
                     </span>
                     <p>
                     </p>

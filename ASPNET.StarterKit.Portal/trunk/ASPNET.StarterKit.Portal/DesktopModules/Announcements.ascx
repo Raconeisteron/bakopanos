@@ -8,13 +8,13 @@
         <span class="ItemTitle">
             <%# DataBinder.Eval(Container.DataItem,"Title") %>
         </span>
-        <br>
+        <br />
         <span class="Normal">
             <%# DataBinder.Eval(Container.DataItem,"Description") %>
             &nbsp;
             <asp:HyperLink id="moreLink" NavigateUrl='<%# DataBinder.Eval(Container.DataItem,"MoreLink") %>' Visible='<%# DataBinder.Eval(Container.DataItem,"MoreLink") != String.Empty %>' runat="server">
                 read more...</asp:HyperLink>
         </span>
-        <br>
+        <br />
     </ItemTemplate>
 </asp:DataList>

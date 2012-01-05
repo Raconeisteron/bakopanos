@@ -9,14 +9,14 @@
             <asp:HyperLink id="editLink" ImageUrl="~/images/edit.gif" NavigateUrl='<%# "~/DesktopModules/EditEvents.aspx?ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") + "&mid=" + ModuleId %>' Visible="<%# IsEditable %>" runat="server" />
             <asp:Label Text='<%# DataBinder.Eval(Container.DataItem,"Title") %>' runat="server" />
         </span>
-        <br>
+        <br />
         <span class="Normal"><i>
                 <%# DataBinder.Eval(Container.DataItem,"WhereWhen") %>
             </i></span>
-        <br>
+        <br />
         <span class="Normal">
             <%# DataBinder.Eval(Container.DataItem,"Description") %>
         </span>
-        <br>
+        <br />
     </ItemTemplate>
 </asp:DataList>

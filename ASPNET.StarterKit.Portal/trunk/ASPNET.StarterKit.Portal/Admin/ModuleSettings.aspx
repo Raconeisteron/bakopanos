@@ -27,7 +27,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <hr noshade size="1">
+                                        <hr noshade="noshade" size="1">
                                     </td>
                                 </tr>
                             </table>
@@ -54,7 +54,7 @@
                             &nbsp;
                         </td>
                         <td colspan="3">
-                            <hr noshade size="1">
+                            <hr noshade="noshade" size="1">
                         </td>
                     </tr>
                     <tr>
@@ -71,7 +71,7 @@
                             &nbsp;
                         </td>
                         <td colspan="3">
-                            <hr noshade size="1">
+                            <hr noshade="noshade" size="1">
                         </td>
                     </tr>
                     <tr>
@@ -84,7 +84,7 @@
                     </tr>
                     <tr>
                         <td colspan="4">
-                            <hr noshade size="1">
+                            <hr noshade="noshade" size="1">
                         </td>
                     </tr>
                     <tr>

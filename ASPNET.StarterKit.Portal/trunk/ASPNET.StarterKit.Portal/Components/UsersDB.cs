@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -245,17 +246,17 @@ namespace ASPNET.StarterKit.Portal
             dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
             // create a String array from the data
-            var userRoles = new ArrayList();
+            var userRoles = new List<string>();
 
             while (dr.Read())
             {
-                userRoles.Add(dr["RoleName"]);
+                userRoles.Add(dr["RoleName"] as string);
             }
 
             dr.Close();
 
             // Return the String array of roles
-            return (String[]) userRoles.ToArray(typeof (String));
+            return userRoles.ToArray();
         }
 
         //*********************************************************************

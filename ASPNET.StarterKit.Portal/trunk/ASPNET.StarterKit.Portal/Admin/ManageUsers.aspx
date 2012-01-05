@@ -63,8 +63,8 @@
 			<td colspan="3">
 				<asp:LinkButton Text="Apply Name and Password Changes" CssClass="CommandButton" runat="server"
 					ID="UpdateUserBtn" OnClick="UpdateUser_Click" />
-				<br>
-				<br>
+				<br />
+				<br />
 			</td>
 		</tr>
 		<tr>

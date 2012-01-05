@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -791,13 +792,13 @@ namespace ASPNET.StarterKit.Portal
 
     public class PortalSettings
     {
-        public TabSettings ActiveTab = new TabSettings();
-        public bool AlwaysShowEditButton;
-        public ArrayList DesktopTabs = new ArrayList();
-        public ArrayList MobileTabs = new ArrayList();
-        public int PortalId;
-        public String PortalName;
-
+        public TabSettings ActiveTab { get; set; }
+        public bool AlwaysShowEditButton { get; set; }
+        public List<TabStripDetails> DesktopTabs { get; set; }
+        public List<TabStripDetails> MobileTabs { get; set; }
+        public int PortalId { get; set; }
+        public String PortalName { get; set; }
+        
         //*********************************************************************
         //
         // PortalSettings Constructor
@@ -815,6 +816,10 @@ namespace ASPNET.StarterKit.Portal
 
         public PortalSettings(int tabIndex, int tabId)
         {
+            ActiveTab = new TabSettings();
+            DesktopTabs = new List<TabStripDetails>();
+            MobileTabs = new List<TabStripDetails>();
+
             // Get the configuration data
             SiteConfiguration siteSettings = Configuration.GetSiteSettings();
 
@@ -925,14 +930,19 @@ namespace ASPNET.StarterKit.Portal
 
     public class TabSettings
     {
-        public String AuthorizedRoles;
-        public String MobileTabName;
-        public ArrayList Modules = new ArrayList();
-        public bool ShowMobile;
-        public int TabId;
-        public int TabIndex;
-        public String TabName;
-        public int TabOrder;
+        public String AuthorizedRoles { get; set; }
+        public String MobileTabName { get; set; }
+        public List<ModuleSettings> Modules { get; set; }
+        public bool ShowMobile { get; set; }
+        public int TabId { get; set; }
+        public int TabIndex { get; set; }
+        public String TabName { get; set; }
+        public int TabOrder { get; set; }
+
+        public TabSettings()
+        {
+            Modules = new List<ModuleSettings>();
+        }
     }
 
     //*********************************************************************

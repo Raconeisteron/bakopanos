@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Web;
 using System.Web.UI;
@@ -9,9 +9,10 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class TabLayout : Page
     {
-        protected ArrayList ContentList;
-        protected ArrayList LeftList;
-        protected ArrayList RightList;
+        protected List<ModuleItem> ContentList { get; set; }
+        protected List<ModuleItem> LeftList { get; set; }
+        protected List<ModuleItem> RightList { get; set; }
+
         private int _tabId;
 
         //*******************************************************
@@ -70,7 +71,7 @@ namespace ASPNET.StarterKit.Portal
             HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, _tabId);
 
             // reorder the modules in the content pane
-            ArrayList modules = GetModules("ContentPane");
+            List<ModuleItem> modules = GetModules("ContentPane");
             OrderModules(modules);
 
             // resave the order
@@ -96,7 +97,7 @@ namespace ASPNET.StarterKit.Portal
             String pane = ((ImageButton) sender).CommandArgument;
             var _listbox = (ListBox) Page.FindControl(pane);
 
-            ArrayList modules = GetModules(pane);
+            List<ModuleItem> modules = GetModules(pane);
 
             if (_listbox.SelectedIndex != -1)
             {
@@ -156,7 +157,7 @@ namespace ASPNET.StarterKit.Portal
             if (sourceBox.SelectedIndex != -1)
             {
                 // get source arraylist
-                ArrayList sourceList = GetModules(sourcePane);
+                List<ModuleItem> sourceList = GetModules(sourcePane);
 
                 // get a reference to the module to move
                 // and assign a high order number to send it to the end of the target list
@@ -186,7 +187,7 @@ namespace ASPNET.StarterKit.Portal
                 }
 
                 // reorder the modules in the target pane
-                ArrayList targetList = GetModules(targetPane);
+                List<ModuleItem> targetList = GetModules(targetPane);
                 OrderModules(targetList);
 
                 // resave the order
@@ -302,7 +303,7 @@ namespace ASPNET.StarterKit.Portal
         {
             String pane = ((ImageButton) sender).CommandArgument;
             var listbox = (ListBox) Page.FindControl(pane);
-            ArrayList modules = GetModules(pane);
+            List<ModuleItem> modules = GetModules(pane);
 
             if (listbox.SelectedIndex != -1)
             {
@@ -395,11 +396,11 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private ArrayList GetModules(String pane)
+        private List<ModuleItem> GetModules(String pane)
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
-            var paneModules = new ArrayList();
+            var paneModules = new List<ModuleItem>();
 
             foreach (ModuleSettings module in portalSettings.ActiveTab.Modules)
             {
@@ -424,7 +425,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private static void OrderModules(ArrayList list)
+        private static void OrderModules(List<ModuleItem> list)
         {
             int i = 1;
 

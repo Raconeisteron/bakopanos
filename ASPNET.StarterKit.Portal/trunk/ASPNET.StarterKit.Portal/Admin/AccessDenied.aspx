@@ -13,19 +13,19 @@
         <table width="500" border="0">
             <tr>
                 <td class="Normal">
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                     <span class="Head">Access Denied</span>
-                    <br>
-                    <br>
+                    <br />
+                    <br />
                     <hr noshade="noshade" size="1pt" />
-                    <br>
+                    <br />
                     Either you are not currently logged in, or you do not have access to this tab page
                     within the portal. Please contact the portal administrator to obtain access.
-                    <br>
-                    <br>
+                    <br />
+                    <br />
                     <a href="<%=Global.GetApplicationPath(Request)%>/DesktopDefault.aspx">Return to ASP.NET
                         Portal Starter Kit Home</a>
                 </td>

@@ -20,7 +20,7 @@
     </tr>
     <tr>
         <td colspan="2">
-            <hr noshade size="1">
+            <hr noshade="noshade" size="1">
         </td>
     </tr>
 </table>

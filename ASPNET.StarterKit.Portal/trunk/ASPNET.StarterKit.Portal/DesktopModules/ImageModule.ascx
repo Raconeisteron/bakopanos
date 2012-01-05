@@ -4,4 +4,4 @@
 <portal:title EditText="Edit" EditUrl="~/DesktopModules/EditImage.aspx" runat="server" id=Title1 />
 
 <asp:image id="Image1" border="0" runat="server" />
-<br>
+<br />

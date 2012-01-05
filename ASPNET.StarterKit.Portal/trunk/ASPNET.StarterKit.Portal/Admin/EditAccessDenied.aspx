@@ -11,20 +11,20 @@
         <table width="500" border="0">
             <tr>
                 <td class="Normal">
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                     <span class="Head">Edit Access Denied</span>
-                    <br>
-                    <br>
+                    <br />
+                    <br />
                     <hr noshade="noshade" size="1" />
-                    <br>
+                    <br />
                     Either you are not currently logged in, or you do not have access to modify the
                     current portal module content. Please contact the portal administrator to obtain
                     edit access for this module.
-                    <br>
-                    <br>
+                    <br />
+                    <br />
                     <a href="<%=Global.GetApplicationPath(Request)%>/DesktopDefault.aspx">Return to Portal
                         Home</a>
                 </td>

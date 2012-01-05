@@ -1,5 +1,5 @@
 <%@ Control language="c#" Inherits="ASPNET.StarterKit.Portal.QuickLinks" CodeBehind="QuickLinks.ascx.cs" AutoEventWireup="True" %>
-<hr noshade size="1pt" width="98%">
+<hr noshade="noshade" size="1pt" width="98%">
 <span class="SubSubHead">Quick Launch</span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <asp:hyperlink id="EditButton" cssclass="CommandButton" enableviewstate="false" runat="server" />
@@ -11,7 +11,7 @@
 				<%# DataBinder.Eval(Container.DataItem,"Title") %>
 			</a>
 		</span>
-		<br>
+		<br />
 	</itemtemplate>
 </asp:datalist>
-<br>
+<br />

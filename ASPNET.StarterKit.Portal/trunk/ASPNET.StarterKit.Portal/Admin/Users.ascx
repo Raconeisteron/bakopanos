@@ -9,7 +9,7 @@
         </td>
         <td class="Normal">
             <asp:Literal id="Message" runat="server" />
-            <br><br>
+            <br /><br />
         </td>
     </tr>
     <tr valign="top">

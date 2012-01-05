@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 
@@ -41,13 +42,11 @@ namespace ASPNET.StarterKit.Portal
             _tabIndex = portalSettings.ActiveTab.TabIndex;
 
             // Build list of tabs to be shown to user                                   
-            var authorizedTabs = new ArrayList();
+            var authorizedTabs = new List<TabStripDetails>();
             int addedTabs = 0;
 
-            foreach (object t in portalSettings.DesktopTabs)
+            foreach (TabStripDetails tab in portalSettings.DesktopTabs)
             {
-                var tab = (TabStripDetails) t;
-
                 if (PortalSecurity.IsInRoles(tab.AuthorizedRoles))
                 {
                     authorizedTabs.Add(tab);

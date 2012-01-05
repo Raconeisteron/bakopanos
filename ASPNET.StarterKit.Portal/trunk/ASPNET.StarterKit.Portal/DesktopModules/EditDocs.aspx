@@ -83,8 +83,8 @@
                         </td>
                         <td colspan="2">
                             &nbsp;
-                            <br>
-                            <br>
+                            <br />
+                            <br />
                         </td>
                     </tr>
                     <tr valign="top">

@@ -34,7 +34,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <hr noshade size="1">
+                                        <hr noshade="noshade" size="1">
                                     </td>
                                 </tr>
                             </table>
@@ -43,14 +43,14 @@
                     <tr valign="top">
                         <td class="Normal">
                             Name:
-                            <br>
+                            <br />
                             <asp:TextBox size="25" ID="Name" runat="server" />
                             &nbsp;
                             <asp:RequiredFieldValidator ControlToValidate="Name" ErrorMessage="'Name' must not be left blank."
                                 runat="server" ID="RequiredFieldValidator1" />
                             <p>
                                 Email:
-                                <br>
+                                <br />
                                 <asp:TextBox size="25" ID="Email" runat="server" />
                                 &nbsp;
                                 <asp:RegularExpressionValidator ControlToValidate="Email" ValidationExpression="[\w\.-]+(\+[\w-]*)?@([\w-]+\.)+[\w-]+"
@@ -60,14 +60,14 @@
                                     runat="server" ID="RequiredFieldValidator2" />
                                 <p>
                                     Password:
-                                    <br>
+                                    <br />
                                     <asp:TextBox size="25" ID="Password" TextMode="Password" runat="server" />
                                     &nbsp;
                                     <asp:RequiredFieldValidator ControlToValidate="Password" ErrorMessage="'Password' must not be left blank."
                                         runat="server" ID="RequiredFieldValidator3" />
                                     <p>
                                         Confirm Password:
-                                        <br>
+                                        <br />
                                         <asp:TextBox size="25" ID="ConfirmPassword" TextMode="Password" runat="server" />
                                         &nbsp;
                                         <asp:RequiredFieldValidator ControlToValidate="ConfirmPassword" Display="Dynamic"
@@ -77,8 +77,8 @@
                                         <p>
                                             <asp:LinkButton class="CommandButton" Text="Register and Sign In Now" runat="server"
                                                 ID="RegisterBtn" OnClick="RegisterBtn_Click" />
-                                            <br>
-                                            <br>
+                                            <br />
+                                            <br />
                                             <p>
                                                 <asp:Label ID="Message" CssClass="NormalRed" runat="server" />
                                             </p>

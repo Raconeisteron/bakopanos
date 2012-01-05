@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -8,7 +9,7 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class Tabs : PortalModuleControl
     {
-        protected ArrayList PortalTabs;
+        protected List<TabItem> PortalTabs;
         private int _tabId;
         private int _tabIndex;
 
@@ -39,7 +40,7 @@ namespace ASPNET.StarterKit.Portal
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
-            PortalTabs = new ArrayList();
+            PortalTabs = new List<TabItem>();
             foreach (TabStripDetails tab in portalSettings.DesktopTabs)
             {
                 var t = new TabItem();

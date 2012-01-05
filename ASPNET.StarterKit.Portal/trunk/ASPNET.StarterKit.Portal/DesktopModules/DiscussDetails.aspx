@@ -78,14 +78,14 @@
             <td class="Message" align="left">
                 <b>Subject: </b>
                 <asp:Label ID="Title" runat="server"></asp:Label>
-                <br>
+                <br />
                 <b>Author: </b>
                 <asp:Label ID="CreatedByUser" runat="server"></asp:Label>
-                <br>
+                <br />
                 <b>Date: </b>
                 <asp:Label ID="CreatedDate" runat="server"></asp:Label>
-                <br>
-                <br>
+                <br />
+                <br />
                 <asp:Label ID="Body" runat="server"></asp:Label>
             </td>
         </tr>

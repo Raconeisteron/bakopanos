@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Security.Principal;
 using System.Threading;
@@ -117,14 +118,14 @@ namespace ASPNET.StarterKit.Portal
                         FormsAuthentication.Decrypt(Context.Request.Cookies["portalroles"].Value);
 
                     //convert the string representation of the role data into a string array
-                    var userRoles = new ArrayList();
+                    var userRoles = new List<string>();
 
                     foreach (String role in ticket.UserData.Split(new[] {';'}))
                     {
                         userRoles.Add(role);
                     }
 
-                    roles = (String[]) userRoles.ToArray(typeof (String));
+                    roles = userRoles.ToArray();
                 }
 
                 // Add our own custom principal to the request containing the roles in the auth ticket
