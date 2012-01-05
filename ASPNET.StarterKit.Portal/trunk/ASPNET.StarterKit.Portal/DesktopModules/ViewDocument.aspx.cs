@@ -1,17 +1,12 @@
 using System;
-using System.Data;
+using System.Data.SqlClient;
 using System.Web.UI;
-using ASPNETPortal;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class ViewDocument : Page
     {
         private int _documentId = -1;
-
-        [Dependency]
-        public IDocumentDb Model { private get; set; }
 
         /// <summary>
         /// The Page_Load event handler on this Page is used to
@@ -32,7 +27,10 @@ namespace ASPNET.StarterKit.Portal
             if (_documentId != -1)
             {
                 // Obtain Document Data from Documents table
-                DataRow dBContent = Model.GetDocumentContent(_documentId);
+                var documents = new DocumentDB();
+
+                SqlDataReader dBContent = documents.GetDocumentContent(_documentId);
+                dBContent.Read();
 
                 // Serve up the file by name
                 Response.AppendHeader("content-disposition", "filename=" + (String) dBContent["FileName"]);

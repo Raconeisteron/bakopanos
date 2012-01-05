@@ -1,18 +1,11 @@
 using System;
 using System.Web;
 using System.Web.UI;
-using ASPNETPortal;
-using ASPNETPortal.Configuration;
-using ASPNETPortal.Security;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class DesktopDefault : Page
     {
-        [Dependency]
-        public IPortalSecurity PortalSecurity { private get; set; }
-
         /// <summary>
         /// The Page_Init event handler executes at the very beginning of each page
         /// request (immediately before Page_Load).

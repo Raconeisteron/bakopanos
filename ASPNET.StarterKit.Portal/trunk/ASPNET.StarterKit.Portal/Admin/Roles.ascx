@@ -9,15 +9,15 @@
             &nbsp;
         </td>
         <td>
-            <asp:DataList id="rolesList" DataKeyField="Id" runat="server">
+            <asp:DataList id="rolesList" DataKeyField="RoleID" runat="server">
                 <ItemTemplate>
                     <asp:ImageButton ImageUrl="~/images/edit.gif" CommandName="edit" AlternateText="Edit this item" runat="server" />
                     <asp:ImageButton ImageUrl="~/images/delete.gif" CommandName="delete" AlternateText="Delete this item" runat="server" />
                     &nbsp;&nbsp;
-                    <asp:Label Text='<%# DataBinder.Eval(Container.DataItem, "Name") %>' cssclass="Normal" runat="server" />
+                    <asp:Label Text='<%# DataBinder.Eval(Container.DataItem, "RoleName") %>' cssclass="Normal" runat="server" />
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:Textbox id="roleName" width="200" cssclass="NormalTextBox" Text='<%# DataBinder.Eval(Container.DataItem, "Name") %>' runat="server" />
+                    <asp:Textbox id="roleName" width="200" cssclass="NormalTextBox" Text='<%# DataBinder.Eval(Container.DataItem, "RoleName") %>' runat="server" />
                     &nbsp;
                     <asp:LinkButton Text="Apply" CommandName="apply" cssclass="CommandButton" runat="server" />
                     &nbsp;

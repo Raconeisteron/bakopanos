@@ -2041,7 +2041,6 @@ AS
 
 SELECT  
     UserID,
-	Name,
     Email
 
 FROM Portal_Users

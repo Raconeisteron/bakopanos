@@ -77,7 +77,7 @@
         <tr valign="top">
             <td class="Message" align="left">
                 <b>Subject: </b>
-                <asp:Label ID="DiscussDetailsTitle" runat="server"></asp:Label>
+                <asp:Label ID="Title" runat="server"></asp:Label>
                 <br>
                 <b>Author: </b>
                 <asp:Label ID="CreatedByUser" runat="server"></asp:Label>

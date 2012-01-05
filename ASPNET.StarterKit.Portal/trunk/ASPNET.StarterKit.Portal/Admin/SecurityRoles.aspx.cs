@@ -1,10 +1,6 @@
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ASPNETPortal.Configuration;
-using ASPNETPortal.Security;
-using ASPNETPortal.Security.Model;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -14,15 +10,6 @@ namespace ASPNET.StarterKit.Portal
         private String _roleName = "";
         private int _tabId;
         private int _tabIndex;
-
-        [Dependency]
-        public IPortalUsersService Model { private get; set; }
-
-        [Dependency]
-        public IPortalRolesService RolesModel { private get; set; }
-
-        [Dependency]
-        public IPortalSecurity PortalSecurity { private get; set; }
 
         //*******************************************************
         //
@@ -95,7 +82,8 @@ namespace ASPNET.StarterKit.Portal
             if (((LinkButton) sender).ID == "addNew")
             {
                 // add new user to users table
-                if ((userId = Model.AddUser(windowsUserName.Text, windowsUserName.Text, "acme")) == -1)
+                var users = new UsersDB();
+                if ((userId = users.AddUser(windowsUserName.Text, windowsUserName.Text, "acme")) == -1)
                 {
                     Message.Text = "Add New Failed!  There is already an entry for <" + "u" + ">" + windowsUserName.Text +
                                    "<" + "/u" + "> in the Users database." + "<" + "br" + ">" +
@@ -111,7 +99,8 @@ namespace ASPNET.StarterKit.Portal
             if (userId != -1)
             {
                 // Add a new userRole to the database
-                RolesModel.AddUserRole(_roleId, userId);
+                var roles = new RolesDB();
+                roles.AddUserRole(_roleId, userId);
             }
 
             // Rebind list
@@ -128,12 +117,13 @@ namespace ASPNET.StarterKit.Portal
 
         private void UsersInRoleItemCommand(object sender, DataListCommandEventArgs e)
         {
+            var roles = new RolesDB();
             var userId = (int) usersInRole.DataKeys[e.Item.ItemIndex];
 
             if (e.CommandName == "delete")
             {
                 // update database
-                RolesModel.DeleteUserRole(_roleId, userId);
+                roles.DeleteUserRole(_roleId, userId);
 
                 // Ensure that item is not editable
                 usersInRole.EditItemIndex = -1;
@@ -166,12 +156,14 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Get the portal's roles from the database
+            var roles = new RolesDB();
+
             // bind users in role to DataList
-            usersInRole.DataSource = RolesModel.GetRoleMembers(_roleId);
+            usersInRole.DataSource = roles.GetRoleMembers(_roleId);
             usersInRole.DataBind();
 
             // bind all portal users to dropdownlist
-            allUsers.DataSource = RolesModel.GetUsers();
+            allUsers.DataSource = roles.GetUsers();
             allUsers.DataBind();
         }
 

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ASPNET.StarterKit.Portal")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Bakopanos Konstantinos")]
+[assembly: AssemblyCompany("F. Hoffmann La Roche Ltd")]
 [assembly: AssemblyProduct("ASPNET.StarterKit.Portal")]
-[assembly: AssemblyCopyright("Copyright © Bakopanos Konstantinos 2008")]
+[assembly: AssemblyCopyright("Copyright © F. Hoffmann La Roche Ltd 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

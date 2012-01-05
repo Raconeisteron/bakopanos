@@ -1,9 +1,6 @@
 using System;
-using System.Data;
+using System.Data.SqlClient;
 using System.Web.UI;
-using ASPNETPortal;
-using ASPNETPortal.Security;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -11,12 +8,6 @@ namespace ASPNET.StarterKit.Portal
     {
         private int _itemId;
         private int _moduleId;
-
-        [Dependency]
-        public IContactsDb Model { private get; set; }
-
-        [Dependency]
-        public IPortalSecurity PortalSecurity { private get; set; }
 
         //****************************************************************
         //
@@ -54,22 +45,30 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of contact information
-                DataRow row = Model.GetSingleContact(_itemId);
+                var contacts = new ContactsDB();
+                SqlDataReader dr = contacts.GetSingleContact(_itemId);
+
+                // Read first row from database
+                dr.Read();
 
                 // Security check.  verify that itemid is within the module.
-                int dbModuleId = Convert.ToInt32(row["ModuleID"]);
+                int dbModuleId = Convert.ToInt32(dr["ModuleID"]);
                 if (dbModuleId != _moduleId)
                 {
+                    dr.Close();
                     Response.Redirect("~/Admin/EditAccessDenied.aspx");
                 }
 
-                NameField.Text = (String) row["Name"];
-                RoleField.Text = (String) row["Role"];
-                EmailField.Text = (String) row["Email"];
-                Contact1Field.Text = (String) row["Contact1"];
-                Contact2Field.Text = (String) row["Contact2"];
-                CreatedBy.Text = (String) row["CreatedByUser"];
-                CreatedDate.Text = ((DateTime) row["CreatedDate"]).ToShortDateString();
+                NameField.Text = (String) dr["Name"];
+                RoleField.Text = (String) dr["Role"];
+                EmailField.Text = (String) dr["Email"];
+                Contact1Field.Text = (String) dr["Contact1"];
+                Contact2Field.Text = (String) dr["Contact2"];
+                CreatedBy.Text = (String) dr["CreatedByUser"];
+                CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
+
+                // Close datareader
+                dr.Close();
             }
 
             // Store URL Referrer to return to portal
@@ -90,19 +89,20 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the ContactsDB component
+                var contacts = new ContactsDB();
 
                 if (_itemId == 0)
                 {
                     // Add the contact within the contacts table
-                    Model.AddContact(_moduleId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
-                                     EmailField.Text, Contact1Field.Text, Contact2Field.Text);
+                    contacts.AddContact(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
+                                        EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
                 else
                 {
                     // Update the contact within the contacts table
-                    Model.UpdateContact(_itemId, Context.User.Identity.Name, NameField.Text,
-                                        RoleField.Text,
-                                        EmailField.Text, Contact1Field.Text, Contact2Field.Text);
+                    contacts.UpdateContact(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
+                                           RoleField.Text,
+                                           EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
 
                 // Redirect back to the portal home page
@@ -125,7 +125,8 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                Model.DeleteContact(_itemId);
+                var contacts = new ContactsDB();
+                contacts.DeleteContact(_itemId);
             }
 
             // Redirect back to the portal home page

@@ -1,40 +1,18 @@
 using System;
-using System.Collections.Generic;
-using System.Data;
+using System.Collections;
+using System.Data.SqlClient;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ASPNETPortal.Configuration;
-using ASPNETPortal.Security;
-using ASPNETPortal.Security.Model;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class TabLayout : Page
     {
-        protected List<ModuleItem> ContentList;
-        protected List<ModuleItem> LeftList;
-        protected List<ModuleItem> RightList;
+        protected ArrayList ContentList;
+        protected ArrayList LeftList;
+        protected ArrayList RightList;
         private int _tabId;
-
-        [Dependency]
-        public IPortalRolesService Model { private get; set; }
-
-        [Dependency]
-        public IModuleDefinitionDb ConfigModel { get; set; }
-
-        [Dependency]
-        public IModuleDb ModuleDb { get; set; }
-
-        [Dependency]
-        public ITabDb TabDb { get; set; }
-
-        [Dependency]
-        public IGlobalDb GlobalDb { get; set; }
-
-        [Dependency]
-        public IPortalSecurity PortalSecurity { private get; set; }
 
         //*******************************************************
         //
@@ -80,26 +58,25 @@ namespace ASPNET.StarterKit.Portal
             m.ModuleOrder = 999;
 
             // save to database
-            m.ModuleId = ModuleDb.AddModule(_tabId, m.ModuleOrder, "ContentPane", m.ModuleTitle, m.ModuleDefId, 0,
-                                            "Admins",
-                                            false);
+            var config = new Configuration();
+            m.ModuleId = config.AddModule(_tabId, m.ModuleOrder, "ContentPane", m.ModuleTitle, m.ModuleDefId, 0,
+                                          "Admins",
+                                          false);
 
             // Obtain portalId from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // reload the portalSettings from the database
-            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(GlobalDb, TabDb, ModuleDb, ConfigModel,
-                                                                             portalSettings.PortalId,
-                                                                             _tabId);
+            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, _tabId);
 
             // reorder the modules in the content pane
-            List<ModuleItem> modules = GetModules("ContentPane");
+            ArrayList modules = GetModules("ContentPane");
             OrderModules(modules);
 
             // resave the order
             foreach (ModuleItem item in modules)
             {
-                ModuleDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, "ContentPane");
+                config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, "ContentPane");
             }
 
             // Redirect to the same page to pick up changes
@@ -117,11 +94,11 @@ namespace ASPNET.StarterKit.Portal
         {
             String cmd = ((ImageButton) sender).CommandName;
             String pane = ((ImageButton) sender).CommandArgument;
-            var listbox = (ListBox) Page.FindControl(pane);
+            var _listbox = (ListBox) Page.FindControl(pane);
 
-            List<ModuleItem> modules = GetModules(pane);
+            ArrayList modules = GetModules(pane);
 
-            if (listbox.SelectedIndex != -1)
+            if (_listbox.SelectedIndex != -1)
             {
                 int delta;
                 int selection = -1;
@@ -132,26 +109,28 @@ namespace ASPNET.StarterKit.Portal
                 if (cmd == "down")
                 {
                     delta = 3;
-                    if (listbox.SelectedIndex < listbox.Items.Count - 1)
-                        selection = listbox.SelectedIndex + 1;
+                    if (_listbox.SelectedIndex < _listbox.Items.Count - 1)
+                        selection = _listbox.SelectedIndex + 1;
                 }
                 else
                 {
                     delta = -3;
-                    if (listbox.SelectedIndex > 0)
-                        selection = listbox.SelectedIndex - 1;
+                    if (_listbox.SelectedIndex > 0)
+                        selection = _listbox.SelectedIndex - 1;
                 }
 
-                ModuleItem m = modules[listbox.SelectedIndex];
+                ModuleItem m;
+                m = (ModuleItem) modules[_listbox.SelectedIndex];
                 m.ModuleOrder += delta;
 
                 // reorder the modules in the content pane
                 OrderModules(modules);
 
                 // resave the order
+                var config = new Configuration();
                 foreach (ModuleItem item in modules)
                 {
-                    ModuleDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, pane);
+                    config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, pane);
                 }
             }
 
@@ -177,14 +156,15 @@ namespace ASPNET.StarterKit.Portal
             if (sourceBox.SelectedIndex != -1)
             {
                 // get source arraylist
-                List<ModuleItem> sourceList = GetModules(sourcePane);
+                ArrayList sourceList = GetModules(sourcePane);
 
                 // get a reference to the module to move
                 // and assign a high order number to send it to the end of the target list
-                ModuleItem m = sourceList[sourceBox.SelectedIndex];
+                var m = (ModuleItem) sourceList[sourceBox.SelectedIndex];
 
                 // add it to the database
-                ModuleDb.UpdateModuleOrder(m.ModuleId, 998, targetPane);
+                var config = new Configuration();
+                config.UpdateModuleOrder(m.ModuleId, 998, targetPane);
 
                 // delete it from the source list
                 sourceList.RemoveAt(sourceBox.SelectedIndex);
@@ -192,12 +172,8 @@ namespace ASPNET.StarterKit.Portal
                 // Obtain portalId from Current Context
                 var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
-                //SiteConfiguration siteSettings = ConfigModel.GetSiteSettings();
-
                 // reload the portalSettings from the database
-                HttpContext.Current.Items["PortalSettings"] = new PortalSettings(GlobalDb, TabDb, ModuleDb, ConfigModel,
-                                                                                 portalSettings.PortalId,
-                                                                                 _tabId);
+                HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, _tabId);
 
                 // reorder the modules in the source pane
                 sourceList = GetModules(sourcePane);
@@ -206,17 +182,17 @@ namespace ASPNET.StarterKit.Portal
                 // resave the order
                 foreach (ModuleItem item in sourceList)
                 {
-                    ModuleDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, sourcePane);
+                    config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, sourcePane);
                 }
 
                 // reorder the modules in the target pane
-                List<ModuleItem> targetList = GetModules(targetPane);
+                ArrayList targetList = GetModules(targetPane);
                 OrderModules(targetList);
 
                 // resave the order
                 foreach (ModuleItem item in targetList)
                 {
-                    ModuleDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, targetPane);
+                    config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, targetPane);
                 }
 
                 // Redirect to the same page to pick up changes
@@ -246,7 +222,7 @@ namespace ASPNET.StarterKit.Portal
             int adminIndex = portalSettings.DesktopTabs.Count - 1;
 
             Response.Redirect("~/DesktopDefault.aspx?tabindex=" + adminIndex + "&tabid=" +
-                              (portalSettings.DesktopTabs[adminIndex]).TabId);
+                              ((TabStripDetails) portalSettings.DesktopTabs[adminIndex]).TabId);
         }
 
         //*******************************************************
@@ -289,8 +265,9 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // update Tab info in the database
-            TabDb.UpdateTab(portalSettings.PortalId, _tabId, tabName.Text, portalSettings.ActiveTab.TabOrder,
-                            authorizedRoles, mobileTabName.Text, showMobile.Checked);
+            var config = new Configuration();
+            config.UpdateTab(portalSettings.PortalId, _tabId, tabName.Text, portalSettings.ActiveTab.TabOrder,
+                             authorizedRoles, mobileTabName.Text, showMobile.Checked);
         }
 
         //*******************************************************
@@ -303,11 +280,11 @@ namespace ASPNET.StarterKit.Portal
         protected void EditBtn_Click(Object sender, ImageClickEventArgs e)
         {
             String pane = ((ImageButton) sender).CommandArgument;
-            var listbox = (ListBox) Page.FindControl(pane);
+            var _listbox = (ListBox) Page.FindControl(pane);
 
-            if (listbox.SelectedIndex != -1)
+            if (_listbox.SelectedIndex != -1)
             {
-                int mid = Int32.Parse(listbox.SelectedItem.Value);
+                int mid = Int32.Parse(_listbox.SelectedItem.Value);
 
                 // Redirect to module settings page
                 Response.Redirect("ModuleSettings.aspx?mid=" + mid + "&tabid=" + _tabId);
@@ -325,15 +302,16 @@ namespace ASPNET.StarterKit.Portal
         {
             String pane = ((ImageButton) sender).CommandArgument;
             var listbox = (ListBox) Page.FindControl(pane);
-            List<ModuleItem> modules = GetModules(pane);
+            ArrayList modules = GetModules(pane);
 
             if (listbox.SelectedIndex != -1)
             {
-                ModuleItem m = modules[listbox.SelectedIndex];
+                var m = (ModuleItem) modules[listbox.SelectedIndex];
                 if (m.ModuleId > -1)
                 {
                     // must delete from database too
-                    ModuleDb.DeleteModule(m.ModuleId);
+                    var config = new Configuration();
+                    config.DeleteModule(m.ModuleId);
                 }
             }
 
@@ -362,12 +340,14 @@ namespace ASPNET.StarterKit.Portal
 
             // Populate checkbox list with all security roles for this portal
             // and "check" the ones already configured for this tab
-            IEnumerable<PortalRole> roles = Model.GetPortalRoles(portalSettings.PortalId);
+            var rolesObj = new RolesDB();
+            SqlDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
 
             // Clear existing items in checkboxlist
             authRoles.Items.Clear();
 
-            var allItem = new ListItem {Text = "All Users"};
+            var allItem = new ListItem();
+            allItem.Text = "All Users";
 
             if (tab.AuthorizedRoles.LastIndexOf("All Users") > -1)
             {
@@ -376,13 +356,11 @@ namespace ASPNET.StarterKit.Portal
 
             authRoles.Items.Add(allItem);
 
-            foreach (PortalRole role in roles)
+            while (roles.Read())
             {
-                var item = new ListItem
-                               {
-                                   Text = role.Name,
-                                   Value = role.Id.ToString()
-                               };
+                var item = new ListItem();
+                item.Text = (String) roles["RoleName"];
+                item.Value = roles["RoleID"].ToString();
 
                 if ((tab.AuthorizedRoles.LastIndexOf(item.Text)) > -1)
                 {
@@ -393,7 +371,8 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Populate the "Add Module" Data
-            moduleType.DataSource = ConfigModel.GetModuleDefinitions(portalSettings.PortalId);
+            var config = new Configuration();
+            moduleType.DataSource = config.GetModuleDefinitions(portalSettings.PortalId);
             moduleType.DataBind();
 
             // Populate Right Hand Module Data
@@ -409,27 +388,28 @@ namespace ASPNET.StarterKit.Portal
             leftPane.DataBind();
         }
 
-        /// <summary>
-        /// The GetModules helper method is used to get the modules
-        /// for a single pane within the tab
-        /// </summary>
-        private List<ModuleItem> GetModules(String pane)
+        //*******************************************************
+        //
+        // The GetModules helper method is used to get the modules
+        // for a single pane within the tab
+        //
+        //*******************************************************
+
+        private ArrayList GetModules(String pane)
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
-            var paneModules = new List<ModuleItem>();
+            var paneModules = new ArrayList();
 
             foreach (ModuleSettings module in portalSettings.ActiveTab.Modules)
             {
                 if ((module.PaneName).ToLower() == pane.ToLower())
                 {
-                    var m = new ModuleItem
-                                {
-                                    ModuleTitle = module.ModuleTitle,
-                                    ModuleId = module.ModuleId,
-                                    ModuleDefId = module.ModuleDefId,
-                                    ModuleOrder = module.ModuleOrder
-                                };
+                    var m = new ModuleItem();
+                    m.ModuleTitle = module.ModuleTitle;
+                    m.ModuleId = module.ModuleId;
+                    m.ModuleDefId = module.ModuleDefId;
+                    m.ModuleOrder = module.ModuleOrder;
                     paneModules.Add(m);
                 }
             }
@@ -437,11 +417,14 @@ namespace ASPNET.StarterKit.Portal
             return paneModules;
         }
 
-        /// <summary>
-        /// The OrderModules helper method is used to reset the display
-        /// order for modules within a pane
-        /// </summary>
-        private static void OrderModules(List<ModuleItem> list)
+        //*******************************************************
+        //
+        // The OrderModules helper method is used to reset the display
+        // order for modules within a pane
+        //
+        //*******************************************************
+
+        private static void OrderModules(ArrayList list)
         {
             int i = 1;
 

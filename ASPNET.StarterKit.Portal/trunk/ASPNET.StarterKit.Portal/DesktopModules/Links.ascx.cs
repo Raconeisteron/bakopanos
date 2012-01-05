@@ -1,15 +1,10 @@
 using System;
-using ASPNETPortal;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class Links : PortalModuleControl
     {
         protected String LinkImage = "";
-
-        [Dependency]
-        public ILinkDb Model { private get; set; }
 
         //*******************************************************
         //
@@ -35,29 +30,34 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the datalist control
-            myDataList.DataSource = Model.GetLinks(ModuleId);
+            var links = new LinkDB();
+
+            myDataList.DataSource = links.GetLinks(ModuleId);
             myDataList.DataBind();
         }
 
-        protected string ChooseUrl(string itemId, string modId, string url)
+        protected string ChooseURL(string itemID, string modID, string URL)
         {
             if (IsEditable)
-                return "~/DesktopModules/EditLinks.aspx?ItemID=" + itemId + "&mid=" + modId;
-            return url;
+                return "~/DesktopModules/EditLinks.aspx?ItemID=" + itemID + "&mid=" + modID;
+            else
+                return URL;
         }
 
         protected string ChooseTarget()
         {
             if (IsEditable)
                 return "_self";
-            return "_new";
+            else
+                return "_new";
         }
 
         protected string ChooseTip(string desc)
         {
             if (IsEditable)
                 return "Edit";
-            return desc;
+            else
+                return desc;
         }
     }
 }

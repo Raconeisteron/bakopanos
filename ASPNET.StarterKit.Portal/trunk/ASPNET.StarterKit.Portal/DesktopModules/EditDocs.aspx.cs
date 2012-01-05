@@ -1,10 +1,7 @@
 using System;
-using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Web.UI;
-using ASPNETPortal;
-using ASPNETPortal.Security;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -12,13 +9,6 @@ namespace ASPNET.StarterKit.Portal
     {
         private int _itemId;
         private int _moduleId;
-
-        [Dependency]
-        public IDocumentDb Model { private get; set; }
-
-        [Dependency]
-        public IPortalSecurity PortalSecurity { private get; set; }
-
 
         //****************************************************************
         //
@@ -56,20 +46,27 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of document information
-                    DataRow row = Model.GetSingleDocument(_itemId);
+                    var documents = new DocumentDB();
+                    SqlDataReader dr = documents.GetSingleDocument(_itemId);
+
+                    // Load first row into Datareader
+                    dr.Read();
 
                     // Security check.  verify that itemid is within the module.
-                    int dbModuleId = Convert.ToInt32(row["ModuleID"]);
+                    int dbModuleId = Convert.ToInt32(dr["ModuleID"]);
                     if (dbModuleId != _moduleId)
                     {
+                        dr.Close();
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
                     }
 
-                    NameField.Text = (String) row["FileFriendlyName"];
-                    PathField.Text = (String) row["FileNameUrl"];
-                    CategoryField.Text = (String) row["Category"];
-                    CreatedBy.Text = (String) row["CreatedByUser"];
-                    CreatedDate.Text = ((DateTime) row["CreatedDate"]).ToShortDateString();
+                    NameField.Text = (String) dr["FileFriendlyName"];
+                    PathField.Text = (String) dr["FileNameUrl"];
+                    CategoryField.Text = (String) dr["Category"];
+                    CreatedBy.Text = (String) dr["CreatedByUser"];
+                    CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
+
+                    dr.Close();
                 }
 
                 // Store URL Referrer to return to portal
@@ -91,7 +88,10 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Document DB component
+                var documents = new DocumentDB();
+
                 // Determine whether a file was uploaded
+
                 if (storeInDatabase.Checked && (FileUpload.PostedFile != null))
                 {
                     // for web farm support
@@ -102,8 +102,8 @@ namespace ASPNET.StarterKit.Portal
                     FileUpload.PostedFile.InputStream.Read(content, 0, length);
 
                     // Update the document within the Documents table
-                    Model.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
-                                         PathField.Text, CategoryField.Text, content, length, contentType);
+                    documents.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
+                                             PathField.Text, CategoryField.Text, content, length, contentType);
                 }
                 else
                 {
@@ -121,8 +121,8 @@ namespace ASPNET.StarterKit.Portal
                         // Update PathFile with uploaded virtual file location
                         PathField.Text = virtualPath;
                     }
-                    Model.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
-                                         PathField.Text, CategoryField.Text, new byte[0], 0, "");
+                    documents.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
+                                             PathField.Text, CategoryField.Text, new byte[0], 0, "");
                 }
 
                 // Redirect back to the portal home page
@@ -145,7 +145,8 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                Model.DeleteDocument(_itemId);
+                var documents = new DocumentDB();
+                documents.DeleteDocument(_itemId);
             }
 
             // Redirect back to the portal home page

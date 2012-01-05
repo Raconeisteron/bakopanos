@@ -1,21 +1,12 @@
 using System;
-using System.Data;
+using System.Data.SqlClient;
 using System.Web.UI;
-using ASPNETPortal;
-using ASPNETPortal.Security;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditHtml : Page
     {
         private int _moduleId;
-
-        [Dependency]
-        public IHtmlTextDb Model { get; set; }
-
-        [Dependency]
-        public IPortalSecurity PortalSecurity { private get; set; }
 
         //****************************************************************
         //
@@ -41,14 +32,14 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsPostBack == false)
             {
                 // Obtain a single row of text information
-                DataTable table = Model.GetHtmlText(_moduleId);
+                var text = new HtmlTextDB();
+                SqlDataReader dr = text.GetHtmlText(_moduleId);
 
-                if (table.Rows.Count > 0)
+                if (dr.Read())
                 {
-                    DataRow row = table.Rows[0];
-                    DesktopText.Text = Server.HtmlDecode((String) row["DesktopHtml"]);
-                    MobileSummary.Text = Server.HtmlDecode((String) row["MobileSummary"]);
-                    MobileDetails.Text = Server.HtmlDecode((String) row["MobileDetails"]);
+                    DesktopText.Text = Server.HtmlDecode((String) dr["DesktopHtml"]);
+                    MobileSummary.Text = Server.HtmlDecode((String) dr["MobileSummary"]);
+                    MobileDetails.Text = Server.HtmlDecode((String) dr["MobileDetails"]);
                 }
                 else
                 {
@@ -56,6 +47,8 @@ namespace ASPNET.StarterKit.Portal
                     MobileSummary.Text = "Todo: Add Content...";
                     MobileDetails.Text = "Todo: Add Content...";
                 }
+
+                dr.Close();
 
                 // Store URL Referrer to return to portal
                 ViewState["UrlReferrer"] = Request.UrlReferrer.ToString();
@@ -72,10 +65,11 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create an instance of the HtmlTextDB component
+            var text = new HtmlTextDB();
+
             // Update the text within the HtmlText table
-            Model.UpdateHtmlText(_moduleId, Server.HtmlEncode(DesktopText.Text),
-                                 Server.HtmlEncode(MobileSummary.Text),
-                                 Server.HtmlEncode(MobileDetails.Text));
+            text.UpdateHtmlText(_moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text),
+                                Server.HtmlEncode(MobileDetails.Text));
 
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);

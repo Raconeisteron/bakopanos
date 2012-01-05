@@ -1,31 +1,16 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ASPNETPortal;
-using ASPNETPortal.Configuration;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class Tabs : PortalModuleControl
     {
-        protected List<TabItem> PortalTabs;
+        protected ArrayList PortalTabs;
         private int _tabId;
         private int _tabIndex;
-
-        [Dependency]
-        public IModuleDefinitionDb Model { get; set; }
-
-        [Dependency]
-        public ITabDb TabDb { get; set; }
-
-        [Dependency]
-        public IModuleDb ModuleDb { get; set; }
-
-        [Dependency]
-        public IGlobalDb GlobalDb { get; set; }
 
         //*******************************************************
         //
@@ -54,21 +39,19 @@ namespace ASPNET.StarterKit.Portal
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
-            PortalTabs = new List<TabItem>();
+            PortalTabs = new ArrayList();
             foreach (TabStripDetails tab in portalSettings.DesktopTabs)
             {
-                var t = new TabItem
-                            {
-                                TabName = tab.TabName,
-                                TabId = tab.TabId,
-                                TabOrder = tab.TabOrder
-                            };
+                var t = new TabItem();
+                t.TabName = tab.TabName;
+                t.TabId = tab.TabId;
+                t.TabOrder = tab.TabOrder;
                 PortalTabs.Add(t);
             }
 
             // Give the admin tab a big sort order number, to ensure it's
             // always at the end
-            TabItem adminTab = PortalTabs[PortalTabs.Count - 1];
+            var adminTab = (TabItem) PortalTabs[PortalTabs.Count - 1];
             adminTab.TabOrder = 99999;
 
             // If this is the first visit to the page, bind the tab data to the page listbox
@@ -105,7 +88,8 @@ namespace ASPNET.StarterKit.Portal
                     delta = -3;
                 }
 
-                TabItem t = PortalTabs[tabList.SelectedIndex];
+                TabItem t;
+                t = (TabItem) PortalTabs[tabList.SelectedIndex];
                 t.TabOrder += delta;
 
                 // Reset the order numbers for the tabs within the portal  
@@ -129,8 +113,9 @@ namespace ASPNET.StarterKit.Portal
             if (tabList.SelectedIndex != -1)
             {
                 // must delete from database too
-                TabItem t = PortalTabs[tabList.SelectedIndex];
-                TabDb.DeleteTab(t.TabId);
+                var t = (TabItem) PortalTabs[tabList.SelectedIndex];
+                var config = new Configuration();
+                config.DeleteTab(t.TabId);
 
                 // remove item from list
                 PortalTabs.RemoveAt(tabList.SelectedIndex);
@@ -164,12 +149,11 @@ namespace ASPNET.StarterKit.Portal
             PortalTabs.Add(t);
 
             // write tab to database
-            t.TabId = TabDb.AddTab(portalSettings.PortalId, t.TabName, t.TabOrder);
+            var config = new Configuration();
+            t.TabId = config.AddTab(portalSettings.PortalId, t.TabName, t.TabOrder);
 
             // reload the _portalSettings from the database
-            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(GlobalDb, TabDb, ModuleDb, Model,
-                                                                             portalSettings.PortalId,
-                                                                             t.TabId);
+            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, t.TabId);
 
             // Reset the order numbers for the tabs within the list  
             OrderTabs();
@@ -191,7 +175,7 @@ namespace ASPNET.StarterKit.Portal
             if (tabList.SelectedIndex != -1)
             {
                 // Redirect to module settings page
-                TabItem t = PortalTabs[tabList.SelectedIndex];
+                var t = (TabItem) PortalTabs[tabList.SelectedIndex];
 
                 Response.Redirect("~/Admin/TabLayout.aspx?tabid=" + t.TabId);
             }
@@ -220,7 +204,8 @@ namespace ASPNET.StarterKit.Portal
                 i += 2;
 
                 // rewrite tab to database
-                TabDb.UpdateTabOrder(t.TabId, t.TabOrder);
+                var config = new Configuration();
+                config.UpdateTabOrder(t.TabId, t.TabOrder);
             }
         }
     }

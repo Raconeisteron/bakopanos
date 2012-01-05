@@ -1,5 +1,4 @@
 using System;
-using ASPNETPortal;
 
 namespace ASPNET.StarterKit.Portal
 {

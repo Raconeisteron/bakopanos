@@ -1,21 +1,14 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Web;
 using System.Web.UI;
-using ASPNETPortal.Configuration;
-using ASPNETPortal.Security;
-using Microsoft.Practices.Unity;
-using Unity.Web;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class DesktopPortalBanner : UserControl, IUnityControl
+    public partial class DesktopPortalBanner : UserControl
     {
         protected String LogoffLink = "";
         private int _tabIndex;
-
-        [Dependency]
-        public IPortalSecurity PortalSecurity { private get; set; }
 
         public bool ShowTabs { get; set; }
 
@@ -48,11 +41,13 @@ namespace ASPNET.StarterKit.Portal
             _tabIndex = portalSettings.ActiveTab.TabIndex;
 
             // Build list of tabs to be shown to user                                   
-            var authorizedTabs = new List<TabStripDetails>();
+            var authorizedTabs = new ArrayList();
             int addedTabs = 0;
 
-            foreach (TabStripDetails tab in portalSettings.DesktopTabs)
+            foreach (object t in portalSettings.DesktopTabs)
             {
+                var tab = (TabStripDetails) t;
+
                 if (PortalSecurity.IsInRoles(tab.AuthorizedRoles))
                 {
                     authorizedTabs.Add(tab);

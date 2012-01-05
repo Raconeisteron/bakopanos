@@ -1,16 +1,11 @@
 using System;
-using System.Data;
+using System.Data.SqlClient;
 using System.Web.UI;
-using ASPNETPortal;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class HtmlModule : PortalModuleControl
     {
-        [Dependency]
-        public IHtmlTextDb Model { get; set; }
-
         /// <summary>
         /// The Page_Load event handler on this User Control is
         /// used to render a block of HTML or text to the page.  
@@ -21,15 +16,18 @@ namespace ASPNET.StarterKit.Portal
         protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain the selected item from the HtmlText table
-            DataTable table = Model.GetHtmlText(ModuleId);
+            var text = new HtmlTextDB();
+            SqlDataReader dr = text.GetHtmlText(ModuleId);
 
-            if (table.Rows.Count > 0)
+            if (dr.Read())
             {
-                DataRow row = table.Rows[0];
                 // Dynamically add the file content into the page
-                String content = Server.HtmlDecode((String) row["DesktopHtml"]);
+                String content = Server.HtmlDecode((String) dr["DesktopHtml"]);
                 HtmlHolder.Controls.Add(new LiteralControl(content));
             }
+
+            // Close the datareader
+            dr.Close();
         }
     }
 }

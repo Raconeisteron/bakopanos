@@ -1,8 +1,5 @@
 using System;
 using System.Web.UI;
-using ASPNETPortal.Configuration;
-using ASPNETPortal.Security;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -12,11 +9,6 @@ namespace ASPNET.StarterKit.Portal
         private int _tabId;
         private int _tabIndex;
 
-        [Dependency]
-        public IModuleDefinitionDb Model { get; set; }
-
-        [Dependency]
-        public IPortalSecurity PortalSecurity { private get; set; }
 
         //*******************************************************
         //
@@ -61,7 +53,8 @@ namespace ASPNET.StarterKit.Portal
                 else
                 {
                     // Obtain the module definition to edit from the database
-                    ModuleDefinitionItem modDefRow = Model.GetSingleModuleDefinition(_defId);
+                    var config = new Configuration();
+                    SiteConfiguration.ModuleDefinitionRow modDefRow = config.GetSingleModuleDefinition(_defId);
 
                     // Read in information
                     FriendlyName.Text = modDefRow.FriendlyName;
@@ -83,19 +76,21 @@ namespace ASPNET.StarterKit.Portal
         {
             if (Page.IsValid)
             {
+                var config = new Configuration();
+
                 if (_defId == -1)
                 {
                     // Obtain PortalSettings from Current Context
                     var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
                     // Add a new module definition to the database
-                    Model.AddModuleDefinition(portalSettings.PortalId, FriendlyName.Text, DesktopSrc.Text,
-                                              MobileSrc.Text);
+                    config.AddModuleDefinition(portalSettings.PortalId, FriendlyName.Text, DesktopSrc.Text,
+                                               MobileSrc.Text);
                 }
                 else
                 {
                     // update the module definition
-                    Model.UpdateModuleDefinition(_defId, FriendlyName.Text, DesktopSrc.Text, MobileSrc.Text);
+                    config.UpdateModuleDefinition(_defId, FriendlyName.Text, DesktopSrc.Text, MobileSrc.Text);
                 }
 
                 // Redirect back to the portal admin page
@@ -114,7 +109,8 @@ namespace ASPNET.StarterKit.Portal
         protected void DeleteBtn_Click(Object sender, EventArgs e)
         {
             // delete definition
-            Model.DeleteModuleDefinition(_defId);
+            var config = new Configuration();
+            config.DeleteModuleDefinition(_defId);
 
             // Redirect back to the portal admin page
             Response.Redirect("~/DesktopDefault.aspx?tabindex=" + _tabIndex + "&tabid=" + _tabId);

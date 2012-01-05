@@ -1,22 +1,14 @@
 using System;
 using System.Web;
 using System.Web.UI;
-using ASPNETPortal;
-using ASPNETPortal.Configuration;
-using ASPNETPortal.Security;
-using Microsoft.Practices.Unity;
-using Unity.Web;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class DesktopModuleTitle : UserControl, IUnityControl
+    public partial class DesktopModuleTitle : UserControl
     {
         public String EditTarget;
         public String EditText;
         public String EditUrl;
-
-        [Dependency]
-        public IPortalSecurity PortalSecurity { private get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {

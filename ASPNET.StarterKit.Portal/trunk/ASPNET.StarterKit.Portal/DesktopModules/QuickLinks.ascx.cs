@@ -1,16 +1,10 @@
 using System;
-using ASPNETPortal;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class QuickLinks : PortalModuleControl
     {
         protected String LinkImage = "";
-
-        [Dependency]
-        public ILinkDb Model { private get; set; }
-
 
         /// <summary>
         /// The Page_Load event handler on this User Control is used to
@@ -33,7 +27,9 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the list control
-            myDataList.DataSource = Model.GetLinks(ModuleId);
+            var links = new LinkDB();
+
+            myDataList.DataSource = links.GetLinks(ModuleId);
             myDataList.DataBind();
 
             // Ensure that only users in role may add links

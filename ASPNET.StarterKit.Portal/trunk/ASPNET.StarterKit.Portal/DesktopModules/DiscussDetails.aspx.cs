@@ -1,9 +1,6 @@
 using System;
-using System.Data;
+using System.Data.SqlClient;
 using System.Web.UI;
-using ASPNETPortal;
-using ASPNETPortal.Security;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -11,12 +8,6 @@ namespace ASPNET.StarterKit.Portal
     {
         private int _itemId;
         private int _moduleId;
-
-        [Dependency]
-        public IDiscussionsDb Model { private get; set; }
-
-        [Dependency]
-        public IPortalSecurity PortalSecurity { private get; set; }
 
         //*******************************************************
         //
@@ -85,9 +76,12 @@ namespace ASPNET.StarterKit.Portal
 
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
+            // Create new discussion database component
+            var discuss = new DiscussionDB();
+
             // Add new message (updating the "itemId" on the page)
-            _itemId = Model.AddMessage(_moduleId, _itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
-                                       Server.HtmlEncode(BodyField.Text));
+            _itemId = discuss.AddMessage(_moduleId, _itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
+                                         Server.HtmlEncode(BodyField.Text));
 
             // Update visibility of page elements
             EditPanel.Visible = false;
@@ -124,27 +118,32 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Obtain the selected item from the Discussion table
-            DataRow row = Model.GetSingleMessage(_itemId);
+            var discuss = new DiscussionDB();
+            SqlDataReader dr = discuss.GetSingleMessage(_itemId);
+
+            // Load first row from database
+            dr.Read();
 
             // Security check.  verify that itemid is within the module.
-            int dbModuleId = Convert.ToInt32(row["ModuleID"]);
+            int dbModuleId = Convert.ToInt32(dr["ModuleID"]);
             if (dbModuleId != _moduleId)
             {
+                dr.Close();
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
 
             // Update labels with message contents
-            DiscussDetailsTitle.Text = (String) row["Title"];
-            Body.Text = (String) row["Body"];
-            CreatedByUser.Text = (String) row["CreatedByUser"];
-            CreatedDate.Text = String.Format("{0:d}", row["CreatedDate"]);
-            TitleField.Text = ReTitle(DiscussDetailsTitle.Text);
+            Title.Text = (String) dr["Title"];
+            Body.Text = (String) dr["Body"];
+            CreatedByUser.Text = (String) dr["CreatedByUser"];
+            CreatedDate.Text = String.Format("{0:d}", dr["CreatedDate"]);
+            TitleField.Text = ReTitle(Title.Text);
 
             int prevId = 0;
             int nextId = 0;
 
             // Update next and preview links
-            object id1 = row["PrevMessageID"];
+            object id1 = dr["PrevMessageID"];
 
             if (id1 != DBNull.Value)
             {
@@ -152,13 +151,16 @@ namespace ASPNET.StarterKit.Portal
                 prevItem.HRef = Request.Path + "?ItemId=" + prevId + "&mid=" + _moduleId;
             }
 
-            object id2 = row["NextMessageID"];
+            object id2 = dr["NextMessageID"];
 
             if (id2 != DBNull.Value)
             {
                 nextId = (int) id2;
                 nextItem.HRef = Request.Path + "?ItemId=" + nextId + "&mid=" + _moduleId;
             }
+
+            // close the datareader
+            dr.Close();
 
             // Show/Hide Next/Prev Button depending on whether there is a next/prev message
             if (prevId <= 0)
@@ -179,7 +181,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private static String ReTitle(String title)
+        private String ReTitle(String title)
         {
             if (title.Length > 0 & title.IndexOf("Re: ", 0) == -1)
             {

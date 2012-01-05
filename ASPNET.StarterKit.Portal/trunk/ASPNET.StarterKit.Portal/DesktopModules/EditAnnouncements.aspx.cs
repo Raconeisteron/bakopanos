@@ -1,9 +1,6 @@
 using System;
-using System.Data;
+using System.Data.SqlClient;
 using System.Web.UI;
-using ASPNETPortal;
-using ASPNETPortal.Security;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -12,11 +9,6 @@ namespace ASPNET.StarterKit.Portal
         private int _itemId;
         private int _moduleId;
 
-        [Dependency]
-        public IAnnouncementsDb Model { get; set; }
-
-        [Dependency]
-        public IPortalSecurity PortalSecurity { private get; set; }
 
         //****************************************************************
         //
@@ -54,22 +46,30 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of announcement information
-                DataRow row = Model.GetSingleAnnouncement(_itemId);
+                var announcementDb = new AnnouncementsDB();
+                SqlDataReader dr = announcementDb.GetSingleAnnouncement(_itemId);
+
+                // Load first row into DataReader
+                dr.Read();
 
                 // Security check.  verify that itemid is within the module.
-                int dbModuleId = Convert.ToInt32(row["ModuleID"]);
+                int dbModuleId = Convert.ToInt32(dr["ModuleID"]);
                 if (dbModuleId != _moduleId)
                 {
+                    dr.Close();
                     Response.Redirect("~/Admin/EditAccessDenied.aspx");
                 }
 
-                TitleField.Text = (String) row["Title"];
-                MoreLinkField.Text = (String) row["MoreLink"];
-                MobileMoreField.Text = (String) row["MobileMoreLink"];
-                DescriptionField.Text = (String) row["Description"];
-                ExpireField.Text = ((DateTime) row["ExpireDate"]).ToShortDateString();
-                CreatedBy.Text = (String) row["CreatedByUser"];
-                CreatedDate.Text = ((DateTime) row["CreatedDate"]).ToShortDateString();
+                TitleField.Text = (String) dr["Title"];
+                MoreLinkField.Text = (String) dr["MoreLink"];
+                MobileMoreField.Text = (String) dr["MobileMoreLink"];
+                DescriptionField.Text = (String) dr["Description"];
+                ExpireField.Text = ((DateTime) dr["ExpireDate"]).ToShortDateString();
+                CreatedBy.Text = (String) dr["CreatedByUser"];
+                CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
+
+                // Close the datareader
+                dr.Close();
             }
 
             // Store URL Referrer to return to portal
@@ -90,19 +90,21 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Announcement DB component
+                var announcementDb = new AnnouncementsDB();
+
                 if (_itemId == 0)
                 {
                     // Add the announcement within the Announcements table
-                    Model.AddAnnouncement(_moduleId, Context.User.Identity.Name, TitleField.Text,
-                                          DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                          MoreLinkField.Text, MobileMoreField.Text);
+                    announcementDb.AddAnnouncement(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                                                   DateTime.Parse(ExpireField.Text), DescriptionField.Text,
+                                                   MoreLinkField.Text, MobileMoreField.Text);
                 }
                 else
                 {
                     // Update the announcement within the Announcements table
-                    Model.UpdateAnnouncement(_itemId, Context.User.Identity.Name, TitleField.Text,
-                                             DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                             MoreLinkField.Text, MobileMoreField.Text);
+                    announcementDb.UpdateAnnouncement(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                                                      DateTime.Parse(ExpireField.Text), DescriptionField.Text,
+                                                      MoreLinkField.Text, MobileMoreField.Text);
                 }
 
                 // Redirect back to the portal home page
@@ -125,7 +127,8 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                Model.DeleteAnnouncement(_itemId);
+                var announcementDb = new AnnouncementsDB();
+                announcementDb.DeleteAnnouncement(_itemId);
             }
 
             // Redirect back to the portal home page

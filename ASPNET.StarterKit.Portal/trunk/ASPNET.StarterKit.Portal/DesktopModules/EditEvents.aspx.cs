@@ -1,10 +1,7 @@
 using System;
-using System.Data;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ASPNETPortal;
-using ASPNETPortal.Security;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -16,12 +13,6 @@ namespace ASPNET.StarterKit.Portal
 
         private int _itemId;
         private int _moduleId;
-
-        [Dependency]
-        public IEventsDb Model { get; set; }
-
-        [Dependency]
-        public IPortalSecurity PortalSecurity { private get; set; }
 
         //****************************************************************
         //
@@ -59,21 +50,28 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of event information
-                    DataRow row = Model.GetSingleEvent(_itemId);
+                    var events = new EventsDB();
+                    SqlDataReader dr = events.GetSingleEvent(_itemId);
+
+                    // Read first row from database
+                    dr.Read();
 
                     // Security check.  verify that itemid is within the module.
-                    int dbModuleId = Convert.ToInt32(row["ModuleID"]);
-                    if (dbModuleId != _moduleId)
+                    int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
+                    if (dbModuleID != _moduleId)
                     {
+                        dr.Close();
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
                     }
 
-                    TitleField.Text = (String) row["Title"];
-                    DescriptionField.Text = (String) row["Description"];
-                    ExpireField.Text = ((DateTime) row["ExpireDate"]).ToShortDateString();
-                    CreatedBy.Text = (String) row["CreatedByUser"];
-                    WhereWhenField.Text = (String) row["WhereWhen"];
-                    CreatedDate.Text = ((DateTime) row["CreatedDate"]).ToShortDateString();
+                    TitleField.Text = (String) dr["Title"];
+                    DescriptionField.Text = (String) dr["Description"];
+                    ExpireField.Text = ((DateTime) dr["ExpireDate"]).ToShortDateString();
+                    CreatedBy.Text = (String) dr["CreatedByUser"];
+                    WhereWhenField.Text = (String) dr["WhereWhen"];
+                    CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
+
+                    dr.Close();
                 }
 
                 // Store URL Referrer to return to portal
@@ -95,17 +93,19 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Event DB component
+                var events = new EventsDB();
+
                 if (_itemId == 0)
                 {
                     // Add the event within the Events table
-                    Model.AddEvent(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
-                                   DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
+                    events.AddEvent(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                                    DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
                 }
                 else
                 {
                     // Update the event within the Events table
-                    Model.UpdateEvent(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
-                                      DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
+                    events.UpdateEvent(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                                       DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
                 }
 
                 // Redirect back to the portal home page
@@ -128,7 +128,8 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                Model.DeleteEvent(_itemId);
+                var events = new EventsDB();
+                events.DeleteEvent(_itemId);
             }
 
             // Redirect back to the portal home page

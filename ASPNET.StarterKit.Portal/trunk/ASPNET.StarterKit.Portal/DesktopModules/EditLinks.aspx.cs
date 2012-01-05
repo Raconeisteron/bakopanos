@@ -1,9 +1,6 @@
 using System;
-using System.Data;
+using System.Data.SqlClient;
 using System.Web.UI;
-using ASPNETPortal;
-using ASPNETPortal.Security;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -11,12 +8,6 @@ namespace ASPNET.StarterKit.Portal
     {
         private int _itemId;
         private int _moduleId;
-
-        [Dependency]
-        public ILinkDb Model { private get; set; }
-
-        [Dependency]
-        public IPortalSecurity PortalSecurity { private get; set; }
 
         //****************************************************************
         //
@@ -54,22 +45,30 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of link information
-                    DataRow row = Model.GetSingleLink(_itemId);
+                    var links = new LinkDB();
+                    SqlDataReader dr = links.GetSingleLink(_itemId);
+
+                    // Read in first row from database
+                    dr.Read();
 
                     // Security check.  verify that itemid is within the module.
-                    int dbModuleId = Convert.ToInt32(row["ModuleID"]);
-                    if (dbModuleId != _moduleId)
+                    int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
+                    if (dbModuleID != _moduleId)
                     {
+                        dr.Close();
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
                     }
 
-                    TitleField.Text = (String) row["Title"];
-                    DescriptionField.Text = (String) row["Description"];
-                    UrlField.Text = (String) row["Url"];
-                    MobileUrlField.Text = (String) row["MobileUrl"];
-                    ViewOrderField.Text = row["ViewOrder"].ToString();
-                    CreatedBy.Text = (String) row["CreatedByUser"];
-                    CreatedDate.Text = ((DateTime) row["CreatedDate"]).ToShortDateString();
+                    TitleField.Text = (String) dr["Title"];
+                    DescriptionField.Text = (String) dr["Description"];
+                    UrlField.Text = (String) dr["Url"];
+                    MobileUrlField.Text = (String) dr["MobileUrl"];
+                    ViewOrderField.Text = dr["ViewOrder"].ToString();
+                    CreatedBy.Text = (String) dr["CreatedByUser"];
+                    CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
+
+                    // Close datareader
+                    dr.Close();
                 }
 
                 // Store URL Referrer to return to portal
@@ -89,16 +88,19 @@ namespace ASPNET.StarterKit.Portal
         {
             if (Page.IsValid)
             {
+                // Create an instance of the Link DB component
+                var links = new LinkDB();
+
                 if (_itemId == 0)
                 {
                     // Add the link within the Links table
-                    Model.AddLink(_moduleId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    links.AddLink(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                   MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
                 else
                 {
                     // Update the link within the Links table
-                    Model.UpdateLink(_itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    links.UpdateLink(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                      MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
 
@@ -122,7 +124,8 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                Model.DeleteLink(_itemId);
+                var links = new LinkDB();
+                links.DeleteLink(_itemId);
             }
 
             // Redirect back to the portal home page

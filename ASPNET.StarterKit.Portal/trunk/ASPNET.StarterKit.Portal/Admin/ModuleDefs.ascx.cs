@@ -1,8 +1,5 @@
 using System;
 using System.Web.UI.WebControls;
-using ASPNETPortal;
-using ASPNETPortal.Configuration;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -11,8 +8,6 @@ namespace ASPNET.StarterKit.Portal
         private int _tabId;
         private int _tabIndex;
 
-        [Dependency]
-        public IModuleDefinitionDb Model { get; set; }
 
         //*******************************************************
         //
@@ -88,7 +83,9 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Get the portal's defs from the database
-            defsList.DataSource = Model.GetModuleDefinitions(portalSettings.PortalId);
+            var config = new Configuration();
+
+            defsList.DataSource = config.GetModuleDefinitions(portalSettings.PortalId);
             defsList.DataBind();
         }
 

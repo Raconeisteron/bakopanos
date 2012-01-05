@@ -1,51 +1,15 @@
 using System;
-using System.Configuration;
+using System.Collections;
 using System.Globalization;
-using System.Linq;
 using System.Security.Principal;
 using System.Threading;
 using System.Web;
 using System.Web.Security;
-using ASPNETPortal.Configuration;
-using ASPNETPortal.Security;
-using ASPNETPortal.Security.Model;
-using Framework.Data;
-using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.Configuration;
-using Unity.Web;
 
 namespace ASPNET.StarterKit.Portal
 {
     public class Global : HttpApplication
     {
-        protected void Application_Start(object sender, EventArgs e)
-        {
-            // Create a Unity container and load the Enterprise Library extension.
-            IUnityContainer myContainer = Application.GetContainer();
-            var section = (UnityConfigurationSection) ConfigurationManager.GetSection("unity");
-            section.Configure(myContainer);
-
-            // additional container initialization 
-            myContainer.RegisterInstance("ConfigFile",
-                                         HttpContext.Current.Server.MapPath(
-                                             ConfigurationManager.AppSettings["configFile"]));
-            myContainer.RegisterInstance(ConfigurationManager.ConnectionStrings["connectionString"]);
-
-            var wrapper = new HttpContextWrapper(HttpContext.Current);
-            myContainer.RegisterInstance<HttpContextBase>(wrapper);
-
-            myContainer.RegisterType<IDbHelper, DbHelper>(new ContainerControlledLifetimeManager());
-
-            // bootstrapp unity modules
-            foreach (ContainerRegistration containerRegistration in myContainer.Registrations)
-            {
-                if (containerRegistration.RegisteredType.Name == "UnityModule")
-                {
-                    myContainer.Resolve(containerRegistration.RegisteredType);
-                }
-            }
-        }
-
         /// <summary>
         /// The Application_BeginRequest method is an ASP.NET event that executes 
         /// on each web request into the portal application.  The below method
@@ -76,19 +40,19 @@ namespace ASPNET.StarterKit.Portal
                 tabId = Int32.Parse(Request.Params["tabid"]);
             }
 
-            var model = HttpContext.Current.Application.GetContainer().Resolve<IModuleDefinitionDb>();
-            var globalDb = HttpContext.Current.Application.GetContainer().Resolve<IGlobalDb>();
-            var tabDb = HttpContext.Current.Application.GetContainer().Resolve<ITabDb>();
-            var moduleDb = HttpContext.Current.Application.GetContainer().Resolve<IModuleDb>();
-
             // Build and add the PortalSettings object to the current Context
-            Context.Items.Add("PortalSettings", new PortalSettings(globalDb, tabDb, moduleDb, model, tabIndex, tabId));
+            Context.Items.Add("PortalSettings", new PortalSettings(tabIndex, tabId));
+
+            // Retrieve and add the SiteConfiguration DataSet to the current Context
+            HttpContext.Current.Items.Add("SiteSettings", Configuration.GetSiteSettings());
 
             try
             {
-                Thread.CurrentThread.CurrentCulture = Request.UserLanguages != null
-                                                          ? CultureInfo.CreateSpecificCulture(Request.UserLanguages[0])
-                                                          : new CultureInfo("en-us");
+                if (Request.UserLanguages != null)
+                    Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Request.UserLanguages[0]);
+                else
+                    // Default to English if there are no user languages
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
 
                 Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
             }
@@ -109,8 +73,6 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         protected void Application_AuthenticateRequest(Object sender, EventArgs e)
         {
-            var model = HttpContext.Current.Application.GetContainer().Resolve<IPortalUsersService>();
-
             if (Request.IsAuthenticated)
             {
                 String[] roles;
@@ -119,7 +81,8 @@ namespace ASPNET.StarterKit.Portal
                 if ((Request.Cookies["portalroles"] == null) || (Request.Cookies["portalroles"].Value == ""))
                 {
                     // Get roles from UserRoles table, and add to cookie
-                    roles = model.GetRoles(User.Identity.Name).ToArray();
+                    var user = new UsersDB();
+                    roles = user.GetRoles(User.Identity.Name);
 
                     // Create a string to persist the roles
                     String roleStr = "";
@@ -154,7 +117,14 @@ namespace ASPNET.StarterKit.Portal
                         FormsAuthentication.Decrypt(Context.Request.Cookies["portalroles"].Value);
 
                     //convert the string representation of the role data into a string array
-                    roles = ticket.UserData.Split(new[] {';'}).ToArray();
+                    var userRoles = new ArrayList();
+
+                    foreach (String role in ticket.UserData.Split(new[] {';'}))
+                    {
+                        userRoles.Add(role);
+                    }
+
+                    roles = (String[]) userRoles.ToArray(typeof (String));
                 }
 
                 // Add our own custom principal to the request containing the roles in the auth ticket

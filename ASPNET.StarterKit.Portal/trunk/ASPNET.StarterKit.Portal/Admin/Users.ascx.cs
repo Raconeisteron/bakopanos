@@ -1,10 +1,6 @@
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ASPNETPortal;
-using ASPNETPortal.Security;
-using ASPNETPortal.Security.Model;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -12,12 +8,6 @@ namespace ASPNET.StarterKit.Portal
     {
         private int _tabId;
         private int _tabIndex;
-
-        [Dependency]
-        public IPortalUsersService Model { private get; set; }
-
-        [Dependency]
-        public IPortalRolesService RolesModel { private get; set; }
 
         //*******************************************************
         //
@@ -60,7 +50,8 @@ namespace ASPNET.StarterKit.Portal
         protected void DeleteUser_Click(Object sender, ImageClickEventArgs e)
         {
             // get user id from dropdownlist of users
-            Model.DeleteUser(Int32.Parse(allUsers.SelectedItem.Value));
+            var users = new UsersDB();
+            users.DeleteUser(Int32.Parse(allUsers.SelectedItem.Value));
 
             // Rebind list
             BindData();
@@ -108,8 +99,10 @@ namespace ASPNET.StarterKit.Portal
                     "Domain users do not need to be registered to access portal content that is available to \"All Users\".  Administrators may add domain users to specific roles using the Security Roles function above.  This section permits Administrators to manage users and their security roles directly.";
 
             // Get the list of registered users from the database
+            var roles = new RolesDB();
+
             // bind all portal users to dropdownlist
-            allUsers.DataSource = RolesModel.GetUsers();
+            allUsers.DataSource = roles.GetUsers();
             allUsers.DataBind();
         }
 

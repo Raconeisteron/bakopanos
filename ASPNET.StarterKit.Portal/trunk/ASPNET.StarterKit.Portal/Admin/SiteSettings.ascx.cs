@@ -1,15 +1,9 @@
 using System;
-using ASPNETPortal;
-using ASPNETPortal.Configuration;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class SiteSettings : PortalModuleControl
     {
-        [Dependency]
-        public IGlobalDb Model { get; set; }
-
         //*******************************************************
         //
         // The Page_Load server event handler on this user control is used
@@ -49,7 +43,8 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // update Tab info in the database
-            Model.UpdatePortalInfo(portalSettings.PortalId, siteName.Text, showEdit.Checked);
+            var config = new Configuration();
+            config.UpdatePortalInfo(portalSettings.PortalId, siteName.Text, showEdit.Checked);
 
             // Redirect to this site to refresh
             Response.Redirect(Request.RawUrl);
