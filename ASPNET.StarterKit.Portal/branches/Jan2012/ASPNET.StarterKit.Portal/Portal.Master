@@ -1,0 +1,35 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Portal.master.cs" Inherits="ASPNET.StarterKit.Portal.Portal" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<%--
+
+   The DesktopDefault.aspx page is used to load and populate each Portal View.  It accomplishes
+   this by reading the layout configuration of the portal from the Portal Configuration
+   system, and then using this information to dynamically instantiate portal modules
+   (each implemented as an ASP.NET User Control), and then inject them into the page.
+
+--%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>ASP.NET Portal Starter Kit</title>
+    <link href="ASPNETPortal.css" type="text/css" rel="stylesheet" />
+</head>
+<body leftmargin="0" bottommargin="0" rightmargin="0" topmargin="0" marginheight="0"
+    marginwidth="0">
+    <form id="Form2" runat="server">
+    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr valign="top">
+            <td colspan="2">
+            <asp:ContentPlaceHolder ID="BannerContent" runat="server" />                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br />
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>
