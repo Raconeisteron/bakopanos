@@ -5,6 +5,7 @@ using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
 {
+    
     /// <summary>
     /// The PortalModuleControl class defines a custom base class inherited by all
     /// desktop portal modules within the Portal.

@@ -1,9 +1,13 @@
 using System;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class Announcements : PortalModuleControl
     {
+        [Dependency]
+        public string Test { get; set; }
+
         /// <summary>
         /// The Page_Load event handler on this User Control is used to
         /// obtain a DataSet of announcement information from the Announcements
