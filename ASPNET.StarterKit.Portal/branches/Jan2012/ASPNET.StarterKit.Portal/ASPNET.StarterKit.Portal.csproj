@@ -34,8 +34,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\Libs\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\Libs\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\Libs\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -274,10 +280,12 @@
     <Compile Include="Components\Configuration.cs" />
     <Compile Include="Components\ContactsDB.cs" />
     <Compile Include="Components\CachedPortalModuleControl.cs" />
+    <Compile Include="Components\Db.cs" />
     <Compile Include="Components\DiscussionDB.cs" />
     <Compile Include="Components\DocumentDB.cs" />
     <Compile Include="Components\EventsDB.cs" />
     <Compile Include="Components\HtmlTextDB.cs" />
+    <Compile Include="Components\IAnnouncementsDB.cs" />
     <Compile Include="Components\LinksDB.cs" />
     <Compile Include="Components\PortalModuleControl.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -285,7 +293,7 @@
     <Compile Include="Components\RolesDB.cs" />
     <Compile Include="Components\PortalSecurity.cs" />
     <Compile Include="Components\UsersDB.cs" />
-    <Compile Include="UnityPageHandlerFactory.asax.cs" />
+    <Compile Include="Components\UnityHttpModule.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -464,7 +472,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="HttpApplicationStateExtensions.cs" />
+    <Compile Include="Components\HttpApplicationStateExtensions.cs" />
     <Compile Include="Portal.Master.cs">
       <DependentUpon>Portal.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

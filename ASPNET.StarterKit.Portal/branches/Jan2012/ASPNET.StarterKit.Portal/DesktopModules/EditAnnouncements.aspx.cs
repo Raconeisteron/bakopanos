@@ -1,6 +1,7 @@
 using System;
 using System.Data.SqlClient;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -8,6 +9,9 @@ namespace ASPNET.StarterKit.Portal
     {
         private int _itemId;
         private int _moduleId;
+
+        [Dependency]
+        public IAnnouncementsDb AnnouncementsDb { get; set; }
 
 
         //****************************************************************
@@ -46,8 +50,7 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of announcement information
-                var announcementDb = new AnnouncementsDB();
-                SqlDataReader dr = announcementDb.GetSingleAnnouncement(_itemId);
+                SqlDataReader dr = AnnouncementsDb.GetSingleAnnouncement(_itemId);
 
                 // Load first row into DataReader
                 dr.Read();
@@ -90,19 +93,18 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Announcement DB component
-                var announcementDb = new AnnouncementsDB();
-
+                
                 if (_itemId == 0)
                 {
                     // Add the announcement within the Announcements table
-                    announcementDb.AddAnnouncement(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                    AnnouncementsDb.AddAnnouncement(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
                                                    DateTime.Parse(ExpireField.Text), DescriptionField.Text,
                                                    MoreLinkField.Text, MobileMoreField.Text);
                 }
                 else
                 {
                     // Update the announcement within the Announcements table
-                    announcementDb.UpdateAnnouncement(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                    AnnouncementsDb.UpdateAnnouncement(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
                                                       DateTime.Parse(ExpireField.Text), DescriptionField.Text,
                                                       MoreLinkField.Text, MobileMoreField.Text);
                 }
@@ -127,8 +129,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var announcementDb = new AnnouncementsDB();
-                announcementDb.DeleteAnnouncement(_itemId);
+                AnnouncementsDb.DeleteAnnouncement(_itemId);
             }
 
             // Redirect back to the portal home page

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Web;
@@ -5,7 +6,6 @@ using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
 {
-    
     /// <summary>
     /// The PortalModuleControl class defines a custom base class inherited by all
     /// desktop portal modules within the Portal.
@@ -27,6 +27,12 @@ namespace ASPNET.StarterKit.Portal
         public int ModuleId
         {
             get { return _moduleConfiguration.ModuleId; }
+        }
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int ItemId
+        {
+            get { return 0; }
         }
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
