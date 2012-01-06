@@ -31,6 +31,8 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
+        #region IAnnouncementsDb Members
+
         public DataSet GetAnnouncements(int moduleId)
         {
             // Create Instance of Connection and Command Object
@@ -65,7 +67,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleAnnouncement(int itemId)
+        public IDataReader GetSingleAnnouncement(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConnectionString);
@@ -130,7 +132,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public int AddAnnouncement(int moduleId, int itemId, String userName, String title, DateTime expireDate,
+        public int AddAnnouncement(int moduleId, String userName, String title, DateTime expireDate,
                                    String description, String moreLink, String mobileMoreLink)
         {
             if (userName.Length < 1)
@@ -197,7 +199,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void UpdateAnnouncement(int moduleId, int itemId, String userName, String title, DateTime expireDate,
+        public void UpdateAnnouncement(int itemId, String userName, String title, DateTime expireDate,
                                        String description, String moreLink, String mobileMoreLink)
         {
             if (userName.Length < 1) userName = "unknown";
@@ -242,5 +244,7 @@ namespace ASPNET.StarterKit.Portal
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
+
+        #endregion
     }
 }

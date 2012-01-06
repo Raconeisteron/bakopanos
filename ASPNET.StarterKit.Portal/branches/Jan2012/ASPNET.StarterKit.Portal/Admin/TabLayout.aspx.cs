@@ -9,11 +9,10 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class TabLayout : Page
     {
+        private int _tabId;
         protected List<ModuleItem> ContentList { get; set; }
         protected List<ModuleItem> LeftList { get; set; }
         protected List<ModuleItem> RightList { get; set; }
-
-        private int _tabId;
 
         //*******************************************************
         //
@@ -121,7 +120,7 @@ namespace ASPNET.StarterKit.Portal
                 }
 
                 ModuleItem m;
-                m = (ModuleItem) modules[_listbox.SelectedIndex];
+                m = modules[_listbox.SelectedIndex];
                 m.ModuleOrder += delta;
 
                 // reorder the modules in the content pane
@@ -161,7 +160,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // get a reference to the module to move
                 // and assign a high order number to send it to the end of the target list
-                var m = (ModuleItem) sourceList[sourceBox.SelectedIndex];
+                ModuleItem m = sourceList[sourceBox.SelectedIndex];
 
                 // add it to the database
                 var config = new Configuration();
@@ -223,7 +222,7 @@ namespace ASPNET.StarterKit.Portal
             int adminIndex = portalSettings.DesktopTabs.Count - 1;
 
             Response.Redirect("~/DesktopDefault.aspx?tabindex=" + adminIndex + "&tabid=" +
-                              ((TabStripDetails) portalSettings.DesktopTabs[adminIndex]).TabId);
+                              (portalSettings.DesktopTabs[adminIndex]).TabId);
         }
 
         //*******************************************************
@@ -307,7 +306,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (listbox.SelectedIndex != -1)
             {
-                var m = (ModuleItem) modules[listbox.SelectedIndex];
+                ModuleItem m = modules[listbox.SelectedIndex];
                 if (m.ModuleId > -1)
                 {
                     // must delete from database too

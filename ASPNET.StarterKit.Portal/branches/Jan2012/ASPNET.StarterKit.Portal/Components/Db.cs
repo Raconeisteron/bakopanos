@@ -12,7 +12,5 @@ namespace ASPNET.StarterKit.Portal
         {
             ConnectionString = connectionStringSettings.ConnectionString;
         }
-
-
     }
 }

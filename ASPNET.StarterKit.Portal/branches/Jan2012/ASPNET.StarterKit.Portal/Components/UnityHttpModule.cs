@@ -34,7 +34,7 @@ namespace ASPNET.StarterKit.Portal
                 currentHandler.GetType(), currentHandler);
 
             // User Controls are ready to be built up after page initialization is complete
-            var currentPage = HttpContext.Current.Handler as Page;            
+            var currentPage = HttpContext.Current.Handler as Page;
             if (currentPage != null)
             {
                 currentPage.InitComplete += OnPageInitComplete;

@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 
@@ -50,7 +50,7 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of announcement information
-                SqlDataReader dr = AnnouncementsDb.GetSingleAnnouncement(_itemId);
+                IDataReader dr = AnnouncementsDb.GetSingleAnnouncement(_itemId);
 
                 // Load first row into DataReader
                 dr.Read();
@@ -93,20 +93,20 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Announcement DB component
-                
+
                 if (_itemId == 0)
                 {
                     // Add the announcement within the Announcements table
-                    AnnouncementsDb.AddAnnouncement(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
-                                                   DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                                   MoreLinkField.Text, MobileMoreField.Text);
+                    AnnouncementsDb.AddAnnouncement(_moduleId, Context.User.Identity.Name, TitleField.Text,
+                                                    DateTime.Parse(ExpireField.Text), DescriptionField.Text,
+                                                    MoreLinkField.Text, MobileMoreField.Text);
                 }
                 else
                 {
                     // Update the announcement within the Announcements table
-                    AnnouncementsDb.UpdateAnnouncement(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
-                                                      DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                                      MoreLinkField.Text, MobileMoreField.Text);
+                    AnnouncementsDb.UpdateAnnouncement(_itemId, Context.User.Identity.Name, TitleField.Text,
+                                                       DateTime.Parse(ExpireField.Text), DescriptionField.Text,
+                                                       MoreLinkField.Text, MobileMoreField.Text);
                 }
 
                 // Redirect back to the portal home page

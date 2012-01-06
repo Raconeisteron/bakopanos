@@ -18,7 +18,7 @@ namespace ASPNET.StarterKit.Portal
                 if (myContainer == null)
                 {
                     myContainer = new UnityContainer();
-                    var section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
+                    var section = (UnityConfigurationSection) ConfigurationManager.GetSection("unity");
                     section.Configure(myContainer);
 
                     // additional container initialization 
