@@ -50,8 +50,10 @@
   <ItemGroup>
     <Compile Include="Announcement.cs" />
     <Compile Include="AnnouncementsDB.cs" />
+    <Compile Include="AnnouncementsRepository.cs" />
     <Compile Include="Db.cs" />
     <Compile Include="IAnnouncementsDB.cs" />
+    <Compile Include="IAnnouncementsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

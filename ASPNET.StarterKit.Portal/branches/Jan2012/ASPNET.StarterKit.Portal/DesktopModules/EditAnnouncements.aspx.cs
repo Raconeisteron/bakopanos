@@ -1,5 +1,4 @@
 using System;
-using System.Data;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 
@@ -11,7 +10,7 @@ namespace ASPNET.StarterKit.Portal
         private int _moduleId;
 
         [Dependency]
-        public IAnnouncementsDb AnnouncementsDb { get; set; }
+        public IAnnouncementsRepository AnnouncementsRepo { get; set; }
 
 
         //****************************************************************
@@ -50,29 +49,22 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of announcement information
-                IDataReader dr = AnnouncementsDb.GetSingleAnnouncement(_itemId);
-
-                // Load first row into DataReader
-                dr.Read();
+                Announcement item = AnnouncementsRepo.GetSingleAnnouncement(_itemId);
 
                 // Security check.  verify that itemid is within the module.
-                int dbModuleId = Convert.ToInt32(dr["ModuleID"]);
-                if (dbModuleId != _moduleId)
+                if (item.ModuleId != _moduleId)
                 {
-                    dr.Close();
                     Response.Redirect("~/Admin/EditAccessDenied.aspx");
                 }
 
-                TitleField.Text = (String) dr["Title"];
-                MoreLinkField.Text = (String) dr["MoreLink"];
-                MobileMoreField.Text = (String) dr["MobileMoreLink"];
-                DescriptionField.Text = (String) dr["Description"];
-                ExpireField.Text = ((DateTime) dr["ExpireDate"]).ToShortDateString();
-                CreatedBy.Text = (String) dr["CreatedByUser"];
-                CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
+                TitleField.Text = item.Title;
+                MoreLinkField.Text = item.MoreLink;
+                MobileMoreField.Text = item.MobileMoreLink;
+                DescriptionField.Text = item.Description;
+                ExpireField.Text = item.ExpireDate.ToShortDateString();
+                CreatedBy.Text = item.CreatedByUser;
+                CreatedDate.Text = item.CreatedDate.ToShortDateString();
 
-                // Close the datareader
-                dr.Close();
             }
 
             // Store URL Referrer to return to portal
@@ -92,22 +84,11 @@ namespace ASPNET.StarterKit.Portal
             // Only Update if the Entered Data is Valid
             if (Page.IsValid)
             {
-                // Create an instance of the Announcement DB component
 
-                if (_itemId == 0)
-                {
-                    // Add the announcement within the Announcements table
-                    AnnouncementsDb.AddAnnouncement(_moduleId, Context.User.Identity.Name, TitleField.Text,
-                                                    DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                                    MoreLinkField.Text, MobileMoreField.Text);
-                }
-                else
-                {
-                    // Update the announcement within the Announcements table
-                    AnnouncementsDb.UpdateAnnouncement(_itemId, Context.User.Identity.Name, TitleField.Text,
-                                                       DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                                       MoreLinkField.Text, MobileMoreField.Text);
-                }
+                // Add the announcement within the Announcements table
+                AnnouncementsRepo.SaveAnnouncement(_itemId, _moduleId, Context.User.Identity.Name, TitleField.Text,
+                                                   DateTime.Parse(ExpireField.Text), DescriptionField.Text,
+                                                   MoreLinkField.Text, MobileMoreField.Text);
 
                 // Redirect back to the portal home page
                 Response.Redirect((String) ViewState["UrlReferrer"]);
@@ -129,7 +110,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                AnnouncementsDb.DeleteAnnouncement(_itemId);
+                AnnouncementsRepo.DeleteSingleAnnouncement(_itemId);
             }
 
             // Redirect back to the portal home page

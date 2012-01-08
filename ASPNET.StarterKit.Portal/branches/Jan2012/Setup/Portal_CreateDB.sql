@@ -1184,6 +1184,7 @@ AS
 
 SELECT
     ItemID,
+	ModuleID,
     CreatedByUser,
     CreatedDate,
     Title,
@@ -1673,6 +1674,7 @@ SELECT
     CreatedByUser,
     CreatedDate,
     Title,
+	ItemID,
     ModuleID,
     MoreLink,
     MobileMoreLink,

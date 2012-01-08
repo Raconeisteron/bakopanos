@@ -6,7 +6,7 @@ namespace ASPNET.StarterKit.Portal
     public partial class Announcements : PortalModuleControl
     {
         [Dependency]
-        public IAnnouncementsDb AnnouncementsDb { get; set; }
+        public IAnnouncementsRepository AnnouncementsRepo { get; set; }
 
         /// <summary>
         /// The Page_Load event handler on this User Control is used to
@@ -20,7 +20,7 @@ namespace ASPNET.StarterKit.Portal
             // Obtain announcement information from Announcements table
             // and bind to the datalist control
             // DataBind Announcements to DataList Control
-            myDataList.DataSource = AnnouncementsDb.GetAnnouncements(ModuleId);
+            myDataList.DataSource = AnnouncementsRepo.GetAnnouncements(ModuleId);
             myDataList.DataBind();
         }
     }
