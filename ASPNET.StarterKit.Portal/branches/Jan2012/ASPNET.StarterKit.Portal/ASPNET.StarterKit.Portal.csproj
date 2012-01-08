@@ -276,16 +276,13 @@
     <Compile Include="Admin\Users.ascx.designer.cs">
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Components\AnnouncementsDB.cs" />
     <Compile Include="Components\Configuration.cs" />
     <Compile Include="Components\ContactsDB.cs" />
     <Compile Include="Components\CachedPortalModuleControl.cs" />
-    <Compile Include="Components\Db.cs" />
     <Compile Include="Components\DiscussionDB.cs" />
     <Compile Include="Components\DocumentDB.cs" />
     <Compile Include="Components\EventsDB.cs" />
     <Compile Include="Components\HtmlTextDB.cs" />
-    <Compile Include="Components\IAnnouncementsDB.cs" />
     <Compile Include="Components\LinksDB.cs" />
     <Compile Include="Components\PortalModuleControl.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -501,6 +498,12 @@
       <DependentUpon>PortalCfg.xsd</DependentUpon>
     </None>
     <None Include="Uploads\sample.doc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModuleAnnouncements\ModuleAnnouncements.csproj">
+      <Project>{6D0C887E-DEBC-4498-87B9-EAAA7417B890}</Project>
+      <Name>ModuleAnnouncements</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

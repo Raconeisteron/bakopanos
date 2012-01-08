@@ -33,26 +33,26 @@ namespace ASPNET.StarterKit.Portal
 
         #region IAnnouncementsDb Members
 
-        public DataSet GetAnnouncements(int moduleId)
+        public IDataReader GetAnnouncements(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConnectionString);
-            var myCommand = new SqlDataAdapter("Portal_GetAnnouncements", myConnection);
+            var myCommand = new SqlCommand("Portal_GetAnnouncements", myConnection);
 
             // Mark the Command as a SPROC
-            myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             parameterModuleId.Value = moduleId;
-            myCommand.SelectCommand.Parameters.Add(parameterModuleId);
+            myCommand.Parameters.Add(parameterModuleId);
 
-            // Create and Fill the DataSet
-            var myDataSet = new DataSet();
-            myCommand.Fill(myDataSet);
+            // Execute the command
+            myConnection.Open();
+            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
-            // Return the DataSet
-            return myDataSet;
+            // Return the datareader 
+            return result;
         }
 
         //*********************************************************************

@@ -1,4 +1,5 @@
-<%@ Page language="c#" CodeBehind="Logoff.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.Logoff" %>
+<%@ Page language="c#" CodeBehind="Logoff.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.Logoff" 
+MasterPageFile="~/Portal.Master" %>
 
 <%--
 
