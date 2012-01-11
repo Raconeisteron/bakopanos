@@ -45,8 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnnouncementSqlClientDb.cs" />
+    <Compile Include="ContactSqlClientDb.cs" />
     <Compile Include="Db.cs" />
     <Compile Include="IAnnouncementDb.cs" />
+    <Compile Include="IContactDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,7 +2,7 @@ using System;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class EditAnnouncements : EditPage<Announcement>
+    public partial class EditAnnouncements : PortalEditPage<Announcement>
     {
         protected override void Set(Announcement item)
         {

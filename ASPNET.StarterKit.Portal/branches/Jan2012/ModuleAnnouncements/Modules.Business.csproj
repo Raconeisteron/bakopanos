@@ -50,7 +50,10 @@
   <ItemGroup>
     <Compile Include="Announcement.cs" />
     <Compile Include="AnnouncementRepository.cs" />
+    <Compile Include="Contact.cs" />
+    <Compile Include="ContactRepository.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="PortalItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

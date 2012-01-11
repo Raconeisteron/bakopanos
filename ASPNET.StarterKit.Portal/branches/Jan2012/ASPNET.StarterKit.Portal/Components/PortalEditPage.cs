@@ -4,7 +4,7 @@ using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public abstract class EditPage<T> : Page
+    public abstract class PortalEditPage<T> : Page
         where T:PortalItem
     {
         protected int ItemId { get; set; }

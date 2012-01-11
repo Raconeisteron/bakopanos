@@ -277,11 +277,10 @@
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
     <Compile Include="Components\Configuration.cs" />
-    <Compile Include="Components\ContactsDB.cs" />
     <Compile Include="Components\CachedPortalModuleControl.cs" />
     <Compile Include="Components\DiscussionDB.cs" />
     <Compile Include="Components\DocumentDB.cs" />
-    <Compile Include="Components\EditPage.cs">
+    <Compile Include="Components\PortalEditPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Components\EventsDB.cs" />
