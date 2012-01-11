@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ASPNET.StarterKit.Portal</RootNamespace>
-    <AssemblyName>ModuleAnnouncements</AssemblyName>
+    <AssemblyName>Modules.Business</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -49,12 +49,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Announcement.cs" />
-    <Compile Include="AnnouncementsDB.cs" />
-    <Compile Include="AnnouncementsRepository.cs" />
-    <Compile Include="Db.cs" />
-    <Compile Include="IAnnouncementsDB.cs" />
-    <Compile Include="IAnnouncementsRepository.cs" />
+    <Compile Include="AnnouncementRepository.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modules.DataAccess\Modules.DataAccess.csproj">
+      <Project>{358A2AC0-1E88-4F4A-8A90-AF2F5E5310D6}</Project>
+      <Name>Modules.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

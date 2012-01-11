@@ -281,6 +281,9 @@
     <Compile Include="Components\CachedPortalModuleControl.cs" />
     <Compile Include="Components\DiscussionDB.cs" />
     <Compile Include="Components\DocumentDB.cs" />
+    <Compile Include="Components\EditPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Components\EventsDB.cs" />
     <Compile Include="Components\HtmlTextDB.cs" />
     <Compile Include="Components\LinksDB.cs" />
@@ -500,9 +503,9 @@
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ModuleAnnouncements\ModuleAnnouncements.csproj">
+    <ProjectReference Include="..\ModuleAnnouncements\Modules.Business.csproj">
       <Project>{6D0C887E-DEBC-4498-87B9-EAAA7417B890}</Project>
-      <Name>ModuleAnnouncements</Name>
+      <Name>Modules.Business</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

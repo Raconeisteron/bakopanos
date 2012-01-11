@@ -1,134 +1,36 @@
 using System;
-using System.Web.UI;
-using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class EditAnnouncements : Page
+    public partial class EditAnnouncements : EditPage<Announcement>
     {
-        private int _itemId;
-        private int _moduleId;
-
-        [Dependency]
-        public IAnnouncementsRepository AnnouncementsRepo { get; set; }
-
-
-        //****************************************************************
-        //
-        // The Page_Load event on this Page is used to obtain the ModuleId
-        // and ItemId of the announcement to edit.
-        //
-        // It then uses the ASPNET.StarterKit.Portal.AnnouncementsDB() data component
-        // to populate the page's edit controls with the annoucement details.
-        //
-        //****************************************************************
-
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Set(Announcement item)
         {
-            // Determine ModuleId of Announcements Portal Module
-            _moduleId = Int32.Parse(Request.Params["Mid"]);
+            TitleField.Text = item.Title;
+            MoreLinkField.Text = item.MoreLink;
+            MobileMoreField.Text = item.MobileMoreLink;
+            DescriptionField.Text = item.Description;
+            ExpireField.Text = item.ExpireDate.ToShortDateString();
+            CreatedBy.Text = item.CreatedByUser;
+            CreatedDate.Text = item.CreatedDate.ToShortDateString();
 
-            // Verify that the current user has access to edit this module
-            if (PortalSecurity.HasEditPermissions(_moduleId) == false)
-            {
-                Response.Redirect("~/Admin/EditAccessDenied.aspx");
-            }
-
-            // Determine ItemId of Announcement to Update
-            if (Request.Params["ItemId"] != null)
-            {
-                _itemId = Int32.Parse(Request.Params["ItemId"]);
-            }
-
-            // If the page is being requested the first time, determine if an
-            // announcement itemId value is specified, and if so populate page
-            // contents with the announcement details
-
-            if (Page.IsPostBack) return;
-
-            if (_itemId != 0)
-            {
-                // Obtain a single row of announcement information
-                Announcement item = AnnouncementsRepo.GetSingleAnnouncement(_itemId);
-
-                // Security check.  verify that itemid is within the module.
-                if (item.ModuleId != _moduleId)
-                {
-                    Response.Redirect("~/Admin/EditAccessDenied.aspx");
-                }
-
-                TitleField.Text = item.Title;
-                MoreLinkField.Text = item.MoreLink;
-                MobileMoreField.Text = item.MobileMoreLink;
-                DescriptionField.Text = item.Description;
-                ExpireField.Text = item.ExpireDate.ToShortDateString();
-                CreatedBy.Text = item.CreatedByUser;
-                CreatedDate.Text = item.CreatedDate.ToShortDateString();
-
-            }
-
-            // Store URL Referrer to return to portal
-            ViewState["UrlReferrer"] = Request.UrlReferrer.ToString();
         }
 
-        //****************************************************************
-        //
-        // The UpdateBtn_Click event handler on this Page is used to either
-        // create or update an announcement.  It  uses the ASPNET.StarterKit.Portal.AnnouncementsDB()
-        // data component to encapsulate all data functionality.
-        //
-        //****************************************************************
-
-        protected void UpdateBtn_Click(Object sender, EventArgs e)
+        protected override Announcement Get()
         {
-            // Only Update if the Entered Data is Valid
-            if (Page.IsValid)
+            var announcement = new Announcement
             {
-
-                // Add the announcement within the Announcements table
-                AnnouncementsRepo.SaveAnnouncement(_itemId, _moduleId, Context.User.Identity.Name, TitleField.Text,
-                                                   DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                                   MoreLinkField.Text, MobileMoreField.Text);
-
-                // Redirect back to the portal home page
-                Response.Redirect((String) ViewState["UrlReferrer"]);
-            }
+                ItemId = ItemId,
+                ModuleId = ModuleId,
+                Title = TitleField.Text,
+                CreatedByUser = Context.User.Identity.Name,
+                ExpireDate = DateTime.Parse(ExpireField.Text),
+                Description = DescriptionField.Text,
+                MoreLink = MoreLinkField.Text,
+                MobileMoreLink = MobileMoreField.Text
+            };
+            return announcement;
         }
 
-        //****************************************************************
-        //
-        // The DeleteBtn_Click event handler on this Page is used to delete an
-        // an announcement.  It  uses the ASPNET.StarterKit.Portal.AnnouncementsDB()
-        // data component to encapsulate all data functionality.
-        //
-        //****************************************************************
-
-        protected void DeleteBtn_Click(Object sender, EventArgs e)
-        {
-            // Only attempt to delete the item if it is an existing item
-            // (new items will have "ItemId" of 0)
-
-            if (_itemId != 0)
-            {
-                AnnouncementsRepo.DeleteSingleAnnouncement(_itemId);
-            }
-
-            // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
-        }
-
-        //****************************************************************
-        //
-        // The CancelBtn_Click event handler on this Page is used to cancel
-        // out of the page, and return the user back to the portal home
-        // page.
-        //
-        //****************************************************************
-
-        protected void CancelBtn_Click(Object sender, EventArgs e)
-        {
-            // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
-        }
     }
 }

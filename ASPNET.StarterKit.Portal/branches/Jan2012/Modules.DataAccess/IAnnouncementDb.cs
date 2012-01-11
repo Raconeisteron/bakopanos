@@ -3,7 +3,7 @@ using System.Data;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public interface IAnnouncementsDb
+    public interface IAnnouncementDb
     {
         IDataReader GetAnnouncements(int moduleId);
         IDataReader GetSingleAnnouncement(int itemId);

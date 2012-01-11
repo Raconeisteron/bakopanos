@@ -2,10 +2,20 @@ using System;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class Announcement
+
+    public class Contact:PortalItem
+    {
+        
+    }
+
+    public class PortalItem
     {
         public int ItemId { get; set; }
         public int ModuleId { get; set; }
+    }
+
+    public class Announcement:PortalItem
+    {
         public string CreatedByUser { get; set; }
         public DateTime CreatedDate { get; set; }
         public String Title { get; set; }

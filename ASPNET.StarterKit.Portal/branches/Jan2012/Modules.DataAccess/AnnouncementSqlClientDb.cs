@@ -4,8 +4,8 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-    
-    public class AnnouncementsDb : Db, IAnnouncementsDb
+
+    public class AnnouncementSqlClientDb : Db, IAnnouncementDb
     {
         
         #region IAnnouncementsDb Members

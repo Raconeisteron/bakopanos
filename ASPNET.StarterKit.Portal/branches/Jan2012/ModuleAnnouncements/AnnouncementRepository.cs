@@ -4,10 +4,10 @@ using System.Data;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class AnnouncementsRepository : IAnnouncementsRepository
+    public class AnnouncementRepository : IRepository<Announcement>
     {
-        readonly IAnnouncementsDb _db;
-        public AnnouncementsRepository(IAnnouncementsDb db)
+        readonly IAnnouncementDb _db;
+        public AnnouncementRepository(IAnnouncementDb db)
         {
             _db = db;
         }
@@ -29,7 +29,7 @@ namespace ASPNET.StarterKit.Portal
             return item;
         }
 
-        public List<Announcement> GetAnnouncements(int moduleId)
+        public List<Announcement> GetList(int moduleId)
         {
             IDataReader dr = _db.GetAnnouncements(moduleId);
             var list = new List<Announcement>();
@@ -43,7 +43,7 @@ namespace ASPNET.StarterKit.Portal
             return list;
         }
 
-        public Announcement GetSingleAnnouncement(int itemId)
+        public Announcement GetSingle(int itemId)
         {
             IDataReader dr = _db.GetSingleAnnouncement(itemId);
             var item = new Announcement();
@@ -59,26 +59,31 @@ namespace ASPNET.StarterKit.Portal
             return item;
         }
 
-        public void DeleteSingleAnnouncement(int itemId)
+        public void Delete(int itemId)
         {
-            _db.DeleteAnnouncement(itemId);
+            // Only attempt to delete the item if it is an existing item
+            // (new items will have "ItemId" of 0)
+
+            if (itemId != 0)
+            {
+                _db.DeleteAnnouncement(itemId);
+            }
         }
 
-        public Announcement SaveAnnouncement(int itemId, int moduleId, String userName, String title, DateTime expireDate,
-                                   String description, String moreLink, String mobileMoreLink)
+        public Announcement Save(Announcement item)
         {
-            if (itemId == 0)
+            if (item.ItemId == 0)
             {
-                itemId = _db.AddAnnouncement(moduleId, userName, title, expireDate,
-                                           description, moreLink, mobileMoreLink);
+                item.ItemId = _db.AddAnnouncement(item.ModuleId, item.CreatedByUser, item.Title, item.ExpireDate,
+                                           item.Description, item.MoreLink, item.MobileMoreLink);
 
             }
             else
             {
-                _db.UpdateAnnouncement(itemId, userName, title, expireDate,
-                                       description, moreLink, mobileMoreLink);
+                _db.UpdateAnnouncement(item.ItemId, item.CreatedByUser, item.Title, item.ExpireDate,
+                                           item.Description, item.MoreLink, item.MobileMoreLink);
             }
-            return GetSingleAnnouncement(itemId);
+            return GetSingle(item.ItemId);
         }
     }
 }
