@@ -519,43 +519,43 @@ GO
 -- =============================================================
 CREATE PROCEDURE Portal_AddAnnouncement
 (
-    @ModuleID       int,
-    @UserName       nvarchar(100),
-    @Title          nvarchar(150),
-    @MoreLink       nvarchar(150),
-    @MobileMoreLink nvarchar(150),
-    @ExpireDate     DateTime,
-    @Description    nvarchar(2000),
-    @ItemID         int OUTPUT
+	@ModuleID       int,
+	@UserName       nvarchar(100),
+	@Title          nvarchar(150),
+	@MoreLink       nvarchar(150),
+	@MobileMoreLink nvarchar(150),
+	@ExpireDate     DateTime,
+	@Description    nvarchar(2000),
+	@ItemID         int OUTPUT
 )
 AS
 
 INSERT INTO Portal_Announcements
 (
-    ModuleID,
-    CreatedByUser,
-    CreatedDate,
-    Title,
-    MoreLink,
-    MobileMoreLink,
-    ExpireDate,
-    Description
+	ModuleID,
+	CreatedByUser,
+	CreatedDate,
+	Title,
+	MoreLink,
+	MobileMoreLink,
+	ExpireDate,
+	Description
 )
 
 VALUES
 (
-    @ModuleID,
-    @UserName,
-    GetDate(),
-    @Title,
-    @MoreLink,
-    @MobileMoreLink,
-    @ExpireDate,
-    @Description
+	@ModuleID,
+	@UserName,
+	GetDate(),
+	@Title,
+	@MoreLink,
+	@MobileMoreLink,
+	@ExpireDate,
+	@Description
 )
 
 SELECT
-    @ItemID = @@Identity
+	@ItemID = @@Identity
 
 
 
@@ -574,43 +574,43 @@ GO
 
 CREATE PROCEDURE Portal_AddContact
 (
-    @ModuleID int,
-    @UserName nvarchar(100),
-    @Name     nvarchar(50),
-    @Role     nvarchar(100),
-    @Email    nvarchar(100),
-    @Contact1 nvarchar(250),
-    @Contact2 nvarchar(250),
-    @ItemID   int OUTPUT
+	@ModuleID int,
+	@UserName nvarchar(100),
+	@Name     nvarchar(50),
+	@Role     nvarchar(100),
+	@Email    nvarchar(100),
+	@Contact1 nvarchar(250),
+	@Contact2 nvarchar(250),
+	@ItemID   int OUTPUT
 )
 AS
 
 INSERT INTO Portal_Contacts
 (
-    CreatedByUser,
-    CreatedDate,
-    ModuleID,
-    Name,
-    Role,
-    Email,
-    Contact1,
-    Contact2
+	CreatedByUser,
+	CreatedDate,
+	ModuleID,
+	Name,
+	Role,
+	Email,
+	Contact1,
+	Contact2
 )
 
 VALUES
 (
-    @UserName,
-    GetDate(),
-    @ModuleID,
-    @Name,
-    @Role,
-    @Email,
-    @Contact1,
-    @Contact2
+	@UserName,
+	GetDate(),
+	@ModuleID,
+	@Name,
+	@Role,
+	@Email,
+	@Contact1,
+	@Contact2
 )
 
 SELECT
-    @ItemID = @@Identity
+	@ItemID = @@Identity
 
 
 
@@ -629,40 +629,40 @@ GO
 
 CREATE PROCEDURE Portal_AddEvent
 (
-    @ModuleID    int,
-    @UserName    nvarchar(100),
-    @Title       nvarchar(100),
-    @ExpireDate  DateTime,
-    @Description nvarchar(2000),
-    @WhereWhen   nvarchar(100),
-    @ItemID      int OUTPUT
+	@ModuleID    int,
+	@UserName    nvarchar(100),
+	@Title       nvarchar(100),
+	@ExpireDate  DateTime,
+	@Description nvarchar(2000),
+	@WhereWhen   nvarchar(100),
+	@ItemID      int OUTPUT
 )
 AS
 
 INSERT INTO Portal_Events
 (
-    ModuleID,
-    CreatedByUser,
-    Title,
-    CreatedDate,
-    ExpireDate,
-    Description,
-    WhereWhen
+	ModuleID,
+	CreatedByUser,
+	Title,
+	CreatedDate,
+	ExpireDate,
+	Description,
+	WhereWhen
 )
 
 VALUES
 (
-    @ModuleID,
-    @UserName,
-    @Title,
-    GetDate(),
-    @ExpireDate,
-    @Description,
-    @WhereWhen
+	@ModuleID,
+	@UserName,
+	@Title,
+	GetDate(),
+	@ExpireDate,
+	@Description,
+	@WhereWhen
 )
 
 SELECT
-    @ItemID = @@Identity
+	@ItemID = @@Identity
 
 
 
@@ -681,42 +681,42 @@ GO
 
 CREATE PROCEDURE Portal_AddLink
 (
-    @ModuleID    int,
-    @UserName    nvarchar(100),
-    @Title       nvarchar(100),
-    @Url         nvarchar(250),
-    @MobileUrl   nvarchar(250),
-    @ViewOrder   int,
-    @Description nvarchar(2000),
-    @ItemID      int OUTPUT
+	@ModuleID    int,
+	@UserName    nvarchar(100),
+	@Title       nvarchar(100),
+	@Url         nvarchar(250),
+	@MobileUrl   nvarchar(250),
+	@ViewOrder   int,
+	@Description nvarchar(2000),
+	@ItemID      int OUTPUT
 )
 AS
 
 INSERT INTO Portal_Links
 (
-    ModuleID,
-    CreatedByUser,
-    CreatedDate,
-    Title,
-    Url,
-    MobileUrl,
-    ViewOrder,
-    Description
+	ModuleID,
+	CreatedByUser,
+	CreatedDate,
+	Title,
+	Url,
+	MobileUrl,
+	ViewOrder,
+	Description
 )
 VALUES
 (
-    @ModuleID,
-    @UserName,
-    GetDate(),
-    @Title,
-    @Url,
-    @MobileUrl,
-    @ViewOrder,
-    @Description
+	@ModuleID,
+	@UserName,
+	GetDate(),
+	@Title,
+	@Url,
+	@MobileUrl,
+	@ViewOrder,
+	@Description
 )
 
 SELECT
-    @ItemID = @@Identity
+	@ItemID = @@Identity
 
 
 
@@ -736,12 +736,12 @@ GO
 
 CREATE PROCEDURE Portal_AddMessage
 (
-    @ItemID int OUTPUT,
-    @Title nvarchar(100),
-    @Body nvarchar(3000),
-    @ParentID int,
-    @UserName nvarchar(100),
-    @ModuleID int
+	@ItemID int OUTPUT,
+	@Title nvarchar(100),
+	@Body nvarchar(3000),
+	@ParentID int,
+	@UserName nvarchar(100),
+	@ModuleID int
 )   
 
 AS 
@@ -752,33 +752,33 @@ DECLARE @ParentDisplayOrder as nvarchar(750)
 SET @ParentDisplayOrder = ""
 
 SELECT 
-    @ParentDisplayOrder = DisplayOrder
+	@ParentDisplayOrder = DisplayOrder
 FROM Portal_Discussion 
 WHERE 
-    ItemID = @ParentID
+	ItemID = @ParentID
 
 INSERT INTO Portal_Discussion
 (
-    Title,
-    Body,
-    DisplayOrder,
-    CreatedDate, 
-    CreatedByUser,
-    ModuleID
+	Title,
+	Body,
+	DisplayOrder,
+	CreatedDate, 
+	CreatedByUser,
+	ModuleID
 )
 
 VALUES
 (
-    @Title,
-    @Body,
-    @ParentDisplayOrder + CONVERT( nvarchar(24), GetDate(), 21 ),
-    GetDate(),
-    @UserName,
-    @ModuleID
+	@Title,
+	@Body,
+	@ParentDisplayOrder + CONVERT( nvarchar(24), GetDate(), 21 ),
+	GetDate(),
+	@UserName,
+	@ModuleID
 )
 
 SELECT 
-    @ItemID = @@Identity
+	@ItemID = @@Identity
 
 
 
@@ -798,26 +798,26 @@ GO
 
 CREATE PROCEDURE Portal_AddRole
 (
-    @PortalID    int,
-    @RoleName    nvarchar(50),
-    @RoleID      int OUTPUT
+	@PortalID    int,
+	@RoleName    nvarchar(50),
+	@RoleID      int OUTPUT
 )
 AS
 
 INSERT INTO Portal_Roles
 (
-    PortalID,
-    RoleName
+	PortalID,
+	RoleName
 )
 
 VALUES
 (
-    @PortalID,
-    @RoleName
+	@PortalID,
+	@RoleName
 )
 
 SELECT
-    @RoleID = @@Identity
+	@RoleID = @@Identity
 
 
 
@@ -838,29 +838,29 @@ GO
 
 CREATE  PROCEDURE Portal_AddUser
 (
-    @Name     nvarchar(50),
-    @Email    nvarchar(100),
-    @Password nvarchar(50),
-    @UserID   int OUTPUT
+	@Name     nvarchar(50),
+	@Email    nvarchar(100),
+	@Password nvarchar(50),
+	@UserID   int OUTPUT
 )
 AS
 
 INSERT INTO Portal_Users
 (
-    Name,
-    Email,
-    Password
+	Name,
+	Email,
+	Password
 )
 
 VALUES
 (
-    @Name,
-    @Email,
-    @Password
+	@Name,
+	@Email,
+	@Password
 )
 
 SELECT
-    @UserID = @@Identity
+	@UserID = @@Identity
 
 
 
@@ -881,34 +881,34 @@ GO
 
 CREATE PROCEDURE Portal_AddUserRole
 (
-    @UserID int,
-    @RoleID int
+	@UserID int,
+	@RoleID int
 )
 AS
 
 SELECT 
-    *
+	*
 FROM Portal_UserRoles
 
 WHERE
-    UserID=@UserID
-    AND
-    RoleID=@RoleID
+	UserID=@UserID
+	AND
+	RoleID=@RoleID
 
 /* only insert if the record doesn't yet exist */
 IF @@Rowcount < 1
 
-    INSERT INTO Portal_UserRoles
-    (
-        UserID,
-        RoleID
-    )
+	INSERT INTO Portal_UserRoles
+	(
+		UserID,
+		RoleID
+	)
 
-    VALUES
-    (
-        @UserID,
-        @RoleID
-    )
+	VALUES
+	(
+		@UserID,
+		@RoleID
+	)
 
 
 
@@ -928,14 +928,14 @@ GO
 
 CREATE PROCEDURE Portal_DeleteAnnouncement
 (
-    @ItemID int
+	@ItemID int
 )
 AS
 
 DELETE FROM Portal_Announcements
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 
@@ -954,14 +954,14 @@ GO
 
 CREATE PROCEDURE Portal_DeleteContact
 (
-    @ItemID int
+	@ItemID int
 )
 AS
 
 DELETE FROM Portal_Contacts
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 
@@ -980,14 +980,14 @@ GO
 
 CREATE PROCEDURE Portal_DeleteDocument
 (
-    @ItemID int
+	@ItemID int
 )
 AS
 
 DELETE FROM Portal_Documents
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 
@@ -1006,14 +1006,14 @@ GO
 
 CREATE PROCEDURE Portal_DeleteEvent
 (
-    @ItemID int
+	@ItemID int
 )
 AS
 
 DELETE FROM Portal_Events
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 
@@ -1032,14 +1032,14 @@ GO
 
 CREATE PROCEDURE Portal_DeleteLink
 (
-    @ItemID int
+	@ItemID int
 )
 AS
 
 DELETE FROM Portal_Links
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 
@@ -1057,29 +1057,29 @@ GO
 
 CREATE  PROCEDURE Portal_DeleteModule
 (
-    @ModuleID       int
+	@ModuleID       int
 )
 AS
-      DELETE FROM Portal_Announcements
-      WHERE ModuleID = @ModuleID
+	  DELETE FROM Portal_Announcements
+	  WHERE ModuleID = @ModuleID
 
-      DELETE FROM Portal_Contacts
-      WHERE ModuleID = @ModuleID
+	  DELETE FROM Portal_Contacts
+	  WHERE ModuleID = @ModuleID
 
-      DELETE FROM Portal_Discussion
-      WHERE ModuleID = @ModuleID
+	  DELETE FROM Portal_Discussion
+	  WHERE ModuleID = @ModuleID
 
-      DELETE FROM Portal_Documents
-      WHERE ModuleID = @ModuleID
+	  DELETE FROM Portal_Documents
+	  WHERE ModuleID = @ModuleID
 
-      DELETE FROM Portal_Events
-      WHERE ModuleID = @ModuleID
+	  DELETE FROM Portal_Events
+	  WHERE ModuleID = @ModuleID
 
-      DELETE FROM Portal_HtmlText
-      WHERE ModuleID = @ModuleID
+	  DELETE FROM Portal_HtmlText
+	  WHERE ModuleID = @ModuleID
 
-      DELETE FROM Portal_Links
-      WHERE ModuleID = @ModuleID
+	  DELETE FROM Portal_Links
+	  WHERE ModuleID = @ModuleID
 
 
 GO
@@ -1097,14 +1097,14 @@ GO
 
 CREATE PROCEDURE Portal_DeleteRole
 (
-    @RoleID int
+	@RoleID int
 )
 AS
 
 DELETE FROM Portal_Roles
 
 WHERE
-    RoleID = @RoleID
+	RoleID = @RoleID
 
 
 
@@ -1123,14 +1123,14 @@ GO
 
 CREATE PROCEDURE Portal_DeleteUser
 (
-    @UserID int
+	@UserID int
 )
 AS
 
 DELETE FROM Portal_Users
 
 WHERE
-    UserID=@UserID
+	UserID=@UserID
 
 
 
@@ -1149,17 +1149,17 @@ GO
 
 CREATE PROCEDURE Portal_DeleteUserRole
 (
-    @UserID int,
-    @RoleID int
+	@UserID int,
+	@RoleID int
 )
 AS
 
 DELETE FROM Portal_UserRoles
 
 WHERE
-    UserID=@UserID
-    AND
-    RoleID=@RoleID
+	UserID=@UserID
+	AND
+	RoleID=@RoleID
 
 
 
@@ -1178,27 +1178,27 @@ GO
 
 CREATE PROCEDURE Portal_GetAnnouncements
 (
-    @ModuleID int
+	@ModuleID int
 )
 AS
 
 SELECT
-    ItemID,
+	ItemID,
 	ModuleID,
-    CreatedByUser,
-    CreatedDate,
-    Title,
-    MoreLink,
-    MobileMoreLink,
-    ExpireDate,
-    Description
+	CreatedByUser,
+	CreatedDate,
+	Title,
+	MoreLink,
+	MobileMoreLink,
+	ExpireDate,
+	Description
 
 FROM Portal_Announcements
 
 WHERE
-    ModuleID = @ModuleID
+	ModuleID = @ModuleID
   AND
-    ExpireDate > GetDate()
+	ExpireDate > GetDate()
 
 
 
@@ -1217,25 +1217,25 @@ GO
 
 CREATE PROCEDURE Portal_GetAuthRoles
 (
-    @PortalID    int,
-    @ModuleID    int,
-    @AccessRoles nvarchar (256) OUTPUT,
-    @EditRoles   nvarchar (256) OUTPUT
+	@PortalID    int,
+	@ModuleID    int,
+	@AccessRoles nvarchar (256) OUTPUT,
+	@EditRoles   nvarchar (256) OUTPUT
 )
 AS
 
 SELECT  
-    @AccessRoles = Portal_Tabs.AuthorizedRoles,
-    @EditRoles   = Portal_Modules.AuthorizedEditRoles
-    
+	@AccessRoles = Portal_Tabs.AuthorizedRoles,
+	@EditRoles   = Portal_Modules.AuthorizedEditRoles
+	
 FROM Portal_Modules
   INNER JOIN
-    Portal_Tabs ON Portal_Modules.TabID = Portal_Tabs.TabID
-    
+	Portal_Tabs ON Portal_Modules.TabID = Portal_Tabs.TabID
+	
 WHERE   
-    Portal_Modules.ModuleID = @ModuleID
+	Portal_Modules.ModuleID = @ModuleID
   AND
-    Portal_Tabs.PortalID = @PortalID
+	Portal_Tabs.PortalID = @PortalID
 
 
 
@@ -1254,24 +1254,25 @@ GO
 
 CREATE PROCEDURE Portal_GetContacts
 (
-    @ModuleID int
+	@ModuleID int
 )
 AS
 
 SELECT
-    ItemID,
-    CreatedDate,
-    CreatedByUser,
-    Name,
-    Role,
-    Email,
-    Contact1,
-    Contact2
+	ItemID,
+	ModuleID,
+	CreatedDate,
+	CreatedByUser,
+	Name,
+	Role,
+	Email,
+	Contact1,
+	Contact2
 
 FROM Portal_Contacts
 
 WHERE
-    ModuleID = @ModuleID
+	ModuleID = @ModuleID
 
 
 
@@ -1290,20 +1291,20 @@ GO
 
 CREATE PROCEDURE Portal_GetDocumentContent
 (
-    @ItemID int
+	@ItemID int
 )
 AS
 
 SELECT
-    Content,
-    ContentType,
-    ContentSize,
-    FileFriendlyName
+	Content,
+	ContentType,
+	ContentSize,
+	FileFriendlyName
 
 FROM Portal_Documents
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 
@@ -1322,23 +1323,23 @@ GO
 
 CREATE PROCEDURE Portal_GetDocuments
 (
-    @ModuleID int
+	@ModuleID int
 )
 AS
 
 SELECT
-    ItemID,
-    FileFriendlyName,
-    FileNameUrl,
-    CreatedByUser,
-    CreatedDate,
-    Category,
-    ContentSize
-    
+	ItemID,
+	FileFriendlyName,
+	FileNameUrl,
+	CreatedByUser,
+	CreatedDate,
+	Category,
+	ContentSize
+	
 FROM Portal_Documents
 
 WHERE
-    ModuleID = @ModuleID
+	ModuleID = @ModuleID
 
 
 
@@ -1357,26 +1358,26 @@ GO
 
 CREATE PROCEDURE Portal_GetEvents
 (
-    @ModuleID int
+	@ModuleID int
 )
 AS
 
 SELECT
-    ItemID,
-    Title,
-    CreatedByUser,
-    WhereWhen,
-    CreatedDate,
-    Title,
-    ExpireDate,
-    Description
+	ItemID,
+	Title,
+	CreatedByUser,
+	WhereWhen,
+	CreatedDate,
+	Title,
+	ExpireDate,
+	Description
 
 FROM Portal_Events
 
 WHERE
-    ModuleID = @ModuleID
+	ModuleID = @ModuleID
   AND
-    ExpireDate > GetDate()
+	ExpireDate > GetDate()
 
 
 
@@ -1395,17 +1396,17 @@ GO
 
 CREATE PROCEDURE Portal_GetHtmlText
 (
-    @ModuleID int
+	@ModuleID int
 )
 AS
 
 SELECT
-    *
+	*
 
 FROM Portal_HtmlText
 
 WHERE
-    ModuleID = @ModuleID
+	ModuleID = @ModuleID
 
 
 
@@ -1424,26 +1425,26 @@ GO
 
 CREATE PROCEDURE Portal_GetLinks
 (
-    @ModuleID int
+	@ModuleID int
 )
 AS
 
 SELECT
-    ItemID,
-    CreatedByUser,
-    CreatedDate,
-    Title,
-    Url,
-    ViewOrder,
-    Description
+	ItemID,
+	CreatedByUser,
+	CreatedDate,
+	Title,
+	Url,
+	ViewOrder,
+	Description
 
 FROM Portal_Links
 
 WHERE
-    ModuleID = @ModuleID
+	ModuleID = @ModuleID
 
 ORDER BY
-    ViewOrder
+	ViewOrder
 
 
 
@@ -1462,8 +1463,8 @@ GO
 
 CREATE PROCEDURE Portal_GetNextMessageID
 (
-    @ItemID int,
-    @NextID int OUTPUT
+	@ItemID int,
+	@NextID int OUTPUT
 )
 AS
 
@@ -1472,29 +1473,29 @@ DECLARE @CurrentModule as int
 
 /* Find DisplayOrder of current item */
 SELECT
-    @CurrentDisplayOrder = DisplayOrder,
-    @CurrentModule = ModuleID
+	@CurrentDisplayOrder = DisplayOrder,
+	@CurrentModule = ModuleID
 FROM Portal_Discussion
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 /* Get the next message in the same module */
 SELECT Top 1
-    @NextID = ItemID
+	@NextID = ItemID
 
 FROM Portal_Discussion
 
 WHERE
-    DisplayOrder > @CurrentDisplayOrder
-    AND
-    ModuleID = @CurrentModule
+	DisplayOrder > @CurrentDisplayOrder
+	AND
+	ModuleID = @CurrentModule
 
 ORDER BY
-    DisplayOrder ASC
+	DisplayOrder ASC
 
 /* end of this thread? */
 IF @@Rowcount < 1
-    SET @NextID = null
+	SET @NextID = null
 
 
 
@@ -1515,18 +1516,18 @@ GO
 /* returns all roles for the specified portal */
 CREATE PROCEDURE Portal_GetPortalRoles
 (
-    @PortalID  int
+	@PortalID  int
 )
 AS
 
 SELECT  
-    RoleName,
-    RoleID
+	RoleName,
+	RoleID
 
 FROM Portal_Roles
 
 WHERE   
-    PortalID = @PortalID
+	PortalID = @PortalID
 
 
 
@@ -1545,8 +1546,8 @@ GO
 
 CREATE PROCEDURE Portal_GetPrevMessageID
 (
-    @ItemID int,
-    @PrevID int OUTPUT
+	@ItemID int,
+	@PrevID int OUTPUT
 )
 AS
 
@@ -1555,29 +1556,29 @@ DECLARE @CurrentModule as int
 
 /* Find DisplayOrder of current item */
 SELECT
-    @CurrentDisplayOrder = DisplayOrder,
-    @CurrentModule = ModuleID
+	@CurrentDisplayOrder = DisplayOrder,
+	@CurrentModule = ModuleID
 FROM Portal_Discussion
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 /* Get the previous message in the same module */
 SELECT Top 1
-    @PrevID = ItemID
+	@PrevID = ItemID
 
 FROM Portal_Discussion
 
 WHERE
-    DisplayOrder < @CurrentDisplayOrder
-    AND
-    ModuleID = @CurrentModule
+	DisplayOrder < @CurrentDisplayOrder
+	AND
+	ModuleID = @CurrentModule
 
 ORDER BY
-    DisplayOrder DESC
+	DisplayOrder DESC
 
 /* already at the beginning of this module? */
 IF @@Rowcount < 1
-    SET @PrevID = null
+	SET @PrevID = null
 
 
 
@@ -1598,22 +1599,22 @@ GO
 /* returns all members for the specified role */
 CREATE PROCEDURE Portal_GetRoleMembership
 (
-    @RoleID  int
+	@RoleID  int
 )
 AS
 
 SELECT  
-    Portal_UserRoles.UserID,
-    Name,
-    Email
+	Portal_UserRoles.UserID,
+	Name,
+	Email
 
 FROM Portal_UserRoles
-    
+	
 INNER JOIN 
-    Portal_Users On Portal_Users.UserID = Portal_UserRoles.UserID
+	Portal_Users On Portal_Users.UserID = Portal_UserRoles.UserID
 
 WHERE   
-    Portal_UserRoles.RoleID = @RoleID
+	Portal_UserRoles.RoleID = @RoleID
 
 
 
@@ -1634,22 +1635,22 @@ GO
 /* returns all roles for the specified user */
 CREATE PROCEDURE Portal_GetRolesByUser
 (
-    @Email         nvarchar(100)
+	@Email         nvarchar(100)
 )
 AS
 
 SELECT  
-    Portal_Roles.RoleName,
-    Portal_Roles.RoleID
+	Portal_Roles.RoleName,
+	Portal_Roles.RoleID
 
 FROM Portal_UserRoles
   INNER JOIN 
-    Portal_Users ON Portal_UserRoles.UserID = Portal_Users.UserID
+	Portal_Users ON Portal_UserRoles.UserID = Portal_Users.UserID
   INNER JOIN 
-    Portal_Roles ON Portal_UserRoles.RoleID = Portal_Roles.RoleID
+	Portal_Roles ON Portal_UserRoles.RoleID = Portal_Roles.RoleID
 
 WHERE   
-    Portal_Users.Email = @Email
+	Portal_Users.Email = @Email
 
 
 
@@ -1666,25 +1667,25 @@ GO
 
 CREATE  PROCEDURE Portal_GetSingleAnnouncement
 (
-    @ItemID int
+	@ItemID int
 )
 AS
 
 SELECT
-    CreatedByUser,
-    CreatedDate,
-    Title,
+	CreatedByUser,
+	CreatedDate,
+	Title,
 	ItemID,
-    ModuleID,
-    MoreLink,
-    MobileMoreLink,
-    ExpireDate,
-    Description
+	ModuleID,
+	MoreLink,
+	MobileMoreLink,
+	ExpireDate,
+	Description
 
 FROM Portal_Announcements
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 GO
@@ -1704,24 +1705,25 @@ GO
 
 CREATE  PROCEDURE Portal_GetSingleContact
 (
-    @ItemID int
+	@ItemID int
 )
 AS
 
 SELECT
-    CreatedByUser,
-    CreatedDate,
-    ModuleID,
-    Name,
-    Role,
-    Email,
-    Contact1,
-    Contact2
+	CreatedByUser,
+	CreatedDate,
+	ModuleID,
+	ItemID,
+	Name,
+	Role,
+	Email,
+	Contact1,
+	Contact2
 
 FROM Portal_Contacts
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 
@@ -1742,23 +1744,23 @@ GO
 
 CREATE  PROCEDURE Portal_GetSingleDocument
 (
-    @ItemID int
+	@ItemID int
 )
 AS
 
 SELECT
-    FileFriendlyName,
-    FileNameUrl,
-    CreatedByUser,
-    CreatedDate,
-    Category,
-    ContentSize,
-    ModuleID
+	FileFriendlyName,
+	FileNameUrl,
+	CreatedByUser,
+	CreatedDate,
+	Category,
+	ContentSize,
+	ModuleID
 
 FROM Portal_Documents
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 
@@ -1779,23 +1781,23 @@ GO
 
 CREATE  PROCEDURE Portal_GetSingleEvent
 (
-    @ItemID int
+	@ItemID int
 )
 AS
 
 SELECT
-    CreatedByUser,
-    CreatedDate,
-    ModuleID,
-    Title,
-    ExpireDate,
-    Description,
-    WhereWhen
+	CreatedByUser,
+	CreatedDate,
+	ModuleID,
+	Title,
+	ExpireDate,
+	Description,
+	WhereWhen
 
 FROM Portal_Events
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 
@@ -1816,24 +1818,24 @@ GO
 
 CREATE  PROCEDURE Portal_GetSingleLink
 (
-    @ItemID int
+	@ItemID int
 )
 AS
 
 SELECT
-    CreatedByUser,
-    CreatedDate,
-    ModuleID,
-    Title,
-    Url,
-    MobileUrl,
-    ViewOrder,
-    Description
+	CreatedByUser,
+	CreatedDate,
+	ModuleID,
+	Title,
+	Url,
+	MobileUrl,
+	ViewOrder,
+	Description
 
 FROM Portal_Links
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 
@@ -1854,7 +1856,7 @@ GO
 
 CREATE  PROCEDURE Portal_GetSingleMessage
 (
-    @ItemID int
+	@ItemID int
 )
 AS
 
@@ -1864,20 +1866,20 @@ DECLARE @prevMessageID int
 EXECUTE Portal_GetPrevMessageID @ItemID, @prevMessageID OUTPUT
 
 SELECT
-    ItemID,
-    ModuleID,
-    Title,
-    CreatedByUser,
-    CreatedDate,
-    Body,
-    DisplayOrder,
-    NextMessageID = @nextMessageID,
-    PrevMessageID = @prevMessageID
+	ItemID,
+	ModuleID,
+	Title,
+	CreatedByUser,
+	CreatedDate,
+	Body,
+	DisplayOrder,
+	NextMessageID = @nextMessageID,
+	PrevMessageID = @prevMessageID
 
 FROM Portal_Discussion
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 
@@ -1898,17 +1900,17 @@ GO
 
 CREATE PROCEDURE Portal_GetSingleRole
 (
-    @RoleID int
+	@RoleID int
 )
 AS
 
 SELECT
-    RoleName
+	RoleName
 
 FROM Portal_Roles
 
 WHERE
-    RoleID = @RoleID
+	RoleID = @RoleID
 
 
 
@@ -1927,19 +1929,19 @@ GO
 
 CREATE PROCEDURE Portal_GetSingleUser
 (
-    @Email nvarchar(100)
+	@Email nvarchar(100)
 )
 AS
 
 SELECT
-    Email,
-    Password,
-    Name
+	Email,
+	Password,
+	Name
 
 FROM Portal_Users
 
 WHERE
-    Email = @Email
+	Email = @Email
 
 
 
@@ -1959,28 +1961,28 @@ GO
 
 CREATE PROCEDURE Portal_GetThreadMessages
 (
-    @Parent nvarchar(750)
+	@Parent nvarchar(750)
 )
 AS
 
 SELECT
-    ItemID,
-    DisplayOrder,
-    REPLICATE( '&nbsp;', ( ( LEN( DisplayOrder ) / 23 ) - 1 ) * 5 ) AS Indent,
-    Title,  
-    CreatedByUser,
-    CreatedDate,
-    Body
+	ItemID,
+	DisplayOrder,
+	REPLICATE( '&nbsp;', ( ( LEN( DisplayOrder ) / 23 ) - 1 ) * 5 ) AS Indent,
+	Title,  
+	CreatedByUser,
+	CreatedDate,
+	Body
 
 FROM Portal_Discussion
 
 WHERE
-    LEFT(DisplayOrder, 23) = @Parent
+	LEFT(DisplayOrder, 23) = @Parent
   AND
-    (LEN( DisplayOrder ) / 23 ) > 1
+	(LEN( DisplayOrder ) / 23 ) > 1
 
 ORDER BY
-    DisplayOrder
+	DisplayOrder
 
 
 
@@ -1999,28 +2001,28 @@ GO
 
 CREATE PROCEDURE Portal_GetTopLevelMessages
 (
-    @ModuleID int
+	@ModuleID int
 )
 AS
 
 SELECT
-    ItemID,
-    DisplayOrder,
-    LEFT(DisplayOrder, 23) AS Parent,    
-    (SELECT COUNT(*) -1  FROM Portal_Discussion Disc2 WHERE LEFT(Disc2.DisplayOrder,LEN(RTRIM(Disc.DisplayOrder))) = Disc.DisplayOrder) AS ChildCount,
-    Title,  
-    CreatedByUser,
-    CreatedDate
+	ItemID,
+	DisplayOrder,
+	LEFT(DisplayOrder, 23) AS Parent,    
+	(SELECT COUNT(*) -1  FROM Portal_Discussion Disc2 WHERE LEFT(Disc2.DisplayOrder,LEN(RTRIM(Disc.DisplayOrder))) = Disc.DisplayOrder) AS ChildCount,
+	Title,  
+	CreatedByUser,
+	CreatedDate
 
 FROM Portal_Discussion Disc
 
 WHERE 
-    ModuleID=@ModuleID
+	ModuleID=@ModuleID
   AND
-    (LEN( DisplayOrder ) / 23 ) = 1
+	(LEN( DisplayOrder ) / 23 ) = 1
 
 ORDER BY
-    DisplayOrder
+	DisplayOrder
 
 
 
@@ -2042,11 +2044,11 @@ CREATE PROCEDURE Portal_GetUsers
 AS
 
 SELECT  
-    UserID,
-    Email
+	UserID,
+	Email
 
 FROM Portal_Users
-    
+	
 ORDER BY Email
 
 
@@ -2068,29 +2070,29 @@ GO
 
 CREATE PROCEDURE Portal_UpdateAnnouncement
 (
-    @ItemID         int,
-    @UserName       nvarchar(100),
-    @Title          nvarchar(150),
-    @MoreLink       nvarchar(150),
-    @MobileMoreLink nvarchar(150),
-    @ExpireDate     datetime,
-    @Description    nvarchar(2000)
+	@ItemID         int,
+	@UserName       nvarchar(100),
+	@Title          nvarchar(150),
+	@MoreLink       nvarchar(150),
+	@MobileMoreLink nvarchar(150),
+	@ExpireDate     datetime,
+	@Description    nvarchar(2000)
 )
 AS
 
 UPDATE Portal_Announcements
 
 SET
-    CreatedByUser   = @UserName,
-    CreatedDate     = GetDate(),
-    Title           = @Title,
-    MoreLink        = @MoreLink,
-    MobileMoreLink  = @MobileMoreLink,
-    ExpireDate      = @ExpireDate,
-    Description     = @Description
+	CreatedByUser   = @UserName,
+	CreatedDate     = GetDate(),
+	Title           = @Title,
+	MoreLink        = @MoreLink,
+	MobileMoreLink  = @MobileMoreLink,
+	ExpireDate      = @ExpireDate,
+	Description     = @Description
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 
@@ -2109,29 +2111,29 @@ GO
 
 CREATE PROCEDURE Portal_UpdateContact
 (
-    @ItemID   int,
-    @UserName nvarchar(100),
-    @Name     nvarchar(50),
-    @Role     nvarchar(100),
-    @Email    nvarchar(100),
-    @Contact1 nvarchar(250),
-    @Contact2 nvarchar(250)
+	@ItemID   int,
+	@UserName nvarchar(100),
+	@Name     nvarchar(50),
+	@Role     nvarchar(100),
+	@Email    nvarchar(100),
+	@Contact1 nvarchar(250),
+	@Contact2 nvarchar(250)
 )
 AS
 
 UPDATE Portal_Contacts
 
 SET
-    CreatedByUser = @UserName,
-    CreatedDate   = GetDate(),
-    Name          = @Name,
-    Role          = @Role,
-    Email         = @Email,
-    Contact1      = @Contact1,
-    Contact2      = @Contact2
+	CreatedByUser = @UserName,
+	CreatedDate   = GetDate(),
+	Name          = @Name,
+	Role          = @Role,
+	Email         = @Email,
+	Contact1      = @Contact1,
+	Contact2      = @Contact2
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 
@@ -2150,48 +2152,48 @@ GO
 
 CREATE PROCEDURE Portal_UpdateDocument
 (
-    @ItemID           int,
-    @ModuleID         int,
-    @FileFriendlyName nvarchar(150),
-    @FileNameUrl      nvarchar(250),
-    @UserName         nvarchar(100),
-    @Category         nvarchar(50),
-    @Content          image,
-    @ContentType      nvarchar(50),
-    @ContentSize      int
+	@ItemID           int,
+	@ModuleID         int,
+	@FileFriendlyName nvarchar(150),
+	@FileNameUrl      nvarchar(250),
+	@UserName         nvarchar(100),
+	@Category         nvarchar(50),
+	@Content          image,
+	@ContentType      nvarchar(50),
+	@ContentSize      int
 )
 AS
 IF (@ItemID=0) OR NOT EXISTS (
-    SELECT 
-        * 
-    FROM Portal_Documents 
-    WHERE 
-        ItemID = @ItemID
+	SELECT 
+		* 
+	FROM Portal_Documents 
+	WHERE 
+		ItemID = @ItemID
 )
 INSERT INTO Portal_Documents
 (
-    ModuleID,
-    FileFriendlyName,
-    FileNameUrl,
-    CreatedByUser,
-    CreatedDate,
-    Category,
-    Content,
-    ContentType,
-    ContentSize
+	ModuleID,
+	FileFriendlyName,
+	FileNameUrl,
+	CreatedByUser,
+	CreatedDate,
+	Category,
+	Content,
+	ContentType,
+	ContentSize
 )
 
 VALUES
 (
-    @ModuleID,
-    @FileFriendlyName,
-    @FileNameUrl,
-    @UserName,
-    GetDate(),
-    @Category,
-    @Content,
-    @ContentType,
-    @ContentSize
+	@ModuleID,
+	@FileFriendlyName,
+	@FileNameUrl,
+	@UserName,
+	GetDate(),
+	@Category,
+	@Content,
+	@ContentType,
+	@ContentSize
 )
 ELSE
 
@@ -2202,30 +2204,30 @@ IF (@ContentSize=0)
 UPDATE Portal_Documents
 
 SET 
-    CreatedByUser    = @UserName,
-    CreatedDate      = GetDate(),
-    Category         = @Category,
-    FileFriendlyName = @FileFriendlyName,
-    FileNameUrl      = @FileNameUrl
+	CreatedByUser    = @UserName,
+	CreatedDate      = GetDate(),
+	Category         = @Category,
+	FileFriendlyName = @FileFriendlyName,
+	FileNameUrl      = @FileNameUrl
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 ELSE
 
 UPDATE Portal_Documents
 
 SET
-    CreatedByUser     = @UserName,
-    CreatedDate       = GetDate(),
-    Category          = @Category,
-    FileFriendlyName  = @FileFriendlyName,
-    FileNameUrl       = @FileNameUrl,
-    Content           = @Content,
-    ContentType       = @ContentType,
-    ContentSize       = @ContentSize
+	CreatedByUser     = @UserName,
+	CreatedDate       = GetDate(),
+	Category          = @Category,
+	FileFriendlyName  = @FileFriendlyName,
+	FileNameUrl       = @FileNameUrl,
+	Content           = @Content,
+	ContentType       = @ContentType,
+	ContentSize       = @ContentSize
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 END
 
@@ -2246,12 +2248,12 @@ GO
 
 CREATE PROCEDURE Portal_UpdateEvent
 (
-    @ItemID      int,
-    @UserName    nvarchar(100),
-    @Title       nvarchar(100),
-    @ExpireDate  datetime,
-    @Description nvarchar(2000),
-    @WhereWhen   nvarchar(100)
+	@ItemID      int,
+	@UserName    nvarchar(100),
+	@Title       nvarchar(100),
+	@ExpireDate  datetime,
+	@Description nvarchar(2000),
+	@WhereWhen   nvarchar(100)
 )
 
 AS
@@ -2259,15 +2261,15 @@ AS
 UPDATE Portal_Events
 
 SET
-    CreatedByUser = @UserName,
-    CreatedDate   = GetDate(),
-    Title         = @Title,
-    ExpireDate    = @ExpireDate,
-    Description   = @Description,
-    WhereWhen     = @WhereWhen
+	CreatedByUser = @UserName,
+	CreatedDate   = GetDate(),
+	Title         = @Title,
+	ExpireDate    = @ExpireDate,
+	Description   = @Description,
+	WhereWhen     = @WhereWhen
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 
@@ -2287,42 +2289,42 @@ GO
 
 CREATE PROCEDURE Portal_UpdateHtmlText
 (
-    @ModuleID      int,
-    @DesktopHtml   ntext,
-    @MobileSummary ntext,
-    @MobileDetails ntext
+	@ModuleID      int,
+	@DesktopHtml   ntext,
+	@MobileSummary ntext,
+	@MobileDetails ntext
 )
 AS
 
 IF NOT EXISTS (
-    SELECT 
-        * 
-    FROM Portal_HtmlText 
-    WHERE 
-        ModuleID = @ModuleID
+	SELECT 
+		* 
+	FROM Portal_HtmlText 
+	WHERE 
+		ModuleID = @ModuleID
 )
 INSERT INTO Portal_HtmlText (
-    ModuleID,
-    DesktopHtml,
-    MobileSummary,
-    MobileDetails
+	ModuleID,
+	DesktopHtml,
+	MobileSummary,
+	MobileDetails
 ) 
 VALUES (
-    @ModuleID,
-    @DesktopHtml,
-    @MobileSummary,
-    @MobileDetails
+	@ModuleID,
+	@DesktopHtml,
+	@MobileSummary,
+	@MobileDetails
 )
 ELSE
 UPDATE Portal_HtmlText
 
 SET
-    DesktopHtml   = @DesktopHtml,
-    MobileSummary = @MobileSummary,
-    MobileDetails = @MobileDetails
+	DesktopHtml   = @DesktopHtml,
+	MobileSummary = @MobileSummary,
+	MobileDetails = @MobileDetails
 
 WHERE
-    ModuleID = @ModuleID
+	ModuleID = @ModuleID
 
 
 
@@ -2342,29 +2344,29 @@ GO
 
 CREATE PROCEDURE Portal_UpdateLink
 (
-    @ItemID      int,
-    @UserName    nvarchar(100),
-    @Title       nvarchar(100),
-    @Url         nvarchar(250),
-    @MobileUrl   nvarchar(250),
-    @ViewOrder   int,
-    @Description nvarchar(2000)
+	@ItemID      int,
+	@UserName    nvarchar(100),
+	@Title       nvarchar(100),
+	@Url         nvarchar(250),
+	@MobileUrl   nvarchar(250),
+	@ViewOrder   int,
+	@Description nvarchar(2000)
 )
 AS
 
 UPDATE Portal_Links
 
 SET
-    CreatedByUser = @UserName,
-    CreatedDate   = GetDate(),
-    Title         = @Title,
-    Url           = @Url,
-    MobileUrl     = @MobileUrl,
-    ViewOrder     = @ViewOrder,
-    Description   = @Description
+	CreatedByUser = @UserName,
+	CreatedDate   = GetDate(),
+	Title         = @Title,
+	Url           = @Url,
+	MobileUrl     = @MobileUrl,
+	ViewOrder     = @ViewOrder,
+	Description   = @Description
 
 WHERE
-    ItemID = @ItemID
+	ItemID = @ItemID
 
 
 
@@ -2383,18 +2385,18 @@ GO
 
 CREATE PROCEDURE Portal_UpdateRole
 (
-    @RoleID      int,
-    @RoleName    nvarchar(50)
+	@RoleID      int,
+	@RoleName    nvarchar(50)
 )
 AS
 
 UPDATE Portal_Roles
 
 SET
-    RoleName = @RoleName
+	RoleName = @RoleName
 
 WHERE
-    RoleID = @RoleID
+	RoleID = @RoleID
 
 
 
@@ -2414,20 +2416,20 @@ GO
 
 CREATE  PROCEDURE Portal_UpdateUser
 (
-    @UserID        int,
-    @Email           nvarchar(100),
-    @Password    nvarchar(50)
+	@UserID        int,
+	@Email           nvarchar(100),
+	@Password    nvarchar(50)
 )
 AS
 
 UPDATE Portal_Users
 
 SET
-    Email    = @Email,
-    Password = @Password
+	Email    = @Email,
+	Password = @Password
 
 WHERE
-    UserID    = @UserID
+	UserID    = @UserID
 
 
 GO
@@ -2446,21 +2448,21 @@ GO
 
 CREATE  PROCEDURE Portal_UserLogin
 (
-    @Email    nvarchar(100),
-    @Password nvarchar(50),
-    @UserName nvarchar(100) OUTPUT
+	@Email    nvarchar(100),
+	@Password nvarchar(50),
+	@UserName nvarchar(100) OUTPUT
 )
 AS
 
 SELECT
-    @UserName = Name
+	@UserName = Name
 
 FROM Portal_Users
 
 WHERE
-    Email = @Email
+	Email = @Email
   AND
-    Password = @Password
+	Password = @Password
 
 
 

@@ -1260,6 +1260,7 @@ AS
 
 SELECT
 	ItemID,
+	ModuleID,
 	CreatedDate,
 	CreatedByUser,
 	Name,
@@ -1712,6 +1713,7 @@ SELECT
 	CreatedByUser,
 	CreatedDate,
 	ModuleID,
+	ItemID,
 	Name,
 	Role,
 	Email,

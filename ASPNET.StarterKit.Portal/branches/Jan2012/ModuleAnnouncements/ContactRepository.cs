@@ -13,11 +13,18 @@ namespace ASPNET.StarterKit.Portal
         }
 
         private static Contact ToContact(IDataRecord dataRecord)
-        {
+        {   
             var item = new Contact
                            {
                                ItemId = Convert.ToInt32(dataRecord["ItemId"]),
-                               ModuleId = Convert.ToInt32(dataRecord["ModuleId"])
+                               ModuleId = Convert.ToInt32(dataRecord["ModuleId"]),
+                               Contact1 = dataRecord["Contact1"] as string,
+                               Contact2 = dataRecord["Contact2"] as string,
+                               CreatedByUser = dataRecord["CreatedByUser"] as string,
+                               Email = dataRecord["Email"] as string,
+                               Name = dataRecord["Name"] as string,
+                               Role = dataRecord["Role"] as string,
+                               CreatedDate = Convert.ToDateTime(dataRecord["CreatedDate"])
                            };
             return item;
         }

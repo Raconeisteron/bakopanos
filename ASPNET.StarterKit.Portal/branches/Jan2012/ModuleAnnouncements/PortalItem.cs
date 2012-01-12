@@ -1,3 +1,4 @@
+
 namespace ASPNET.StarterKit.Portal
 {
     public class PortalItem

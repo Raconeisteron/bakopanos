@@ -1,9 +1,13 @@
 using System;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class Contacts : PortalModuleControl
     {
+        [Dependency]
+        public IRepository<Contact> Repo { get; set; }
+
         //*******************************************************
         //
         // The Page_Load event handler on this User Control is used to
@@ -17,11 +21,7 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Obtain contact information from Contacts table
-            // and bind to the DataGrid Control
-            var contacts = new ContactsDB();
-
-            myDataGrid.DataSource = contacts.GetContacts(ModuleId);
+            myDataGrid.DataSource = Repo.GetList(ModuleId);
             myDataGrid.DataBind();
         }
     }
