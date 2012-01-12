@@ -57,7 +57,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Modules.DataAccess\Portal.Modules.Data.csproj">
+    <ProjectReference Include="..\Portal.Modules.Data\Portal.Modules.Data.csproj">
       <Project>{358A2AC0-1E88-4F4A-8A90-AF2F5E5310D6}</Project>
       <Name>Portal.Modules.Data</Name>
     </ProjectReference>

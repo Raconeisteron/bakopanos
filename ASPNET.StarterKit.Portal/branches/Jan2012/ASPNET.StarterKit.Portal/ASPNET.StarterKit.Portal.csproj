@@ -502,7 +502,7 @@
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ModuleAnnouncements\Portal.Modules.Model.csproj">
+    <ProjectReference Include="..\Portal.Modules.Model\Portal.Modules.Model.csproj">
       <Project>{6D0C887E-DEBC-4498-87B9-EAAA7417B890}</Project>
       <Name>Portal.Modules.Model</Name>
     </ProjectReference>
