@@ -1,5 +1,5 @@
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.Modules.Model
 {
     public class PortalItem
     {

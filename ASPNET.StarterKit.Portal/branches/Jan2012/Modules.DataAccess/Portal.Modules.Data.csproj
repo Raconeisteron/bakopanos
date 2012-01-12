@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6D0C887E-DEBC-4498-87B9-EAAA7417B890}</ProjectGuid>
+    <ProjectGuid>{358A2AC0-1E88-4F4A-8A90-AF2F5E5310D6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASPNET.StarterKit.Portal</RootNamespace>
-    <AssemblyName>Modules.Business</AssemblyName>
+    <RootNamespace>Portal.Modules.Data</RootNamespace>
+    <AssemblyName>Portal.Modules.Data</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,16 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\Libs\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,19 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Announcement.cs" />
-    <Compile Include="AnnouncementRepository.cs" />
-    <Compile Include="Contact.cs" />
-    <Compile Include="ContactRepository.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="PortalItem.cs" />
+    <Compile Include="AnnouncementSqlClientDb.cs" />
+    <Compile Include="ContactSqlClientDb.cs" />
+    <Compile Include="Db.cs" />
+    <Compile Include="IAnnouncementDb.cs" />
+    <Compile Include="IContactDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Modules.DataAccess\Modules.DataAccess.csproj">
-      <Project>{358A2AC0-1E88-4F4A-8A90-AF2F5E5310D6}</Project>
-      <Name>Modules.DataAccess</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

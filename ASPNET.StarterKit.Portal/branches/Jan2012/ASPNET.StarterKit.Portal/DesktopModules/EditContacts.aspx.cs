@@ -1,6 +1,7 @@
 using System;
 using System.Data.SqlClient;
 using System.Web.UI;
+using Portal.Modules.Model;
 
 namespace ASPNET.StarterKit.Portal
 {

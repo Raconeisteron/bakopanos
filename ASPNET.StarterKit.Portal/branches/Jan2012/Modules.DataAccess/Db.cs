@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using Microsoft.Practices.Unity;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.Modules.Data
 {
     public class Db
     {

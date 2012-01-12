@@ -1,6 +1,6 @@
 using System;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.Modules.Model
 {
     public class Contact : PortalItem
     {

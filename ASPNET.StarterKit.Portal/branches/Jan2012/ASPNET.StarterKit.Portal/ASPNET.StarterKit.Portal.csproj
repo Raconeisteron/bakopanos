@@ -502,9 +502,9 @@
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ModuleAnnouncements\Modules.Business.csproj">
+    <ProjectReference Include="..\ModuleAnnouncements\Portal.Modules.Model.csproj">
       <Project>{6D0C887E-DEBC-4498-87B9-EAAA7417B890}</Project>
-      <Name>Modules.Business</Name>
+      <Name>Portal.Modules.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

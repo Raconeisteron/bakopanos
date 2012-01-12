@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using Portal.Modules.Data;
 
-namespace ASPNET.StarterKit.Portal
+namespace Portal.Modules.Model
 {
     public class AnnouncementRepository : IRepository<Announcement>
     {

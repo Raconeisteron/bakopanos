@@ -1,4 +1,5 @@
 using System;
+using Portal.Modules.Model;
 
 namespace ASPNET.StarterKit.Portal
 {
