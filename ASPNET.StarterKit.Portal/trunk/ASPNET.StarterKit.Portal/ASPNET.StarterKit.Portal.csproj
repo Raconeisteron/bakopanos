@@ -272,9 +272,7 @@
     <Compile Include="Components\PortalModuleControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Components\RolesDB.cs" />
     <Compile Include="Components\PortalSecurity.cs" />
-    <Compile Include="Components\UsersDB.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -489,6 +487,10 @@
     <ProjectReference Include="..\PortalModules\PortalModules.csproj">
       <Project>{415A7800-27CF-4194-B419-346C7245E783}</Project>
       <Name>PortalModules</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortalSecurity\PortalSecurity.csproj">
+      <Project>{96451A30-ED9A-4C81-9800-6E3BFDD8D4BC}</Project>
+      <Name>PortalSecurity</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

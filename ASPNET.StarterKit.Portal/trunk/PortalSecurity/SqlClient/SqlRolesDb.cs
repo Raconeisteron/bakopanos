@@ -12,7 +12,7 @@ namespace ASPNET.StarterKit.Portal
     // Users, Roles and security settings values within the Portal database.
     //
     //*********************************************************************
-    public class RolesDB
+    public class SqlRolesDb : IRolesDb
     {
         private readonly string _connectionString =
             ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -33,7 +33,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Create Instance of Connection and Command Object
             var connection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+                new SqlConnection(_connectionString);
             var command = new SqlCommand("Portal_GetPortalRoles", connection);
 
             // Mark the Command as a SPROC

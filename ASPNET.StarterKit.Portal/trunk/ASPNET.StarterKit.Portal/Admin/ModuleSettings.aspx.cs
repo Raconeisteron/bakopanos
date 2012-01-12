@@ -82,7 +82,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                var rolesObj = new RolesDB();
+                var rolesObj = new SqlRolesDb();
                 IDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist
@@ -142,7 +142,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                var rolesObj = new RolesDB();
+                var rolesObj = new SqlRolesDb();
                 IDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
 
                 // Clear existing items in checkboxlist

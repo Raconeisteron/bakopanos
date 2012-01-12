@@ -15,7 +15,7 @@ namespace ASPNET.StarterKit.Portal
     /// authentication is used instead, then either the Windows SAM or Active Directory
     /// is used to store and validate all username/password credentials.
     /// </summary>
-    public class UsersDB
+    public class SqlUsersDb : IUsersDb
     {
         private readonly string _connectionString =
             ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;

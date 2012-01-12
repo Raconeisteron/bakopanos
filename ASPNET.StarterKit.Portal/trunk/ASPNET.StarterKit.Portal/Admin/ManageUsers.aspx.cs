@@ -53,7 +53,7 @@ namespace ASPNET.StarterKit.Portal
                 // new user?
                 if (_userName == "")
                 {
-                    var users = new UsersDB();
+                    var users = new SqlUsersDb();
 
                     // make a unique new user record
                     int uid = -1;
@@ -105,7 +105,7 @@ namespace ASPNET.StarterKit.Portal
             int roleId = Int32.Parse(allRoles.SelectedItem.Value);
 
             // Add a new userRole to the database
-            var roles = new RolesDB();
+            var roles = new SqlRolesDb();
             roles.AddUserRole(roleId, _userId);
 
             // Rebind list
@@ -122,7 +122,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateUser_Click(Object sender, EventArgs e)
         {
             // update the user record in the database
-            var users = new UsersDB();
+            var users = new SqlUsersDb();
             users.UpdateUser(_userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
 
             // redirect to this page with the corrected querystring args
@@ -140,7 +140,7 @@ namespace ASPNET.StarterKit.Portal
 
         private void UserRoles_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            var roles = new RolesDB();
+            var roles = new SqlRolesDb();
             var roleId = (int) userRoles.DataKeys[e.Item.ItemIndex];
 
             // update database
@@ -163,7 +163,7 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Bind the Email and Password
-            var users = new UsersDB();
+            var users = new SqlUsersDb();
             IDataReader dr = users.GetSingleUser(_userName);
 
             // Read first row from database
@@ -187,7 +187,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Get the portal's roles from the database
-            var roles = new RolesDB();
+            var roles = new SqlRolesDb();
 
             // bind all portal roles to dropdownlist
             allRoles.DataSource = roles.GetPortalRoles(portalSettings.PortalId);

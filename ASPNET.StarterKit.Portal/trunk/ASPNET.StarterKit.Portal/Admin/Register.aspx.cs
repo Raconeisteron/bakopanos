@@ -15,7 +15,7 @@ namespace ASPNET.StarterKit.Portal
             if (!Page.IsValid) return;
 
             // Add New User to Portal User Database
-            var accountSystem = new UsersDB();
+            var accountSystem = new SqlUsersDb();
 
             if ((accountSystem.AddUser(Name.Text, Email.Text, PortalSecurity.Encrypt(Password.Text))) > -1)
             {
