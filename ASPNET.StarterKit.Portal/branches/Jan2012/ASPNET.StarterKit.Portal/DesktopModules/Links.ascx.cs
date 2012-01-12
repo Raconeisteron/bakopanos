@@ -4,7 +4,7 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class Links : PortalModuleControl
     {
-        protected String LinkImage = "";
+        protected string LinkImage = "";
 
         //*******************************************************
         //

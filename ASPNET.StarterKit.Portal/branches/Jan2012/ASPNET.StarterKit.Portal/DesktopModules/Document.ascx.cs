@@ -40,7 +40,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        protected String GetBrowsePath(String url, object size, int documentId)
+        protected string GetBrowsePath(String url, object size, int documentId)
         {
             if (size != DBNull.Value && (int) size > 0)
             {

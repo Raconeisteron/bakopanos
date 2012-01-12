@@ -75,7 +75,7 @@ namespace ASPNET.StarterKit.Portal
         {
             if (Request.IsAuthenticated)
             {
-                String[] roles;
+                string[] roles;
 
                 // Create the roles cookie if it doesn't exist yet for this session.
                 if ((Request.Cookies["portalroles"] == null) || (Request.Cookies["portalroles"].Value == ""))
@@ -85,7 +85,7 @@ namespace ASPNET.StarterKit.Portal
                     roles = user.GetRoles(User.Identity.Name);
 
                     // Create a string to persist the roles
-                    String roleStr = "";
+                    string roleStr = "";
                     foreach (String role in roles)
                     {
                         roleStr += role;
@@ -103,7 +103,7 @@ namespace ASPNET.StarterKit.Portal
                         );
 
                     // Encrypt the ticket
-                    String cookieStr = FormsAuthentication.Encrypt(ticket);
+                    string cookieStr = FormsAuthentication.Encrypt(ticket);
 
                     // Send the cookie to the client
                     Response.Cookies["portalroles"].Value = cookieStr;

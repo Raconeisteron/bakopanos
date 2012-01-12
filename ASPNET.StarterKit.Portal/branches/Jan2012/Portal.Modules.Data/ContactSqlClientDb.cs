@@ -1,4 +1,3 @@
-using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -78,8 +77,8 @@ namespace Portal.Modules.Data
         }
 
 
-        public int AddContact(int moduleId, String userName, String name, String role, String email,
-                              String contact1, String contact2)
+        public int AddContact(int moduleId, string userName, string name, string role, string email,
+                              string contact1, string contact2)
         {
             if (userName.Length < 1)
             {
@@ -135,8 +134,8 @@ namespace Portal.Modules.Data
         }
 
 
-        public void UpdateContact(int itemId, String userName, String name, String role, String email,
-                                  String contact1, String contact2)
+        public void UpdateContact(int itemId, string userName, string name, string role, string email,
+                                  string contact1, string contact2)
         {
             if (userName.Length < 1)
             {

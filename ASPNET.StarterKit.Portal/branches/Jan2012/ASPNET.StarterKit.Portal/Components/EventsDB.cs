@@ -135,8 +135,8 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public int AddEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
-                            String description, String wherewhen)
+        public int AddEvent(int moduleId, int itemId, string userName, string title, DateTime expireDate,
+                            string description, string wherewhen)
         {
             if (userName.Length < 1)
             {
@@ -201,8 +201,8 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void UpdateEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
-                                String description, String wherewhen)
+        public void UpdateEvent(int moduleId, int itemId, string userName, string title, DateTime expireDate,
+                                string description, string wherewhen)
         {
             if (userName.Length < 1)
             {

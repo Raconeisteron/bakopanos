@@ -131,7 +131,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public int AddMessage(int moduleId, int parentId, String userName, String title, String body)
+        public int AddMessage(int moduleId, int parentId, string userName, string title, string body)
         {
             if (userName.Length < 1)
             {

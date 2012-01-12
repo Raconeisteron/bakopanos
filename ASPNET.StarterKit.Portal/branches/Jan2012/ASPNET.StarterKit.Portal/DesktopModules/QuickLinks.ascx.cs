@@ -4,7 +4,7 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class QuickLinks : PortalModuleControl
     {
-        protected String LinkImage = "";
+        protected string LinkImage = "";
 
         /// <summary>
         /// The Page_Load event handler on this User Control is used to

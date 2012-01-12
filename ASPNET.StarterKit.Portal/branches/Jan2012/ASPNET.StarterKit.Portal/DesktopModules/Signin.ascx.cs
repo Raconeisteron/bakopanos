@@ -10,7 +10,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Attempt to Validate User Credentials using UsersDB
             var accountSystem = new UsersDB();
-            String userId = accountSystem.Login(email.Text, PortalSecurity.Encrypt(password.Text));
+            string userId = accountSystem.Login(email.Text, PortalSecurity.Encrypt(password.Text));
 
             if (!string.IsNullOrEmpty(userId))
             {

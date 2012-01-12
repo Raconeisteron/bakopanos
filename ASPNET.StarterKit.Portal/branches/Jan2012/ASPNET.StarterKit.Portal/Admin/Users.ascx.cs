@@ -68,7 +68,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // get user id from dropdownlist of users
             int userId = -1;
-            String userName = "";
+            string userName = "";
 
             if (e.CommandName == "edit")
             {

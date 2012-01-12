@@ -28,7 +28,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public int AddUser(String fullName, String email, String password)
+        public int AddUser(String fullName, string email, string password)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -119,7 +119,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void UpdateUser(int userId, String email, String password)
+        public void UpdateUser(int userId, string email, string password)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -223,7 +223,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public String[] GetRoles(String email)
+        public string[] GetRoles(String email)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -244,7 +244,7 @@ namespace ASPNET.StarterKit.Portal
             myConnection.Open();
             dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
-            // create a String array from the data
+            // create a string array from the data
             var userRoles = new List<string>();
 
             while (dr.Read())
@@ -254,7 +254,7 @@ namespace ASPNET.StarterKit.Portal
 
             dr.Close();
 
-            // Return the String array of roles
+            // Return the string array of roles
             return userRoles.ToArray();
         }
 
@@ -271,7 +271,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public String Login(String email, String password)
+        public string Login(String email, string password)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -305,7 +305,7 @@ namespace ASPNET.StarterKit.Portal
             }
             else
             {
-                return String.Empty;
+                return string.Empty;
             }
         }
     }

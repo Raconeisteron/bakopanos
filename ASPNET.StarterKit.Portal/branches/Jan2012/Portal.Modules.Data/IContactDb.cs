@@ -1,13 +1,11 @@
-using System;
-
 namespace Portal.Modules.Data
 {
     public interface IContactDb : IDb
     {
-        int AddContact(int moduleId, String userName, String name, String role, String email,
-                       String contact1, String contact2);
+        int AddContact(int moduleId, string userName, string name, string role, string email,
+                       string contact1, string contact2);
 
-        void UpdateContact(int itemId, String userName, String name, String role, String email,
-                           String contact1, String contact2);
+        void UpdateContact(int itemId, string userName, string name, string role, string email,
+                           string contact1, string contact2);
     }
 }

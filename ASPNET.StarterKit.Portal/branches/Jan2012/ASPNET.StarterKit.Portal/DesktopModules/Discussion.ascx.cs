@@ -73,7 +73,7 @@ namespace ASPNET.StarterKit.Portal
         private void TopLevelList_Select(object sender, DataListCommandEventArgs e)
         {
             // Determine the command of the button (either "select" or "collapse")
-            String command = ((ImageButton) e.CommandSource).CommandName;
+            string command = ((ImageButton) e.CommandSource).CommandName;
 
             // Update asp:datalist selection index depending upon the type of command
             // and then rebind the asp:datalist with content
@@ -101,7 +101,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        protected String FormatUrl(int item)
+        protected string FormatUrl(int item)
         {
             return "~/DesktopModules/DiscussDetails.aspx?ItemID=" + item + "&mid=" + ModuleId;
         }
@@ -116,7 +116,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        protected String NodeImage(int count)
+        protected string NodeImage(int count)
         {
             if (count > 0)
             {

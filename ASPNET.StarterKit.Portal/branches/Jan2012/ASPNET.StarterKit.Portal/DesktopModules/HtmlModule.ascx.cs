@@ -22,7 +22,7 @@ namespace ASPNET.StarterKit.Portal
             if (dr.Read())
             {
                 // Dynamically add the file content into the page
-                String content = Server.HtmlDecode((String) dr["DesktopHtml"]);
+                string content = Server.HtmlDecode((String) dr["DesktopHtml"]);
                 HtmlHolder.Controls.Add(new LiteralControl(content));
             }
 

@@ -74,8 +74,8 @@ namespace Portal.Modules.Data
         }
 
 
-        public int AddAnnouncement(int moduleId, String userName, String title, DateTime expireDate,
-                                   String description, String moreLink, String mobileMoreLink)
+        public int AddAnnouncement(int moduleId, string userName, string title, DateTime expireDate,
+                                   string description, string moreLink, string mobileMoreLink)
         {
             if (userName.Length < 1)
             {
@@ -130,8 +130,8 @@ namespace Portal.Modules.Data
         }
 
 
-        public void UpdateAnnouncement(int itemId, String userName, String title, DateTime expireDate,
-                                       String description, String moreLink, String mobileMoreLink)
+        public void UpdateAnnouncement(int itemId, string userName, string title, DateTime expireDate,
+                                       string description, string moreLink, string mobileMoreLink)
         {
             if (userName.Length < 1) userName = "unknown";
 

@@ -1,4 +1,3 @@
-using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -62,7 +61,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public int AddRole(int portalId, String roleName)
+        public int AddRole(int portalId, string roleName)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -137,7 +136,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void UpdateRole(int roleId, String roleName)
+        public void UpdateRole(int roleId, string roleName)
         {
             // Create Instance of Connection and Command Object
             var myConnection =

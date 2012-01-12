@@ -1,4 +1,3 @@
-using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -64,7 +63,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void UpdateHtmlText(int moduleId, String desktopHtml, String mobileSummary, String mobileDetails)
+        public void UpdateHtmlText(int moduleId, string desktopHtml, string mobileSummary, string mobileDetails)
         {
             // Create Instance of Connection and Command Object
             var myConnection =

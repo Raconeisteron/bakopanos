@@ -136,7 +136,7 @@ namespace ASPNET.StarterKit.Portal
             Title.Text = (String) dr["Title"];
             Body.Text = (String) dr["Body"];
             CreatedByUser.Text = (String) dr["CreatedByUser"];
-            CreatedDate.Text = String.Format("{0:d}", dr["CreatedDate"]);
+            CreatedDate.Text = string.Format("{0:d}", dr["CreatedDate"]);
             TitleField.Text = ReTitle(Title.Text);
 
             int prevId = 0;
@@ -181,7 +181,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private String ReTitle(String title)
+        private string ReTitle(String title)
         {
             if (title.Length > 0 & title.IndexOf("Re: ", 0) == -1)
             {

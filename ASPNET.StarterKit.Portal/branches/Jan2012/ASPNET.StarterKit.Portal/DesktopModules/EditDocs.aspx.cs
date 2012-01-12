@@ -96,7 +96,7 @@ namespace ASPNET.StarterKit.Portal
                 {
                     // for web farm support
                     var length = (int) FileUpload.PostedFile.InputStream.Length;
-                    String contentType = FileUpload.PostedFile.ContentType;
+                    string contentType = FileUpload.PostedFile.ContentType;
                     var content = new byte[length];
 
                     FileUpload.PostedFile.InputStream.Read(content, 0, length);
@@ -110,10 +110,10 @@ namespace ASPNET.StarterKit.Portal
                     if (Upload.Checked && (FileUpload.PostedFile != null))
                     {
                         // Calculate virtualPath of the newly uploaded file
-                        String virtualPath = "~/uploads/" + Path.GetFileName(FileUpload.PostedFile.FileName);
+                        string virtualPath = "~/uploads/" + Path.GetFileName(FileUpload.PostedFile.FileName);
 
                         // Calculate physical path of the newly uploaded file
-                        String phyiscalPath = Server.MapPath(virtualPath);
+                        string phyiscalPath = Server.MapPath(virtualPath);
 
                         // Save file to uploads directory
                         FileUpload.PostedFile.SaveAs(phyiscalPath);

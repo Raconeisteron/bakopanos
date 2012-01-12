@@ -12,7 +12,7 @@
         <span class="Normal">
             <%# DataBinder.Eval(Container.DataItem,"Description") %>
             &nbsp;
-            <asp:HyperLink id="moreLink" NavigateUrl='<%# DataBinder.Eval(Container.DataItem,"MoreLink") %>' Visible='<%# DataBinder.Eval(Container.DataItem,"MoreLink") != String.Empty %>' runat="server">
+            <asp:HyperLink id="moreLink" NavigateUrl='<%# DataBinder.Eval(Container.DataItem,"MoreLink") %>' Visible='<%# DataBinder.Eval(Container.DataItem,"MoreLink") != string.Empty %>' runat="server">
                 read more...</asp:HyperLink>
         </span>
         <br />

@@ -1,4 +1,3 @@
-using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -168,8 +167,8 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void UpdateDocument(int moduleId, int itemId, String userName, String name, String url, String category,
-                                   byte[] content, int size, String contentType)
+        public void UpdateDocument(int moduleId, int itemId, string userName, string name, string url, string category,
+                                   byte[] content, int size, string contentType)
         {
             if (userName.Length < 1)
             {

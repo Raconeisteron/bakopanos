@@ -6,10 +6,10 @@ namespace Portal.Modules.Model
     {
         public string CreatedByUser { get; set; }
         public DateTime CreatedDate { get; set; }
-        public String Title { get; set; }
+        public string Title { get; set; }
         public DateTime ExpireDate { get; set; }
-        public String Description { get; set; }
-        public String MoreLink { get; set; }
-        public String MobileMoreLink { get; set; }
+        public string Description { get; set; }
+        public string MoreLink { get; set; }
+        public string MobileMoreLink { get; set; }
     }
 }

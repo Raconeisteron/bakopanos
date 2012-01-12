@@ -26,7 +26,7 @@ namespace ASPNET.StarterKit.Portal
     {
         // Private field variables
 
-        private String _cachedOutput = "";
+        private string _cachedOutput = "";
         private ModuleSettings _moduleConfiguration;
 
 
@@ -55,7 +55,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public String CacheKey
+        public string CacheKey
         {
             get { return "Key:" + GetType() + ModuleId + PortalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles); }
         }

@@ -1,4 +1,3 @@
-using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -131,8 +130,8 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public int AddLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
-                           int viewOrder, String description)
+        public int AddLink(int moduleId, int itemId, string userName, string title, string url, string mobileUrl,
+                           int viewOrder, string description)
         {
             if (userName.Length < 1)
             {
@@ -199,8 +198,8 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void UpdateLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
-                               int viewOrder, String description)
+        public void UpdateLink(int moduleId, int itemId, string userName, string title, string url, string mobileUrl,
+                               int viewOrder, string description)
         {
             if (userName.Length < 1)
             {

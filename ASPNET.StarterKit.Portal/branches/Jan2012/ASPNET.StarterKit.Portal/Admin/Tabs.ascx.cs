@@ -70,7 +70,7 @@ namespace ASPNET.StarterKit.Portal
 
         protected void UpDown_Click(Object sender, ImageClickEventArgs e)
         {
-            String cmd = ((ImageButton) sender).CommandName;
+            string cmd = ((ImageButton) sender).CommandName;
 
             if (tabList.SelectedIndex != -1)
             {

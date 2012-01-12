@@ -7,7 +7,7 @@ namespace ASPNET.StarterKit.Portal
     public partial class SecurityRoles : Page
     {
         private int _roleId = -1;
-        private String _roleName = "";
+        private string _roleName = "";
         private int _tabId;
         private int _tabIndex;
 
