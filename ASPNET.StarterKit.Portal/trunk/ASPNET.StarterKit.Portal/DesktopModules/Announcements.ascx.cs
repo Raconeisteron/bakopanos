@@ -15,7 +15,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain announcement information from Announcements table
             // and bind to the datalist control
-            var announcements = new AnnouncementsDB();
+            var announcements = new SqlAnnouncementsDb();
 
             // DataBind Announcements to DataList Control
             myDataList.DataSource = announcements.GetAnnouncements(ModuleId);

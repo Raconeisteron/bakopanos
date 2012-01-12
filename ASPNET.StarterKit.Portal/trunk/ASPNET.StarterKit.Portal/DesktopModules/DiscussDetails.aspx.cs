@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
@@ -77,7 +77,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create new discussion database component
-            var discuss = new DiscussionDB();
+            var discuss = new SqlDiscussionsDb();
 
             // Add new message (updating the "itemId" on the page)
             _itemId = discuss.AddMessage(_moduleId, _itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
@@ -118,8 +118,8 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Obtain the selected item from the Discussion table
-            var discuss = new DiscussionDB();
-            SqlDataReader dr = discuss.GetSingleMessage(_itemId);
+            var discuss = new SqlDiscussionsDb();
+            IDataReader dr = discuss.GetSingleMessage(_itemId);
 
             // Load first row from database
             dr.Read();

@@ -792,28 +792,6 @@ namespace ASPNET.StarterKit.Portal
 
     public class PortalSettings
     {
-        public TabSettings ActiveTab { get; set; }
-        public bool AlwaysShowEditButton { get; set; }
-        public List<TabStripDetails> DesktopTabs { get; set; }
-        public List<TabStripDetails> MobileTabs { get; set; }
-        public int PortalId { get; set; }
-        public String PortalName { get; set; }
-        
-        //*********************************************************************
-        //
-        // PortalSettings Constructor
-        //
-        // The PortalSettings Constructor encapsulates all of the logic
-        // necessary to obtain configuration settings necessary to render
-        // a Portal Tab view for a given request.
-        //
-        // These Portal Settings are stored within PortalCFG.xml, and are
-        // fetched below by calling config.GetSiteSettings().
-        // The method config.GetSiteSettings() fills the SiteConfiguration
-        // class, derived from a DataSet, which PortalSettings accesses.
-        //       
-        //*********************************************************************
-
         public PortalSettings(int tabIndex, int tabId)
         {
             ActiveTab = new TabSettings();
@@ -839,7 +817,7 @@ namespace ASPNET.StarterKit.Portal
             // If the PortalSettings.ActiveTab property is set to 0, change it to  
             // the TabID of the first tab in the DesktopTabs collection
             if (ActiveTab.TabId == 0)
-                ActiveTab.TabId = ((TabStripDetails) DesktopTabs[0]).TabId;
+                ActiveTab.TabId = (DesktopTabs[0]).TabId;
 
 
             // Read the Mobile Tab Information, and sort by Tab Order
@@ -900,6 +878,28 @@ namespace ASPNET.StarterKit.Portal
             ActiveTab.TabName = activeTab.TabName;
             ActiveTab.ShowMobile = activeTab.ShowMobile;
         }
+
+        public TabSettings ActiveTab { get; set; }
+        public bool AlwaysShowEditButton { get; set; }
+        public List<TabStripDetails> DesktopTabs { get; set; }
+        public List<TabStripDetails> MobileTabs { get; set; }
+        public int PortalId { get; set; }
+        public String PortalName { get; set; }
+
+        //*********************************************************************
+        //
+        // PortalSettings Constructor
+        //
+        // The PortalSettings Constructor encapsulates all of the logic
+        // necessary to obtain configuration settings necessary to render
+        // a Portal Tab view for a given request.
+        //
+        // These Portal Settings are stored within PortalCFG.xml, and are
+        // fetched below by calling config.GetSiteSettings().
+        // The method config.GetSiteSettings() fills the SiteConfiguration
+        // class, derived from a DataSet, which PortalSettings accesses.
+        //       
+        //*********************************************************************
     }
 
     //*********************************************************************
@@ -930,6 +930,11 @@ namespace ASPNET.StarterKit.Portal
 
     public class TabSettings
     {
+        public TabSettings()
+        {
+            Modules = new List<ModuleSettings>();
+        }
+
         public String AuthorizedRoles { get; set; }
         public String MobileTabName { get; set; }
         public List<ModuleSettings> Modules { get; set; }
@@ -938,11 +943,6 @@ namespace ASPNET.StarterKit.Portal
         public int TabIndex { get; set; }
         public String TabName { get; set; }
         public int TabOrder { get; set; }
-
-        public TabSettings()
-        {
-            Modules = new List<ModuleSettings>();
-        }
     }
 
     //*********************************************************************

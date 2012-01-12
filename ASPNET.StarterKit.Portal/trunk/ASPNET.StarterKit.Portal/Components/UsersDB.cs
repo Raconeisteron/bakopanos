@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -159,7 +158,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetRolesByUser(String email)
+        public IDataReader GetRolesByUser(String email)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -190,7 +189,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetSingleUser(String email)
+        public IDataReader GetSingleUser(String email)
         {
             // Create Instance of Connection and Command Object
             var myConnection =

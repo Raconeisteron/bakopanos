@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
@@ -45,8 +45,8 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of link information
-                    var links = new LinkDB();
-                    SqlDataReader dr = links.GetSingleLink(_itemId);
+                    var links = new SqlLinksDb();
+                    IDataReader dr = links.GetSingleLink(_itemId);
 
                     // Read in first row from database
                     dr.Read();
@@ -89,7 +89,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Link DB component
-                var links = new LinkDB();
+                var links = new SqlLinksDb();
 
                 if (_itemId == 0)
                 {
@@ -124,7 +124,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var links = new LinkDB();
+                var links = new SqlLinksDb();
                 links.DeleteLink(_itemId);
             }
 

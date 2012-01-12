@@ -267,15 +267,8 @@
     <Compile Include="Admin\Users.ascx.designer.cs">
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Components\AnnouncementsDB.cs" />
     <Compile Include="Components\Configuration.cs" />
-    <Compile Include="Components\ContactsDB.cs" />
     <Compile Include="Components\CachedPortalModuleControl.cs" />
-    <Compile Include="Components\DiscussionDB.cs" />
-    <Compile Include="Components\DocumentDB.cs" />
-    <Compile Include="Components\EventsDB.cs" />
-    <Compile Include="Components\HtmlTextDB.cs" />
-    <Compile Include="Components\LinksDB.cs" />
     <Compile Include="Components\PortalModuleControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -496,6 +489,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Themes\Default\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PortalModules\PortalModules.csproj">
+      <Project>{415A7800-27CF-4194-B419-346C7245E783}</Project>
+      <Name>PortalModules</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

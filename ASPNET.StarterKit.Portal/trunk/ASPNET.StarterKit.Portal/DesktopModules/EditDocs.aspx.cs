@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.IO;
 using System.Web.UI;
 
@@ -46,8 +46,8 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of document information
-                    var documents = new DocumentDB();
-                    SqlDataReader dr = documents.GetSingleDocument(_itemId);
+                    var documents = new SqlDocumentsDb();
+                    IDataReader dr = documents.GetSingleDocument(_itemId);
 
                     // Load first row into Datareader
                     dr.Read();
@@ -88,7 +88,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Document DB component
-                var documents = new DocumentDB();
+                var documents = new SqlDocumentsDb();
 
                 // Determine whether a file was uploaded
 
@@ -145,7 +145,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var documents = new DocumentDB();
+                var documents = new SqlDocumentsDb();
                 documents.DeleteDocument(_itemId);
             }
 

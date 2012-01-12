@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -50,8 +50,8 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of event information
-                    var events = new EventsDB();
-                    SqlDataReader dr = events.GetSingleEvent(_itemId);
+                    var events = new SqlEventsDb();
+                    IDataReader dr = events.GetSingleEvent(_itemId);
 
                     // Read first row from database
                     dr.Read();
@@ -93,7 +93,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Event DB component
-                var events = new EventsDB();
+                var events = new SqlEventsDb();
 
                 if (_itemId == 0)
                 {
@@ -128,7 +128,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var events = new EventsDB();
+                var events = new SqlEventsDb();
                 events.DeleteEvent(_itemId);
             }
 

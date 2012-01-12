@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
@@ -45,8 +45,8 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of contact information
-                var contacts = new ContactsDB();
-                SqlDataReader dr = contacts.GetSingleContact(_itemId);
+                var contacts = new SqlContactsDb();
+                IDataReader dr = contacts.GetSingleContact(_itemId);
 
                 // Read first row from database
                 dr.Read();
@@ -89,7 +89,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the ContactsDB component
-                var contacts = new ContactsDB();
+                var contacts = new SqlContactsDb();
 
                 if (_itemId == 0)
                 {
@@ -125,7 +125,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var contacts = new ContactsDB();
+                var contacts = new SqlContactsDb();
                 contacts.DeleteContact(_itemId);
             }
 

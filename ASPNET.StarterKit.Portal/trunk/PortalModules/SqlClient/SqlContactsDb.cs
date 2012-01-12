@@ -5,69 +5,32 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-    //*********************************************************************
-    //
-    // ContactDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // contacts within the Portal database.
-    //
-    //*********************************************************************
-
-    public class ContactsDB
+    public class SqlContactsDb : IContactsDb
     {
-        //*********************************************************************
-        //
-        // GetContacts Method
-        //
-        // The GetContacts method returns a DataSet containing all of the
-        // contacts for a specific portal module from the contacts
-        // database.
-        //
-        // NOTE: A DataSet is returned from this method to allow this method to support
-        // both desktop and mobile Web UI.
-        //
-        // Other relevant sources:
-        //     + <a href="GetContacts.htm" style="color:green">GetContacts Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public DataSet GetContacts(int moduleId)
+        public IDataReader GetContacts(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
                 new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlDataAdapter("Portal_GetContacts", myConnection);
+            var myCommand = new SqlCommand("Portal_GetContacts", myConnection);
 
             // Mark the Command as a SPROC
-            myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             parameterModuleId.Value = moduleId;
-            myCommand.SelectCommand.Parameters.Add(parameterModuleId);
+            myCommand.Parameters.Add(parameterModuleId);
 
-            // Create and Fill the DataSet
-            var myDataSet = new DataSet();
-            myCommand.Fill(myDataSet);
+            // Execute the command
+            myConnection.Open();
+            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
-            // Return the DataSet
-            return myDataSet;
+            // Return the datareader 
+            return result;
         }
 
-        //*********************************************************************
-        //
-        // GetSingleContact Method
-        //
-        // The GetSingleContact method returns a SqlDataReader containing details
-        // about a specific contact from the Contacts database table.
-        //
-        // Other relevant sources:
-        //     + <a href="GetSingleContact.htm" style="color:green">GetSingleContact Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public SqlDataReader GetSingleContact(int itemId)
+        public IDataReader GetSingleContact(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -90,18 +53,6 @@ namespace ASPNET.StarterKit.Portal
             return result;
         }
 
-        //*********************************************************************
-        //
-        // DeleteContact Method
-        //
-        // The DeleteContact method deletes the specified contact from
-        // the Contacts database table.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteContact.htm" style="color:green">DeleteContact Stored Procedure</a>
-        //
-        //*********************************************************************
-
         public void DeleteContact(int itemID)
         {
             // Create Instance of Connection and Command Object
@@ -121,18 +72,6 @@ namespace ASPNET.StarterKit.Portal
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
-
-        //*********************************************************************
-        //
-        // AddContact Method
-        //
-        // The AddContact method adds a new contact to the Contacts
-        // database table, and returns the ItemId value as a result.
-        //
-        // Other relevant sources:
-        //     + <a href="AddContact.htm" style="color:green">AddContact Stored Procedure</a>
-        //
-        //*********************************************************************
 
         public int AddContact(int moduleId, int itemId, String userName, String name, String role, String email,
                               String contact1, String contact2)
@@ -189,18 +128,6 @@ namespace ASPNET.StarterKit.Portal
 
             return (int) parameterItemID.Value;
         }
-
-        //*********************************************************************
-        //
-        // UpdateContact Method
-        //
-        // The UpdateContact method updates the specified contact within
-        // the Contacts database table.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateContact.htm" style="color:green">UpdateContact Stored Procedure</a>
-        //
-        //*********************************************************************
 
         public void UpdateContact(int moduleId, int itemId, String userName, String name, String role, String email,
                                   String contact1, String contact2)

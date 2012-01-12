@@ -5,30 +5,9 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-    //*********************************************************************
-    //
-    // HtmlTextDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // HTML/text within the Portal database.
-    //
-    //*********************************************************************
-
-    public class HtmlTextDB
+    public class SqlHtmlTextsDb : IHtmlTextsDb
     {
-        //*********************************************************************
-        //
-        // GetHtmlText Method
-        //
-        // The GetHtmlText method returns a SqlDataReader containing details
-        // about a specific item from the HtmlText database table.
-        //
-        // Other relevant sources:
-        //     + <a href="GetHtmlText.htm" style="color:green">GetHtmlText Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public SqlDataReader GetHtmlText(int moduleId)
+        public IDataReader GetHtmlText(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -50,19 +29,6 @@ namespace ASPNET.StarterKit.Portal
             // Return the datareader 
             return result;
         }
-
-
-        //*********************************************************************
-        //
-        // UpdateHtmlText Method
-        //
-        // The UpdateHtmlText method updates a specified item within
-        // the HtmlText database table.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateHtmlText.htm" style="color:green">UpdateHtmlText Stored Procedure</a>
-        //
-        //*********************************************************************
 
         public void UpdateHtmlText(int moduleId, String desktopHtml, String mobileSummary, String mobileDetails)
         {

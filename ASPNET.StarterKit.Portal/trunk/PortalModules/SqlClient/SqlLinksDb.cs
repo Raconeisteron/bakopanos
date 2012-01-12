@@ -5,31 +5,9 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-    //*********************************************************************
-    //
-    // LinkDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // links within the Portal database.
-    //
-    //*********************************************************************
-
-    public class LinkDB
+    public class SqlLinksDb : ILinksDb
     {
-        //*********************************************************************
-        //
-        // GetLinks Method
-        //
-        // The GetLinks method returns a SqlDataReader containing all of the
-        // links for a specific portal module from the announcements
-        // database.
-        //
-        // Other relevant sources:
-        //     + <a href="GetLinks.htm" style="color:green">GetLinks Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public SqlDataReader GetLinks(int moduleId)
+        public IDataReader GetLinks(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -52,19 +30,7 @@ namespace ASPNET.StarterKit.Portal
             return result;
         }
 
-        //*********************************************************************
-        //
-        // GetSingleLink Method
-        //
-        // The GetSingleLink method returns a SqlDataReader containing details
-        // about a specific link from the Links database table.
-        //
-        // Other relevant sources:
-        //     + <a href="GetSingleLink.htm" style="color:green">GetSingleLink Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public SqlDataReader GetSingleLink(int itemId)
+        public IDataReader GetSingleLink(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -87,18 +53,6 @@ namespace ASPNET.StarterKit.Portal
             return result;
         }
 
-        //*********************************************************************
-        //
-        // DeleteLink Method
-        //
-        // The DeleteLink method deletes a specified link from
-        // the Links database table.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteLink.htm" style="color:green">DeleteLink Stored Procedure</a>
-        //
-        //*********************************************************************
-
         public void DeleteLink(int itemID)
         {
             // Create Instance of Connection and Command Object
@@ -118,18 +72,6 @@ namespace ASPNET.StarterKit.Portal
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
-
-        //*********************************************************************
-        //
-        // AddLink Method
-        //
-        // The AddLink method adds a new link within the
-        // links database table, and returns ItemID value as a result.
-        //
-        // Other relevant sources:
-        //     + <a href="AddLink.htm" style="color:green">AddLink Stored Procedure</a>
-        //
-        //*********************************************************************
 
         public int AddLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
                            int viewOrder, String description)
@@ -186,18 +128,6 @@ namespace ASPNET.StarterKit.Portal
 
             return (int) parameterItemID.Value;
         }
-
-        //*********************************************************************
-        //
-        // UpdateLink Method
-        //
-        // The UpdateLink method updates a specified link within
-        // the Links database table.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateLink.htm" style="color:green">UpdateLink Stored Procedure</a>
-        //
-        //*********************************************************************
 
         public void UpdateLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
                                int viewOrder, String description)

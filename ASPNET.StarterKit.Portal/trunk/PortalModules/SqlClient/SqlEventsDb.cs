@@ -5,69 +5,32 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-    //*********************************************************************
-    //
-    // EventDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // events within the Portal database.
-    //
-    //*********************************************************************
-
-    public class EventsDB
+    public class SqlEventsDb : IEventsDb
     {
-        //*********************************************************************
-        //
-        // GetEvents Method
-        //
-        // The GetEvents method returns a DataSet containing all of the
-        // events for a specific portal module from the events
-        // database.
-        //
-        // NOTE: A DataSet is returned from this method to allow this method to support
-        // both desktop and mobile Web UI.
-        //
-        // Other relevant sources:
-        //     + <a href="GetEvents.htm" style="color:green">GetEvents Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public DataSet GetEvents(int moduleId)
+        public IDataReader GetEvents(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
                 new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlDataAdapter("Portal_GetEvents", myConnection);
+            var myCommand = new SqlCommand("Portal_GetEvents", myConnection);
 
             // Mark the Command as a SPROC
-            myCommand.SelectCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             parameterModuleId.Value = moduleId;
-            myCommand.SelectCommand.Parameters.Add(parameterModuleId);
+            myCommand.Parameters.Add(parameterModuleId);
 
-            // Create and Fill the DataSet
-            var myDataSet = new DataSet();
-            myCommand.Fill(myDataSet);
+            // Execute the command
+            myConnection.Open();
+            SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
-            // Return the DataSet
-            return myDataSet;
+            // Return the datareader 
+            return result;
         }
 
-        //*********************************************************************
-        //
-        // GetSingleEvent Method
-        //
-        // The GetSingleEvent method returns a SqlDataReader containing details
-        // about a specific event from the events database.
-        //
-        // Other relevant sources:
-        //     + <a href="GetSingleEvent.htm" style="color:green">GetSingleEvent Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public SqlDataReader GetSingleEvent(int itemId)
+        public IDataReader GetSingleEvent(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -90,18 +53,6 @@ namespace ASPNET.StarterKit.Portal
             return result;
         }
 
-        //*********************************************************************
-        //
-        // DeleteEvent Method
-        //
-        // The DeleteEvent method deletes a specified event from
-        // the events database.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteEvent.htm" style="color:green">DeleteEvent Stored Procedure</a>
-        //
-        //*********************************************************************
-
         public void DeleteEvent(int itemID)
         {
             // Create Instance of Connection and Command Object
@@ -122,18 +73,6 @@ namespace ASPNET.StarterKit.Portal
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
-
-        //*********************************************************************
-        //
-        // AddEvent Method
-        //
-        // The AddEvent method adds a new event within the Events database table, 
-        // and returns the ItemID value as a result.
-        //
-        // Other relevant sources:
-        //     + <a href="AddEvent.htm" style="color:green">AddEvent Stored Procedure</a>
-        //
-        //*********************************************************************
 
         public int AddEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
                             String description, String wherewhen)
@@ -188,18 +127,6 @@ namespace ASPNET.StarterKit.Portal
             // Return the new Event ItemID
             return (int) parameterItemID.Value;
         }
-
-        //*********************************************************************
-        //
-        // UpdateEvent Method
-        //
-        // The UpdateEvent method updates the specified event within
-        // the Events database table.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateEvent.htm" style="color:green">UpdateEvent Stored Procedure</a>
-        //
-        //*********************************************************************
 
         public void UpdateEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
                                 String description, String wherewhen)

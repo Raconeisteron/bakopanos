@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
@@ -52,7 +51,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Give the admin tab a big sort order number, to ensure it's
             // always at the end
-            var adminTab = (TabItem) PortalTabs[PortalTabs.Count - 1];
+            TabItem adminTab = PortalTabs[PortalTabs.Count - 1];
             adminTab.TabOrder = 99999;
 
             // If this is the first visit to the page, bind the tab data to the page listbox
@@ -90,7 +89,7 @@ namespace ASPNET.StarterKit.Portal
                 }
 
                 TabItem t;
-                t = (TabItem) PortalTabs[tabList.SelectedIndex];
+                t = PortalTabs[tabList.SelectedIndex];
                 t.TabOrder += delta;
 
                 // Reset the order numbers for the tabs within the portal  
@@ -114,7 +113,7 @@ namespace ASPNET.StarterKit.Portal
             if (tabList.SelectedIndex != -1)
             {
                 // must delete from database too
-                var t = (TabItem) PortalTabs[tabList.SelectedIndex];
+                TabItem t = PortalTabs[tabList.SelectedIndex];
                 var config = new Configuration();
                 config.DeleteTab(t.TabId);
 
@@ -176,7 +175,7 @@ namespace ASPNET.StarterKit.Portal
             if (tabList.SelectedIndex != -1)
             {
                 // Redirect to module settings page
-                var t = (TabItem) PortalTabs[tabList.SelectedIndex];
+                TabItem t = PortalTabs[tabList.SelectedIndex];
 
                 Response.Redirect("~/Admin/TabLayout.aspx?tabid=" + t.TabId);
             }

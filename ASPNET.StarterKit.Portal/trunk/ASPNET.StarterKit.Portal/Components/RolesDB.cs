@@ -27,7 +27,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetPortalRoles(int portalId)
+        public IDataReader GetPortalRoles(int portalId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -179,7 +179,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetRoleMembers(int roleId)
+        public IDataReader GetRoleMembers(int roleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -290,7 +290,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public SqlDataReader GetUsers()
+        public IDataReader GetUsers()
         {
             // Create Instance of Connection and Command Object
             var myConnection =

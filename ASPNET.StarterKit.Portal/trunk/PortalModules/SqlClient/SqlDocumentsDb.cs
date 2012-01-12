@@ -5,31 +5,9 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
-    //*********************************************************************
-    //
-    // DocumentDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // documents within the Portal database.
-    //
-    //*********************************************************************
-
-    public class DocumentDB
+    public class SqlDocumentsDb : IDocumentsDb
     {
-        //*********************************************************************
-        //
-        // GetDocuments Method
-        //
-        // The GetDocuments method returns a SqlDataReader containing all of the
-        // documents for a specific portal module from the documents
-        // database.
-        //
-        // Other relevant sources:
-        //     + <a href="GetDocuments.htm" style="color:green">GetDocuments Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public SqlDataReader GetDocuments(int moduleId)
+        public IDataReader GetDocuments(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -52,19 +30,7 @@ namespace ASPNET.StarterKit.Portal
             return result;
         }
 
-        //*********************************************************************
-        //
-        // GetSingleDocument Method
-        //
-        // The GetSingleDocument method returns a SqlDataReader containing details
-        // about a specific document from the Documents database table.
-        //
-        // Other relevant sources:
-        //     + <a href="GetSingleDocument.htm" style="color:green">GetSingleDocument Stored Procedure</a>
-        //
-        //*********************************************************************
-
-        public SqlDataReader GetSingleDocument(int itemId)
+        public IDataReader GetSingleDocument(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -87,19 +53,8 @@ namespace ASPNET.StarterKit.Portal
             return result;
         }
 
-        //*********************************************************************
-        //
-        // GetDocumentContent Method
-        //
-        // The GetDocumentContent method returns the contents of the specified
-        // document from the Documents database table.
-        //
-        // Other relevant sources:
-        //     + <a href="GetDocumentContent.htm" style="color:green">GetDocumentContent</a>
-        //
-        //*********************************************************************
 
-        public SqlDataReader GetDocumentContent(int itemId)
+        public IDataReader GetDocumentContent(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection =
@@ -122,19 +77,6 @@ namespace ASPNET.StarterKit.Portal
             return result;
         }
 
-
-        //*********************************************************************
-        //
-        // DeleteDocument Method
-        //
-        // The DeleteDocument method deletes the specified document from
-        // the Documents database table.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteDocument.htm" style="color:green">DeleteDocument Stored Procedure</a>
-        //
-        //*********************************************************************
-
         public void DeleteDocument(int itemID)
         {
             // Create Instance of Connection and Command Object
@@ -154,19 +96,6 @@ namespace ASPNET.StarterKit.Portal
             myCommand.ExecuteNonQuery();
             myConnection.Close();
         }
-
-
-        //*********************************************************************
-        //
-        // UpdateDocument Method
-        //
-        // The UpdateDocument method updates the specified document within
-        // the Documents database table.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateDocument.htm" style="color:green">UpdateDocument Stored Procedure</a>
-        //
-        //*********************************************************************
 
         public void UpdateDocument(int moduleId, int itemId, String userName, String name, String url, String category,
                                    byte[] content, int size, String contentType)

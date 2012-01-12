@@ -1,5 +1,5 @@
 using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Web.UI;
 
 namespace ASPNET.StarterKit.Portal
@@ -27,9 +27,9 @@ namespace ASPNET.StarterKit.Portal
             if (_documentId != -1)
             {
                 // Obtain Document Data from Documents table
-                var documents = new DocumentDB();
+                var documents = new SqlDocumentsDb();
 
-                SqlDataReader dBContent = documents.GetDocumentContent(_documentId);
+                IDataReader dBContent = documents.GetDocumentContent(_documentId);
                 dBContent.Read();
 
                 // Serve up the file by name
