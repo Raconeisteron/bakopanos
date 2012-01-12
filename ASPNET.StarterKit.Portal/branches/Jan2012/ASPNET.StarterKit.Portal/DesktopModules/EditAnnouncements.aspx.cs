@@ -14,24 +14,22 @@ namespace ASPNET.StarterKit.Portal
             ExpireField.Text = item.ExpireDate.ToShortDateString();
             CreatedBy.Text = item.CreatedByUser;
             CreatedDate.Text = item.CreatedDate.ToShortDateString();
-
         }
 
         protected override Announcement Get()
         {
             var announcement = new Announcement
-            {
-                ItemId = ItemId,
-                ModuleId = ModuleId,
-                Title = TitleField.Text,
-                CreatedByUser = Context.User.Identity.Name,
-                ExpireDate = DateTime.Parse(ExpireField.Text),
-                Description = DescriptionField.Text,
-                MoreLink = MoreLinkField.Text,
-                MobileMoreLink = MobileMoreField.Text
-            };
+                                   {
+                                       ItemId = ItemId,
+                                       ModuleId = ModuleId,
+                                       Title = TitleField.Text,
+                                       CreatedByUser = Context.User.Identity.Name,
+                                       ExpireDate = DateTime.Parse(ExpireField.Text),
+                                       Description = DescriptionField.Text,
+                                       MoreLink = MoreLinkField.Text,
+                                       MobileMoreLink = MobileMoreField.Text
+                                   };
             return announcement;
         }
-
     }
 }

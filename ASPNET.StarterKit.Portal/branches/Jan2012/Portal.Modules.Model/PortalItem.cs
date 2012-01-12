@@ -1,4 +1,3 @@
-
 namespace Portal.Modules.Model
 {
     public class PortalItem

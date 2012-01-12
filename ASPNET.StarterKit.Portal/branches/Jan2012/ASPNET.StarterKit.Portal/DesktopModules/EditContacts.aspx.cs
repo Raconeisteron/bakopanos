@@ -1,14 +1,10 @@
 using System;
-using System.Data.SqlClient;
-using System.Web.UI;
 using Portal.Modules.Model;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditContacts : PortalEditPage<Contact>
     {
-        
-
         protected override void Set(Contact item)
         {
             NameField.Text = item.Name;
@@ -22,18 +18,18 @@ namespace ASPNET.StarterKit.Portal
 
         protected override Contact Get()
         {
-            var contact = new Contact()
-            {
-                ItemId = ItemId,
-                ModuleId = ModuleId,
-                Name = NameField.Text,
-                CreatedByUser = Context.User.Identity.Name,
-                CreatedDate = DateTime.Parse(CreatedDate.Text),
-                Contact1 = Contact1Field.Text,
-                Contact2 = Contact2Field.Text,
-                Email = EmailField.Text,
-                Role = RoleField.Text
-            };
+            var contact = new Contact
+                              {
+                                  ItemId = ItemId,
+                                  ModuleId = ModuleId,
+                                  Name = NameField.Text,
+                                  CreatedByUser = Context.User.Identity.Name,
+                                  CreatedDate = DateTime.Parse(CreatedDate.Text),
+                                  Contact1 = Contact1Field.Text,
+                                  Contact2 = Contact2Field.Text,
+                                  Email = EmailField.Text,
+                                  Role = RoleField.Text
+                              };
             return contact;
         }
     }

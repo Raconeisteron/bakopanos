@@ -4,13 +4,11 @@ using System.Data.SqlClient;
 
 namespace Portal.Modules.Data
 {
-
     public class AnnouncementSqlClientDb : Db, IAnnouncementDb
     {
-        
-        #region IAnnouncementsDb Members
+        #region IAnnouncementDb Members
 
-        public IDataReader GetAnnouncements(int moduleId)
+        public override IDataReader GetList(int moduleId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConnectionString);
@@ -32,8 +30,8 @@ namespace Portal.Modules.Data
             return result;
         }
 
-        
-        public IDataReader GetSingleAnnouncement(int itemId)
+
+        public override IDataReader GetSingle(int itemId)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConnectionString);
@@ -55,8 +53,8 @@ namespace Portal.Modules.Data
             return result;
         }
 
-        
-        public void DeleteAnnouncement(int itemID)
+
+        public override void Delete(int itemID)
         {
             // Create Instance of Connection and Command Object
             var myConnection = new SqlConnection(ConnectionString);
@@ -75,7 +73,7 @@ namespace Portal.Modules.Data
             myConnection.Close();
         }
 
-       
+
         public int AddAnnouncement(int moduleId, String userName, String title, DateTime expireDate,
                                    String description, String moreLink, String mobileMoreLink)
         {
@@ -131,7 +129,7 @@ namespace Portal.Modules.Data
             return (int) parameterItemID.Value;
         }
 
-        
+
         public void UpdateAnnouncement(int itemId, String userName, String title, DateTime expireDate,
                                        String description, String moreLink, String mobileMoreLink)
         {

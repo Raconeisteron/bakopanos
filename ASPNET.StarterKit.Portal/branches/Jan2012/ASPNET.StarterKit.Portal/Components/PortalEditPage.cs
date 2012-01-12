@@ -6,7 +6,7 @@ using Portal.Modules.Model;
 namespace ASPNET.StarterKit.Portal
 {
     public abstract class PortalEditPage<T> : Page
-        where T:PortalItem
+        where T : PortalItem
     {
         protected int ItemId { get; set; }
         protected int ModuleId { get; set; }
@@ -63,11 +63,10 @@ namespace ASPNET.StarterKit.Portal
             // Only Update if the Entered Data is Valid
             if (Page.IsValid)
             {
-
                 Repo.Save(Get());
 
                 // Redirect back to the portal home page
-                Response.Redirect((String)ViewState["UrlReferrer"]);
+                Response.Redirect((String) ViewState["UrlReferrer"]);
             }
         }
 
@@ -76,13 +75,13 @@ namespace ASPNET.StarterKit.Portal
             Repo.Delete(ItemId);
 
             // Redirect back to the portal home page
-            Response.Redirect((String)ViewState["UrlReferrer"]);
+            Response.Redirect((String) ViewState["UrlReferrer"]);
         }
 
         protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
-            Response.Redirect((String)ViewState["UrlReferrer"]);
+            Response.Redirect((String) ViewState["UrlReferrer"]);
         }
     }
 }

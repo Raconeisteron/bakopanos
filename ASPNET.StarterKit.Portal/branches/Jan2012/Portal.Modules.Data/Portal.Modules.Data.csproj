@@ -49,6 +49,7 @@
     <Compile Include="Db.cs" />
     <Compile Include="IAnnouncementDb.cs" />
     <Compile Include="IContactDb.cs" />
+    <Compile Include="IDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

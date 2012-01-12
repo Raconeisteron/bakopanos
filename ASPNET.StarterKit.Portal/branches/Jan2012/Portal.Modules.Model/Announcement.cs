@@ -2,7 +2,7 @@ using System;
 
 namespace Portal.Modules.Model
 {
-    public class Announcement:PortalItem
+    public class Announcement : PortalItem
     {
         public string CreatedByUser { get; set; }
         public DateTime CreatedDate { get; set; }

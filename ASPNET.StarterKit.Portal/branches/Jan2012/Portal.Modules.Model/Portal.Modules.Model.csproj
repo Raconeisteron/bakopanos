@@ -55,6 +55,7 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="PortalItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Portal.Modules.Data\Portal.Modules.Data.csproj">
