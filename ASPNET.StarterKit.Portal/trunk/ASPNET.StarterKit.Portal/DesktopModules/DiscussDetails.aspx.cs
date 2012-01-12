@@ -77,7 +77,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create new discussion database component
-            var discuss = new SqlDiscussionsDb();
+            IDiscussionsDb discuss = new SqlDiscussionsDb();
 
             // Add new message (updating the "itemId" on the page)
             _itemId = discuss.AddMessage(_moduleId, _itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
@@ -118,7 +118,7 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Obtain the selected item from the Discussion table
-            var discuss = new SqlDiscussionsDb();
+            IDiscussionsDb discuss = new SqlDiscussionsDb();
             IDataReader dr = discuss.GetSingleMessage(_itemId);
 
             // Load first row from database
@@ -181,7 +181,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        private String ReTitle(String title)
+        private string ReTitle(String title)
         {
             if (title.Length > 0 & title.IndexOf("Re: ", 0) == -1)
             {

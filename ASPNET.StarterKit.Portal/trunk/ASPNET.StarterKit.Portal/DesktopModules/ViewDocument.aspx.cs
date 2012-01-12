@@ -27,7 +27,7 @@ namespace ASPNET.StarterKit.Portal
             if (_documentId != -1)
             {
                 // Obtain Document Data from Documents table
-                var documents = new SqlDocumentsDb();
+                IDocumentsDb documents = new SqlDocumentsDb();
 
                 IDataReader dBContent = documents.GetDocumentContent(_documentId);
                 dBContent.Read();

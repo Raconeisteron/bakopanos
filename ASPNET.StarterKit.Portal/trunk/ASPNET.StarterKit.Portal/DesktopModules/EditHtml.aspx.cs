@@ -32,7 +32,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsPostBack == false)
             {
                 // Obtain a single row of text information
-                var text = new SqlHtmlTextsDb();
+                IHtmlTextsDb text = new SqlHtmlTextsDb();
                 IDataReader dr = text.GetHtmlText(_moduleId);
 
                 if (dr.Read())
@@ -65,7 +65,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create an instance of the HtmlTextDB component
-            var text = new SqlHtmlTextsDb();
+            IHtmlTextsDb text = new SqlHtmlTextsDb();
 
             // Update the text within the HtmlText table
             text.UpdateHtmlText(_moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text),

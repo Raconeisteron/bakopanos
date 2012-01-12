@@ -18,7 +18,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain Document Data from Documents table
             // and bind to the datalist control
-            var documents = new SqlDocumentsDb();
+            IDocumentsDb documents = new SqlDocumentsDb();
 
             myDataGrid.DataSource = documents.GetDocuments(ModuleId);
             myDataGrid.DataBind();
@@ -40,7 +40,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        protected String GetBrowsePath(String url, object size, int documentId)
+        protected string GetBrowsePath(String url, object size, int documentId)
         {
             if (size != DBNull.Value && (int) size > 0)
             {

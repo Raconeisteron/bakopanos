@@ -50,7 +50,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of event information
-                    var events = new SqlEventsDb();
+                    IEventsDb events = new SqlEventsDb();
                     IDataReader dr = events.GetSingleEvent(_itemId);
 
                     // Read first row from database
@@ -93,7 +93,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Event DB component
-                var events = new SqlEventsDb();
+                IEventsDb events = new SqlEventsDb();
 
                 if (_itemId == 0)
                 {
@@ -104,7 +104,7 @@ namespace ASPNET.StarterKit.Portal
                 else
                 {
                     // Update the event within the Events table
-                    events.UpdateEvent( _itemId, Context.User.Identity.Name, TitleField.Text,
+                    events.UpdateEvent(_itemId, Context.User.Identity.Name, TitleField.Text,
                                        DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
                 }
 
@@ -128,7 +128,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var events = new SqlEventsDb();
+                IEventsDb events = new SqlEventsDb();
                 events.DeleteEvent(_itemId);
             }
 

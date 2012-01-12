@@ -9,10 +9,10 @@ namespace ASPNET.StarterKit.Portal
         IDataReader GetSingleEvent(int itemId);
         void DeleteEvent(int itemId);
 
-        int AddEvent(int moduleId, String userName, String title, DateTime expireDate,
-                                     String description, String wherewhen);
+        int AddEvent(int moduleId, string userName, string title, DateTime expireDate,
+                     string description, string wherewhen);
 
-        void UpdateEvent(int itemId, String userName, String title, DateTime expireDate,
-                                         String description, String wherewhen);
+        void UpdateEvent(int itemId, string userName, string title, DateTime expireDate,
+                         string description, string wherewhen);
     }
 }

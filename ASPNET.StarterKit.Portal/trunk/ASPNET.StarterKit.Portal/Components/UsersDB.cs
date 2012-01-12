@@ -17,6 +17,9 @@ namespace ASPNET.StarterKit.Portal
     /// </summary>
     public class UsersDB
     {
+        private readonly string _connectionString =
+            ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
         //*********************************************************************
         //
         // UsersDB.AddUser() Method <a name="AddUser"></a>
@@ -28,39 +31,39 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public int AddUser(String fullName, String email, String password)
+        public int AddUser(String fullName, string email, string password)
         {
             // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_AddUser", myConnection);
+            var connection =
+                new SqlConnection(_connectionString);
+            var command = new SqlCommand("Portal_AddUser", connection);
 
             // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
+            command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
             var parameterFullName = new SqlParameter("@Name", SqlDbType.NVarChar, 50);
             parameterFullName.Value = fullName;
-            myCommand.Parameters.Add(parameterFullName);
+            command.Parameters.Add(parameterFullName);
 
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
-            myCommand.Parameters.Add(parameterEmail);
+            command.Parameters.Add(parameterEmail);
 
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
-            myCommand.Parameters.Add(parameterPassword);
+            command.Parameters.Add(parameterPassword);
 
             var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
             parameterUserId.Direction = ParameterDirection.Output;
-            myCommand.Parameters.Add(parameterUserId);
+            command.Parameters.Add(parameterUserId);
 
             // Execute the command in a try/catch to catch duplicate username errors
             try
             {
                 // Open the connection and execute the Command
-                myConnection.Open();
-                myCommand.ExecuteNonQuery();
+                connection.Open();
+                command.ExecuteNonQuery();
             }
             catch
             {
@@ -70,8 +73,8 @@ namespace ASPNET.StarterKit.Portal
             finally
             {
                 // Close the Connection
-                if (myConnection.State == ConnectionState.Open)
-                    myConnection.Close();
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
             }
 
             return (int) parameterUserId.Value;
@@ -91,21 +94,21 @@ namespace ASPNET.StarterKit.Portal
         public void DeleteUser(int userId)
         {
             // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_DeleteUser", myConnection);
+            var connection =
+                new SqlConnection(_connectionString);
+            var command = new SqlCommand("Portal_DeleteUser", connection);
 
             // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
+            command.CommandType = CommandType.StoredProcedure;
 
             var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
             parameterUserId.Value = userId;
-            myCommand.Parameters.Add(parameterUserId);
+            command.Parameters.Add(parameterUserId);
 
             // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
         }
 
         //*********************************************************************
@@ -119,32 +122,32 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public void UpdateUser(int userId, String email, String password)
+        public void UpdateUser(int userId, string email, string password)
         {
             // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_UpdateUser", myConnection);
+            var connection =
+                new SqlConnection(_connectionString);
+            var command = new SqlCommand("Portal_UpdateUser", connection);
 
             // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
+            command.CommandType = CommandType.StoredProcedure;
 
             var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
             parameterUserId.Value = userId;
-            myCommand.Parameters.Add(parameterUserId);
+            command.Parameters.Add(parameterUserId);
 
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
-            myCommand.Parameters.Add(parameterEmail);
+            command.Parameters.Add(parameterEmail);
 
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
-            myCommand.Parameters.Add(parameterPassword);
+            command.Parameters.Add(parameterPassword);
 
             // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
         }
 
         //*********************************************************************
@@ -161,20 +164,20 @@ namespace ASPNET.StarterKit.Portal
         public IDataReader GetRolesByUser(String email)
         {
             // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetRolesByUser", myConnection);
+            var connection =
+                new SqlConnection(_connectionString);
+            var command = new SqlCommand("Portal_GetRolesByUser", connection);
 
             // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
+            command.CommandType = CommandType.StoredProcedure;
 
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
-            myCommand.Parameters.Add(parameterEmail);
+            command.Parameters.Add(parameterEmail);
 
             // Open the database connection and execute the command
-            myConnection.Open();
-            SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            connection.Open();
+            SqlDataReader dr = command.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader
             return dr;
@@ -192,21 +195,21 @@ namespace ASPNET.StarterKit.Portal
         public IDataReader GetSingleUser(String email)
         {
             // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetSingleUser", myConnection);
+            var connection =
+                new SqlConnection(_connectionString);
+            var command = new SqlCommand("Portal_GetSingleUser", connection);
 
             // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
+            command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
-            myCommand.Parameters.Add(parameterEmail);
+            command.Parameters.Add(parameterEmail);
 
             // Open the database connection and execute the command
-            myConnection.Open();
-            SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            connection.Open();
+            SqlDataReader dr = command.ExecuteReader(CommandBehavior.CloseConnection);
 
             // Return the datareader
             return dr;
@@ -226,25 +229,25 @@ namespace ASPNET.StarterKit.Portal
         public String[] GetRoles(String email)
         {
             // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_GetRolesByUser", myConnection);
+            var connection =
+                new SqlConnection(_connectionString);
+            var command = new SqlCommand("Portal_GetRolesByUser", connection);
 
             // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
+            command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
-            myCommand.Parameters.Add(parameterEmail);
+            command.Parameters.Add(parameterEmail);
 
             // Open the database connection and execute the command
             SqlDataReader dr;
 
-            myConnection.Open();
-            dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            connection.Open();
+            dr = command.ExecuteReader(CommandBehavior.CloseConnection);
 
-            // create a String array from the data
+            // create a string array from the data
             var userRoles = new List<string>();
 
             while (dr.Read())
@@ -254,7 +257,7 @@ namespace ASPNET.StarterKit.Portal
 
             dr.Close();
 
-            // Return the String array of roles
+            // Return the string array of roles
             return userRoles.ToArray();
         }
 
@@ -271,33 +274,33 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public String Login(String email, String password)
+        public string Login(String email, string password)
         {
             // Create Instance of Connection and Command Object
-            var myConnection =
-                new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-            var myCommand = new SqlCommand("Portal_UserLogin", myConnection);
+            var connection =
+                new SqlConnection(_connectionString);
+            var command = new SqlCommand("Portal_UserLogin", connection);
 
             // Mark the Command as a SPROC
-            myCommand.CommandType = CommandType.StoredProcedure;
+            command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
             var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
-            myCommand.Parameters.Add(parameterEmail);
+            command.Parameters.Add(parameterEmail);
 
             var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
-            myCommand.Parameters.Add(parameterPassword);
+            command.Parameters.Add(parameterPassword);
 
             var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
             parameterUserName.Direction = ParameterDirection.Output;
-            myCommand.Parameters.Add(parameterUserName);
+            command.Parameters.Add(parameterUserName);
 
             // Open the database connection and execute the command
-            myConnection.Open();
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
 
             if ((parameterUserName.Value != null) && (parameterUserName.Value != DBNull.Value))
             {

@@ -10,7 +10,7 @@ namespace ASPNET.StarterKit.Portal
         private int _tabId;
         private int _tabIndex;
         private int _userId = -1;
-        private String _userName = "";
+        private string _userName = "";
 
 
         //*******************************************************
@@ -61,7 +61,7 @@ namespace ASPNET.StarterKit.Portal
 
                     while (uid == -1)
                     {
-                        String friendlyName = "New User created " + DateTime.Now;
+                        string friendlyName = "New User created " + DateTime.Now;
                         _userName = "New User" + i;
                         uid = users.AddUser(friendlyName, _userName, "");
                         i++;

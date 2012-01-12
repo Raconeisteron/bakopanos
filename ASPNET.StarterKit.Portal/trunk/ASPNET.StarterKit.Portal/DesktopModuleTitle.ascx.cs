@@ -6,9 +6,9 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class DesktopModuleTitle : UserControl
     {
-        public String EditTarget;
-        public String EditText;
-        public String EditUrl;
+        public string EditTarget;
+        public string EditText;
+        public string EditUrl;
 
         protected void Page_Load(object sender, EventArgs e)
         {

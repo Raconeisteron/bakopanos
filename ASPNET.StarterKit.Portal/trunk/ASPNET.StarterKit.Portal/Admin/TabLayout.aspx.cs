@@ -92,8 +92,8 @@ namespace ASPNET.StarterKit.Portal
 
         protected void UpDown_Click(Object sender, ImageClickEventArgs e)
         {
-            String cmd = ((ImageButton) sender).CommandName;
-            String pane = ((ImageButton) sender).CommandArgument;
+            string cmd = ((ImageButton) sender).CommandName;
+            string pane = ((ImageButton) sender).CommandArgument;
             var _listbox = (ListBox) Page.FindControl(pane);
 
             List<ModuleItem> modules = GetModules(pane);
@@ -148,8 +148,8 @@ namespace ASPNET.StarterKit.Portal
 
         protected void RightLeft_Click(Object sender, ImageClickEventArgs e)
         {
-            String sourcePane = ((ImageButton) sender).Attributes["sourcepane"];
-            String targetPane = ((ImageButton) sender).Attributes["targetpane"];
+            string sourcePane = ((ImageButton) sender).Attributes["sourcepane"];
+            string targetPane = ((ImageButton) sender).Attributes["targetpane"];
             var sourceBox = (ListBox) Page.FindControl(sourcePane);
             var targetBox = (ListBox) Page.FindControl(targetPane);
 
@@ -211,7 +211,7 @@ namespace ASPNET.StarterKit.Portal
         protected void Apply_Click(Object sender, EventArgs e)
         {
             // Save changes then navigate back to admin.  
-            String id = ((LinkButton) sender).ID;
+            string id = ((LinkButton) sender).ID;
 
             SaveTabData();
 
@@ -251,7 +251,7 @@ namespace ASPNET.StarterKit.Portal
         private void SaveTabData()
         {
             // Construct Authorized User Roles String
-            String authorizedRoles = "";
+            string authorizedRoles = "";
 
             foreach (ListItem item in authRoles.Items)
             {
@@ -279,7 +279,7 @@ namespace ASPNET.StarterKit.Portal
 
         protected void EditBtn_Click(Object sender, ImageClickEventArgs e)
         {
-            String pane = ((ImageButton) sender).CommandArgument;
+            string pane = ((ImageButton) sender).CommandArgument;
             var _listbox = (ListBox) Page.FindControl(pane);
 
             if (_listbox.SelectedIndex != -1)
@@ -300,7 +300,7 @@ namespace ASPNET.StarterKit.Portal
 
         protected void DeleteBtn_Click(Object sender, ImageClickEventArgs e)
         {
-            String pane = ((ImageButton) sender).CommandArgument;
+            string pane = ((ImageButton) sender).CommandArgument;
             var listbox = (ListBox) Page.FindControl(pane);
             List<ModuleItem> modules = GetModules(pane);
 

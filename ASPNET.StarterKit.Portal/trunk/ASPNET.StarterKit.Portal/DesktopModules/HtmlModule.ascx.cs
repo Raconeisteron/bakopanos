@@ -16,13 +16,13 @@ namespace ASPNET.StarterKit.Portal
         protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain the selected item from the HtmlText table
-            var text = new SqlHtmlTextsDb();
+            IHtmlTextsDb text = new SqlHtmlTextsDb();
             IDataReader dr = text.GetHtmlText(ModuleId);
 
             if (dr.Read())
             {
                 // Dynamically add the file content into the page
-                String content = Server.HtmlDecode((String) dr["DesktopHtml"]);
+                string content = Server.HtmlDecode((String) dr["DesktopHtml"]);
                 HtmlHolder.Controls.Add(new LiteralControl(content));
             }
 

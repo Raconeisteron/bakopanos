@@ -8,6 +8,6 @@ namespace ASPNET.StarterKit.Portal
         IDataReader GetTopLevelMessages(int moduleId);
         IDataReader GetThreadMessages(String parent);
         IDataReader GetSingleMessage(int itemId);
-        int AddMessage(int moduleId, int parentId, String userName, String title, String body);
+        int AddMessage(int moduleId, int parentId, string userName, string title, string body);
     }
 }

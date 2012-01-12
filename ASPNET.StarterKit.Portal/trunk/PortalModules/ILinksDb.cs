@@ -1,4 +1,3 @@
-using System;
 using System.Data;
 
 namespace ASPNET.StarterKit.Portal
@@ -9,10 +8,10 @@ namespace ASPNET.StarterKit.Portal
         IDataReader GetSingleLink(int itemId);
         void DeleteLink(int itemId);
 
-        int AddLink(int moduleId, String userName, String title, String url, String mobileUrl,
-                                    int viewOrder, String description);
+        int AddLink(int moduleId, string userName, string title, string url, string mobileUrl,
+                    int viewOrder, string description);
 
-        void UpdateLink(int itemId, String userName, String title, String url, String mobileUrl,
-                                        int viewOrder, String description);
+        void UpdateLink(int itemId, string userName, string title, string url, string mobileUrl,
+                        int viewOrder, string description);
     }
 }

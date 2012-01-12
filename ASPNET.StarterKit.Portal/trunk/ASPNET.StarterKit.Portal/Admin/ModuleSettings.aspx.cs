@@ -61,7 +61,7 @@ namespace ASPNET.StarterKit.Portal
                 var m = (ModuleSettings) value;
 
                 // Construct Authorized User Roles String
-                String editRoles = "";
+                string editRoles = "";
 
                 foreach (ListItem item in authEditRoles.Items)
                 {

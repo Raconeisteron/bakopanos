@@ -86,7 +86,7 @@ namespace ASPNET.StarterKit.Portal
             else if (e.CommandName == "apply")
             {
                 // Apply changes
-                String roleName = ((TextBox) e.Item.FindControl("roleName")).Text;
+                string roleName = ((TextBox) e.Item.FindControl("roleName")).Text;
 
                 // update database
                 roles.UpdateRole(roleId, roleName);
@@ -111,7 +111,7 @@ namespace ASPNET.StarterKit.Portal
             else if (e.CommandName == "members")
             {
                 // Save role name changes first
-                String roleName = ((TextBox) e.Item.FindControl("roleName")).Text;
+                string roleName = ((TextBox) e.Item.FindControl("roleName")).Text;
                 roles.UpdateRole(roleId, roleName);
 
                 // redirect to edit page

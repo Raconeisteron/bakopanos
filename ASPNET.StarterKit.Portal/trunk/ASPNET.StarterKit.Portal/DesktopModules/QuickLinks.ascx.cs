@@ -4,7 +4,7 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class QuickLinks : PortalModuleControl
     {
-        protected String LinkImage = "";
+        protected string LinkImage = "";
 
         /// <summary>
         /// The Page_Load event handler on this User Control is used to
@@ -27,7 +27,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the list control
-            var links = new SqlLinksDb();
+            ILinksDb links = new SqlLinksDb();
 
             myDataList.DataSource = links.GetLinks(ModuleId);
             myDataList.DataBind();

@@ -45,7 +45,7 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of contact information
-                var contacts = new SqlContactsDb();
+                IContactsDb contacts = new SqlContactsDb();
                 IDataReader dr = contacts.GetSingleContact(_itemId);
 
                 // Read first row from database
@@ -89,7 +89,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the ContactsDB component
-                var contacts = new SqlContactsDb();
+                IContactsDb contacts = new SqlContactsDb();
 
                 if (_itemId == 0)
                 {
@@ -100,7 +100,7 @@ namespace ASPNET.StarterKit.Portal
                 else
                 {
                     // Update the contact within the contacts table
-                    contacts.UpdateContact( _itemId, Context.User.Identity.Name, NameField.Text,
+                    contacts.UpdateContact(_itemId, Context.User.Identity.Name, NameField.Text,
                                            RoleField.Text,
                                            EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
@@ -125,7 +125,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var contacts = new SqlContactsDb();
+                IContactsDb contacts = new SqlContactsDb();
                 contacts.DeleteContact(_itemId);
             }
 

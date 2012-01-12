@@ -1,4 +1,3 @@
-using System;
 using System.Data;
 
 namespace ASPNET.StarterKit.Portal
@@ -10,7 +9,7 @@ namespace ASPNET.StarterKit.Portal
         IDataReader GetDocumentContent(int itemId);
         void DeleteDocument(int itemId);
 
-        void UpdateDocument(int moduleId, int itemId, String userName, String name, String url, String category,
-                                            byte[] content, int size, String contentType);
+        void UpdateDocument(int moduleId, int itemId, string userName, string name, string url, string category,
+                            byte[] content, int size, string contentType);
     }
 }

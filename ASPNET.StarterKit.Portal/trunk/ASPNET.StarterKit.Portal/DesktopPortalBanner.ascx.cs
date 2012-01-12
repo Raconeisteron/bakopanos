@@ -7,7 +7,7 @@ namespace ASPNET.StarterKit.Portal
 {
     public partial class DesktopPortalBanner : UserControl
     {
-        protected String LogoffLink = "";
+        protected string LogoffLink = "";
         private int _tabIndex;
 
         public bool ShowTabs { get; set; }
