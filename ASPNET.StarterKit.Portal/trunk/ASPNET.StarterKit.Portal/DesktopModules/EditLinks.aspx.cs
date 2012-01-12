@@ -94,13 +94,13 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId == 0)
                 {
                     // Add the link within the Links table
-                    links.AddLink(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    links.AddLink(_moduleId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                   MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
                 else
                 {
                     // Update the link within the Links table
-                    links.UpdateLink(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                    links.UpdateLink(_itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
                                      MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
 

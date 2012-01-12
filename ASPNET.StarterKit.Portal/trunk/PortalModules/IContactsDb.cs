@@ -7,12 +7,12 @@ namespace ASPNET.StarterKit.Portal
     {
         IDataReader GetContacts(int moduleId);
         IDataReader GetSingleContact(int itemId);
-        void DeleteContact(int itemID);
+        void DeleteContact(int itemId);
 
-        int AddContact(int moduleId, int itemId, String userName, String name, String role, String email,
+        int AddContact(int moduleId, String userName, String name, String role, String email,
                                        String contact1, String contact2);
 
-        void UpdateContact(int moduleId, int itemId, String userName, String name, String role, String email,
+        void UpdateContact( int itemId, String userName, String name, String role, String email,
                                            String contact1, String contact2);
     }
 }

@@ -7,12 +7,12 @@ namespace ASPNET.StarterKit.Portal
     {
         IDataReader GetEvents(int moduleId);
         IDataReader GetSingleEvent(int itemId);
-        void DeleteEvent(int itemID);
+        void DeleteEvent(int itemId);
 
-        int AddEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
+        int AddEvent(int moduleId, String userName, String title, DateTime expireDate,
                                      String description, String wherewhen);
 
-        void UpdateEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
+        void UpdateEvent(int itemId, String userName, String title, DateTime expireDate,
                                          String description, String wherewhen);
     }
 }

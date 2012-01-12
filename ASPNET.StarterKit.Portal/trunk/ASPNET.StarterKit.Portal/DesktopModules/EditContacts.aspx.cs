@@ -94,13 +94,13 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId == 0)
                 {
                     // Add the contact within the contacts table
-                    contacts.AddContact(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
+                    contacts.AddContact(_moduleId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
                                         EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
                 else
                 {
                     // Update the contact within the contacts table
-                    contacts.UpdateContact(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
+                    contacts.UpdateContact( _itemId, Context.User.Identity.Name, NameField.Text,
                                            RoleField.Text,
                                            EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }

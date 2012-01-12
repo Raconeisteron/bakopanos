@@ -74,7 +74,7 @@ namespace ASPNET.StarterKit.Portal
             myConnection.Close();
         }
 
-        public int AddEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
+        public int AddEvent(int moduleId, String userName, String title, DateTime expireDate,
                             String description, String wherewhen)
         {
             if (userName.Length < 1)
@@ -128,7 +128,7 @@ namespace ASPNET.StarterKit.Portal
             return (int) parameterItemID.Value;
         }
 
-        public void UpdateEvent(int moduleId, int itemId, String userName, String title, DateTime expireDate,
+        public void UpdateEvent(int itemId, String userName, String title, DateTime expireDate,
                                 String description, String wherewhen)
         {
             if (userName.Length < 1)

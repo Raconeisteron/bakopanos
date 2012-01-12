@@ -73,7 +73,7 @@ namespace ASPNET.StarterKit.Portal
             myConnection.Close();
         }
 
-        public int AddAnnouncement(int moduleId, int itemId, String userName, String title, DateTime expireDate,
+        public int AddAnnouncement(int moduleId, String userName, String title, DateTime expireDate,
                                    String description, String moreLink, String mobileMoreLink)
         {
             if (userName.Length < 1)
@@ -129,7 +129,7 @@ namespace ASPNET.StarterKit.Portal
             return (int) parameterItemID.Value;
         }
 
-        public void UpdateAnnouncement(int moduleId, int itemId, String userName, String title, DateTime expireDate,
+        public void UpdateAnnouncement( int itemId, String userName, String title, DateTime expireDate,
                                        String description, String moreLink, String mobileMoreLink)
         {
             if (userName.Length < 1) userName = "unknown";

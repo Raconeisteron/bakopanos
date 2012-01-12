@@ -73,7 +73,7 @@ namespace ASPNET.StarterKit.Portal
             myConnection.Close();
         }
 
-        public int AddLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
+        public int AddLink(int moduleId, String userName, String title, String url, String mobileUrl,
                            int viewOrder, String description)
         {
             if (userName.Length < 1)
@@ -129,7 +129,7 @@ namespace ASPNET.StarterKit.Portal
             return (int) parameterItemID.Value;
         }
 
-        public void UpdateLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl,
+        public void UpdateLink(int itemId, String userName, String title, String url, String mobileUrl,
                                int viewOrder, String description)
         {
             if (userName.Length < 1)

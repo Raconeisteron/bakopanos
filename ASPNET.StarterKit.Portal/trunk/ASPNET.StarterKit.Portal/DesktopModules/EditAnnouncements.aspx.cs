@@ -95,14 +95,14 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId == 0)
                 {
                     // Add the announcement within the Announcements table
-                    announcementDb.AddAnnouncement(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                    announcementDb.AddAnnouncement(_moduleId, Context.User.Identity.Name, TitleField.Text,
                                                    DateTime.Parse(ExpireField.Text), DescriptionField.Text,
                                                    MoreLinkField.Text, MobileMoreField.Text);
                 }
                 else
                 {
                     // Update the announcement within the Announcements table
-                    announcementDb.UpdateAnnouncement(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                    announcementDb.UpdateAnnouncement(_itemId, Context.User.Identity.Name, TitleField.Text,
                                                       DateTime.Parse(ExpireField.Text), DescriptionField.Text,
                                                       MoreLinkField.Text, MobileMoreField.Text);
                 }

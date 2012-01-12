@@ -73,7 +73,7 @@ namespace ASPNET.StarterKit.Portal
             myConnection.Close();
         }
 
-        public int AddContact(int moduleId, int itemId, String userName, String name, String role, String email,
+        public int AddContact(int moduleId, String userName, String name, String role, String email,
                               String contact1, String contact2)
         {
             if (userName.Length < 1)
@@ -129,7 +129,7 @@ namespace ASPNET.StarterKit.Portal
             return (int) parameterItemID.Value;
         }
 
-        public void UpdateContact(int moduleId, int itemId, String userName, String name, String role, String email,
+        public void UpdateContact( int itemId, String userName, String name, String role, String email,
                                   String contact1, String contact2)
         {
             if (userName.Length < 1)

@@ -468,11 +468,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Global.asax.resx">
-      <DependentUpon>Global.asax.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Portal.Master" />
     <None Include="PortalCfg.xsc">
       <DependentUpon>PortalCfg.xsd</DependentUpon>

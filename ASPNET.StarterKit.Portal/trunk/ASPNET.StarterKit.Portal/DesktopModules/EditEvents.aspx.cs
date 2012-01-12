@@ -98,13 +98,13 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId == 0)
                 {
                     // Add the event within the Events table
-                    events.AddEvent(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                    events.AddEvent(_moduleId, Context.User.Identity.Name, TitleField.Text,
                                     DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
                 }
                 else
                 {
                     // Update the event within the Events table
-                    events.UpdateEvent(_moduleId, _itemId, Context.User.Identity.Name, TitleField.Text,
+                    events.UpdateEvent( _itemId, Context.User.Identity.Name, TitleField.Text,
                                        DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
                 }
 
