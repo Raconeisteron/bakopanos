@@ -1,5 +1,4 @@
 using System;
-using ASPNET.StarterKit.Portal.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -20,7 +19,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain contact information from Contacts table
             // and bind to the DataGrid Control
-            IContactsDb contacts = ComponentManager.Resolve<IContactsDb>();
+            var contacts = ComponentManager.Resolve<IContactsDb>();
 
             myDataGrid.DataSource = contacts.GetContacts(ModuleId);
             myDataGrid.DataBind();

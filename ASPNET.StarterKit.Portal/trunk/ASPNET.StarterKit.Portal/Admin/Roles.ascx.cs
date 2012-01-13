@@ -73,7 +73,7 @@ namespace ASPNET.StarterKit.Portal
 
         private void RolesList_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            var roles = ComponentManager.Resolve<IRolesDb>();            
+            var roles = ComponentManager.Resolve<IRolesDb>();
             var roleId = (int) rolesList.DataKeys[e.Item.ItemIndex];
 
             if (e.CommandName == "edit")

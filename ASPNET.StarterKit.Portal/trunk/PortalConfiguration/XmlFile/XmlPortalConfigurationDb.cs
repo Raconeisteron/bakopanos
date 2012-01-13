@@ -8,19 +8,21 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     /// tab configuration settings, module configuration settings and module 
     /// definition configuration settings from the PortalCfg.xml file.
     /// </summary>
-    internal class XmlPortalConfigurationDb : IPortalConfigurationDb
+    public class XmlPortalConfigurationDb : IPortalConfigurationDb
     {
-        private IConfigurationDb _configurationDb;
+        private readonly IConfigurationDb _configurationDb;
 
         public XmlPortalConfigurationDb(IConfigurationDb configurationDb)
         {
             _configurationDb = configurationDb;
         }
 
+        #region IPortalConfigurationDb Members
+
         public void UpdatePortalInfo(int portalId, String portalName, bool alwaysShow)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
             // Get first record of the "Global" element 
             SiteConfiguration.GlobalRow globalRow = siteSettings.Global.FindByPortalId(portalId);
@@ -33,5 +35,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             // Save the changes 
             _configurationDb.SaveSiteSettings();
         }
+
+        #endregion
     }
 }

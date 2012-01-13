@@ -1,5 +1,4 @@
 using System;
-using ASPNET.StarterKit.Portal.XmlFile;
 
 namespace ASPNET.StarterKit.Portal
 {

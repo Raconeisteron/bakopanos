@@ -8,14 +8,16 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     /// tab configuration settings, module configuration settings and module 
     /// definition configuration settings from the PortalCfg.xml file.
     /// </summary>
-    internal class XmlConfigurationDb : IConfigurationDb
+    public class XmlConfigurationDb : IConfigurationDb
     {
-        private string _configFile;
+        private readonly string _configFile;
 
         public XmlConfigurationDb(string configFile)
         {
             _configFile = configFile;
         }
+
+        #region IConfigurationDb Members
 
         /// <summary>
         /// This method is used in Global.asax to
@@ -87,5 +89,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             // Object is evicted from the Cache here.  
             siteSettings.WriteXml(configFile);
         }
+
+        #endregion
     }
 }

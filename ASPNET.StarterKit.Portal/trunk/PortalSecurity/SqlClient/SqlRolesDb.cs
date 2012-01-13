@@ -1,8 +1,7 @@
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNET.StarterKit.Portal.SqlClient
 {
     //*********************************************************************
     //
@@ -33,6 +32,8 @@ namespace ASPNET.StarterKit.Portal
         //     + <a href="GetRolesByUser.htm" style="color:green">GetPortalRoles Stored Procedure</a>
         //
         //*********************************************************************
+
+        #region IRolesDb Members
 
         public IDataReader GetPortalRoles(int portalId)
         {
@@ -314,5 +315,7 @@ namespace ASPNET.StarterKit.Portal
             // Return the datareader
             return dr;
         }
+
+        #endregion
     }
 }

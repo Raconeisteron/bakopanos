@@ -7,7 +7,7 @@ namespace ASPNET.StarterKit.Portal
         int AddTab(int portalId, String tabName, int tabOrder);
 
         void UpdateTab(int portalId, int tabId, String tabName, int tabOrder, String authorizedRoles,
-                                       String mobileTabName, bool showMobile);
+                       String mobileTabName, bool showMobile);
 
         void UpdateTabOrder(int tabId, int tabOrder);
 

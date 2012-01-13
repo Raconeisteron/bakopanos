@@ -2,7 +2,6 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
-using ASPNET.StarterKit.Portal.XmlFile;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -13,6 +12,7 @@ namespace ASPNET.StarterKit.Portal
     public class PortalSecurity : IPortalSecurity
     {
         private readonly IModuleConfigurationDb _moduleConfigurationDb;
+
         public PortalSecurity(IModuleConfigurationDb moduleConfigurationDb)
         {
             _moduleConfigurationDb = moduleConfigurationDb;
@@ -25,6 +25,8 @@ namespace ASPNET.StarterKit.Portal
         // The Encrypt method encrypts a clean string into a hashed string
         //
         //*********************************************************************
+
+        #region IPortalSecurity Members
 
         public string Encrypt(string cleanString)
         {
@@ -92,5 +94,7 @@ namespace ASPNET.StarterKit.Portal
             else
                 return true;
         }
+
+        #endregion
     }
 }

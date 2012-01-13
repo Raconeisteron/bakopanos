@@ -1,4 +1,3 @@
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -6,7 +5,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlHtmlTextsDb : IHtmlTextsDb
     {
-       private readonly string _connectionString;
+        private readonly string _connectionString;
 
         public SqlHtmlTextsDb(string connectionString)
         {

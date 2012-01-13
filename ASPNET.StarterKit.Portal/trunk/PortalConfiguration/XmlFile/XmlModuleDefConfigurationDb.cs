@@ -11,9 +11,9 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     /// tab configuration settings, module configuration settings and module 
     /// definition configuration settings from the PortalCfg.xml file.
     /// </summary>
-    internal class XmlModuleDefConfigurationDb : IModuleDefConfigurationDb
+    public class XmlModuleDefConfigurationDb : IModuleDefConfigurationDb
     {
-        private IConfigurationDb _configurationDb;
+        private readonly IConfigurationDb _configurationDb;
 
         public XmlModuleDefConfigurationDb(IConfigurationDb configurationDb)
         {
@@ -32,10 +32,13 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
+
+        #region IModuleDefConfigurationDb Members
+
         public DataRow[] GetModuleDefinitions(int portalId)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
             // Find the appropriate Module in the Module table
             return siteSettings.ModuleDefinition.Select();
@@ -56,7 +59,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public int AddModuleDefinition(int portalId, String name, String desktopSrc, String mobileSrc)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
             // Create new ModuleDefinitionRow
             SiteConfiguration.ModuleDefinitionRow newModuleDef = siteSettings.ModuleDefinition.NewModuleDefinitionRow();
@@ -95,7 +98,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public void DeleteModuleDefinition(int defId)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
             //
             // Delete information in the Database relating to each Module being deleted
@@ -155,7 +158,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public void UpdateModuleDefinition(int defId, String name, String desktopSrc, String mobileSrc)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
             // Find the appropriate Module in the Module table and update the properties
             SiteConfiguration.ModuleDefinitionRow modDefRow = siteSettings.ModuleDefinition.FindByModuleDefId(defId);
@@ -184,11 +187,13 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public ModuleDefinitionItem GetSingleModuleDefinition(int defId)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
             // Find the appropriate Module in the Module table
             return ToModuleDefinitionItem(siteSettings.ModuleDefinition.FindByModuleDefId(defId));
         }
+
+        #endregion
 
         private ModuleDefinitionItem ToModuleDefinitionItem(SiteConfiguration.ModuleDefinitionRow row)
         {

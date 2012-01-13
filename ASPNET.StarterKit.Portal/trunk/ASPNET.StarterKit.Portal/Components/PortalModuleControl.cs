@@ -2,7 +2,6 @@ using System.Collections;
 using System.ComponentModel;
 using System.Web;
 using System.Web.UI;
-using ASPNET.StarterKit.Portal.XmlFile;
 
 namespace ASPNET.StarterKit.Portal
 {

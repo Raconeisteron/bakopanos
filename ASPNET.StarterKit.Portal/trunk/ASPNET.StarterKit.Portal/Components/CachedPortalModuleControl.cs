@@ -60,7 +60,8 @@ namespace ASPNET.StarterKit.Portal
             get
             {
                 var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-                return "Key:" + GetType() + ModuleId + portalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles);
+                return "Key:" + GetType() + ModuleId +
+                       portalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles);
             }
         }
 

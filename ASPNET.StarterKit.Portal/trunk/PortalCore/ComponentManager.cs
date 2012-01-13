@@ -6,16 +6,15 @@ namespace ASPNET.StarterKit.Portal
 {
     public static class ComponentManager
     {
-        static IUnityContainer _container;
+        private static IUnityContainer _container;
 
         public static T Resolve<T>()
         {
             if (_container == null)
             {
                 _container = new UnityContainer();
-                var section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
+                var section = (UnityConfigurationSection) ConfigurationManager.GetSection("unity");
                 section.Configure(_container);
-
             }
             return _container.Resolve<T>();
         }

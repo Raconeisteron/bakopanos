@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNET.StarterKit.Portal.SqlClient
 {
     /// <summary>
     /// The UsersDB class encapsulates all data logic necessary to add/login/query
@@ -17,7 +16,7 @@ namespace ASPNET.StarterKit.Portal
     /// </summary>
     public class SqlUsersDb : IUsersDb
     {
-       private readonly string _connectionString;
+        private readonly string _connectionString;
 
         public SqlUsersDb(string connectionString)
         {
@@ -34,6 +33,8 @@ namespace ASPNET.StarterKit.Portal
         //     + <a href="AddUser.htm" style="color:green">AddUser Stored Procedure</a>
         //
         //*********************************************************************
+
+        #region IUsersDb Members
 
         public int AddUser(String fullName, string email, string password)
         {
@@ -315,5 +316,7 @@ namespace ASPNET.StarterKit.Portal
                 return String.Empty;
             }
         }
+
+        #endregion
     }
 }

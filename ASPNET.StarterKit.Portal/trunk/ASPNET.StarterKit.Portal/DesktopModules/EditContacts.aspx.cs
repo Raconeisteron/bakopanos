@@ -1,7 +1,6 @@
 using System;
 using System.Data;
 using System.Web.UI;
-using ASPNET.StarterKit.Portal.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -48,7 +47,7 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of contact information
-                IContactsDb contacts = ComponentManager.Resolve<IContactsDb>();
+                var contacts = ComponentManager.Resolve<IContactsDb>();
                 IDataReader dr = contacts.GetSingleContact(_itemId);
 
                 // Read first row from database
@@ -92,7 +91,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the ContactsDB component
-                IContactsDb contacts = ComponentManager.Resolve<IContactsDb>();
+                var contacts = ComponentManager.Resolve<IContactsDb>();
 
                 if (_itemId == 0)
                 {
@@ -128,7 +127,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                IContactsDb contacts = ComponentManager.Resolve<IContactsDb>();
+                var contacts = ComponentManager.Resolve<IContactsDb>();
                 contacts.DeleteContact(_itemId);
             }
 

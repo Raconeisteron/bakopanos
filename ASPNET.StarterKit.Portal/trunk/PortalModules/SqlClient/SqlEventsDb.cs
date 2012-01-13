@@ -1,5 +1,4 @@
 using System;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -7,12 +6,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlEventsDb : IEventsDb
     {
-       private readonly string _connectionString;
+        private readonly string _connectionString;
 
         public SqlEventsDb(string connectionString)
         {
             _connectionString = connectionString;
         }
+
         #region IEventsDb Members
 
         public IDataReader GetEvents(int moduleId)

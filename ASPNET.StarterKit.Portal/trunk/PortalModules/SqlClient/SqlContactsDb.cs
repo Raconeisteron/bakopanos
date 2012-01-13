@@ -1,4 +1,3 @@
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -6,7 +5,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlContactsDb : IContactsDb
     {
-       private readonly string _connectionString;
+        private readonly string _connectionString;
 
         public SqlContactsDb(string connectionString)
         {

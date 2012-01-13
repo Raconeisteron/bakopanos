@@ -11,19 +11,21 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     /// tab configuration settings, module configuration settings and module 
     /// definition configuration settings from the PortalCfg.xml file.
     /// </summary>
-    internal class XmlTabConfigurationDb : ITabConfigurationDb
+    public class XmlTabConfigurationDb : ITabConfigurationDb
     {
-        private IConfigurationDb _configurationDb;
+        private readonly IConfigurationDb _configurationDb;
 
         public XmlTabConfigurationDb(IConfigurationDb configurationDb)
         {
             _configurationDb = configurationDb;
         }
 
+        #region ITabConfigurationDb Members
+
         public int AddTab(int portalId, String tabName, int tabOrder)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
             // Create a new TabRow from the Tab table
             SiteConfiguration.TabRow newRow = siteSettings.Tab.NewTabRow();
@@ -49,7 +51,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
                               String mobileTabName, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
             // Find the appropriate tab in the Tab table and set the properties
             SiteConfiguration.TabRow tabRow = siteSettings.Tab.FindByTabId(tabId);
@@ -67,7 +69,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public void UpdateTabOrder(int tabId, int tabOrder)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
             // Find the appropriate tab in the Tab table and set the property
             SiteConfiguration.TabRow tabRow = siteSettings.Tab.FindByTabId(tabId);
@@ -92,7 +94,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             //
 
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
 
             // Find the appropriate tab in the Tab table
             SiteConfiguration.TabDataTable tabTable = siteSettings.Tab;
@@ -133,5 +135,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             // Save the changes 
             _configurationDb.SaveSiteSettings();
         }
+
+        #endregion
     }
 }
