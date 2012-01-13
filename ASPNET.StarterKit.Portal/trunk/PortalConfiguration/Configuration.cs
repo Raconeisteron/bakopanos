@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web;
 using System.Web.Caching;
+using ASPNET.StarterKit.Portal.XmlFile;
 
 namespace ASPNET.StarterKit.Portal
 {

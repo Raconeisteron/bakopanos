@@ -66,7 +66,7 @@
     <Content Include="Admin\TabLayout.aspx" />
     <Content Include="Admin\Tabs.ascx" />
     <Content Include="Admin\Users.ascx" />
-    <Content Include="ASPNETPortal.css" />
+    <Content Include="App_Themes\Default\Default.css" />
     <Content Include="Data\Admin.gif" />
     <Content Include="Data\config_auth_forms.gif" />
     <Content Include="Data\config_auth_win.gif" />
@@ -267,12 +267,10 @@
     <Compile Include="Admin\Users.ascx.designer.cs">
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Components\Configuration.cs" />
     <Compile Include="Components\CachedPortalModuleControl.cs" />
     <Compile Include="Components\PortalModuleControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Components\PortalSecurity.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -458,32 +456,18 @@
     <Compile Include="Portal.Master.designer.cs">
       <DependentUpon>Portal.Master</DependentUpon>
     </Compile>
-    <Compile Include="PortalCfg.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PortalCfg.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Portal.Master" />
-    <None Include="PortalCfg.xsc">
-      <DependentUpon>PortalCfg.xsd</DependentUpon>
-    </None>
-    <None Include="PortalCfg.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>PortalCfg.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="PortalCfg.xss">
-      <DependentUpon>PortalCfg.xsd</DependentUpon>
-    </None>
     <None Include="Uploads\sample.doc" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="App_Themes\Default\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\PortalConfiguration\PortalConfiguration.csproj">
+      <Project>{53ED8DED-F1F8-4826-A76F-1201E3DFEA8E}</Project>
+      <Name>PortalConfiguration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PortalModules\PortalModules.csproj">
       <Project>{415A7800-27CF-4194-B419-346C7245E783}</Project>
       <Name>PortalModules</Name>

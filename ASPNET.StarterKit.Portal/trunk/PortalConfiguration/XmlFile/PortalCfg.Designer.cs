@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace ASPNET.StarterKit.Portal {
+namespace ASPNET.StarterKit.Portal.XmlFile {
     
     
     /// <summary>
