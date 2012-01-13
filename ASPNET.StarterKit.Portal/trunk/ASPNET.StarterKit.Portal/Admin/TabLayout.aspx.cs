@@ -69,7 +69,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // reload the portalSettings from the database
-            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, _tabId);
+            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.Portal.PortalId, _tabId);
 
             // reorder the modules in the content pane
             List<ModuleItem> modules = GetModules("ContentPane");
@@ -175,7 +175,7 @@ namespace ASPNET.StarterKit.Portal
                 var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
                 // reload the portalSettings from the database
-                HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, _tabId);
+                HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.Portal.PortalId, _tabId);
 
                 // reorder the modules in the source pane
                 sourceList = GetModules(sourcePane);
@@ -268,7 +268,7 @@ namespace ASPNET.StarterKit.Portal
 
             // update Tab info in the database
             var config = ComponentManager.Resolve<ITabConfigurationDb>();
-            config.UpdateTab(portalSettings.PortalId, _tabId, tabName.Text, portalSettings.ActiveTab.TabOrder,
+            config.UpdateTab(portalSettings.Portal.PortalId, _tabId, tabName.Text, portalSettings.ActiveTab.TabOrder,
                              authorizedRoles, mobileTabName.Text, showMobile.Checked);
         }
 
@@ -343,7 +343,7 @@ namespace ASPNET.StarterKit.Portal
             // Populate checkbox list with all security roles for this portal
             // and "check" the ones already configured for this tab
             var rolesObj = ComponentManager.Resolve<IRolesDb>();
-            IDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
+            IDataReader roles = rolesObj.GetPortalRoles(portalSettings.Portal.PortalId);
 
             // Clear existing items in checkboxlist
             authRoles.Items.Clear();
@@ -374,7 +374,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Populate the "Add Module" Data
             var config = ComponentManager.Resolve<IModuleDefConfigurationDb>();
-            moduleType.DataSource = config.GetModuleDefinitions(portalSettings.PortalId);
+            moduleType.DataSource = config.GetModuleDefinitions(portalSettings.Portal.PortalId);
             moduleType.DataBind();
 
             // Populate Right Hand Module Data

@@ -154,10 +154,10 @@ namespace ASPNET.StarterKit.Portal
             // write tab to database
             var config = ComponentManager.Resolve<ITabConfigurationDb>();
 
-            t.TabId = config.AddTab(portalSettings.PortalId, t.TabName, t.TabOrder);
+            t.TabId = config.AddTab(portalSettings.Portal.PortalId, t.TabName, t.TabOrder);
 
             // reload the _portalSettings from the database
-            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, t.TabId);
+            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.Portal.PortalId, t.TabId);
 
             // Reset the order numbers for the tabs within the list  
             OrderTabs();

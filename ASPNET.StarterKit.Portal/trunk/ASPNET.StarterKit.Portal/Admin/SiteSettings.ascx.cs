@@ -27,8 +27,8 @@ namespace ASPNET.StarterKit.Portal
                 // Obtain PortalSettings from Current Context
                 var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
-                siteName.Text = portalSettings.PortalName;
-                showEdit.Checked = portalSettings.AlwaysShowEditButton;
+                siteName.Text = portalSettings.Portal.PortalName;
+                showEdit.Checked = portalSettings.Portal.AlwaysShowEditButton;
             }
         }
 
@@ -46,7 +46,7 @@ namespace ASPNET.StarterKit.Portal
 
             // update Tab info in the database
             var config = ComponentManager.Resolve<IPortalConfigurationDb>();
-            config.UpdatePortalInfo(portalSettings.PortalId, siteName.Text, showEdit.Checked);
+            config.UpdatePortalInfo(portalSettings.Portal.PortalId, siteName.Text, showEdit.Checked);
 
             // Redirect to this site to refresh
             Response.Redirect(Request.RawUrl);

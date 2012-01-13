@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalItem.cs" />
     <Compile Include="IConfigurationDb.cs" />
     <Compile Include="IModuleConfigurationDb.cs" />
     <Compile Include="IModuleDefConfigurationDb.cs" />

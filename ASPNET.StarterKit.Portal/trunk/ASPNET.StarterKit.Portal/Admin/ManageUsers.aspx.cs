@@ -198,7 +198,7 @@ namespace ASPNET.StarterKit.Portal
             var roles = ComponentManager.Resolve<IRolesDb>();
 
             // bind all portal roles to dropdownlist
-            allRoles.DataSource = roles.GetPortalRoles(portalSettings.PortalId);
+            allRoles.DataSource = roles.GetPortalRoles(portalSettings.Portal.PortalId);
             allRoles.DataBind();
         }
 

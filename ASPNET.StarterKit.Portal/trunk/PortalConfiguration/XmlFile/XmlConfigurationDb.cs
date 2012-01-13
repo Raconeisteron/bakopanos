@@ -37,7 +37,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         /// returns a typed dataset of the all of the site configuration settings from the
         /// XML configuration file.
         ///</returns>
-        public SiteConfiguration GetSiteSettings()
+        public object GetSiteSettings()
         {
             var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
 
@@ -82,7 +82,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
                 // If SaveSiteSettings() is called once, the cache is cleared.  If it is
                 // then called again before Global.Application_BeginRequest is called, 
                 // which reloads the cache, the siteSettings object will be Null 
-                siteSettings = GetSiteSettings();
+                siteSettings = (SiteConfiguration) GetSiteSettings();
             }
             string configFile = HttpContext.Current.Server.MapPath(_configFile);
 

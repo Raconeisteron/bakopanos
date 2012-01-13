@@ -46,7 +46,7 @@ namespace ASPNET.StarterKit.Portal
                     var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
                     var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
 
-                    if (portalSettings.AlwaysShowEditButton ||
+                    if (portalSettings.Portal.AlwaysShowEditButton ||
                         portalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles))
                     {
                         _isEditable = 1;

@@ -87,7 +87,7 @@ namespace ASPNET.StarterKit.Portal
                     var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
                     // Add a new module definition to the database
-                    config.AddModuleDefinition(portalSettings.PortalId, FriendlyName.Text, DesktopSrc.Text,
+                    config.AddModuleDefinition(portalSettings.Portal.PortalId, FriendlyName.Text, DesktopSrc.Text,
                                                MobileSrc.Text);
                 }
                 else

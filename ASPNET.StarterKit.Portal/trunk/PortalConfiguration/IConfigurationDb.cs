@@ -1,10 +1,8 @@
-using ASPNET.StarterKit.Portal.XmlFile;
-
 namespace ASPNET.StarterKit.Portal
 {
     public interface IConfigurationDb
     {
-        SiteConfiguration GetSiteSettings();
+        object GetSiteSettings();
         void SaveSiteSettings();
     }
 }

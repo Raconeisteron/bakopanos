@@ -18,7 +18,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
 
             // Dynamically Populate the Portal Site Name
-            siteName.Text = portalSettings.PortalName;
+            siteName.Text = portalSettings.Portal.PortalName;
 
             // If user logged in, customize welcome message
             if (Request.IsAuthenticated)

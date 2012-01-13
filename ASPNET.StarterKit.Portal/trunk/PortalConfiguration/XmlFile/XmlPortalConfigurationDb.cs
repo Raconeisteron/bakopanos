@@ -19,6 +19,21 @@ namespace ASPNET.StarterKit.Portal.XmlFile
 
         #region IPortalConfigurationDb Members
 
+        public GlobalItem FindPortal()
+        {
+            // Obtain SiteSettings from Current Context
+            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
+
+            var globalSettings = (SiteConfiguration.GlobalRow)siteSettings.Global.Rows[0];
+
+            // Read Portal global settings 
+            var globalItem = new GlobalItem();
+            globalItem.PortalId = globalSettings.PortalId;
+            globalItem.PortalName = globalSettings.PortalName;
+            globalItem.AlwaysShowEditButton = globalSettings.AlwaysShowEditButton;
+            return globalItem;
+        }
+
         public void UpdatePortalInfo(int portalId, String portalName, bool alwaysShow)
         {
             // Obtain SiteSettings from Current Context

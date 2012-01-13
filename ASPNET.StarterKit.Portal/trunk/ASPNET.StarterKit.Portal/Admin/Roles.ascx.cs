@@ -54,7 +54,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Add a new role to the database
             var roles = ComponentManager.Resolve<IRolesDb>();
-            roles.AddRole(portalSettings.PortalId, "New Role");
+            roles.AddRole(portalSettings.Portal.PortalId, "New Role");
 
             // set the edit item index to the last item
             rolesList.EditItemIndex = rolesList.Items.Count;
@@ -136,7 +136,7 @@ namespace ASPNET.StarterKit.Portal
             // Get the portal's roles from the database
             var roles = ComponentManager.Resolve<IRolesDb>();
 
-            rolesList.DataSource = roles.GetPortalRoles(portalSettings.PortalId);
+            rolesList.DataSource = roles.GetPortalRoles(portalSettings.Portal.PortalId);
             rolesList.DataBind();
         }
 

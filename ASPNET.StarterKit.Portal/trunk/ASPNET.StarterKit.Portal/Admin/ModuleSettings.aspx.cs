@@ -86,7 +86,7 @@ namespace ASPNET.StarterKit.Portal
                 // and "check" the ones already configured for this module
                 var rolesObj = ComponentManager.Resolve<IRolesDb>();
 
-                IDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
+                IDataReader roles = rolesObj.GetPortalRoles(portalSettings.Portal.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();
@@ -147,7 +147,7 @@ namespace ASPNET.StarterKit.Portal
                 // and "check" the ones already configured for this module
                 var rolesObj = ComponentManager.Resolve<IRolesDb>();
 
-                IDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
+                IDataReader roles = rolesObj.GetPortalRoles(portalSettings.Portal.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();

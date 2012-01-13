@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -22,10 +23,109 @@ namespace ASPNET.StarterKit.Portal.XmlFile
 
         #region ITabConfigurationDb Members
 
+
+        public List<TabStripDetails> FindDesktopTabs()
+        {
+            var desktopTabs = new List<TabStripDetails>();
+
+            // Obtain SiteSettings from Current Context
+            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
+
+            // Read the Desktop Tab Information, and sort by Tab Order
+            DataRow[] tabs = siteSettings.Tab.Select("", "TabOrder");
+            foreach (SiteConfiguration.TabRow tRow in tabs)
+            {
+                var tabDetails = new TabStripDetails();
+
+                tabDetails.TabId = tRow.TabId;
+                tabDetails.TabName = tRow.TabName;
+                tabDetails.TabOrder = tRow.TabOrder;
+                tabDetails.AuthorizedRoles = tRow.AccessRoles;
+
+                desktopTabs.Add(tabDetails);
+            }
+            return desktopTabs;
+        }
+        
+        public List<TabStripDetails> FindMobileTabs()
+        {
+            var mobileTabs = new List<TabStripDetails>();
+            // Obtain SiteSettings from Current Context
+            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
+            DataRow[] tabs = siteSettings.Tab.Select("ShowMobile='true'", "TabOrder");
+            // Read the Mobile Tab Information, and sort by Tab Order
+            foreach (SiteConfiguration.TabRow mRow in tabs)
+            {
+                var tabDetails = new TabStripDetails();
+
+                tabDetails.TabId = mRow.TabId;
+                tabDetails.TabName = mRow.MobileTabName;
+                tabDetails.AuthorizedRoles = mRow.AccessRoles;
+
+                mobileTabs.Add(tabDetails);
+            }
+            return mobileTabs;
+        }
+
+        public List<ModuleSettings> FindModules(int tabId)
+        {
+            var moduleSettingsList = new List<ModuleSettings>();
+
+            // Obtain SiteSettings from Current Context
+            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
+
+            // Read the Module Information for the current (Active) tab
+            SiteConfiguration.TabRow activeTab = siteSettings.Tab.FindByTabId(tabId);
+
+            // Get Modules for this Tab based on the Data Relation
+            foreach (SiteConfiguration.ModuleRow moduleRow in activeTab.GetModuleRows())
+            {
+                var moduleSettings = new ModuleSettings();
+
+                moduleSettings.ModuleTitle = moduleRow.ModuleTitle;
+                moduleSettings.ModuleId = moduleRow.ModuleId;
+                moduleSettings.ModuleDefId = moduleRow.ModuleDefId;
+                moduleSettings.ModuleOrder = moduleRow.ModuleOrder;
+                moduleSettings.TabId = tabId;
+                moduleSettings.PaneName = moduleRow.PaneName;
+                moduleSettings.AuthorizedEditRoles = moduleRow.EditRoles;
+                moduleSettings.CacheTime = moduleRow.CacheTimeout;
+                moduleSettings.ShowMobile = moduleRow.ShowMobile;
+
+                // ModuleDefinition data
+                SiteConfiguration.ModuleDefinitionRow modDefRow =
+                    siteSettings.ModuleDefinition.FindByModuleDefId(moduleSettings.ModuleDefId);
+
+                moduleSettings.DesktopSrc = modDefRow.DesktopSourceFile;
+                moduleSettings.MobileSrc = modDefRow.MobileSourceFile;
+
+                moduleSettingsList.Add(moduleSettings);
+            }
+            return moduleSettingsList;
+        }
+
+        public TabSettings FindTab(int tabId)
+        {
+            // Obtain SiteSettings from Current Context
+            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
+
+            SiteConfiguration.TabRow tabRow = siteSettings.Tab.FindByTabId(tabId);
+
+            var tabSettings = new TabSettings();
+            tabSettings.TabId = tabId;
+            tabSettings.TabOrder = tabRow.TabOrder;
+            tabSettings.MobileTabName = tabRow.MobileTabName;
+            tabSettings.AuthorizedRoles = tabRow.AccessRoles;
+            tabSettings.TabName = tabRow.TabName;
+            tabSettings.ShowMobile = tabRow.ShowMobile;
+
+            return tabSettings;
+        }
+
         public int AddTab(int portalId, String tabName, int tabOrder)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
 
             // Create a new TabRow from the Tab table
             SiteConfiguration.TabRow newRow = siteSettings.Tab.NewTabRow();

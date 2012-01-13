@@ -67,7 +67,7 @@ namespace ASPNET.StarterKit.Portal
                     {
                         var portalModule = (PortalModuleControl) Page.LoadControl(moduleSettings.DesktopSrc);
 
-                        portalModule.PortalId = portalSettings.PortalId;
+                        portalModule.PortalId = portalSettings.Portal.PortalId;
                         portalModule.ModuleConfiguration = moduleSettings;
 
                         parent.Controls.Add(portalModule);
@@ -76,7 +76,7 @@ namespace ASPNET.StarterKit.Portal
                     {
                         var portalModule = new CachedPortalModuleControl();
 
-                        portalModule.PortalId = portalSettings.PortalId;
+                        portalModule.PortalId = portalSettings.Portal.PortalId;
                         portalModule.ModuleConfiguration = moduleSettings;
 
                         parent.Controls.Add(portalModule);

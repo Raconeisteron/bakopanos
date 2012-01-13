@@ -24,7 +24,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Display the Edit button if the parent portalmodule has configured the PortalModuleTitle User Control
             // to display it -- and the current client has edit access permissions
-            if (portalSettings.AlwaysShowEditButton ||
+            if (portalSettings.Portal.AlwaysShowEditButton ||
                 (portalSecurity.IsInRoles(portalModule.ModuleConfiguration.AuthorizedEditRoles)) && (EditText != null))
             {
                 EditButton.Text = EditText;

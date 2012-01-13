@@ -1,9 +1,16 @@
 using System;
+using System.Collections.Generic;
 
 namespace ASPNET.StarterKit.Portal
 {
     public interface ITabConfigurationDb
     {
+
+        List<TabStripDetails> FindDesktopTabs();
+        List<TabStripDetails> FindMobileTabs();
+        List<ModuleSettings> FindModules(int tabId);
+        TabSettings FindTab(int tabId);
+
         int AddTab(int portalId, String tabName, int tabOrder);
 
         void UpdateTab(int portalId, int tabId, String tabName, int tabOrder, String authorizedRoles,

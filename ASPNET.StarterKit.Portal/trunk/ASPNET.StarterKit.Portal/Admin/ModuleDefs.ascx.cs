@@ -86,7 +86,7 @@ namespace ASPNET.StarterKit.Portal
 
             var config = ComponentManager.Resolve<IModuleDefConfigurationDb>();
 
-            defsList.DataSource = config.GetModuleDefinitions(portalSettings.PortalId);
+            defsList.DataSource = config.GetModuleDefinitions(portalSettings.Portal.PortalId);
             defsList.DataBind();
         }
 

@@ -22,7 +22,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile {
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
     [global::System.Xml.Serialization.XmlRootAttribute("SiteConfiguration")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class SiteConfiguration : global::System.Data.DataSet {
+    internal partial class SiteConfiguration : global::System.Data.DataSet {
         
         private GlobalDataTable tableGlobal;
         
