@@ -1,5 +1,3 @@
-using System;
-using System.Configuration;
 using System.Web;
 using System.Web.Caching;
 
@@ -12,6 +10,13 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     /// </summary>
     internal class XmlConfigurationDb : IConfigurationDb
     {
+        private string _configFile;
+
+        public XmlConfigurationDb(string configFile)
+        {
+            _configFile = configFile;
+        }
+
         /// <summary>
         /// This method is used in Global.asax to
         /// push the settings into the current HttpContext, so that all of the 
@@ -41,7 +46,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
                 siteSettings = new SiteConfiguration();
 
                 // Retrieve the location of the XML configuration file
-                string configFile = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["configFile"]);
+                string configFile = HttpContext.Current.Server.MapPath(_configFile);
 
                 // Set the AutoIncrement property to true for easier adding of rows
                 siteSettings.Tab.TabIdColumn.AutoIncrement = true;
@@ -77,7 +82,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
                 // which reloads the cache, the siteSettings object will be Null 
                 siteSettings = GetSiteSettings();
             }
-            string configFile = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["configFile"]);
+            string configFile = HttpContext.Current.Server.MapPath(_configFile);
 
             // Object is evicted from the Cache here.  
             siteSettings.WriteXml(configFile);

@@ -13,6 +13,13 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     /// </summary>
     internal class XmlTabConfigurationDb : ITabConfigurationDb
     {
+        private IConfigurationDb _configurationDb;
+
+        public XmlTabConfigurationDb(IConfigurationDb configurationDb)
+        {
+            _configurationDb = configurationDb;
+        }
+
         public int AddTab(int portalId, String tabName, int tabOrder)
         {
             // Obtain SiteSettings from Current Context
@@ -32,8 +39,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             siteSettings.Tab.AddTabRow(newRow);
 
             // Save the changes 
-            var config = new XmlConfigurationDb();
-            config.SaveSiteSettings();
+            _configurationDb.SaveSiteSettings();
 
             // Return the new TabID
             return newRow.TabId;
@@ -54,9 +60,8 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             tabRow.MobileTabName = mobileTabName;
             tabRow.ShowMobile = showMobile;
 
-            // Save the changes
-            var config = new XmlConfigurationDb(); 
-            config.SaveSiteSettings();
+            // Save the changes 
+            _configurationDb.SaveSiteSettings();
         }
 
         public void UpdateTabOrder(int tabId, int tabOrder)
@@ -70,8 +75,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             tabRow.TabOrder = tabOrder;
 
             // Save the changes 
-            var config = new XmlConfigurationDb();
-            config.SaveSiteSettings();
+            _configurationDb.SaveSiteSettings();
         }
 
         /// <summary>
@@ -127,8 +131,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             tabTable.RemoveTabRow(tabRow);
 
             // Save the changes 
-            var config = new XmlConfigurationDb();
-            config.SaveSiteSettings();
+            _configurationDb.SaveSiteSettings();
         }
     }
 }

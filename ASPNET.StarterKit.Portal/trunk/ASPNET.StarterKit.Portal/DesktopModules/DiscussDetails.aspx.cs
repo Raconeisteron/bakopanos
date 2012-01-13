@@ -78,7 +78,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Create new discussion database component
-            IDiscussionsDb discuss = new SqlDiscussionsDb();
+            IDiscussionsDb discuss = ComponentManager.Resolve<IDiscussionsDb>();
 
             // Add new message (updating the "itemId" on the page)
             _itemId = discuss.AddMessage(_moduleId, _itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
@@ -119,7 +119,7 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Obtain the selected item from the Discussion table
-            IDiscussionsDb discuss = new SqlDiscussionsDb();
+            IDiscussionsDb discuss = ComponentManager.Resolve<IDiscussionsDb>();
             IDataReader dr = discuss.GetSingleMessage(_itemId);
 
             // Load first row from database

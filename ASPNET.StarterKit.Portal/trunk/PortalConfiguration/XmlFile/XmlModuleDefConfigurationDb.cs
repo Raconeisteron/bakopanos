@@ -13,7 +13,12 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     /// </summary>
     internal class XmlModuleDefConfigurationDb : IModuleDefConfigurationDb
     {
+        private IConfigurationDb _configurationDb;
 
+        public XmlModuleDefConfigurationDb(IConfigurationDb configurationDb)
+        {
+            _configurationDb = configurationDb;
+        }
 
         //*********************************************************************
         //
@@ -65,8 +70,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             siteSettings.ModuleDefinition.AddModuleDefinitionRow(newModuleDef);
 
             // Save the changes
-            var config = new XmlConfigurationDb();
-            config.SaveSiteSettings();
+            _configurationDb.SaveSiteSettings();
 
             // Return the new ModuleDefID
             return newModuleDef.ModuleDefId;
@@ -133,8 +137,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
                 siteSettings.ModuleDefinition.FindByModuleDefId(defId));
 
             // Save the changes 
-            var config = new XmlConfigurationDb();
-            config.SaveSiteSettings();
+            _configurationDb.SaveSiteSettings();
         }
 
         //*********************************************************************
@@ -162,8 +165,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             modDefRow.MobileSourceFile = mobileSrc;
 
             // Save the changes 
-            var config = new XmlConfigurationDb();
-            config.SaveSiteSettings();
+            _configurationDb.SaveSiteSettings();
         }
 
         //*********************************************************************

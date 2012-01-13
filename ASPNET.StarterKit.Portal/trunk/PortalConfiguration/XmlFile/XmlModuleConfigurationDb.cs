@@ -14,6 +14,12 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     /// </summary>
     internal class XmlModuleConfigurationDb : IModuleConfigurationDb
     {
+        private IConfigurationDb _configurationDb;
+
+        public XmlModuleConfigurationDb(IConfigurationDb configurationDb)
+        {
+            _configurationDb = configurationDb;
+        }
 
         public ModuleAuthorization FindModuleRolesByModuleId(int moduleId)
         {
@@ -55,7 +61,8 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             moduleRow.PaneName = pane;
 
             // Save the changes 
-            IConfigurationDb config = new XmlConfigurationDb();
+            IConfigurationDb config = ComponentManager.Resolve<IConfigurationDb>();
+
             config.SaveSiteSettings();
         }
 
@@ -95,7 +102,8 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             siteSettings.Module.AddModuleRow(newModule);
 
             // Save the changes
-            IConfigurationDb config = new XmlConfigurationDb();
+            IConfigurationDb config = ComponentManager.Resolve<IConfigurationDb>();
+
             config.SaveSiteSettings();
 
             // Return the new Module ID
@@ -133,8 +141,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             moduleRow.ShowMobile = showMobile;
 
             // Save the changes 
-            IConfigurationDb config = new XmlConfigurationDb();
-            config.SaveSiteSettings();
+            _configurationDb.SaveSiteSettings();
 
             // Return the existing Module ID
             return moduleId;
@@ -186,8 +193,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             siteSettings.Module.RemoveModuleRow(siteSettings.Module.FindByModuleId(moduleId));
 
             // Save the changes 
-            IConfigurationDb config = new XmlConfigurationDb();
-            config.SaveSiteSettings();
+            _configurationDb.SaveSiteSettings();
         }
 
 
@@ -299,8 +305,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             }
 
             // Save the changes 
-            var config = new XmlConfigurationDb();
-            config.SaveSiteSettings();
+            _configurationDb.SaveSiteSettings();
         }
 
         //*********************************************************************

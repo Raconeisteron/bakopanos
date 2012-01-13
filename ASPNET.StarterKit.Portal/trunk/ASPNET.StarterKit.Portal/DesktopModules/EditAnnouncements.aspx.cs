@@ -48,7 +48,7 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of announcement information
-                IAnnouncementsDb announcementDb = new SqlAnnouncementsDb();
+                IAnnouncementsDb announcementDb = ComponentManager.Resolve<IAnnouncementsDb>();
                 IDataReader dr = announcementDb.GetSingleAnnouncement(_itemId);
 
                 // Load first row into DataReader
@@ -92,7 +92,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Announcement DB component
-                IAnnouncementsDb announcementDb = new SqlAnnouncementsDb();
+                IAnnouncementsDb announcementDb = ComponentManager.Resolve<IAnnouncementsDb>();
 
                 if (_itemId == 0)
                 {
@@ -129,7 +129,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                IAnnouncementsDb announcementDb = new SqlAnnouncementsDb();
+                IAnnouncementsDb announcementDb = ComponentManager.Resolve<IAnnouncementsDb>();
                 announcementDb.DeleteAnnouncement(_itemId);
             }
 

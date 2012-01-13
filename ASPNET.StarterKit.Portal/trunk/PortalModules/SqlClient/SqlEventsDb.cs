@@ -7,9 +7,12 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlEventsDb : IEventsDb
     {
-        private readonly string _connectionString =
-            ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+       private readonly string _connectionString;
 
+        public SqlEventsDb(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
         #region IEventsDb Members
 
         public IDataReader GetEvents(int moduleId)

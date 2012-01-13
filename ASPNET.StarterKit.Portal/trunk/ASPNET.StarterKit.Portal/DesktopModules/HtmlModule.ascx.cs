@@ -17,7 +17,7 @@ namespace ASPNET.StarterKit.Portal
         protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain the selected item from the HtmlText table
-            IHtmlTextsDb text = new SqlHtmlTextsDb();
+            IHtmlTextsDb text = ComponentManager.Resolve<IHtmlTextsDb>();
             IDataReader dr = text.GetHtmlText(ModuleId);
 
             if (dr.Read())

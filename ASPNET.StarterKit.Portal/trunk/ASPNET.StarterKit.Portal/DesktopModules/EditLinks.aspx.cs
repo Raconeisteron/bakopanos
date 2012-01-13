@@ -48,7 +48,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of link information
-                    ILinksDb links = new SqlLinksDb();
+                    ILinksDb links = ComponentManager.Resolve<ILinksDb>();
                     IDataReader dr = links.GetSingleLink(_itemId);
 
                     // Read in first row from database
@@ -92,7 +92,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Link DB component
-                ILinksDb links = new SqlLinksDb();
+                ILinksDb links = ComponentManager.Resolve<ILinksDb>();
 
                 if (_itemId == 0)
                 {
@@ -127,7 +127,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                ILinksDb links = new SqlLinksDb();
+                ILinksDb links = ComponentManager.Resolve<ILinksDb>();
                 links.DeleteLink(_itemId);
             }
 

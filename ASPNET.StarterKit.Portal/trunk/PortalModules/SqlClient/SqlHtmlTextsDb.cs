@@ -6,8 +6,12 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlHtmlTextsDb : IHtmlTextsDb
     {
-        private readonly string _connectionString =
-            ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+       private readonly string _connectionString;
+
+        public SqlHtmlTextsDb(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
 
         #region IHtmlTextsDb Members
 

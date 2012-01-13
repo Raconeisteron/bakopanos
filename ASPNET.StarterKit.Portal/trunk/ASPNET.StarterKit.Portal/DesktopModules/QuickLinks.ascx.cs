@@ -28,7 +28,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the list control
-            ILinksDb links = new SqlLinksDb();
+            ILinksDb links = ComponentManager.Resolve<ILinksDb>();
 
             myDataList.DataSource = links.GetLinks(ModuleId);
             myDataList.DataBind();

@@ -14,8 +14,13 @@ namespace ASPNET.StarterKit.Portal
     //*********************************************************************
     public class SqlRolesDb : IRolesDb
     {
-        private readonly string _connectionString =
-            ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        private readonly string _connectionString;
+
+        public SqlRolesDb(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
 
         //*********************************************************************
         //

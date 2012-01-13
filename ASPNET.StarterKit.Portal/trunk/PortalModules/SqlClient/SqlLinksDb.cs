@@ -6,8 +6,12 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlLinksDb : ILinksDb
     {
-        private readonly string _connectionString =
-            ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+       private readonly string _connectionString;
+
+        public SqlLinksDb(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
 
         #region ILinksDb Members
 

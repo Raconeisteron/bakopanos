@@ -48,7 +48,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of document information
-                    IDocumentsDb documents = new SqlDocumentsDb();
+                    IDocumentsDb documents = ComponentManager.Resolve<IDocumentsDb>();
                     IDataReader dr = documents.GetSingleDocument(_itemId);
 
                     // Load first row into Datareader
@@ -90,7 +90,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsValid)
             {
                 // Create an instance of the Document DB component
-                IDocumentsDb documents = new SqlDocumentsDb();
+                IDocumentsDb documents = ComponentManager.Resolve<IDocumentsDb>();
 
                 // Determine whether a file was uploaded
 
@@ -147,7 +147,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                IDocumentsDb documents = new SqlDocumentsDb();
+                IDocumentsDb documents = ComponentManager.Resolve<IDocumentsDb>();
                 documents.DeleteDocument(_itemId);
             }
 

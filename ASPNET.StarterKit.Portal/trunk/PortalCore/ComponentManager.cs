@@ -16,12 +16,6 @@ namespace ASPNET.StarterKit.Portal
                 var section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
                 section.Configure(_container);
 
-                _container.Resolve<IUnit>("PortalConfigurationUnit").Configure(ConfigurationManager.AppSettings["PortalConfigurationUnit"]);
-                _container.Resolve<IUnit>("PortalModulesUnit").Configure(ConfigurationManager.AppSettings["PortalModulesUnit"]);
-                _container.Resolve<IUnit>("PortalSecurityUnit").Configure(ConfigurationManager.AppSettings["PortalSecurityUnit"]);
-
-                // additional container initialization 
-                _container.RegisterInstance(ConfigurationManager.ConnectionStrings["connectionString"]);
             }
             return _container.Resolve<T>();
         }

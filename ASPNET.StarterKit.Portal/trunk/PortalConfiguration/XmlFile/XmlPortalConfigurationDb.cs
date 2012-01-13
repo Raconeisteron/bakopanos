@@ -10,6 +10,13 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     /// </summary>
     internal class XmlPortalConfigurationDb : IPortalConfigurationDb
     {
+        private IConfigurationDb _configurationDb;
+
+        public XmlPortalConfigurationDb(IConfigurationDb configurationDb)
+        {
+            _configurationDb = configurationDb;
+        }
+
         public void UpdatePortalInfo(int portalId, String portalName, bool alwaysShow)
         {
             // Obtain SiteSettings from Current Context
@@ -24,8 +31,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             globalRow.AlwaysShowEditButton = alwaysShow;
 
             // Save the changes 
-            var config = new XmlConfigurationDb();
-            config.SaveSiteSettings();
+            _configurationDb.SaveSiteSettings();
         }
     }
 }

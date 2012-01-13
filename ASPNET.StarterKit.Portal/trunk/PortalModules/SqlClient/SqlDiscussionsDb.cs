@@ -7,8 +7,12 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlDiscussionsDb : IDiscussionsDb
     {
-        private readonly string _connectionString =
-            ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        private readonly string _connectionString;
+
+        public SqlDiscussionsDb(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
 
         #region IDiscussionsDb Members
 

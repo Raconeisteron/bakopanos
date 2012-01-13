@@ -18,7 +18,7 @@ namespace ASPNET.StarterKit.Portal
             MobileTabs = new List<TabStripDetails>();
 
             // Get the configuration data
-            IConfigurationDb config = new XmlConfigurationDb();
+            IConfigurationDb config = ComponentManager.Resolve<IConfigurationDb>();
             SiteConfiguration siteSettings = config.GetSiteSettings();
 
             // Read the Desktop Tab Information, and sort by Tab Order

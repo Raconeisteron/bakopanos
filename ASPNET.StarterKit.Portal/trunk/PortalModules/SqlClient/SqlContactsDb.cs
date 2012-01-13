@@ -6,8 +6,12 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlContactsDb : IContactsDb
     {
-        private readonly string _connectionString =
-            ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+       private readonly string _connectionString;
+
+        public SqlContactsDb(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
 
         #region IContactsDb Members
 

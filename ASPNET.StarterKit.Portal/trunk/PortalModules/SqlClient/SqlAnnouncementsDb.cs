@@ -7,8 +7,12 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlAnnouncementsDb : IAnnouncementsDb
     {
-        private readonly string _connectionString =
-            ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        private readonly string _connectionString;
+
+        public SqlAnnouncementsDb(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
 
         #region IAnnouncementsDb Members
 

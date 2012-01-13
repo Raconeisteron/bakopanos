@@ -17,8 +17,12 @@ namespace ASPNET.StarterKit.Portal
     /// </summary>
     public class SqlUsersDb : IUsersDb
     {
-        private readonly string _connectionString =
-            ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+       private readonly string _connectionString;
+
+        public SqlUsersDb(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
 
         //*********************************************************************
         //

@@ -6,8 +6,12 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlDocumentsDb : IDocumentsDb
     {
-        private readonly string _connectionString =
-            ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        private readonly string _connectionString;
+
+        public SqlDocumentsDb(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
 
         #region IDocumentsDb Members
 
