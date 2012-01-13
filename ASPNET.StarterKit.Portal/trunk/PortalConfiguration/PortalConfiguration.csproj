@@ -43,6 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
+    <Compile Include="ModuleDefinitionItem.cs" />
+    <Compile Include="ModuleItem.cs" />
+    <Compile Include="ModuleRoles.cs" />
+    <Compile Include="ModuleSettings.cs" />
+    <Compile Include="PortalSettings.cs" />
+    <Compile Include="TabItem.cs" />
+    <Compile Include="TabSettings.cs" />
+    <Compile Include="TabStripDetails.cs" />
     <Compile Include="XmlFile\PortalCfg.Designer.cs">
       <DependentUpon>PortalCfg.xsd</DependentUpon>
       <AutoGen>True</AutoGen>

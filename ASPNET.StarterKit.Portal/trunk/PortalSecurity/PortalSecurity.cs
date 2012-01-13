@@ -2,8 +2,6 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
-using ASPNET.StarterKit.Portal.XmlFile;
-
 namespace ASPNET.StarterKit.Portal
 {
     /// <summary>
@@ -78,19 +76,12 @@ namespace ASPNET.StarterKit.Portal
 
         public static bool HasEditPermissions(int moduleId)
         {
-            string accessRoles;
-            string editRoles;
-
-            // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var configuration = new Configuration();
 
             // Find the appropriate Module in the Module table
-            SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
+            ModuleRoles moduleRoles = configuration.FindModuleRolesByModuleId(moduleId);
 
-            editRoles = moduleRow.EditRoles;
-            accessRoles = moduleRow.TabRow.AccessRoles;
-
-            if (IsInRoles(accessRoles) == false || IsInRoles(editRoles) == false)
+            if (IsInRoles(moduleRoles.AccessRoles) == false || IsInRoles(moduleRoles.EditRoles) == false)
                 return false;
             else
                 return true;

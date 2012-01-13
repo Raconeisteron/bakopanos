@@ -55,12 +55,12 @@ namespace ASPNET.StarterKit.Portal
                 {
                     // Obtain the module definition to edit from the database
                     var config = new Configuration();
-                    SiteConfiguration.ModuleDefinitionRow modDefRow = config.GetSingleModuleDefinition(_defId);
+                    ModuleDefinitionItem modDef = config.GetSingleModuleDefinition(_defId);
 
                     // Read in information
-                    FriendlyName.Text = modDefRow.FriendlyName;
-                    DesktopSrc.Text = modDefRow.DesktopSourceFile;
-                    MobileSrc.Text = modDefRow.MobileSourceFile;
+                    FriendlyName.Text = modDef.FriendlyName;
+                    DesktopSrc.Text = modDef.DesktopSourceFile;
+                    MobileSrc.Text = modDef.MobileSourceFile;
                 }
             }
         }

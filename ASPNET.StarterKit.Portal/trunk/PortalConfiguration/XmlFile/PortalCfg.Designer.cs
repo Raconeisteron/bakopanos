@@ -331,6 +331,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile {
             this.DataSetName = "SiteConfiguration";
             this.Prefix = "";
             this.Namespace = "http://tempuri.org/PortalCfg.xsd";
+            this.Locale = new global::System.Globalization.CultureInfo("en-US");
             this.EnforceConstraints = false;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableGlobal = new GlobalDataTable();
@@ -1371,6 +1372,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile {
                 this.columnCacheTimeout.Namespace = "";
                 this.columnModuleOrder.Namespace = "";
                 this.columnShowMobile.Namespace = "";
+                this.columnTabId.Namespace = "http://tempuri.org/PortalCfg.xsd";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1640,6 +1642,8 @@ namespace ASPNET.StarterKit.Portal.XmlFile {
                 this.columnSettings_Id.AutoIncrement = true;
                 this.columnSettings_Id.AllowDBNull = false;
                 this.columnSettings_Id.Unique = true;
+                this.columnSettings_Id.Namespace = "http://tempuri.org/PortalCfg.xsd";
+                this.columnModuleId.Namespace = "http://tempuri.org/PortalCfg.xsd";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1919,6 +1923,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile {
                 this.columnSettings_Id = new global::System.Data.DataColumn("Settings_Id", typeof(int), null, global::System.Data.MappingType.Hidden);
                 base.Columns.Add(this.columnSettings_Id);
                 this.columnName.Namespace = "";
+                this.columnSettings_Id.Namespace = "http://tempuri.org/PortalCfg.xsd";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
