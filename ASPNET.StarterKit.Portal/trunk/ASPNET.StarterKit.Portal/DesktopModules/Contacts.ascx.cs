@@ -1,4 +1,5 @@
 using System;
+using ASPNET.StarterKit.Portal.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {

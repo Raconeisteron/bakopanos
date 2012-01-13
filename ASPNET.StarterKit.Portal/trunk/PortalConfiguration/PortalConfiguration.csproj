@@ -51,7 +51,7 @@
     <Compile Include="IModuleDefConfigurationDb.cs" />
     <Compile Include="IPortalConfigurationDb.cs" />
     <Compile Include="ITabConfigurationDb.cs" />
-    <Compile Include="XmlFile\PortalConfigurationXmlUnit.cs" />
+    <Compile Include="PortalConfigurationUnit.cs" />
     <Compile Include="XmlFile\XmlConfigurationDb.cs" />
     <Compile Include="XmlFile\XmlModuleConfigurationDb.cs" />
     <Compile Include="XmlFile\XmlModuleDefConfigurationDb.cs" />

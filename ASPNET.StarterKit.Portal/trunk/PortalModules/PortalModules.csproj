@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SqlClient\PortalModulesSqlClientUnit.cs" />
+    <Compile Include="PortalModulesUnit.cs" />
     <Compile Include="SqlClient\SqlAnnouncementsDb.cs" />
     <Compile Include="SqlClient\SqlContactsDb.cs" />
     <Compile Include="SqlClient\SqlDiscussionsDb.cs" />

@@ -51,7 +51,7 @@
     <Compile Include="IUsersDb.cs" />
     <Compile Include="PortalSecurity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlClient\PortalSecuritySqlClientUnit.cs" />
+    <Compile Include="PortalSecurityUnit.cs" />
     <Compile Include="SqlClient\SqlRolesDb.cs" />
     <Compile Include="SqlClient\SqlUsersDb.cs" />
   </ItemGroup>

@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ASPNET.StarterKit.Portal.SqlClient;
 
 namespace ASPNET.StarterKit.Portal
 {

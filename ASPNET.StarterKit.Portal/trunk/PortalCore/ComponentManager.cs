@@ -4,9 +4,6 @@ using Microsoft.Practices.Unity.Configuration;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public interface IUnit
-    {
-    }
     public static class ComponentManager
     {
         static IUnityContainer _container;
@@ -19,9 +16,9 @@ namespace ASPNET.StarterKit.Portal
                 var section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
                 section.Configure(_container);
 
-                _container.Resolve<IUnit>("PortalConfigurationUnit");
-                _container.Resolve<IUnit>("PortalModulesUnit");
-                _container.Resolve<IUnit>("PortalSecurityUnit");
+                _container.Resolve<IUnit>("PortalConfigurationUnit").Configure(ConfigurationManager.AppSettings["PortalConfigurationUnit"]);
+                _container.Resolve<IUnit>("PortalModulesUnit").Configure(ConfigurationManager.AppSettings["PortalModulesUnit"]);
+                _container.Resolve<IUnit>("PortalSecurityUnit").Configure(ConfigurationManager.AppSettings["PortalSecurityUnit"]);
 
                 // additional container initialization 
                 _container.RegisterInstance(ConfigurationManager.ConnectionStrings["connectionString"]);
