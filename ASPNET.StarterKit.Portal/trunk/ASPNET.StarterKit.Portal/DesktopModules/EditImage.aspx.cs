@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.XmlFile;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -23,9 +24,10 @@ namespace ASPNET.StarterKit.Portal
         {
             // Determine ModuleId of Announcements Portal Module
             _moduleId = Int32.Parse(Request.Params["Mid"]);
+            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
 
             // Verify that the current user has access to edit this module
-            if (PortalSecurity.HasEditPermissions(_moduleId) == false)
+            if (portalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -34,8 +36,9 @@ namespace ASPNET.StarterKit.Portal
             {
                 if (_moduleId > 0)
                 {
+                    var config = ComponentManager.Resolve<IModuleConfigurationDb>();
                     // Get settings from the database
-                    Hashtable settings = Configuration.GetModuleSettings(_moduleId);
+                    Hashtable settings = config.GetModuleSettings(_moduleId);
 
                     Src.Text = (String) settings["src"];
                     Width.Text = (String) settings["width"];
@@ -59,7 +62,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Update settings in the database
-            var config = new Configuration();
+            var config = ComponentManager.Resolve<IModuleConfigurationDb>();
 
             config.UpdateModuleSetting(_moduleId, "src", Src.Text);
             config.UpdateModuleSetting(_moduleId, "height", Height.Text);

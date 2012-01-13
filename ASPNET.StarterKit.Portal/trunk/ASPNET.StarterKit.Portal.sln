@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalSecurity", "PortalSec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalConfiguration", "PortalConfiguration\PortalConfiguration.csproj", "{53ED8DED-F1F8-4826-A76F-1201E3DFEA8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalCore", "PortalCore\PortalCore.csproj", "{36BBB9BC-F3E6-48C5-896A-EE488A10499D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{53ED8DED-F1F8-4826-A76F-1201E3DFEA8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53ED8DED-F1F8-4826-A76F-1201E3DFEA8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53ED8DED-F1F8-4826-A76F-1201E3DFEA8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36BBB9BC-F3E6-48C5-896A-EE488A10499D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36BBB9BC-F3E6-48C5-896A-EE488A10499D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36BBB9BC-F3E6-48C5-896A-EE488A10499D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36BBB9BC-F3E6-48C5-896A-EE488A10499D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,6 +2,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Web;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.XmlFile;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -44,9 +45,10 @@ namespace ASPNET.StarterKit.Portal
                     // Obtain PortalSettings from Current Context
 
                     var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+                    var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
 
                     if (portalSettings.AlwaysShowEditButton ||
-                        PortalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles))
+                        portalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles))
                     {
                         _isEditable = 1;
                     }
@@ -74,7 +76,8 @@ namespace ASPNET.StarterKit.Portal
             {
                 if (_settings == null)
                 {
-                    _settings = Configuration.GetModuleSettings(ModuleId);
+                    var config = ComponentManager.Resolve<IModuleConfigurationDb>();
+                    _settings = config.GetModuleSettings(ModuleId);
                 }
 
                 return _settings;

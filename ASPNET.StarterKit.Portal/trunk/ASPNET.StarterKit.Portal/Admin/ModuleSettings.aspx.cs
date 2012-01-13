@@ -3,6 +3,7 @@ using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ASPNET.StarterKit.Portal.XmlFile;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -20,8 +21,10 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
+
             // Verify that the current user has access to access this page
-            if (PortalSecurity.IsInRoles("Admins") == false)
+            if (portalSecurity.IsInRoles("Admins") == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -72,7 +75,7 @@ namespace ASPNET.StarterKit.Portal
                 }
 
                 // update module
-                var config = new Configuration();
+                var config = ComponentManager.Resolve<IModuleConfigurationDb>();
                 config.UpdateModule(_moduleId, m.ModuleOrder, m.PaneName, moduleTitle.Text, Int32.Parse(cacheTime.Text),
                                     editRoles, showMobile.Checked);
 

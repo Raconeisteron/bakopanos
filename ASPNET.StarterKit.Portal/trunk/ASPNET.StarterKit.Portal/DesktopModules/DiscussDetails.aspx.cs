@@ -38,8 +38,8 @@ namespace ASPNET.StarterKit.Portal
             {
                 BindData();
             }
-
-            if (PortalSecurity.HasEditPermissions(_moduleId) == false)
+            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
+            if (portalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 if (_itemId == 0)
                 {

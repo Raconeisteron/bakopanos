@@ -43,10 +43,11 @@ namespace ASPNET.StarterKit.Portal
             // Build list of tabs to be shown to user                                   
             var authorizedTabs = new List<TabStripDetails>();
             int addedTabs = 0;
+            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
 
             foreach (TabStripDetails tab in portalSettings.DesktopTabs)
             {
-                if (PortalSecurity.IsInRoles(tab.AuthorizedRoles))
+                if (portalSecurity.IsInRoles(tab.AuthorizedRoles))
                 {
                     authorizedTabs.Add(tab);
                 }

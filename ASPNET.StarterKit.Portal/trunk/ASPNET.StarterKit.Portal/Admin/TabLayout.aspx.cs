@@ -4,6 +4,7 @@ using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ASPNET.StarterKit.Portal.XmlFile;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -23,8 +24,10 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
+
             // Verify that the current user has access to access this page
-            if (PortalSecurity.IsInRoles("Admins") == false)
+            if (portalSecurity.IsInRoles("Admins") == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -58,7 +61,7 @@ namespace ASPNET.StarterKit.Portal
             m.ModuleOrder = 999;
 
             // save to database
-            var config = new Configuration();
+            var config = ComponentManager.Resolve<IModuleConfigurationDb>();
             m.ModuleId = config.AddModule(_tabId, m.ModuleOrder, "ContentPane", m.ModuleTitle, m.ModuleDefId, 0,
                                           "Admins",
                                           false);
@@ -127,7 +130,7 @@ namespace ASPNET.StarterKit.Portal
                 OrderModules(modules);
 
                 // resave the order
-                var config = new Configuration();
+                var config = ComponentManager.Resolve<IModuleConfigurationDb>();
                 foreach (ModuleItem item in modules)
                 {
                     config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, pane);
@@ -163,7 +166,7 @@ namespace ASPNET.StarterKit.Portal
                 ModuleItem m = sourceList[sourceBox.SelectedIndex];
 
                 // add it to the database
-                var config = new Configuration();
+                var config = ComponentManager.Resolve<IModuleConfigurationDb>();
                 config.UpdateModuleOrder(m.ModuleId, 998, targetPane);
 
                 // delete it from the source list
@@ -265,7 +268,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // update Tab info in the database
-            var config = new Configuration();
+            var config = ComponentManager.Resolve<ITabConfigurationDb>();
             config.UpdateTab(portalSettings.PortalId, _tabId, tabName.Text, portalSettings.ActiveTab.TabOrder,
                              authorizedRoles, mobileTabName.Text, showMobile.Checked);
         }
@@ -310,7 +313,7 @@ namespace ASPNET.StarterKit.Portal
                 if (m.ModuleId > -1)
                 {
                     // must delete from database too
-                    var config = new Configuration();
+                    var config = ComponentManager.Resolve<IModuleConfigurationDb>();
                     config.DeleteModule(m.ModuleId);
                 }
             }
@@ -371,7 +374,7 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Populate the "Add Module" Data
-            var config = new Configuration();
+            var config = ComponentManager.Resolve<IModuleDefConfigurationDb>();
             moduleType.DataSource = config.GetModuleDefinitions(portalSettings.PortalId);
             moduleType.DataBind();
 

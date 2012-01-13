@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{415A7800-27CF-4194-B419-346C7245E783}</ProjectGuid>
+    <ProjectGuid>{36BBB9BC-F3E6-48C5-896A-EE488A10499D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ASPNET.StarterKit.Portal</RootNamespace>
-    <AssemblyName>PortalModules</AssemblyName>
+    <AssemblyName>PortalCore</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,9 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -45,28 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SqlClient\PortalModulesSqlClientUnit.cs" />
-    <Compile Include="SqlClient\SqlAnnouncementsDb.cs" />
-    <Compile Include="SqlClient\SqlContactsDb.cs" />
-    <Compile Include="SqlClient\SqlDiscussionsDb.cs" />
-    <Compile Include="SqlClient\SqlDocumentsDb.cs" />
-    <Compile Include="SqlClient\SqlEventsDb.cs" />
-    <Compile Include="SqlClient\SqlHtmlTextsDb.cs" />
-    <Compile Include="IAnnouncementsDb.cs" />
-    <Compile Include="IContactsDb.cs" />
-    <Compile Include="IDiscussionsDb.cs" />
-    <Compile Include="IDocumentsDb.cs" />
-    <Compile Include="IEventsDb.cs" />
-    <Compile Include="IHtmlTextsDb.cs" />
-    <Compile Include="ILinksDb.cs" />
-    <Compile Include="SqlClient\SqlLinksDb.cs" />
+    <Compile Include="ComponentManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PortalCore\PortalCore.csproj">
-      <Project>{36BBB9BC-F3E6-48C5-896A-EE488A10499D}</Project>
-      <Name>PortalCore</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

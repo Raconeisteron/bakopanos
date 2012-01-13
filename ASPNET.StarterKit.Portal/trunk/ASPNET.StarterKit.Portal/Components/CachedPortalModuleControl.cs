@@ -57,7 +57,11 @@ namespace ASPNET.StarterKit.Portal
 
         public string CacheKey
         {
-            get { return "Key:" + GetType() + ModuleId + PortalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles); }
+            get
+            {
+                var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
+                return "Key:" + GetType() + ModuleId + portalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles);
+            }
         }
 
         //*********************************************************************

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.XmlFile;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -19,9 +20,10 @@ namespace ASPNET.StarterKit.Portal
         {
             // Determine ModuleId of Announcements Portal Module
             _moduleId = Int32.Parse(Request.Params["Mid"]);
+            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
 
             // Verify that the current user has access to edit this module
-            if (PortalSecurity.HasEditPermissions(_moduleId) == false)
+            if (portalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -31,7 +33,8 @@ namespace ASPNET.StarterKit.Portal
                 if (_moduleId > 0)
                 {
                     // Get settings from the database
-                    Hashtable settings = Configuration.GetModuleSettings(_moduleId);
+                    var config = ComponentManager.Resolve<IModuleConfigurationDb>();
+                    Hashtable settings = config.GetModuleSettings(_moduleId);
 
                     XmlDataSrc.Text = (String) settings["xmlsrc"];
                     XslTransformSrc.Text = (String) settings["xslsrc"];
@@ -52,7 +55,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Update settings in the database
-            var config = new Configuration();
+            var config = ComponentManager.Resolve<IModuleConfigurationDb>();
 
             config.UpdateModuleSetting(_moduleId, "xmlsrc", XmlDataSrc.Text);
             config.UpdateModuleSetting(_moduleId, "xslsrc", XslTransformSrc.Text);

@@ -5,6 +5,7 @@ using System.Security.Principal;
 using System.Threading;
 using System.Web;
 using System.Web.Security;
+using ASPNET.StarterKit.Portal.XmlFile;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -44,7 +45,8 @@ namespace ASPNET.StarterKit.Portal
             Context.Items.Add("PortalSettings", new PortalSettings(tabIndex, tabId));
 
             // Retrieve and add the SiteConfiguration DataSet to the current Context
-            HttpContext.Current.Items.Add("SiteSettings", Configuration.GetSiteSettings());
+            IConfigurationDb config = ComponentManager.Resolve<IConfigurationDb>();
+            HttpContext.Current.Items.Add("SiteSettings", config.GetSiteSettings());
 
             try
             {

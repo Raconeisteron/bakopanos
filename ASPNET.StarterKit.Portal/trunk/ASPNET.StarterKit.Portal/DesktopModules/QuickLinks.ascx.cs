@@ -32,8 +32,10 @@ namespace ASPNET.StarterKit.Portal
             myDataList.DataSource = links.GetLinks(ModuleId);
             myDataList.DataBind();
 
+            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
+
             // Ensure that only users in role may add links
-            if (PortalSecurity.IsInRoles(ModuleConfiguration.AuthorizedEditRoles))
+            if (portalSecurity.IsInRoles(ModuleConfiguration.AuthorizedEditRoles))
             {
                 EditButton.Text = "Add Link";
                 EditButton.NavigateUrl = "~/DesktopModules/EditLinks.aspx?mid=" + ModuleId;

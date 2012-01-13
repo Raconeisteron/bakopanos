@@ -22,8 +22,10 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
+
             // Verify that the current user has access to access this page
-            if (PortalSecurity.IsInRoles("Admins") == false)
+            if (portalSecurity.IsInRoles("Admins") == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -121,9 +123,11 @@ namespace ASPNET.StarterKit.Portal
 
         protected void UpdateUser_Click(Object sender, EventArgs e)
         {
+            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
+
             // update the user record in the database
             var users = new SqlUsersDb();
-            users.UpdateUser(_userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
+            users.UpdateUser(_userId, Email.Text, portalSecurity.Encrypt(Password.Text));
 
             // redirect to this page with the corrected querystring args
             Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + _userId + "&username=" + Email.Text + "&tabindex=" +

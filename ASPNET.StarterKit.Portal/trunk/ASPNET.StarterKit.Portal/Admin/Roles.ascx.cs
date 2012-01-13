@@ -18,7 +18,8 @@ namespace ASPNET.StarterKit.Portal
         protected void Page_Load(object sender, EventArgs e)
         {
             // Verify that the current user has access to access this page
-            if (PortalSecurity.IsInRoles("Admins") == false)
+            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
+            if (portalSecurity.IsInRoles("Admins") == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }

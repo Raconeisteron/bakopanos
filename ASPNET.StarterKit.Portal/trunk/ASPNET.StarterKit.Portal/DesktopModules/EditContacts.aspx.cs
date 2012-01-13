@@ -25,7 +25,9 @@ namespace ASPNET.StarterKit.Portal
             _moduleId = Int32.Parse(Request.Params["Mid"]);
 
             // Verify that the current user has access to edit this module
-            if (PortalSecurity.HasEditPermissions(_moduleId) == false)
+            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
+
+            if (portalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ASPNET.StarterKit.Portal.XmlFile;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -21,8 +22,10 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
+
             // Verify that the current user has access to access this page
-            if (PortalSecurity.IsInRoles("Admins") == false)
+            if (portalSecurity.IsInRoles("Admins") == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -114,7 +117,8 @@ namespace ASPNET.StarterKit.Portal
             {
                 // must delete from database too
                 TabItem t = PortalTabs[tabList.SelectedIndex];
-                var config = new Configuration();
+                var config = ComponentManager.Resolve<ITabConfigurationDb>();
+
                 config.DeleteTab(t.TabId);
 
                 // remove item from list
@@ -149,7 +153,8 @@ namespace ASPNET.StarterKit.Portal
             PortalTabs.Add(t);
 
             // write tab to database
-            var config = new Configuration();
+            var config = ComponentManager.Resolve<ITabConfigurationDb>();
+
             t.TabId = config.AddTab(portalSettings.PortalId, t.TabName, t.TabOrder);
 
             // reload the _portalSettings from the database
@@ -204,7 +209,8 @@ namespace ASPNET.StarterKit.Portal
                 i += 2;
 
                 // rewrite tab to database
-                var config = new Configuration();
+                var config = ComponentManager.Resolve<ITabConfigurationDb>();
+
                 config.UpdateTabOrder(t.TabId, t.TabOrder);
             }
         }

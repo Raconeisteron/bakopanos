@@ -20,11 +20,12 @@ namespace ASPNET.StarterKit.Portal
 
             // Display Modular Title Text and Edit Buttons
             ModuleTitle.Text = portalModule.ModuleConfiguration.ModuleTitle;
+            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
 
             // Display the Edit button if the parent portalmodule has configured the PortalModuleTitle User Control
             // to display it -- and the current client has edit access permissions
             if (portalSettings.AlwaysShowEditButton ||
-                (PortalSecurity.IsInRoles(portalModule.ModuleConfiguration.AuthorizedEditRoles)) && (EditText != null))
+                (portalSecurity.IsInRoles(portalModule.ModuleConfiguration.AuthorizedEditRoles)) && (EditText != null))
             {
                 EditButton.Text = EditText;
                 EditButton.NavigateUrl = EditUrl + "?mid=" + portalModule.ModuleId;

@@ -20,8 +20,10 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
+
             // Verify that the current user has access to access this page
-            if (PortalSecurity.IsInRoles("Admins") == false)
+            if (portalSecurity.IsInRoles("Admins") == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -54,7 +56,8 @@ namespace ASPNET.StarterKit.Portal
                 else
                 {
                     // Obtain the module definition to edit from the database
-                    var config = new Configuration();
+                    var config = ComponentManager.Resolve<IModuleDefConfigurationDb>();
+
                     ModuleDefinitionItem modDef = config.GetSingleModuleDefinition(_defId);
 
                     // Read in information
@@ -77,7 +80,7 @@ namespace ASPNET.StarterKit.Portal
         {
             if (Page.IsValid)
             {
-                var config = new Configuration();
+                var config = ComponentManager.Resolve<IModuleDefConfigurationDb>();
 
                 if (_defId == -1)
                 {
@@ -110,7 +113,8 @@ namespace ASPNET.StarterKit.Portal
         protected void DeleteBtn_Click(Object sender, EventArgs e)
         {
             // delete definition
-            var config = new Configuration();
+            var config = ComponentManager.Resolve<IModuleDefConfigurationDb>();
+
             config.DeleteModuleDefinition(_defId);
 
             // Redirect back to the portal admin page

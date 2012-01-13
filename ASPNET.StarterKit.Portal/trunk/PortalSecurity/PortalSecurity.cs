@@ -2,14 +2,22 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using ASPNET.StarterKit.Portal.XmlFile;
+
 namespace ASPNET.StarterKit.Portal
 {
     /// <summary>
     /// The PortalSecurity class encapsulates two helper methods that enable
     /// developers to easily check the role status of the current browser client.
     /// </summary>
-    public class PortalSecurity
+    public class PortalSecurity : IPortalSecurity
     {
+        private readonly IModuleConfigurationDb _moduleConfigurationDb;
+        public PortalSecurity(IModuleConfigurationDb moduleConfigurationDb)
+        {
+            _moduleConfigurationDb = moduleConfigurationDb;
+        }
+
         //*********************************************************************
         //
         // Security.Encrypt() Method
@@ -18,7 +26,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public static string Encrypt(string cleanString)
+        public string Encrypt(string cleanString)
         {
             Byte[] clearBytes = new UnicodeEncoding().GetBytes(cleanString);
             Byte[] hashedBytes = ((HashAlgorithm) CryptoConfig.CreateFromName("MD5")).ComputeHash(clearBytes);
@@ -35,7 +43,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public static bool IsInRole(String role)
+        public bool IsInRole(String role)
         {
             return HttpContext.Current.User.IsInRole(role);
         }
@@ -49,7 +57,7 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public static bool IsInRoles(String roles)
+        public bool IsInRoles(String roles)
         {
             HttpContext context = HttpContext.Current;
 
@@ -74,12 +82,10 @@ namespace ASPNET.StarterKit.Portal
         //
         //*********************************************************************
 
-        public static bool HasEditPermissions(int moduleId)
+        public bool HasEditPermissions(int moduleId)
         {
-            var configuration = new Configuration();
-
             // Find the appropriate Module in the Module table
-            ModuleRoles moduleRoles = configuration.FindModuleRolesByModuleId(moduleId);
+            ModuleAuthorization moduleRoles = _moduleConfigurationDb.FindModuleRolesByModuleId(moduleId);
 
             if (IsInRoles(moduleRoles.AccessRoles) == false || IsInRoles(moduleRoles.EditRoles) == false)
                 return false;

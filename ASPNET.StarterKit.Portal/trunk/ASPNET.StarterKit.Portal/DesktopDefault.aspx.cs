@@ -19,9 +19,10 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
 
             // Ensure that the visiting user has access to the current page
-            if (PortalSecurity.IsInRoles(portalSettings.ActiveTab.AuthorizedRoles) == false)
+            if (portalSecurity.IsInRoles(portalSettings.ActiveTab.AuthorizedRoles) == false)
             {
                 Response.Redirect("~/Admin/AccessDenied.aspx");
             }

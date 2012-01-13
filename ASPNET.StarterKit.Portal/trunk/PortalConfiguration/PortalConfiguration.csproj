@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -42,12 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration.cs" />
+    <Compile Include="IConfigurationDb.cs" />
+    <Compile Include="IModuleConfigurationDb.cs" />
+    <Compile Include="IModuleDefConfigurationDb.cs" />
+    <Compile Include="IPortalConfigurationDb.cs" />
+    <Compile Include="ITabConfigurationDb.cs" />
+    <Compile Include="XmlFile\PortalConfigurationXmlUnit.cs" />
+    <Compile Include="XmlFile\XmlConfigurationDb.cs" />
+    <Compile Include="XmlFile\XmlModuleConfigurationDb.cs" />
+    <Compile Include="XmlFile\XmlModuleDefConfigurationDb.cs" />
     <Compile Include="ModuleDefinitionItem.cs" />
     <Compile Include="ModuleItem.cs" />
-    <Compile Include="ModuleRoles.cs" />
+    <Compile Include="ModuleAuthorization.cs" />
     <Compile Include="ModuleSettings.cs" />
+    <Compile Include="XmlFile\XmlPortalConfigurationDb.cs" />
     <Compile Include="PortalSettings.cs" />
+    <Compile Include="XmlFile\XmlTabConfigurationDb.cs" />
     <Compile Include="TabItem.cs" />
     <Compile Include="TabSettings.cs" />
     <Compile Include="TabStripDetails.cs" />
@@ -70,6 +84,12 @@
     <None Include="XmlFile\PortalCfg.xss">
       <DependentUpon>PortalCfg.xsd</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PortalCore\PortalCore.csproj">
+      <Project>{36BBB9BC-F3E6-48C5-896A-EE488A10499D}</Project>
+      <Name>PortalCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
