@@ -1,10 +1,21 @@
 using System;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class QuickLinks : PortalModuleControl
     {
         protected string LinkImage = "";
+
+        private ILinksDb _linksDb;
+        private IPortalSecurity _portalSecurity;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, ILinksDb linksDb)
+        {
+            _portalSecurity = portalSecurity;
+            _linksDb = linksDb;
+        }
 
         /// <summary>
         /// The Page_Load event handler on this User Control is used to
@@ -27,15 +38,12 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the list control
-            var links = ComponentManager.Resolve<ILinksDb>();
 
-            myDataList.DataSource = links.GetLinks(ModuleId);
+            myDataList.DataSource = _linksDb.GetLinks(ModuleId);
             myDataList.DataBind();
 
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-
             // Ensure that only users in role may add links
-            if (portalSecurity.IsInRoles(ModuleConfiguration.AuthorizedEditRoles))
+            if (_portalSecurity.IsInRoles(ModuleConfiguration.AuthorizedEditRoles))
             {
                 EditButton.Text = "Add Link";
                 EditButton.NavigateUrl = "~/DesktopModules/EditLinks.aspx?mid=" + ModuleId;

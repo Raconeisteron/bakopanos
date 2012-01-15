@@ -1,18 +1,26 @@
 using System;
 using System.Web.Security;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class Signin : PortalModuleControl
     {
+        private IPortalSecurity _portalSecurity;
+        private IUsersDb _usersDb;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IUsersDb usersDb)
+        {
+            _portalSecurity = portalSecurity;
+            _usersDb = usersDb;
+        }
+
         protected void LoginBtn_Click(Object sender, ImageClickEventArgs e)
         {
             // Attempt to Validate User Credentials using UsersDB
-            var user = ComponentManager.Resolve<IUsersDb>();
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-
-            string userId = user.Login(email.Text, portalSecurity.Encrypt(password.Text));
+            string userId = _usersDb.Login(email.Text, _portalSecurity.Encrypt(password.Text));
 
             if (!string.IsNullOrEmpty(userId))
             {

@@ -1,13 +1,23 @@
 using System;
 using System.Collections;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditImage : Page
     {
+        private IModuleConfigurationDb _moduleConfigurationDb;
         private int _moduleId;
 
+        private IPortalSecurity _portalSecurity;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IModuleConfigurationDb moduleConfigurationDb)
+        {
+            _portalSecurity = portalSecurity;
+            _moduleConfigurationDb = moduleConfigurationDb;
+        }
 
         //****************************************************************
         //
@@ -23,10 +33,9 @@ namespace ASPNET.StarterKit.Portal
         {
             // Determine ModuleId of Announcements Portal Module
             _moduleId = Int32.Parse(Request.Params["Mid"]);
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
 
             // Verify that the current user has access to edit this module
-            if (portalSecurity.HasEditPermissions(_moduleId) == false)
+            if (_portalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -35,9 +44,8 @@ namespace ASPNET.StarterKit.Portal
             {
                 if (_moduleId > 0)
                 {
-                    var config = ComponentManager.Resolve<IModuleConfigurationDb>();
                     // Get settings from the database
-                    Hashtable settings = config.GetModuleSettings(_moduleId);
+                    Hashtable settings = _moduleConfigurationDb.GetModuleSettings(_moduleId);
 
                     Src.Text = (String) settings["src"];
                     Width.Text = (String) settings["width"];
@@ -61,11 +69,9 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Update settings in the database
-            var config = ComponentManager.Resolve<IModuleConfigurationDb>();
-
-            config.UpdateModuleSetting(_moduleId, "src", Src.Text);
-            config.UpdateModuleSetting(_moduleId, "height", Height.Text);
-            config.UpdateModuleSetting(_moduleId, "width", Width.Text);
+            _moduleConfigurationDb.UpdateModuleSetting(_moduleId, "src", Src.Text);
+            _moduleConfigurationDb.UpdateModuleSetting(_moduleId, "height", Height.Text);
+            _moduleConfigurationDb.UpdateModuleSetting(_moduleId, "width", Width.Text);
 
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);

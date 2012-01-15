@@ -23,13 +23,12 @@ namespace ASPNET.StarterKit.Portal.XmlFile
 
         #region ITabConfigurationDb Members
 
-
         public List<TabStripDetails> FindDesktopTabs()
         {
             var desktopTabs = new List<TabStripDetails>();
 
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
+            var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
 
             // Read the Desktop Tab Information, and sort by Tab Order
             DataRow[] tabs = siteSettings.Tab.Select("", "TabOrder");
@@ -46,12 +45,12 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             }
             return desktopTabs;
         }
-        
+
         public List<TabStripDetails> FindMobileTabs()
         {
             var mobileTabs = new List<TabStripDetails>();
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
+            var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
             DataRow[] tabs = siteSettings.Tab.Select("ShowMobile='true'", "TabOrder");
             // Read the Mobile Tab Information, and sort by Tab Order
             foreach (SiteConfiguration.TabRow mRow in tabs)
@@ -72,7 +71,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             var moduleSettingsList = new List<ModuleSettings>();
 
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
+            var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
 
             // Read the Module Information for the current (Active) tab
             SiteConfiguration.TabRow activeTab = siteSettings.Tab.FindByTabId(tabId);
@@ -107,7 +106,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public TabSettings FindTab(int tabId)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
+            var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
 
             SiteConfiguration.TabRow tabRow = siteSettings.Tab.FindByTabId(tabId);
 
@@ -125,7 +124,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public int AddTab(int portalId, String tabName, int tabOrder)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
+            var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
 
             // Create a new TabRow from the Tab table
             SiteConfiguration.TabRow newRow = siteSettings.Tab.NewTabRow();

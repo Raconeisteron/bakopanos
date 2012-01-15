@@ -1,6 +1,7 @@
 using System;
 using System.Web.Security;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -9,16 +10,23 @@ namespace ASPNET.StarterKit.Portal
     /// </summary>
     public partial class Register : Page
     {
+        private IPortalSecurity _portalSecurity;
+        private IUsersDb _usersDb;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IUsersDb usersDb)
+        {
+            _portalSecurity = portalSecurity;
+            _usersDb = usersDb;
+        }
+
         protected void RegisterBtn_Click(object sender, EventArgs e)
         {
             // Only attempt a login if all form fields on the page are valid
             if (!Page.IsValid) return;
 
             // Add New User to Portal User Database
-            var user = ComponentManager.Resolve<IUsersDb>();
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-
-            if ((user.AddUser(Name.Text, Email.Text, portalSecurity.Encrypt(Password.Text))) > -1)
+            if ((_usersDb.AddUser(Name.Text, Email.Text, _portalSecurity.Encrypt(Password.Text))) > -1)
             {
                 // Set the user's authentication name to the userId
                 FormsAuthentication.SetAuthCookie(Email.Text, false);

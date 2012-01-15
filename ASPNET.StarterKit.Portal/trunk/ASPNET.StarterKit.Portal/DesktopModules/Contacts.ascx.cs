@@ -1,9 +1,18 @@
 using System;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class Contacts : PortalModuleControl
     {
+        private IContactsDb _contactsDb;
+
+        [InjectionMethod]
+        public void Initialize(IContactsDb contactsDb)
+        {
+            _contactsDb = contactsDb;
+        }
+
         //*******************************************************
         //
         // The Page_Load event handler on this User Control is used to
@@ -19,9 +28,8 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain contact information from Contacts table
             // and bind to the DataGrid Control
-            var contacts = ComponentManager.Resolve<IContactsDb>();
 
-            myDataGrid.DataSource = contacts.GetContacts(ModuleId);
+            myDataGrid.DataSource = _contactsDb.GetContacts(ModuleId);
             myDataGrid.DataBind();
         }
     }

@@ -1,9 +1,18 @@
 using System;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class Events : PortalModuleControl
     {
+        private IEventsDb _eventsDb;
+
+        [InjectionMethod]
+        public void Initialize(IEventsDb eventsDb)
+        {
+            _eventsDb = eventsDb;
+        }
+
         /// <summary>
         /// The Page_Load event handler on this User Control is used to
         /// obtain a DataReader of event information from the Events
@@ -15,9 +24,7 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain the list of events from the Events table
             // and bind to the DataList Control
-            var events = ComponentManager.Resolve<IEventsDb>();
-
-            myDataList.DataSource = events.GetEvents(ModuleId);
+            myDataList.DataSource = _eventsDb.GetEvents(ModuleId);
             myDataList.DataBind();
         }
     }

@@ -1,14 +1,24 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditAnnouncements : Page
     {
+        private IAnnouncementsDb _announcementsDb;
         private int _itemId;
         private int _moduleId;
 
+        private IPortalSecurity _portalSecurity;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IAnnouncementsDb announcementsDb)
+        {
+            _portalSecurity = portalSecurity;
+            _announcementsDb = announcementsDb;
+        }
 
         //****************************************************************
         //
@@ -24,10 +34,9 @@ namespace ASPNET.StarterKit.Portal
         {
             // Determine ModuleId of Announcements Portal Module
             _moduleId = Int32.Parse(Request.Params["Mid"]);
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
 
             // Verify that the current user has access to edit this module
-            if (portalSecurity.HasEditPermissions(_moduleId) == false)
+            if (_portalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -47,8 +56,7 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of announcement information
-                var announcementDb = ComponentManager.Resolve<IAnnouncementsDb>();
-                IDataReader dr = announcementDb.GetSingleAnnouncement(_itemId);
+                IDataReader dr = _announcementsDb.GetSingleAnnouncement(_itemId);
 
                 // Load first row into DataReader
                 dr.Read();
@@ -90,22 +98,19 @@ namespace ASPNET.StarterKit.Portal
             // Only Update if the Entered Data is Valid
             if (Page.IsValid)
             {
-                // Create an instance of the Announcement DB component
-                var announcementDb = ComponentManager.Resolve<IAnnouncementsDb>();
-
                 if (_itemId == 0)
                 {
                     // Add the announcement within the Announcements table
-                    announcementDb.AddAnnouncement(_moduleId, Context.User.Identity.Name, TitleField.Text,
-                                                   DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                                   MoreLinkField.Text, MobileMoreField.Text);
+                    _announcementsDb.AddAnnouncement(_moduleId, Context.User.Identity.Name, TitleField.Text,
+                                                     DateTime.Parse(ExpireField.Text), DescriptionField.Text,
+                                                     MoreLinkField.Text, MobileMoreField.Text);
                 }
                 else
                 {
                     // Update the announcement within the Announcements table
-                    announcementDb.UpdateAnnouncement(_itemId, Context.User.Identity.Name, TitleField.Text,
-                                                      DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                                      MoreLinkField.Text, MobileMoreField.Text);
+                    _announcementsDb.UpdateAnnouncement(_itemId, Context.User.Identity.Name, TitleField.Text,
+                                                        DateTime.Parse(ExpireField.Text), DescriptionField.Text,
+                                                        MoreLinkField.Text, MobileMoreField.Text);
                 }
 
                 // Redirect back to the portal home page
@@ -128,8 +133,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var announcementDb = ComponentManager.Resolve<IAnnouncementsDb>();
-                announcementDb.DeleteAnnouncement(_itemId);
+                _announcementsDb.DeleteAnnouncement(_itemId);
             }
 
             // Redirect back to the portal home page

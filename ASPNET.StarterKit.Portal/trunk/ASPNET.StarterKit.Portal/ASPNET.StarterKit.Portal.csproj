@@ -280,9 +280,12 @@
       <DependentUpon>Users.ascx</DependentUpon>
     </Compile>
     <Compile Include="Components\CachedPortalModuleControl.cs" />
+    <Compile Include="Components\HttpApplicationStateExtensions.cs" />
+    <Compile Include="Components\IUnityControl.cs" />
     <Compile Include="Components\PortalModuleControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Components\UnityHttpModule.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

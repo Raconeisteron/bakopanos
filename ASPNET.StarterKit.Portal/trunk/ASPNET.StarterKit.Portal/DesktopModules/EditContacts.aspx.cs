@@ -1,13 +1,24 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditContacts : Page
     {
+        private IContactsDb _contactsDb;
         private int _itemId;
         private int _moduleId;
+
+        private IPortalSecurity _portalSecurity;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IContactsDb contactsDb)
+        {
+            _portalSecurity = portalSecurity;
+            _contactsDb = contactsDb;
+        }
 
         //****************************************************************
         //
@@ -25,9 +36,7 @@ namespace ASPNET.StarterKit.Portal
             _moduleId = Int32.Parse(Request.Params["Mid"]);
 
             // Verify that the current user has access to edit this module
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-
-            if (portalSecurity.HasEditPermissions(_moduleId) == false)
+            if (_portalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -47,8 +56,7 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of contact information
-                var contacts = ComponentManager.Resolve<IContactsDb>();
-                IDataReader dr = contacts.GetSingleContact(_itemId);
+                IDataReader dr = _contactsDb.GetSingleContact(_itemId);
 
                 // Read first row from database
                 dr.Read();
@@ -90,21 +98,18 @@ namespace ASPNET.StarterKit.Portal
             // Only Update if Entered data is Valid
             if (Page.IsValid)
             {
-                // Create an instance of the ContactsDB component
-                var contacts = ComponentManager.Resolve<IContactsDb>();
-
                 if (_itemId == 0)
                 {
                     // Add the contact within the contacts table
-                    contacts.AddContact(_moduleId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
-                                        EmailField.Text, Contact1Field.Text, Contact2Field.Text);
+                    _contactsDb.AddContact(_moduleId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
+                                           EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
                 else
                 {
                     // Update the contact within the contacts table
-                    contacts.UpdateContact(_itemId, Context.User.Identity.Name, NameField.Text,
-                                           RoleField.Text,
-                                           EmailField.Text, Contact1Field.Text, Contact2Field.Text);
+                    _contactsDb.UpdateContact(_itemId, Context.User.Identity.Name, NameField.Text,
+                                              RoleField.Text,
+                                              EmailField.Text, Contact1Field.Text, Contact2Field.Text);
                 }
 
                 // Redirect back to the portal home page
@@ -127,8 +132,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var contacts = ComponentManager.Resolve<IContactsDb>();
-                contacts.DeleteContact(_itemId);
+                _contactsDb.DeleteContact(_itemId);
             }
 
             // Redirect back to the portal home page

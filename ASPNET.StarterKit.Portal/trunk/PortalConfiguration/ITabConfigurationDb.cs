@@ -5,7 +5,6 @@ namespace ASPNET.StarterKit.Portal
 {
     public interface ITabConfigurationDb
     {
-
         List<TabStripDetails> FindDesktopTabs();
         List<TabStripDetails> FindMobileTabs();
         List<ModuleSettings> FindModules(int tabId);

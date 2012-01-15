@@ -1,9 +1,20 @@
 using System;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class SiteSettings : PortalModuleControl
     {
+        private IPortalConfigurationDb _portalConfigurationDb;
+        private IPortalSecurity _portalSecurity;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IPortalConfigurationDb portalConfigurationDb)
+        {
+            _portalSecurity = portalSecurity;
+            _portalConfigurationDb = portalConfigurationDb;
+        }
+
         //*******************************************************
         //
         // The Page_Load server event handler on this user control is used
@@ -13,10 +24,8 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-
             // Verify that the current user has access to access this page
-            if (portalSecurity.IsInRoles("Admins") == false)
+            if (_portalSecurity.IsInRoles("Admins") == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -45,8 +54,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // update Tab info in the database
-            var config = ComponentManager.Resolve<IPortalConfigurationDb>();
-            config.UpdatePortalInfo(portalSettings.Portal.PortalId, siteName.Text, showEdit.Checked);
+            _portalConfigurationDb.UpdatePortalInfo(portalSettings.Portal.PortalId, siteName.Text, showEdit.Checked);
 
             // Redirect to this site to refresh
             Response.Redirect(Request.RawUrl);

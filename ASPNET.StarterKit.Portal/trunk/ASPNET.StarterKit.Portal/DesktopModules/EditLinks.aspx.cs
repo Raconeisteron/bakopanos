@@ -1,13 +1,24 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditLinks : Page
     {
         private int _itemId;
+        private ILinksDb _linksDb;
         private int _moduleId;
+
+        private IPortalSecurity _portalSecurity;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, ILinksDb linksDb)
+        {
+            _portalSecurity = portalSecurity;
+            _linksDb = linksDb;
+        }
 
         //****************************************************************
         //
@@ -24,10 +35,8 @@ namespace ASPNET.StarterKit.Portal
             // Determine ModuleId of Links Portal Module
             _moduleId = Int32.Parse(Request.Params["Mid"]);
 
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-
             // Verify that the current user has access to edit this module
-            if (portalSecurity.HasEditPermissions(_moduleId) == false)
+            if (_portalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -47,8 +56,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of link information
-                    var links = ComponentManager.Resolve<ILinksDb>();
-                    IDataReader dr = links.GetSingleLink(_itemId);
+                    IDataReader dr = _linksDb.GetSingleLink(_itemId);
 
                     // Read in first row from database
                     dr.Read();
@@ -90,20 +98,17 @@ namespace ASPNET.StarterKit.Portal
         {
             if (Page.IsValid)
             {
-                // Create an instance of the Link DB component
-                var links = ComponentManager.Resolve<ILinksDb>();
-
                 if (_itemId == 0)
                 {
                     // Add the link within the Links table
-                    links.AddLink(_moduleId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
-                                  MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
+                    _linksDb.AddLink(_moduleId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                                     MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
                 else
                 {
                     // Update the link within the Links table
-                    links.UpdateLink(_itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
-                                     MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
+                    _linksDb.UpdateLink(_itemId, Context.User.Identity.Name, TitleField.Text, UrlField.Text,
+                                        MobileUrlField.Text, Int32.Parse(ViewOrderField.Text), DescriptionField.Text);
                 }
 
                 // Redirect back to the portal home page
@@ -126,8 +131,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var links = ComponentManager.Resolve<ILinksDb>();
-                links.DeleteLink(_itemId);
+                _linksDb.DeleteLink(_itemId);
             }
 
             // Redirect back to the portal home page

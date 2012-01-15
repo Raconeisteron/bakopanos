@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -10,9 +11,19 @@ namespace ASPNET.StarterKit.Portal
         protected RequiredFieldValidator RequiredFieldValidator1;
         protected RequiredFieldValidator RequiredFieldValidator2;
         protected RequiredFieldValidator RequiredFieldValidator3;
+        private IEventsDb _eventsDb;
 
         private int _itemId;
         private int _moduleId;
+
+        private IPortalSecurity _portalSecurity;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IEventsDb eventsDb)
+        {
+            _portalSecurity = portalSecurity;
+            _eventsDb = eventsDb;
+        }
 
         //****************************************************************
         //
@@ -28,10 +39,9 @@ namespace ASPNET.StarterKit.Portal
         {
             // Determine ModuleId of Events Portal Module
             _moduleId = Int32.Parse(Request.Params["Mid"]);
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
 
             // Verify that the current user has access to edit this module
-            if (portalSecurity.HasEditPermissions(_moduleId) == false)
+            if (_portalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -51,8 +61,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of event information
-                    var events = ComponentManager.Resolve<IEventsDb>();
-                    IDataReader dr = events.GetSingleEvent(_itemId);
+                    IDataReader dr = _eventsDb.GetSingleEvent(_itemId);
 
                     // Read first row from database
                     dr.Read();
@@ -93,20 +102,17 @@ namespace ASPNET.StarterKit.Portal
             // Only Update if the Entered Data is Valid
             if (Page.IsValid)
             {
-                // Create an instance of the Event DB component
-                var events = ComponentManager.Resolve<IEventsDb>();
-
                 if (_itemId == 0)
                 {
                     // Add the event within the Events table
-                    events.AddEvent(_moduleId, Context.User.Identity.Name, TitleField.Text,
-                                    DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
+                    _eventsDb.AddEvent(_moduleId, Context.User.Identity.Name, TitleField.Text,
+                                       DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
                 }
                 else
                 {
                     // Update the event within the Events table
-                    events.UpdateEvent(_itemId, Context.User.Identity.Name, TitleField.Text,
-                                       DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
+                    _eventsDb.UpdateEvent(_itemId, Context.User.Identity.Name, TitleField.Text,
+                                          DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
                 }
 
                 // Redirect back to the portal home page
@@ -129,8 +135,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var events = ComponentManager.Resolve<IEventsDb>();
-                events.DeleteEvent(_itemId);
+                _eventsDb.DeleteEvent(_itemId);
             }
 
             // Redirect back to the portal home page

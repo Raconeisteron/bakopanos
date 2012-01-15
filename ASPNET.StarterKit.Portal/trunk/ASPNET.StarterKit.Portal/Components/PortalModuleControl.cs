@@ -2,6 +2,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Web;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -12,12 +13,14 @@ namespace ASPNET.StarterKit.Portal
     /// The PortalModuleControl class defines portal specific properties
     /// that are used by the portal framework to correctly display portal modules
     /// </summary>
-    public class PortalModuleControl : UserControl
+    public class PortalModuleControl : UserControl, IUnityControl
     {
         // Private field variables
 
         private int _isEditable;
         private ModuleSettings _moduleConfiguration;
+        private IModuleConfigurationDb _moduleConfigurationDb;
+        private IPortalSecurity _portalSecurity;
         private Hashtable _settings;
 
         // Public property accessors
@@ -44,10 +47,8 @@ namespace ASPNET.StarterKit.Portal
                     // Obtain PortalSettings from Current Context
 
                     var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
-                    var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-
                     if (portalSettings.Portal.AlwaysShowEditButton ||
-                        portalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles))
+                        _portalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles))
                     {
                         _isEditable = 1;
                     }
@@ -75,12 +76,18 @@ namespace ASPNET.StarterKit.Portal
             {
                 if (_settings == null)
                 {
-                    var config = ComponentManager.Resolve<IModuleConfigurationDb>();
-                    _settings = config.GetModuleSettings(ModuleId);
+                    _settings = _moduleConfigurationDb.GetModuleSettings(ModuleId);
                 }
 
                 return _settings;
             }
+        }
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IModuleConfigurationDb moduleConfigurationDb)
+        {
+            _portalSecurity = portalSecurity;
+            _moduleConfigurationDb = moduleConfigurationDb;
         }
     }
 }

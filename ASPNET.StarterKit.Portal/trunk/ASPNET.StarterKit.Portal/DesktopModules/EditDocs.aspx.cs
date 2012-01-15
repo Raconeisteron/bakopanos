@@ -2,13 +2,23 @@ using System;
 using System.Data;
 using System.IO;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditDocs : Page
     {
+        private IDocumentsDb _documentsDb;
         private int _itemId;
         private int _moduleId;
+        private IPortalSecurity _portalSecurity;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IDocumentsDb documentsDb)
+        {
+            _portalSecurity = portalSecurity;
+            _documentsDb = documentsDb;
+        }
 
         //****************************************************************
         //
@@ -24,10 +34,9 @@ namespace ASPNET.StarterKit.Portal
         {
             // Determine ModuleId of Announcements Portal Module
             _moduleId = Int32.Parse(Request.Params["Mid"]);
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
 
             // Verify that the current user has access to edit this module
-            if (portalSecurity.HasEditPermissions(_moduleId) == false)
+            if (_portalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -47,8 +56,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of document information
-                    var documents = ComponentManager.Resolve<IDocumentsDb>();
-                    IDataReader dr = documents.GetSingleDocument(_itemId);
+                    IDataReader dr = _documentsDb.GetSingleDocument(_itemId);
 
                     // Load first row into Datareader
                     dr.Read();
@@ -88,9 +96,6 @@ namespace ASPNET.StarterKit.Portal
             // Only Update if Input Data is Valid
             if (Page.IsValid)
             {
-                // Create an instance of the Document DB component
-                var documents = ComponentManager.Resolve<IDocumentsDb>();
-
                 // Determine whether a file was uploaded
 
                 if (storeInDatabase.Checked && (FileUpload.PostedFile != null))
@@ -103,8 +108,8 @@ namespace ASPNET.StarterKit.Portal
                     FileUpload.PostedFile.InputStream.Read(content, 0, length);
 
                     // Update the document within the Documents table
-                    documents.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
-                                             PathField.Text, CategoryField.Text, content, length, contentType);
+                    _documentsDb.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
+                                                PathField.Text, CategoryField.Text, content, length, contentType);
                 }
                 else
                 {
@@ -122,8 +127,8 @@ namespace ASPNET.StarterKit.Portal
                         // Update PathFile with uploaded virtual file location
                         PathField.Text = virtualPath;
                     }
-                    documents.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
-                                             PathField.Text, CategoryField.Text, new byte[0], 0, "");
+                    _documentsDb.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
+                                                PathField.Text, CategoryField.Text, new byte[0], 0, "");
                 }
 
                 // Redirect back to the portal home page
@@ -146,8 +151,7 @@ namespace ASPNET.StarterKit.Portal
 
             if (_itemId != 0)
             {
-                var documents = ComponentManager.Resolve<IDocumentsDb>();
-                documents.DeleteDocument(_itemId);
+                _documentsDb.DeleteDocument(_itemId);
             }
 
             // Redirect back to the portal home page

@@ -1,12 +1,23 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditHtml : Page
     {
+        private IHtmlTextsDb _htmlTextsDb;
         private int _moduleId;
+
+        private IPortalSecurity _portalSecurity;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IHtmlTextsDb htmlTextsDb)
+        {
+            _portalSecurity = portalSecurity;
+            _htmlTextsDb = htmlTextsDb;
+        }
 
         //****************************************************************
         //
@@ -22,10 +33,9 @@ namespace ASPNET.StarterKit.Portal
         {
             // Determine ModuleId of Announcements Portal Module
             _moduleId = Int32.Parse(Request.Params["Mid"]);
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
 
             // Verify that the current user has access to edit this module
-            if (portalSecurity.HasEditPermissions(_moduleId) == false)
+            if (_portalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -33,8 +43,7 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsPostBack == false)
             {
                 // Obtain a single row of text information
-                var text = ComponentManager.Resolve<IHtmlTextsDb>();
-                IDataReader dr = text.GetHtmlText(_moduleId);
+                IDataReader dr = _htmlTextsDb.GetHtmlText(_moduleId);
 
                 if (dr.Read())
                 {
@@ -65,12 +74,10 @@ namespace ASPNET.StarterKit.Portal
 
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
-            // Create an instance of the HtmlTextDB component
-            var text = ComponentManager.Resolve<IHtmlTextsDb>();
-
             // Update the text within the HtmlText table
-            text.UpdateHtmlText(_moduleId, Server.HtmlEncode(DesktopText.Text), Server.HtmlEncode(MobileSummary.Text),
-                                Server.HtmlEncode(MobileDetails.Text));
+            _htmlTextsDb.UpdateHtmlText(_moduleId, Server.HtmlEncode(DesktopText.Text),
+                                        Server.HtmlEncode(MobileSummary.Text),
+                                        Server.HtmlEncode(MobileDetails.Text));
 
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);

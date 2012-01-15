@@ -1,14 +1,22 @@
 using System;
 using System.Web;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public partial class DesktopModuleTitle : UserControl
+    public partial class DesktopModuleTitle : UserControl, IUnityControl
     {
         public string EditTarget;
         public string EditText;
         public string EditUrl;
+        private IPortalSecurity _portalSecurity;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity)
+        {
+            _portalSecurity = portalSecurity;
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,12 +28,11 @@ namespace ASPNET.StarterKit.Portal
 
             // Display Modular Title Text and Edit Buttons
             ModuleTitle.Text = portalModule.ModuleConfiguration.ModuleTitle;
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
 
             // Display the Edit button if the parent portalmodule has configured the PortalModuleTitle User Control
             // to display it -- and the current client has edit access permissions
             if (portalSettings.Portal.AlwaysShowEditButton ||
-                (portalSecurity.IsInRoles(portalModule.ModuleConfiguration.AuthorizedEditRoles)) && (EditText != null))
+                (_portalSecurity.IsInRoles(portalModule.ModuleConfiguration.AuthorizedEditRoles)) && (EditText != null))
             {
                 EditButton.Text = EditText;
                 EditButton.NavigateUrl = EditUrl + "?mid=" + portalModule.ModuleId;

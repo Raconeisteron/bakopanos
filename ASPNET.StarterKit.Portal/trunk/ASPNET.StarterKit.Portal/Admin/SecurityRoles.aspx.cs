@@ -1,15 +1,28 @@
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class SecurityRoles : Page
     {
+        private IPortalSecurity _portalSecurity;
         private int _roleId = -1;
         private string _roleName = "";
+        private IRolesDb _rolesDb;
         private int _tabId;
         private int _tabIndex;
+
+        private IUsersDb _usersDb;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IUsersDb usersDb, IRolesDb rolesDb)
+        {
+            _portalSecurity = portalSecurity;
+            _usersDb = usersDb;
+            _rolesDb = rolesDb;
+        }
 
         //*******************************************************
         //
@@ -20,10 +33,8 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-
             // Verify that the current user has access to access this page
-            if (portalSecurity.IsInRoles("Admins") == false)
+            if (_portalSecurity.IsInRoles("Admins") == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -63,9 +74,6 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Save_Click(Object sender, EventArgs e)
         {
-            // Obtain PortalSettings from Current Context
-            var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
-
             // Navigate back to admin page
             Response.Redirect("~/DesktopDefault.aspx?tabindex=" + _tabIndex + "&tabid=" + _tabId);
         }
@@ -84,8 +92,7 @@ namespace ASPNET.StarterKit.Portal
             if (((LinkButton) sender).ID == "addNew")
             {
                 // add new user to users table
-                var users = ComponentManager.Resolve<IUsersDb>();
-                if ((userId = users.AddUser(windowsUserName.Text, windowsUserName.Text, "acme")) == -1)
+                if ((userId = _usersDb.AddUser(windowsUserName.Text, windowsUserName.Text, "acme")) == -1)
                 {
                     Message.Text = "Add New Failed!  There is already an entry for <" + "u" + ">" + windowsUserName.Text +
                                    "<" + "/u" + "> in the Users database." + "<" + "br" + ">" +
@@ -101,8 +108,7 @@ namespace ASPNET.StarterKit.Portal
             if (userId != -1)
             {
                 // Add a new userRole to the database
-                var roles = ComponentManager.Resolve<IRolesDb>();
-                roles.AddUserRole(_roleId, userId);
+                _rolesDb.AddUserRole(_roleId, userId);
             }
 
             // Rebind list
@@ -119,13 +125,12 @@ namespace ASPNET.StarterKit.Portal
 
         private void UsersInRoleItemCommand(object sender, DataListCommandEventArgs e)
         {
-            var roles = ComponentManager.Resolve<IRolesDb>();
             var userId = (int) usersInRole.DataKeys[e.Item.ItemIndex];
 
             if (e.CommandName == "delete")
             {
                 // update database
-                roles.DeleteUserRole(_roleId, userId);
+                _rolesDb.DeleteUserRole(_roleId, userId);
 
                 // Ensure that item is not editable
                 usersInRole.EditItemIndex = -1;
@@ -158,14 +163,12 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Get the portal's roles from the database
-            var roles = ComponentManager.Resolve<IRolesDb>();
-
             // bind users in role to DataList
-            usersInRole.DataSource = roles.GetRoleMembers(_roleId);
+            usersInRole.DataSource = _rolesDb.GetRoleMembers(_roleId);
             usersInRole.DataBind();
 
             // bind all portal users to dropdownlist
-            allUsers.DataSource = roles.GetUsers();
+            allUsers.DataSource = _rolesDb.GetUsers();
             allUsers.DataBind();
         }
 

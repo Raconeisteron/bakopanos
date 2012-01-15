@@ -1,14 +1,23 @@
 using System;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class ModuleDefinitions : Page
     {
         private int _defId = -1;
+        private IModuleDefConfigurationDb _moduleDefConfigurationDb;
+        private IPortalSecurity _portalSecurity;
         private int _tabId;
         private int _tabIndex;
 
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IModuleDefConfigurationDb moduleDefConfigurationDb)
+        {
+            _portalSecurity = portalSecurity;
+            _moduleDefConfigurationDb = moduleDefConfigurationDb;
+        }
 
         //*******************************************************
         //
@@ -19,10 +28,8 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-
             // Verify that the current user has access to access this page
-            if (portalSecurity.IsInRoles("Admins") == false)
+            if (_portalSecurity.IsInRoles("Admins") == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -55,9 +62,7 @@ namespace ASPNET.StarterKit.Portal
                 else
                 {
                     // Obtain the module definition to edit from the database
-                    var config = ComponentManager.Resolve<IModuleDefConfigurationDb>();
-
-                    ModuleDefinitionItem modDef = config.GetSingleModuleDefinition(_defId);
+                    ModuleDefinitionItem modDef = _moduleDefConfigurationDb.GetSingleModuleDefinition(_defId);
 
                     // Read in information
                     FriendlyName.Text = modDef.FriendlyName;
@@ -79,21 +84,21 @@ namespace ASPNET.StarterKit.Portal
         {
             if (Page.IsValid)
             {
-                var config = ComponentManager.Resolve<IModuleDefConfigurationDb>();
-
                 if (_defId == -1)
                 {
                     // Obtain PortalSettings from Current Context
                     var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
                     // Add a new module definition to the database
-                    config.AddModuleDefinition(portalSettings.Portal.PortalId, FriendlyName.Text, DesktopSrc.Text,
-                                               MobileSrc.Text);
+                    _moduleDefConfigurationDb.AddModuleDefinition(portalSettings.Portal.PortalId, FriendlyName.Text,
+                                                                  DesktopSrc.Text,
+                                                                  MobileSrc.Text);
                 }
                 else
                 {
                     // update the module definition
-                    config.UpdateModuleDefinition(_defId, FriendlyName.Text, DesktopSrc.Text, MobileSrc.Text);
+                    _moduleDefConfigurationDb.UpdateModuleDefinition(_defId, FriendlyName.Text, DesktopSrc.Text,
+                                                                     MobileSrc.Text);
                 }
 
                 // Redirect back to the portal admin page
@@ -112,9 +117,7 @@ namespace ASPNET.StarterKit.Portal
         protected void DeleteBtn_Click(Object sender, EventArgs e)
         {
             // delete definition
-            var config = ComponentManager.Resolve<IModuleDefConfigurationDb>();
-
-            config.DeleteModuleDefinition(_defId);
+            _moduleDefConfigurationDb.DeleteModuleDefinition(_defId);
 
             // Redirect back to the portal admin page
             Response.Redirect("~/DesktopDefault.aspx?tabindex=" + _tabIndex + "&tabid=" + _tabId);

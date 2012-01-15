@@ -1,13 +1,24 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class DiscussDetails : Page
     {
+        private IDiscussionsDb _discussionsDb;
         private int _itemId;
         private int _moduleId;
+
+        private IPortalSecurity _portalSecurity;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IDiscussionsDb discussionsDb)
+        {
+            _portalSecurity = portalSecurity;
+            _discussionsDb = discussionsDb;
+        }
 
         //*******************************************************
         //
@@ -38,8 +49,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 BindData();
             }
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-            if (portalSecurity.HasEditPermissions(_moduleId) == false)
+            if (_portalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 if (_itemId == 0)
                 {
@@ -76,12 +86,10 @@ namespace ASPNET.StarterKit.Portal
 
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
-            // Create new discussion database component
-            var discuss = ComponentManager.Resolve<IDiscussionsDb>();
-
             // Add new message (updating the "itemId" on the page)
-            _itemId = discuss.AddMessage(_moduleId, _itemId, User.Identity.Name, Server.HtmlEncode(TitleField.Text),
-                                         Server.HtmlEncode(BodyField.Text));
+            _itemId = _discussionsDb.AddMessage(_moduleId, _itemId, User.Identity.Name,
+                                                Server.HtmlEncode(TitleField.Text),
+                                                Server.HtmlEncode(BodyField.Text));
 
             // Update visibility of page elements
             EditPanel.Visible = false;
@@ -118,8 +126,7 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Obtain the selected item from the Discussion table
-            var discuss = ComponentManager.Resolve<IDiscussionsDb>();
-            IDataReader dr = discuss.GetSingleMessage(_itemId);
+            IDataReader dr = _discussionsDb.GetSingleMessage(_itemId);
 
             // Load first row from database
             dr.Read();

@@ -54,7 +54,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public void UpdateModuleOrder(int moduleId, int moduleOrder, String pane)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
+            var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
 
             // Find the appropriate Module in the Module table and update the properties
             SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
@@ -63,9 +63,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             moduleRow.PaneName = pane;
 
             // Save the changes 
-            var config = ComponentManager.Resolve<IConfigurationDb>();
-
-            config.SaveSiteSettings();
+            _configurationDb.SaveSiteSettings();
         }
 
 
@@ -85,7 +83,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
                              String editRoles, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
+            var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
 
             // Create a new ModuleRow from the Module table
             SiteConfiguration.ModuleRow newModule = siteSettings.Module.NewModuleRow();
@@ -103,10 +101,8 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             // Add the new ModuleRow to the Module table
             siteSettings.Module.AddModuleRow(newModule);
 
-            // Save the changes
-            var config = ComponentManager.Resolve<IConfigurationDb>();
-
-            config.SaveSiteSettings();
+            // Save the changes            
+            _configurationDb.SaveSiteSettings();
 
             // Return the new Module ID
             return newModule.ModuleId;
@@ -130,7 +126,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
                                 String editRoles, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
+            var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
 
             // Find the appropriate Module in the Module table and update the properties
             SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);

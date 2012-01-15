@@ -5,6 +5,7 @@ using System.Security.Principal;
 using System.Threading;
 using System.Web;
 using System.Web.Security;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -39,12 +40,18 @@ namespace ASPNET.StarterKit.Portal
             {
                 tabId = Int32.Parse(Request.Params["tabid"]);
             }
+            IUnityContainer container = Application.GetContainer();
+
+            var portalConfigurationDb = container.Resolve<IPortalConfigurationDb>();
+            var tabConfigurationDb = container.Resolve<ITabConfigurationDb>();
 
             // Build and add the PortalSettings object to the current Context
-            Context.Items.Add("PortalSettings", new PortalSettings(tabIndex, tabId));
+            Context.Items.Add("PortalSettings",
+                              new PortalSettings(tabIndex, tabId, portalConfigurationDb, tabConfigurationDb));
 
             // Retrieve and add the SiteConfiguration DataSet to the current Context
-            var config = ComponentManager.Resolve<IConfigurationDb>();
+
+            var config = container.Resolve<IConfigurationDb>();
             HttpContext.Current.Items.Add("SiteSettings", config.GetSiteSettings());
 
             try
@@ -82,7 +89,8 @@ namespace ASPNET.StarterKit.Portal
                 if ((Request.Cookies["portalroles"] == null) || (Request.Cookies["portalroles"].Value == ""))
                 {
                     // Get roles from UserRoles table, and add to cookie
-                    var user = ComponentManager.Resolve<IUsersDb>();
+                    IUnityContainer container = Application.GetContainer();
+                    var user = container.Resolve<IUsersDb>();
                     roles = user.GetRoles(User.Identity.Name);
 
                     // Create a string to persist the roles

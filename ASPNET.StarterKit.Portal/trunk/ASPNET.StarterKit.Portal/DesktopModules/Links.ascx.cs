@@ -1,10 +1,19 @@
 using System;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class Links : PortalModuleControl
     {
         protected string LinkImage = "";
+
+        private ILinksDb _linksDb;
+
+        [InjectionMethod]
+        public void Initialize(ILinksDb linksDb)
+        {
+            _linksDb = linksDb;
+        }
 
         //*******************************************************
         //
@@ -30,9 +39,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Obtain links information from the Links table
             // and bind to the datalist control
-            var links = ComponentManager.Resolve<ILinksDb>();
-
-            myDataList.DataSource = links.GetLinks(ModuleId);
+            myDataList.DataSource = _linksDb.GetLinks(ModuleId);
             myDataList.DataBind();
         }
 

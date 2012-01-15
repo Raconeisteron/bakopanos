@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace ASPNET.StarterKit.Portal
@@ -10,6 +9,9 @@ namespace ASPNET.StarterKit.Portal
     /// </summary>
     public class PortalSettings
     {
+        private readonly IPortalConfigurationDb _portalConfigurationDb;
+        private readonly ITabConfigurationDb _tabConfigurationDb;
+
         /// <summary>
         /// encapsulates all of the logic
         /// necessary to obtain configuration settings necessary to render
@@ -20,13 +22,16 @@ namespace ASPNET.StarterKit.Portal
         /// The method config.GetSiteSettings() fills the SiteConfiguration
         /// class, derived from a DataSet, which PortalSettings accesses.
         /// </summary>
-        public PortalSettings(int tabIndex, int tabId)
+        public PortalSettings(int tabIndex, int tabId, IPortalConfigurationDb portalConfigurationDb,
+                              ITabConfigurationDb tabConfigurationDb)
         {
-            // Get the configuration data
-            var config = ComponentManager.Resolve<ITabConfigurationDb>();
+            _portalConfigurationDb = portalConfigurationDb;
+            _tabConfigurationDb = tabConfigurationDb;
 
-            DesktopTabs = config.FindDesktopTabs();
-            MobileTabs = config.FindMobileTabs();
+            // Get the configuration data
+
+            DesktopTabs = _tabConfigurationDb.FindDesktopTabs();
+            MobileTabs = _tabConfigurationDb.FindMobileTabs();
 
             // If the PortalSettings.ActiveTab property is set to 0, change it to  
             // the TabID of the first tab in the DesktopTabs collection
@@ -34,11 +39,11 @@ namespace ASPNET.StarterKit.Portal
                 tabId = (DesktopTabs[0]).TabId;
 
             // Read the Module Information for the current (Active) tab
-            ActiveTab = config.FindTab(tabId);
+            ActiveTab = _tabConfigurationDb.FindTab(tabId);
 
             ActiveTab.TabIndex = tabIndex;
 
-            foreach (ModuleSettings moduleSettings in config.FindModules(tabId))
+            foreach (ModuleSettings moduleSettings in _tabConfigurationDb.FindModules(tabId))
             {
                 ActiveTab.Modules.Add(moduleSettings);
             }
@@ -46,15 +51,12 @@ namespace ASPNET.StarterKit.Portal
             // Sort the modules in order of ModuleOrder
             ActiveTab.Modules.Sort();
 
-            Portal = ComponentManager.Resolve<IPortalConfigurationDb>().FindPortal();
-            
+            Portal = _portalConfigurationDb.FindPortal();
         }
 
         public TabSettings ActiveTab { get; set; }
         public List<TabStripDetails> DesktopTabs { get; set; }
         public List<TabStripDetails> MobileTabs { get; set; }
         public GlobalItem Portal { get; set; }
-
-       
     }
 }

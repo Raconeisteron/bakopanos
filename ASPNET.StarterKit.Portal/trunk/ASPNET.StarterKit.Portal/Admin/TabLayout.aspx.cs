@@ -4,15 +4,36 @@ using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class TabLayout : Page
     {
+        private IModuleConfigurationDb _moduleConfigurationDb;
+        private IModuleDefConfigurationDb _moduleDefConfigurationDb;
+        private IPortalConfigurationDb _portalConfigurationDb;
+        private IPortalSecurity _portalSecurity;
+        private IRolesDb _rolesDb;
+        private ITabConfigurationDb _tabConfigurationDb;
         private int _tabId;
         protected List<ModuleItem> ContentList { get; set; }
         protected List<ModuleItem> LeftList { get; set; }
         protected List<ModuleItem> RightList { get; set; }
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IRolesDb rolesDb,
+                               IPortalConfigurationDb portalConfigurationDb, ITabConfigurationDb tabConfigurationDb,
+                               IModuleConfigurationDb moduleConfigurationDb,
+                               IModuleDefConfigurationDb moduleDefConfigurationDb)
+        {
+            _portalSecurity = portalSecurity;
+            _rolesDb = rolesDb;
+            _portalConfigurationDb = portalConfigurationDb;
+            _moduleDefConfigurationDb = moduleDefConfigurationDb;
+            _tabConfigurationDb = tabConfigurationDb;
+            _moduleConfigurationDb = moduleConfigurationDb;
+        }
 
         //*******************************************************
         //
@@ -23,10 +44,8 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-
             // Verify that the current user has access to access this page
-            if (portalSecurity.IsInRoles("Admins") == false)
+            if (_portalSecurity.IsInRoles("Admins") == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -60,16 +79,15 @@ namespace ASPNET.StarterKit.Portal
             m.ModuleOrder = 999;
 
             // save to database
-            var config = ComponentManager.Resolve<IModuleConfigurationDb>();
-            m.ModuleId = config.AddModule(_tabId, m.ModuleOrder, "ContentPane", m.ModuleTitle, m.ModuleDefId, 0,
-                                          "Admins",
-                                          false);
+            m.ModuleId = _moduleConfigurationDb.AddModule(_tabId, m.ModuleOrder, "ContentPane", m.ModuleTitle,
+                                                          m.ModuleDefId, 0, "Admins", false);
 
             // Obtain portalId from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // reload the portalSettings from the database
-            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.Portal.PortalId, _tabId);
+            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.Portal.PortalId, _tabId,
+                                                                             _portalConfigurationDb, _tabConfigurationDb);
 
             // reorder the modules in the content pane
             List<ModuleItem> modules = GetModules("ContentPane");
@@ -78,7 +96,7 @@ namespace ASPNET.StarterKit.Portal
             // resave the order
             foreach (ModuleItem item in modules)
             {
-                config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, "ContentPane");
+                _moduleConfigurationDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, "ContentPane");
             }
 
             // Redirect to the same page to pick up changes
@@ -129,10 +147,9 @@ namespace ASPNET.StarterKit.Portal
                 OrderModules(modules);
 
                 // resave the order
-                var config = ComponentManager.Resolve<IModuleConfigurationDb>();
                 foreach (ModuleItem item in modules)
                 {
-                    config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, pane);
+                    _moduleConfigurationDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, pane);
                 }
             }
 
@@ -165,8 +182,7 @@ namespace ASPNET.StarterKit.Portal
                 ModuleItem m = sourceList[sourceBox.SelectedIndex];
 
                 // add it to the database
-                var config = ComponentManager.Resolve<IModuleConfigurationDb>();
-                config.UpdateModuleOrder(m.ModuleId, 998, targetPane);
+                _moduleConfigurationDb.UpdateModuleOrder(m.ModuleId, 998, targetPane);
 
                 // delete it from the source list
                 sourceList.RemoveAt(sourceBox.SelectedIndex);
@@ -175,7 +191,9 @@ namespace ASPNET.StarterKit.Portal
                 var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
                 // reload the portalSettings from the database
-                HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.Portal.PortalId, _tabId);
+                HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.Portal.PortalId, _tabId,
+                                                                                 _portalConfigurationDb,
+                                                                                 _tabConfigurationDb);
 
                 // reorder the modules in the source pane
                 sourceList = GetModules(sourcePane);
@@ -184,7 +202,7 @@ namespace ASPNET.StarterKit.Portal
                 // resave the order
                 foreach (ModuleItem item in sourceList)
                 {
-                    config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, sourcePane);
+                    _moduleConfigurationDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, sourcePane);
                 }
 
                 // reorder the modules in the target pane
@@ -194,7 +212,7 @@ namespace ASPNET.StarterKit.Portal
                 // resave the order
                 foreach (ModuleItem item in targetList)
                 {
-                    config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, targetPane);
+                    _moduleConfigurationDb.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, targetPane);
                 }
 
                 // Redirect to the same page to pick up changes
@@ -267,9 +285,9 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // update Tab info in the database
-            var config = ComponentManager.Resolve<ITabConfigurationDb>();
-            config.UpdateTab(portalSettings.Portal.PortalId, _tabId, tabName.Text, portalSettings.ActiveTab.TabOrder,
-                             authorizedRoles, mobileTabName.Text, showMobile.Checked);
+            _tabConfigurationDb.UpdateTab(portalSettings.Portal.PortalId, _tabId, tabName.Text,
+                                          portalSettings.ActiveTab.TabOrder,
+                                          authorizedRoles, mobileTabName.Text, showMobile.Checked);
         }
 
         //*******************************************************
@@ -312,8 +330,7 @@ namespace ASPNET.StarterKit.Portal
                 if (m.ModuleId > -1)
                 {
                     // must delete from database too
-                    var config = ComponentManager.Resolve<IModuleConfigurationDb>();
-                    config.DeleteModule(m.ModuleId);
+                    _moduleConfigurationDb.DeleteModule(m.ModuleId);
                 }
             }
 
@@ -342,8 +359,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Populate checkbox list with all security roles for this portal
             // and "check" the ones already configured for this tab
-            var rolesObj = ComponentManager.Resolve<IRolesDb>();
-            IDataReader roles = rolesObj.GetPortalRoles(portalSettings.Portal.PortalId);
+            IDataReader roles = _rolesDb.GetPortalRoles(portalSettings.Portal.PortalId);
 
             // Clear existing items in checkboxlist
             authRoles.Items.Clear();
@@ -373,8 +389,7 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Populate the "Add Module" Data
-            var config = ComponentManager.Resolve<IModuleDefConfigurationDb>();
-            moduleType.DataSource = config.GetModuleDefinitions(portalSettings.Portal.PortalId);
+            moduleType.DataSource = _moduleDefConfigurationDb.GetModuleDefinitions(portalSettings.Portal.PortalId);
             moduleType.DataBind();
 
             // Populate Right Hand Module Data

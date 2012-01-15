@@ -3,14 +3,27 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class Tabs : PortalModuleControl
     {
         protected List<TabItem> PortalTabs;
+        private IPortalConfigurationDb _portalConfigurationDb;
+        private IPortalSecurity _portalSecurity;
+        private ITabConfigurationDb _tabConfigurationDb;
         private int _tabId;
         private int _tabIndex;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IPortalConfigurationDb portalConfigurationDb,
+                               ITabConfigurationDb tabConfigurationDb)
+        {
+            _portalSecurity = portalSecurity;
+            _portalConfigurationDb = portalConfigurationDb;
+            _tabConfigurationDb = tabConfigurationDb;
+        }
 
         //*******************************************************
         //
@@ -21,10 +34,8 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-
             // Verify that the current user has access to access this page
-            if (portalSecurity.IsInRoles("Admins") == false)
+            if (_portalSecurity.IsInRoles("Admins") == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -116,9 +127,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 // must delete from database too
                 TabItem t = PortalTabs[tabList.SelectedIndex];
-                var config = ComponentManager.Resolve<ITabConfigurationDb>();
-
-                config.DeleteTab(t.TabId);
+                _tabConfigurationDb.DeleteTab(t.TabId);
 
                 // remove item from list
                 PortalTabs.RemoveAt(tabList.SelectedIndex);
@@ -152,12 +161,11 @@ namespace ASPNET.StarterKit.Portal
             PortalTabs.Add(t);
 
             // write tab to database
-            var config = ComponentManager.Resolve<ITabConfigurationDb>();
-
-            t.TabId = config.AddTab(portalSettings.Portal.PortalId, t.TabName, t.TabOrder);
+            t.TabId = _tabConfigurationDb.AddTab(portalSettings.Portal.PortalId, t.TabName, t.TabOrder);
 
             // reload the _portalSettings from the database
-            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.Portal.PortalId, t.TabId);
+            HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.Portal.PortalId, t.TabId,
+                                                                             _portalConfigurationDb, _tabConfigurationDb);
 
             // Reset the order numbers for the tabs within the list  
             OrderTabs();
@@ -208,9 +216,7 @@ namespace ASPNET.StarterKit.Portal
                 i += 2;
 
                 // rewrite tab to database
-                var config = ComponentManager.Resolve<ITabConfigurationDb>();
-
-                config.UpdateTabOrder(t.TabId, t.TabOrder);
+                _tabConfigurationDb.UpdateTabOrder(t.TabId, t.TabOrder);
             }
         }
     }

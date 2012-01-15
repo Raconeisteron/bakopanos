@@ -1,12 +1,22 @@
 using System;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class Roles : PortalModuleControl
     {
+        private IPortalSecurity _portalSecurity;
+        private IRolesDb _rolesDb;
         private int _tabId;
         private int _tabIndex;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IRolesDb rolesDb)
+        {
+            _portalSecurity = portalSecurity;
+            _rolesDb = rolesDb;
+        }
 
         //*******************************************************
         //
@@ -18,8 +28,7 @@ namespace ASPNET.StarterKit.Portal
         protected void Page_Load(object sender, EventArgs e)
         {
             // Verify that the current user has access to access this page
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-            if (portalSecurity.IsInRoles("Admins") == false)
+            if (_portalSecurity.IsInRoles("Admins") == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -53,8 +62,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Add a new role to the database
-            var roles = ComponentManager.Resolve<IRolesDb>();
-            roles.AddRole(portalSettings.Portal.PortalId, "New Role");
+            _rolesDb.AddRole(portalSettings.Portal.PortalId, "New Role");
 
             // set the edit item index to the last item
             rolesList.EditItemIndex = rolesList.Items.Count;
@@ -73,7 +81,6 @@ namespace ASPNET.StarterKit.Portal
 
         private void RolesList_ItemCommand(object sender, DataListCommandEventArgs e)
         {
-            var roles = ComponentManager.Resolve<IRolesDb>();
             var roleId = (int) rolesList.DataKeys[e.Item.ItemIndex];
 
             if (e.CommandName == "edit")
@@ -90,7 +97,7 @@ namespace ASPNET.StarterKit.Portal
                 string roleName = ((TextBox) e.Item.FindControl("roleName")).Text;
 
                 // update database
-                roles.UpdateRole(roleId, roleName);
+                _rolesDb.UpdateRole(roleId, roleName);
 
                 // Disable editable list item access
                 rolesList.EditItemIndex = -1;
@@ -101,7 +108,7 @@ namespace ASPNET.StarterKit.Portal
             else if (e.CommandName == "delete")
             {
                 // update database
-                roles.DeleteRole(roleId);
+                _rolesDb.DeleteRole(roleId);
 
                 // Ensure that item is not editable
                 rolesList.EditItemIndex = -1;
@@ -113,7 +120,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 // Save role name changes first
                 string roleName = ((TextBox) e.Item.FindControl("roleName")).Text;
-                roles.UpdateRole(roleId, roleName);
+                _rolesDb.UpdateRole(roleId, roleName);
 
                 // redirect to edit page
                 Response.Redirect("~/Admin/SecurityRoles.aspx?roleId=" + roleId + "&rolename=" + roleName +
@@ -134,9 +141,7 @@ namespace ASPNET.StarterKit.Portal
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
             // Get the portal's roles from the database
-            var roles = ComponentManager.Resolve<IRolesDb>();
-
-            rolesList.DataSource = roles.GetPortalRoles(portalSettings.Portal.PortalId);
+            rolesList.DataSource = _rolesDb.GetPortalRoles(portalSettings.Portal.PortalId);
             rolesList.DataBind();
         }
 

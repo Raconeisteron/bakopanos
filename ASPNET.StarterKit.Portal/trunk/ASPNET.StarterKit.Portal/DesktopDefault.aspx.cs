@@ -1,11 +1,20 @@
 using System;
 using System.Web;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class DesktopDefault : Page
     {
+        private IPortalSecurity _portalSecurity;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity)
+        {
+            _portalSecurity = portalSecurity;
+        }
+
         /// <summary>
         /// The Page_Init event handler executes at the very beginning of each page
         /// request (immediately before Page_Load).
@@ -19,10 +28,9 @@ namespace ASPNET.StarterKit.Portal
         {
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
 
             // Ensure that the visiting user has access to the current page
-            if (portalSecurity.IsInRoles(portalSettings.ActiveTab.AuthorizedRoles) == false)
+            if (_portalSecurity.IsInRoles(portalSettings.ActiveTab.AuthorizedRoles) == false)
             {
                 Response.Redirect("~/Admin/AccessDenied.aspx");
             }

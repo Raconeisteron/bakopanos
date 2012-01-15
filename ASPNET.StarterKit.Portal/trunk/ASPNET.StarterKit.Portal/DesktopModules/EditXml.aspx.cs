@@ -1,12 +1,22 @@
 using System;
 using System.Collections;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class EditXml : Page
     {
+        private IModuleConfigurationDb _moduleConfigurationDb;
         private int _moduleId;
+        private IPortalSecurity _portalSecurity;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IModuleConfigurationDb moduleConfigurationDb)
+        {
+            _portalSecurity = portalSecurity;
+            _moduleConfigurationDb = moduleConfigurationDb;
+        }
 
         /// <summary>
         /// The Page_Load event on this Page is used to obtain the ModuleId
@@ -19,10 +29,9 @@ namespace ASPNET.StarterKit.Portal
         {
             // Determine ModuleId of Announcements Portal Module
             _moduleId = Int32.Parse(Request.Params["Mid"]);
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
 
             // Verify that the current user has access to edit this module
-            if (portalSecurity.HasEditPermissions(_moduleId) == false)
+            if (_portalSecurity.HasEditPermissions(_moduleId) == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -32,8 +41,7 @@ namespace ASPNET.StarterKit.Portal
                 if (_moduleId > 0)
                 {
                     // Get settings from the database
-                    var config = ComponentManager.Resolve<IModuleConfigurationDb>();
-                    Hashtable settings = config.GetModuleSettings(_moduleId);
+                    Hashtable settings = _moduleConfigurationDb.GetModuleSettings(_moduleId);
 
                     XmlDataSrc.Text = (String) settings["xmlsrc"];
                     XslTransformSrc.Text = (String) settings["xslsrc"];
@@ -53,11 +61,8 @@ namespace ASPNET.StarterKit.Portal
 
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
-            // Update settings in the database
-            var config = ComponentManager.Resolve<IModuleConfigurationDb>();
-
-            config.UpdateModuleSetting(_moduleId, "xmlsrc", XmlDataSrc.Text);
-            config.UpdateModuleSetting(_moduleId, "xslsrc", XslTransformSrc.Text);
+            _moduleConfigurationDb.UpdateModuleSetting(_moduleId, "xmlsrc", XmlDataSrc.Text);
+            _moduleConfigurationDb.UpdateModuleSetting(_moduleId, "xslsrc", XslTransformSrc.Text);
 
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);

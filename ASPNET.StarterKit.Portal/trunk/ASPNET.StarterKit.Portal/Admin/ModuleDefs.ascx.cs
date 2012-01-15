@@ -1,13 +1,22 @@
 using System;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class ModuleDefs : PortalModuleControl
     {
+        private IModuleDefConfigurationDb _moduleDefConfigurationDb;
+        private IPortalSecurity _portalSecurity;
         private int _tabId;
         private int _tabIndex;
 
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IModuleDefConfigurationDb moduleDefConfigurationDb)
+        {
+            _portalSecurity = portalSecurity;
+            _moduleDefConfigurationDb = moduleDefConfigurationDb;
+        }
 
         //*******************************************************
         //
@@ -18,10 +27,8 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-
             // Verify that the current user has access to access this page
-            if (portalSecurity.IsInRoles("Admins") == false)
+            if (_portalSecurity.IsInRoles("Admins") == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -84,9 +91,7 @@ namespace ASPNET.StarterKit.Portal
             // Obtain PortalSettings from Current Context
             var portalSettings = (PortalSettings) Context.Items["PortalSettings"];
 
-            var config = ComponentManager.Resolve<IModuleDefConfigurationDb>();
-
-            defsList.DataSource = config.GetModuleDefinitions(portalSettings.Portal.PortalId);
+            defsList.DataSource = _moduleDefConfigurationDb.GetModuleDefinitions(portalSettings.Portal.PortalId);
             defsList.DataBind();
         }
 

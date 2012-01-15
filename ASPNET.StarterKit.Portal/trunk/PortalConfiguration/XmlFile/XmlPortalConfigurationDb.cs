@@ -22,9 +22,9 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public GlobalItem FindPortal()
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
+            var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
 
-            var globalSettings = (SiteConfiguration.GlobalRow)siteSettings.Global.Rows[0];
+            var globalSettings = (SiteConfiguration.GlobalRow) siteSettings.Global.Rows[0];
 
             // Read Portal global settings 
             var globalItem = new GlobalItem();

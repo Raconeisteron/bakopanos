@@ -1,13 +1,26 @@
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
     public partial class Users : PortalModuleControl
     {
+        private IPortalSecurity _portalSecurity;
+        private IRolesDb _rolesDb;
         private int _tabId;
         private int _tabIndex;
+
+        private IUsersDb _usersDb;
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity, IUsersDb usersDb, IRolesDb rolesDb)
+        {
+            _portalSecurity = portalSecurity;
+            _usersDb = usersDb;
+            _rolesDb = rolesDb;
+        }
 
         //*******************************************************
         //
@@ -18,10 +31,8 @@ namespace ASPNET.StarterKit.Portal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
-
             // Verify that the current user has access to access this page
-            if (portalSecurity.IsInRoles("Admins") == false)
+            if (_portalSecurity.IsInRoles("Admins") == false)
             {
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
             }
@@ -52,8 +63,7 @@ namespace ASPNET.StarterKit.Portal
         protected void DeleteUser_Click(Object sender, ImageClickEventArgs e)
         {
             // get user id from dropdownlist of users
-            var users = ComponentManager.Resolve<IUsersDb>();
-            users.DeleteUser(Int32.Parse(allUsers.SelectedItem.Value));
+            _usersDb.DeleteUser(Int32.Parse(allUsers.SelectedItem.Value));
 
             // Rebind list
             BindData();
@@ -101,9 +111,8 @@ namespace ASPNET.StarterKit.Portal
                     "Domain users do not need to be registered to access portal content that is available to \"All Users\".  Administrators may add domain users to specific roles using the Security Roles function above.  This section permits Administrators to manage users and their security roles directly.";
 
             // Get the list of registered users from the database
-            var roles = ComponentManager.Resolve<IRolesDb>();
             // bind all portal users to dropdownlist
-            allUsers.DataSource = roles.GetUsers();
+            allUsers.DataSource = _rolesDb.GetUsers();
             allUsers.DataBind();
         }
 

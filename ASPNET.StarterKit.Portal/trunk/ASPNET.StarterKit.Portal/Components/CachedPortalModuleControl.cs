@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Web.UI;
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -29,6 +30,7 @@ namespace ASPNET.StarterKit.Portal
         private string _cachedOutput = "";
         private ModuleSettings _moduleConfiguration;
 
+        private IPortalSecurity _portalSecurity;
 
         // Public property accessors
 
@@ -59,10 +61,15 @@ namespace ASPNET.StarterKit.Portal
         {
             get
             {
-                var portalSecurity = ComponentManager.Resolve<IPortalSecurity>();
                 return "Key:" + GetType() + ModuleId +
-                       portalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles);
+                       _portalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles);
             }
+        }
+
+        [InjectionMethod]
+        public void Initialize(IPortalSecurity portalSecurity)
+        {
+            _portalSecurity = portalSecurity;
         }
 
         //*********************************************************************
