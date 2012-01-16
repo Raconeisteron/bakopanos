@@ -46,19 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IModuleAuthorizationDb.cs" />
     <Compile Include="IPortalSecurity.cs" />
     <Compile Include="IRolesDb.cs" />
     <Compile Include="IUsersDb.cs" />
+    <Compile Include="ModuleAuthorization.cs" />
     <Compile Include="PortalSecurity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlClient\SqlRolesDb.cs" />
     <Compile Include="SqlClient\SqlUsersDb.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PortalConfiguration\PortalConfiguration.csproj">
-      <Project>{53ED8DED-F1F8-4826-A76F-1201E3DFEA8E}</Project>
-      <Name>PortalConfiguration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PortalCore\PortalCore.csproj">
       <Project>{36BBB9BC-F3E6-48C5-896A-EE488A10499D}</Project>
       <Name>PortalCore</Name>

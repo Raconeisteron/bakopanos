@@ -11,11 +11,11 @@ namespace ASPNET.StarterKit.Portal
     /// </summary>
     public class PortalSecurity : IPortalSecurity
     {
-        private readonly IModuleConfigurationDb _moduleConfigurationDb;
+        private readonly IModuleAuthorizationDb _moduleAuthorizationDb;
 
-        public PortalSecurity(IModuleConfigurationDb moduleConfigurationDb)
+        public PortalSecurity(IModuleAuthorizationDb moduleAuthorizationDb)
         {
-            _moduleConfigurationDb = moduleConfigurationDb;
+            _moduleAuthorizationDb = moduleAuthorizationDb;
         }
 
         //*********************************************************************
@@ -87,7 +87,7 @@ namespace ASPNET.StarterKit.Portal
         public bool HasEditPermissions(int moduleId)
         {
             // Find the appropriate Module in the Module table
-            ModuleAuthorization moduleRoles = _moduleConfigurationDb.FindModuleRolesByModuleId(moduleId);
+            ModuleAuthorization moduleRoles = _moduleAuthorizationDb.FindModuleRolesByModuleId(moduleId);
 
             if (IsInRoles(moduleRoles.AccessRoles) == false || IsInRoles(moduleRoles.EditRoles) == false)
                 return false;

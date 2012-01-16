@@ -5,7 +5,6 @@ namespace ASPNET.StarterKit.Portal
 {
     public interface IModuleConfigurationDb
     {
-        ModuleAuthorization FindModuleRolesByModuleId(int moduleId);
         void UpdateModuleOrder(int moduleId, int moduleOrder, String pane);
 
         int AddModule(int tabId, int moduleOrder, String paneName, String title, int moduleDefId, int cacheTime,

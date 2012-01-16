@@ -53,11 +53,11 @@
     <Compile Include="IPortalConfigurationDb.cs" />
     <Compile Include="ITabConfigurationDb.cs" />
     <Compile Include="XmlFile\XmlConfigurationDb.cs" />
+    <Compile Include="XmlFile\XmlModuleAuthorizationDb.cs" />
     <Compile Include="XmlFile\XmlModuleConfigurationDb.cs" />
     <Compile Include="XmlFile\XmlModuleDefConfigurationDb.cs" />
     <Compile Include="ModuleDefinitionItem.cs" />
     <Compile Include="ModuleItem.cs" />
-    <Compile Include="ModuleAuthorization.cs" />
     <Compile Include="ModuleSettings.cs" />
     <Compile Include="XmlFile\XmlPortalConfigurationDb.cs" />
     <Compile Include="PortalSettings.cs" />
@@ -89,6 +89,10 @@
     <ProjectReference Include="..\PortalCore\PortalCore.csproj">
       <Project>{36BBB9BC-F3E6-48C5-896A-EE488A10499D}</Project>
       <Name>PortalCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortalSecurity\PortalSecurity.csproj">
+      <Project>{96451A30-ED9A-4C81-9800-6E3BFDD8D4BC}</Project>
+      <Name>PortalSecurity</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

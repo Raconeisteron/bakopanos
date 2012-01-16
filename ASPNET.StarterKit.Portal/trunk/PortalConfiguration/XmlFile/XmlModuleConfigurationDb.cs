@@ -23,20 +23,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
 
         #region IModuleConfigurationDb Members
 
-        public ModuleAuthorization FindModuleRolesByModuleId(int moduleId)
-        {
-            // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
-
-            SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
-
-            return new ModuleAuthorization
-                       {
-                           AccessRoles = moduleRow.TabRow.AccessRoles,
-                           EditRoles = moduleRow.EditRoles
-                       };
-        }
-
+       
 
         //*********************************************************************
         //
