@@ -65,7 +65,7 @@ namespace ASPNET.StarterKit.Portal
 
             foreach (String role in roles.Split(new[] {';'}))
             {
-                if (role != "" && role != null && ((role == "All Users") || (context.User.IsInRole(role))))
+                if (!string.IsNullOrEmpty(role) && ((role == "All Users") || (context.User.IsInRole(role))))
                 {
                     return true;
                 }
