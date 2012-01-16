@@ -1,5 +1,5 @@
 <%@ Page Language="c#" CodeBehind="SecurityRoles.aspx.cs" AutoEventWireup="True"
-    Inherits="ASPNET.StarterKit.Portal.SecurityRoles" MasterPageFile="~/Portal.Master" %>
+         Inherits="ASPNET.StarterKit.Portal.SecurityRoles" MasterPageFile="~/Portal.Master" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%--
     The SecurityRoles.aspx page is used to create and edit security roles within
@@ -46,7 +46,7 @@
                                     </td>
                                     <td class="Normal">
                                         <asp:LinkButton ID="addNew" CssClass="CommandButton" Text="Create new user and add to role"
-                                            Visible="False" runat="server" OnClick="AddUser_Click" />
+                                                        Visible="False" runat="server" OnClick="AddUser_Click" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -55,7 +55,7 @@
                                     </td>
                                     <td>
                                         <asp:LinkButton ID="addExisting" CssClass="CommandButton" Text="Add existing user to role"
-                                            runat="server" OnClick="AddUser_Click" />
+                                                        runat="server" OnClick="AddUser_Click" />
                                     </td>
                                 </tr>
                             </table>
@@ -71,9 +71,9 @@
                                 <ItemTemplate>
                                     &nbsp;&nbsp;
                                     <asp:ImageButton ImageUrl="~/images/delete.gif" CommandName="delete" AlternateText="Remove this user from role"
-                                        runat="server" />
+                                                     runat="server" />
                                     <asp:Label Text='<%# DataBinder.Eval(Container.DataItem, "Email") %>' CssClass="Normal"
-                                        runat="server" />
+                                               runat="server" />
                                 </ItemTemplate>
                             </asp:DataList>
                         </td>
@@ -86,7 +86,7 @@
                     <tr>
                         <td colspan="2">
                             <asp:LinkButton ID="saveBtn" class="CommandButton" Text="Save Role Changes" runat="server"
-                                OnClick="Save_Click" />
+                                            OnClick="Save_Click" />
                         </td>
                     </tr>
                 </table>

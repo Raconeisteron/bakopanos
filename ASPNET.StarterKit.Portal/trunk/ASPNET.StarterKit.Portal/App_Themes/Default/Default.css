@@ -6,79 +6,84 @@
 
 
 /* PAGE BACKGROUND */
+
 /* background color for the header at the top of the page  */
-.HeadBg {
-    background-color: darkred;
-}
+
+.HeadBg { background-color: darkred; }
 
 /* background color for the content part of the pages */
-Body
-{
-    background-color: white;
-}
+
+Body { background-color: white; }
 
 
 /* PAGE BANNER */
 /* NOTE: Site Title, Site Links and Tabs are rendered by MobilePortalBanner.ascx
 /* style for the text of the site title */
+
 .SiteTitle {
+    color: #cccc99;
     font-family: Verdana Bold, Helvetica, sans-serif;
     font-size: 20px;
     font-weight: bold;
-    color:#cccc99
 }
 
 /* background/border colors for the selected tab */
+
 .TabBg {
     background-color: white;
     border-color: white;
 }
 
 /* background/border colors for the unselected tabs */
+
 .OtherTabsBg {
     background-color: dimgray;
     border-color: black;
 }
 
 /* text style for the selected tab */
+
 .SelectedTab {
+    color: DarkRed;
     font-family: Verdana, Helvetica, sans-serif;
     font-size: 13px;
-    color:DarkRed;
     font-weight: bold
 }
 
 /* text style for the unselected tabs */
+
 .OtherTabs {
+    color: gainsboro;
     font-family: Verdana, Helvetica, sans-serif;
     font-size: 13px;
-    color:gainsboro;
-    text-decoration:none;
-    font-weight: bold
+    font-weight: bold;
+    text-decoration: none;
 }
 
 /* hyperlink styles of the unselected tabs */
-A.OtherTabs:link    {
-    text-decoration:    none;
-    color:#eeeeee;
+
+A.OtherTabs:link {
+    color: #eeeeee;
+    text-decoration: none;
 }
 
 A.OtherTabs:visited {
-    text-decoration:    none;
-    color:#eeeeee;
+    color: #eeeeee;
+    text-decoration: none;
 }
 
-A.OtherTabs:active  {
-    text-decoration:    none;
-    color:#eeeeee;
+A.OtherTabs:active {
+    color: #eeeeee;
+    text-decoration: none;
 }
 
-A.OtherTabs:hover   {
-    text-decoration:    underline;
-    color:white;
+A.OtherTabs:hover {
+    color: white;
+    text-decoration: underline;
 }
     
 /* text style for the site links (at extreme top-right of header) */
+
 .SiteLink {
     font-family: Verdana, Helvetica, sans-serif;
     font-size: 11px;
@@ -86,260 +91,248 @@ A.OtherTabs:hover   {
 }   
 
 /* hyperlink style for the site links */
+
 A.SiteLink:link {
-    text-decoration:    none;
-    color:white;
+    color: white;
+    text-decoration: none;
 }
 
-A.SiteLink:visited  {
-    text-decoration:    none;
-    color:#eeeeee;
+A.SiteLink:visited {
+    color: #eeeeee;
+    text-decoration: none;
 }
 
-A.SiteLink:active   {
-    text-decoration:    none;
-    color:#eeeeee;
+A.SiteLink:active {
+    color: #eeeeee;
+    text-decoration: none;
 }
 
-A.SiteLink:hover    {
-    text-decoration:    underline;
-    color:white;
+A.SiteLink:hover {
+    color: white;
+    text-decoration: underline;
 }
 
 /* style for separator between site links */
-.Accent
-{
+
+.Accent {
     color: red;
-    font-weight:    bold;
+    font-weight: bold;
 }
 
 
 
 /* MODULE-SPECIFIC */
-/* text style for reading messages in Discussion */    
-.Message    {
+/* text style for reading messages in Discussion */
+
+.Message {
+    background-color: #eeeeee;
     font-family: Verdana, Helvetica, sans-serif;
     font-size: 11px;
-    font-weight: normal;
     font-size: 11px;
-    background-color: #eeeeee
+    font-weight: normal;
 }   
 
 /* style of item titles by Announcements and events */
-.ItemTitle    {
-    font-family: Verdana, Helvetica, sans-serif;
-    font-size:  11px;
-    font-weight:    bold;
+
+.ItemTitle {
     color: darkred;
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
 }
 
 
 
 /* GENERAL */
 /* style for module titles */
-.Head   {
-    font-family: Verdana, Helvetica, sans-serif;
-    font-size:  20px;
-    font-weight:    normal;
+
+.Head {
     color: #666644;
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: normal;
 }
 
 /* style of item titles on edit and admin pages */
-.SubHead    {
-    font-family: Verdana, Helvetica, sans-serif;
-    font-size:  11px;
-    font-weight:    bold;
+
+.SubHead {
     color: darkred;
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
 }
 
 /* module title style used instead of Head for compact rendering by QuickLinks and Signin modules */
+
 .SubSubHead {
-    font-family: Verdana, Helvetica, sans-serif;
-    font-size:  11px;
-    font-weight:    bold;
     color: black;
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
 }
 
 /* text style used for most text rendered by modules */
-.Normal
-{
+
+.Normal {
     font-family: Verdana, Helvetica, sans-serif;
     font-size: 11px;
     font-weight: normal;
-    line-height: 12px    
+    line-height: 12px
 }
 
 /* text style used for textboxes in the admin and edit pages, for Nav compatibility */
-.NormalTextBox
-{
+
+.NormalTextBox {
     font-family: Verdana, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: normal;
 }
 
-.NormalRed
-{
+.NormalRed {
+    color: red;
     font-family: Verdana, Helvetica, sans-serif;
     font-size: 11px;
     font-weight: bold;
-    color: red
 }
 
-.NormalBold
-{
+.NormalBold {
     font-family: Verdana, Helvetica, sans-serif;
     font-size: 11px;
     font-weight: bold
 }
 
 /* text style for buttons and link buttons used in the portal admin pages */
-.CommandButton     {
+
+.CommandButton {
     font-family: Verdana, Helvetica, sans-serif;
     font-size: 11px;
     font-weight: normal;
 }
     
 /* hyperlink style for buttons and link buttons used in the portal admin pages */
+
 A.CommandButton:link {
-    text-decoration:    underline;
     color: darkred;
+    text-decoration: underline;
 }
 
-A.CommandButton:visited  {
-    text-decoration:    underline;
+A.CommandButton:visited {
     color: darkred;
+    text-decoration: underline;
 }
 
-A.CommandButton:active   {
-    text-decoration:    underline;
+A.CommandButton:active {
     color: darkred;
+    text-decoration: underline;
 }
 
-A.CommandButton:hover    {
-    text-decoration:    underline;
+A.CommandButton:hover {
     color: red;
+    text-decoration: underline;
 }
     
 
 
 
 /* GENERIC */
-H1  {
-    font-family: Verdana, Helvetica, sans-serif;
-    font-size:  20px;
-    font-weight:    normal;
+
+H1 {
     color: #666644;
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: normal;
 }
 
-H2  {
-    font-family: Verdana, Helvetica, sans-serif;
-    font-size:  20px;
-    font-weight:    normal;
+H2 {
     color: #666644;
-}
-
-H3  {
     font-family: Verdana, Helvetica, sans-serif;
-    font-size:  12px;
-    font-weight:    normal;
-    color: darkred;
+    font-size: 20px;
+    font-weight: normal;
 }
 
-H4  {
+H3 {
+    color: darkred;
     font-family: Verdana, Helvetica, sans-serif;
-    font-size:  12px;
-    font-weight:    normal;
-    color: darkred;
+    font-size: 12px;
+    font-weight: normal;
 }
 
-H5, DT  {
+H4 {
+    color: darkred;
     font-family: Verdana, Helvetica, sans-serif;
-    font-size:  11px;
-    font-weight:    bold;
-    color: darkred;
+    font-size: 12px;
+    font-weight: normal;
 }
 
-H6  {
+H5, DT {
+    color: darkred;
     font-family: Verdana, Helvetica, sans-serif;
-    font-size:  11px;
-    font-weight:    bold;
-    color: darkred;
+    font-size: 11px;
+    font-weight: bold;
 }
 
-TFOOT, THEAD    {
+H6 {
+    color: darkred;
     font-family: Verdana, Helvetica, sans-serif;
-    font-size:  12px;
-    color: darkred;
+    font-size: 11px;
+    font-weight: bold;
 }
 
-TH  {
+TFOOT, THEAD {
+    color: darkred;
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+TH {
+    color: darkred;
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
     vertical-align: baseline;
-    font-family: Verdana, Helvetica, sans-serif;
-    font-size:  12px;
-    font-weight:    bold;
+}
+
+A:link {
     color: darkred;
+    text-decoration: none;
 }
 
-A:link  {
-    text-decoration:    none;
-    color:  darkred;
+A:visited {
+    color: darkred;
+    text-decoration: none;
 }
 
-A:visited   {
-    text-decoration:    none;
-    color:  darkred;
-}
-
-A:active    {
-    text-decoration:    none;
-    color:  darkred;
+A:active {
+    color: darkred;
+    text-decoration: none;
 }
 
 A:hover {
-    text-decoration:    underline;
-    color:  red;
+    color: red;
+    text-decoration: underline;
 }
 
-SMALL   {
-    font-size:  8px;
-}
+SMALL { font-size: 8px; }
 
-BIG {
-    font-size:  14px;
-}
+BIG { font-size: 14px; }
 
-BLOCKQUOTE, PRE {
-    font-family:    Lucida Console, monospace;
-}
+BLOCKQUOTE, PRE { font-family: Lucida Console, monospace; }
 
 
-UL LI   {
-    list-style-type:    square ;
-}
+UL LI { list-style-type: square; }
 
-UL LI LI    {
-    list-style-type:    disc;
-}
+UL LI LI { list-style-type: disc; }
 
-UL LI LI LI {
-    list-style-type:    circle;
-}
+UL LI LI LI { list-style-type: circle; }
 
-OL LI   {
-    list-style-type:    decimal;
-}
+OL LI { list-style-type: decimal; }
 
-OL OL LI    {
-    list-style-type:    lower-alpha;
-}
+OL OL LI { list-style-type: lower-alpha; }
 
-OL OL OL LI {
-    list-style-type:    lower-roman;
-}
+OL OL OL LI { list-style-type: lower-roman; }
 
 HR {
     color: dimgrey;
-    height:1pt;
-    text-align:left
+    height: 1pt;
+    text-align: left
 }
-

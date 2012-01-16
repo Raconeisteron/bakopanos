@@ -1,5 +1,5 @@
 <%@ Page Language="c#" CodeBehind="EditLinks.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.EditLinks"
-    MasterPageFile="~/Portal.Master" %>
+         MasterPageFile="~/Portal.Master" %>
 
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="Server">
@@ -35,14 +35,14 @@
                         </td>
                         <td>
                             <asp:TextBox ID="TitleField" CssClass="NormalTextBox" Width="390" Columns="30" MaxLength="150"
-                                runat="server" />
+                                         runat="server" />
                         </td>
                         <td width="25" rowspan="5">
                             &nbsp;
                         </td>
                         <td class="Normal" width="250">
                             <asp:RequiredFieldValidator ID="Req1" Display="Static" ErrorMessage="You Must Enter a Valid Title"
-                                ControlToValidate="TitleField" runat="server" />
+                                                        ControlToValidate="TitleField" runat="server" />
                         </td>
                     </tr>
                     <tr>
@@ -51,11 +51,11 @@
                         </td>
                         <td>
                             <asp:TextBox ID="UrlField" CssClass="NormalTextBox" Width="390" Columns="30" MaxLength="150"
-                                runat="server" />
+                                         runat="server" />
                         </td>
                         <td class="Normal">
                             <asp:RequiredFieldValidator ID="Req2" Display="Static" runat="server" ErrorMessage="You Must Enter a Valid URL"
-                                ControlToValidate="UrlField" />
+                                                        ControlToValidate="UrlField" />
                         </td>
                     </tr>
                     <tr>
@@ -64,7 +64,7 @@
                         </td>
                         <td>
                             <asp:TextBox ID="MobileUrlField" CssClass="NormalTextBox" Width="390" Columns="30"
-                                MaxLength="150" runat="server" />
+                                         MaxLength="150" runat="server" />
                         </td>
                         <td>
                             &nbsp;
@@ -76,7 +76,7 @@
                         </td>
                         <td>
                             <asp:TextBox ID="DescriptionField" CssClass="NormalTextBox" Width="390" Columns="30"
-                                MaxLength="150" runat="server" />
+                                         MaxLength="150" runat="server" />
                         </td>
                         <td>
                             &nbsp;
@@ -88,34 +88,34 @@
                         </td>
                         <td>
                             <asp:TextBox ID="ViewOrderField" CssClass="NormalTextBox" Width="390" Columns="30"
-                                MaxLength="3" runat="server" />
+                                         MaxLength="3" runat="server" />
                         </td>
                         <td class="Normal">
                             <asp:RequiredFieldValidator Display="Static" ID="RequiredViewOrder" runat="server"
-                                ControlToValidate="ViewOrderField" ErrorMessage="You Must Enter a Valid View Order" />
+                                                        ControlToValidate="ViewOrderField" ErrorMessage="You Must Enter a Valid View Order" />
                             <asp:CompareValidator Display="Static" ID="VerifyViewOrder" runat="server" Operator="DataTypeCheck"
-                                ControlToValidate="ViewOrderField" Type="Integer" ErrorMessage="You Must Enter a Valid View Order" />
+                                                  ControlToValidate="ViewOrderField" Type="Integer" ErrorMessage="You Must Enter a Valid View Order" />
                         </td>
                     </tr>
                 </table>
                 <p>
-                    <asp:LinkButton ID="updateButton" Text="Update" runat="server" CssClass="CommandButton"
-                        BorderStyle="none" OnClick="UpdateBtn_Click" />
-                    &nbsp;
-                    <asp:LinkButton ID="cancelButton" Text="Cancel" CausesValidation="False" runat="server"
-                        CssClass="CommandButton" BorderStyle="none" OnClick="CancelBtn_Click" />
-                    &nbsp;
-                    <asp:LinkButton ID="deleteButton" Text="Delete this item" CausesValidation="False"
-                        runat="server" CssClass="CommandButton" BorderStyle="none" OnClick="DeleteBtn_Click" />
-                    <hr noshade="noshade" size="1" width="500" />
-                    <span class="Normal">Created by
-                        <asp:Label ID="CreatedBy" runat="server" />
-                        on
-                        <asp:Label ID="CreatedDate" runat="server" />
-                        <br />
-                    </span>
-                    <p>
-                    </p>
+                <asp:LinkButton ID="updateButton" Text="Update" runat="server" CssClass="CommandButton"
+                                BorderStyle="none" OnClick="UpdateBtn_Click" />
+                &nbsp;
+                <asp:LinkButton ID="cancelButton" Text="Cancel" CausesValidation="False" runat="server"
+                                CssClass="CommandButton" BorderStyle="none" OnClick="CancelBtn_Click" />
+                &nbsp;
+                <asp:LinkButton ID="deleteButton" Text="Delete this item" CausesValidation="False"
+                                runat="server" CssClass="CommandButton" BorderStyle="none" OnClick="DeleteBtn_Click" />
+                <hr noshade="noshade" size="1" width="500" />
+                <span class="Normal">Created by
+                    <asp:Label ID="CreatedBy" runat="server" />
+                    on
+                    <asp:Label ID="CreatedDate" runat="server" />
+                    <br />
+                </span>
+                <p>
+                </p>
             </td>
         </tr>
     </table>

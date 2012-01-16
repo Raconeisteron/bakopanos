@@ -1,5 +1,5 @@
 <%@ Page Language="c#" CodeBehind="EditImage.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.EditImage"
-    MasterPageFile="~/Portal.Master" %>
+         MasterPageFile="~/Portal.Master" %>
 
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="Server">
@@ -56,10 +56,10 @@
                 </table>
                 <p>
                     <asp:LinkButton ID="updateButton" Text="Update" runat="server" class="CommandButton"
-                        BorderStyle="none" OnClick="UpdateBtn_Click" />
+                                    BorderStyle="none" OnClick="UpdateBtn_Click" />
                     &nbsp;
                     <asp:LinkButton ID="cancelButton" Text="Cancel" CausesValidation="False" runat="server"
-                        class="CommandButton" BorderStyle="none" OnClick="CancelBtn_Click" />
+                                    class="CommandButton" BorderStyle="none" OnClick="CancelBtn_Click" />
                 </p>
             </td>
         </tr>

@@ -1,5 +1,5 @@
 <%@ Page Language="c#" CodeBehind="ModuleDefinitions.aspx.cs" AutoEventWireup="True"
-    Inherits="ASPNET.StarterKit.Portal.ModuleDefinitions" MasterPageFile="~/Portal.Master" %>
+         Inherits="ASPNET.StarterKit.Portal.ModuleDefinitions" MasterPageFile="~/Portal.Master" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%--
     The SecurityRoles.aspx page is used to create and edit security roles within
@@ -37,14 +37,14 @@
                         </td>
                         <td>
                             <asp:TextBox ID="FriendlyName" CssClass="NormalTextBox" Width="390" Columns="30"
-                                MaxLength="150" runat="server" />
+                                         MaxLength="150" runat="server" />
                         </td>
                         <td width="25" rowspan="5">
                             &nbsp;
                         </td>
                         <td class="Normal" width="250">
                             <asp:RequiredFieldValidator ID="Req1" Display="Static" ErrorMessage="Enter a Module NAme"
-                                ControlToValidate="FriendlyName" runat="server" />
+                                                        ControlToValidate="FriendlyName" runat="server" />
                         </td>
                     </tr>
                     <tr>
@@ -53,11 +53,11 @@
                         </td>
                         <td>
                             <asp:TextBox ID="DesktopSrc" CssClass="NormalTextBox" Width="390" Columns="30" MaxLength="150"
-                                runat="server" />
+                                         runat="server" />
                         </td>
                         <td class="Normal">
                             <asp:RequiredFieldValidator ID="Req2" Display="Static" ErrorMessage="You Must Enter Source Path for the Desktop Module"
-                                ControlToValidate="DesktopSrc" runat="server" />
+                                                        ControlToValidate="DesktopSrc" runat="server" />
                         </td>
                     </tr>
                     <tr>
@@ -66,7 +66,7 @@
                         </td>
                         <td>
                             <asp:TextBox ID="MobileSrc" CssClass="NormalTextBox" Width="390" Columns="30" MaxLength="150"
-                                runat="server" />
+                                         runat="server" />
                         </td>
                         <td>
                             &nbsp;
@@ -75,13 +75,13 @@
                 </table>
                 <p>
                     <asp:LinkButton ID="updateButton" Text="Update" runat="server" class="CommandButton"
-                        BorderStyle="none" OnClick="UpdateBtn_Click" />
+                                    BorderStyle="none" OnClick="UpdateBtn_Click" />
                     &nbsp;
                     <asp:LinkButton ID="cancelButton" Text="Cancel" CausesValidation="False" runat="server"
-                        class="CommandButton" BorderStyle="none" OnClick="CancelBtn_Click" />
+                                    class="CommandButton" BorderStyle="none" OnClick="CancelBtn_Click" />
                     &nbsp;
                     <asp:LinkButton ID="deleteButton" Text="Delete this module type" CausesValidation="False"
-                        runat="server" class="CommandButton" BorderStyle="none" OnClick="DeleteBtn_Click" />
+                                    runat="server" class="CommandButton" BorderStyle="none" OnClick="DeleteBtn_Click" />
                 </p>
             </td>
         </tr>

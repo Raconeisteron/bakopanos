@@ -1,5 +1,5 @@
 <%@ Page Language="c#" CodeBehind="EditHtml.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.EditHtml"
-    MasterPageFile="~/Portal.Master" %>
+         MasterPageFile="~/Portal.Master" %>
 
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="Server">
@@ -35,7 +35,7 @@
                         </td>
                         <td>
                             <asp:TextBox ID="DesktopText" Columns="75" Width="650" Rows="12" TextMode="multiline"
-                                runat="server" />
+                                         runat="server" />
                         </td>
                     </tr>
                     <tr valign="top">
@@ -47,7 +47,7 @@
                         </td>
                         <td>
                             <asp:TextBox ID="MobileSummary" Columns="75" Width="650" Rows="3" TextMode="multiline"
-                                runat="server" />
+                                         runat="server" />
                         </td>
                     </tr>
                     <tr valign="top">
@@ -59,16 +59,16 @@
                         </td>
                         <td>
                             <asp:TextBox ID="MobileDetails" Columns="75" Width="650" Rows="5" TextMode="multiline"
-                                runat="server" />
+                                         runat="server" />
                         </td>
                     </tr>
                 </table>
                 <p>
                     <asp:LinkButton ID="updateButton" Text="Update" runat="server" class="CommandButton"
-                        BorderStyle="none" OnClick="UpdateBtn_Click" />
+                                    BorderStyle="none" OnClick="UpdateBtn_Click" />
                     &nbsp;
                     <asp:LinkButton ID="cancelButton" Text="Cancel" CausesValidation="False" runat="server"
-                        class="CommandButton" BorderStyle="none" OnClick="CancelBtn_Click" />
+                                    class="CommandButton" BorderStyle="none" OnClick="CancelBtn_Click" />
                     &nbsp;
                 </p>
             </td>

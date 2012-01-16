@@ -1,5 +1,5 @@
 <%@ Page CodeBehind="ModuleSettings.aspx.cs" Language="c#" AutoEventWireup="True"
-    Inherits="ASPNET.StarterKit.Portal.ModuleSettingsPage" MasterPageFile="~/Portal.Master" %>
+         Inherits="ASPNET.StarterKit.Portal.ModuleSettingsPage" MasterPageFile="~/Portal.Master" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%--
     The ModuleSettings.aspx page is used to enable administrators to view/edit/update
@@ -63,7 +63,7 @@
                         </td>
                         <td colspan="3">
                             <asp:CheckBoxList ID="authEditRoles" RepeatColumns="2" Font-Names="Verdana,Arial"
-                                Font-Size="8pt" Width="300" CellPadding="0" CellSpacing="0" runat="server" />
+                                              Font-Size="8pt" Width="300" CellPadding="0" CellSpacing="0" runat="server" />
                         </td>
                     </tr>
                     <tr>
@@ -90,7 +90,7 @@
                     <tr>
                         <td colspan="4">
                             <asp:LinkButton class="CommandButton" Text="Apply Module Changes" runat="server"
-                                ID="ApplyButton" OnClick="ApplyChanges_Click" />
+                                            ID="ApplyButton" OnClick="ApplyChanges_Click" />
                         </td>
                     </tr>
                 </table>

@@ -1,7 +1,8 @@
 <xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
 
   <xsl:template match="/">
-    <table width="210" border="1pt" cellspacing="0" cellpadding="3" bordercolor="#dddddd" style="border-collapse:collapse;">
+    <table width="210" border="1pt" cellspacing="0" cellpadding="3" bordercolor="#dddddd"
+           style="border-collapse:collapse;">
       <tr>
         <th align="left">
           Product

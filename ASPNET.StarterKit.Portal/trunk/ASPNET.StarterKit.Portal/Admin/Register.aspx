@@ -1,5 +1,5 @@
 <%@ Page Language="c#" CodeBehind="Register.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.Register"
-    MasterPageFile="~/Portal.Master" %>
+         MasterPageFile="~/Portal.Master" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <%--
 
@@ -47,41 +47,41 @@
                             <asp:TextBox size="25" ID="Name" runat="server" />
                             &nbsp;
                             <asp:RequiredFieldValidator ControlToValidate="Name" ErrorMessage="'Name' must not be left blank."
-                                runat="server" ID="RequiredFieldValidator1" />
+                                                        runat="server" ID="RequiredFieldValidator1" />
                             <p>
-                                Email:
-                                <br />
-                                <asp:TextBox size="25" ID="Email" runat="server" />
-                                &nbsp;
-                                <asp:RegularExpressionValidator ControlToValidate="Email" ValidationExpression="[\w\.-]+(\+[\w-]*)?@([\w-]+\.)+[\w-]+"
-                                    Display="Dynamic" ErrorMessage="Must use a valid email address." runat="server"
-                                    ID="RegularExpressionValidator1" />
-                                <asp:RequiredFieldValidator ControlToValidate="Email" ErrorMessage="'Email' must not be left blank."
-                                    runat="server" ID="RequiredFieldValidator2" />
-                                <p>
-                                    Password:
-                                    <br />
-                                    <asp:TextBox size="25" ID="Password" TextMode="Password" runat="server" />
-                                    &nbsp;
-                                    <asp:RequiredFieldValidator ControlToValidate="Password" ErrorMessage="'Password' must not be left blank."
-                                        runat="server" ID="RequiredFieldValidator3" />
-                                    <p>
-                                        Confirm Password:
-                                        <br />
-                                        <asp:TextBox size="25" ID="ConfirmPassword" TextMode="Password" runat="server" />
-                                        &nbsp;
-                                        <asp:RequiredFieldValidator ControlToValidate="ConfirmPassword" Display="Dynamic"
-                                            ErrorMessage="'Confirm' must not be left blank." runat="server" ID="RequiredFieldValidator4" />
-                                        <asp:CompareValidator ControlToValidate="ConfirmPassword" ControlToCompare="Password"
-                                            ErrorMessage="Password fields do not match." runat="server" ID="CompareValidator1" />
-                                        <p>
-                                            <asp:LinkButton class="CommandButton" Text="Register and Sign In Now" runat="server"
-                                                ID="RegisterBtn" OnClick="RegisterBtn_Click" />
-                                            <br />
-                                            <br />
-                                            <p>
-                                                <asp:Label ID="Message" CssClass="NormalRed" runat="server" />
-                                            </p>
+                            Email:
+                            <br />
+                            <asp:TextBox size="25" ID="Email" runat="server" />
+                            &nbsp;
+                            <asp:RegularExpressionValidator ControlToValidate="Email" ValidationExpression="[\w\.-]+(\+[\w-]*)?@([\w-]+\.)+[\w-]+"
+                                                            Display="Dynamic" ErrorMessage="Must use a valid email address." runat="server"
+                                                            ID="RegularExpressionValidator1" />
+                            <asp:RequiredFieldValidator ControlToValidate="Email" ErrorMessage="'Email' must not be left blank."
+                                                        runat="server" ID="RequiredFieldValidator2" />
+                            <p>
+                            Password:
+                            <br />
+                            <asp:TextBox size="25" ID="Password" TextMode="Password" runat="server" />
+                            &nbsp;
+                            <asp:RequiredFieldValidator ControlToValidate="Password" ErrorMessage="'Password' must not be left blank."
+                                                        runat="server" ID="RequiredFieldValidator3" />
+                            <p>
+                            Confirm Password:
+                            <br />
+                            <asp:TextBox size="25" ID="ConfirmPassword" TextMode="Password" runat="server" />
+                            &nbsp;
+                            <asp:RequiredFieldValidator ControlToValidate="ConfirmPassword" Display="Dynamic"
+                                                        ErrorMessage="'Confirm' must not be left blank." runat="server" ID="RequiredFieldValidator4" />
+                            <asp:CompareValidator ControlToValidate="ConfirmPassword" ControlToCompare="Password"
+                                                  ErrorMessage="Password fields do not match." runat="server" ID="CompareValidator1" />
+                            <p>
+                            <asp:LinkButton class="CommandButton" Text="Register and Sign In Now" runat="server"
+                                            ID="RegisterBtn" OnClick="RegisterBtn_Click" />
+                            <br />
+                            <br />
+                            <p>
+                                <asp:Label ID="Message" CssClass="NormalRed" runat="server" />
+                            </p>
                         </td>
                     </tr>
                 </table>

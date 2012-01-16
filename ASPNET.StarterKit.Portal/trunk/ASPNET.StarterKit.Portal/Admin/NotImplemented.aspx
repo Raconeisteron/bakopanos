@@ -1,5 +1,5 @@
 <%@ Page CodeBehind="NotImplemented.aspx.cs" Language="c#" AutoEventWireup="True"
-    Inherits="ASPNET.StarterKit.Portal.NotImplemented" MasterPageFile="~/Portal.Master" %>
+         Inherits="ASPNET.StarterKit.Portal.NotImplemented" MasterPageFile="~/Portal.Master" %>
 <%@ OutputCache Duration="600" VaryByParam="title" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
@@ -25,10 +25,10 @@
                     <hr noshade="noshade" size="1" />
                     <br />
                     The link you clicked was provided as a part of the sample data for the <b>Portal Starter
-                        Kit</b>. The content for this link is not provided as part of the sample application.
+                                                                                               Kit</b>. The content for this link is not provided as part of the sample application.
                     <br />
                     <br />
-                    <a href="<%=Global.GetApplicationPath(Request)%>/DesktopDefault.aspx">Return to Portal
+                    <a href="<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx">Return to Portal
                         Home</a>
                 </td>
             </tr>

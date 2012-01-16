@@ -1,5 +1,5 @@
 <%@ Page Language="c#" CodeBehind="EditEvents.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.EditEvents"
-    MasterPageFile="~/Portal.Master" %>
+         MasterPageFile="~/Portal.Master" %>
 
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="Server">
@@ -35,14 +35,14 @@
                         </td>
                         <td>
                             <asp:TextBox ID="TitleField" CssClass="NormalTextBox" Width="390" Columns="30" MaxLength="150"
-                                runat="server" />
+                                         runat="server" />
                         </td>
                         <td width="25" rowspan="4">
                             &nbsp;
                         </td>
                         <td class="Normal" width="250">
                             <asp:RequiredFieldValidator Display="Static" runat="server" ErrorMessage="You Must Enter a Valid Title"
-                                ControlToValidate="TitleField" />
+                                                        ControlToValidate="TitleField" />
                         </td>
                     </tr>
                     <tr valign="top">
@@ -51,11 +51,11 @@
                         </td>
                         <td>
                             <asp:TextBox ID="DescriptionField" TextMode="Multiline" Width="390" Columns="44"
-                                Rows="6" runat="server" />
+                                         Rows="6" runat="server" />
                         </td>
                         <td class="Normal">
                             <asp:RequiredFieldValidator Display="Static" runat="server" ErrorMessage="You Must Enter a Valid Description"
-                                ControlToValidate="DescriptionField" />
+                                                        ControlToValidate="DescriptionField" />
                         </td>
                     </tr>
                     <tr valign="top">
@@ -64,11 +64,11 @@
                         </td>
                         <td>
                             <asp:TextBox ID="WhereWhenField" CssClass="NormalTextBox" Width="390" Columns="30"
-                                MaxLength="150" runat="server" />
+                                         MaxLength="150" runat="server" />
                         </td>
                         <td class="Normal">
                             <asp:RequiredFieldValidator Display="Static" runat="server" ErrorMessage="You Must Enter a Valid Time/Location"
-                                ControlToValidate="WhereWhenField" />
+                                                        ControlToValidate="WhereWhenField" />
                         </td>
                     </tr>
                     <tr valign="top">
@@ -77,25 +77,25 @@
                         </td>
                         <td>
                             <asp:TextBox ID="ExpireField" Text="12/31/2001" CssClass="NormalTextBox" Width="100"
-                                Columns="8" runat="server" />
+                                         Columns="8" runat="server" />
                         </td>
                         <td class="Normal">
                             <asp:RequiredFieldValidator Display="Static" ID="RequiredExpireDate" runat="server"
-                                ErrorMessage="You Must Enter a Valid Expiration Date" ControlToValidate="ExpireField" />
+                                                        ErrorMessage="You Must Enter a Valid Expiration Date" ControlToValidate="ExpireField" />
                             <asp:CompareValidator Display="Static" ID="VerifyExpireDate" runat="server" Operator="DataTypeCheck"
-                                ControlToValidate="ExpireField" Type="Date" ErrorMessage="You Must Enter a Valid Expiration Date" />
+                                                  ControlToValidate="ExpireField" Type="Date" ErrorMessage="You Must Enter a Valid Expiration Date" />
                         </td>
                     </tr>
                 </table>
                 <p>
                     <asp:LinkButton ID="updateButton" Text="Update" runat="server" class="CommandButton"
-                        BorderStyle="none" OnClick="UpdateBtn_Click" />
+                                    BorderStyle="none" OnClick="UpdateBtn_Click" />
                     &nbsp;
                     <asp:LinkButton ID="cancelButton" Text="Cancel" CausesValidation="False" runat="server"
-                        class="CommandButton" BorderStyle="none" OnClick="CancelBtn_Click" />
+                                    class="CommandButton" BorderStyle="none" OnClick="CancelBtn_Click" />
                     &nbsp;
                     <asp:LinkButton ID="deleteButton" Text="Delete this item" CausesValidation="False"
-                        runat="server" class="CommandButton" BorderStyle="none" OnClick="DeleteBtn_Click" />
+                                    runat="server" class="CommandButton" BorderStyle="none" OnClick="DeleteBtn_Click" />
                     <hr noshade="noshade" size="1pt" width="500" />
                     <span class="Normal">Created by
                         <asp:Label ID="CreatedBy" runat="server" />

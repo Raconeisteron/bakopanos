@@ -1,5 +1,5 @@
 <%@ Page CodeBehind="EditAccessDenied.aspx.cs" Language="c#" AutoEventWireup="True"
-    Inherits="ASPNET.StarterKit.Portal.EditAccessDenied" MasterPageFile="~/Portal.Master" %>
+         Inherits="ASPNET.StarterKit.Portal.EditAccessDenied" MasterPageFile="~/Portal.Master" %>
 <%@ OutputCache Duration="36000" VaryByParam="none" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
@@ -25,7 +25,7 @@
                     edit access for this module.
                     <br />
                     <br />
-                    <a href="<%=Global.GetApplicationPath(Request)%>/DesktopDefault.aspx">Return to Portal
+                    <a href="<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx">Return to Portal
                         Home</a>
                 </td>
             </tr>

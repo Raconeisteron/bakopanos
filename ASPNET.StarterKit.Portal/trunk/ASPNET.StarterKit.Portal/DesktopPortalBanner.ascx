@@ -1,5 +1,5 @@
 <%@ Control CodeBehind="DesktopPortalBanner.ascx.cs" Language="c#" AutoEventWireup="True"
-	Inherits="ASPNET.StarterKit.Portal.DesktopPortalBanner" %>
+            Inherits="ASPNET.StarterKit.Portal.DesktopPortalBanner" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 <%--
 
@@ -11,42 +11,42 @@
 
 --%>
 <table width="100%" cellspacing="0" class="HeadBg" border="0">
-	<tr valign="top">
-		<td colspan="3" class="SiteLink" background="<%= Global.GetApplicationPath(Request) %>/images/bars.gif"
-			align="right">
-			<asp:Label ID="WelcomeMessage" ForeColor="#eeeeee" runat="server" />
-			<a href="<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx" class="SiteLink">
-				Portal Home</a>
-			<%-- <span class="Accent">|</span>
+    <tr valign="top">
+        <td colspan="3" class="SiteLink" background="<%= Global.GetApplicationPath(Request) %>/images/bars.gif"
+            align="right">
+            <asp:Label ID="WelcomeMessage" ForeColor="#eeeeee" runat="server" />
+            <a href="<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx" class="SiteLink">
+                Portal Home</a>
+            <%-- <span class="Accent">|</span>
 				<a href="<%= Global.GetApplicationPath(Request) %>/Docs/Docs.htm" target="_blank" class="SiteLink">Portal Documentation</a> --%>
-			<%= LogoffLink %>
-			&nbsp;&nbsp;
-		</td>
-	</tr>
-	<tr>
-		<td width="10" rowspan="2">
-			&nbsp;
-		</td>
-		<td height="40">
-			<asp:Label ID="siteName" CssClass="SiteTitle" EnableViewState="false" runat="server" />
-		</td>
-		<td align="center" rowspan="2">
-			<!--ASP.NET Logo was here//-->
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<asp:DataList ID="tabs" CssClass="OtherTabsBg" RepeatDirection="horizontal" ItemStyle-Height="25"
-				SelectedItemStyle-CssClass="TabBg" ItemStyle-BorderWidth="1" EnableViewState="false"
-				runat="server">
-				<ItemTemplate>
-					&nbsp;<a href='<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx?tabindex=<%# Container.ItemIndex %>&tabid=<%# ((TabStripDetails) Container.DataItem).TabId %>'
-						class="OtherTabs"><%# ((TabStripDetails) Container.DataItem).TabName %></a>&nbsp;
-				</ItemTemplate>
-				<SelectedItemTemplate>
-					&nbsp;<span class="SelectedTab"><%# ((TabStripDetails) Container.DataItem).TabName %></span>&nbsp;
-				</SelectedItemTemplate>
-			</asp:DataList>
-		</td>
-	</tr>
+            <%= LogoffLink %>
+            &nbsp;&nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td width="10" rowspan="2">
+            &nbsp;
+        </td>
+        <td height="40">
+            <asp:Label ID="siteName" CssClass="SiteTitle" EnableViewState="false" runat="server" />
+        </td>
+        <td align="center" rowspan="2">
+            <!--ASP.NET Logo was here//-->
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <asp:DataList ID="tabs" CssClass="OtherTabsBg" RepeatDirection="horizontal" ItemStyle-Height="25"
+                          SelectedItemStyle-CssClass="TabBg" ItemStyle-BorderWidth="1" EnableViewState="false"
+                          runat="server">
+                <ItemTemplate>
+                    &nbsp;<a href='<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx?tabindex=<%# Container.ItemIndex %>&tabid=<%# ((TabStripDetails) Container.DataItem).TabId %>'
+                             class="OtherTabs"><%# ((TabStripDetails) Container.DataItem).TabName %></a>&nbsp;
+                </ItemTemplate>
+                <SelectedItemTemplate>
+                    &nbsp;<span class="SelectedTab"><%# ((TabStripDetails) Container.DataItem).TabName %></span>&nbsp;
+                </SelectedItemTemplate>
+            </asp:DataList>
+        </td>
+    </tr>
 </table>

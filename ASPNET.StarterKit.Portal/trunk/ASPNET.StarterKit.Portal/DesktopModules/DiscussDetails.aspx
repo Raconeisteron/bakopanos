@@ -1,5 +1,5 @@
 <%@ Page Language="c#" CodeBehind="DiscussDetails.aspx.cs" AutoEventWireup="True"
-    Inherits="ASPNET.StarterKit.Portal.DiscussDetails" MasterPageFile="~/Portal.Master" %>
+         Inherits="ASPNET.StarterKit.Portal.DiscussDetails" MasterPageFile="~/Portal.Master" %>
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="Server">
@@ -14,11 +14,11 @@
             <td align="right">
                 <asp:Panel ID="ButtonPanel" runat="server">
                     <a class="CommandButton" id="prevItem" title="Previous Message" runat="server">
-                        <img src='<%=Global.GetApplicationPath(Request) + "/images/rew.gif"%>' border="0"></a>&nbsp;
+                        <img src='<%= Global.GetApplicationPath(Request) + "/images/rew.gif" %>' border="0"></a>&nbsp;
                     <a class="CommandButton" id="nextItem" title="Next Message" runat="server">
-                        <img src='<%=Global.GetApplicationPath(Request) + "/images/fwd.gif"%>' border="0"></a>&nbsp;
+                        <img src='<%= Global.GetApplicationPath(Request) + "/images/fwd.gif" %>' border="0"></a>&nbsp;
                     <asp:LinkButton ID="ReplyBtn" runat="server" EnableViewState="false" CssClass="CommandButton"
-                        Text="Reply to this Message" OnClick="ReplyBtn_Click"></asp:LinkButton>
+                                    Text="Reply to this Message" OnClick="ReplyBtn_Click"></asp:LinkButton>
                 </asp:Panel>
             </td>
         </tr>
@@ -39,7 +39,7 @@
                 </td>
                 <td width="*">
                     <asp:TextBox ID="TitleField" runat="server" MaxLength="100" Columns="40" Width="500"
-                        CssClass="NormalTextBox"></asp:TextBox>
+                                 CssClass="NormalTextBox"></asp:TextBox>
                 </td>
             </tr>
             <tr valign="top">
@@ -56,10 +56,10 @@
                 </td>
                 <td>
                     <asp:LinkButton class="CommandButton" ID="updateButton" runat="server" Text="Submit"
-                        OnClick="UpdateBtn_Click"></asp:LinkButton>
+                                    OnClick="UpdateBtn_Click"></asp:LinkButton>
                     &nbsp;
                     <asp:LinkButton class="CommandButton" ID="cancelButton" runat="server" Text="Cancel"
-                        CausesValidation="False" OnClick="CancelBtn_Click"></asp:LinkButton>
+                                    CausesValidation="False" OnClick="CancelBtn_Click"></asp:LinkButton>
                     &nbsp;
                 </td>
             </tr>

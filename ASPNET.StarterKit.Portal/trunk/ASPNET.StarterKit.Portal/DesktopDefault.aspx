@@ -1,5 +1,5 @@
 <%@ Page Language="c#" CodeBehind="DesktopDefault.aspx.cs" AutoEventWireup="True"
-    Inherits="ASPNET.StarterKit.Portal.DesktopDefault" MasterPageFile="~/Portal.Master" %>
+         Inherits="ASPNET.StarterKit.Portal.DesktopDefault" MasterPageFile="~/Portal.Master" %>
 
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="DesktopPortalBanner.ascx" %>
 <%--

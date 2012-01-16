@@ -6,7 +6,8 @@
     <Columns>
         <asp:TemplateColumn>
             <ItemTemplate>
-                <asp:HyperLink ImageUrl="~/images/edit.gif" NavigateUrl='<%# "~/DesktopModules/EditContacts.aspx?ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") + "&mid=" + ModuleId %>' Visible="<%# IsEditable %>" runat="server" />
+                <asp:HyperLink ImageUrl="~/images/edit.gif" NavigateUrl='<%# "~/DesktopModules/EditContacts.aspx?ItemID=" +
+                              DataBinder.Eval(Container.DataItem, "ItemID") + "&mid=" + ModuleId %>' Visible="<%# IsEditable %>" runat="server" />
             </ItemTemplate>
         </asp:TemplateColumn>
         <asp:BoundColumn HeaderText="Name" DataField="Name" ItemStyle-CssClass="Normal" HeaderStyle-Cssclass="NormalBold" />

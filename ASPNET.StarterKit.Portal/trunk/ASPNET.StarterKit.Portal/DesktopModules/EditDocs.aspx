@@ -1,5 +1,5 @@
 <%@ Page Language="c#" CodeBehind="EditDocs.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.EditDocs"
-    MasterPageFile="~/Portal.Master" %>
+         MasterPageFile="~/Portal.Master" %>
 
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="Server">
@@ -35,14 +35,14 @@
                         </td>
                         <td>
                             <asp:TextBox ID="NameField" CssClass="NormalTextBox" Width="353" Columns="28" MaxLength="150"
-                                runat="server" />
+                                         runat="server" />
                         </td>
                         <td width="25" rowspan="6">
                             &nbsp;
                         </td>
                         <td class="Normal" width="250">
                             <asp:RequiredFieldValidator Display="Static" runat="server" ErrorMessage="You Must Enter a Valid Name"
-                                ControlToValidate="NameField" ID="RequiredFieldValidator1" />
+                                                        ControlToValidate="NameField" ID="RequiredFieldValidator1" />
                         </td>
                     </tr>
                     <tr valign="top">
@@ -54,7 +54,7 @@
                         </td>
                         <td>
                             <asp:TextBox ID="CategoryField" CssClass="NormalTextBox" Width="353" Columns="28"
-                                MaxLength="50" runat="server" />
+                                         MaxLength="50" runat="server" />
                         </td>
                     </tr>
                     <tr>
@@ -74,7 +74,7 @@
                         </td>
                         <td>
                             <asp:TextBox ID="PathField" CssClass="NormalTextBox" Width="353" Columns="28" MaxLength="250"
-                                runat="server" />
+                                         runat="server" />
                         </td>
                     </tr>
                     <tr>
@@ -98,31 +98,31 @@
                             <asp:CheckBox ID="Upload" CssClass="Normal" Text="Upload document to server" runat="server" />
                             <br />
                             <asp:CheckBox ID="storeInDatabase" CssClass="Normal" Text="Store in database (web farm support)"
-                                runat="server" />
+                                          runat="server" />
                             <br />
-                            <input type="file" id="FileUpload" width="300" style="width: 353px; font-family: verdana"
-                                runat="server" name="FileUpload">
+                            <input type="file" id="FileUpload" width="300" style="font-family: verdana; width: 353px;"
+                                   runat="server" name="FileUpload"/>
                         </td>
                     </tr>
                 </table>
                 <p>
-                    <asp:LinkButton ID="updateButton" Text="Update" runat="server" class="CommandButton"
-                        BorderStyle="none" OnClick="UpdateBtn_Click" />
-                    &nbsp;
-                    <asp:LinkButton ID="cancelButton" Text="Cancel" CausesValidation="False" runat="server"
-                        class="CommandButton" BorderStyle="none" OnClick="CancelBtn_Click" />
-                    &nbsp;
-                    <asp:LinkButton ID="deleteButton" Text="Delete this item" CausesValidation="False"
-                        runat="server" class="CommandButton" BorderStyle="none" OnClick="DeleteBtn_Click" />
-                    <hr noshade="noshade" size="1" width="500" />
-                    <span class="Normal">Created by
-                        <asp:Label ID="CreatedBy" runat="server" />
-                        on
-                        <asp:Label ID="CreatedDate" runat="server" />
-                        <br />
-                    </span>
-                    <p>
-                    </p>
+                <asp:LinkButton ID="updateButton" Text="Update" runat="server" class="CommandButton"
+                                BorderStyle="none" OnClick="UpdateBtn_Click" />
+                &nbsp;
+                <asp:LinkButton ID="cancelButton" Text="Cancel" CausesValidation="False" runat="server"
+                                class="CommandButton" BorderStyle="none" OnClick="CancelBtn_Click" />
+                &nbsp;
+                <asp:LinkButton ID="deleteButton" Text="Delete this item" CausesValidation="False"
+                                runat="server" class="CommandButton" BorderStyle="none" OnClick="DeleteBtn_Click" />
+                <hr noshade="noshade" size="1" width="500" />
+                <span class="Normal">Created by
+                    <asp:Label ID="CreatedBy" runat="server" />
+                    on
+                    <asp:Label ID="CreatedDate" runat="server" />
+                    <br />
+                </span>
+                <p>
+                </p>
             </td>
         </tr>
     </table>

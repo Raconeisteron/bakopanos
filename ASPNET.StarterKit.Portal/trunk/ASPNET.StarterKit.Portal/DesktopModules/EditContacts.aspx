@@ -1,5 +1,5 @@
 <%@ Page Language="c#" CodeBehind="EditContacts.aspx.cs" AutoEventWireup="True" Inherits="ASPNET.StarterKit.Portal.EditContacts"
-    MasterPageFile="~/Portal.Master" %>
+         MasterPageFile="~/Portal.Master" %>
 
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="Server">
@@ -35,14 +35,14 @@
                         </td>
                         <td align="left">
                             <asp:TextBox ID="NameField" CssClass="NormalTextBox" Width="390" Columns="30" MaxLength="50"
-                                runat="server" />
+                                         runat="server" />
                         </td>
                         <td width="25" rowspan="5">
                             &nbsp;
                         </td>
                         <td class="Normal" width="250">
                             <asp:RequiredFieldValidator Display="Static" runat="server" ErrorMessage="You Must Enter a Valid Name"
-                                ControlToValidate="NameField" ID="RequiredFieldValidator1" />
+                                                        ControlToValidate="NameField" ID="RequiredFieldValidator1" />
                         </td>
                     </tr>
                     <tr valign="top">
@@ -51,7 +51,7 @@
                         </td>
                         <td>
                             <asp:TextBox ID="RoleField" CssClass="NormalTextBox" Width="390" Columns="30" MaxLength="100"
-                                runat="server" />
+                                         runat="server" />
                         </td>
                     </tr>
                     <tr valign="top">
@@ -60,7 +60,7 @@
                         </td>
                         <td>
                             <asp:TextBox ID="EmailField" CssClass="NormalTextBox" Width="390" Columns="30" MaxLength="100"
-                                runat="server" />
+                                         runat="server" />
                         </td>
                     </tr>
                     <tr valign="top">
@@ -69,7 +69,7 @@
                         </td>
                         <td>
                             <asp:TextBox ID="Contact1Field" CssClass="NormalTextBox" Width="390" Columns="30"
-                                MaxLength="250" runat="server" />
+                                         MaxLength="250" runat="server" />
                         </td>
                     </tr>
                     <tr valign="top">
@@ -78,28 +78,28 @@
                         </td>
                         <td>
                             <asp:TextBox ID="Contact2Field" CssClass="NormalTextBox" Width="390" Columns="30"
-                                MaxLength="250" runat="server" />
+                                         MaxLength="250" runat="server" />
                         </td>
                     </tr>
                 </table>
                 <p>
-                    <asp:LinkButton ID="updateButton" Text="Update" runat="server" class="CommandButton"
-                        BorderStyle="none" OnClick="UpdateBtn_Click" />
-                    &nbsp;
-                    <asp:LinkButton ID="cancelButton" Text="Cancel" CausesValidation="False" runat="server"
-                        class="CommandButton" BorderStyle="none" OnClick="CancelBtn_Click" />
-                    &nbsp;
-                    <asp:LinkButton ID="deleteButton" Text="Delete this item" CausesValidation="False"
-                        runat="server" class="CommandButton" BorderStyle="none" OnClick="DeleteBtn_Click" />
-                    <hr noshade="noshade" size="1" width="500">
-                    <span class="Normal">Created by
-                        <asp:Label ID="CreatedBy" runat="server" />
-                        on
-                        <asp:Label ID="CreatedDate" runat="server" />
-                        <br />
-                    </span>
-                    <p>
-                    </p>
+                <asp:LinkButton ID="updateButton" Text="Update" runat="server" class="CommandButton"
+                                BorderStyle="none" OnClick="UpdateBtn_Click" />
+                &nbsp;
+                <asp:LinkButton ID="cancelButton" Text="Cancel" CausesValidation="False" runat="server"
+                                class="CommandButton" BorderStyle="none" OnClick="CancelBtn_Click" />
+                &nbsp;
+                <asp:LinkButton ID="deleteButton" Text="Delete this item" CausesValidation="False"
+                                runat="server" class="CommandButton" BorderStyle="none" OnClick="DeleteBtn_Click" />
+                <hr noshade="noshade" size="1" width="500">
+                <span class="Normal">Created by
+                    <asp:Label ID="CreatedBy" runat="server" />
+                    on
+                    <asp:Label ID="CreatedDate" runat="server" />
+                    <br />
+                </span>
+                <p>
+                </p>
             </td>
         </tr>
     </table>

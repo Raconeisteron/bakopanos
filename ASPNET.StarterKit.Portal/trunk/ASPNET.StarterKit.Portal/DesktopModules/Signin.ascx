@@ -19,7 +19,7 @@
 --%>
 
 <hr noshade="noshade" size="1" width="98%">
-<span class="SubSubHead" style="HEIGHT:20px">Account Login</span>
+<span class="SubSubHead" style="HEIGHT: 20px">Account Login</span>
 <br />
 <span class="Normal">Email:</span>
 <br />
