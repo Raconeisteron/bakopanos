@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Web;
 using System.Web.UI;
@@ -96,7 +97,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                IDataReader roles = _rolesDb.GetPortalRoles(portalSettings.Portal.PortalId);
+                List<PortalRole> roles = _rolesDb.GetPortalRoles(portalSettings.Portal.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();
@@ -111,11 +112,11 @@ namespace ASPNET.StarterKit.Portal
 
                 authEditRoles.Items.Add(allItem);
 
-                while (roles.Read())
+                foreach (PortalRole portalRole in roles)
                 {
                     var item = new ListItem();
-                    item.Text = (String) roles["RoleName"];
-                    item.Value = roles["RoleID"].ToString();
+                    item.Text = portalRole.RoleName;
+                    item.Value = portalRole.RoleId.ToString();
 
                     if ((m.AuthorizedEditRoles.LastIndexOf(item.Text)) > -1)
                     {
@@ -155,7 +156,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                IDataReader roles = _rolesDb.GetPortalRoles(portalSettings.Portal.PortalId);
+                List<PortalRole> roles = _rolesDb.GetPortalRoles(portalSettings.Portal.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();
@@ -170,11 +171,11 @@ namespace ASPNET.StarterKit.Portal
 
                 authEditRoles.Items.Add(allItem);
 
-                while (roles.Read())
+                foreach (PortalRole portalRole in roles)
                 {
                     var item = new ListItem();
-                    item.Text = (String) roles["RoleName"];
-                    item.Value = roles["RoleID"].ToString();
+                    item.Text = portalRole.RoleName;
+                    item.Value = portalRole.RoleId.ToString();
 
                     if ((m.AuthorizedEditRoles.LastIndexOf(item.Text)) > -1)
                     {

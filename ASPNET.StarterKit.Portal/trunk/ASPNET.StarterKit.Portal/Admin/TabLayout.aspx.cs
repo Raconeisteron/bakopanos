@@ -359,7 +359,7 @@ namespace ASPNET.StarterKit.Portal
 
             // Populate checkbox list with all security roles for this portal
             // and "check" the ones already configured for this tab
-            IDataReader roles = _rolesDb.GetPortalRoles(portalSettings.Portal.PortalId);
+            List<PortalRole> roles = _rolesDb.GetPortalRoles(portalSettings.Portal.PortalId);
 
             // Clear existing items in checkboxlist
             authRoles.Items.Clear();
@@ -374,11 +374,11 @@ namespace ASPNET.StarterKit.Portal
 
             authRoles.Items.Add(allItem);
 
-            while (roles.Read())
+            foreach (PortalRole portalRole in roles)
             {
                 var item = new ListItem();
-                item.Text = (String) roles["RoleName"];
-                item.Value = roles["RoleID"].ToString();
+                item.Text = portalRole.RoleName;
+                item.Value = portalRole.RoleId.ToString();
 
                 if ((tab.AuthorizedRoles.LastIndexOf(item.Text)) > -1)
                 {

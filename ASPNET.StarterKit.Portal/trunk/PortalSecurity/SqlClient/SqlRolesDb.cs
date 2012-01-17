@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -35,7 +36,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         #region IRolesDb Members
 
-        public IDataReader GetPortalRoles(int portalId)
+        public List<PortalRole> GetPortalRoles(int portalId)
         {
             // Create Instance of Connection and Command Object
             var connection =
@@ -54,8 +55,14 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             connection.Open();
             SqlDataReader dr = command.ExecuteReader(CommandBehavior.CloseConnection);
 
-            // Return the datareader
-            return dr;
+            var list = new List<PortalRole>();
+
+            while (dr.Read())
+            {
+                list.Add(dr.ToPortalRole(portalId));
+            }
+
+            return list;
         }
 
         //*********************************************************************

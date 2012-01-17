@@ -51,16 +51,38 @@
     <Compile Include="IRolesDb.cs" />
     <Compile Include="IUsersDb.cs" />
     <Compile Include="ModuleAuthorizationItem.cs" />
+    <Compile Include="PortalRole.cs" />
     <Compile Include="PortalSecurity.cs" />
+    <Compile Include="PortalSecurityExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlClient\SqlRolesDb.cs" />
     <Compile Include="SqlClient\SqlUsersDb.cs" />
+    <Compile Include="XmlFile\XmlRolesDb.cs" />
+    <Compile Include="XmlFile\XmlUsersDb.cs" />
+    <Compile Include="XmlFile\SecurityDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecurityDataSet.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PortalCore\PortalCore.csproj">
       <Project>{36BBB9BC-F3E6-48C5-896A-EE488A10499D}</Project>
       <Name>PortalCore</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="XmlFile\SecurityDataSet.xsc">
+      <DependentUpon>SecurityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="XmlFile\SecurityDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SecurityDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="XmlFile\SecurityDataSet.xss">
+      <DependentUpon>SecurityDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
