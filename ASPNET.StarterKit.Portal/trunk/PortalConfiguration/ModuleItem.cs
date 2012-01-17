@@ -12,9 +12,9 @@ namespace ASPNET.StarterKit.Portal
     {
         public int ModuleOrder { get; set; }
 
-        public String ModuleTitle { get; set; }
+        public string ModuleTitle { get; set; }
 
-        public String PaneName { get; set; }
+        public string PaneName { get; set; }
 
         public int ModuleId { get; set; }
 

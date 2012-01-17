@@ -11,9 +11,9 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
-            var imageSrc = (String) Settings["src"];
-            var imageHeight = (String) Settings["height"];
-            var imageWidth = (String) Settings["width"];
+            string imageSrc = Settings["src"];
+            string imageHeight = Settings["height"];
+            string imageWidth = Settings["width"];
 
             // Set Image Source, Width and Height Properties
             if (!string.IsNullOrEmpty(imageSrc))

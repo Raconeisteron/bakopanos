@@ -1,6 +1,6 @@
 ﻿namespace ASPNET.StarterKit.Portal
 {
-    public class ModuleAuthorization
+    public class ModuleAuthorizationItem
     {
         public string EditRoles { get; set; }
         public string AccessRoles { get; set; }

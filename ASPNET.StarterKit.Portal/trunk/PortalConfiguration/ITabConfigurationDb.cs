@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace ASPNET.StarterKit.Portal
@@ -10,10 +9,10 @@ namespace ASPNET.StarterKit.Portal
         List<ModuleSettings> FindModules(int tabId);
         TabSettings FindTab(int tabId);
 
-        int AddTab(int portalId, String tabName, int tabOrder);
+        int AddTab(int portalId, string tabName, int tabOrder);
 
-        void UpdateTab(int portalId, int tabId, String tabName, int tabOrder, String authorizedRoles,
-                       String mobileTabName, bool showMobile);
+        void UpdateTab(int portalId, int tabId, string tabName, int tabOrder, string authorizedRoles,
+                       string mobileTabName, bool showMobile);
 
         void UpdateTabOrder(int tabId, int tabOrder);
 

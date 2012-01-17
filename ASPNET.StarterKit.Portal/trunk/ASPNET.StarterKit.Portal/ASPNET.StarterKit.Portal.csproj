@@ -55,12 +55,10 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\AccessDenied.aspx" />
@@ -482,10 +480,6 @@
     <ProjectReference Include="..\PortalConfiguration\PortalConfiguration.csproj">
       <Project>{53ED8DED-F1F8-4826-A76F-1201E3DFEA8E}</Project>
       <Name>PortalConfiguration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PortalCore\PortalCore.csproj">
-      <Project>{36BBB9BC-F3E6-48C5-896A-EE488A10499D}</Project>
-      <Name>PortalCore</Name>
     </ProjectReference>
     <ProjectReference Include="..\PortalModules\PortalModules.csproj">
       <Project>{415A7800-27CF-4194-B419-346C7245E783}</Project>

@@ -87,7 +87,7 @@ namespace ASPNET.StarterKit.Portal
         public bool HasEditPermissions(int moduleId)
         {
             // Find the appropriate Module in the Module table
-            ModuleAuthorization moduleRoles = _moduleAuthorizationDb.FindModuleRolesByModuleId(moduleId);
+            ModuleAuthorizationItem moduleRoles = _moduleAuthorizationDb.FindModuleRolesByModuleId(moduleId);
 
             if (IsInRoles(moduleRoles.AccessRoles) == false || IsInRoles(moduleRoles.EditRoles) == false)
                 return false;

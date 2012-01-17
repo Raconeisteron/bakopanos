@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -21,10 +21,6 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             _configurationDb = configurationDb;
         }
 
-        #region IModuleConfigurationDb Members
-
-       
-
         //*********************************************************************
         //
         // UpdateModuleOrder Method  <a name="UpdateModuleOrder"></a>
@@ -38,7 +34,10 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public void UpdateModuleOrder(int moduleId, int moduleOrder, String pane)
+
+        #region IModuleConfigurationDb Members
+
+        public void UpdateModuleOrder(int moduleId, int moduleOrder, string pane)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
@@ -66,8 +65,8 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public int AddModule(int tabId, int moduleOrder, String paneName, String title, int moduleDefId, int cacheTime,
-                             String editRoles, bool showMobile)
+        public int AddModule(int tabId, int moduleOrder, string paneName, string title, int moduleDefId, int cacheTime,
+                             string editRoles, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
@@ -109,8 +108,8 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public int UpdateModule(int moduleId, int moduleOrder, String paneName, String title, int cacheTime,
-                                String editRoles, bool showMobile)
+        public int UpdateModule(int moduleId, int moduleOrder, string paneName, string title, int cacheTime,
+                                string editRoles, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
@@ -197,7 +196,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public void UpdateModuleSetting(int moduleId, String key, String val)
+        public void UpdateModuleSetting(int moduleId, string key, string val)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -307,10 +306,10 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public Hashtable GetModuleSettings(int moduleId)
+        public Dictionary<string, string> GetModuleSettings(int moduleId)
         {
             // Create a new Hashtable
-            var _settingsHT = new Hashtable();
+            var settings = new Dictionary<string, string>();
 
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -328,12 +327,12 @@ namespace ASPNET.StarterKit.Portal.XmlFile
                     // Find the child setting elements and add to the hashtable
                     foreach (SiteConfiguration.SettingRow sRow in settingsRow.GetSettingRows())
                     {
-                        _settingsHT[sRow.Name] = sRow.Setting_Text;
+                        settings[sRow.Name] = sRow.Setting_Text;
                     }
                 }
             }
 
-            return _settingsHT;
+            return settings;
         }
 
         #endregion

@@ -2,8 +2,8 @@ namespace ASPNET.StarterKit.Portal
 {
     public class ModuleDefinitionItem
     {
-        public string DesktopSourceFile;
-        public string FriendlyName;
-        public string MobileSourceFile;
+        public string DesktopSourceFile { get; set; }
+        public string FriendlyName { get; set; }
+        public string MobileSourceFile { get; set; }
     }
 }

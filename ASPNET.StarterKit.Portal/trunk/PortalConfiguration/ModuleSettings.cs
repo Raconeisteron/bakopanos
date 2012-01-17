@@ -10,17 +10,17 @@ namespace ASPNET.StarterKit.Portal
     /// </summary>
     public class ModuleSettings : IComparable
     {
-        public String AuthorizedEditRoles;
-        public int CacheTime;
-        public String DesktopSrc;
-        public String MobileSrc;
-        public int ModuleDefId;
-        public int ModuleId;
-        public int ModuleOrder;
-        public String ModuleTitle;
-        public String PaneName;
-        public bool ShowMobile;
-        public int TabId;
+        public string AuthorizedEditRoles { get; set; }
+        public int CacheTime { get; set; }
+        public string DesktopSrc { get; set; }
+        public string MobileSrc { get; set; }
+        public int ModuleDefId { get; set; }
+        public int ModuleId { get; set; }
+        public int ModuleOrder { get; set; }
+        public string ModuleTitle { get; set; }
+        public string PaneName { get; set; }
+        public bool ShowMobile { get; set; }
+        public int TabId { get; set; }
 
         #region IComparable Members
 

@@ -9,19 +9,22 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             _configurationDb = configurationDb;
         }
 
-        public ModuleAuthorization FindModuleRolesByModuleId(int moduleId)
+        #region IModuleAuthorizationDb Members
+
+        public ModuleAuthorizationItem FindModuleRolesByModuleId(int moduleId)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_configurationDb.GetSiteSettings();
+            var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
 
             SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
 
-            return new ModuleAuthorization
+            return new ModuleAuthorizationItem
                        {
                            AccessRoles = moduleRow.TabRow.AccessRoles,
                            EditRoles = moduleRow.EditRoles
                        };
         }
 
+        #endregion
     }
 }

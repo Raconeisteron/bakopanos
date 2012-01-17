@@ -12,7 +12,7 @@ namespace ASPNET.StarterKit.Portal
     {
         public int TabOrder { get; set; }
 
-        public String TabName { get; set; }
+        public string TabName { get; set; }
 
         public int TabId { get; set; }
 

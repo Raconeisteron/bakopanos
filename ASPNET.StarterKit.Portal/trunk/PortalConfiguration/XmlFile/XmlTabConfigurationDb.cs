@@ -121,7 +121,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             return tabSettings;
         }
 
-        public int AddTab(int portalId, String tabName, int tabOrder)
+        public int AddTab(int portalId, string tabName, int tabOrder)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
@@ -146,8 +146,8 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             return newRow.TabId;
         }
 
-        public void UpdateTab(int portalId, int tabId, String tabName, int tabOrder, String authorizedRoles,
-                              String mobileTabName, bool showMobile)
+        public void UpdateTab(int portalId, int tabId, string tabName, int tabOrder, string authorizedRoles,
+                              string mobileTabName, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];

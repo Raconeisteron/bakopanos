@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ASPNET.StarterKit.Portal
+﻿namespace ASPNET.StarterKit.Portal
 {
     /// <summary>
     /// encapsulates the just the tabstrip details -- TabName, TabId and TabOrder 
@@ -8,9 +6,9 @@ namespace ASPNET.StarterKit.Portal
     /// </summary>
     public class TabStripDetails
     {
-        public String AuthorizedRoles;
-        public int TabId;
-        public String TabName;
-        public int TabOrder;
+        public string AuthorizedRoles { get; set; }
+        public int TabId { get; set; }
+        public string TabName { get; set; }
+        public int TabOrder { get; set; }
     }
 }

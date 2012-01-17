@@ -1,20 +1,19 @@
-using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace ASPNET.StarterKit.Portal
 {
     public interface IModuleConfigurationDb
     {
-        void UpdateModuleOrder(int moduleId, int moduleOrder, String pane);
+        void UpdateModuleOrder(int moduleId, int moduleOrder, string pane);
 
-        int AddModule(int tabId, int moduleOrder, String paneName, String title, int moduleDefId, int cacheTime,
-                      String editRoles, bool showMobile);
+        int AddModule(int tabId, int moduleOrder, string paneName, string title, int moduleDefId, int cacheTime,
+                      string editRoles, bool showMobile);
 
-        int UpdateModule(int moduleId, int moduleOrder, String paneName, String title, int cacheTime,
-                         String editRoles, bool showMobile);
+        int UpdateModule(int moduleId, int moduleOrder, string paneName, string title, int cacheTime,
+                         string editRoles, bool showMobile);
 
         void DeleteModule(int moduleId);
-        void UpdateModuleSetting(int moduleId, String key, String val);
-        Hashtable GetModuleSettings(int moduleId);
+        void UpdateModuleSetting(int moduleId, string key, string val);
+        Dictionary<string, string> GetModuleSettings(int moduleId);
     }
 }

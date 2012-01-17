@@ -1,4 +1,3 @@
-using System;
 using System.Web;
 
 namespace ASPNET.StarterKit.Portal.XmlFile
@@ -34,7 +33,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             return globalItem;
         }
 
-        public void UpdatePortalInfo(int portalId, String portalName, bool alwaysShow)
+        public void UpdatePortalInfo(int portalId, string portalName, bool alwaysShow)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];

@@ -7,8 +7,8 @@
     <ItemTemplate>
         <span class="ItemTitle">
             <asp:HyperLink id="editLink" ImageUrl="~/images/edit.gif" NavigateUrl='<%# "~/DesktopModules/EditEvents.aspx?ItemID=" +
-                                     DataBinder.Eval(Container.DataItem, "ItemID") +
-                                     "&mid=" + ModuleId %>' Visible="<%# IsEditable %>" runat="server" />
+                              DataBinder.Eval(Container.DataItem, "ItemID") +
+                              "&mid=" + ModuleId %>' Visible="<%# IsEditable %>" runat="server" />
             <asp:Label Text='<%# DataBinder.Eval(Container.DataItem, "Title") %>' runat="server" />
         </span>
         <br />

@@ -1,4 +1,3 @@
-using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -56,7 +55,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public int AddModuleDefinition(int portalId, String name, String desktopSrc, String mobileSrc)
+        public int AddModuleDefinition(int portalId, string name, string desktopSrc, string mobileSrc)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
@@ -155,7 +154,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public void UpdateModuleDefinition(int defId, String name, String desktopSrc, String mobileSrc)
+        public void UpdateModuleDefinition(int defId, string name, string desktopSrc, string mobileSrc)
         {
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];

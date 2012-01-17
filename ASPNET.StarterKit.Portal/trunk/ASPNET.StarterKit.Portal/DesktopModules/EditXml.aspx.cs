@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 
@@ -41,10 +41,10 @@ namespace ASPNET.StarterKit.Portal
                 if (_moduleId > 0)
                 {
                     // Get settings from the database
-                    Hashtable settings = _moduleConfigurationDb.GetModuleSettings(_moduleId);
+                    Dictionary<string, string> settings = _moduleConfigurationDb.GetModuleSettings(_moduleId);
 
-                    XmlDataSrc.Text = (String) settings["xmlsrc"];
-                    XslTransformSrc.Text = (String) settings["xslsrc"];
+                    XmlDataSrc.Text = settings["xmlsrc"];
+                    XslTransformSrc.Text = settings["xslsrc"];
                 }
 
                 // Store URL Referrer to return to portal
