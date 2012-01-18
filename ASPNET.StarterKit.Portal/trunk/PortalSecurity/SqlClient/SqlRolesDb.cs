@@ -194,7 +194,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         //
         //*********************************************************************
 
-        public IDataReader GetRoleMembers(int roleId)
+        public List<PortalUser> GetRoleMembers(int roleId)
         {
             // Create Instance of Connection and Command Object
             var connection =
@@ -212,8 +212,14 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             connection.Open();
             SqlDataReader dr = command.ExecuteReader(CommandBehavior.CloseConnection);
 
-            // Return the datareader
-            return dr;
+            var list = new List<PortalUser>();
+
+            while (dr.Read())
+            {
+                list.Add(dr.ToPortalUser());
+            }
+
+            return list;
         }
 
         //*********************************************************************

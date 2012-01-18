@@ -22,7 +22,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile {
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
     [global::System.Xml.Serialization.XmlRootAttribute("SecurityDataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class SecurityDataSet : global::System.Data.DataSet {
+    internal partial class SecurityDataSet : global::System.Data.DataSet {
         
         private PortalRolesDataTable tablePortalRoles;
         
@@ -463,10 +463,10 @@ namespace ASPNET.StarterKit.Portal.XmlFile {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PortalRolesRow AddPortalRolesRow(int PortalID, string RoleName) {
+            public PortalRolesRow AddPortalRolesRow(int RoleID, int PortalID, string RoleName) {
                 PortalRolesRow rowPortalRolesRow = ((PortalRolesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
+                        RoleID,
                         PortalID,
                         RoleName};
                 rowPortalRolesRow.ItemArray = columnValuesArray;
@@ -514,7 +514,6 @@ namespace ASPNET.StarterKit.Portal.XmlFile {
                 base.Columns.Add(this.columnRoleName);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnRoleID}, true));
-                this.columnRoleID.AutoIncrement = true;
                 this.columnRoleID.AutoIncrementSeed = -1;
                 this.columnRoleID.AutoIncrementStep = -1;
                 this.columnRoleID.AllowDBNull = false;
@@ -766,10 +765,10 @@ namespace ASPNET.StarterKit.Portal.XmlFile {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PortalUsersRow AddPortalUsersRow(string Name, string Password, string Email) {
+            public PortalUsersRow AddPortalUsersRow(int UserID, string Name, string Password, string Email) {
                 PortalUsersRow rowPortalUsersRow = ((PortalUsersRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
+                        UserID,
                         Name,
                         Password,
                         Email};
@@ -821,7 +820,6 @@ namespace ASPNET.StarterKit.Portal.XmlFile {
                 base.Columns.Add(this.columnEmail);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnUserID}, true));
-                this.columnUserID.AutoIncrement = true;
                 this.columnUserID.AutoIncrementSeed = -1;
                 this.columnUserID.AutoIncrementStep = -1;
                 this.columnUserID.AllowDBNull = false;

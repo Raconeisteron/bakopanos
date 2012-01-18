@@ -7,13 +7,30 @@ namespace ASPNET.StarterKit.Portal
     {
         public static PortalRole ToPortalRole(this IDataRecord record, int portalId)
         {
-            var portalRole = new PortalRole
+            var item = new PortalRole
                                  {
                                      PortalId = portalId,
                                      RoleId = Convert.ToInt32(record["RoleID"]),
                                      RoleName = record["RoleName"] as string,
                                  };
-            return portalRole;
+            return item;
         }
+
+
+        public static PortalUser ToPortalUser(this IDataRecord record)
+        {
+            var item = new PortalUser
+            {
+                UserId = Convert.ToInt32(record["UserID"]),
+                Name = record["Name"] as string,
+                Email = record["Email"] as string
+            };
+            return item;
+        }
+
     }
+
+    
+
+
 }
