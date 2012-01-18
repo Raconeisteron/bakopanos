@@ -107,6 +107,10 @@
     <Content Include="Data\sales.xml" />
     <Content Include="Data\sales.xsl" />
     <Content Include="Data\sample.gif" />
+    <Content Include="Data\Security.Xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\sitesettings.gif" />
     <Content Include="Data\tabbar.gif" />
     <Content Include="Data\tabs.gif" />

@@ -58,6 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlClient\SqlRolesDb.cs" />
     <Compile Include="SqlClient\SqlUsersDb.cs" />
+    <Compile Include="XmlFile\PortalSecurityXmlFileExtensions.cs" />
     <Compile Include="XmlFile\XmlRolesDb.cs" />
     <Compile Include="XmlFile\XmlUsersDb.cs" />
     <Compile Include="XmlFile\SecurityDataSet.Designer.cs">

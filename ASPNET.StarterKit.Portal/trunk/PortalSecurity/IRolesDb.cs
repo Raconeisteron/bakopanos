@@ -12,6 +12,6 @@ namespace ASPNET.StarterKit.Portal
         List<PortalUser> GetRoleMembers(int roleId);
         void AddUserRole(int roleId, int userId);
         void DeleteUserRole(int roleId, int userId);
-        IDataReader GetUsers();
+        List<PortalUser> GetUsers();
     }
 }

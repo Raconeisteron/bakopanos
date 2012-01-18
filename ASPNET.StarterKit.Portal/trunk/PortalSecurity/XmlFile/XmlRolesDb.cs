@@ -6,35 +6,10 @@ using System.Web;
 
 namespace ASPNET.StarterKit.Portal.XmlFile
 {
-    internal static class PortalSecurityXmlFileExtensions
-    {
-        public static PortalRole ToPortalRole(this SecurityDataSet.PortalRolesRow row, int portalId)
-        {
-            return new PortalRole
-                       {
-                           PortalId = portalId,
-                           RoleId = row.RoleID,
-                           RoleName = row.RoleName
-                       };
-        }
-
-        public static PortalUser ToPortalUser(this SecurityDataSet.PortalUsersRow row)
-        {
-            return new PortalUser
-                       {
-                           UserId = row.UserID,
-                           Email = row.Email,
-                           Name = row.Name
-                       }
-                ;
-        }
-
-    }
-
     public class XmlRolesDb : IRolesDb
     {
         private readonly SecurityDataSet _dataSet = new SecurityDataSet();
-        private string _fileName;
+        private readonly string _fileName;
 
         public XmlRolesDb(string fileName)
         {   
@@ -84,9 +59,10 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             throw new NotImplementedException();
         }
 
-        public IDataReader GetUsers()
+        public List<PortalUser> GetUsers()
         {
-            throw new NotImplementedException();
+            IEnumerable<SecurityDataSet.PortalUsersRow> users = _dataSet.PortalUsers.OrderBy(item=>item.Email);
+            return users.Select(item => item.ToPortalUser()).ToList();
         }
     }
 }
