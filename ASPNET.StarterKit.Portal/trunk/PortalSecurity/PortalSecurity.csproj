@@ -51,6 +51,8 @@
     <Compile Include="IRolesDb.cs" />
     <Compile Include="IUsersDb.cs" />
     <Compile Include="ModuleAuthorizationItem.cs" />
+    <Compile Include="Oracle\OraRolesDb.cs" />
+    <Compile Include="Oracle\OraUsersDb.cs" />
     <Compile Include="PortalRole.cs" />
     <Compile Include="PortalSecurity.cs" />
     <Compile Include="PortalSecurityExtensions.cs" />
