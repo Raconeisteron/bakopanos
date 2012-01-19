@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <xs:schema id="SecurityDataSet" targetNamespace="http://tempuri.org/SecurityDataSet.xsd" xmlns:mstns="http://tempuri.org/SecurityDataSet.xsd" xmlns="http://tempuri.org/SecurityDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
@@ -44,7 +43,7 @@
               <xs:element name="Password" msprop:Generator_ColumnVarNameInTable="columnPassword" msprop:Generator_ColumnPropNameInRow="Password" msprop:Generator_ColumnPropNameInTable="PasswordColumn" msprop:Generator_UserColumnName="Password" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
+                    <xs:maxLength value="250" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -79,8 +78,8 @@
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_UserRoles_Users" msdata:parent="PortalUsers" msdata:child="PortalUserRoles" msdata:parentkey="UserID" msdata:childkey="UserID" msprop:Generator_UserChildTable="PortalUserRoles" msprop:Generator_ChildPropName="GetPortal_UserRolesRows" msprop:Generator_UserParentTable="PortalUsers" msprop:Generator_UserRelationName="FK_UserRoles_Users" msprop:Generator_RelationVarName="relationFK_UserRoles_Users" msprop:Generator_ParentPropName="PortalUsersRow" />
-      <msdata:Relationship name="FK_UserRoles_Roles" msdata:parent="PortalRoles" msdata:child="PortalUserRoles" msdata:parentkey="RoleID" msdata:childkey="RoleID" msprop:Generator_UserChildTable="PortalUserRoles" msprop:Generator_ChildPropName="GetPortalUserRolesRows" msprop:Generator_UserParentTable="PortalRoles" msprop:Generator_UserRelationName="FK_UserRoles_Roles" msprop:Generator_RelationVarName="relationFK_UserRoles_Roles" msprop:Generator_ParentPropName="Portal_RolesRow" />
+      <msdata:Relationship name="FK_UserRoles_Users" msdata:parent="PortalUsers" msdata:child="PortalUserRoles" msdata:parentkey="UserID" msdata:childkey="UserID" msprop:Generator_UserChildTable="PortalUserRoles" msprop:Generator_ChildPropName="GetPortal_UserRolesRows" msprop:Generator_ParentPropName="PortalUsersRow" msprop:Generator_UserRelationName="FK_UserRoles_Users" msprop:Generator_RelationVarName="relationFK_UserRoles_Users" msprop:Generator_UserParentTable="PortalUsers" />
+      <msdata:Relationship name="FK_UserRoles_Roles" msdata:parent="PortalRoles" msdata:child="PortalUserRoles" msdata:parentkey="RoleID" msdata:childkey="RoleID" msprop:Generator_UserChildTable="PortalUserRoles" msprop:Generator_ChildPropName="GetPortalUserRolesRows" msprop:Generator_ParentPropName="Portal_RolesRow" msprop:Generator_UserRelationName="FK_UserRoles_Roles" msprop:Generator_RelationVarName="relationFK_UserRoles_Roles" msprop:Generator_UserParentTable="PortalRoles" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

@@ -827,7 +827,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile {
                 this.columnUserID.Unique = true;
                 this.columnName.AllowDBNull = false;
                 this.columnName.MaxLength = 50;
-                this.columnPassword.MaxLength = 50;
+                this.columnPassword.MaxLength = 250;
                 this.columnEmail.AllowDBNull = false;
                 this.columnEmail.MaxLength = 100;
             }
