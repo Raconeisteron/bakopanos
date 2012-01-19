@@ -12,54 +12,28 @@ namespace ASPNET.StarterKit.Portal.SqlClient
     // Users, Roles and security settings values within the Portal database.
     //
     //*********************************************************************
-    public class SqlRolesDb : IRolesDb
+    public class SqlRolesDb :Db, IRolesDb
     {
-        private readonly string _connectionString;
+       private readonly string _connectionString;
 
-        public SqlRolesDb(string connectionString)
+       public SqlRolesDb(string connectionString)
+            : base(connectionString, "System.Data.SqlClient")
         {
             _connectionString = connectionString;
         }
-
-
-        //*********************************************************************
-        //
-        // GetPortalRoles() Method <a name="GetPortalRoles"></a>
-        //
-        // The GetPortalRoles method returns a list of all role names for the 
-        // specified portal.
-        //
-        // Other relevant sources:
-        //     + <a href="GetRolesByUser.htm" style="color:green">GetPortalRoles Stored Procedure</a>
-        //
-        //*********************************************************************
 
         #region IRolesDb Members
 
         public List<PortalRole> GetPortalRoles(int portalId)
         {
-            // Create Instance of Connection and Command Object
-            var connection =
-                new SqlConnection(_connectionString);
-            var command = new SqlCommand("Portal_GetPortalRoles", connection);
-
-            // Mark the Command as a SPROC
-            command.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterPortalID = new SqlParameter("@PortalID", SqlDbType.Int, 4);
-            parameterPortalID.Value = portalId;
-            command.Parameters.Add(parameterPortalID);
-
-            // Open the database connection and execute the command
-            connection.Open();
-            SqlDataReader dr = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var parameterPortalId =CreateParameter("@PortalID", portalId);
+            IDataReader reader = ExecuteReader("Portal_GetPortalRoles", CommandType.StoredProcedure, parameterPortalId);
 
             var list = new List<PortalRole>();
 
-            while (dr.Read())
+            while (reader.Read())
             {
-                list.Add(dr.ToPortalRole(portalId));
+                list.Add(reader.ToPortalRole(portalId));
             }
 
             return list;
