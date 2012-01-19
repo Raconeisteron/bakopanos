@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
@@ -47,21 +48,41 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterFullName = new SqlParameter("@Name", SqlDbType.NVarChar, 50);
+            DbParameter parameterFullName = command.CreateParameter();
+            parameterFullName.ParameterName = "@Name";
             parameterFullName.Value = fullName;
             command.Parameters.Add(parameterFullName);
 
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            DbParameter parameterEmail = command.CreateParameter();
+            parameterEmail.ParameterName = "@Email";
             parameterEmail.Value = email;
-            command.Parameters.Add(parameterEmail);
+            command.Parameters.Add(parameterFullName);
 
-            var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
+            DbParameter parameterPassword = command.CreateParameter();
+            parameterPassword.ParameterName = "@Password";
             parameterPassword.Value = password;
-            command.Parameters.Add(parameterPassword);
+            command.Parameters.Add(parameterFullName);
 
-            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
+            DbParameter parameterUserId = command.CreateParameter();
+            parameterUserId.ParameterName = "@UserID";
             parameterUserId.Direction = ParameterDirection.Output;
-            command.Parameters.Add(parameterUserId);
+            command.Parameters.Add(parameterFullName);
+
+            //var parameterFullName = new SqlParameter("@Name", SqlDbType.NVarChar, 50);
+            //parameterFullName.Value = fullName;
+            //command.Parameters.Add(parameterFullName);
+
+            //var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            //parameterEmail.Value = email;
+            //command.Parameters.Add(parameterEmail);
+
+            //var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
+            //parameterPassword.Value = password;
+            //command.Parameters.Add(parameterPassword);
+
+            //var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
+            //parameterUserId.Direction = ParameterDirection.Output;
+            //command.Parameters.Add(parameterUserId);
 
             // Execute the command in a try/catch to catch duplicate username errors
             try
@@ -106,9 +127,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Mark the Command as a SPROC
             command.CommandType = CommandType.StoredProcedure;
 
-            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
+            DbParameter parameterUserId = command.CreateParameter();
             parameterUserId.Value = userId;
             command.Parameters.Add(parameterUserId);
+            
+            //var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
+            //parameterUserId.Value = userId;
+            //command.Parameters.Add(parameterUserId);
 
             // Open the database connection and execute the command
             connection.Open();
@@ -137,15 +162,18 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Mark the Command as a SPROC
             command.CommandType = CommandType.StoredProcedure;
 
-            var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
+            DbParameter parameterUserId = command.CreateParameter();
+            //var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
             parameterUserId.Value = userId;
             command.Parameters.Add(parameterUserId);
 
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            DbParameter parameterEmail = command.CreateParameter();
+            //var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
             command.Parameters.Add(parameterEmail);
 
-            var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
+            DbParameter parameterPassword = command.CreateParameter();
+            //var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
             command.Parameters.Add(parameterPassword);
 
@@ -176,7 +204,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Mark the Command as a SPROC
             command.CommandType = CommandType.StoredProcedure;
 
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            DbParameter parameterEmail = command.CreateParameter();
+            //var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
             command.Parameters.Add(parameterEmail);
 
@@ -208,7 +237,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            DbParameter parameterEmail = command.CreateParameter();
+            //var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
             command.Parameters.Add(parameterEmail);
 
@@ -242,7 +272,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            DbParameter parameterEmail = command.CreateParameter();
+            //var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
             command.Parameters.Add(parameterEmail);
 
@@ -290,15 +321,18 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
+            DbParameter parameterEmail = command.CreateParameter();
+            //var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
             parameterEmail.Value = email;
             command.Parameters.Add(parameterEmail);
 
-            var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
+            DbParameter parameterPassword = command.CreateParameter();
+            //var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
             parameterPassword.Value = password;
             command.Parameters.Add(parameterPassword);
 
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
+            DbParameter parameterUserName = command.CreateParameter();
+            //var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
             parameterUserName.Direction = ParameterDirection.Output;
             command.Parameters.Add(parameterUserName);
 
