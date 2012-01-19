@@ -1,14 +1,16 @@
 using System;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
-    public class SqlAnnouncementsDb : IAnnouncementsDb
+    public class SqlAnnouncementsDb :Db, IAnnouncementsDb
     {
         private readonly string _connectionString;
 
         public SqlAnnouncementsDb(string connectionString)
+            : base(connectionString, "System.Data.SqlClient")
         {
             _connectionString = connectionString;
         }
@@ -17,25 +19,11 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public IDataReader GetAnnouncements(int moduleId)
         {
-            // Create Instance of Connection and Command Object
-            var connection =
-                new SqlConnection(_connectionString);
-            var command = new SqlCommand("Portal_GetAnnouncements", connection);
+            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
+            IDataReader reader = ExecuteReader("Portal_GetAnnouncements", CommandType.StoredProcedure, 
+                parameterModuleId);
 
-            // Mark the Command as a SPROC
-            command.CommandType = CommandType.StoredProcedure;
-
-            // Add Parameters to SPROC
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
-            command.Parameters.Add(parameterModuleId);
-
-            // Execute the command
-            connection.Open();
-            SqlDataReader result = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            // Return the datareader 
-            return result;
+            return reader;
         }
 
         public IDataReader GetSingleAnnouncement(int itemId)
