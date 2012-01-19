@@ -39,7 +39,9 @@
       <HintPath>..\Libs\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,10 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SqlClient\SqlUsersDbFixture.cs" />
     <Compile Include="XmlFile\XmlRolesDbFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PortalCore\PortalCore.csproj">
+      <Project>{36BBB9BC-F3E6-48C5-896A-EE488A10499D}</Project>
+      <Name>PortalCore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PortalSecurity\PortalSecurity.csproj">
       <Project>{96451A30-ED9A-4C81-9800-6E3BFDD8D4BC}</Project>
       <Name>PortalSecurity</Name>
@@ -59,6 +66,11 @@
   <ItemGroup>
     <Content Include="XmlFile\Security.Xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
