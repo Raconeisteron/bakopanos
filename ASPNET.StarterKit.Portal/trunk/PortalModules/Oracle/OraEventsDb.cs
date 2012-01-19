@@ -3,8 +3,10 @@ using System.Data;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
-    public class OraEventsDb:IEventsDb
+    public class OraEventsDb : IEventsDb
     {
+        #region IEventsDb Members
+
         public IDataReader GetEvents(int moduleId)
         {
             throw new NotImplementedException();
@@ -20,14 +22,18 @@ namespace ASPNET.StarterKit.Portal.Oracle
             throw new NotImplementedException();
         }
 
-        public int AddEvent(int moduleId, string userName, string title, DateTime expireDate, string description, string wherewhen)
+        public int AddEvent(int moduleId, string userName, string title, DateTime expireDate, string description,
+                            string wherewhen)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateEvent(int itemId, string userName, string title, DateTime expireDate, string description, string wherewhen)
+        public void UpdateEvent(int itemId, string userName, string title, DateTime expireDate, string description,
+                                string wherewhen)
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
-    public class SqlAnnouncementsDb :Db, IAnnouncementsDb
+    public class SqlAnnouncementsDb : Db, IAnnouncementsDb
     {
         private readonly string _connectionString;
 
@@ -20,8 +20,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         public IDataReader GetAnnouncements(int moduleId)
         {
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
-            IDataReader reader = ExecuteReader("Portal_GetAnnouncements", CommandType.StoredProcedure, 
-                parameterModuleId);
+            IDataReader reader = ExecuteReader("Portal_GetAnnouncements", CommandType.StoredProcedure,
+                                               parameterModuleId);
 
             return reader;
         }

@@ -3,8 +3,10 @@ using System.Data;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
-    public class OraDocumentsDb:IDocumentsDb
+    public class OraDocumentsDb : IDocumentsDb
     {
+        #region IDocumentsDb Members
+
         public IDataReader GetDocuments(int moduleId)
         {
             throw new NotImplementedException();
@@ -25,9 +27,12 @@ namespace ASPNET.StarterKit.Portal.Oracle
             throw new NotImplementedException();
         }
 
-        public void UpdateDocument(int moduleId, int itemId, string userName, string name, string url, string category, byte[] content, int size, string contentType)
+        public void UpdateDocument(int moduleId, int itemId, string userName, string name, string url, string category,
+                                   byte[] content, int size, string contentType)
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

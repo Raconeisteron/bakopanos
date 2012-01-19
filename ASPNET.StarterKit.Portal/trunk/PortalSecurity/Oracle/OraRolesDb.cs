@@ -3,8 +3,10 @@ using System.Collections.Generic;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
-    public class OraRolesDb:IRolesDb
+    public class OraRolesDb : IRolesDb
     {
+        #region IRolesDb Members
+
         public List<PortalRole> GetPortalRoles(int portalId)
         {
             throw new NotImplementedException();
@@ -44,5 +46,7 @@ namespace ASPNET.StarterKit.Portal.Oracle
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

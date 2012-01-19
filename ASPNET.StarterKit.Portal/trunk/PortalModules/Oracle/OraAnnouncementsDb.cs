@@ -3,8 +3,10 @@ using System.Data;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
-    public class OraAnnouncementsDb: IAnnouncementsDb
+    public class OraAnnouncementsDb : IAnnouncementsDb
     {
+        #region IAnnouncementsDb Members
+
         public IDataReader GetAnnouncements(int moduleId)
         {
             throw new NotImplementedException();
@@ -20,14 +22,18 @@ namespace ASPNET.StarterKit.Portal.Oracle
             throw new NotImplementedException();
         }
 
-        public int AddAnnouncement(int moduleId, string userName, string title, DateTime expireDate, string description, string moreLink, string mobileMoreLink)
+        public int AddAnnouncement(int moduleId, string userName, string title, DateTime expireDate, string description,
+                                   string moreLink, string mobileMoreLink)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateAnnouncement(int itemId, string userName, string title, DateTime expireDate, string description, string moreLink, string mobileMoreLink)
+        public void UpdateAnnouncement(int itemId, string userName, string title, DateTime expireDate,
+                                       string description, string moreLink, string mobileMoreLink)
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

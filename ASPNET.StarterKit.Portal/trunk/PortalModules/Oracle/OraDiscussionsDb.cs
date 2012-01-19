@@ -3,8 +3,10 @@ using System.Data;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
-    public class OraDiscussionsDb:IDiscussionsDb
+    public class OraDiscussionsDb : IDiscussionsDb
     {
+        #region IDiscussionsDb Members
+
         public IDataReader GetTopLevelMessages(int moduleId)
         {
             throw new NotImplementedException();
@@ -24,5 +26,7 @@ namespace ASPNET.StarterKit.Portal.Oracle
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

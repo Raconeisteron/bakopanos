@@ -2,6 +2,7 @@
          MasterPageFile="~/Portal.Master" %>
 
 <%@ OutputCache Duration="36000" VaryByParam="none" %>
+
 <%@ Import Namespace="ASPNET.StarterKit.Portal" %>
 <%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="Server">
@@ -25,7 +26,7 @@
                     within the portal. Please contact the portal administrator to obtain access.
                     <br />
                     <br />
-                    <a href="<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx">Return to ASP.NET
+                    <a href="<%=Global.GetApplicationPath(Request)%>/DesktopDefault.aspx">Return to ASP.NET
                         Portal Starter Kit Home</a>
                 </td>
             </tr>

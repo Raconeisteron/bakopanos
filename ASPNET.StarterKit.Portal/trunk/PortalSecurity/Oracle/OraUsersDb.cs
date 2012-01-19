@@ -3,8 +3,10 @@ using System.Data;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
-    public class OraUsersDb: IUsersDb
+    public class OraUsersDb : IUsersDb
     {
+        #region IUsersDb Members
+
         public int AddUser(string fullName, string email, string password)
         {
             throw new NotImplementedException();
@@ -39,5 +41,7 @@ namespace ASPNET.StarterKit.Portal.Oracle
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

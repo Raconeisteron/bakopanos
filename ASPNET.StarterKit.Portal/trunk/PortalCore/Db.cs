@@ -1,4 +1,3 @@
-﻿using System.Configuration;
 using System.Data;
 using System.Data.Common;
 
@@ -25,8 +24,8 @@ namespace ASPNET.StarterKit.Portal
     /// </remarks>
     public class Db
     {
-        private readonly DbProviderFactory _factory;
         private readonly string _connectionString;
+        private readonly DbProviderFactory _factory;
 
         public Db(string connectionString, string providerName)
         {

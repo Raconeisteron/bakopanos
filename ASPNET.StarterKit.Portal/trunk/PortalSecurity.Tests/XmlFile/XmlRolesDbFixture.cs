@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 
@@ -7,15 +7,14 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     [TestFixture]
     public class XmlRolesDbFixture
     {
-        private IRolesDb _db;
-        private string _tempFileName;
+        #region Setup/Teardown
 
         [SetUp]
         public void SetUp()
         {
             _tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            File.Copy(@"xmlfile\Security.Xml",_tempFileName);
-             _db = new XmlRolesDb(_tempFileName);
+            File.Copy(@"xmlfile\Security.Xml", _tempFileName);
+            _db = new XmlRolesDb(_tempFileName);
         }
 
         [TearDown]
@@ -24,11 +23,26 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             File.Delete(_tempFileName);
         }
 
+        #endregion
+
+        private IRolesDb _db;
+        private string _tempFileName;
+
+
         [Test]
-        public void GetPortalRolesReturnsCorrectNumberOfPortalRoles()
+        public void GetPortalMembersReturnsCorrectFirstPortalUser()
         {
-            List<PortalRole> items = _db.GetPortalRoles(0);
-            Assert.IsTrue(items.Count==1);
+            PortalUser item = _db.GetRoleMembers(0)[0];
+            Assert.IsTrue(item.UserId == 0);
+            Assert.IsTrue(item.Name == "Guest");
+            Assert.IsTrue(item.Email == "guest");
+        }
+
+        [Test]
+        public void GetPortalMembersReturnsCorrectNumberOfPortalUsers()
+        {
+            List<PortalUser> items = _db.GetRoleMembers(0);
+            Assert.IsTrue(items.Count == 1);
         }
 
         [Test]
@@ -41,21 +55,10 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         }
 
         [Test]
-        public void GetPortalMembersReturnsCorrectNumberOfPortalUsers()
+        public void GetPortalRolesReturnsCorrectNumberOfPortalRoles()
         {
-            List<PortalUser> items = _db.GetRoleMembers(0);
+            List<PortalRole> items = _db.GetPortalRoles(0);
             Assert.IsTrue(items.Count == 1);
         }
-
-
-        [Test]
-        public void GetPortalMembersReturnsCorrectFirstPortalUser()
-        {
-            PortalUser item = _db.GetRoleMembers(0)[0];
-            Assert.IsTrue(item.UserId == 0);
-            Assert.IsTrue(item.Name == "Guest");
-            Assert.IsTrue(item.Email == "guest");
-        }
-
     }
 }

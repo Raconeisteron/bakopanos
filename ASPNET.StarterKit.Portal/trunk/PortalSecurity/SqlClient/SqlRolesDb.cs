@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
@@ -12,11 +13,11 @@ namespace ASPNET.StarterKit.Portal.SqlClient
     // Users, Roles and security settings values within the Portal database.
     //
     //*********************************************************************
-    public class SqlRolesDb :Db, IRolesDb
+    public class SqlRolesDb : Db, IRolesDb
     {
-       private readonly string _connectionString;
+        private readonly string _connectionString;
 
-       public SqlRolesDb(string connectionString)
+        public SqlRolesDb(string connectionString)
             : base(connectionString, "System.Data.SqlClient")
         {
             _connectionString = connectionString;
@@ -26,7 +27,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public List<PortalRole> GetPortalRoles(int portalId)
         {
-            var parameterPortalId =CreateParameter("@PortalID", portalId);
+            DbParameter parameterPortalId = CreateParameter("@PortalID", portalId);
             IDataReader reader = ExecuteReader("Portal_GetPortalRoles", CommandType.StoredProcedure, parameterPortalId);
 
             var list = new List<PortalRole>();

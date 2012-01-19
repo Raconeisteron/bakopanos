@@ -1,4 +1,5 @@
 <?xml version="1.0" standalone="yes"?>
+
 <SecurityDataSet xmlns="http://tempuri.org/SecurityDataSet.xsd">
   <PortalRoles>
     <RoleID>0</RoleID>
@@ -8,7 +9,9 @@
   <PortalUsers>
     <UserID>0</UserID>
     <Name>Guest</Name>
-    <Password>D0-09-1A-0F-E2-B2-09-34-D8-8B-46-06-84-F5-97-89</Password>
+    <Password>
+      D0-09-1A-0F-E2-B2-09-34-D8-8B-46-06-84-F5-97-89
+    </Password>
     <Email>guest</Email>
   </PortalUsers>
   <PortalUserRoles>

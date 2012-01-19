@@ -3,8 +3,10 @@ using System.Data;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
-    public class OraHtmlTextsDb:IHtmlTextsDb
+    public class OraHtmlTextsDb : IHtmlTextsDb
     {
+        #region IHtmlTextsDb Members
+
         public IDataReader GetHtmlText(int moduleId)
         {
             throw new NotImplementedException();
@@ -14,5 +16,7 @@ namespace ASPNET.StarterKit.Portal.Oracle
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

@@ -22,6 +22,5 @@ namespace ASPNET.StarterKit.Portal.XmlFile
                        }
                 ;
         }
-
     }
 }

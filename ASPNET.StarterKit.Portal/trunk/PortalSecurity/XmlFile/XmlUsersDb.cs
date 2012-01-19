@@ -5,6 +5,8 @@ namespace ASPNET.StarterKit.Portal.XmlFile
 {
     public class XmlUsersDb : IUsersDb
     {
+        #region IUsersDb Members
+
         public int AddUser(string fullName, string email, string password)
         {
             throw new NotImplementedException();
@@ -39,5 +41,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }
