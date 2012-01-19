@@ -15,11 +15,12 @@ namespace ASPNET.StarterKit.Portal.SqlClient
     /// authentication is used instead, then either the Windows SAM or Active Directory
     /// is used to store and validate all username/password credentials.
     /// </summary>
-    public class SqlUsersDb : IUsersDb
+    public class SqlUsersDb : Db, IUsersDb
     {
         private readonly string _connectionString;
 
         public SqlUsersDb(string connectionString)
+            : base(connectionString, "System.Data.SqlClient")
         {
             _connectionString = connectionString;
         }
@@ -48,41 +49,18 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            DbParameter parameterFullName = command.CreateParameter();
-            parameterFullName.ParameterName = "@Name";
-            parameterFullName.Value = fullName;
-            command.Parameters.Add(parameterFullName);
-
-            DbParameter parameterEmail = command.CreateParameter();
-            parameterEmail.ParameterName = "@Email";
-            parameterEmail.Value = email;
-            command.Parameters.Add(parameterFullName);
-
-            DbParameter parameterPassword = command.CreateParameter();
-            parameterPassword.ParameterName = "@Password";
-            parameterPassword.Value = password;
-            command.Parameters.Add(parameterFullName);
-
-            DbParameter parameterUserId = command.CreateParameter();
-            parameterUserId.ParameterName = "@UserID";
-            parameterUserId.Direction = ParameterDirection.Output;
-            command.Parameters.Add(parameterFullName);
-
-            //var parameterFullName = new SqlParameter("@Name", SqlDbType.NVarChar, 50);
-            //parameterFullName.Value = fullName;
+            DbParameter parameterFullName = CreateParameter("@Name", fullName);
             //command.Parameters.Add(parameterFullName);
 
-            //var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
-            //parameterEmail.Value = email;
-            //command.Parameters.Add(parameterEmail);
+            DbParameter parameterEmail = CreateParameter("@Email", email);
+            //command.Parameters.Add(parameterFullName);
 
-            //var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
-            //parameterPassword.Value = password;
-            //command.Parameters.Add(parameterPassword);
+            DbParameter parameterPassword = CreateParameter("@Password", password);
+            //command.Parameters.Add(parameterFullName);
 
-            //var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
-            //parameterUserId.Direction = ParameterDirection.Output;
-            //command.Parameters.Add(parameterUserId);
+            DbParameter parameterUserId = CreateParameter("@UserID");
+            parameterUserId.Direction = ParameterDirection.Output;
+            //command.Parameters.Add(parameterFullName);
 
             // Execute the command in a try/catch to catch duplicate username errors
             try
@@ -119,26 +97,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public void DeleteUser(int userId)
         {
-            // Create Instance of Connection and Command Object
-            var connection =
-                new SqlConnection(_connectionString);
-            var command = new SqlCommand("Portal_DeleteUser", connection);
-
-            // Mark the Command as a SPROC
-            command.CommandType = CommandType.StoredProcedure;
-
-            DbParameter parameterUserId = command.CreateParameter();
-            parameterUserId.Value = userId;
-            command.Parameters.Add(parameterUserId);
-            
-            //var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
-            //parameterUserId.Value = userId;
-            //command.Parameters.Add(parameterUserId);
-
-            // Open the database connection and execute the command
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            DbParameter parameterUserId = CreateParameter("@UserID", userId);
+            ExecuteNonQuery("Portal_DeleteUser", CommandType.StoredProcedure, parameterUserId);
         }
 
         //*********************************************************************
@@ -162,20 +122,14 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Mark the Command as a SPROC
             command.CommandType = CommandType.StoredProcedure;
 
-            DbParameter parameterUserId = command.CreateParameter();
-            //var parameterUserId = new SqlParameter("@UserID", SqlDbType.Int);
-            parameterUserId.Value = userId;
-            command.Parameters.Add(parameterUserId);
+            DbParameter parameterUserId = CreateParameter("@UserID", userId);
+            //command.Parameters.Add(parameterUserId);
 
-            DbParameter parameterEmail = command.CreateParameter();
-            //var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
-            parameterEmail.Value = email;
-            command.Parameters.Add(parameterEmail);
+            DbParameter parameterEmail = CreateParameter("@Email", email);
+            //command.Parameters.Add(parameterEmail);
 
-            DbParameter parameterPassword = command.CreateParameter();
-            //var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
-            parameterPassword.Value = password;
-            command.Parameters.Add(parameterPassword);
+            DbParameter parameterPassword = CreateParameter("@Password", password);
+            //command.Parameters.Add(parameterPassword);
 
             // Open the database connection and execute the command
             connection.Open();
@@ -204,9 +158,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Mark the Command as a SPROC
             command.CommandType = CommandType.StoredProcedure;
 
-            DbParameter parameterEmail = command.CreateParameter();
-            //var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
-            parameterEmail.Value = email;
+            DbParameter parameterEmail = CreateParameter("@Email", email);
             command.Parameters.Add(parameterEmail);
 
             // Open the database connection and execute the command
@@ -237,10 +189,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            DbParameter parameterEmail = command.CreateParameter();
-            //var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
-            parameterEmail.Value = email;
-            command.Parameters.Add(parameterEmail);
+            DbParameter parameterEmail = CreateParameter("@Email", email);
+            //command.Parameters.Add(parameterEmail);
 
             // Open the database connection and execute the command
             connection.Open();
@@ -272,10 +222,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            DbParameter parameterEmail = command.CreateParameter();
-            //var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
-            parameterEmail.Value = email;
-            command.Parameters.Add(parameterEmail);
+            DbParameter parameterEmail = CreateParameter("@Email", email);
+            //command.Parameters.Add(parameterEmail);
 
             // Open the database connection and execute the command
             SqlDataReader dr;
@@ -321,20 +269,15 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            DbParameter parameterEmail = command.CreateParameter();
-            //var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
-            parameterEmail.Value = email;
-            command.Parameters.Add(parameterEmail);
+            DbParameter parameterEmail = CreateParameter("@Email", email);
+            //command.Parameters.Add(parameterEmail);
 
-            DbParameter parameterPassword = command.CreateParameter();
-            //var parameterPassword = new SqlParameter("@Password", SqlDbType.NVarChar, 50);
-            parameterPassword.Value = password;
-            command.Parameters.Add(parameterPassword);
+            DbParameter parameterPassword = CreateParameter("@Password",password);
+            //command.Parameters.Add(parameterPassword);
 
-            DbParameter parameterUserName = command.CreateParameter();
-            //var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
+            DbParameter parameterUserName = CreateParameter("@UserName");
             parameterUserName.Direction = ParameterDirection.Output;
-            command.Parameters.Add(parameterUserName);
+            //command.Parameters.Add(parameterUserName);
 
             // Open the database connection and execute the command
             connection.Open();
