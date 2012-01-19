@@ -52,6 +52,18 @@
     <Compile Include="IModuleDefConfigurationDb.cs" />
     <Compile Include="IPortalConfigurationDb.cs" />
     <Compile Include="ITabConfigurationDb.cs" />
+    <Compile Include="Oracle\OraConfigurationDb.cs" />
+    <Compile Include="Oracle\OraModuleAuthorizationDb.cs" />
+    <Compile Include="Oracle\OraModuleConfigurationDb.cs" />
+    <Compile Include="Oracle\OraModuleDefConfigurationDb.cs" />
+    <Compile Include="Oracle\OraPortalConfigurationDb.cs" />
+    <Compile Include="Oracle\OraTabConfigurationDb.cs" />
+    <Compile Include="SqlClient\SqlConfigurationDb.cs" />
+    <Compile Include="SqlClient\SqlModuleAuthorizationDb.cs" />
+    <Compile Include="SqlClient\SqlModuleConfigurationDb.cs" />
+    <Compile Include="SqlClient\SqlModuleDefConfigurationDb.cs" />
+    <Compile Include="SqlClient\SqlPortalConfigurationDb.cs" />
+    <Compile Include="SqlClient\SqlTabConfigurationDb.cs" />
     <Compile Include="XmlFile\XmlConfigurationDb.cs" />
     <Compile Include="XmlFile\XmlModuleAuthorizationDb.cs" />
     <Compile Include="XmlFile\XmlModuleConfigurationDb.cs" />
@@ -95,9 +107,7 @@
       <Name>PortalSecurity</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SqlClient\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
