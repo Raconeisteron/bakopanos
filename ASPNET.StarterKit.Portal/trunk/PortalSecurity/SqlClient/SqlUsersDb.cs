@@ -116,11 +116,11 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         //
         //*********************************************************************
 
-        public IDataReader GetRolesByUser(String email)
+        public List<PortalRole> GetRolesByUser(String email)
         {
             DbParameter parameterEmail = CreateParameter("@Email", email);
 
-            IDataReader reader = ExecuteReader("Portal_GetRolesByUser", CommandType.StoredProcedure, parameterEmail);
+            List<PortalRole> reader = (List<PortalRole>)ExecuteReader("Portal_GetRolesByUser", CommandType.StoredProcedure, parameterEmail);
             return reader;
         }
 
@@ -133,13 +133,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         //
         //*********************************************************************
 
-        public IDataReader GetSingleUser(String email)
+        public PortalUser GetSingleUser(String email)
         {
             // Add Parameters to SPROC
             DbParameter parameterEmail = CreateParameter("@Email", email);
 
             //Execute the command
-            IDataReader reader = ExecuteReader("Portal_GetSingleUser", CommandType.StoredProcedure, parameterEmail);
+            PortalUser reader = (PortalUser)ExecuteReader("Portal_GetSingleUser", CommandType.StoredProcedure, parameterEmail);
 
             // Return the datareader
             return reader;
@@ -165,14 +165,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             IDataReader reader = ExecuteReader("Portal_GetRolesByUser", CommandType.StoredProcedure, parameterEmail);
 
             // create a string array from the data
-            var userRoles = new List<string>();
+            var userRoles = new List<String>();
+
 
             while (reader.Read())
             {
-                userRoles.Add(reader["RoleName"] as string);
+                userRoles.Add(reader["RoleName"] as string);//.ToPortalRole(userId));
             }
-
-            //reader.Close();
 
             // Return the string array of roles
             return userRoles.ToArray();

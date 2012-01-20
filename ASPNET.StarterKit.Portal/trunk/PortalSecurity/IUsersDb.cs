@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Collections.Generic;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -8,8 +9,8 @@ namespace ASPNET.StarterKit.Portal
         int AddUser(String fullName, string email, string password);
         void DeleteUser(int userId);
         void UpdateUser(int userId, string email, string password);
-        IDataReader GetRolesByUser(String email);
-        IDataReader GetSingleUser(String email);
+        List<PortalRole> GetRolesByUser(String email);
+        PortalUser GetSingleUser(String email);
         String[] GetRoles(String email);
         string Login(String email, string password);
     }

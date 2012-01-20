@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Collections.Generic;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
@@ -22,12 +23,12 @@ namespace ASPNET.StarterKit.Portal.Oracle
             throw new NotImplementedException();
         }
 
-        public IDataReader GetRolesByUser(string email)
+        public List<PortalRole> GetRolesByUser(string email)
         {
             throw new NotImplementedException();
         }
 
-        public IDataReader GetSingleUser(string email)
+        public PortalUser GetSingleUser(string email)
         {
             throw new NotImplementedException();
         }
