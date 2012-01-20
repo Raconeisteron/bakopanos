@@ -1,13 +1,13 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
       
-  <PropertyGroup>
-    <MSBuildCommunityTasksPath>.</MSBuildCommunityTasksPath>
-	<BinDirectory>..\bin\</BinDirectory>
-	<DocDirectory>..\doc\</DocDirectory>
-	<OutputDirectory>..\output\</OutputDirectory>
+  <PropertyGroup>    
+	<MSBuildCommunityTasksPath>.</MSBuildCommunityTasksPath>
+	<BuildEnv>BuildEnv\</BuildEnv>
+	<OutputDirectory>Output\</OutputDirectory>
+	<BinDirectory>ASPNET.StarterKit.Portal\</BinDirectory>
   </PropertyGroup>
   
-  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>  
+  <Import Project="$(BuildEnv)MSBuild.Community.Tasks.Targets"/>  
   <UsingTask TaskName="CreateRelease" AssemblyFile="CodePlex.WebServices.Client.dll" />			 
   <UsingTask TaskName="UploadFiles" AssemblyFile="CodePlex.WebServices.Client.dll" />
 
@@ -27,15 +27,8 @@
   </Target>
     
   <ItemGroup>
-    <ProjectsToBuild Include="..\ArchiCop.sln">
-      <Properties>Configuration=Release</Properties>
-    </ProjectsToBuild>
-	<ProjectsToBuild Include="..\BuildEnvironment.sln">
-      <Properties>Configuration=Release</Properties>
-    </ProjectsToBuild>
-	<ProjectsToBuild Include="$(BinDirectory)archicop.proj">
-      <Properties>Configuration=Release</Properties>
-    </ProjectsToBuild>
+    <ProjectsToBuild Include="ASPNET.StarterKit.Portal.Sln">
+    </ProjectsToBuild>	
   </ItemGroup>
   
   <PropertyGroup>
@@ -58,20 +51,12 @@
   
   <Target Name="Release" DependsOnTargets="$(ReleaseDependsOn)">
   
-    <CreateItem Include="$(BinDirectory)\**\ArchiCop.Dll.*">
-      <Output ItemName="ArchiCopZipFiles" TaskParameter="Include"/>
+    <CreateItem Include="$(BinDirectory)\**\*.*">
+      <Output ItemName="ZipFile" TaskParameter="Include"/>
     </CreateItem>    
     
-    <Zip Files="@(ArchiCopZipFiles)"
+    <Zip Files="@(ZipFile)"
          ZipFileName="$(OutputDirectory)archicop_v$(Major).$(Minor).$(Build).$(Revision).zip"
-         WorkingDirectory="$(BinDirectory)" />
-		 
-    <CreateItem Include="$(BinDirectory)\**\BuildEnvironment.Exe.*">
-      <Output ItemName="BuildEnvironmentZipFiles" TaskParameter="Include"/>
-    </CreateItem>    
-    
-    <Zip Files="@(BuildEnvironmentZipFiles)"
-         ZipFileName="$(OutputDirectory)BuildEnvironment_v$(Major).$(Minor).$(Build).$(Revision).zip"
          WorkingDirectory="$(BinDirectory)" />
 		 		 
   </Target>
@@ -85,7 +70,7 @@
   </PropertyGroup>  
   
   <PropertyGroup>
-    <ProjectName>ArchiCop</ProjectName>
+    <ProjectName>ASPNetPortal</ProjectName>
     <ReleaseName>v$(Major).$(Minor).$(Build).$(Revision)</ReleaseName>
     <IsDefaultRelease>false</IsDefaultRelease>
     <ShowToPublic>false</ShowToPublic>
@@ -119,14 +104,7 @@
     <UploadFiles
       ProjectName="$(ProjectName)"
       ReleaseName="$(ReleaseName)"
-      ReleaseFiles="$(OutputDirectory)archicop_v$(Major).$(Minor).$(Build).$(Revision).zip"
-      Username="$(Username)"
-      Password="$(Password)" />
-	  
-	  <UploadFiles
-      ProjectName="$(ProjectName)"
-      ReleaseName="$(ReleaseName)"
-      ReleaseFiles="$(OutputDirectory)BuildEnvironment_v$(Major).$(Minor).$(Build).$(Revision).zip"
+      ReleaseFiles="$(OutputDirectory)$(ProjectName)$(Major).$(Minor).$(Build).$(Revision).zip"
       Username="$(Username)"
       Password="$(Password)" />
 	  
