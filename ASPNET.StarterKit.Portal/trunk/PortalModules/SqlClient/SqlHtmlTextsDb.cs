@@ -3,11 +3,12 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
-    public class SqlHtmlTextsDb : IHtmlTextsDb
+    public class SqlHtmlTextsDb :Db, IHtmlTextsDb
     {
         private readonly string _connectionString;
 
         public SqlHtmlTextsDb(string connectionString)
+            : base(connectionString, "System.Data.SqlClient")
         {
             _connectionString = connectionString;
         }
@@ -16,22 +17,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public IDataReader GetHtmlText(int moduleId)
         {
-            // Create Instance of Connection and Command Object
-            var connection =
-                new SqlConnection(_connectionString);
-            var command = new SqlCommand("Portal_GetHtmlText", connection);
-
-            // Mark the Command as a SPROC
-            command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleID.Value = moduleId;
-            command.Parameters.Add(parameterModuleID);
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+            parameterModuleId.Value = moduleId;
 
-            // Execute the command
-            connection.Open();
-            SqlDataReader result = command.ExecuteReader(CommandBehavior.CloseConnection);
+            // Execute method
+            IDataReader result = ExecuteReader("Portal_GetHtmlText", CommandType.StoredProcedure, parameterModuleId);
 
             // Return the datareader 
             return result;
@@ -39,34 +31,27 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public void UpdateHtmlText(int moduleId, string desktopHtml, string mobileSummary, string mobileDetails)
         {
-            // Create Instance of Connection and Command Object
-            var connection =
-                new SqlConnection(_connectionString);
-            var command = new SqlCommand("Portal_UpdateHtmlText", connection);
-
-            // Mark the Command as a SPROC
-            command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleID.Value = moduleId;
-            command.Parameters.Add(parameterModuleID);
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+            parameterModuleId.Value = moduleId;
 
             var parameterDesktopHtml = new SqlParameter("@DesktopHtml", SqlDbType.NText);
             parameterDesktopHtml.Value = desktopHtml;
-            command.Parameters.Add(parameterDesktopHtml);
 
             var parameterMobileSummary = new SqlParameter("@MobileSummary", SqlDbType.NText);
             parameterMobileSummary.Value = mobileSummary;
-            command.Parameters.Add(parameterMobileSummary);
 
             var parameterMobileDetails = new SqlParameter("@MobileDetails", SqlDbType.NText);
             parameterMobileDetails.Value = mobileDetails;
-            command.Parameters.Add(parameterMobileDetails);
 
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            //Execute Method
+            ExecuteNonQuery("Portal_UpdateHtmlText", CommandType.StoredProcedure,
+                parameterModuleId,
+                parameterDesktopHtml,
+                parameterMobileSummary,
+                parameterMobileDetails);
+
         }
 
         #endregion

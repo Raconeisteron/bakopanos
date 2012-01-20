@@ -4,11 +4,11 @@ using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
-    public class SqlDiscussionsDb : IDiscussionsDb
+    public class SqlDiscussionsDb : Db, IDiscussionsDb
     {
         private readonly string _connectionString;
 
-        public SqlDiscussionsDb(string connectionString)
+        public SqlDiscussionsDb(string connectionString) :base(connectionString,"System.Data.SqlClient")
         {
             _connectionString = connectionString;
         }
@@ -17,22 +17,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public IDataReader GetTopLevelMessages(int moduleId)
         {
-            // Create Instance of Connection and Command Object
-            var connection =
-                new SqlConnection(_connectionString);
-            var command = new SqlCommand("Portal_GetTopLevelMessages", connection);
-
-            // Mark the Command as a SPROC
-            command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
             var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
             parameterModuleId.Value = moduleId;
-            command.Parameters.Add(parameterModuleId);
 
-            // Execute the command
-            connection.Open();
-            SqlDataReader result = command.ExecuteReader(CommandBehavior.CloseConnection);
+            //Execute method and populate result
+            IDataReader result = ExecuteReader("Portal_GetTopLevelMessages", CommandType.StoredProcedure, parameterModuleId);
 
             // Return the datareader 
             return result;
@@ -40,22 +31,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public IDataReader GetThreadMessages(String parent)
         {
-            // Create Instance of Connection and Command Object
-            var connection =
-                new SqlConnection(_connectionString);
-            var command = new SqlCommand("Portal_GetThreadMessages", connection);
-
-            // Mark the Command as a SPROC
-            command.CommandType = CommandType.StoredProcedure;
-
+            
             // Add Parameters to SPROC
             var parameterParent = new SqlParameter("@Parent", SqlDbType.NVarChar, 750);
             parameterParent.Value = parent;
-            command.Parameters.Add(parameterParent);
 
-            // Execute the command
-            connection.Open();
-            SqlDataReader result = command.ExecuteReader(CommandBehavior.CloseConnection);
+            //Execute method and populate result
+            IDataReader result = ExecuteReader("Portal_GetThreadMessages", CommandType.StoredProcedure, parameterParent);
 
             // Return the datareader 
             return result;
@@ -63,22 +45,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public IDataReader GetSingleMessage(int itemId)
         {
-            // Create Instance of Connection and Command Object
-            var connection =
-                new SqlConnection(_connectionString);
-            var command = new SqlCommand("Portal_GetSingleMessage", connection);
-
-            // Mark the Command as a SPROC
-            command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
             var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
             parameterItemId.Value = itemId;
-            command.Parameters.Add(parameterItemId);
 
-            // Execute the command
-            connection.Open();
-            SqlDataReader result = command.ExecuteReader(CommandBehavior.CloseConnection);
+            //Execute method and populate result
+            IDataReader result = ExecuteReader("Portal_GetSingleMessage", CommandType.StoredProcedure, parameterItemId);
 
             // Return the datareader 
             return result;
@@ -91,44 +64,36 @@ namespace ASPNET.StarterKit.Portal.SqlClient
                 userName = "unknown";
             }
 
-            // Create Instance of Connection and Command Object
-            var connection =
-                new SqlConnection(_connectionString);
-            var command = new SqlCommand("Portal_AddMessage", connection);
-
-            // Mark the Command as a SPROC
-            command.CommandType = CommandType.StoredProcedure;
-
             // Add Parameters to SPROC
-            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemID.Direction = ParameterDirection.Output;
-            command.Parameters.Add(parameterItemID);
+            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            parameterItemId.Direction = ParameterDirection.Output;
 
             var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
             parameterTitle.Value = title;
-            command.Parameters.Add(parameterTitle);
 
             var parameterBody = new SqlParameter("@Body", SqlDbType.NVarChar, 3000);
             parameterBody.Value = body;
-            command.Parameters.Add(parameterBody);
 
-            var parameterParentID = new SqlParameter("@ParentID", SqlDbType.Int, 4);
-            parameterParentID.Value = parentId;
-            command.Parameters.Add(parameterParentID);
+            var parameterParentId = new SqlParameter("@ParentID", SqlDbType.Int, 4);
+            parameterParentId.Value = parentId;
 
             var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
             parameterUserName.Value = userName;
-            command.Parameters.Add(parameterUserName);
 
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleID.Value = moduleId;
-            command.Parameters.Add(parameterModuleID);
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+            parameterModuleId.Value = moduleId;
 
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            //Execute method
+            ExecuteNonQuery("Portal_AddMessage", CommandType.StoredProcedure,
+                parameterItemId, 
+                parameterTitle, 
+                parameterBody, 
+                parameterParentId, 
+                parameterUserName, 
+                parameterModuleId
+                );
 
-            return (int) parameterItemID.Value;
+            return (int) parameterItemId.Value;
         }
 
         #endregion

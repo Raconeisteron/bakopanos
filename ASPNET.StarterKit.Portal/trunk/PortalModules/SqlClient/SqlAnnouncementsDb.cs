@@ -19,54 +19,35 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public IDataReader GetAnnouncements(int moduleId)
         {
+            // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
+
+            //Execute method and populate result
             IDataReader reader = ExecuteReader("Portal_GetAnnouncements", CommandType.StoredProcedure,
                                                parameterModuleId);
-
+            // Return the datareader
             return reader;
         }
 
         public IDataReader GetSingleAnnouncement(int itemId)
         {
-            // Create Instance of Connection and Command Object
-            var connection =
-                new SqlConnection(_connectionString);
-            var command = new SqlCommand("Portal_GetSingleAnnouncement", connection);
-
-            // Mark the Command as a SPROC
-            command.CommandType = CommandType.StoredProcedure;
-
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemId;
-            command.Parameters.Add(parameterItemId);
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
-            // Execute the command
-            connection.Open();
-            SqlDataReader result = command.ExecuteReader(CommandBehavior.CloseConnection);
+            //Execute method and populate result
+            IDataReader reader = ExecuteReader("Portal_GetSingleAnnouncement", CommandType.StoredProcedure, parameterItemId);
 
-            // Return the datareader 
-            return result;
+            // Return the datareader
+            return reader;
         }
 
-        public void DeleteAnnouncement(int itemID)
+        public void DeleteAnnouncement(int itemId)
         {
-            // Create Instance of Connection and Command Object
-            var connection =
-                new SqlConnection(_connectionString);
-            var command = new SqlCommand("Portal_DeleteAnnouncement", connection);
-
-            // Mark the Command as a SPROC
-            command.CommandType = CommandType.StoredProcedure;
-
             // Add Parameters to SPROC
-            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemID.Value = itemID;
-            command.Parameters.Add(parameterItemID);
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            //Execute method
+            ExecuteNonQuery("Portal_DeleteAnnouncement", CommandType.StoredProcedure, parameterItemId);
         }
 
         public int AddAnnouncement(int moduleId, string userName, string title, DateTime expireDate,
@@ -77,52 +58,46 @@ namespace ASPNET.StarterKit.Portal.SqlClient
                 userName = "unknown";
             }
 
-            // Create Instance of Connection and Command Object
-            var connection =
-                new SqlConnection(_connectionString);
-            var command = new SqlCommand("Portal_AddAnnouncement", connection);
-
-            // Mark the Command as a SPROC
-            command.CommandType = CommandType.StoredProcedure;
-
             // Add Parameters to SPROC
-            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemID.Direction = ParameterDirection.Output;
-            command.Parameters.Add(parameterItemID);
+            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            parameterItemId.Direction = ParameterDirection.Output;
 
-            var parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleID.Value = moduleId;
-            command.Parameters.Add(parameterModuleID);
+            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+            parameterModuleId.Value = moduleId;
 
             var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
             parameterUserName.Value = userName;
-            command.Parameters.Add(parameterUserName);
 
             var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 150);
             parameterTitle.Value = title;
-            command.Parameters.Add(parameterTitle);
 
             var parameterMoreLink = new SqlParameter("@MoreLink", SqlDbType.NVarChar, 150);
             parameterMoreLink.Value = moreLink;
-            command.Parameters.Add(parameterMoreLink);
 
             var parameterMobileMoreLink = new SqlParameter("@MobileMoreLink", SqlDbType.NVarChar, 150);
             parameterMobileMoreLink.Value = mobileMoreLink;
-            command.Parameters.Add(parameterMobileMoreLink);
 
             var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
             parameterExpireDate.Value = expireDate;
-            command.Parameters.Add(parameterExpireDate);
 
             var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
             parameterDescription.Value = description;
-            command.Parameters.Add(parameterDescription);
 
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            //Execute method
+            ExecuteNonQuery("Portal_AddAnnouncement", CommandType.StoredProcedure,
+                parameterItemId,
+                parameterModuleId,
+                parameterUserName,
+                parameterTitle,
+                parameterMoreLink,
+                parameterMobileMoreLink,
+                parameterExpireDate,
+                parameterDescription
+                );
 
-            return (int) parameterItemID.Value;
+
+
+            return (int)parameterItemId.Value;
         }
 
         public void UpdateAnnouncement(int itemId, string userName, string title, DateTime expireDate,
@@ -130,46 +105,39 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
             if (userName.Length < 1) userName = "unknown";
 
-            // Create Instance of Connection and Command Object
-            var connection =
-                new SqlConnection(_connectionString);
-            var command = new SqlCommand("Portal_UpdateAnnouncement", connection);
-
-            // Mark the Command as a SPROC
-            command.CommandType = CommandType.StoredProcedure;
 
             // Add Parameters to SPROC
-            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemID.Value = itemId;
-            command.Parameters.Add(parameterItemID);
+            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            parameterItemId.Value = itemId;
 
             var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
             parameterUserName.Value = userName;
-            command.Parameters.Add(parameterUserName);
 
             var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 150);
             parameterTitle.Value = title;
-            command.Parameters.Add(parameterTitle);
 
             var parameterMoreLink = new SqlParameter("@MoreLink", SqlDbType.NVarChar, 150);
             parameterMoreLink.Value = moreLink;
-            command.Parameters.Add(parameterMoreLink);
 
             var parameterMobileMoreLink = new SqlParameter("@MobileMoreLink", SqlDbType.NVarChar, 150);
             parameterMobileMoreLink.Value = mobileMoreLink;
-            command.Parameters.Add(parameterMobileMoreLink);
 
             var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
             parameterExpireDate.Value = expireDate;
-            command.Parameters.Add(parameterExpireDate);
 
             var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
             parameterDescription.Value = description;
-            command.Parameters.Add(parameterDescription);
 
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            //Execute method
+            ExecuteNonQuery("Portal_UpdateAnnouncement", CommandType.StoredProcedure,
+                parameterItemId,
+                parameterUserName,
+                parameterTitle,
+                parameterMoreLink,
+                parameterMobileMoreLink,
+                parameterExpireDate,
+                parameterDescription);
+
         }
 
         #endregion
