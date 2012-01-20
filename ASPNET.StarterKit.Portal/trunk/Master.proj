@@ -44,12 +44,12 @@
   </Target>
 
   <PropertyGroup>
-    <ReleaseDependsOn>
+    <CreateDeploymentFilesDependsOn>
       Build;
-    </ReleaseDependsOn>
+    </CreateDeploymentFilesDependsOn>
   </PropertyGroup>
   
-  <Target Name="Release" DependsOnTargets="$(ReleaseDependsOn)">
+  <Target Name="CreateDeploymentFiles" DependsOnTargets="$(CreateDeploymentFilesDependsOn)">
   
     <CreateItem Include="$(BinDirectory)\**\*.*">
       <Output ItemName="ZipFile" TaskParameter="Include"/>
@@ -61,12 +61,11 @@
 		 		 
   </Target>
 
-  <!-- Release to CodePlex -->
   <PropertyGroup>
-    <CreateReleaseDependsOn>
+    <CreateCodeplexReleaseAndUploadFilesDependsOn>
       GetCurrentDate;
-      Release;
-    </CreateReleaseDependsOn>
+      CreateDeploymentFiles;
+    </CreateCodeplexReleaseAndUploadFilesDependsOn>
   </PropertyGroup>  
   
   <PropertyGroup>
@@ -81,8 +80,8 @@
     <Password Condition="'$(Password)' == ''"></Password>
   </PropertyGroup>
   
-  <Target Name="CreateRelease"
-          DependsOnTargets="$(CreateReleaseDependsOn)">
+  <Target Name="CreateCodeplexReleaseAndUploadFiles"
+          DependsOnTargets="$(CreateCodeplexReleaseAndUploadFilesDependsOn)">
 
     <CreateProperty Value="$(Year)/$(Month)/$(Day)">
       <Output PropertyName="ReleaseDate"
