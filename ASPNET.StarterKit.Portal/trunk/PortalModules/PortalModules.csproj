@@ -51,6 +51,9 @@
     <Compile Include="Oracle\OraEventsDb.cs" />
     <Compile Include="Oracle\OraHtmlTextsDb.cs" />
     <Compile Include="Oracle\OraLinksDb.cs" />
+    <Compile Include="PortalAnnouncement.cs" />
+    <Compile Include="PortalContact.cs" />
+    <Compile Include="PortalModulesExtensions.cs" />
     <Compile Include="SqlClient\SqlAnnouncementsDb.cs" />
     <Compile Include="SqlClient\SqlContactsDb.cs" />
     <Compile Include="SqlClient\SqlDiscussionsDb.cs" />

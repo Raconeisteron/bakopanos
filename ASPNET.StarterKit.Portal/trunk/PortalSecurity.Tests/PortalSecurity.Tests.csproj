@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SqlClient\SqlRolesDbFixture.cs" />
     <Compile Include="SqlClient\SqlUsersDbFixture.cs" />
     <Compile Include="XmlFile\XmlRolesDbFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
