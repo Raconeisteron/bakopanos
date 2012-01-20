@@ -171,14 +171,14 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Bind the Email and Password
-            IDataReader dr = _usersDb.GetSingleUser(_userName);
+            PortalUser dr = (PortalUser)_usersDb.GetSingleUser(_userName);
 
             // Read first row from database
-            dr.Read();
+            //dr.Read();
 
-            Email.Text = (String) dr["Email"];
+            Email.Text = dr.Email;//(String) dr["Email"];
 
-            dr.Close();
+            //dr.Close();
 
             // add the user name to the title
             if (_userName != "")
