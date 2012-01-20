@@ -1,4 +1,5 @@
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
@@ -19,8 +20,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
 
             // Add Parameters to SPROC
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
+            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
             // Execute method
             IDataReader result = ExecuteReader("Portal_GetLinks", CommandType.StoredProcedure, parameterModuleId);
@@ -33,8 +33,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemId;
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
             // Execute method
             IDataReader result = ExecuteReader("Portal_GetSingleLink", CommandType.StoredProcedure, parameterItemId);
@@ -43,12 +42,11 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             return result;
         }
 
-        public void DeleteLink(int itemID)
+        public void DeleteLink(int itemId)
         {
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemID;
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
             //Execute Method
             ExecuteNonQuery("Portal_DeleteLink", CommandType.StoredProcedure, parameterItemId);
@@ -63,29 +61,15 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             }
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            DbParameter parameterItemId = CreateParameter("@ItemID");
             parameterItemId.Direction = ParameterDirection.Output;
-
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
-
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
-            parameterUserName.Value = userName;
-
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
-            parameterTitle.Value = title;
-
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100);
-            parameterDescription.Value = description;
-
-            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
-            parameterUrl.Value = url;
-
-            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100);
-            parameterMobileUrl.Value = mobileUrl;
-
-            var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4);
-            parameterViewOrder.Value = viewOrder;
+            DbParameter parameterModuleId = CreateParameter("@ModuleID",  moduleId);
+            DbParameter parameterUserName = CreateParameter("@UserName", userName);
+            DbParameter parameterTitle = CreateParameter("@Title", title);
+            DbParameter parameterDescription = CreateParameter("@Description",  description);
+            DbParameter parameterUrl = CreateParameter("@Url", url);
+            DbParameter parameterMobileUrl = CreateParameter("@MobileUrl",  mobileUrl);
+            DbParameter parameterViewOrder = CreateParameter("@ViewOrder", viewOrder);
 
             //Execute Method
             ExecuteNonQuery("Portal_AddLink", CommandType.StoredProcedure,
@@ -111,26 +95,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             }
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemId;
-
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
-            parameterUserName.Value = userName;
-
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
-            parameterTitle.Value = title;
-
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100);
-            parameterDescription.Value = description;
-
-            var parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
-            parameterUrl.Value = url;
-
-            var parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100);
-            parameterMobileUrl.Value = mobileUrl;
-
-            var parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4);
-            parameterViewOrder.Value = viewOrder;
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
+            DbParameter parameterUserName = CreateParameter("@UserName", userName);
+            DbParameter parameterTitle = CreateParameter("@Title", title);
+            DbParameter parameterDescription = CreateParameter("@Description", description);
+            DbParameter parameterUrl = CreateParameter("@Url", url);
+            DbParameter parameterMobileUrl = CreateParameter("@MobileUrl", mobileUrl);
+            DbParameter parameterViewOrder = CreateParameter("@ViewOrder", viewOrder);
 
             //Execute method
             ExecuteNonQuery("Portal_UpdateLink", CommandType.StoredProcedure,

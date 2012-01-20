@@ -1,4 +1,5 @@
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
@@ -19,8 +20,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
 
             // Add Parameters to SPROC
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
+            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
             // Execute method
             IDataReader result = ExecuteReader("Portal_GetDocuments", CommandType.StoredProcedure, parameterModuleId);
@@ -33,8 +33,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemId;
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
             // Execute method
             IDataReader result = ExecuteReader("Portal_GetSingleDocument", CommandType.StoredProcedure, parameterItemId);
@@ -48,8 +47,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemId;
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
             // Execute method
             IDataReader result = ExecuteReader("Portal_GetDocumentContent", CommandType.StoredProcedure, parameterItemId);
@@ -58,12 +56,11 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             return result;
         }
 
-        public void DeleteDocument(int itemID)
+        public void DeleteDocument(int itemId)
         {
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemID;
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
             //Execute method
             ExecuteNonQuery("Portal_DeleteDocument", CommandType.StoredProcedure, parameterItemId);
@@ -78,32 +75,15 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             }
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemId;
-
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
-
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
-            parameterUserName.Value = userName;
-
-            var parameterName = new SqlParameter("@FileFriendlyName", SqlDbType.NVarChar, 150);
-            parameterName.Value = name;
-
-            var parameterFileUrl = new SqlParameter("@FileNameUrl", SqlDbType.NVarChar, 250);
-            parameterFileUrl.Value = url;
-
-            var parameterCategory = new SqlParameter("@Category", SqlDbType.NVarChar, 50);
-            parameterCategory.Value = category;
-
-            var parameterContent = new SqlParameter("@Content", SqlDbType.Image);
-            parameterContent.Value = content;
-
-            var parameterContentType = new SqlParameter("@ContentType", SqlDbType.NVarChar, 50);
-            parameterContentType.Value = contentType;
-
-            var parameterContentSize = new SqlParameter("@ContentSize", SqlDbType.Int, 4);
-            parameterContentSize.Value = size;
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
+            DbParameter parameterModuleId = CreateParameter("@ModuleID",moduleId);
+            DbParameter parameterUserName = CreateParameter("@UserName", userName);
+            DbParameter parameterName = CreateParameter("@FileFriendlyName", name);
+            DbParameter parameterFileUrl = CreateParameter("@FileNameUrl", url);
+            DbParameter parameterCategory = CreateParameter("@Category", category);
+            DbParameter parameterContent = CreateParameter("@Content", content);
+            DbParameter parameterContentType = CreateParameter("@ContentType", contentType);
+            DbParameter parameterContentSize = CreateParameter("@ContentSize", size);
 
             //Execute method
             ExecuteNonQuery("Portal_UpdateDocument", CommandType.StoredProcedure,

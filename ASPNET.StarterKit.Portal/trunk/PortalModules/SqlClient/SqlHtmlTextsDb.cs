@@ -1,4 +1,5 @@
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
@@ -19,8 +20,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
 
             // Add Parameters to SPROC
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
+            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
             // Execute method
             IDataReader result = ExecuteReader("Portal_GetHtmlText", CommandType.StoredProcedure, parameterModuleId);
@@ -33,17 +33,10 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
 
             // Add Parameters to SPROC
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
-
-            var parameterDesktopHtml = new SqlParameter("@DesktopHtml", SqlDbType.NText);
-            parameterDesktopHtml.Value = desktopHtml;
-
-            var parameterMobileSummary = new SqlParameter("@MobileSummary", SqlDbType.NText);
-            parameterMobileSummary.Value = mobileSummary;
-
-            var parameterMobileDetails = new SqlParameter("@MobileDetails", SqlDbType.NText);
-            parameterMobileDetails.Value = mobileDetails;
+            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
+            DbParameter parameterDesktopHtml = CreateParameter("@DesktopHtml", desktopHtml);
+            DbParameter parameterMobileSummary = CreateParameter("@MobileSummary", mobileSummary);
+            DbParameter parameterMobileDetails = CreateParameter("@MobileDetails", mobileDetails);
 
             //Execute Method
             ExecuteNonQuery("Portal_UpdateHtmlText", CommandType.StoredProcedure,

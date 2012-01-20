@@ -59,29 +59,15 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             }
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            DbParameter parameterItemId = CreateParameter("@ItemID");
             parameterItemId.Direction = ParameterDirection.Output;
-
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
-
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
-            parameterUserName.Value = userName;
-
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 150);
-            parameterTitle.Value = title;
-
-            var parameterMoreLink = new SqlParameter("@MoreLink", SqlDbType.NVarChar, 150);
-            parameterMoreLink.Value = moreLink;
-
-            var parameterMobileMoreLink = new SqlParameter("@MobileMoreLink", SqlDbType.NVarChar, 150);
-            parameterMobileMoreLink.Value = mobileMoreLink;
-
-            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
-            parameterExpireDate.Value = expireDate;
-
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
-            parameterDescription.Value = description;
+            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
+            DbParameter parameterUserName = CreateParameter("@UserName", userName);
+            DbParameter parameterTitle = CreateParameter("@Title", title);
+            DbParameter parameterMoreLink = CreateParameter("@MoreLink", moreLink);
+            DbParameter parameterMobileMoreLink = CreateParameter("@MobileMoreLink", mobileMoreLink);
+            DbParameter parameterExpireDate = CreateParameter("@ExpireDate",expireDate);
+            DbParameter parameterDescription = CreateParameter("@Description", description);
 
             //Execute method
             ExecuteNonQuery("Portal_AddAnnouncement", CommandType.StoredProcedure,
@@ -107,26 +93,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemId;
-
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
-            parameterUserName.Value = userName;
-
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 150);
-            parameterTitle.Value = title;
-
-            var parameterMoreLink = new SqlParameter("@MoreLink", SqlDbType.NVarChar, 150);
-            parameterMoreLink.Value = moreLink;
-
-            var parameterMobileMoreLink = new SqlParameter("@MobileMoreLink", SqlDbType.NVarChar, 150);
-            parameterMobileMoreLink.Value = mobileMoreLink;
-
-            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
-            parameterExpireDate.Value = expireDate;
-
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
-            parameterDescription.Value = description;
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
+            DbParameter parameterUserName = CreateParameter("@UserName", userName);
+            DbParameter parameterTitle = CreateParameter("@Title", title);
+            DbParameter parameterMoreLink = CreateParameter("@MoreLink", moreLink);
+            DbParameter parameterMobileMoreLink = CreateParameter("@MobileMoreLink", mobileMoreLink);
+            DbParameter parameterExpireDate = CreateParameter("@ExpireDate",expireDate);
+            DbParameter parameterDescription = CreateParameter("@Description", description);
 
             //Execute method
             ExecuteNonQuery("Portal_UpdateAnnouncement", CommandType.StoredProcedure,

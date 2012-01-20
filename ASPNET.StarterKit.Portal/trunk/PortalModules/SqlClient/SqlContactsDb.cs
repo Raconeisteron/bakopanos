@@ -1,4 +1,5 @@
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
@@ -19,8 +20,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
 
             // Add Parameters to SPROC
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
+            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
             //Execute method and populate result
             IDataReader result = ExecuteReader("Portal_GetContacts", CommandType.StoredProcedure, parameterModuleId);
@@ -34,8 +34,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemId;
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
             
             //Execute method and populate result
             IDataReader result = ExecuteReader("Portal_GetSingleContact", CommandType.StoredProcedure, parameterItemId);
@@ -48,9 +47,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemID;
-            
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemID);
+
             //Execute method
             ExecuteNonQuery("Portal_DeleteContact", CommandType.StoredProcedure, parameterItemId);
         }
@@ -64,29 +62,16 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             }
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            DbParameter parameterItemId = CreateParameter("@ItemID");
             parameterItemId.Direction = ParameterDirection.Output;
             
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
-            
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
-            parameterUserName.Value = userName;
-            
-            var parameterName = new SqlParameter("@Name", SqlDbType.NVarChar, 100);
-            parameterName.Value = name;
-            
-            var parameterRole = new SqlParameter("@Role", SqlDbType.NVarChar, 100);
-            parameterRole.Value = role;
-            
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
-            parameterEmail.Value = email;
-            
-            var parameterContact1 = new SqlParameter("@Contact1", SqlDbType.NVarChar, 100);
-            parameterContact1.Value = contact1;
-            
-            var parameterContact2 = new SqlParameter("@Contact2", SqlDbType.NVarChar, 100);
-            parameterContact2.Value = contact2;
+            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
+            DbParameter parameterUserName = CreateParameter("@UserName", userName);
+            DbParameter parameterName = CreateParameter("@Name", name);
+            DbParameter parameterRole = CreateParameter("@Role",role);
+            DbParameter parameterEmail = CreateParameter("@Email", email);
+            DbParameter parameterContact1 = CreateParameter("@Contact1", contact1);
+            DbParameter parameterContact2 = CreateParameter("@Contact2", contact2);
 
             //Execute method
             ExecuteNonQuery("Portal_AddContact", CommandType.StoredProcedure,
@@ -113,30 +98,17 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
 
             // Add Parameters to SPROC
-            var parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemID.Value = itemId;
-            
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
-            parameterUserName.Value = userName;
-           
-            var parameterName = new SqlParameter("@Name", SqlDbType.NVarChar, 100);
-            parameterName.Value = name;
-            
-            var parameterRole = new SqlParameter("@Role", SqlDbType.NVarChar, 100);
-            parameterRole.Value = role;
-            
-            var parameterEmail = new SqlParameter("@Email", SqlDbType.NVarChar, 100);
-            parameterEmail.Value = email;
-            
-            var parameterContact1 = new SqlParameter("@Contact1", SqlDbType.NVarChar, 100);
-            parameterContact1.Value = contact1;
-            
-            var parameterContact2 = new SqlParameter("@Contact2", SqlDbType.NVarChar, 100);
-            parameterContact2.Value = contact2;
+            DbParameter parameterItemId = CreateParameter("@ItemID",itemId);
+            DbParameter parameterUserName = CreateParameter("@UserName", userName);
+            DbParameter parameterName = CreateParameter("@Name", name);
+            DbParameter parameterRole = CreateParameter("@Role", role);
+            DbParameter parameterEmail = CreateParameter("@Email", email);
+            DbParameter parameterContact1 = CreateParameter("@Contact1", contact1);
+            DbParameter parameterContact2 = CreateParameter("@Contact2", contact2);
 
             //Execute method
             ExecuteNonQuery("Portal_UpdateContact", CommandType.StoredProcedure,
-                parameterItemID, 
+                parameterItemId, 
                 parameterUserName, 
                 parameterName,
                 parameterRole,

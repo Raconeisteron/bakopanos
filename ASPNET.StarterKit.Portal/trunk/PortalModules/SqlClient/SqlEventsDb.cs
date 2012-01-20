@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
@@ -20,8 +21,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
 
             // Add Parameters to SPROC
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
+            DbParameter parameterModuleId = CreateParameter("@ModuleID",moduleId);
 
             // Execute method
             IDataReader result = ExecuteReader("Portal_GetEvents", CommandType.StoredProcedure, parameterModuleId);
@@ -34,8 +34,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemId;
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
             // Execute method
             IDataReader result = ExecuteReader("Portal_GetSingleEvent", CommandType.StoredProcedure, parameterItemId);
@@ -48,8 +47,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemID;
+            DbParameter parameterItemId = CreateParameter("@ItemID",itemID);
 
             //Execute method
             ExecuteNonQuery("Portal_DeleteEvent", CommandType.StoredProcedure, parameterItemId);
@@ -65,26 +63,14 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            DbParameter parameterItemId = CreateParameter("@ItemID");
             parameterItemId.Direction = ParameterDirection.Output;
-
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
-
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
-            parameterUserName.Value = userName;
-
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
-            parameterTitle.Value = title;
-
-            var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
-            parameterWhereWhen.Value = wherewhen;
-
-            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
-            parameterExpireDate.Value = expireDate;
-
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
-            parameterDescription.Value = description;
+            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
+            DbParameter parameterUserName = CreateParameter("@UserName", userName);
+            DbParameter parameterTitle = CreateParameter("@Title", title);
+            DbParameter parameterWhereWhen = CreateParameter("@WhereWhen",  wherewhen);
+            DbParameter parameterExpireDate = CreateParameter("@ExpireDate", expireDate);
+            DbParameter parameterDescription = CreateParameter("@Description", description);
 
             //Execute Method
             ExecuteNonQuery("Portal_AddEvent", CommandType.StoredProcedure,
@@ -110,23 +96,12 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemId;
-
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
-            parameterUserName.Value = userName;
-
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
-            parameterTitle.Value = title;
-
-            var parameterWhereWhen = new SqlParameter("@WhereWhen", SqlDbType.NVarChar, 100);
-            parameterWhereWhen.Value = wherewhen;
-
-            var parameterExpireDate = new SqlParameter("@ExpireDate", SqlDbType.DateTime, 8);
-            parameterExpireDate.Value = expireDate;
-
-            var parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 2000);
-            parameterDescription.Value = description;
+            DbParameter parameterItemId = CreateParameter("@ItemID",itemId);
+            DbParameter parameterUserName = CreateParameter("@UserName", userName);
+            DbParameter parameterTitle = CreateParameter("@Title",  title);
+            DbParameter parameterWhereWhen = CreateParameter("@WhereWhen", wherewhen);
+            DbParameter parameterExpireDate = CreateParameter("@ExpireDate",expireDate);
+            DbParameter parameterDescription = CreateParameter("@Description",description);
 
             //Execute Method
             ExecuteNonQuery("Portal_UpdateEvent", CommandType.StoredProcedure,

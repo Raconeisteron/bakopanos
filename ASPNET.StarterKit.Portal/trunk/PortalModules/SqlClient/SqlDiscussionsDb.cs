@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
@@ -19,8 +20,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
 
             // Add Parameters to SPROC
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
+            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
             //Execute method and populate result
             IDataReader result = ExecuteReader("Portal_GetTopLevelMessages", CommandType.StoredProcedure, parameterModuleId);
@@ -33,8 +33,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
             
             // Add Parameters to SPROC
-            var parameterParent = new SqlParameter("@Parent", SqlDbType.NVarChar, 750);
-            parameterParent.Value = parent;
+            DbParameter parameterParent = CreateParameter("@Parent", parent);
 
             //Execute method and populate result
             IDataReader result = ExecuteReader("Portal_GetThreadMessages", CommandType.StoredProcedure, parameterParent);
@@ -47,8 +46,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
-            parameterItemId.Value = itemId;
+            DbParameter parameterItemId = CreateParameter("@ItemID",itemId);
 
             //Execute method and populate result
             IDataReader result = ExecuteReader("Portal_GetSingleMessage", CommandType.StoredProcedure, parameterItemId);
@@ -65,23 +63,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             }
 
             // Add Parameters to SPROC
-            var parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+            DbParameter parameterItemId = CreateParameter("@ItemID");
             parameterItemId.Direction = ParameterDirection.Output;
-
-            var parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
-            parameterTitle.Value = title;
-
-            var parameterBody = new SqlParameter("@Body", SqlDbType.NVarChar, 3000);
-            parameterBody.Value = body;
-
-            var parameterParentId = new SqlParameter("@ParentID", SqlDbType.Int, 4);
-            parameterParentId.Value = parentId;
-
-            var parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
-            parameterUserName.Value = userName;
-
-            var parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
-            parameterModuleId.Value = moduleId;
+            DbParameter parameterTitle = CreateParameter("@Title",  title);
+            DbParameter parameterBody = CreateParameter("@Body",body);
+            DbParameter parameterParentId = CreateParameter("@ParentID", parentId);
+            DbParameter parameterUserName = CreateParameter("@UserName", userName);
+            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
             //Execute method
             ExecuteNonQuery("Portal_AddMessage", CommandType.StoredProcedure,
