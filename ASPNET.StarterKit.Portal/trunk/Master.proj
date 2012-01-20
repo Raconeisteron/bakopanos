@@ -1,0 +1,135 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+      
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>.</MSBuildCommunityTasksPath>
+	<BinDirectory>..\bin\</BinDirectory>
+	<DocDirectory>..\doc\</DocDirectory>
+	<OutputDirectory>..\output\</OutputDirectory>
+  </PropertyGroup>
+  
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>  
+  <UsingTask TaskName="CreateRelease" AssemblyFile="CodePlex.WebServices.Client.dll" />			 
+  <UsingTask TaskName="UploadFiles" AssemblyFile="CodePlex.WebServices.Client.dll" />
+
+  <Target Name="GetCurrentDate">
+    <Time>
+      <Output TaskParameter="Month"
+              PropertyName="Month" />
+      <Output TaskParameter="Day"
+              PropertyName="Day" />
+      <Output TaskParameter="Year"
+              PropertyName="Year" />
+      <Output TaskParameter="Hour"
+              PropertyName="Hour"/>
+      <Output TaskParameter="Minute"
+              PropertyName="Minute" />
+    </Time>
+  </Target>
+    
+  <ItemGroup>
+    <ProjectsToBuild Include="..\ArchiCop.sln">
+      <Properties>Configuration=Release</Properties>
+    </ProjectsToBuild>
+	<ProjectsToBuild Include="..\BuildEnvironment.sln">
+      <Properties>Configuration=Release</Properties>
+    </ProjectsToBuild>
+	<ProjectsToBuild Include="$(BinDirectory)archicop.proj">
+      <Properties>Configuration=Release</Properties>
+    </ProjectsToBuild>
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <Major>1</Major>
+    <Minor>0</Minor>
+    <Build>0</Build>
+    <Revision Condition="'$(Revision)' == ''">0</Revision>
+  </PropertyGroup>
+  
+  <Target Name="Build">
+		<MakeDir Directories="$(OutputDirectory)" />
+		<MSBuild Projects="@(ProjectsToBuild)" />		
+  </Target>
+
+  <PropertyGroup>
+    <ReleaseDependsOn>
+      Build;
+    </ReleaseDependsOn>
+  </PropertyGroup>
+  
+  <Target Name="Release" DependsOnTargets="$(ReleaseDependsOn)">
+  
+    <CreateItem Include="$(BinDirectory)\**\ArchiCop.Dll.*">
+      <Output ItemName="ArchiCopZipFiles" TaskParameter="Include"/>
+    </CreateItem>    
+    
+    <Zip Files="@(ArchiCopZipFiles)"
+         ZipFileName="$(OutputDirectory)archicop_v$(Major).$(Minor).$(Build).$(Revision).zip"
+         WorkingDirectory="$(BinDirectory)" />
+		 
+    <CreateItem Include="$(BinDirectory)\**\BuildEnvironment.Exe.*">
+      <Output ItemName="BuildEnvironmentZipFiles" TaskParameter="Include"/>
+    </CreateItem>    
+    
+    <Zip Files="@(BuildEnvironmentZipFiles)"
+         ZipFileName="$(OutputDirectory)BuildEnvironment_v$(Major).$(Minor).$(Build).$(Revision).zip"
+         WorkingDirectory="$(BinDirectory)" />
+		 		 
+  </Target>
+
+  <!-- Release to CodePlex -->
+  <PropertyGroup>
+    <CreateReleaseDependsOn>
+      GetCurrentDate;
+      Release;
+    </CreateReleaseDependsOn>
+  </PropertyGroup>  
+  
+  <PropertyGroup>
+    <ProjectName>ArchiCop</ProjectName>
+    <ReleaseName>v$(Major).$(Minor).$(Build).$(Revision)</ReleaseName>
+    <IsDefaultRelease>false</IsDefaultRelease>
+    <ShowToPublic>false</ShowToPublic>
+    <ShowOnHomePage>false</ShowOnHomePage>
+    <Description>cbakopanos@gmail.com</Description>
+    <ReleaseStatus>Planned</ReleaseStatus>
+    <Username Condition="'$(Username)' == ''"></Username>
+    <Password Condition="'$(Password)' == ''"></Password>
+  </PropertyGroup>
+  
+  <Target Name="CreateRelease"
+          DependsOnTargets="$(CreateReleaseDependsOn)">
+
+    <CreateProperty Value="$(Year)/$(Month)/$(Day)">
+      <Output PropertyName="ReleaseDate"
+              TaskParameter="Value"/>
+    </CreateProperty>
+
+    <CreateRelease
+      ProjectName="$(ProjectName)"
+      ReleaseName="$(ReleaseName)"
+      IsDefaultRelease="$(IsDefaultRelease)"
+      ShowToPublic="$(ShowToPublic)"
+      ShowOnHomePage="$(ShowOnHomePage)"
+      Description="$(Description)"
+      ReleaseDate="$(ReleaseDate)"
+      ReleaseStatus="$(ReleaseStatus)"
+      Username="$(Username)"
+      Password="$(Password)" />
+
+    <UploadFiles
+      ProjectName="$(ProjectName)"
+      ReleaseName="$(ReleaseName)"
+      ReleaseFiles="$(OutputDirectory)archicop_v$(Major).$(Minor).$(Build).$(Revision).zip"
+      Username="$(Username)"
+      Password="$(Password)" />
+	  
+	  <UploadFiles
+      ProjectName="$(ProjectName)"
+      ReleaseName="$(ReleaseName)"
+      ReleaseFiles="$(OutputDirectory)BuildEnvironment_v$(Major).$(Minor).$(Build).$(Revision).zip"
+      Username="$(Username)"
+      Password="$(Password)" />
+	  
+  </Target>
+  
+</Project>
