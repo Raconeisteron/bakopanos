@@ -173,12 +173,7 @@ namespace ASPNET.StarterKit.Portal
             // Bind the Email and Password
             PortalUser dr = (PortalUser)_usersDb.GetSingleUser(_userName);
 
-            // Read first row from database
-            //dr.Read();
-
-            Email.Text = dr.Email;//(String) dr["Email"];
-
-            //dr.Close();
+            Email.Text = dr.Email;
 
             // add the user name to the title
             if (_userName != "")
