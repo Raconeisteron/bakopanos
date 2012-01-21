@@ -120,8 +120,9 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
             DbParameter parameterEmail = CreateParameter("@Email", email);
 
-            List<PortalRole> reader = (List<PortalRole>)ExecuteReader("Portal_GetRolesByUser", CommandType.StoredProcedure, parameterEmail);
-            return reader;
+            List<PortalRole> portalRoles = ExecuteReader("Portal_GetRolesByUser", CommandType.StoredProcedure, parameterEmail) as List<PortalRole>;
+
+            return portalRoles;
         }
 
         //*********************************************************************
@@ -139,7 +140,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             DbParameter parameterEmail = CreateParameter("@Email", email);
 
             //Execute the command
-            PortalUser reader = (PortalUser)ExecuteReader("Portal_GetSingleUser", CommandType.StoredProcedure, parameterEmail);
+            PortalUser reader = ExecuteReader("Portal_GetSingleUser", CommandType.StoredProcedure, parameterEmail) as PortalUser;
 
             // Return the datareader
             return reader;
