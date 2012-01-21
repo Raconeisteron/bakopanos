@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
+using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
@@ -68,7 +68,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             ExecuteNonQuery("Portal_AddRole", CommandType.StoredProcedure, parameterPortalID, parameterRoleName, parameterRoleID);
 
             // return the role id 
-            return (int) parameterRoleID.Value;
+            return int.Parse(parameterRoleID.Value.ToString());
         }
 
         //*********************************************************************
@@ -210,16 +210,16 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         public List<PortalUser> GetUsers()
         {
             // Execute the command
-            IDataReader reader = ExecuteReader("Portal_GetUsers",CommandType.StoredProcedure);
+            List<PortalUser> portalUsers = ExecuteReader("Portal_GetUsers",CommandType.StoredProcedure) as List<PortalUser>;
 
-            var list = new List<PortalUser>();
+            //var list = new List<PortalUser>();
 
-            while (reader.Read())
-            {
-                list.Add(reader.ToPortalUser());
-            }
+            //while (reader.Read())
+            //{
+            //    list.Add(reader.ToPortalUser());
+            //}
 
-            return list;
+            return portalUsers;
         }
 
         #endregion
