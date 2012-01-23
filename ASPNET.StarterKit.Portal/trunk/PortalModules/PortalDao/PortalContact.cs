@@ -1,6 +1,6 @@
 using System;
 
-namespace ASPNET.StarterKit.Portal
+namespace ASPNET.StarterKit.Portal.PortalDao
 {
     public class PortalContact
     {

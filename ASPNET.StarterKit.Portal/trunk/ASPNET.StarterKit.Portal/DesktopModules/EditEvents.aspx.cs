@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ASPNET.StarterKit.Portal.PortalDao;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -61,27 +62,21 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of event information
-                    IDataReader dr = _eventsDb.GetSingleEvent(_itemId);
-
-                    // Read first row from database
-                    dr.Read();
-
+                    PortalEvent dr = _eventsDb.GetSingleEvent(_itemId);
+                    
                     // Security check.  verify that itemid is within the module.
-                    int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
+                    int dbModuleID = dr.ModuleId;
                     if (dbModuleID != _moduleId)
-                    {
-                        dr.Close();
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
-                    }
+                    
 
-                    TitleField.Text = (String) dr["Title"];
-                    DescriptionField.Text = (String) dr["Description"];
-                    ExpireField.Text = ((DateTime) dr["ExpireDate"]).ToShortDateString();
-                    CreatedBy.Text = (String) dr["CreatedByUser"];
-                    WhereWhenField.Text = (String) dr["WhereWhen"];
-                    CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
+                    TitleField.Text = dr.Title;
+                    DescriptionField.Text = dr.Description;
+                    ExpireField.Text = dr.ExpireDate.ToShortDateString();
+                    CreatedBy.Text = dr.CreatedByUser;
+                    WhereWhenField.Text = dr.WhereWhen;
+                    CreatedDate.Text = dr.CreatedDate.ToShortDateString();
 
-                    dr.Close();
                 }
 
                 // Store URL Referrer to return to portal

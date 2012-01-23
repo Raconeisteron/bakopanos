@@ -1,5 +1,6 @@
 using System;
-using System.Data;
+using System.Collections.Generic;
+using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
@@ -7,17 +8,17 @@ namespace ASPNET.StarterKit.Portal.Oracle
     {
         #region IDiscussionsDb Members
 
-        public IDataReader GetTopLevelMessages(int moduleId)
+        public List<PortalDiscussion> GetTopLevelMessages(int moduleId)
         {
             throw new NotImplementedException();
         }
 
-        public IDataReader GetThreadMessages(string parent)
+        public List<PortalDiscussion> GetThreadMessages(string parent)
         {
             throw new NotImplementedException();
         }
 
-        public IDataReader GetSingleMessage(int itemId)
+        public PortalDiscussion GetSingleMessage(int itemId)
         {
             throw new NotImplementedException();
         }

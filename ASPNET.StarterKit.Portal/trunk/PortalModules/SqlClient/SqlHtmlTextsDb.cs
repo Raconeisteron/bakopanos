@@ -1,32 +1,37 @@
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
+using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlHtmlTextsDb :Db, IHtmlTextsDb
     {
-        private readonly string _connectionString;
+        
 
         public SqlHtmlTextsDb(string connectionString)
             : base(connectionString, "System.Data.SqlClient")
         {
-            _connectionString = connectionString;
         }
 
         #region IHtmlTextsDb Members
 
-        public IDataReader GetHtmlText(int moduleId)
+        public List<PortalHtmlText> GetHtmlText(int moduleId)
         {
 
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
             // Execute method
-            IDataReader result = ExecuteReader("Portal_GetHtmlText", CommandType.StoredProcedure, parameterModuleId);
+            IDataReader reader = ExecuteReader("Portal_GetHtmlText", CommandType.StoredProcedure, parameterModuleId);
 
-            // Return the datareader 
-            return result;
+            var htmlTextList = new List<PortalHtmlText>();
+
+            while (reader.Read())
+                htmlTextList.Add(reader.ToPortalHtmlText());
+
+            // Return list
+            return htmlTextList;
         }
 
         public void UpdateHtmlText(int moduleId, string desktopHtml, string mobileSummary, string mobileDetails)

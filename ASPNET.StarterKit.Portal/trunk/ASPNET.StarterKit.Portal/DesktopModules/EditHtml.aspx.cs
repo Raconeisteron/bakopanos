@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.PortalDao;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -43,13 +45,13 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsPostBack == false)
             {
                 // Obtain a single row of text information
-                IDataReader dr = _htmlTextsDb.GetHtmlText(_moduleId);
+                List<PortalHtmlText> dr = _htmlTextsDb.GetHtmlText(_moduleId);
 
-                if (dr.Read())
+                if (dr.Count>0)
                 {
-                    DesktopText.Text = Server.HtmlDecode((String) dr["DesktopHtml"]);
-                    MobileSummary.Text = Server.HtmlDecode((String) dr["MobileSummary"]);
-                    MobileDetails.Text = Server.HtmlDecode((String) dr["MobileDetails"]);
+                    DesktopText.Text = Server.HtmlDecode(dr[0].DesktopHtml);
+                    MobileSummary.Text = Server.HtmlDecode(dr[0].MobileSummary);
+                    MobileDetails.Text = Server.HtmlDecode(dr[0].MobileDetails);
                 }
                 else
                 {
@@ -58,7 +60,6 @@ namespace ASPNET.StarterKit.Portal
                     MobileDetails.Text = "Todo: Add Content...";
                 }
 
-                dr.Close();
 
                 // Store URL Referrer to return to portal
                 ViewState["UrlReferrer"] = Request.UrlReferrer.ToString();

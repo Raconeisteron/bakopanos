@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.IO;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.PortalDao;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -56,26 +57,21 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of document information
-                    IDataReader dr = _documentsDb.GetSingleDocument(_itemId);
+                    PortalDocument dr = _documentsDb.GetSingleDocument(_itemId);
 
-                    // Load first row into Datareader
-                    dr.Read();
 
                     // Security check.  verify that itemid is within the module.
-                    int dbModuleId = Convert.ToInt32(dr["ModuleID"]);
+                    int dbModuleId = dr.ModuleId;
                     if (dbModuleId != _moduleId)
-                    {
-                        dr.Close();
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
-                    }
 
-                    NameField.Text = (String) dr["FileFriendlyName"];
-                    PathField.Text = (String) dr["FileNameUrl"];
-                    CategoryField.Text = (String) dr["Category"];
-                    CreatedBy.Text = (String) dr["CreatedByUser"];
-                    CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
 
-                    dr.Close();
+                    NameField.Text = dr.FileFriendlyName;
+                    PathField.Text = dr.FileNameUrl;
+                    CategoryField.Text = dr.Category;
+                    CreatedBy.Text = dr.CreatedByUser;
+                    CreatedDate.Text = dr.CreatedDate.ToShortDateString();
+
                 }
 
                 // Store URL Referrer to return to portal

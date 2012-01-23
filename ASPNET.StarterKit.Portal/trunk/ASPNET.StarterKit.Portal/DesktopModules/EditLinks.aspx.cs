@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.PortalDao;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -56,29 +57,22 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId != 0)
                 {
                     // Obtain a single row of link information
-                    IDataReader dr = _linksDb.GetSingleLink(_itemId);
-
-                    // Read in first row from database
-                    dr.Read();
+                    PortalLink dr = _linksDb.GetSingleLink(_itemId);
 
                     // Security check.  verify that itemid is within the module.
-                    int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
+                    int dbModuleID = dr.ModuleId;
                     if (dbModuleID != _moduleId)
-                    {
-                        dr.Close();
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
-                    }
 
-                    TitleField.Text = (String) dr["Title"];
-                    DescriptionField.Text = (String) dr["Description"];
-                    UrlField.Text = (String) dr["Url"];
-                    MobileUrlField.Text = (String) dr["MobileUrl"];
-                    ViewOrderField.Text = dr["ViewOrder"].ToString();
-                    CreatedBy.Text = (String) dr["CreatedByUser"];
-                    CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
 
-                    // Close datareader
-                    dr.Close();
+                    TitleField.Text = dr.Title;
+                    DescriptionField.Text = dr.Description;
+                    UrlField.Text = dr.Url;
+                    MobileUrlField.Text = dr.MobileUrl;
+                    ViewOrderField.Text = dr.ViewOrder.ToString();
+                    CreatedBy.Text = dr.CreatedByUser;
+                    CreatedDate.Text = dr.CreatedDate.ToShortDateString();
+
                 }
 
                 // Store URL Referrer to return to portal
@@ -112,7 +106,7 @@ namespace ASPNET.StarterKit.Portal
                 }
 
                 // Redirect back to the portal home page
-                Response.Redirect((String) ViewState["UrlReferrer"]);
+                Response.Redirect((String)ViewState["UrlReferrer"]);
             }
         }
 
@@ -135,7 +129,7 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((String)ViewState["UrlReferrer"]);
         }
 
         //****************************************************************
@@ -149,7 +143,7 @@ namespace ASPNET.StarterKit.Portal
         protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((String)ViewState["UrlReferrer"]);
         }
     }
 }

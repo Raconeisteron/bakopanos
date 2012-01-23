@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.PortalDao;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -126,31 +127,28 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Obtain the selected item from the Discussion table
-            IDataReader dr = _discussionsDb.GetSingleMessage(_itemId);
+            PortalDiscussion dr = _discussionsDb.GetSingleMessage(_itemId);
 
-            // Load first row from database
-            dr.Read();
-
+            
             // Security check.  verify that itemid is within the module.
-            int dbModuleId = Convert.ToInt32(dr["ModuleID"]);
+            int dbModuleId = dr.ModuleId;
             if (dbModuleId != _moduleId)
-            {
-                dr.Close();
+            
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
-            }
+            
 
             // Update labels with message contents
-            Title.Text = (String) dr["Title"];
-            Body.Text = (String) dr["Body"];
-            CreatedByUser.Text = (String) dr["CreatedByUser"];
-            CreatedDate.Text = String.Format("{0:d}", dr["CreatedDate"]);
+            Title.Text = dr.Title;
+            Body.Text = dr.Body;
+            CreatedByUser.Text = dr.CreatedByUser;
+            CreatedDate.Text = String.Format("{0:d}", dr.CreatedDate);
             TitleField.Text = ReTitle(Title.Text);
 
             int prevId = 0;
             int nextId = 0;
 
             // Update next and preview links
-            object id1 = dr["PrevMessageID"];
+            object id1 = dr.PrevMessageId;
 
             if (id1 != DBNull.Value)
             {
@@ -158,7 +156,7 @@ namespace ASPNET.StarterKit.Portal
                 prevItem.HRef = Request.Path + "?ItemId=" + prevId + "&mid=" + _moduleId;
             }
 
-            object id2 = dr["NextMessageID"];
+            object id2 = dr.NextMessageId;
 
             if (id2 != DBNull.Value)
             {
@@ -166,9 +164,7 @@ namespace ASPNET.StarterKit.Portal
                 nextItem.HRef = Request.Path + "?ItemId=" + nextId + "&mid=" + _moduleId;
             }
 
-            // close the datareader
-            dr.Close();
-
+           
             // Show/Hide Next/Prev Button depending on whether there is a next/prev message
             if (prevId <= 0)
             {

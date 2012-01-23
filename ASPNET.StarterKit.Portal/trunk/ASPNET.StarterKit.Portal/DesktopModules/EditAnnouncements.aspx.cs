@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.PortalDao;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -56,29 +58,23 @@ namespace ASPNET.StarterKit.Portal
             if (_itemId != 0)
             {
                 // Obtain a single row of announcement information
-                IDataReader dr = _announcementsDb.GetSingleAnnouncement(_itemId);
+                PortalAnnouncement dr = _announcementsDb.GetSingleAnnouncement(_itemId);
 
-                // Load first row into DataReader
-                dr.Read();
-
+                
                 // Security check.  verify that itemid is within the module.
-                int dbModuleId = Convert.ToInt32(dr["ModuleID"]);
+                int dbModuleId = dr.ModuleId;
                 if (dbModuleId != _moduleId)
-                {
-                    dr.Close();
                     Response.Redirect("~/Admin/EditAccessDenied.aspx");
-                }
 
-                TitleField.Text = (String) dr["Title"];
-                MoreLinkField.Text = (String) dr["MoreLink"];
-                MobileMoreField.Text = (String) dr["MobileMoreLink"];
-                DescriptionField.Text = (String) dr["Description"];
-                ExpireField.Text = ((DateTime) dr["ExpireDate"]).ToShortDateString();
-                CreatedBy.Text = (String) dr["CreatedByUser"];
-                CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
 
-                // Close the datareader
-                dr.Close();
+                TitleField.Text = dr.Title;
+                MoreLinkField.Text = dr.MoreLink;
+                MobileMoreField.Text = dr.MobileMoreLink;
+                DescriptionField.Text = dr.Description;
+                ExpireField.Text = dr.ExpireDate.ToShortDateString();
+                CreatedBy.Text = dr.CreatedByUser;
+                CreatedDate.Text = dr.CreatedDate.ToShortDateString();
+
             }
 
             // Store URL Referrer to return to portal

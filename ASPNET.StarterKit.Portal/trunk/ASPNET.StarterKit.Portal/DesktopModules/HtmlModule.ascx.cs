@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.PortalDao;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -25,17 +27,15 @@ namespace ASPNET.StarterKit.Portal
         protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain the selected item from the HtmlText table
-            IDataReader dr = _htmlTextsDb.GetHtmlText(ModuleId);
+            List<PortalHtmlText> dr = _htmlTextsDb.GetHtmlText(ModuleId);
 
-            if (dr.Read())
+            if (dr.Count>0)
             {
                 // Dynamically add the file content into the page
-                string content = Server.HtmlDecode((String) dr["DesktopHtml"]);
+                string content = Server.HtmlDecode(dr[0].DesktopHtml);
                 HtmlHolder.Controls.Add(new LiteralControl(content));
             }
 
-            // Close the datareader
-            dr.Close();
         }
     }
 }

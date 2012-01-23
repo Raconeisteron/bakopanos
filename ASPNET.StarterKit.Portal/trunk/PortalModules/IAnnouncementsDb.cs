@@ -1,12 +1,13 @@
 using System;
-using System.Data;
+using System.Collections.Generic;
+using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal
 {
     public interface IAnnouncementsDb
     {
-        IDataReader GetAnnouncements(int moduleId);
-        IDataReader GetSingleAnnouncement(int itemId);
+        List<PortalAnnouncement> GetAnnouncements(int moduleId);
+        PortalAnnouncement GetSingleAnnouncement(int itemId);
         void DeleteAnnouncement(int itemId);
 
         int AddAnnouncement(int moduleId, string userName, string title, DateTime expireDate,

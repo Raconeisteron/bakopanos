@@ -1,12 +1,13 @@
 using System;
-using System.Data;
+using System.Collections.Generic;
+using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal
 {
     public interface IEventsDb
     {
-        IDataReader GetEvents(int moduleId);
-        IDataReader GetSingleEvent(int itemId);
+        List<PortalEvent> GetEvents(int moduleId);
+        PortalEvent GetSingleEvent(int itemId);
         void DeleteEvent(int itemId);
 
         int AddEvent(int moduleId, string userName, string title, DateTime expireDate,

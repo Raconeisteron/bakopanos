@@ -1,58 +1,72 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
+using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlDiscussionsDb : Db, IDiscussionsDb
     {
-        private readonly string _connectionString;
-
+        
         public SqlDiscussionsDb(string connectionString) :base(connectionString,"System.Data.SqlClient")
         {
-            _connectionString = connectionString;
+            
         }
 
         #region IDiscussionsDb Members
 
-        public IDataReader GetTopLevelMessages(int moduleId)
+        public List<PortalDiscussion> GetTopLevelMessages(int moduleId)
         {
 
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
-            //Execute method and populate result
-            IDataReader result = ExecuteReader("Portal_GetTopLevelMessages", CommandType.StoredProcedure, parameterModuleId);
+            //Execute method and populate reader
+            IDataReader reader = ExecuteReader("Portal_GetTopLevelMessages", CommandType.StoredProcedure, parameterModuleId);
 
-            // Return the datareader 
-            return result;
+            var topLevelMessagesList = new List<PortalDiscussion>();
+
+            while(reader.Read())
+                topLevelMessagesList.Add(reader.ToPortalDiscussion());
+
+            // Return list
+            return topLevelMessagesList;
         }
 
-        public IDataReader GetThreadMessages(String parent)
+        public List<PortalDiscussion> GetThreadMessages(String parent)
         {
             
             // Add Parameters to SPROC
             DbParameter parameterParent = CreateParameter("@Parent", parent);
 
-            //Execute method and populate result
-            IDataReader result = ExecuteReader("Portal_GetThreadMessages", CommandType.StoredProcedure, parameterParent);
+            //Execute method and populate reader
+            IDataReader reader = ExecuteReader("Portal_GetThreadMessages", CommandType.StoredProcedure, parameterParent);
 
-            // Return the datareader 
-            return result;
+            var threadMessageList = new List<PortalDiscussion>();
+
+            while (reader.Read())
+                threadMessageList.Add(reader.ToPortalDiscussion());
+
+            // Return list
+            return threadMessageList;
         }
 
-        public IDataReader GetSingleMessage(int itemId)
+        public PortalDiscussion GetSingleMessage(int itemId)
         {
 
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID",itemId);
 
             //Execute method and populate result
-            IDataReader result = ExecuteReader("Portal_GetSingleMessage", CommandType.StoredProcedure, parameterItemId);
+            IDataReader reader = ExecuteReader("Portal_GetSingleMessage", CommandType.StoredProcedure, parameterItemId);
 
-            // Return the datareader 
-            return result;
+            //Read once, since we have only one result (itemId is Unique)
+            reader.Read();
+            PortalDiscussion message = reader.ToPortalDiscussion();
+
+            // Return the item
+            return message;
         }
 
         public int AddMessage(int moduleId, int parentId, string userName, string title, string body)

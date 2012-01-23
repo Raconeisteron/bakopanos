@@ -1,53 +1,61 @@
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
+using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlContactsDb : Db, IContactsDb
     {
-        private readonly string _connectionString;
-
+       
         public SqlContactsDb(string connectionString)
             : base(connectionString, "System.Data.SqlClient")
         {
-            _connectionString = connectionString;
         }
 
         #region IContactsDb Members
 
-        public IDataReader GetContacts(int moduleId)
+        public List<PortalContact> GetContacts(int moduleId)
         {
 
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
-            //Execute method and populate result
-            IDataReader result = ExecuteReader("Portal_GetContacts", CommandType.StoredProcedure, parameterModuleId);
+            //Execute method and populate reader
+            IDataReader reader = ExecuteReader("Portal_GetContacts", CommandType.StoredProcedure, parameterModuleId);
 
-            // Return the datareader 
-            return result;
+            var contactList = new List<PortalContact>();
+
+            while(reader.Read())
+                contactList.Add(reader.ToPortalContact());
+            
+            // Return list
+            return contactList;
         }
 
-        public IDataReader GetSingleContact(int itemId)
+        public PortalContact GetSingleContact(int itemId)
         {
 
 
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
             
-            //Execute method and populate result
-            IDataReader result = ExecuteReader("Portal_GetSingleContact", CommandType.StoredProcedure, parameterItemId);
+            //Execute method and populate reader
+            IDataReader reader = ExecuteReader("Portal_GetSingleContact", CommandType.StoredProcedure, parameterItemId);
 
-            // Return the datareader 
-            return result;
+            //Read once, since we have only one result (itemId is Unique)
+            reader.Read();
+            PortalContact contact = reader.ToPortalContact();
+
+            // Return the item
+            return contact;
         }
 
-        public void DeleteContact(int itemID)
+        public void DeleteContact(int itemId)
         {
 
             // Add Parameters to SPROC
-            DbParameter parameterItemId = CreateParameter("@ItemID", itemID);
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
             //Execute method
             ExecuteNonQuery("Portal_DeleteContact", CommandType.StoredProcedure, parameterItemId);

@@ -1,10 +1,11 @@
-using System.Data;
+using System.Collections.Generic;
+using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal
 {
     public interface IHtmlTextsDb
     {
-        IDataReader GetHtmlText(int moduleId);
+        List<PortalHtmlText> GetHtmlText(int moduleId);
         void UpdateHtmlText(int moduleId, string desktopHtml, string mobileSummary, string mobileDetails);
     }
 }

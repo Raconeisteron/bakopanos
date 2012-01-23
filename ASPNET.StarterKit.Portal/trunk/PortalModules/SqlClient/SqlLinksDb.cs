@@ -1,45 +1,53 @@
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
+using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlLinksDb : Db, ILinksDb
     {
-        private readonly string _connectionString;
 
         public SqlLinksDb(string connectionString)
             : base(connectionString, "System.Data.SqlClient")
         {
-            _connectionString = connectionString;
         }
 
         #region ILinksDb Members
 
-        public IDataReader GetLinks(int moduleId)
+        public List<PortalLink> GetLinks(int moduleId)
         {
 
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
             // Execute method
-            IDataReader result = ExecuteReader("Portal_GetLinks", CommandType.StoredProcedure, parameterModuleId);
+            IDataReader reader = ExecuteReader("Portal_GetLinks", CommandType.StoredProcedure, parameterModuleId);
 
-            // Return the datareader 
-            return result;
+            var linkList = new List<PortalLink>();
+
+            while (reader.Read())
+                linkList.Add(reader.ToPortalLink());
+
+            // Return list
+            return linkList;
         }
 
-        public IDataReader GetSingleLink(int itemId)
+        public PortalLink GetSingleLink(int itemId)
         {
 
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
             // Execute method
-            IDataReader result = ExecuteReader("Portal_GetSingleLink", CommandType.StoredProcedure, parameterItemId);
+            IDataReader reader = ExecuteReader("Portal_GetSingleLink", CommandType.StoredProcedure, parameterItemId);
 
-            // Return the datareader 
-            return result;
+            //Read once, since we have only one result (itemId is Unique)
+            reader.Read();
+            PortalLink link = reader.ToPortalLink();
+
+            // Return the item
+            return link;
         }
 
         public void DeleteLink(int itemId)

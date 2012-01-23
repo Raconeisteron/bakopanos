@@ -1,5 +1,6 @@
 using System;
-using System.Data;
+using System.Collections.Generic;
+using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
@@ -7,12 +8,12 @@ namespace ASPNET.StarterKit.Portal.Oracle
     {
         #region IAnnouncementsDb Members
 
-        public IDataReader GetAnnouncements(int moduleId)
+        public List<PortalAnnouncement> GetAnnouncements(int moduleId)
         {
             throw new NotImplementedException();
         }
 
-        public IDataReader GetSingleAnnouncement(int itemId)
+        public PortalAnnouncement GetSingleAnnouncement(int itemId)
         {
             throw new NotImplementedException();
         }

@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PortalModulesExtensions2.cs" />
     <Compile Include="Oracle\OraAnnouncementsDb.cs" />
     <Compile Include="Oracle\OraContactsDb.cs" />
     <Compile Include="Oracle\OraDiscussionsDb.cs" />
@@ -51,8 +52,13 @@
     <Compile Include="Oracle\OraEventsDb.cs" />
     <Compile Include="Oracle\OraHtmlTextsDb.cs" />
     <Compile Include="Oracle\OraLinksDb.cs" />
-    <Compile Include="PortalAnnouncement.cs" />
-    <Compile Include="PortalContact.cs" />
+    <Compile Include="PortalDao\PortalAnnouncement.cs" />
+    <Compile Include="PortalDao\PortalContact.cs" />
+    <Compile Include="PortalDao\PortalDiscussion.cs" />
+    <Compile Include="PortalDao\PortalDocument.cs" />
+    <Compile Include="PortalDao\PortalEvent.cs" />
+    <Compile Include="PortalDao\PortalHtmlText.cs" />
+    <Compile Include="PortalDao\PortalLink.cs" />
     <Compile Include="PortalModulesExtensions.cs" />
     <Compile Include="SqlClient\SqlAnnouncementsDb.cs" />
     <Compile Include="SqlClient\SqlContactsDb.cs" />

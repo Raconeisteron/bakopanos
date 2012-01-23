@@ -1,53 +1,61 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
+using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlEventsDb : Db, IEventsDb
     {
-        private readonly string _connectionString;
 
         public SqlEventsDb(string connectionString)
             : base(connectionString, "System.Data.SqlClient")
         {
-            _connectionString = connectionString;
         }
 
         #region IEventsDb Members
 
-        public IDataReader GetEvents(int moduleId)
+        public List<PortalEvent> GetEvents(int moduleId)
         {
 
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID",moduleId);
 
             // Execute method
-            IDataReader result = ExecuteReader("Portal_GetEvents", CommandType.StoredProcedure, parameterModuleId);
+            IDataReader reader = ExecuteReader("Portal_GetEvents", CommandType.StoredProcedure, parameterModuleId);
 
-            // Return the datareader 
-            return result;
+            var eventList = new List<PortalEvent>();
+
+            while (reader.Read())
+                eventList.Add(reader.ToPortalEvent());
+
+            // Return list
+            return eventList;
         }
 
-        public IDataReader GetSingleEvent(int itemId)
+        public PortalEvent GetSingleEvent(int itemId)
         {
 
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
             // Execute method
-            IDataReader result = ExecuteReader("Portal_GetSingleEvent", CommandType.StoredProcedure, parameterItemId);
+            IDataReader reader = ExecuteReader("Portal_GetSingleEvent", CommandType.StoredProcedure, parameterItemId);
 
-            // Return the datareader 
-            return result;
+            //Read once, since we have only one result (itemId is Unique)
+            reader.Read();
+            PortalEvent singleEvent = reader.ToPortalEvent();
+
+            // Return the item
+            return singleEvent;
         }
 
-        public void DeleteEvent(int itemID)
+        public void DeleteEvent(int itemId)
         {
 
             // Add Parameters to SPROC
-            DbParameter parameterItemId = CreateParameter("@ItemID",itemID);
+            DbParameter parameterItemId = CreateParameter("@ItemID",itemId);
 
             //Execute method
             ExecuteNonQuery("Portal_DeleteEvent", CommandType.StoredProcedure, parameterItemId);

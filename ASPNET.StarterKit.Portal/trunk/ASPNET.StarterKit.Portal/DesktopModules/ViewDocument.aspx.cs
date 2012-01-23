@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Web.UI;
+using ASPNET.StarterKit.Portal.PortalDao;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -35,18 +36,17 @@ namespace ASPNET.StarterKit.Portal
             if (_documentId != -1)
             {
                 // Obtain Document Data from Documents table
-                IDataReader dBContent = _documentsDb.GetDocumentContent(_documentId);
-                dBContent.Read();
-
+                PortalDocument dBContent = _documentsDb.GetDocumentContent(_documentId);
+                
                 // Serve up the file by name
-                Response.AppendHeader("content-disposition", "filename=" + (String) dBContent["FileName"]);
+                Response.AppendHeader("content-disposition", "filename=" + dBContent.FileFriendlyName);
 
                 // set the content type for the Response to that of the 
                 // document to display.  For example. "application/msword"
-                Response.ContentType = (String) dBContent["ContentType"];
+                Response.ContentType = dBContent.ContentType;
 
                 // output the actual document contents to the response output stream
-                Response.OutputStream.Write((byte[]) dBContent["Content"], 0, (int) dBContent["ContentSize"]);
+                Response.OutputStream.Write(dBContent.Content, 0,(int) dBContent.ContentSize);
 
                 // end the response
                 Response.End();

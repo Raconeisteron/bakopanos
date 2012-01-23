@@ -1,5 +1,6 @@
 using System;
-using System.Data;
+using System.Collections.Generic;
+using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
@@ -7,12 +8,12 @@ namespace ASPNET.StarterKit.Portal.Oracle
     {
         #region IEventsDb Members
 
-        public IDataReader GetEvents(int moduleId)
+        public List<PortalEvent> GetEvents(int moduleId)
         {
             throw new NotImplementedException();
         }
 
-        public IDataReader GetSingleEvent(int itemId)
+        public PortalEvent GetSingleEvent(int itemId)
         {
             throw new NotImplementedException();
         }

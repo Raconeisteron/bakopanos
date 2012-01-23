@@ -1,59 +1,71 @@
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
+using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlDocumentsDb : Db, IDocumentsDb
     {
-        private readonly string _connectionString;
 
         public SqlDocumentsDb(string connectionString)
             : base(connectionString, "System.Data.SqlClient")
         {
-            _connectionString = connectionString;
         }
 
         #region IDocumentsDb Members
 
-        public IDataReader GetDocuments(int moduleId)
+        public List<PortalDocument> GetDocuments(int moduleId)
         {
 
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
             // Execute method
-            IDataReader result = ExecuteReader("Portal_GetDocuments", CommandType.StoredProcedure, parameterModuleId);
+            IDataReader reader = ExecuteReader("Portal_GetDocuments", CommandType.StoredProcedure, parameterModuleId);
 
-            // Return the datareader 
-            return result;
+            var documentList = new List<PortalDocument>();
+
+            while (reader.Read())
+                documentList.Add(reader.ToPortalDocument());
+
+            // Return list
+            return documentList;
         }
 
-        public IDataReader GetSingleDocument(int itemId)
+        public PortalDocument GetSingleDocument(int itemId)
         {
 
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
             // Execute method
-            IDataReader result = ExecuteReader("Portal_GetSingleDocument", CommandType.StoredProcedure, parameterItemId);
+            IDataReader reader = ExecuteReader("Portal_GetSingleDocument", CommandType.StoredProcedure, parameterItemId);
 
-            // Return the datareader 
-            return result;
+            //Read once, since we have only one result (itemId is Unique)
+            reader.Read();
+            PortalDocument document = reader.ToPortalDocument();
+
+            // Return the item
+            return document;
         }
 
 
-        public IDataReader GetDocumentContent(int itemId)
+        public PortalDocument GetDocumentContent(int itemId)
         {
 
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
             // Execute method
-            IDataReader result = ExecuteReader("Portal_GetDocumentContent", CommandType.StoredProcedure, parameterItemId);
+            IDataReader reader = ExecuteReader("Portal_GetDocumentContent", CommandType.StoredProcedure, parameterItemId);
 
-            // Return the datareader 
-            return result;
+            //Read once, since we have only one result (itemId is Unique)
+            reader.Read();
+            PortalDocument document = reader.ToPortalDocument();
+
+            // Return the item
+            return document;
         }
 
         public void DeleteDocument(int itemId)

@@ -1,5 +1,6 @@
 using System;
-using System.Data;
+using System.Collections.Generic;
+using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
@@ -7,7 +8,7 @@ namespace ASPNET.StarterKit.Portal.Oracle
     {
         #region IHtmlTextsDb Members
 
-        public IDataReader GetHtmlText(int moduleId)
+        public List<PortalHtmlText> GetHtmlText(int moduleId)
         {
             throw new NotImplementedException();
         }

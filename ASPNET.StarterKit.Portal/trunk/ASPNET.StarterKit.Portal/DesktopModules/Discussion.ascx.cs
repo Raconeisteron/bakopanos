@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Web.UI.WebControls;
+using ASPNET.StarterKit.Portal.PortalDao;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -59,10 +61,10 @@ namespace ASPNET.StarterKit.Portal
         //
         //*******************************************************
 
-        protected IDataReader GetThreadMessages()
+        protected List<PortalDiscussion> GetThreadMessages()
         {
             // Obtain a list of discussion messages for the module
-            IDataReader dr =
+            List<PortalDiscussion> dr =
                 _discussionsDb.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
 
             // Return the filtered DataView

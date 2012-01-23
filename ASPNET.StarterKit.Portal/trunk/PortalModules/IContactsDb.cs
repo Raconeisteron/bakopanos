@@ -1,11 +1,12 @@
-using System.Data;
+using System.Collections.Generic;
+using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal
 {
     public interface IContactsDb
     {
-        IDataReader GetContacts(int moduleId);
-        IDataReader GetSingleContact(int itemId);
+        List<PortalContact> GetContacts(int moduleId);
+        PortalContact GetSingleContact(int itemId);
         void DeleteContact(int itemId);
 
         int AddContact(int moduleId, string userName, string name, string role, string email,
