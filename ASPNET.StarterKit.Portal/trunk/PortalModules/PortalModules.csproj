@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PortalModulesExtensions2.cs" />
     <Compile Include="Oracle\OraAnnouncementsDb.cs" />
     <Compile Include="Oracle\OraContactsDb.cs" />
     <Compile Include="Oracle\OraDiscussionsDb.cs" />
