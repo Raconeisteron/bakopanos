@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web;
@@ -21,7 +22,7 @@ namespace ASPNET.StarterKit.Portal
         private ModuleSettings _moduleConfiguration;
         private IModuleConfigurationDb _moduleConfigurationDb;
         private IPortalSecurity _portalSecurity;
-        private Dictionary<string, string> _settings;
+        private Hashtable _settings;
 
         // Public property accessors
 
@@ -70,7 +71,7 @@ namespace ASPNET.StarterKit.Portal
         }
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Dictionary<string, string> Settings
+        public Hashtable Settings
         {
             get
             {

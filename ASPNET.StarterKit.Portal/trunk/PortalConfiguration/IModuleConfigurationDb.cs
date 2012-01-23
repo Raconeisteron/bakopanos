@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 
 namespace ASPNET.StarterKit.Portal
@@ -14,6 +15,6 @@ namespace ASPNET.StarterKit.Portal
 
         void DeleteModule(int moduleId);
         void UpdateModuleSetting(int moduleId, string key, string val);
-        Dictionary<string, string> GetModuleSettings(int moduleId);
+        Hashtable GetModuleSettings(int moduleId);
     }
 }

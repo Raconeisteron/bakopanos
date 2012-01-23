@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace ASPNET.StarterKit.Portal.Oracle
@@ -34,7 +35,7 @@ namespace ASPNET.StarterKit.Portal.Oracle
             throw new NotImplementedException();
         }
 
-        public Dictionary<string, string> GetModuleSettings(int moduleId)
+        public Hashtable GetModuleSettings(int moduleId)
         {
             throw new NotImplementedException();
         }

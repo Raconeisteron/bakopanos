@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -306,10 +307,10 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         //	  + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a>
         //
         //*********************************************************************
-        public Dictionary<string, string> GetModuleSettings(int moduleId)
+        public Hashtable GetModuleSettings(int moduleId)
         {
             // Create a new Hashtable
-            var settings = new Dictionary<string, string>();
+            var settings = new Hashtable();
 
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];

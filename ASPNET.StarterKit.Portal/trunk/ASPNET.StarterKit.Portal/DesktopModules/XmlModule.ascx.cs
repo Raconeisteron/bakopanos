@@ -14,7 +14,7 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
-            string xmlsrc = Settings["xmlsrc"];
+            string xmlsrc = (string)Settings["xmlsrc"];
 
             if (!string.IsNullOrEmpty(xmlsrc))
             {
@@ -30,7 +30,7 @@ namespace ASPNET.StarterKit.Portal
                 }
             }
 
-            string xslsrc = Settings["xslsrc"];
+            string xslsrc = (string)Settings["xslsrc"];
 
             if (string.IsNullOrEmpty(xslsrc)) return;
 
