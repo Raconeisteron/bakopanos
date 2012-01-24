@@ -1930,6 +1930,7 @@ CREATE PROCEDURE Portal_GetSingleUser
 AS
 
 SELECT
+	UserID,
     Email,
     Password,
     Name
@@ -2041,7 +2042,8 @@ AS
 
 SELECT  
     UserID,
-    Email
+    Email,
+    Name
 
 FROM Portal_Users
     
