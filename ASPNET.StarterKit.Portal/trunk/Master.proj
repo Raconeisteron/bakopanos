@@ -108,5 +108,32 @@
 			Password="$(Password)" />
 		
 	</Target>
-	
+
+    <PropertyGroup>
+      <serverInstance>(local)\SQLEXPRESS</serverInstance>
+      <osqlExe>"osql.exe"</osqlExe>
+      <sqlcmd>$(osqlExe) -E -S (local)\SQLEXPRESS</sqlcmd>
+    </PropertyGroup>
+
+  <Target Name="DatabaseDrop">
+    <PropertyGroup>
+      <Command>-i  Setup\Portal_DropDB.sql</Command>
+    </PropertyGroup>
+    <Exec Command="$(sqlcmd) $(Command)" />
+  </Target>
+
+  <Target Name="DatabaseCreate">
+      <PropertyGroup>
+        <Command>-i  Setup\Portal_CreateDB.sql</Command>
+      </PropertyGroup>
+      <Exec Command="$(sqlcmd) $(Command)" />
+    </Target>
+
+  <Target Name="DatabaseLoad">
+    <PropertyGroup>
+      <Command>-i  Setup\Portal_LoadData.sql</Command>
+    </PropertyGroup>
+    <Exec Command="$(sqlcmd) $(Command)" />
+  </Target>
+  
 </Project>
