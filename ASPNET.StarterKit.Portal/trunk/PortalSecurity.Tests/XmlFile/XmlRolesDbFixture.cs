@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace ASPNET.StarterKit.Portal.XmlFile
 {
     [TestFixture]
-    public class XmlRolesDbFixture
+    public class XmlRolesDbFixture:IRolesDbFixture
     {
         #region Setup/Teardown
 
@@ -59,6 +59,46 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         {
             List<PortalRole> items = _db.GetPortalRoles(0);
             Assert.IsTrue(items.Count == 1);
+        }
+
+        public void CanGetPortalRoles()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void CanGetUsers()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void CanGetRoleMembers()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void CanAddRole()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void CanAddUserRole()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void CanDeleteRole()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void CanDeleteUserRole()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void CanUpdateRole()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

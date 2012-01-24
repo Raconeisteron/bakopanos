@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
 using System.Transactions;
 using NUnit.Framework;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
     [TestFixture, Explicit]
-    public class SqlUsersDbFixture
+    public class SqlUsersDbFixture : IUsersDbFixture
     {
         private readonly TransactionScope _scope = new TransactionScope();
         private IUsersDb _db;
@@ -75,17 +74,18 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             _db.DeleteUser(0);
             
         }
-
-        /// <summary>
-        /// Tests that the AddUser method works and that all parameters
-        /// </summary>
+       
         [Test]
         public void CanAddUser()
         {
             //act
-            int retValue = _db.AddUser("testuser", "a@a.com", "secret");
+            int userId = _db.AddUser("testuser", "a@a.com", "secret");
             //assert
-            Assert.AreNotEqual(retValue, -1);
+            Assert.AreNotEqual(userId, -1);
+            //PortalUser user = _db.GetSingleUser("a@a.com");
+            //Assert.IsTrue(user.Email == "a@a.com");
+            //Assert.IsTrue(user.Name == "testuser");
+            //Assert.IsTrue(user.UserId == userId);
         }
     }
 }

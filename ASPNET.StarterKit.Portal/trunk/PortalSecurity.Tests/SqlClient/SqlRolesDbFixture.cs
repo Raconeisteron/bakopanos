@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
     [TestFixture, Explicit]
-    public class SqlRolesDbFixture
+    public class SqlRolesDbFixture : IRolesDbFixture
     {
         private readonly TransactionScope _scope = new TransactionScope();
         private IRolesDb _db;
