@@ -39,5 +39,20 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         {
             throw new System.NotImplementedException();
         }
+
+        public void CanGetRolesByUserCanReturnEmptyList()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void CanGetRolesCanReturnEmptyList()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void CanGetSingleUserCanReturnNull()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
