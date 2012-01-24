@@ -120,9 +120,18 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
             DbParameter parameterEmail = CreateParameter("@Email", email);
 
-            List<PortalRole> portalRoles = ExecuteReader("Portal_GetRolesByUser", CommandType.StoredProcedure, parameterEmail) as List<PortalRole>;
+            IDataReader reader = ExecuteReader("Portal_GetRolesByUser", CommandType.StoredProcedure, parameterEmail);
 
-            return portalRoles;
+            var list = new List<PortalRole>();
+            var userDetails = new PortalUser();
+
+            while (reader.Read())
+            {
+                userDetails = reader.ToPortalUser();
+                list.Add(reader.ToPortalRole(userDetails.UserId));
+            }
+
+            return list;
         }
 
         //*********************************************************************
@@ -134,16 +143,23 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         //
         //*********************************************************************
 
-        public PortalUser GetSingleUser(String email)
+        public PortalUserDetails GetSingleUser(String email)
         {
             // Add Parameters to SPROC
             DbParameter parameterEmail = CreateParameter("@Email", email);
 
             //Execute the command
-            PortalUser reader = ExecuteReader("Portal_GetSingleUser", CommandType.StoredProcedure, parameterEmail) as PortalUser;
+            IDataReader reader = ExecuteReader("Portal_GetSingleUser", CommandType.StoredProcedure, parameterEmail);
+
+            var user = new PortalUserDetails();
+
+            if (reader.Read())
+                user =  reader.ToPortalUserDetails(email);
 
             // Return the datareader
-            return reader;
+            return user; 
+
+
         }
 
         //*********************************************************************
@@ -171,7 +187,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
             while (reader.Read())
             {
-                userRoles.Add(reader["RoleName"] as string);//.ToPortalRole(userId));
+                userRoles.Add(reader["RoleName"] as string);
             }
 
             // Return the string array of roles

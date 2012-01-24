@@ -10,7 +10,7 @@ namespace ASPNET.StarterKit.Portal
         void DeleteUser(int userId);
         void UpdateUser(int userId, string email, string password);
         List<PortalRole> GetRolesByUser(String email);
-        PortalUser GetSingleUser(String email);
+        PortalUserDetails GetSingleUser(String email);
         String[] GetRoles(String email);
         string Login(String email, string password);
     }

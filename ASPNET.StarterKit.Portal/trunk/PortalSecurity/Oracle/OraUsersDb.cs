@@ -28,7 +28,7 @@ namespace ASPNET.StarterKit.Portal.Oracle
             throw new NotImplementedException();
         }
 
-        public PortalUser GetSingleUser(string email)
+        public PortalUserDetails GetSingleUser(string email)
         {
             throw new NotImplementedException();
         }

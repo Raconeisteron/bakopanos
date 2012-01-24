@@ -210,16 +210,16 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         public List<PortalUser> GetUsers()
         {
             // Execute the command
-            List<PortalUser> portalUsers = ExecuteReader("Portal_GetUsers",CommandType.StoredProcedure) as List<PortalUser>;
+            IDataReader reader = ExecuteReader("Portal_GetUsers", CommandType.StoredProcedure);
 
-            //var list = new List<PortalUser>();
+            var list = new List<PortalUser>();
 
-            //while (reader.Read())
-            //{
-            //    list.Add(reader.ToPortalUser());
-            //}
+            while (reader.Read())
+            {
+                list.Add(reader.ToPortalUser());
+            }
 
-            return portalUsers;
+            return list;
         }
 
         #endregion
