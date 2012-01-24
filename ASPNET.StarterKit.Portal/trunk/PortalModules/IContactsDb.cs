@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal
 {

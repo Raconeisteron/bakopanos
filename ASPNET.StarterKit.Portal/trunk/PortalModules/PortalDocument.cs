@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ASPNET.StarterKit.Portal.PortalDao
+namespace ASPNET.StarterKit.Portal
 {
     public class PortalDocument
     {

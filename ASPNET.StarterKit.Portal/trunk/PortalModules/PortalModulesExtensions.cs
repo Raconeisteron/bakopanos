@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using ASPNET.StarterKit.Portal.PortalDao;
 
 namespace ASPNET.StarterKit.Portal
 {
