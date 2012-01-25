@@ -149,7 +149,7 @@ namespace ASPNET.StarterKit.Portal
             // Update next and preview links
             object id1 = dr.PrevMessageId;
 
-            if (id1 != DBNull.Value)
+            if (id1 != null)
             {
                 prevId = (int) id1;
                 prevItem.HRef = Request.Path + "?ItemId=" + prevId + "&mid=" + _moduleId;
@@ -157,7 +157,7 @@ namespace ASPNET.StarterKit.Portal
 
             object id2 = dr.NextMessageId;
 
-            if (id2 != DBNull.Value)
+            if (id2 != null)
             {
                 nextId = (int) id2;
                 nextItem.HRef = Request.Path + "?ItemId=" + nextId + "&mid=" + _moduleId;

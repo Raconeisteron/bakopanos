@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -70,6 +71,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID");
             parameterItemId.Direction = ParameterDirection.Output;
+            parameterItemId.Size = 4;
             DbParameter parameterModuleId = CreateParameter("@ModuleID",  moduleId);
             DbParameter parameterUserName = CreateParameter("@UserName", userName);
             DbParameter parameterTitle = CreateParameter("@Title", title);
@@ -90,7 +92,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
                 parameterViewOrder);
 
 
-            return (int)parameterItemId.Value;
+            return Convert.ToInt32(parameterItemId.Value);
         }
 
         public void UpdateLink(int itemId, string userName, string title, string url, string mobileUrl,

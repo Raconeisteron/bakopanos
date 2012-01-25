@@ -69,6 +69,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID");
             parameterItemId.Direction = ParameterDirection.Output;
+            parameterItemId.Size = 4;
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
             DbParameter parameterUserName = CreateParameter("@UserName", userName);
             DbParameter parameterTitle = CreateParameter("@Title", title);
@@ -91,7 +92,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
 
 
-            return (int)parameterItemId.Value;
+            return Convert.ToInt32(parameterItemId.Value);
         }
 
         public void UpdateAnnouncement(int itemId, string userName, string title, DateTime expireDate,

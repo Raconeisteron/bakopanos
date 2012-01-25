@@ -7,7 +7,7 @@ namespace ASPNET.StarterKit.Portal.Oracle
     {
         #region IHtmlTextsDb Members
 
-        public List<PortalHtmlText> GetHtmlText(int moduleId)
+        public PortalHtmlText GetHtmlText(int moduleId)
         {
             throw new NotImplementedException();
         }

@@ -15,7 +15,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         #region IHtmlTextsDb Members
 
-        public List<PortalHtmlText> GetHtmlText(int moduleId)
+        public PortalHtmlText GetHtmlText(int moduleId)
         {
 
             // Add Parameters to SPROC
@@ -24,13 +24,12 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Execute method
             IDataReader reader = ExecuteReader("Portal_GetHtmlText", CommandType.StoredProcedure, parameterModuleId);
 
-            var htmlTextList = new List<PortalHtmlText>();
+            //Read once, since we have only one result
+            reader.Read();
+            PortalHtmlText htmlText = reader.ToPortalHtmlText();
 
-            while (reader.Read())
-                htmlTextList.Add(reader.ToPortalHtmlText());
-
-            // Return list
-            return htmlTextList;
+            // Return item
+            return htmlText;
         }
 
         public void UpdateHtmlText(int moduleId, string desktopHtml, string mobileSummary, string mobileDetails)

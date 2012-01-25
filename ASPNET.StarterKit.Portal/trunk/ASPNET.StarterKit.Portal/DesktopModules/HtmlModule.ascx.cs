@@ -26,12 +26,12 @@ namespace ASPNET.StarterKit.Portal
         protected void Page_Load(object sender, EventArgs e)
         {
             // Obtain the selected item from the HtmlText table
-            List<PortalHtmlText> dr = _htmlTextsDb.GetHtmlText(ModuleId);
+            PortalHtmlText dr = _htmlTextsDb.GetHtmlText(ModuleId);
 
-            if (dr.Count>0)
+            if (dr != null)
             {
                 // Dynamically add the file content into the page
-                string content = Server.HtmlDecode(dr[0].DesktopHtml);
+                string content = Server.HtmlDecode(dr.DesktopHtml);
                 HtmlHolder.Controls.Add(new LiteralControl(content));
             }
 

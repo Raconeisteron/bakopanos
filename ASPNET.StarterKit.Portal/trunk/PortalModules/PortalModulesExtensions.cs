@@ -3,7 +3,7 @@ using System.Data;
 
 namespace ASPNET.StarterKit.Portal
 {
-
+    //All the switch cases used in conjuction with SPROC field names retrieval (record.GetName) are *Case Sensitive*.
     public static class PortalModulesExtensions
     {
         public static PortalAnnouncement ToPortalAnnouncement(this IDataRecord record)
@@ -14,11 +14,11 @@ namespace ASPNET.StarterKit.Portal
             {
                 switch (record.GetName(i))
                 {
-                    case "ItemId":
-                        item.ItemId = Convert.ToInt32(record["ItemId"]);
+                    case "ItemID":
+                        item.ItemId = Convert.ToInt32(record["ItemID"]);
                         break;
-                    case "ModuleId":
-                        item.ModuleId = Convert.ToInt32(record["ModuleId"]);
+                    case "ModuleID":
+                        item.ModuleId = Convert.ToInt32(record["ModuleID"]);
                         break;
                     case "CreatedByUser":
                         item.CreatedByUser = record["CreatedByUser"] as string;
@@ -54,11 +54,11 @@ namespace ASPNET.StarterKit.Portal
             {
                 switch (record.GetName(i))
                 {
-                    case "ItemId":
-                        item.ItemId = Convert.ToInt32(record["ItemId"]);
+                    case "ItemID":
+                        item.ItemId = Convert.ToInt32(record["ItemID"]);
                         break;
-                    case "ModuleId":
-                        item.ModuleId = Convert.ToInt32(record["ModuleId"]);
+                    case "ModuleID":
+                        item.ModuleId = Convert.ToInt32(record["ModuleID"]);
                         break;
                     case "CreatedByUser":
                         item.CreatedByUser = record["CreatedByUser"] as string;
@@ -94,11 +94,11 @@ namespace ASPNET.StarterKit.Portal
             {
                 switch (record.GetName(i))
                 {
-                    case "ItemId":
-                        item.ItemId = Convert.ToInt32(record["ItemId"]);
+                    case "ItemID":
+                        item.ItemId = Convert.ToInt32(record["ItemID"]);
                         break;
-                    case "ModuleId":
-                        item.ModuleId = Convert.ToInt32(record["ModuleId"]);
+                    case "ModuleID":
+                        item.ModuleId = Convert.ToInt32(record["ModuleID"]);
                         break;
                     case "Title":
                         item.Title = record["Title"] as string;
@@ -116,10 +116,10 @@ namespace ASPNET.StarterKit.Portal
                         item.CreatedByUser = record["CreatedByUser"] as string;
                         break;
                     case "NextMessageID":
-                        item.NextMessageId = Convert.ToInt32(record["NextMessageID"]);
+                        item.NextMessageId = record["NextMessageID"] == DBNull.Value ? (int?) null : Convert.ToInt32(record["NextMessageID"]);
                         break;
                     case "PrevMessageID":
-                        item.PrevMessageId = Convert.ToInt32(record["PrevMessageID"]);
+                        item.PrevMessageId = record["PrevMessageID"] == DBNull.Value ? (int?) null : Convert.ToInt32(record["PrevMessageID"]);
                         break;
                     case "Parent":
                         item.Parent = record["Parent"] as string;
@@ -143,11 +143,11 @@ namespace ASPNET.StarterKit.Portal
             {
                 switch (record.GetName(i))
                 {
-                    case "ItemId":
-                        item.ItemId = Convert.ToInt32(record["ItemId"]);
+                    case "ItemID":
+                        item.ItemId = Convert.ToInt32(record["ItemID"]);
                         break;
-                    case "ModuleId":
-                        item.ModuleId = Convert.ToInt32(record["ModuleId"]);
+                    case "ModuleID":
+                        item.ModuleId = Convert.ToInt32(record["ModuleID"]);
                         break;
                     case "CreatedByUser":
                         item.CreatedByUser = record["CreatedByUser"] as string;
@@ -185,11 +185,11 @@ namespace ASPNET.StarterKit.Portal
             {
                 switch (record.GetName(i))
                 {
-                    case "ItemId":
-                        item.ItemId = Convert.ToInt32(record["ItemId"]);
+                    case "ItemID":
+                        item.ItemId = Convert.ToInt32(record["ItemID"]);
                         break;
-                    case "ModuleId":
-                        item.ModuleId = Convert.ToInt32(record["ModuleId"]);
+                    case "ModuleID":
+                        item.ModuleId = Convert.ToInt32(record["ModuleID"]);
                         break;
                     case "CreatedByUser":
                         item.CreatedByUser = record["CreatedByUser"] as string;
@@ -222,8 +222,8 @@ namespace ASPNET.StarterKit.Portal
             {
                 switch (record.GetName(i))
                 {
-                    case "ModuleId":
-                        item.ModuleId = Convert.ToInt32(record["ModuleId"]);
+                    case "ModuleID":
+                        item.ModuleId = Convert.ToInt32(record["ModuleID"]);
                         break;
                     case "DesktopHtml":
                         item.DesktopHtml = record["DesktopHtml"] as string;
@@ -246,11 +246,11 @@ namespace ASPNET.StarterKit.Portal
             {
                 switch (record.GetName(i))
                 {
-                    case "ItemId":
-                        item.ItemId = Convert.ToInt32(record["ItemId"]);
+                    case "ItemID":
+                        item.ItemId = Convert.ToInt32(record["ItemID"]);
                         break;
-                    case "ModuleId":
-                        item.ModuleId = Convert.ToInt32(record["ModuleId"]);
+                    case "ModuleID":
+                        item.ModuleId = Convert.ToInt32(record["ModuleID"]);
                         break;
                     case "CreatedByUser":
                         item.CreatedByUser = record["CreatedByUser"] as string;

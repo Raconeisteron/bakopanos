@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -71,7 +72,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID");
             parameterItemId.Direction = ParameterDirection.Output;
-            
+            parameterItemId.Size=4;
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
             DbParameter parameterUserName = CreateParameter("@UserName", userName);
             DbParameter parameterName = CreateParameter("@Name", name);
@@ -92,7 +93,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
                 parameterContact2
                 );
 
-            return (int)parameterItemId.Value;
+            return Convert.ToInt32(parameterItemId.Value);
         }
 
         public void UpdateContact(int itemId, string userName, string name, string role, string email,

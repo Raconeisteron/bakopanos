@@ -44,13 +44,13 @@ namespace ASPNET.StarterKit.Portal
             if (Page.IsPostBack == false)
             {
                 // Obtain a single row of text information
-                List<PortalHtmlText> dr = _htmlTextsDb.GetHtmlText(_moduleId);
+                PortalHtmlText dr = _htmlTextsDb.GetHtmlText(_moduleId);
 
-                if (dr.Count>0)
+                if (dr!=null)
                 {
-                    DesktopText.Text = Server.HtmlDecode(dr[0].DesktopHtml);
-                    MobileSummary.Text = Server.HtmlDecode(dr[0].MobileSummary);
-                    MobileDetails.Text = Server.HtmlDecode(dr[0].MobileDetails);
+                    DesktopText.Text = Server.HtmlDecode(dr.DesktopHtml);
+                    MobileSummary.Text = Server.HtmlDecode(dr.MobileSummary);
+                    MobileDetails.Text = Server.HtmlDecode(dr.MobileDetails);
                 }
                 else
                 {
