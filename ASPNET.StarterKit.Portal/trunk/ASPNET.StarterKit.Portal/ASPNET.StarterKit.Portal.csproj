@@ -77,45 +77,6 @@
     <Content Include="Admin\Tabs.ascx" />
     <Content Include="Admin\Users.ascx" />
     <Content Include="App_Themes\Default\Default.css" />
-    <Content Include="Data\Admin.gif" />
-    <Content Include="Data\config_auth_forms.gif" />
-    <Content Include="Data\config_auth_win.gif" />
-    <Content Include="Data\enigma.gif" />
-    <Content Include="Data\hart.gif" />
-    <Content Include="Data\Layout.gif" />
-    <Content Include="Data\logoneg.gif" />
-    <Content Include="Data\mobilelogo.gif" />
-    <Content Include="Data\moduledefs.gif" />
-    <Content Include="Data\modulesettings.gif" />
-    <Content Include="Data\moduletypedef.gif" />
-    <Content Include="Data\m_ann.gif" />
-    <Content Include="Data\m_con.gif" />
-    <Content Include="Data\m_doc.gif" />
-    <Content Include="Data\m_dsc.gif" />
-    <Content Include="Data\m_evt.gif" />
-    <Content Include="Data\m_htm.gif" />
-    <Content Include="Data\m_img.gif" />
-    <Content Include="Data\m_lnk.gif" />
-    <Content Include="Data\m_ql.gif" />
-    <Content Include="Data\m_xml.gif" />
-    <Content Include="Data\nightvis.gif" />
-    <Content Include="Data\perfmon.gif" />
-    <Content Include="Data\QLT2112.gif" />
-    <Content Include="Data\rolemembership.gif" />
-    <Content Include="Data\Roles.gif" />
-    <Content Include="Data\Roles1.gif" />
-    <Content Include="Data\sales.xml" />
-    <Content Include="Data\sales.xsl" />
-    <Content Include="Data\sample.gif" />
-    <Content Include="Data\Security.Xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\sitesettings.gif" />
-    <Content Include="Data\tabbar.gif" />
-    <Content Include="Data\tabs.gif" />
-    <Content Include="Data\vanlew.gif" />
-    <Content Include="Data\whataremodules.gif" />
     <Content Include="Default.aspx" />
     <Content Include="DesktopDefault.aspx" />
     <Content Include="DesktopModules\Announcements.ascx" />
@@ -164,9 +125,6 @@
     <Content Include="Images\sm_dotnet.gif" />
     <Content Include="Images\spacer.gif" />
     <Content Include="Images\up.gif" />
-    <Content Include="PortalCfg.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
