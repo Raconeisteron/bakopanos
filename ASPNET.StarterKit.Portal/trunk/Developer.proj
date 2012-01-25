@@ -16,6 +16,12 @@
       <Output ItemName="DataFilesToCopy" TaskParameter="Include"/>
     </CreateItem>
 
+	<MakeDir Directories="ASPNET.StarterKit.Portal\Uploads" />
+		
+	<CreateItem Include="Setup\Sample\Uploads\**\*.*">
+		<Output ItemName="DataFilesToCopy" TaskParameter="Include"/>
+	</CreateItem>
+		
     <Copy SourceFiles="@(DataFilesToCopy)" DestinationFolder="ASPNET.StarterKit.Portal\Data\" SkipUnchangedFiles="true"/>
 
     <PropertyGroup>
@@ -37,6 +43,12 @@
 		<MakeDir Directories="ASPNET.StarterKit.Portal\Data" />
 		
 		<CreateItem Include="Setup\Sample\Data\**\*.*">
+			<Output ItemName="DataFilesToCopy" TaskParameter="Include"/>
+		</CreateItem>
+		
+		<MakeDir Directories="ASPNET.StarterKit.Portal\Uploads" />
+		
+		<CreateItem Include="Setup\Sample\Uploads\**\*.*">
 			<Output ItemName="DataFilesToCopy" TaskParameter="Include"/>
 		</CreateItem>
 		
