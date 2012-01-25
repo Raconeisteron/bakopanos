@@ -15,7 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalSecurity.Tests", "Por
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B6C804BB-D4C5-4F98-B1F3-2B38FE0FB6A9}"
 	ProjectSection(SolutionItems) = preProject
+		Codeplex.proj = Codeplex.proj
+		Developer.proj = Developer.proj
 		Master.proj = Master.proj
+		Master.targets = Master.targets
 	EndProjectSection
 EndProject
 Global

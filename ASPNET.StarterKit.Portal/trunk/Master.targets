@@ -1,0 +1,34 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+			
+	<PropertyGroup>    
+	  <MSBuildCommunityTasksPath>.</MSBuildCommunityTasksPath>
+	  <BuildEnv>BuildEnv\</BuildEnv>
+	  <OutputDirectory>Output\</OutputDirectory>
+	  <BinDirectory>ASPNET.StarterKit.Portal\</BinDirectory>
+	</PropertyGroup>
+	
+	<Import Project="$(BuildEnv)MSBuild.Community.Tasks.Targets"/>  
+
+	<Target Name="GetCurrentDate">
+		<Time>
+			<Output TaskParameter="Month"
+							PropertyName="Month" />
+			<Output TaskParameter="Day"
+							PropertyName="Day" />
+			<Output TaskParameter="Year"
+							PropertyName="Year" />
+			<Output TaskParameter="Hour"
+							PropertyName="Hour"/>
+			<Output TaskParameter="Minute"
+							PropertyName="Minute" />
+		</Time>
+	</Target>
+			
+	<PropertyGroup>
+		<Major>1</Major>
+		<Minor>0</Minor>
+		<Build>0</Build>
+		<Revision Condition="'$(Revision)' == ''">0</Revision>
+	</PropertyGroup>
+		
+</Project>

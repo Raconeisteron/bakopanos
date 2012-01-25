@@ -1,0 +1,56 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<UsingTask TaskName="CreateRelease" AssemblyFile="CodePlex.WebServices.Client.dll" />
+	<UsingTask TaskName="UploadFiles" AssemblyFile="CodePlex.WebServices.Client.dll" />
+	
+	<Import Project="Master.proj"/>
+	
+	<PropertyGroup>
+		<CreateCodeplexReleaseAndUploadFilesDependsOn>
+			GetCurrentDate;
+			CreateDeploymentFiles;
+		</CreateCodeplexReleaseAndUploadFilesDependsOn>
+	</PropertyGroup>  
+	
+	<PropertyGroup>
+		<ProjectName>ASPNetPortal</ProjectName>
+		<ReleaseName>v$(Major).$(Minor).$(Build).$(Revision)</ReleaseName>
+		<IsDefaultRelease>false</IsDefaultRelease>
+		<ShowToPublic>false</ShowToPublic>
+		<ShowOnHomePage>false</ShowOnHomePage>
+		<Description>cbakopanos@gmail.com</Description>
+		<ReleaseStatus>Planned</ReleaseStatus>
+		<Username Condition="'$(Username)' == ''"></Username>
+		<Password Condition="'$(Password)' == ''"></Password>
+	</PropertyGroup>
+	
+	<Target Name="CreateCodeplexReleaseAndUploadFiles"
+					DependsOnTargets="$(CreateCodeplexReleaseAndUploadFilesDependsOn)">
+
+		<CreateProperty Value="$(Year)/$(Month)/$(Day)">
+			<Output PropertyName="ReleaseDate"
+							TaskParameter="Value"/>
+		</CreateProperty>
+
+		<CreateRelease
+			ProjectName="$(ProjectName)"
+			ReleaseName="$(ReleaseName)"
+			IsDefaultRelease="$(IsDefaultRelease)"
+			ShowToPublic="$(ShowToPublic)"
+			ShowOnHomePage="$(ShowOnHomePage)"
+			Description="$(Description)"
+			ReleaseDate="$(ReleaseDate)"
+			ReleaseStatus="$(ReleaseStatus)"
+			Username="$(Username)"
+			Password="$(Password)" />
+
+		<UploadFiles
+			ProjectName="$(ProjectName)"
+			ReleaseName="$(ReleaseName)"
+			ReleaseFiles="$(OutputDirectory)$(ProjectName)$(Major).$(Minor).$(Build).$(Revision).zip"
+			Username="$(Username)"
+			Password="$(Password)" />
+		
+	</Target>
+	
+</Project>
