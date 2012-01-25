@@ -5,14 +5,38 @@
 			<osqlExe>"osql.exe"</osqlExe>
 			<sqlcmd>$(osqlExe) -E -S (local)\SQLEXPRESS</sqlcmd>
 		</PropertyGroup>
-	
-	<Target Name="CopyData">
 
-		<Copy SourceFiles="Setup\PortalCfg.xml" DestinationFolder="ASPNET.StarterKit.Portal" SkipUnchangedFiles="true"/>
+  <Target Name="CopyDataEmptySite">
+
+    <Copy SourceFiles="Setup\Empty\PortalCfg.xml" DestinationFolder="ASPNET.StarterKit.Portal" SkipUnchangedFiles="true"/>
+
+    <MakeDir Directories="ASPNET.StarterKit.Portal\Data" />
+
+    <CreateItem Include="Setup\Empty\Data\**\*.*">
+      <Output ItemName="DataFilesToCopy" TaskParameter="Include"/>
+    </CreateItem>
+
+    <Copy SourceFiles="@(DataFilesToCopy)" DestinationFolder="ASPNET.StarterKit.Portal\Data\" SkipUnchangedFiles="true"/>
+
+    <PropertyGroup>
+      <CommandClean>-i  Setup\Portal_CleanUp.sql</CommandClean>
+    </PropertyGroup>
+    <Exec Command="$(sqlcmd) $(CommandClean)" />
+
+    <PropertyGroup>
+      <CommandLoad>-i  Setup\Empty\Portal_LoadData.sql</CommandLoad>
+    </PropertyGroup>
+    <Exec Command="$(sqlcmd) $(CommandLoad)" />
+
+  </Target>
+
+  <Target Name="CopyDataSampleSite">
+
+		<Copy SourceFiles="Setup\Sample\PortalCfg.xml" DestinationFolder="ASPNET.StarterKit.Portal" SkipUnchangedFiles="true"/>
 
 		<MakeDir Directories="ASPNET.StarterKit.Portal\Data" />
 		
-		<CreateItem Include="Setup\Data\**\*.*">
+		<CreateItem Include="Setup\Sample\Data\**\*.*">
 			<Output ItemName="DataFilesToCopy" TaskParameter="Include"/>
 		</CreateItem>
 		
@@ -24,7 +48,7 @@
 		<Exec Command="$(sqlcmd) $(CommandClean)" />
 
 		<PropertyGroup>
-			<CommandLoad>-i  Setup\Portal_LoadData.sql</CommandLoad>
+			<CommandLoad>-i  Setup\Sample\Portal_LoadData.sql</CommandLoad>
 		</PropertyGroup>
 		<Exec Command="$(sqlcmd) $(CommandLoad)" />
 		
