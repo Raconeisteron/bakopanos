@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace ASPNET.StarterKit.Portal.XmlFile
 {
     [TestFixture]
-    public class XmlUsersDbFixture : IUsersDbFixture
+    public class XmlUsersDbFixture 
     {
         public void CanLogin()
         {

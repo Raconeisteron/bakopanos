@@ -57,8 +57,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         [Test]
         public void CanGetSingleAnnouncement()
         {
-            DateTime time = DateTime.Now;
-            int id = _db.AddAnnouncement(0, "un", "t", time, "d", "ml", "mml");
+            string time = DateTime.Now.ToLongDateString();
+            int id = _db.AddAnnouncement(0, "un", "t",DateTime.Parse(time), "d", "ml", "mml");
             PortalAnnouncement announcement = _db.GetSingleAnnouncement(id);
             Assert.AreEqual(announcement.ModuleId, 0);
             Assert.AreEqual(announcement.ItemId, id);
@@ -67,7 +67,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             Assert.AreEqual(announcement.Description, "d");
             Assert.AreEqual(announcement.MoreLink, "ml");
             Assert.AreEqual(announcement.MobileMoreLink, "mml");
-            Assert.AreEqual(announcement.ExpireDate, time);
+            Assert.AreEqual(announcement.ExpireDate, DateTime.Parse(time));
         }
 
         [Test]

@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
     [TestFixture, Explicit]
-    public class SqlUsersDbFixture : IUsersDbFixture
+    public class SqlUsersDbFixture 
     {
         #region Setup/Teardown
 

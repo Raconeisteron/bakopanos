@@ -42,11 +42,12 @@ namespace ASPNET.StarterKit.Portal.SqlClient
                                                parameterItemId);
 
             //Read once, since we have only one result (itemId is Unique)
-            reader.Read();
-            PortalAnnouncement announcement = reader.ToPortalAnnouncement();
-
+            while (reader.Read())
+            {
+                return reader.ToPortalAnnouncement(itemId);
+            }
             // Return the item
-            return announcement;
+            return null;
         }
 
         public void DeleteAnnouncement(int itemId)

@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
     [TestFixture, Explicit]
-    public class SqlRolesDbFixture : IRolesDbFixture
+    public class SqlRolesDbFixture 
     {
         #region Setup/Teardown
 

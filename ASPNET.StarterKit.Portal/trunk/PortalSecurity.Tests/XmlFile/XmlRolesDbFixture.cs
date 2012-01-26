@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace ASPNET.StarterKit.Portal.XmlFile
 {
     [TestFixture]
-    public class XmlRolesDbFixture : IRolesDbFixture
+    public class XmlRolesDbFixture
     {
         #region Setup/Teardown
 
