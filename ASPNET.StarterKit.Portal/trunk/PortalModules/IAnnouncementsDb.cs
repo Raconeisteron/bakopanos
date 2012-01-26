@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ASPNET.StarterKit.Portal
 {
     public interface IAnnouncementsDb
     {
-        List<PortalAnnouncement> GetAnnouncements(int moduleId);
+        Collection<PortalAnnouncement> GetAnnouncements(int moduleId);
         PortalAnnouncement GetSingleAnnouncement(int itemId);
         void DeleteAnnouncement(int itemId);
 

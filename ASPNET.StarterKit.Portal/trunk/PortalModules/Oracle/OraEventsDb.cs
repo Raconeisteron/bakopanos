@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
@@ -7,7 +8,7 @@ namespace ASPNET.StarterKit.Portal.Oracle
     {
         #region IEventsDb Members
 
-        public List<PortalEvent> GetEvents(int moduleId)
+        public Collection<PortalEvent> GetEvents(int moduleId)
         {
             throw new NotImplementedException();
         }

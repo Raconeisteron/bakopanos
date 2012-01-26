@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
 
@@ -14,7 +15,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         #region IAnnouncementsDb Members
 
-        public List<PortalAnnouncement> GetAnnouncements(int moduleId)
+        public Collection<PortalAnnouncement> GetAnnouncements(int moduleId)
         {
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
@@ -23,7 +24,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             IDataReader reader = ExecuteReader("Portal_GetAnnouncements", CommandType.StoredProcedure,
                                                parameterModuleId);
 
-            var announcementList = new List<PortalAnnouncement>();
+            var announcementList = new Collection<PortalAnnouncement>();
 
             while (reader.Read())
                 announcementList.Add(reader.ToPortalAnnouncement());

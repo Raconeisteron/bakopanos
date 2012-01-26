@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
 
@@ -14,7 +15,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         #region IEventsDb Members
 
-        public List<PortalEvent> GetEvents(int moduleId)
+        public Collection<PortalEvent> GetEvents(int moduleId)
         {
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
@@ -22,7 +23,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Execute method
             IDataReader reader = ExecuteReader("Portal_GetEvents", CommandType.StoredProcedure, parameterModuleId);
 
-            var eventList = new List<PortalEvent>();
+            var eventList = new Collection<PortalEvent>();
 
             while (reader.Read())
                 eventList.Add(reader.ToPortalEvent());

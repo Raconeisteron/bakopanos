@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
@@ -7,7 +8,7 @@ namespace ASPNET.StarterKit.Portal.Oracle
     {
         #region ILinksDb Members
 
-        public List<PortalLink> GetLinks(int moduleId)
+        public Collection<PortalLink> GetLinks(int moduleId)
         {
             throw new NotImplementedException();
         }

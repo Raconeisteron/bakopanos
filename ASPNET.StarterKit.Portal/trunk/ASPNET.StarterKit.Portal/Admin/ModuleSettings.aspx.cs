@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -96,7 +97,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                List<PortalRole> roles = _rolesDb.GetPortalRoles(portalSettings.Portal.PortalId);
+                Collection<PortalRole> roles = _rolesDb.GetPortalRoles(portalSettings.Portal.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();
@@ -155,7 +156,7 @@ namespace ASPNET.StarterKit.Portal
 
                 // Populate checkbox list with all security roles for this portal
                 // and "check" the ones already configured for this module
-                List<PortalRole> roles = _rolesDb.GetPortalRoles(portalSettings.Portal.PortalId);
+                Collection<PortalRole> roles = _rolesDb.GetPortalRoles(portalSettings.Portal.PortalId);
 
                 // Clear existing items in checkboxlist
                 authEditRoles.Items.Clear();

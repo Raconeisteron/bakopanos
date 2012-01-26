@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
@@ -7,12 +8,12 @@ namespace ASPNET.StarterKit.Portal.Oracle
     {
         #region IDiscussionsDb Members
 
-        public List<PortalDiscussion> GetTopLevelMessages(int moduleId)
+        public Collection<PortalDiscussion> GetTopLevelMessages(int moduleId)
         {
             throw new NotImplementedException();
         }
 
-        public List<PortalDiscussion> GetThreadMessages(string parent)
+        public Collection<PortalDiscussion> GetThreadMessages(string parent)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Transactions;
 using NUnit.Framework;
@@ -59,21 +60,21 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         public void CanGetPortalRoles()
         {
             //act
-            List<PortalRole> roles = _db.GetPortalRoles(0);
+            Collection<PortalRole> roles = _db.GetPortalRoles(0);
         }
 
         [Test]
         public void CanGetRoleMembers()
         {
             //act
-            List<PortalUser> users = _db.GetRoleMembers(0);
+            Collection<PortalUser> users = _db.GetRoleMembers(0);
         }
 
         [Test]
         public void CanGetUsers()
         {
             //act
-            List<PortalUser> users = _db.GetUsers();
+            Collection<PortalUser> users = _db.GetUsers();
         }
 
         [Test]

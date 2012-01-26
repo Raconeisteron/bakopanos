@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Transactions;
 using NUnit.Framework;
@@ -50,7 +51,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         [Test]
         public void CanGetAnnouncementsCanReturnEmptyList()
         {
-            List<PortalAnnouncement> announcements = _db.GetAnnouncements(9999);
+            Collection<PortalAnnouncement> announcements = _db.GetAnnouncements(9999);
             Assert.IsTrue(announcements.Count == 0);
         }
 

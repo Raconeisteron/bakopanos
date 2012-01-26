@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ASPNET.StarterKit.Portal
 {
     public interface IEventsDb
     {
-        List<PortalEvent> GetEvents(int moduleId);
+        Collection<PortalEvent> GetEvents(int moduleId);
         PortalEvent GetSingleEvent(int itemId);
         void DeleteEvent(int itemId);
 

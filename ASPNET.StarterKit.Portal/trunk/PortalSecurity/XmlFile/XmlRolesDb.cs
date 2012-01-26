@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -24,9 +25,9 @@ namespace ASPNET.StarterKit.Portal.XmlFile
 
         #region IRolesDb Members
 
-        public List<PortalRole> GetPortalRoles(int portalId)
+        public Collection<PortalRole> GetPortalRoles(int portalId)
         {
-            return _dataSet.PortalRoles.Select(item => item.ToPortalRole(portalId)).ToList();
+            return new Collection<PortalRole>(_dataSet.PortalRoles.Select(item => item.ToPortalRole(portalId)).ToList());
         }
 
         public int AddRole(int portalId, string roleName)
@@ -44,13 +45,13 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             throw new NotImplementedException();
         }
 
-        public List<PortalUser> GetRoleMembers(int roleId)
+        public Collection<PortalUser> GetRoleMembers(int roleId)
         {
             int userId =
                 _dataSet.PortalUserRoles.FirstOrDefault(item => item.Portal_RolesRow.RoleID == roleId).PortalUsersRow.
                     UserID;
             IEnumerable<SecurityDataSet.PortalUsersRow> users = _dataSet.PortalUsers.Where(item => item.UserID == userId);
-            return users.Select(item => item.ToPortalUser()).ToList();
+            return new Collection<PortalUser>( users.Select(item => item.ToPortalUser()).ToList());
         }
 
         public void AddUserRole(int roleId, int userId)
@@ -63,10 +64,10 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             throw new NotImplementedException();
         }
 
-        public List<PortalUser> GetUsers()
+        public Collection<PortalUser> GetUsers()
         {
             IEnumerable<SecurityDataSet.PortalUsersRow> users = _dataSet.PortalUsers.OrderBy(item => item.Email);
-            return users.Select(item => item.ToPortalUser()).ToList();
+            return new Collection<PortalUser>( users.Select(item => item.ToPortalUser()).ToList());
         }
 
         #endregion

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -23,9 +24,9 @@ namespace ASPNET.StarterKit.Portal.XmlFile
 
         #region ITabConfigurationDb Members
 
-        public List<TabStripDetails> FindDesktopTabs()
+        public Collection<TabStripDetails> FindDesktopTabs()
         {
-            var desktopTabs = new List<TabStripDetails>();
+            var desktopTabs = new Collection<TabStripDetails>();
 
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
@@ -46,9 +47,9 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             return desktopTabs;
         }
 
-        public List<TabStripDetails> FindMobileTabs()
+        public Collection<TabStripDetails> FindMobileTabs()
         {
-            var mobileTabs = new List<TabStripDetails>();
+            var mobileTabs = new Collection<TabStripDetails>();
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();
             DataRow[] tabs = siteSettings.Tab.Select("ShowMobile='true'", "TabOrder");
@@ -66,9 +67,9 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             return mobileTabs;
         }
 
-        public List<ModuleSettings> FindModules(int tabId)
+        public Collection<ModuleSettings> FindModules(int tabId)
         {
-            var moduleSettingsList = new List<ModuleSettings>();
+            var moduleSettingsList = new Collection<ModuleSettings>();
 
             // Obtain SiteSettings from Current Context
             var siteSettings = (SiteConfiguration) _configurationDb.GetSiteSettings();

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
@@ -22,7 +23,7 @@ namespace ASPNET.StarterKit.Portal.Oracle
             throw new NotImplementedException();
         }
 
-        public List<PortalRole> GetRolesByUser(string email)
+        public Collection<PortalRole> GetRolesByUser(string email)
         {
             throw new NotImplementedException();
         }

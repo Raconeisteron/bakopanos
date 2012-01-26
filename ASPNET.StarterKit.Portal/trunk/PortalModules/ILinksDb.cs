@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ASPNET.StarterKit.Portal
 {
     public interface ILinksDb
     {
-        List<PortalLink> GetLinks(int moduleId);
+        Collection<PortalLink> GetLinks(int moduleId);
         PortalLink GetSingleLink(int itemId);
         void DeleteLink(int itemId);
 

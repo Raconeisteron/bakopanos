@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
 
@@ -24,13 +25,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         #region IRolesDb Members
 
-        public List<PortalRole> GetPortalRoles(int portalId)
+        public Collection<PortalRole> GetPortalRoles(int portalId)
         {
             DbParameter parameterPortalId = CreateParameter("@PortalID", portalId);
 
             IDataReader reader = ExecuteReader("Portal_GetPortalRoles", CommandType.StoredProcedure, parameterPortalId);
 
-            var list = new List<PortalRole>();
+            var list = new Collection<PortalRole>();
 
             while (reader.Read())
             {
@@ -129,7 +130,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         //
         //*********************************************************************
 
-        public List<PortalUser> GetRoleMembers(int roleId)
+        public Collection<PortalUser> GetRoleMembers(int roleId)
         {
             // Add Parameters to SPROC
             DbParameter parameterRoleID = CreateParameter("@RoleID", roleId);
@@ -138,7 +139,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Execute the command
             IDataReader reader = ExecuteReader("Portal_GetRoleMembership", CommandType.StoredProcedure, parameterRoleID);
 
-            var list = new List<PortalUser>();
+            var list = new Collection<PortalUser>();
 
             while (reader.Read())
             {
@@ -207,12 +208,12 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         //
         //*********************************************************************
 
-        public List<PortalUser> GetUsers()
+        public Collection<PortalUser> GetUsers()
         {
             // Execute the command
             IDataReader reader = ExecuteReader("Portal_GetUsers", CommandType.StoredProcedure);
 
-            var list = new List<PortalUser>();
+            var list = new Collection<PortalUser>();
 
             while (reader.Read())
             {

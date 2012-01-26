@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -55,8 +56,8 @@ namespace ASPNET.StarterKit.Portal
         }
 
         public TabSettings ActiveTab { get; set; }
-        public List<TabStripDetails> DesktopTabs { get; set; }
-        public List<TabStripDetails> MobileTabs { get; set; }
+        public Collection<TabStripDetails> DesktopTabs { get; set; }
+        public Collection<TabStripDetails> MobileTabs { get; set; }
         public GlobalItem Portal { get; set; }
     }
 }

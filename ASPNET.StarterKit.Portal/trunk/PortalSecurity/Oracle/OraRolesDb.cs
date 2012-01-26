@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
@@ -7,7 +8,7 @@ namespace ASPNET.StarterKit.Portal.Oracle
     {
         #region IRolesDb Members
 
-        public List<PortalRole> GetPortalRoles(int portalId)
+        public Collection<PortalRole> GetPortalRoles(int portalId)
         {
             throw new NotImplementedException();
         }
@@ -27,7 +28,7 @@ namespace ASPNET.StarterKit.Portal.Oracle
             throw new NotImplementedException();
         }
 
-        public List<PortalUser> GetRoleMembers(int roleId)
+        public Collection<PortalUser> GetRoleMembers(int roleId)
         {
             throw new NotImplementedException();
         }
@@ -42,7 +43,7 @@ namespace ASPNET.StarterKit.Portal.Oracle
             throw new NotImplementedException();
         }
 
-        public List<PortalUser> GetUsers()
+        public Collection<PortalUser> GetUsers()
         {
             throw new NotImplementedException();
         }

@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ASPNET.StarterKit.Portal
 {
     public interface IDocumentsDb
     {
-        List<PortalDocument> GetDocuments(int moduleId);
+        Collection<PortalDocument> GetDocuments(int moduleId);
         PortalDocument GetSingleDocument(int itemId);
         PortalDocument GetDocumentContent(int itemId);
         void DeleteDocument(int itemId);

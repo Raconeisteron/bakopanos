@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ASPNET.StarterKit.Portal.Oracle
 {
@@ -7,17 +8,17 @@ namespace ASPNET.StarterKit.Portal.Oracle
     {
         #region ITabConfigurationDb Members
 
-        public List<TabStripDetails> FindDesktopTabs()
+        public Collection<TabStripDetails> FindDesktopTabs()
         {
             throw new NotImplementedException();
         }
 
-        public List<TabStripDetails> FindMobileTabs()
+        public Collection<TabStripDetails> FindMobileTabs()
         {
             throw new NotImplementedException();
         }
 
-        public List<ModuleSettings> FindModules(int tabId)
+        public Collection<ModuleSettings> FindModules(int tabId)
         {
             throw new NotImplementedException();
         }

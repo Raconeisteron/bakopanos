@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
 
@@ -13,7 +14,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         #region IDocumentsDb Members
 
-        public List<PortalDocument> GetDocuments(int moduleId)
+        public Collection<PortalDocument> GetDocuments(int moduleId)
         {
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
@@ -21,7 +22,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Execute method
             IDataReader reader = ExecuteReader("Portal_GetDocuments", CommandType.StoredProcedure, parameterModuleId);
 
-            var documentList = new List<PortalDocument>();
+            var documentList = new Collection<PortalDocument>();
 
             while (reader.Read())
                 documentList.Add(reader.ToPortalDocument());

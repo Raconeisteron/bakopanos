@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
 
@@ -14,7 +15,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         #region ILinksDb Members
 
-        public List<PortalLink> GetLinks(int moduleId)
+        public Collection<PortalLink> GetLinks(int moduleId)
         {
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
@@ -22,7 +23,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Execute method
             IDataReader reader = ExecuteReader("Portal_GetLinks", CommandType.StoredProcedure, parameterModuleId);
 
-            var linkList = new List<PortalLink>();
+            var linkList = new Collection<PortalLink>();
 
             while (reader.Read())
                 linkList.Add(reader.ToPortalLink());

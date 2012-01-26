@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ASPNET.StarterKit.Portal
 {
     public interface IContactsDb
     {
-        List<PortalContact> GetContacts(int moduleId);
+        Collection<PortalContact> GetContacts(int moduleId);
         PortalContact GetSingleContact(int itemId);
         void DeleteContact(int itemId);
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
 
@@ -13,7 +14,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         #region IDiscussionsDb Members
 
-        public List<PortalDiscussion> GetTopLevelMessages(int moduleId)
+        public Collection<PortalDiscussion> GetTopLevelMessages(int moduleId)
         {
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
@@ -22,7 +23,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             IDataReader reader = ExecuteReader("Portal_GetTopLevelMessages", CommandType.StoredProcedure,
                                                parameterModuleId);
 
-            var topLevelMessagesList = new List<PortalDiscussion>();
+            var topLevelMessagesList = new Collection<PortalDiscussion>();
 
             while (reader.Read())
                 topLevelMessagesList.Add(reader.ToPortalDiscussion());
@@ -31,7 +32,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             return topLevelMessagesList;
         }
 
-        public List<PortalDiscussion> GetThreadMessages(String parent)
+        public Collection<PortalDiscussion> GetThreadMessages(String parent)
         {
             // Add Parameters to SPROC
             DbParameter parameterParent = CreateParameter("@Parent", parent);
@@ -39,7 +40,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             //Execute method and populate reader
             IDataReader reader = ExecuteReader("Portal_GetThreadMessages", CommandType.StoredProcedure, parameterParent);
 
-            var threadMessageList = new List<PortalDiscussion>();
+            var threadMessageList = new Collection<PortalDiscussion>();
 
             while (reader.Read())
                 threadMessageList.Add(reader.ToPortalDiscussion());

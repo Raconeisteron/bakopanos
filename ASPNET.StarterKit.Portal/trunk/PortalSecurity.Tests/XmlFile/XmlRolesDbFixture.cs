@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using NUnit.Framework;
 
@@ -82,7 +83,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         [Test]
         public void GetPortalMembersReturnsCorrectNumberOfPortalUsers()
         {
-            List<PortalUser> items = _db.GetRoleMembers(0);
+            Collection<PortalUser> items = _db.GetRoleMembers(0);
             Assert.IsTrue(items.Count == 1);
         }
 
@@ -98,7 +99,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         [Test]
         public void GetPortalRolesReturnsCorrectNumberOfPortalRoles()
         {
-            List<PortalRole> items = _db.GetPortalRoles(0);
+            Collection<PortalRole> items = _db.GetPortalRoles(0);
             Assert.IsTrue(items.Count == 1);
         }
     }

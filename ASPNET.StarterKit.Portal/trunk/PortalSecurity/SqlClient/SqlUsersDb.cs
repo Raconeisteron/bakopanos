@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
 
@@ -117,13 +118,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         //
         //*********************************************************************
 
-        public List<PortalRole> GetRolesByUser(String email)
+        public Collection<PortalRole> GetRolesByUser(String email)
         {
             DbParameter parameterEmail = CreateParameter("@Email", email);
 
             IDataReader reader = ExecuteReader("Portal_GetRolesByUser", CommandType.StoredProcedure, parameterEmail);
 
-            var list = new List<PortalRole>();
+            var list = new Collection<PortalRole>();
             var userDetails = new PortalUser();
 
             while (reader.Read())

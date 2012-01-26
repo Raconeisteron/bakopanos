@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ASPNET.StarterKit.Portal
 {
     public interface IDiscussionsDb
     {
-        List<PortalDiscussion> GetTopLevelMessages(int moduleId);
-        List<PortalDiscussion> GetThreadMessages(String parent);
+        Collection<PortalDiscussion> GetTopLevelMessages(int moduleId);
+        Collection<PortalDiscussion> GetThreadMessages(String parent);
         PortalDiscussion GetSingleMessage(int itemId);
         int AddMessage(int moduleId, int parentId, string userName, string title, string body);
     }
