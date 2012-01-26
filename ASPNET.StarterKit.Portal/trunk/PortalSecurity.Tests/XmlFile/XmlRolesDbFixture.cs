@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
@@ -5,7 +6,7 @@ using NUnit.Framework;
 namespace ASPNET.StarterKit.Portal.XmlFile
 {
     [TestFixture]
-    public class XmlRolesDbFixture:IRolesDbFixture
+    public class XmlRolesDbFixture : IRolesDbFixture
     {
         #region Setup/Teardown
 
@@ -28,6 +29,46 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         private IRolesDb _db;
         private string _tempFileName;
 
+
+        public void CanGetPortalRoles()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CanGetUsers()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CanGetRoleMembers()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CanAddRole()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CanAddUserRole()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CanDeleteRole()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CanDeleteUserRole()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CanUpdateRole()
+        {
+            throw new NotImplementedException();
+        }
 
         [Test]
         public void GetPortalMembersReturnsCorrectFirstPortalUser()
@@ -59,46 +100,6 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         {
             List<PortalRole> items = _db.GetPortalRoles(0);
             Assert.IsTrue(items.Count == 1);
-        }
-
-        public void CanGetPortalRoles()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void CanGetUsers()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void CanGetRoleMembers()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void CanAddRole()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void CanAddUserRole()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void CanDeleteRole()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void CanDeleteUserRole()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void CanUpdateRole()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

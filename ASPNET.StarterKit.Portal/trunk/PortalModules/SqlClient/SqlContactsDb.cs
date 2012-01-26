@@ -7,7 +7,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlContactsDb : Db, IContactsDb
     {
-       
         public SqlContactsDb(string connectionString)
             : base(connectionString, "System.Data.SqlClient")
         {
@@ -17,7 +16,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public List<PortalContact> GetContacts(int moduleId)
         {
-
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
@@ -26,20 +24,18 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
             var contactList = new List<PortalContact>();
 
-            while(reader.Read())
+            while (reader.Read())
                 contactList.Add(reader.ToPortalContact());
-            
+
             // Return list
             return contactList;
         }
 
         public PortalContact GetSingleContact(int itemId)
         {
-
-
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
-            
+
             //Execute method and populate reader
             IDataReader reader = ExecuteReader("Portal_GetSingleContact", CommandType.StoredProcedure, parameterItemId);
 
@@ -53,7 +49,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public void DeleteContact(int itemId)
         {
-
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
@@ -72,25 +67,25 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID");
             parameterItemId.Direction = ParameterDirection.Output;
-            parameterItemId.Size=4;
+            parameterItemId.Size = 4;
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
             DbParameter parameterUserName = CreateParameter("@UserName", userName);
             DbParameter parameterName = CreateParameter("@Name", name);
-            DbParameter parameterRole = CreateParameter("@Role",role);
+            DbParameter parameterRole = CreateParameter("@Role", role);
             DbParameter parameterEmail = CreateParameter("@Email", email);
             DbParameter parameterContact1 = CreateParameter("@Contact1", contact1);
             DbParameter parameterContact2 = CreateParameter("@Contact2", contact2);
 
             //Execute method
             ExecuteNonQuery("Portal_AddContact", CommandType.StoredProcedure,
-                parameterItemId,
-                parameterModuleId,
-                parameterUserName,
-                parameterName,
-                parameterRole,
-                parameterEmail,
-                parameterContact1,
-                parameterContact2
+                            parameterItemId,
+                            parameterModuleId,
+                            parameterUserName,
+                            parameterName,
+                            parameterRole,
+                            parameterEmail,
+                            parameterContact1,
+                            parameterContact2
                 );
 
             return Convert.ToInt32(parameterItemId.Value);
@@ -106,7 +101,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
 
             // Add Parameters to SPROC
-            DbParameter parameterItemId = CreateParameter("@ItemID",itemId);
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
             DbParameter parameterUserName = CreateParameter("@UserName", userName);
             DbParameter parameterName = CreateParameter("@Name", name);
             DbParameter parameterRole = CreateParameter("@Role", role);
@@ -116,13 +111,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
             //Execute method
             ExecuteNonQuery("Portal_UpdateContact", CommandType.StoredProcedure,
-                parameterItemId, 
-                parameterUserName, 
-                parameterName,
-                parameterRole,
-                parameterEmail, 
-                parameterContact1, 
-                parameterContact2);
+                            parameterItemId,
+                            parameterUserName,
+                            parameterName,
+                            parameterRole,
+                            parameterEmail,
+                            parameterContact1,
+                            parameterContact2);
         }
 
         #endregion

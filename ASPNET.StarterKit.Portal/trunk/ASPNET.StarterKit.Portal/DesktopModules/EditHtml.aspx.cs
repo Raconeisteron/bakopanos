@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 
@@ -46,7 +44,7 @@ namespace ASPNET.StarterKit.Portal
                 // Obtain a single row of text information
                 PortalHtmlText dr = _htmlTextsDb.GetHtmlText(_moduleId);
 
-                if (dr!=null)
+                if (dr != null)
                 {
                     DesktopText.Text = Server.HtmlDecode(dr.DesktopHtml);
                     MobileSummary.Text = Server.HtmlDecode(dr.MobileSummary);

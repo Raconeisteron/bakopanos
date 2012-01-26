@@ -1,5 +1,4 @@
 using System;
-using System.Data;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 
@@ -128,13 +127,13 @@ namespace ASPNET.StarterKit.Portal
             // Obtain the selected item from the Discussion table
             PortalDiscussion dr = _discussionsDb.GetSingleMessage(_itemId);
 
-            
+
             // Security check.  verify that itemid is within the module.
             int dbModuleId = dr.ModuleId;
             if (dbModuleId != _moduleId)
-            
+
                 Response.Redirect("~/Admin/EditAccessDenied.aspx");
-            
+
 
             // Update labels with message contents
             Title.Text = dr.Title;
@@ -163,7 +162,7 @@ namespace ASPNET.StarterKit.Portal
                 nextItem.HRef = Request.Path + "?ItemId=" + nextId + "&mid=" + _moduleId;
             }
 
-           
+
             // Show/Hide Next/Prev Button depending on whether there is a next/prev message
             if (prevId <= 0)
             {

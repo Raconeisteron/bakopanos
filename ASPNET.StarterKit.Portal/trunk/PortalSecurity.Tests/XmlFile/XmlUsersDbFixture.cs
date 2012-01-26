@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 
 namespace ASPNET.StarterKit.Portal.XmlFile
@@ -7,52 +8,52 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     {
         public void CanLogin()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void CanGetRolesByUser()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void CanGetRoles()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void CanGetSingleUser()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void CanUpdateUser()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void CanDeleteUser()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void CanAddUser()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void CanGetRolesByUserCanReturnEmptyList()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void CanGetRolesCanReturnEmptyList()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void CanGetSingleUserCanReturnNull()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

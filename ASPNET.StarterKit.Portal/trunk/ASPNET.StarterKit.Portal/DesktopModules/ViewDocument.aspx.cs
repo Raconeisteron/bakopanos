@@ -1,5 +1,4 @@
 using System;
-using System.Data;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 
@@ -36,7 +35,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 // Obtain Document Data from Documents table
                 PortalDocument dBContent = _documentsDb.GetDocumentContent(_documentId);
-                
+
                 // Serve up the file by name
                 Response.AppendHeader("content-disposition", "filename=" + dBContent.FileFriendlyName);
 
@@ -45,7 +44,7 @@ namespace ASPNET.StarterKit.Portal
                 Response.ContentType = dBContent.ContentType;
 
                 // output the actual document contents to the response output stream
-                Response.OutputStream.Write(dBContent.Content, 0,(int) dBContent.ContentSize);
+                Response.OutputStream.Write(dBContent.Content, 0, dBContent.ContentSize);
 
                 // end the response
                 Response.End();

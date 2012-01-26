@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 
@@ -48,9 +47,9 @@ namespace ASPNET.StarterKit.Portal
                     // Get settings from the database
                     Hashtable settings = _moduleConfigurationDb.GetModuleSettings(_moduleId);
 
-                    Src.Text = (string)settings["src"];
-                    Width.Text = (string)settings["width"];
-                    Height.Text = (string)settings["height"];
+                    Src.Text = (string) settings["src"];
+                    Width.Text = (string) settings["width"];
+                    Height.Text = (string) settings["height"];
                 }
 
                 // Store URL Referrer to return to portal

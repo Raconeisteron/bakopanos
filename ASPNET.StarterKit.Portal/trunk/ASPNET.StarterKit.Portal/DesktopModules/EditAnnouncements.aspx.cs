@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 
@@ -59,7 +57,7 @@ namespace ASPNET.StarterKit.Portal
                 // Obtain a single row of announcement information
                 PortalAnnouncement dr = _announcementsDb.GetSingleAnnouncement(_itemId);
 
-                
+
                 // Security check.  verify that itemid is within the module.
                 int dbModuleId = dr.ModuleId;
                 if (dbModuleId != _moduleId)
@@ -73,7 +71,6 @@ namespace ASPNET.StarterKit.Portal
                 ExpireField.Text = dr.ExpireDate.ToShortDateString();
                 CreatedBy.Text = dr.CreatedByUser;
                 CreatedDate.Text = dr.CreatedDate.ToShortDateString();
-
             }
 
             // Store URL Referrer to return to portal

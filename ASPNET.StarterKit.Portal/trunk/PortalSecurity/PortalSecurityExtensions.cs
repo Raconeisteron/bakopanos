@@ -31,12 +31,13 @@ namespace ASPNET.StarterKit.Portal
         public static PortalUserDetails ToPortalUserDetails(this IDataRecord record, string email)
         {
             var item = new PortalUserDetails
-                            {
-                                UserId = Convert.ToInt32(record["UserID"]),
-                                Name = record["Name"] as string,
-                                Email = email,//record["Email"] as string,
-                                Password = record["Password"] as string
-                            };
+                           {
+                               UserId = Convert.ToInt32(record["UserID"]),
+                               Name = record["Name"] as string,
+                               Email = email,
+                               //record["Email"] as string,
+                               Password = record["Password"] as string
+                           };
             return item;
         }
     }

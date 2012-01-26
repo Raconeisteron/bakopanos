@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
@@ -46,7 +45,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             DbParameter parameterEmail = CreateParameter("@Email", email);
 
             DbParameter parameterPassword = CreateParameter("@Password", password);
-           
+
             DbParameter parameterUserId = CreateParameter("@UserID");
             parameterUserId.Direction = ParameterDirection.Output;
             parameterUserId.Size = 50;
@@ -55,7 +54,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             try
             {
                 // Open the connection and execute the Command
-                ExecuteNonQuery("Portal_AddUser", CommandType.StoredProcedure, parameterFullName, parameterEmail, parameterPassword, parameterUserId);
+                ExecuteNonQuery("Portal_AddUser", CommandType.StoredProcedure, parameterFullName, parameterEmail,
+                                parameterPassword, parameterUserId);
             }
             catch
             {
@@ -102,7 +102,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
             DbParameter parameterPassword = CreateParameter("@Password", password);
 
-            ExecuteNonQuery("Portal_UpdateUser", CommandType.StoredProcedure, parameterUserId, parameterEmail, parameterPassword);
+            ExecuteNonQuery("Portal_UpdateUser", CommandType.StoredProcedure, parameterUserId, parameterEmail,
+                            parameterPassword);
         }
 
         //*********************************************************************
@@ -154,12 +155,10 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             var user = new PortalUserDetails();
 
             if (reader.Read())
-                user =  reader.ToPortalUserDetails(email);
+                user = reader.ToPortalUserDetails(email);
 
             // Return the datareader
-            return user; 
-
-
+            return user;
         }
 
         //*********************************************************************
@@ -212,14 +211,15 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Add Parameters to SPROC
             DbParameter parameterEmail = CreateParameter("@Email", email);
 
-            DbParameter parameterPassword = CreateParameter("@Password",password);
+            DbParameter parameterPassword = CreateParameter("@Password", password);
 
             DbParameter parameterUserName = CreateParameter("@UserName");
             parameterUserName.Direction = ParameterDirection.Output;
             parameterUserName.Size = 50;
 
             // Execute the command
-            ExecuteNonQuery("Portal_UserLogin", CommandType.StoredProcedure, parameterEmail, parameterPassword, parameterUserName);
+            ExecuteNonQuery("Portal_UserLogin", CommandType.StoredProcedure, parameterEmail, parameterPassword,
+                            parameterUserName);
 
             if ((parameterUserName.Value != null) && (parameterUserName.Value != DBNull.Value))
             {

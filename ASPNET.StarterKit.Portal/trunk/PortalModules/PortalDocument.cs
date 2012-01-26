@@ -14,6 +14,5 @@ namespace ASPNET.StarterKit.Portal
         public byte[] Content { get; set; }
         public string ContentType { get; set; }
         public int ContentSize { get; set; }
-        
     }
 }

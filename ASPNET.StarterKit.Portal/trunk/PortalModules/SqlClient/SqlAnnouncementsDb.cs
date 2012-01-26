@@ -7,7 +7,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlAnnouncementsDb : Db, IAnnouncementsDb
     {
-
         public SqlAnnouncementsDb(string connectionString)
             : base(connectionString, "System.Data.SqlClient")
         {
@@ -39,7 +38,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
             //Execute method and populate reader
-            IDataReader reader = ExecuteReader("Portal_GetSingleAnnouncement", CommandType.StoredProcedure, parameterItemId);
+            IDataReader reader = ExecuteReader("Portal_GetSingleAnnouncement", CommandType.StoredProcedure,
+                                               parameterItemId);
 
             //Read once, since we have only one result (itemId is Unique)
             reader.Read();
@@ -80,16 +80,15 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
             //Execute method
             ExecuteNonQuery("Portal_AddAnnouncement", CommandType.StoredProcedure,
-                parameterItemId,
-                parameterModuleId,
-                parameterUserName,
-                parameterTitle,
-                parameterMoreLink,
-                parameterMobileMoreLink,
-                parameterExpireDate,
-                parameterDescription
+                            parameterItemId,
+                            parameterModuleId,
+                            parameterUserName,
+                            parameterTitle,
+                            parameterMoreLink,
+                            parameterMobileMoreLink,
+                            parameterExpireDate,
+                            parameterDescription
                 );
-
 
 
             return Convert.ToInt32(parameterItemId.Value);
@@ -112,14 +111,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
             //Execute method
             ExecuteNonQuery("Portal_UpdateAnnouncement", CommandType.StoredProcedure,
-                parameterItemId,
-                parameterUserName,
-                parameterTitle,
-                parameterMoreLink,
-                parameterMobileMoreLink,
-                parameterExpireDate,
-                parameterDescription);
-
+                            parameterItemId,
+                            parameterUserName,
+                            parameterTitle,
+                            parameterMoreLink,
+                            parameterMobileMoreLink,
+                            parameterExpireDate,
+                            parameterDescription);
         }
 
         #endregion

@@ -1,5 +1,4 @@
 using System;
-using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.Practices.Unity;
@@ -171,7 +170,7 @@ namespace ASPNET.StarterKit.Portal
         private void BindData()
         {
             // Bind the Email and Password
-            PortalUser dr = (PortalUser)_usersDb.GetSingleUser(_userName);
+            PortalUser dr = _usersDb.GetSingleUser(_userName);
 
             Email.Text = dr.Email;
 

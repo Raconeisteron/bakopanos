@@ -25,7 +25,7 @@
                     edit access for this module.
                     <br />
                     <br />
-                    <a href="<%=Global.GetApplicationPath(Request)%>/DesktopDefault.aspx">Return to Portal
+                    <a href="<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx">Return to Portal
                         Home</a>
                 </td>
             </tr>

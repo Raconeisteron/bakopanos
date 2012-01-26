@@ -11,7 +11,7 @@ namespace ASPNET.StarterKit.Portal
         public string Body { get; set; }
         public string DisplayOrder { get; set; }
         public string CreatedByUser { get; set; }
-        
+
         //custom store procedure variables
         public int? NextMessageId { get; set; } //Portal_GetSingleMessage
         public int? PrevMessageId { get; set; } //Portal_GetSingleMessage

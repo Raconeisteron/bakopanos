@@ -1,10 +1,8 @@
-using NUnit.Framework;
-
 namespace ASPNET.StarterKit.Portal
 {
     public interface IUsersDbFixture
     {
-        void CanLogin();     
+        void CanLogin();
         void CanGetRolesByUser();
         void CanGetRoles();
         void CanGetSingleUser();

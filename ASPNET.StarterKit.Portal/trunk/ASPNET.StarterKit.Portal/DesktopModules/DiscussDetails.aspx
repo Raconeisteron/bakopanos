@@ -14,9 +14,9 @@
             <td align="right">
                 <asp:Panel ID="ButtonPanel" runat="server">
                     <a class="CommandButton" id="prevItem" title="Previous Message" runat="server">
-                        <img src='<%=Global.GetApplicationPath(Request) + "/images/rew.gif"%>' border="0"></a>&nbsp;
+                        <img src='<%= Global.GetApplicationPath(Request) + "/images/rew.gif" %>' border="0"></a>&nbsp;
                     <a class="CommandButton" id="nextItem" title="Next Message" runat="server">
-                        <img src='<%=Global.GetApplicationPath(Request) + "/images/fwd.gif"%>' border="0"></a>&nbsp;
+                        <img src='<%= Global.GetApplicationPath(Request) + "/images/fwd.gif" %>' border="0"></a>&nbsp;
                     <asp:LinkButton ID="ReplyBtn" runat="server" EnableViewState="false" CssClass="CommandButton"
                                     Text="Reply to this Message" OnClick="ReplyBtn_Click"></asp:LinkButton>
                 </asp:Panel>

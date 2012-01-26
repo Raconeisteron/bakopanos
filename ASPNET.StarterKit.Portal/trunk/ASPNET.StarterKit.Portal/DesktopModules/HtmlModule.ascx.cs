@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 
@@ -34,7 +32,6 @@ namespace ASPNET.StarterKit.Portal
                 string content = Server.HtmlDecode(dr.DesktopHtml);
                 HtmlHolder.Controls.Add(new LiteralControl(content));
             }
-
         }
     }
 }

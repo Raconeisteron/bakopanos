@@ -8,9 +8,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
     [TestFixture, Explicit]
     public class SqlUsersDbFixture : IUsersDbFixture
     {
-        private readonly TransactionScope _scope = new TransactionScope();
-        private IUsersDb _db;
-
         #region Setup/Teardown
 
         [SetUp]
@@ -27,12 +24,39 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         #endregion
 
+        private readonly TransactionScope _scope = new TransactionScope();
+        private IUsersDb _db;
+
         [Test]
-        public void CanLogin()
+        public void CanAddUser()
         {
             //act
-            _db.Login("guest", "guest");
+            int userId = _db.AddUser("testuser", "a@a.com", "secret");
+            //assert
+            Assert.AreNotEqual(userId, -1);
+            PortalUser user = _db.GetSingleUser("a@a.com");
+            Assert.IsTrue(user.Email == "a@a.com");
+            Assert.IsTrue(user.Name == "testuser");
+            Assert.IsTrue(user.UserId == userId);
+        }
 
+        [Test]
+        public void CanDeleteUser()
+        {
+            //arrange
+            int userId = _db.AddUser("testuser", "a@a.com", "secret");
+            //act
+            _db.DeleteUser(userId);
+            //assert
+            PortalUser user = _db.GetSingleUser("aa@a.com");
+            Assert.IsNotNull(user);
+        }
+
+        [Test]
+        public void CanGetRoles()
+        {
+            //act
+            string[] roles = _db.GetRoles("guest");
         }
 
         [Test]
@@ -40,7 +64,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
             //act
             List<PortalRole> roles = _db.GetRolesByUser("guest");
-
         }
 
         [Test]
@@ -53,16 +76,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         }
 
         [Test]
-        public void CanGetRoles()
-        {
-            //act
-            string[] roles = _db.GetRoles("guest");
-        }
-
-        [Test]
         public void CanGetRolesCanReturnEmptyList()
         {
-
             //act
             string[] roles = _db.GetRoles("ooops");
             //assert            
@@ -95,6 +110,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         }
 
         [Test]
+        public void CanLogin()
+        {
+            //act
+            _db.Login("guest", "guest");
+        }
+
+        [Test]
         public void CanUpdateUser()
         {
             //arrange
@@ -103,35 +125,10 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             //act
             _db.UpdateUser(userId, "a@a.com", "secret");
             //assert            
-            PortalUserDetails user = _db.GetSingleUser("a@a.com");            
+            PortalUserDetails user = _db.GetSingleUser("a@a.com");
             Assert.IsTrue(user.Email == "a@a.com");
             Assert.IsTrue(user.Name == "tu");
             Assert.IsTrue(user.Password == "secret");
-            Assert.IsTrue(user.UserId == userId);
-        }
-
-        [Test]
-        public void CanDeleteUser()
-        {
-            //arrange
-            int userId = _db.AddUser("testuser", "a@a.com", "secret");
-            //act
-            _db.DeleteUser(userId);
-            //assert
-            PortalUser user = _db.GetSingleUser("aa@a.com");
-            Assert.IsNotNull(user);
-        }
-       
-        [Test]
-        public void CanAddUser()
-        {
-            //act
-            int userId = _db.AddUser("testuser", "a@a.com", "secret");
-            //assert
-            Assert.AreNotEqual(userId, -1);
-            PortalUser user = _db.GetSingleUser("a@a.com");
-            Assert.IsTrue(user.Email == "a@a.com");
-            Assert.IsTrue(user.Name == "testuser");
             Assert.IsTrue(user.UserId == userId);
         }
     }

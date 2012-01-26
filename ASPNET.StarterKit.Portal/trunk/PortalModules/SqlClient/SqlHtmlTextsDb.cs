@@ -1,13 +1,10 @@
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
-    public class SqlHtmlTextsDb :Db, IHtmlTextsDb
+    public class SqlHtmlTextsDb : Db, IHtmlTextsDb
     {
-        
-
         public SqlHtmlTextsDb(string connectionString)
             : base(connectionString, "System.Data.SqlClient")
         {
@@ -17,7 +14,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public PortalHtmlText GetHtmlText(int moduleId)
         {
-
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
@@ -34,7 +30,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public void UpdateHtmlText(int moduleId, string desktopHtml, string mobileSummary, string mobileDetails)
         {
-
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
             DbParameter parameterDesktopHtml = CreateParameter("@DesktopHtml", desktopHtml);
@@ -43,11 +38,10 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
             //Execute Method
             ExecuteNonQuery("Portal_UpdateHtmlText", CommandType.StoredProcedure,
-                parameterModuleId,
-                parameterDesktopHtml,
-                parameterMobileSummary,
-                parameterMobileDetails);
-
+                            parameterModuleId,
+                            parameterDesktopHtml,
+                            parameterMobileSummary,
+                            parameterMobileDetails);
         }
 
         #endregion

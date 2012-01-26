@@ -1,5 +1,4 @@
 using System;
-using System.Data;
 using System.IO;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
@@ -70,7 +69,6 @@ namespace ASPNET.StarterKit.Portal
                     CategoryField.Text = dr.Category;
                     CreatedBy.Text = dr.CreatedByUser;
                     CreatedDate.Text = dr.CreatedDate.ToShortDateString();
-
                 }
 
                 // Store URL Referrer to return to portal

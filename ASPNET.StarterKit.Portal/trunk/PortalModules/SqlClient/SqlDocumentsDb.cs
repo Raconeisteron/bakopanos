@@ -6,7 +6,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlDocumentsDb : Db, IDocumentsDb
     {
-
         public SqlDocumentsDb(string connectionString)
             : base(connectionString, "System.Data.SqlClient")
         {
@@ -16,7 +15,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public List<PortalDocument> GetDocuments(int moduleId)
         {
-
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
@@ -34,7 +32,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public PortalDocument GetSingleDocument(int itemId)
         {
-
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
@@ -52,7 +49,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public PortalDocument GetDocumentContent(int itemId)
         {
-
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
@@ -69,7 +65,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public void DeleteDocument(int itemId)
         {
-
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
@@ -87,7 +82,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
-            DbParameter parameterModuleId = CreateParameter("@ModuleID",moduleId);
+            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
             DbParameter parameterUserName = CreateParameter("@UserName", userName);
             DbParameter parameterName = CreateParameter("@FileFriendlyName", name);
             DbParameter parameterFileUrl = CreateParameter("@FileNameUrl", url);
@@ -98,15 +93,15 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
             //Execute method
             ExecuteNonQuery("Portal_UpdateDocument", CommandType.StoredProcedure,
-                parameterItemId,
-                parameterModuleId,
-                parameterUserName,
-                parameterName,
-                parameterFileUrl,
-                parameterCategory,
-                parameterContent,
-                parameterContentType,
-                parameterContentSize
+                            parameterItemId,
+                            parameterModuleId,
+                            parameterUserName,
+                            parameterName,
+                            parameterFileUrl,
+                            parameterCategory,
+                            parameterContent,
+                            parameterContentType,
+                            parameterContentSize
                 );
         }
 

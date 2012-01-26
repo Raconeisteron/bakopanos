@@ -7,7 +7,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlLinksDb : Db, ILinksDb
     {
-
         public SqlLinksDb(string connectionString)
             : base(connectionString, "System.Data.SqlClient")
         {
@@ -17,7 +16,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public List<PortalLink> GetLinks(int moduleId)
         {
-
             // Add Parameters to SPROC
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
@@ -35,7 +33,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public PortalLink GetSingleLink(int itemId)
         {
-
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
@@ -52,7 +49,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public void DeleteLink(int itemId)
         {
-
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
@@ -72,24 +68,24 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             DbParameter parameterItemId = CreateParameter("@ItemID");
             parameterItemId.Direction = ParameterDirection.Output;
             parameterItemId.Size = 4;
-            DbParameter parameterModuleId = CreateParameter("@ModuleID",  moduleId);
+            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
             DbParameter parameterUserName = CreateParameter("@UserName", userName);
             DbParameter parameterTitle = CreateParameter("@Title", title);
-            DbParameter parameterDescription = CreateParameter("@Description",  description);
+            DbParameter parameterDescription = CreateParameter("@Description", description);
             DbParameter parameterUrl = CreateParameter("@Url", url);
-            DbParameter parameterMobileUrl = CreateParameter("@MobileUrl",  mobileUrl);
+            DbParameter parameterMobileUrl = CreateParameter("@MobileUrl", mobileUrl);
             DbParameter parameterViewOrder = CreateParameter("@ViewOrder", viewOrder);
 
             //Execute Method
             ExecuteNonQuery("Portal_AddLink", CommandType.StoredProcedure,
-                parameterItemId,
-                parameterModuleId,
-                parameterUserName,
-                parameterTitle,
-                parameterDescription,
-                parameterUrl,
-                parameterMobileUrl,
-                parameterViewOrder);
+                            parameterItemId,
+                            parameterModuleId,
+                            parameterUserName,
+                            parameterTitle,
+                            parameterDescription,
+                            parameterUrl,
+                            parameterMobileUrl,
+                            parameterViewOrder);
 
 
             return Convert.ToInt32(parameterItemId.Value);
@@ -114,13 +110,13 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
             //Execute method
             ExecuteNonQuery("Portal_UpdateLink", CommandType.StoredProcedure,
-                parameterItemId,
-                parameterUserName,
-                parameterTitle,
-                parameterDescription,
-                parameterUrl,
-                parameterMobileUrl,
-                parameterViewOrder);
+                            parameterItemId,
+                            parameterUserName,
+                            parameterTitle,
+                            parameterDescription,
+                            parameterUrl,
+                            parameterMobileUrl,
+                            parameterViewOrder);
         }
 
         #endregion

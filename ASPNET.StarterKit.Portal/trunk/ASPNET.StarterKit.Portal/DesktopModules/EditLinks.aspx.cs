@@ -1,5 +1,4 @@
 using System;
-using System.Data;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 
@@ -71,7 +70,6 @@ namespace ASPNET.StarterKit.Portal
                     ViewOrderField.Text = dr.ViewOrder.ToString();
                     CreatedBy.Text = dr.CreatedByUser;
                     CreatedDate.Text = dr.CreatedDate.ToShortDateString();
-
                 }
 
                 // Store URL Referrer to return to portal
@@ -105,7 +103,7 @@ namespace ASPNET.StarterKit.Portal
                 }
 
                 // Redirect back to the portal home page
-                Response.Redirect((String)ViewState["UrlReferrer"]);
+                Response.Redirect((String) ViewState["UrlReferrer"]);
             }
         }
 
@@ -128,7 +126,7 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Redirect back to the portal home page
-            Response.Redirect((String)ViewState["UrlReferrer"]);
+            Response.Redirect((String) ViewState["UrlReferrer"]);
         }
 
         //****************************************************************
@@ -142,7 +140,7 @@ namespace ASPNET.StarterKit.Portal
         protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
-            Response.Redirect((String)ViewState["UrlReferrer"]);
+            Response.Redirect((String) ViewState["UrlReferrer"]);
         }
     }
 }

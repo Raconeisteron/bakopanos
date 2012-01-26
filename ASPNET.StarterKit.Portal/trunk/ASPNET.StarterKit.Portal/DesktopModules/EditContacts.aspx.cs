@@ -1,5 +1,4 @@
 using System;
-using System.Data;
 using System.Web.UI;
 using Microsoft.Practices.Unity;
 
@@ -58,12 +57,12 @@ namespace ASPNET.StarterKit.Portal
                 // Obtain a single row of contact information
                 PortalContact dr = _contactsDb.GetSingleContact(_itemId);
 
-                
+
                 // Security check.  verify that itemid is within the module.
                 int dbModuleId = dr.ModuleId;
                 if (dbModuleId != _moduleId)
                     Response.Redirect("~/Admin/EditAccessDenied.aspx");
-                
+
 
                 NameField.Text = dr.Name;
                 RoleField.Text = dr.Role;
@@ -72,8 +71,6 @@ namespace ASPNET.StarterKit.Portal
                 Contact2Field.Text = dr.Contact2;
                 CreatedBy.Text = dr.CreatedByUser;
                 CreatedDate.Text = dr.CreatedDate.ToShortDateString();
-
-                
             }
 
             // Store URL Referrer to return to portal

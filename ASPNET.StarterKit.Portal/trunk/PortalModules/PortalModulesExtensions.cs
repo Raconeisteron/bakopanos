@@ -24,7 +24,7 @@ namespace ASPNET.StarterKit.Portal
                         item.CreatedByUser = record["CreatedByUser"] as string;
                         break;
                     case "CreatedDate":
-                        item.CreatedDate = (DateTime)record["CreatedDate"];
+                        item.CreatedDate = (DateTime) record["CreatedDate"];
                         break;
                     case "Title":
                         item.Title = record["Title"] as string;
@@ -36,7 +36,7 @@ namespace ASPNET.StarterKit.Portal
                         item.MobileMoreLink = record["MobileMoreLink"] as string;
                         break;
                     case "ExpireDate":
-                        item.ExpireDate = (DateTime)record["ExpireDate"];
+                        item.ExpireDate = (DateTime) record["ExpireDate"];
                         break;
                     case "Description":
                         item.Description = record["Description"] as string;
@@ -64,7 +64,7 @@ namespace ASPNET.StarterKit.Portal
                         item.CreatedByUser = record["CreatedByUser"] as string;
                         break;
                     case "CreatedDate":
-                        item.CreatedDate = (DateTime)record["CreatedDate"];
+                        item.CreatedDate = (DateTime) record["CreatedDate"];
                         break;
                     case "Name":
                         item.Name = record["Name"] as string;
@@ -104,7 +104,7 @@ namespace ASPNET.StarterKit.Portal
                         item.Title = record["Title"] as string;
                         break;
                     case "CreatedDate":
-                        item.CreatedDate = (DateTime)record["CreatedDate"];
+                        item.CreatedDate = (DateTime) record["CreatedDate"];
                         break;
                     case "Body":
                         item.Body = record["Body"] as string;
@@ -116,10 +116,14 @@ namespace ASPNET.StarterKit.Portal
                         item.CreatedByUser = record["CreatedByUser"] as string;
                         break;
                     case "NextMessageID":
-                        item.NextMessageId = record["NextMessageID"] == DBNull.Value ? (int?) null : Convert.ToInt32(record["NextMessageID"]);
+                        item.NextMessageId = record["NextMessageID"] == DBNull.Value
+                                                 ? (int?) null
+                                                 : Convert.ToInt32(record["NextMessageID"]);
                         break;
                     case "PrevMessageID":
-                        item.PrevMessageId = record["PrevMessageID"] == DBNull.Value ? (int?) null : Convert.ToInt32(record["PrevMessageID"]);
+                        item.PrevMessageId = record["PrevMessageID"] == DBNull.Value
+                                                 ? (int?) null
+                                                 : Convert.ToInt32(record["PrevMessageID"]);
                         break;
                     case "Parent":
                         item.Parent = record["Parent"] as string;
@@ -153,7 +157,7 @@ namespace ASPNET.StarterKit.Portal
                         item.CreatedByUser = record["CreatedByUser"] as string;
                         break;
                     case "CreatedDate":
-                        item.CreatedDate = (DateTime)record["CreatedDate"];
+                        item.CreatedDate = (DateTime) record["CreatedDate"];
                         break;
                     case "FileNameUrl":
                         item.FileNameUrl = record["FileNameUrl"] as string;
@@ -171,7 +175,9 @@ namespace ASPNET.StarterKit.Portal
                         item.ContentType = record["ContentType"] as string;
                         break;
                     case "ContentSize":
-                        item.ContentSize = record["ContentSize"] == DBNull.Value ? 0 : Convert.ToInt32(record["ContentSize"]);
+                        item.ContentSize = record["ContentSize"] == DBNull.Value
+                                               ? 0
+                                               : Convert.ToInt32(record["ContentSize"]);
                         break;
                 }
             }
@@ -195,7 +201,7 @@ namespace ASPNET.StarterKit.Portal
                         item.CreatedByUser = record["CreatedByUser"] as string;
                         break;
                     case "CreatedDate":
-                        item.CreatedDate = (DateTime)record["CreatedDate"];
+                        item.CreatedDate = (DateTime) record["CreatedDate"];
                         break;
                     case "Title":
                         item.Title = record["Title"] as string;
@@ -207,7 +213,7 @@ namespace ASPNET.StarterKit.Portal
                         item.Description = record["Description"] as string;
                         break;
                     case "ExpireDate":
-                        item.ExpireDate = (DateTime)record["ExpireDate"];
+                        item.ExpireDate = (DateTime) record["ExpireDate"];
                         break;
                 }
             }
@@ -256,7 +262,7 @@ namespace ASPNET.StarterKit.Portal
                         item.CreatedByUser = record["CreatedByUser"] as string;
                         break;
                     case "CreatedDate":
-                        item.CreatedDate = (DateTime)record["CreatedDate"];
+                        item.CreatedDate = (DateTime) record["CreatedDate"];
                         break;
                     case "Title":
                         item.Title = record["Title"] as string;

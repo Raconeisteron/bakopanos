@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Data.Common;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
@@ -57,7 +56,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
             // Add Parameters to SPROC
             DbParameter parameterPortalID = CreateParameter("@PortalID", portalId);
- 
+
             DbParameter parameterRoleName = CreateParameter("@RoleName", roleName);
 
             DbParameter parameterRoleID = CreateParameter("@RoleID");
@@ -65,7 +64,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             parameterRoleID.Size = 4;
 
             // Execute the command
-            ExecuteNonQuery("Portal_AddRole", CommandType.StoredProcedure, parameterPortalID, parameterRoleName, parameterRoleID);
+            ExecuteNonQuery("Portal_AddRole", CommandType.StoredProcedure, parameterPortalID, parameterRoleName,
+                            parameterRoleID);
 
             // return the role id 
             return int.Parse(parameterRoleID.Value.ToString());
@@ -166,7 +166,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             DbParameter parameterUserID = CreateParameter("@UserID", userId);
 
             // Execute the command
-            ExecuteNonQuery("Portal_AddUserRole",CommandType.StoredProcedure,parameterRoleID,parameterUserID);
+            ExecuteNonQuery("Portal_AddUserRole", CommandType.StoredProcedure, parameterRoleID, parameterUserID);
         }
 
         //*********************************************************************

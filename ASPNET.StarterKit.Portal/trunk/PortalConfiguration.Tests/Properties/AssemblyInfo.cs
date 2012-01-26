@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("PortalModules.Tests")]
+[assembly: AssemblyTitle("PortalConfiguration.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PortalModules.Tests")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
+[assembly: AssemblyCompany("F. Hoffmann La Roche Ltd")]
+[assembly: AssemblyProduct("PortalConfiguration.Tests")]
+[assembly: AssemblyCopyright("Copyright © F. Hoffmann La Roche Ltd 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 
-[assembly: Guid("d80a44e5-6a7b-452c-a79f-e12bb2356e5e")]
+[assembly: Guid("c9fd8977-2aa9-439b-a466-f0a1cdbf0e28")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,5 +1,4 @@
 using System;
-using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.Practices.Unity;
@@ -62,12 +61,12 @@ namespace ASPNET.StarterKit.Portal
                 {
                     // Obtain a single row of event information
                     PortalEvent dr = _eventsDb.GetSingleEvent(_itemId);
-                    
+
                     // Security check.  verify that itemid is within the module.
                     int dbModuleID = dr.ModuleId;
                     if (dbModuleID != _moduleId)
                         Response.Redirect("~/Admin/EditAccessDenied.aspx");
-                    
+
 
                     TitleField.Text = dr.Title;
                     DescriptionField.Text = dr.Description;
@@ -75,7 +74,6 @@ namespace ASPNET.StarterKit.Portal
                     CreatedBy.Text = dr.CreatedByUser;
                     WhereWhenField.Text = dr.WhereWhen;
                     CreatedDate.Text = dr.CreatedDate.ToShortDateString();
-
                 }
 
                 // Store URL Referrer to return to portal

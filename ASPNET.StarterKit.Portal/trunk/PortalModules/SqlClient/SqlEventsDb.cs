@@ -7,7 +7,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 {
     public class SqlEventsDb : Db, IEventsDb
     {
-
         public SqlEventsDb(string connectionString)
             : base(connectionString, "System.Data.SqlClient")
         {
@@ -17,9 +16,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public List<PortalEvent> GetEvents(int moduleId)
         {
-
             // Add Parameters to SPROC
-            DbParameter parameterModuleId = CreateParameter("@ModuleID",moduleId);
+            DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
 
             // Execute method
             IDataReader reader = ExecuteReader("Portal_GetEvents", CommandType.StoredProcedure, parameterModuleId);
@@ -35,7 +33,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public PortalEvent GetSingleEvent(int itemId)
         {
-
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
@@ -52,9 +49,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public void DeleteEvent(int itemId)
         {
-
             // Add Parameters to SPROC
-            DbParameter parameterItemId = CreateParameter("@ItemID",itemId);
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
             //Execute method
             ExecuteNonQuery("Portal_DeleteEvent", CommandType.StoredProcedure, parameterItemId);
@@ -76,19 +72,19 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             DbParameter parameterModuleId = CreateParameter("@ModuleID", moduleId);
             DbParameter parameterUserName = CreateParameter("@UserName", userName);
             DbParameter parameterTitle = CreateParameter("@Title", title);
-            DbParameter parameterWhereWhen = CreateParameter("@WhereWhen",  wherewhen);
+            DbParameter parameterWhereWhen = CreateParameter("@WhereWhen", wherewhen);
             DbParameter parameterExpireDate = CreateParameter("@ExpireDate", expireDate);
             DbParameter parameterDescription = CreateParameter("@Description", description);
 
             //Execute Method
             ExecuteNonQuery("Portal_AddEvent", CommandType.StoredProcedure,
-                parameterItemId,
-                parameterModuleId,
-                parameterUserName,
-                parameterTitle,
-                parameterWhereWhen,
-                parameterExpireDate,
-                parameterDescription);
+                            parameterItemId,
+                            parameterModuleId,
+                            parameterUserName,
+                            parameterTitle,
+                            parameterWhereWhen,
+                            parameterExpireDate,
+                            parameterDescription);
 
             // Return the new Event ItemID
             return Convert.ToInt32(parameterItemId.Value);
@@ -104,21 +100,21 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
 
             // Add Parameters to SPROC
-            DbParameter parameterItemId = CreateParameter("@ItemID",itemId);
+            DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
             DbParameter parameterUserName = CreateParameter("@UserName", userName);
-            DbParameter parameterTitle = CreateParameter("@Title",  title);
+            DbParameter parameterTitle = CreateParameter("@Title", title);
             DbParameter parameterWhereWhen = CreateParameter("@WhereWhen", wherewhen);
-            DbParameter parameterExpireDate = CreateParameter("@ExpireDate",expireDate);
-            DbParameter parameterDescription = CreateParameter("@Description",description);
+            DbParameter parameterExpireDate = CreateParameter("@ExpireDate", expireDate);
+            DbParameter parameterDescription = CreateParameter("@Description", description);
 
             //Execute Method
             ExecuteNonQuery("Portal_UpdateEvent", CommandType.StoredProcedure,
-                parameterItemId,
-                parameterUserName,
-                parameterTitle,
-                parameterWhereWhen,
-                parameterExpireDate,
-                parameterDescription);
+                            parameterItemId,
+                            parameterUserName,
+                            parameterTitle,
+                            parameterWhereWhen,
+                            parameterExpireDate,
+                            parameterDescription);
         }
 
         #endregion
