@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Data;
+using ASPNET.StarterKit.Portal;
+using ASPNET.StarterKit.Portal.SqlClient;
 using DemoApp.Properties;
 
 namespace DemoApp.ViewModel
@@ -110,20 +113,22 @@ namespace DemoApp.ViewModel
 
         void EditAnnouncement()
         {
-            EditAnnouncementsViewModel workspace = new EditAnnouncementsViewModel();
-            this.Workspaces.Add(workspace);
-            this.SetActiveWorkspace(workspace);
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            IAnnouncementsDb db = new SqlAnnouncementsDb(connectionString);
+            var workspace = new EditAnnouncementViewModel(db);
+            Workspaces.Add(workspace);
+            SetActiveWorkspace(workspace);
         }
 
         void ViewAnnouncements()
         {
-            AnnouncementsViewModel workspace =
-                this.Workspaces.FirstOrDefault(vm => vm is AnnouncementsViewModel)
-                as AnnouncementsViewModel;
+            var workspace = Workspaces.FirstOrDefault(vm => vm is AnnouncementsViewModel) as AnnouncementsViewModel;
 
             if (workspace == null)
             {
-                workspace = new AnnouncementsViewModel();
+                string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                IAnnouncementsDb db = new SqlAnnouncementsDb(connectionString);
+                workspace = new AnnouncementsViewModel(db);
                 this.Workspaces.Add(workspace);
             }
 
