@@ -40,13 +40,15 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             IDataReader reader = ExecuteReader("Portal_GetSingleDocument", CommandType.StoredProcedure, parameterItemId);
 
             //Read once, since we have only one result (itemId is Unique)
-            reader.Read();
-            PortalDocument document = reader.ToPortalDocument();
+            PortalDocument document;
+            if (reader.Read())
+                document = reader.ToPortalDocument(itemId);
+            else
+                return null;
 
             // Return the item
             return document;
         }
-
 
         public PortalDocument GetDocumentContent(int itemId)
         {
@@ -57,8 +59,11 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             IDataReader reader = ExecuteReader("Portal_GetDocumentContent", CommandType.StoredProcedure, parameterItemId);
 
             //Read once, since we have only one result (itemId is Unique)
-            reader.Read();
-            PortalDocument document = reader.ToPortalDocument();
+            PortalDocument document;
+            if (reader.Read())
+                document = reader.ToPortalDocument();
+            else
+                return null;
 
             // Return the item
             return document;

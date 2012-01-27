@@ -6,14 +6,7 @@ namespace ASPNET.StarterKit.Portal
     //All the switch cases used in conjuction with SPROC field names retrieval (record.GetName) are *Case Sensitive*.
     public static class PortalModulesExtensions
     {
-        public static PortalAnnouncement ToPortalAnnouncement(this IDataRecord record, int itemId)
-        {
-            PortalAnnouncement announcement = record.ToPortalAnnouncement();
-            announcement.ItemId = itemId;
-            return announcement;
-        }
-
-        public static PortalAnnouncement ToPortalAnnouncement(this IDataRecord record)
+        public static PortalAnnouncement ToPortalAnnouncement(this IDataRecord record, int itemId=-10)
         {
             var item = new PortalAnnouncement();
 
@@ -50,11 +43,14 @@ namespace ASPNET.StarterKit.Portal
                         break;
                 }
             }
+
+            //Explicit call with itemId provided
+            if (itemId!=-10)
+                item.ItemId = itemId;
             return item;
         }
 
-
-        public static PortalContact ToPortalContact(this IDataRecord record)
+        public static PortalContact ToPortalContact(this IDataRecord record, int itemId=-10)
         {
             var item = new PortalContact();
 
@@ -91,10 +87,13 @@ namespace ASPNET.StarterKit.Portal
                         break;
                 }
             }
+            //Explicit call with itemId provided
+            if (itemId != -10)
+                item.ItemId = itemId;
             return item;
         }
 
-        public static PortalDiscussion ToPortalDiscussion(this IDataRecord record)
+        public static PortalDiscussion ToPortalDiscussion(this IDataRecord record, int itemId=-10)
         {
             var item = new PortalDiscussion();
 
@@ -147,7 +146,7 @@ namespace ASPNET.StarterKit.Portal
             return item;
         }
 
-        public static PortalDocument ToPortalDocument(this IDataRecord record)
+        public static PortalDocument ToPortalDocument(this IDataRecord record, int itemId = -10)
         {
             var item = new PortalDocument();
 
@@ -189,10 +188,13 @@ namespace ASPNET.StarterKit.Portal
                         break;
                 }
             }
+            //Explicit call with itemId provided
+            if (itemId != -10)
+                item.ItemId = itemId;
             return item;
         }
 
-        public static PortalEvent ToPortalEvent(this IDataRecord record)
+        public static PortalEvent ToPortalEvent(this IDataRecord record, int itemId = -10)
         {
             var item = new PortalEvent();
             for (int i = 0; i < record.FieldCount; i++)
@@ -225,6 +227,9 @@ namespace ASPNET.StarterKit.Portal
                         break;
                 }
             }
+            //Explicit call with itemId provided
+            if (itemId != -10)
+                item.ItemId = itemId;
             return item;
         }
 
@@ -253,7 +258,7 @@ namespace ASPNET.StarterKit.Portal
             return item;
         }
 
-        public static PortalLink ToPortalLink(this IDataRecord record)
+        public static PortalLink ToPortalLink(this IDataRecord record, int itemId = -10)
         {
             var item = new PortalLink();
             for (int i = 0; i < record.FieldCount; i++)
@@ -289,6 +294,9 @@ namespace ASPNET.StarterKit.Portal
                         break;
                 }
             }
+            //Explicit call with itemId provided
+            if (itemId != -10)
+                item.ItemId = itemId;
             return item;
         }
     }

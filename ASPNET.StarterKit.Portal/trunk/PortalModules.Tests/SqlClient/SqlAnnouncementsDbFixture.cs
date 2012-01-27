@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Transactions;
@@ -44,8 +43,21 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         }
 
         [Test]
+        public void CanUpdateAnnouncement()
+        {
+            _db.UpdateAnnouncement(0, "un", "t", DateTime.Now, "d", "ml", "mml");
+        }
+
+        [Test]
         public void CanGetAnnouncements()
         {
+            //string time = DateTime.Now.ToLongDateString();
+            //int id1 = _db.AddAnnouncement(9001, "un", "t", DateTime.Parse(time), "d", "ml", "mml");
+            //int id2 = _db.AddAnnouncement(9001, "un", "t", DateTime.Parse(time), "d", "ml", "mml");
+
+            //Collection<PortalAnnouncement> announcements = _db.GetAnnouncements(9001);
+            //Assert.AreEqual(announcements[0].ItemId, id1);
+            //Assert.AreEqual(announcements[1].ItemId, id2);
         }
 
         [Test]
@@ -59,7 +71,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         public void CanGetSingleAnnouncement()
         {
             string time = DateTime.Now.ToLongDateString();
-            int id = _db.AddAnnouncement(0, "un", "t",DateTime.Parse(time), "d", "ml", "mml");
+            int id = _db.AddAnnouncement(0, "un", "t", DateTime.Parse(time), "d", "ml", "mml");
             PortalAnnouncement announcement = _db.GetSingleAnnouncement(id);
             Assert.AreEqual(announcement.ModuleId, 0);
             Assert.AreEqual(announcement.ItemId, id);
@@ -76,13 +88,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
             PortalAnnouncement announcement = _db.GetSingleAnnouncement(9999);
             Assert.IsNull(announcement);
-        }
-
-
-        [Test]
-        public void CanUpdateAnnouncement()
-        {
-            _db.UpdateAnnouncement(0, "un", "t", DateTime.Now, "d", "ml", "mml");
         }
     }
 }

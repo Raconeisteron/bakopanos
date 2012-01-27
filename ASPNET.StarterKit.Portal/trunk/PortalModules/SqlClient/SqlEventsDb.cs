@@ -41,8 +41,11 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             IDataReader reader = ExecuteReader("Portal_GetSingleEvent", CommandType.StoredProcedure, parameterItemId);
 
             //Read once, since we have only one result (itemId is Unique)
-            reader.Read();
-            PortalEvent singleEvent = reader.ToPortalEvent();
+            PortalEvent singleEvent;
+            if (reader.Read())
+                singleEvent = reader.ToPortalEvent(itemId);
+            else
+                return null;
 
             // Return the item
             return singleEvent;

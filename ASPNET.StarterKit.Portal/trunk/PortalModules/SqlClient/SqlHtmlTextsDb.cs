@@ -21,8 +21,11 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             IDataReader reader = ExecuteReader("Portal_GetHtmlText", CommandType.StoredProcedure, parameterModuleId);
 
             //Read once, since we have only one result
-            reader.Read();
-            PortalHtmlText htmlText = reader.ToPortalHtmlText();
+            PortalHtmlText htmlText;
+            if (reader.Read())
+                htmlText = reader.ToPortalHtmlText();
+            else
+                return null;
 
             // Return item
             return htmlText;

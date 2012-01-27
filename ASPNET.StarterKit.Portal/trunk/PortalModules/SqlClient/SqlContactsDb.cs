@@ -41,8 +41,11 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             IDataReader reader = ExecuteReader("Portal_GetSingleContact", CommandType.StoredProcedure, parameterItemId);
 
             //Read once, since we have only one result (itemId is Unique)
-            reader.Read();
-            PortalContact contact = reader.ToPortalContact();
+            PortalContact contact;
+            if (reader.Read())
+                contact = reader.ToPortalContact(itemId);
+            else
+                return null;
 
             // Return the item
             return contact;

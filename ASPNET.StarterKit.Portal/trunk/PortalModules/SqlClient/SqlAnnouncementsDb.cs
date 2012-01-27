@@ -38,17 +38,19 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             // Add Parameters to SPROC
             DbParameter parameterItemId = CreateParameter("@ItemID", itemId);
 
-            //Execute method and populate reader
+            // Execute method and populate reader
             IDataReader reader = ExecuteReader("Portal_GetSingleAnnouncement", CommandType.StoredProcedure,
                                                parameterItemId);
 
-            //Read once, since we have only one result (itemId is Unique)
-            while (reader.Read())
-            {
-                return reader.ToPortalAnnouncement(itemId);
-            }
+            // Read once, since we have only one result
+            PortalAnnouncement announcement;
+            if (reader.Read())
+                announcement = reader.ToPortalAnnouncement(itemId);
+            else
+                return null;
+
             // Return the item
-            return null;
+            return announcement;
         }
 
         public void DeleteAnnouncement(int itemId)

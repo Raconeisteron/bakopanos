@@ -41,8 +41,11 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             IDataReader reader = ExecuteReader("Portal_GetSingleLink", CommandType.StoredProcedure, parameterItemId);
 
             //Read once, since we have only one result (itemId is Unique)
-            reader.Read();
-            PortalLink link = reader.ToPortalLink();
+            PortalLink link;
+            if (reader.Read())
+                link = reader.ToPortalLink(itemId);
+            else
+                return null;
 
             // Return the item
             return link;

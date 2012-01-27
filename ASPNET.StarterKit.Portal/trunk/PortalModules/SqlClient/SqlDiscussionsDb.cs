@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
@@ -58,8 +57,11 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             IDataReader reader = ExecuteReader("Portal_GetSingleMessage", CommandType.StoredProcedure, parameterItemId);
 
             //Read once, since we have only one result (itemId is Unique)
-            reader.Read();
-            PortalDiscussion message = reader.ToPortalDiscussion();
+            PortalDiscussion message;
+            if (reader.Read())
+                message = reader.ToPortalDiscussion(itemId);
+            else
+                return null;
 
             // Return the item
             return message;
