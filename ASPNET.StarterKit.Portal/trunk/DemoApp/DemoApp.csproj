@@ -165,6 +165,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PortalConfiguration\PortalConfiguration.csproj">
+      <Project>{53ED8DED-F1F8-4826-A76F-1201E3DFEA8E}</Project>
+      <Name>PortalConfiguration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PortalCore\PortalCore.csproj">
       <Project>{36BBB9BC-F3E6-48C5-896A-EE488A10499D}</Project>
       <Name>PortalCore</Name>
@@ -175,7 +179,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PortalCfg.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

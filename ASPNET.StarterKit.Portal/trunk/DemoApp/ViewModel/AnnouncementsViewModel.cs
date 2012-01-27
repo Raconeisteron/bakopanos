@@ -6,12 +6,28 @@ namespace DemoApp.ViewModel
 {
     public class AnnouncementsViewModel : WorkspaceViewModel
     {
-        private IAnnouncementsDb _db;
-        public AnnouncementsViewModel(IAnnouncementsDb db)
+        //private IAnnouncementsDb _announcementsDb;
+        //private ITabConfigurationDb _tabConfigurationDb;
+
+        public AnnouncementsViewModel(IAnnouncementsDb announcementsDb, ITabConfigurationDb tabConfigurationDb)
         {
-            _db = db;
+            //_announcementsDb = announcementsDb;
+            //_tabConfigurationDb = tabConfigurationDb;
+
             base.DisplayName = Strings.AnnouncementsViewModel_DisplayName;
-            Announcements = db.GetAnnouncements(13);
+
+            Announcements= new Collection<PortalAnnouncement>();
+
+            foreach (TabStripDetails tab in tabConfigurationDb.FindDesktopTabs())
+            {
+                foreach (ModuleSettings module in tabConfigurationDb.FindModules(tab.TabId))
+                {
+                    foreach (PortalAnnouncement portalAnnouncement in announcementsDb.GetAnnouncements(module.ModuleId))
+                    {
+                        Announcements.Add(portalAnnouncement);
+                    }
+                }
+            }
         }
 
         public Collection<PortalAnnouncement> Announcements { get; private set; }

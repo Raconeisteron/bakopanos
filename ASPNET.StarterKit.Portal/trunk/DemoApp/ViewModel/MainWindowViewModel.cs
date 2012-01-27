@@ -9,6 +9,7 @@ using System.Linq;
 using System.Windows.Data;
 using ASPNET.StarterKit.Portal;
 using ASPNET.StarterKit.Portal.SqlClient;
+using ASPNET.StarterKit.Portal.XmlFile;
 using DemoApp.Properties;
 
 namespace DemoApp.ViewModel
@@ -127,9 +128,14 @@ namespace DemoApp.ViewModel
             if (workspace == null)
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                string configFile = ConfigurationManager.AppSettings["ConfigFile"];
+
                 IAnnouncementsDb db = new SqlAnnouncementsDb(connectionString);
-                workspace = new AnnouncementsViewModel(db);
-                this.Workspaces.Add(workspace);
+                IConfigurationDb configurationDb = new XmlConfigurationDb(configFile);
+                ITabConfigurationDb tabConfigurationDb = new XmlTabConfigurationDb(configurationDb);
+
+                workspace = new AnnouncementsViewModel(db, tabConfigurationDb);
+                Workspaces.Add(workspace);
             }
 
             this.SetActiveWorkspace(workspace);
