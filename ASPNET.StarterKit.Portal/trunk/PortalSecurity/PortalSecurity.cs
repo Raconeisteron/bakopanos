@@ -1,18 +1,22 @@
 using System;
+using System.Security.Principal;
 using System.Web;
 
 namespace ASPNET.StarterKit.Portal
 {
+
     /// <summary>
     /// <see cref="IPortalSecurity"/>
     /// </summary>
     public class PortalSecurity : IPortalSecurity
     {
         private readonly IModuleAuthorizationDb _moduleAuthorizationDb;
+        private readonly IPrincipal _user;
 
-        public PortalSecurity(IModuleAuthorizationDb moduleAuthorizationDb)
+        public PortalSecurity(IModuleAuthorizationDb moduleAuthorizationDb, IPortalPrincipalUtility portalPrincipalUtility )
         {
             _moduleAuthorizationDb = moduleAuthorizationDb;
+            _user = portalPrincipalUtility.GetUser();
         }
 
         #region IPortalSecurity Members
@@ -22,7 +26,7 @@ namespace ASPNET.StarterKit.Portal
         /// </summary>
         public bool IsInRole(String role)
         {
-            return HttpContext.Current.User.IsInRole(role);
+            return _user.IsInRole(role);
         }
 
         /// <summary>

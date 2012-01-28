@@ -1,5 +1,7 @@
 ﻿using System.Configuration;
+using System.Security.Principal;
 using System.Web;
+using ASPNET.StarterKit.Portal.Web;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 
@@ -9,12 +11,12 @@ namespace ASPNET.StarterKit.Portal
     {
         private const string GlobalContainerKey = "PortalContainer";
 
-        public static IUnityContainer GetContainer(this HttpApplicationState appState)
+        public static IUnityContainer GetContainer(this HttpContext context)
         {
-            appState.Lock();
+            context.Application.Lock();
             try
             {
-                var container = appState[GlobalContainerKey] as IUnityContainer;
+                var container = context.Application[GlobalContainerKey] as IUnityContainer;
                 if (container == null)
                 {
                     container = new UnityContainer();
@@ -24,13 +26,16 @@ namespace ASPNET.StarterKit.Portal
                     // additional container initialization 
                     container.RegisterInstance(ConfigurationManager.ConnectionStrings["connectionString"]);
 
-                    appState[GlobalContainerKey] = container;
+                    container.RegisterInstance<IPortalServerUtility>(new PortalHttpServerUtility());
+                    container.RegisterInstance<IPortalPrincipalUtility>(new PortalHttpPrincipalUtility());
+
+                    context.Application[GlobalContainerKey] = container;
                 }
                 return container;
             }
             finally
             {
-                appState.UnLock();
+                context.Application.UnLock();
             }
         }
     }

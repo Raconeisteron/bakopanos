@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
-using System.Web;
 
 namespace ASPNET.StarterKit.Portal.XmlFile
 {
@@ -12,14 +11,10 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         private readonly SecurityDataSet _dataSet = new SecurityDataSet();
         private readonly string _fileName;
 
-        public XmlRolesDb(string fileName)
+        public XmlRolesDb(string fileName,IPortalServerUtility serverUtility)
         {
-            _fileName = fileName;
             // Retrieve the location of the XML configuration file
-            if (HttpContext.Current != null)
-            {
-                _fileName = HttpContext.Current.Server.MapPath(fileName);
-            }
+            _fileName = serverUtility.MapPath(fileName);
             _dataSet.ReadXml(_fileName);
         }
 

@@ -30,7 +30,7 @@ namespace ASPNET.StarterKit.Portal
         private void OnPreRequestHandlerExecute(object sender, EventArgs e)
         {
             IHttpHandler currentHandler = HttpContext.Current.Handler;
-            HttpContext.Current.Application.GetContainer().BuildUp(
+            HttpContext.Current.GetContainer().BuildUp(
                 currentHandler.GetType(), currentHandler);
 
             // User Controls are ready to be built up after page initialization is complete
@@ -45,7 +45,7 @@ namespace ASPNET.StarterKit.Portal
         private void OnPageInitComplete(object sender, EventArgs e)
         {
             var currentPage = (Page) sender;
-            IUnityContainer container = HttpContext.Current.Application.GetContainer();
+            IUnityContainer container = HttpContext.Current.GetContainer();
 
             IEnumerable<Control> controls = GetControlTree(currentPage);
 

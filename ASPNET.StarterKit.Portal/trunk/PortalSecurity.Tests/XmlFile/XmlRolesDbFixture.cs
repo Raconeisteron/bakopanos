@@ -16,7 +16,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         {
             _tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             File.Copy(@"xmlfile\Security.Xml", _tempFileName);
-            _db = new XmlRolesDb(_tempFileName);
+            _db = new XmlRolesDb(_tempFileName, new PortalServerUtility());
         }
 
         [TearDown]

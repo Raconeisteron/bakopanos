@@ -46,6 +46,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,9 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPortalPrincipalUtility.cs" />
+    <Compile Include="IPortalServerUtility.cs" />
+    <Compile Include="PortalPrincipalUtility.cs" />
+    <Compile Include="PortalServerUtility.cs" />
     <Compile Include="Security.Cryptography\Encryption.cs" />
     <Compile Include="Data\Db.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web\PortalHttpPrincipalUtility.cs" />
+    <Compile Include="Web\PortalHttpServerUtility.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

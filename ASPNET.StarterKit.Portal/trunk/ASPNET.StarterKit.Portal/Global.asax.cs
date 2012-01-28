@@ -40,7 +40,7 @@ namespace ASPNET.StarterKit.Portal
             {
                 tabId = Int32.Parse(Request.Params["tabid"]);
             }
-            IUnityContainer container = Application.GetContainer();
+            IUnityContainer container = Context.GetContainer();
 
             var portalConfigurationDb = container.Resolve<IPortalConfigurationDb>();
             var tabConfigurationDb = container.Resolve<ITabConfigurationDb>();
@@ -89,7 +89,7 @@ namespace ASPNET.StarterKit.Portal
                 if ((Request.Cookies["portalroles"] == null) || (Request.Cookies["portalroles"].Value == ""))
                 {
                     // Get roles from UserRoles table, and add to cookie
-                    IUnityContainer container = Application.GetContainer();
+                    IUnityContainer container = Context.GetContainer();
                     var user = container.Resolve<IUsersDb>();
                     roles = user.GetRoles(User.Identity.Name);
 
