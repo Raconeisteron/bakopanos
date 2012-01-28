@@ -1,6 +1,7 @@
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ASPNET.StarterKit.Portal.Security.Cryptography;
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal
@@ -131,7 +132,7 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateUser_Click(Object sender, EventArgs e)
         {
             // update the user record in the database
-            _usersDb.UpdateUser(_userId, Email.Text, _portalSecurity.Encrypt(Password.Text));
+            _usersDb.UpdateUser(_userId, Email.Text, Encryption.Encrypt(Password.Text));
 
             // redirect to this page with the corrected querystring args
             Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + _userId + "&username=" + Email.Text + "&tabindex=" +

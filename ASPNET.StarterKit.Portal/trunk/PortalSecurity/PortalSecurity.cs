@@ -1,13 +1,10 @@
 using System;
-using System.Security.Cryptography;
-using System.Text;
 using System.Web;
 
 namespace ASPNET.StarterKit.Portal
 {
     /// <summary>
-    /// The PortalSecurity class encapsulates two helper methods that enable
-    /// developers to easily check the role status of the current browser client.
+    /// <see cref="IPortalSecurity"/>
     /// </summary>
     public class PortalSecurity : IPortalSecurity
     {
@@ -18,54 +15,24 @@ namespace ASPNET.StarterKit.Portal
             _moduleAuthorizationDb = moduleAuthorizationDb;
         }
 
-        //*********************************************************************
-        //
-        // Security.Encrypt() Method
-        //
-        // The Encrypt method encrypts a clean string into a hashed string
-        //
-        //*********************************************************************
-
         #region IPortalSecurity Members
 
-        public string Encrypt(string cleanString)
-        {
-            Byte[] clearBytes = new UnicodeEncoding().GetBytes(cleanString);
-            Byte[] hashedBytes = ((HashAlgorithm) CryptoConfig.CreateFromName("MD5")).ComputeHash(clearBytes);
-
-            return BitConverter.ToString(hashedBytes);
-        }
-
-        //*********************************************************************
-        //
-        // PortalSecurity.IsInRole() Method
-        //
-        // The IsInRole method enables developers to easily check the role
-        // status of the current browser client.
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// <see cref="IPortalSecurity.IsInRole"/>
+        /// </summary>
         public bool IsInRole(String role)
         {
             return HttpContext.Current.User.IsInRole(role);
         }
 
-        //*********************************************************************
-        //
-        // PortalSecurity.IsInRoles() Method
-        //
-        // The IsInRoles method enables developers to easily check the role
-        // status of the current browser client against an array of roles
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// <see cref="IPortalSecurity.IsInRoles"/>
+        /// </summary>
         public bool IsInRoles(String roles)
         {
-            HttpContext context = HttpContext.Current;
-
             foreach (String role in roles.Split(new[] {';'}))
             {
-                if (!string.IsNullOrEmpty(role) && ((role == "All Users") || (context.User.IsInRole(role))))
+                if (!string.IsNullOrEmpty(role) && ((role == "All Users") || (IsInRole(role))))
                 {
                     return true;
                 }
@@ -74,16 +41,9 @@ namespace ASPNET.StarterKit.Portal
             return false;
         }
 
-        //*********************************************************************
-        //
-        // PortalSecurity.HasEditPermissions() Method
-        //
-        // The HasEditPermissions method enables developers to easily check 
-        // whether the current browser client has access to edit the settings
-        // of a specified portal module
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// <see cref="IPortalSecurity.HasEditPermissions"/>
+        /// </summary>
         public bool HasEditPermissions(int moduleId)
         {
             // Find the appropriate Module in the Module table

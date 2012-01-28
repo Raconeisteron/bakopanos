@@ -1,5 +1,6 @@
 using System.Data;
 using System.Data.Common;
+using ASPNET.StarterKit.Portal.Data;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
