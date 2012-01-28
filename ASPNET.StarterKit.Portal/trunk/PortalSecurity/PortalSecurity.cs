@@ -1,10 +1,8 @@
 using System;
 using System.Security.Principal;
-using System.Web;
 
 namespace ASPNET.StarterKit.Portal
 {
-
     /// <summary>
     /// <see cref="IPortalSecurity"/>
     /// </summary>
@@ -13,7 +11,8 @@ namespace ASPNET.StarterKit.Portal
         private readonly IModuleAuthorizationDb _moduleAuthorizationDb;
         private readonly IPrincipal _user;
 
-        public PortalSecurity(IModuleAuthorizationDb moduleAuthorizationDb, IPortalPrincipalUtility portalPrincipalUtility )
+        public PortalSecurity(IModuleAuthorizationDb moduleAuthorizationDb,
+                              IPortalPrincipalUtility portalPrincipalUtility)
         {
             _moduleAuthorizationDb = moduleAuthorizationDb;
             _user = portalPrincipalUtility.GetUser();

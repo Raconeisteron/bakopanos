@@ -11,7 +11,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         private readonly SecurityDataSet _dataSet = new SecurityDataSet();
         private readonly string _fileName;
 
-        public XmlRolesDb(string fileName,IPortalServerUtility serverUtility)
+        public XmlRolesDb(string fileName, IPortalServerUtility serverUtility)
         {
             // Retrieve the location of the XML configuration file
             _fileName = serverUtility.MapPath(fileName);
@@ -46,7 +46,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
                 _dataSet.PortalUserRoles.FirstOrDefault(item => item.Portal_RolesRow.RoleID == roleId).PortalUsersRow.
                     UserID;
             IEnumerable<SecurityDataSet.PortalUsersRow> users = _dataSet.PortalUsers.Where(item => item.UserID == userId);
-            return new Collection<PortalUser>( users.Select(item => item.ToPortalUser()).ToList());
+            return new Collection<PortalUser>(users.Select(item => item.ToPortalUser()).ToList());
         }
 
         public void AddUserRole(int roleId, int userId)
@@ -62,7 +62,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public Collection<PortalUser> GetUsers()
         {
             IEnumerable<SecurityDataSet.PortalUsersRow> users = _dataSet.PortalUsers.OrderBy(item => item.Email);
-            return new Collection<PortalUser>( users.Select(item => item.ToPortalUser()).ToList());
+            return new Collection<PortalUser>(users.Select(item => item.ToPortalUser()).ToList());
         }
 
         #endregion

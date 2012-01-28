@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
@@ -6,25 +5,18 @@ using ASPNET.StarterKit.Portal.Data;
 
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
-    //*********************************************************************
-    //
-    // RolesDB Class
-    //
-    // Class that encapsulates all data logic necessary to add/query/delete
-    // Users, Roles and security settings values within the Portal database.
-    //
-    //*********************************************************************
+    /// <summary>
+    /// Encapsulates all data logic necessary to add/query/delete
+    /// Users, Roles and security settings values within the Portal
+    /// </summary>
     public class SqlRolesDb : Db, IRolesDb
     {
-        private readonly string _connectionString;
-
         public SqlRolesDb(string connectionString)
             : base(connectionString, "System.Data.SqlClient")
         {
-            _connectionString = connectionString;
         }
 
-        #region IRolesDb Members
+        #region ROLES
 
         public Collection<PortalRole> GetPortalRoles(int portalId)
         {
@@ -42,103 +34,51 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             return list;
         }
 
-        //*********************************************************************
-        //
-        // AddRole() Method <a name="AddRole"></a>
-        //
-        // The AddRole method creates a new security role for the specified portal,
-        // and returns the new RoleID value.
-        //
-        // Other relevant sources:
-        //     + <a href="AddRole.htm" style="color:green">AddRole Stored Procedure</a>
-        //
-        //*********************************************************************
-
         public int AddRole(int portalId, string roleName)
         {
-            // Add Parameters to SPROC
-            DbParameter parameterPortalID = CreateParameter("@PortalID", portalId);
-
+            DbParameter parameterPortalId = CreateParameter("@PortalID", portalId);
             DbParameter parameterRoleName = CreateParameter("@RoleName", roleName);
+            DbParameter parameterRoleId = CreateParameter("@RoleID");
+            parameterRoleId.Direction = ParameterDirection.Output;
+            parameterRoleId.Size = 4;
 
-            DbParameter parameterRoleID = CreateParameter("@RoleID");
-            parameterRoleID.Direction = ParameterDirection.Output;
-            parameterRoleID.Size = 4;
+            ExecuteNonQuery("Portal_AddRole", CommandType.StoredProcedure,
+                            parameterPortalId, parameterRoleName, parameterRoleId);
 
-            // Execute the command
-            ExecuteNonQuery("Portal_AddRole", CommandType.StoredProcedure, parameterPortalID, parameterRoleName,
-                            parameterRoleID);
-
-            // return the role id 
-            return int.Parse(parameterRoleID.Value.ToString());
+            return int.Parse(parameterRoleId.Value.ToString());
         }
-
-        //*********************************************************************
-        //
-        // DeleteRole() Method <a name="DeleteRole"></a>
-        //
-        // The DeleteRole deletes the specified role from the portal database.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteRole.htm" style="color:green">DeleteRole Stored Procedure</a>
-        //
-        //*********************************************************************
 
         public void DeleteRole(int roleId)
         {
-            // Add Parameters to SPROC
-            DbParameter parameterRoleID = CreateParameter("@RoleID", roleId);
+            DbParameter parameterRoleId = CreateParameter("@RoleID", roleId);
 
-            // Execute the command
-            ExecuteNonQuery("Portal_DeleteRole", CommandType.StoredProcedure, parameterRoleID);
+            ExecuteNonQuery("Portal_DeleteRole", CommandType.StoredProcedure, parameterRoleId);
         }
 
-        //*********************************************************************
-        //
-        // UpdateRole() Method <a name="UpdateRole"></a>
-        //
-        // The UpdateRole method updates the friendly name of the specified role.
-        //
-        // Other relevant sources:
-        //     + <a href="UpdateRole.htm" style="color:green">UpdateRole Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// Updates the friendly name of the specified role
+        /// </summary>
         public void UpdateRole(int roleId, string roleName)
         {
-            // Add Parameters to SPROC
-            DbParameter parameterRoleID = CreateParameter("@RoleID", roleId);
+            DbParameter parameterRoleId = CreateParameter("@RoleID", roleId);
             DbParameter parameterRoleName = CreateParameter("@RoleName", roleName);
 
-            // Execute the command
-            ExecuteNonQuery("Portal_UpdateRole", CommandType.StoredProcedure, parameterRoleID, parameterRoleName);
+            ExecuteNonQuery("Portal_UpdateRole", CommandType.StoredProcedure, parameterRoleId, parameterRoleName);
         }
 
+        #endregion
 
-        //
-        // USER ROLES
-        //
+        #region USER ROLES
 
-        //*********************************************************************
-        //
-        // GetRoleMembers() Method <a name="GetRoleMembers"></a>
-        //
-        // The GetRoleMembers method returns a list of all members in the specified
-        // security role.
-        //
-        // Other relevant sources:
-        //     + <a href="GetRoleMembers.htm" style="color:green">GetRoleMembers Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// Returns a list of all members in the specified security role
+        /// </summary>
         public Collection<PortalUser> GetRoleMembers(int roleId)
         {
-            // Add Parameters to SPROC
-            DbParameter parameterRoleID = CreateParameter("@RoleID", roleId);
-            parameterRoleID.Value = roleId;
+            DbParameter parameterRoleId = CreateParameter("@RoleID", roleId);
+            parameterRoleId.Value = roleId;
 
-            // Execute the command
-            IDataReader reader = ExecuteReader("Portal_GetRoleMembership", CommandType.StoredProcedure, parameterRoleID);
+            IDataReader reader = ExecuteReader("Portal_GetRoleMembership", CommandType.StoredProcedure, parameterRoleId);
 
             var list = new Collection<PortalUser>();
 
@@ -150,68 +90,38 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             return list;
         }
 
-        //*********************************************************************
-        //
-        // AddUserRole() Method <a name="AddUserRole"></a>
-        //
-        // The AddUserRole method adds the user to the specified security role.
-        //
-        // Other relevant sources:
-        //     + <a href="AddUserRole.htm" style="color:green">AddUserRole Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// Adds the user to the specified security role
+        /// </summary>
         public void AddUserRole(int roleId, int userId)
         {
-            // Add Parameters to SPROC
-            DbParameter parameterRoleID = CreateParameter("@RoleID", roleId);
-            DbParameter parameterUserID = CreateParameter("@UserID", userId);
+            DbParameter parameterRoleId = CreateParameter("@RoleID", roleId);
+            DbParameter parameterUserId = CreateParameter("@UserID", userId);
 
-            // Execute the command
-            ExecuteNonQuery("Portal_AddUserRole", CommandType.StoredProcedure, parameterRoleID, parameterUserID);
+            ExecuteNonQuery("Portal_AddUserRole", CommandType.StoredProcedure,
+                            parameterRoleId, parameterUserId);
         }
 
-        //*********************************************************************
-        //
-        // DeleteUserRole() Method <a name="DeleteUserRole"></a>
-        //
-        // The DeleteUserRole method deletes the user from the specified role.
-        //
-        // Other relevant sources:
-        //     + <a href="DeleteUserRole.htm" style="color:green">DeleteUserRole Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// Deletes the user from the specified role
+        /// </summary>
         public void DeleteUserRole(int roleId, int userId)
         {
-            // Add Parameters to SPROC
-            DbParameter parameterRoleID = CreateParameter("@RoleID", roleId);
-            DbParameter parameterUserID = CreateParameter("@UserID", userId);
+            DbParameter parameterRoleId = CreateParameter("@RoleID", roleId);
+            DbParameter parameterUserId = CreateParameter("@UserID", userId);
 
-            // Execute the command
-            ExecuteNonQuery("Portal_DeleteUserRole", CommandType.StoredProcedure, parameterRoleID, parameterUserID);
+            ExecuteNonQuery("Portal_DeleteUserRole", CommandType.StoredProcedure, parameterRoleId, parameterUserId);
         }
 
+        #endregion
 
-        //
-        // USERS
-        //
+        #region USERS
 
-        //*********************************************************************
-        //
-        // GetUsers() Method <a name="GetUsers"></a>
-        //
-        // The GetUsers method returns returns the UserID, Name and Email for 
-        // all registered users.
-        //
-        // Other relevant sources:
-        //     + <a href="GetUsers.htm" style="color:green">GetUsers Stored Procedure</a>
-        //
-        //*********************************************************************
-
+        /// <summary>
+        /// Returns all registered users
+        /// </summary>
         public Collection<PortalUser> GetUsers()
         {
-            // Execute the command
             IDataReader reader = ExecuteReader("Portal_GetUsers", CommandType.StoredProcedure);
 
             var list = new Collection<PortalUser>();

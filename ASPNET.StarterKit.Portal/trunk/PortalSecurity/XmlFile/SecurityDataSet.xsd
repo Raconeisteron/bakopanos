@@ -1,48 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<xs:schema id="SecurityDataSet" targetNamespace="http://tempuri.org/SecurityDataSet.xsd"
-           xmlns:mstns="http://tempuri.org/SecurityDataSet.xsd" xmlns="http://tempuri.org/SecurityDataSet.xsd"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
-           xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="SecurityDataSet" targetNamespace="http://tempuri.org/SecurityDataSet.xsd" xmlns:mstns="http://tempuri.org/SecurityDataSet.xsd" xmlns="http://tempuri.org/SecurityDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="NotPublic"
-                  SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="NotPublic" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="PortalConnectionString"
-                      IsAppSettingsProperty="true" Modifier="Assembly" Name="PortalConnectionString (Settings)" ParameterPrefix="@"
-                      PropertyReference="ApplicationSettings.ASPNET.StarterKit.Portal.Properties.Settings.GlobalReference.Default.PortalConnectionString"
-                      Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="PortalConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="PortalConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ASPNET.StarterKit.Portal.Properties.Settings.GlobalReference.Default.PortalConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables />
         <Sources />
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="SecurityDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true"
-              msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SecurityDataSet"
-              msprop:Generator_UserDSName="SecurityDataSet">
+  <xs:element name="SecurityDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SecurityDataSet" msprop:Generator_UserDSName="SecurityDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="PortalRoles" msprop:Generator_TableClassName="PortalRolesDataTable"
-                    msprop:Generator_TableVarName="tablePortalRoles" msprop:Generator_TablePropName="PortalRoles"
-                    msprop:Generator_RowDeletingName="PortalRolesRowDeleting" msprop:Generator_UserTableName="PortalRoles"
-                    msprop:Generator_RowChangingName="PortalRolesRowChanging"
-                    msprop:Generator_RowEvHandlerName="PortalRolesRowChangeEventHandler"
-                    msprop:Generator_RowDeletedName="PortalRolesRowDeleted" msprop:Generator_RowEvArgName="PortalRolesRowChangeEvent"
-                    msprop:Generator_RowChangedName="PortalRolesRowChanged" msprop:Generator_RowClassName="PortalRolesRow">
+        <xs:element name="PortalRoles" msprop:Generator_TableClassName="PortalRolesDataTable" msprop:Generator_TableVarName="tablePortalRoles" msprop:Generator_TablePropName="PortalRoles" msprop:Generator_RowDeletingName="PortalRolesRowDeleting" msprop:Generator_UserTableName="PortalRoles" msprop:Generator_RowChangingName="PortalRolesRowChanging" msprop:Generator_RowEvHandlerName="PortalRolesRowChangeEventHandler" msprop:Generator_RowDeletedName="PortalRolesRowDeleted" msprop:Generator_RowEvArgName="PortalRolesRowChangeEvent" msprop:Generator_RowChangedName="PortalRolesRowChanged" msprop:Generator_RowClassName="PortalRolesRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="RoleID" msdata:ReadOnly="true" msdata:AutoIncrementSeed="-1"
-                          msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnRoleID"
-                          msprop:Generator_ColumnPropNameInRow="RoleID" msprop:Generator_ColumnPropNameInTable="RoleIDColumn"
-                          msprop:Generator_UserColumnName="RoleID" type="xs:int" />
-              <xs:element name="PortalID" msprop:Generator_ColumnVarNameInTable="columnPortalID"
-                          msprop:Generator_ColumnPropNameInRow="PortalID" msprop:Generator_ColumnPropNameInTable="PortalIDColumn"
-                          msprop:Generator_UserColumnName="PortalID" type="xs:int" />
-              <xs:element name="RoleName" msprop:Generator_ColumnVarNameInTable="columnRoleName"
-                          msprop:Generator_ColumnPropNameInRow="RoleName" msprop:Generator_ColumnPropNameInTable="RoleNameColumn"
-                          msprop:Generator_UserColumnName="RoleName">
+              <xs:element name="RoleID" msdata:ReadOnly="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnRoleID" msprop:Generator_ColumnPropNameInRow="RoleID" msprop:Generator_ColumnPropNameInTable="RoleIDColumn" msprop:Generator_UserColumnName="RoleID" type="xs:int" />
+              <xs:element name="PortalID" msprop:Generator_ColumnVarNameInTable="columnPortalID" msprop:Generator_ColumnPropNameInRow="PortalID" msprop:Generator_ColumnPropNameInTable="PortalIDColumn" msprop:Generator_UserColumnName="PortalID" type="xs:int" />
+              <xs:element name="RoleName" msprop:Generator_ColumnVarNameInTable="columnRoleName" msprop:Generator_ColumnPropNameInRow="RoleName" msprop:Generator_ColumnPropNameInTable="RoleNameColumn" msprop:Generator_UserColumnName="RoleName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -52,40 +30,25 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PortalUsers" msprop:Generator_TableClassName="PortalUsersDataTable"
-                    msprop:Generator_TableVarName="tablePortalUsers" msprop:Generator_TablePropName="PortalUsers"
-                    msprop:Generator_RowDeletingName="PortalUsersRowDeleting" msprop:Generator_UserTableName="PortalUsers"
-                    msprop:Generator_RowChangingName="PortalUsersRowChanging"
-                    msprop:Generator_RowEvHandlerName="PortalUsersRowChangeEventHandler"
-                    msprop:Generator_RowDeletedName="PortalUsersRowDeleted" msprop:Generator_RowEvArgName="PortalUsersRowChangeEvent"
-                    msprop:Generator_RowChangedName="PortalUsersRowChanged" msprop:Generator_RowClassName="PortalUsersRow">
+        <xs:element name="PortalUsers" msprop:Generator_TableClassName="PortalUsersDataTable" msprop:Generator_TableVarName="tablePortalUsers" msprop:Generator_TablePropName="PortalUsers" msprop:Generator_RowDeletingName="PortalUsersRowDeleting" msprop:Generator_UserTableName="PortalUsers" msprop:Generator_RowChangingName="PortalUsersRowChanging" msprop:Generator_RowEvHandlerName="PortalUsersRowChangeEventHandler" msprop:Generator_RowDeletedName="PortalUsersRowDeleted" msprop:Generator_RowEvArgName="PortalUsersRowChangeEvent" msprop:Generator_RowChangedName="PortalUsersRowChanged" msprop:Generator_RowClassName="PortalUsersRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="UserID" msdata:ReadOnly="true" msdata:AutoIncrementSeed="-1"
-                          msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnUserID"
-                          msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn"
-                          msprop:Generator_UserColumnName="UserID" type="xs:int" />
-              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName"
-                          msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn"
-                          msprop:Generator_UserColumnName="Name">
+              <xs:element name="UserID" msdata:ReadOnly="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" msprop:Generator_UserColumnName="UserID" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Password" msprop:Generator_ColumnVarNameInTable="columnPassword"
-                          msprop:Generator_ColumnPropNameInRow="Password" msprop:Generator_ColumnPropNameInTable="PasswordColumn"
-                          msprop:Generator_UserColumnName="Password" minOccurs="0">
+              <xs:element name="Password" msprop:Generator_ColumnVarNameInTable="columnPassword" msprop:Generator_ColumnPropNameInRow="Password" msprop:Generator_ColumnPropNameInTable="PasswordColumn" msprop:Generator_UserColumnName="Password" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="250" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Email" msprop:Generator_ColumnVarNameInTable="columnEmail"
-                          msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn"
-                          msprop:Generator_UserColumnName="Email">
+              <xs:element name="Email" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_UserColumnName="Email">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
@@ -95,22 +58,11 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PortalUserRoles" msprop:Generator_TableClassName="PortalUserRolesDataTable"
-                    msprop:Generator_TableVarName="tablePortalUserRoles" msprop:Generator_TablePropName="PortalUserRoles"
-                    msprop:Generator_RowDeletingName="PortalUserRolesRowDeleting" msprop:Generator_UserTableName="PortalUserRoles"
-                    msprop:Generator_RowChangingName="PortalUserRolesRowChanging"
-                    msprop:Generator_RowEvHandlerName="PortalUserRolesRowChangeEventHandler"
-                    msprop:Generator_RowDeletedName="PortalUserRolesRowDeleted"
-                    msprop:Generator_RowEvArgName="PortalUserRolesRowChangeEvent"
-                    msprop:Generator_RowChangedName="PortalUserRolesRowChanged" msprop:Generator_RowClassName="PortalUserRolesRow">
+        <xs:element name="PortalUserRoles" msprop:Generator_TableClassName="PortalUserRolesDataTable" msprop:Generator_TableVarName="tablePortalUserRoles" msprop:Generator_TablePropName="PortalUserRoles" msprop:Generator_RowDeletingName="PortalUserRolesRowDeleting" msprop:Generator_UserTableName="PortalUserRoles" msprop:Generator_RowChangingName="PortalUserRolesRowChanging" msprop:Generator_RowEvHandlerName="PortalUserRolesRowChangeEventHandler" msprop:Generator_RowDeletedName="PortalUserRolesRowDeleted" msprop:Generator_RowEvArgName="PortalUserRolesRowChangeEvent" msprop:Generator_RowChangedName="PortalUserRolesRowChanged" msprop:Generator_RowClassName="PortalUserRolesRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="UserID" msprop:Generator_ColumnVarNameInTable="columnUserID"
-                          msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn"
-                          msprop:Generator_UserColumnName="UserID" type="xs:int" />
-              <xs:element name="RoleID" msprop:Generator_ColumnVarNameInTable="columnRoleID"
-                          msprop:Generator_ColumnPropNameInRow="RoleID" msprop:Generator_ColumnPropNameInTable="RoleIDColumn"
-                          msprop:Generator_UserColumnName="RoleID" type="xs:int" />
+              <xs:element name="UserID" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" msprop:Generator_UserColumnName="UserID" type="xs:int" />
+              <xs:element name="RoleID" msprop:Generator_ColumnVarNameInTable="columnRoleID" msprop:Generator_ColumnPropNameInRow="RoleID" msprop:Generator_ColumnPropNameInTable="RoleIDColumn" msprop:Generator_UserColumnName="RoleID" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -127,16 +79,8 @@
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_UserRoles_Users" msdata:parent="PortalUsers" msdata:child="PortalUserRoles"
-                           msdata:parentkey="UserID" msdata:childkey="UserID" msprop:Generator_UserChildTable="PortalUserRoles"
-                           msprop:Generator_ChildPropName="GetPortal_UserRolesRows" msprop:Generator_ParentPropName="PortalUsersRow"
-                           msprop:Generator_UserRelationName="FK_UserRoles_Users" msprop:Generator_RelationVarName="relationFK_UserRoles_Users"
-                           msprop:Generator_UserParentTable="PortalUsers" />
-      <msdata:Relationship name="FK_UserRoles_Roles" msdata:parent="PortalRoles" msdata:child="PortalUserRoles"
-                           msdata:parentkey="RoleID" msdata:childkey="RoleID" msprop:Generator_UserChildTable="PortalUserRoles"
-                           msprop:Generator_ChildPropName="GetPortalUserRolesRows" msprop:Generator_ParentPropName="Portal_RolesRow"
-                           msprop:Generator_UserRelationName="FK_UserRoles_Roles" msprop:Generator_RelationVarName="relationFK_UserRoles_Roles"
-                           msprop:Generator_UserParentTable="PortalRoles" />
+      <msdata:Relationship name="FK_UserRoles_Users" msdata:parent="PortalUsers" msdata:child="PortalUserRoles" msdata:parentkey="UserID" msdata:childkey="UserID" msprop:Generator_UserChildTable="PortalUserRoles" msprop:Generator_ChildPropName="GetPortal_UserRolesRows" msprop:Generator_ParentPropName="PortalUsersRow" msprop:Generator_UserRelationName="FK_UserRoles_Users" msprop:Generator_RelationVarName="relationFK_UserRoles_Users" msprop:Generator_UserParentTable="PortalUsers" />
+      <msdata:Relationship name="FK_UserRoles_Roles" msdata:parent="PortalRoles" msdata:child="PortalUserRoles" msdata:parentkey="RoleID" msdata:childkey="RoleID" msprop:Generator_UserChildTable="PortalUserRoles" msprop:Generator_ChildPropName="GetPortalUserRolesRows" msprop:Generator_ParentPropName="Portal_RolesRow" msprop:Generator_UserRelationName="FK_UserRoles_Roles" msprop:Generator_RelationVarName="relationFK_UserRoles_Roles" msprop:Generator_UserParentTable="PortalRoles" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
