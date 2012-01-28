@@ -6,7 +6,7 @@ namespace ASPNET.StarterKit.Portal
     //All the switch cases used in conjuction with SPROC field names retrieval (record.GetName) are *Case Sensitive*.
     public static class PortalModulesExtensions
     {
-        public static PortalAnnouncement ToPortalAnnouncement(this IDataRecord record, int itemId=-10)
+        public static PortalAnnouncement ToPortalAnnouncement(this IDataRecord record, int itemId = -10)
         {
             var item = new PortalAnnouncement();
 
@@ -24,7 +24,7 @@ namespace ASPNET.StarterKit.Portal
                         item.CreatedByUser = record["CreatedByUser"] as string;
                         break;
                     case "CreatedDate":
-                        item.CreatedDate = (DateTime)record["CreatedDate"];
+                        item.CreatedDate = (DateTime) record["CreatedDate"];
                         break;
                     case "Title":
                         item.Title = record["Title"] as string;
@@ -36,7 +36,7 @@ namespace ASPNET.StarterKit.Portal
                         item.MobileMoreLink = record["MobileMoreLink"] as string;
                         break;
                     case "ExpireDate":
-                        item.ExpireDate = (DateTime)record["ExpireDate"];
+                        item.ExpireDate = (DateTime) record["ExpireDate"];
                         break;
                     case "Description":
                         item.Description = record["Description"] as string;
@@ -45,12 +45,12 @@ namespace ASPNET.StarterKit.Portal
             }
 
             //Explicit call with itemId provided
-            if (itemId!=-10)
+            if (itemId != -10)
                 item.ItemId = itemId;
             return item;
         }
 
-        public static PortalContact ToPortalContact(this IDataRecord record, int itemId=-10)
+        public static PortalContact ToPortalContact(this IDataRecord record, int itemId = -10)
         {
             var item = new PortalContact();
 
@@ -93,7 +93,7 @@ namespace ASPNET.StarterKit.Portal
             return item;
         }
 
-        public static PortalDiscussion ToPortalDiscussion(this IDataRecord record, int itemId=-10)
+        public static PortalDiscussion ToPortalDiscussion(this IDataRecord record, int itemId = -10)
         {
             var item = new PortalDiscussion();
 
