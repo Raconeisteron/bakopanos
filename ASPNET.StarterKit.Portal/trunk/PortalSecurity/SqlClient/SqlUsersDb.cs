@@ -148,19 +148,15 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         public PortalUserDetails GetSingleUser(String email)
         {
-            // Add Parameters to SPROC
             DbParameter parameterEmail = CreateParameter("@Email", email);
 
-            //Execute the command
             IDataReader reader = ExecuteReader("Portal_GetSingleUser", CommandType.StoredProcedure, parameterEmail);
 
-            var user = new PortalUserDetails();
-
-            if (reader.Read())
-                user = reader.ToPortalUserDetails(email);
-
-            // Return the datareader
-            return user;
+            while (reader.Read())
+            {
+                return reader.ToPortalUserDetails(email);
+            }
+            return null;
         }
 
         //*********************************************************************

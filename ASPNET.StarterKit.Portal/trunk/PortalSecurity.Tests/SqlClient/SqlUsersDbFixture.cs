@@ -102,8 +102,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         [Test]
         public void CanGetSingleUserCanReturnNull()
         {
-            //arrange
-            int userId = _db.AddUser("testuser", "a@a.com", "secret");
             //act
             PortalUser user = _db.GetSingleUser("oops");
             //assert            
