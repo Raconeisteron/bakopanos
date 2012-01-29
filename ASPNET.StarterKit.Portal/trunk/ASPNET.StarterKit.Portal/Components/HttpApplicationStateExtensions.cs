@@ -21,16 +21,13 @@ namespace ASPNET.StarterKit.Portal
                 {
                     container = new UnityContainer();
 
+                    // additional container initialization 
                     container.RegisterInstance<IPortalServerUtility>(new PortalHttpServerUtility());
                     container.RegisterInstance<IPortalPrincipalUtility>(new PortalHttpPrincipalUtility());
                     container.RegisterInstance<IPortalCacheUtility>(new PortalHttpCacheUtility());
 
                     var section = (UnityConfigurationSection) ConfigurationManager.GetSection("unity");
                     section.Configure(container);
-
-                    // additional container initialization 
-                    container.RegisterInstance(ConfigurationManager.ConnectionStrings["connectionString"]);
-
 
                     context.Application[GlobalContainerKey] = container;
                 }
