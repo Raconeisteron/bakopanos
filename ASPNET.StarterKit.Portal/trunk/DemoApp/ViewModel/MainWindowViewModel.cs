@@ -58,15 +58,23 @@ namespace DemoApp.ViewModel
         List<CommandViewModel> CreateCommands()
         {
             return new List<CommandViewModel>
-            {
-                new CommandViewModel(
-                    Strings.MainWindowViewModel_Command_ViewAnnouncements,
-                    new RelayCommand(param => this.ViewAnnouncements())),
+                       {
+                           new CommandViewModel(
+                               Strings.MainWindowViewModel_Command_ViewAnnouncements,
+                               new RelayCommand(param => this.ViewAnnouncements())),
 
-                new CommandViewModel(
-                    Strings.MainWindowViewModel_Command_EditAnnouncement,
-                    new RelayCommand(param => this.EditAnnouncement()))
-            };
+                           new CommandViewModel(
+                               Strings.MainWindowViewModel_Command_ViewContacts,
+                               new RelayCommand(param => this.ViewContacts())),
+
+                           new CommandViewModel(
+                               Strings.MainWindowViewModel_Command_ViewLinks,
+                               new RelayCommand(param => this.ViewLinks())),
+
+                           new CommandViewModel(
+                               Strings.MainWindowViewModel_Command_EditAnnouncement,
+                               new RelayCommand(param => this.EditAnnouncement()))
+                       };
         }
 
         #endregion // Commands
@@ -137,6 +145,50 @@ namespace DemoApp.ViewModel
                 ITabConfigurationDb tabConfigurationDb = new XmlTabConfigurationDb(configurationDb,cacheUtility);
 
                 workspace = new AnnouncementsViewModel(db, tabConfigurationDb);
+                Workspaces.Add(workspace);
+            }
+
+            this.SetActiveWorkspace(workspace);
+        }
+
+        void ViewContacts()
+        {
+            var workspace = Workspaces.FirstOrDefault(vm => vm is ContactsViewModel) as ContactsViewModel;
+
+            if (workspace == null)
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                string configFile = ConfigurationManager.AppSettings["ConfigFile"];
+
+                IContactsDb db = new SqlContactsDb(connectionString);
+                XmlConfigurationDb configurationDb = new XmlConfigurationDb(configFile);
+                var cacheUtility = new PortalCacheUtility();
+                configurationDb.Initialize(cacheUtility, new PortalServerUtility());
+                ITabConfigurationDb tabConfigurationDb = new XmlTabConfigurationDb(configurationDb, cacheUtility);
+
+                workspace = new ContactsViewModel(db, tabConfigurationDb);
+                Workspaces.Add(workspace);
+            }
+
+            this.SetActiveWorkspace(workspace);
+        }
+
+        void ViewLinks()
+        {
+            var workspace = Workspaces.FirstOrDefault(vm => vm is LinksViewModel) as LinksViewModel;
+
+            if (workspace == null)
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                string configFile = ConfigurationManager.AppSettings["ConfigFile"];
+
+                ILinksDb db = new SqlLinksDb(connectionString);
+                XmlConfigurationDb configurationDb = new XmlConfigurationDb(configFile);
+                var cacheUtility = new PortalCacheUtility();
+                configurationDb.Initialize(cacheUtility, new PortalServerUtility());
+                ITabConfigurationDb tabConfigurationDb = new XmlTabConfigurationDb(configurationDb, cacheUtility);
+
+                workspace = new LinksViewModel(db, tabConfigurationDb);
                 Workspaces.Add(workspace);
             }
 

@@ -8,18 +8,19 @@ This resource dictionary is used by the MainWindow.
   xmlns:vw="clr-namespace:DemoApp.View"
   >
 
-  <!-- 
-  This template applies an AllCustomersView to an instance 
-  of the AllCustomersViewModel class shown in the main window.
-  -->
+ 
     <DataTemplate DataType="{x:Type vm:AnnouncementsViewModel}">
-    <vw:AnnouncementsView />
-  </DataTemplate>
+        <vw:AnnouncementsView />
+    </DataTemplate>
 
-  <!-- 
-  This template applies a CustomerView to an instance  
-  of the CustomerViewModel class shown in the main window.
-  -->
+    <DataTemplate DataType="{x:Type vm:ContactsViewModel}">
+        <vw:ContactsView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:LinksViewModel}">
+        <vw:LinksView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type vm:EditAnnouncementViewModel}">
     <vw:EditAnnouncementsView />
   </DataTemplate>

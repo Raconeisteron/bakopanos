@@ -6,14 +6,10 @@ namespace DemoApp.ViewModel
 {
     public class AnnouncementsViewModel : WorkspaceViewModel
     {
-        //private IAnnouncementsDb _announcementsDb;
-        //private ITabConfigurationDb _tabConfigurationDb;
-
+       
         public AnnouncementsViewModel(IAnnouncementsDb announcementsDb, ITabConfigurationDb tabConfigurationDb)
         {
-            //_announcementsDb = announcementsDb;
-            //_tabConfigurationDb = tabConfigurationDb;
-
+            
             base.DisplayName = Strings.AnnouncementsViewModel_DisplayName;
 
             Announcements= new Collection<PortalAnnouncement>();

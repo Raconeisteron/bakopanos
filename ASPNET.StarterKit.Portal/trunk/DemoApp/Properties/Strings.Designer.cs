@@ -70,6 +70,24 @@ namespace DemoApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contacts.
+        /// </summary>
+        public static string ContactsViewModel_DisplayName {
+            get {
+                return ResourceManager.GetString("ContactsViewModel_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Links.
+        /// </summary>
+        public static string LinksViewModel_DisplayName {
+            get {
+                return ResourceManager.GetString("LinksViewModel_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Announcement.
         /// </summary>
         public static string MainWindowViewModel_Command_EditAnnouncement {
@@ -84,6 +102,24 @@ namespace DemoApp.Properties {
         public static string MainWindowViewModel_Command_ViewAnnouncements {
             get {
                 return ResourceManager.GetString("MainWindowViewModel_Command_ViewAnnouncements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contacts.
+        /// </summary>
+        public static string MainWindowViewModel_Command_ViewContacts {
+            get {
+                return ResourceManager.GetString("MainWindowViewModel_Command_ViewContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Links.
+        /// </summary>
+        public static string MainWindowViewModel_Command_ViewLinks {
+            get {
+                return ResourceManager.GetString("MainWindowViewModel_Command_ViewLinks", resourceCulture);
             }
         }
         
