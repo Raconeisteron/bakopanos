@@ -15,10 +15,12 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     public class XmlTabConfigurationDb : ITabConfigurationDb
     {
         private readonly IConfigurationDb _configurationDb;
+        private readonly IPortalCacheUtility _cacheUtility;
 
-        public XmlTabConfigurationDb(IConfigurationDb configurationDb)
+        public XmlTabConfigurationDb(IConfigurationDb configurationDb,IPortalCacheUtility cacheUtility)
         {
             _configurationDb = configurationDb;
+            _cacheUtility = cacheUtility;
         }
 
         #region ITabConfigurationDb Members
@@ -150,7 +152,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
                               string mobileTabName, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration)_cacheUtility.SiteSettings;
 
             // Find the appropriate tab in the Tab table and set the properties
             SiteConfiguration.TabRow tabRow = siteSettings.Tab.FindByTabId(tabId);
@@ -168,7 +170,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public void UpdateTabOrder(int tabId, int tabOrder)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration)_cacheUtility.SiteSettings;
 
             // Find the appropriate tab in the Tab table and set the property
             SiteConfiguration.TabRow tabRow = siteSettings.Tab.FindByTabId(tabId);
@@ -193,7 +195,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             //
 
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) _cacheUtility.SiteSettings;
 
             // Find the appropriate tab in the Tab table
             SiteConfiguration.TabDataTable tabTable = siteSettings.Tab;

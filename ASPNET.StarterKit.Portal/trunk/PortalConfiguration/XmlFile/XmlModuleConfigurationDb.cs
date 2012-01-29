@@ -15,10 +15,12 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     public class XmlModuleConfigurationDb : IModuleConfigurationDb
     {
         private readonly IConfigurationDb _configurationDb;
+        private readonly IPortalCacheUtility _cacheUtility;
 
-        public XmlModuleConfigurationDb(IConfigurationDb configurationDb)
+        public XmlModuleConfigurationDb(IConfigurationDb configurationDb,IPortalCacheUtility cacheUtility)
         {
             _configurationDb = configurationDb;
+            _cacheUtility = cacheUtility;
         }
 
         //*********************************************************************
@@ -148,7 +150,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public void DeleteModule(int moduleId)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) _cacheUtility.SiteSettings;
 
             //
             // Delete information in the Database relating to Module being deleted
@@ -199,7 +201,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public void UpdateModuleSetting(int moduleId, string key, string val)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) _cacheUtility.SiteSettings;
 
             // Find the appropriate Module in the Module table
             SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
@@ -312,7 +314,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
             var settings = new Hashtable();
 
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration) _cacheUtility.SiteSettings;
 
             // Find the appropriate Module in the Module table
             SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);

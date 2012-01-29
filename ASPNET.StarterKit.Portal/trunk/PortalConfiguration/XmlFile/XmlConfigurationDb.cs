@@ -1,5 +1,5 @@
-using System.Web;
-using System.Web.Caching;
+
+using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal.XmlFile
 {
@@ -11,10 +11,19 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     public class XmlConfigurationDb : IConfigurationDb
     {
         private readonly string _configFile;
+        private IPortalCacheUtility _cacheUtility;
+        private IPortalServerUtility _serverUtility;
 
         public XmlConfigurationDb(string configFile)
         {
             _configFile = configFile;
+        }
+
+        [InjectionMethod]
+        public void Initialize(IPortalCacheUtility cacheUtility,IPortalServerUtility serverUtility)
+        {
+            _cacheUtility = cacheUtility;
+            _serverUtility = serverUtility;
         }
 
         #region IConfigurationDb Members
@@ -39,7 +48,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         ///</returns>
         public object GetSiteSettings()
         {
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
+            var siteSettings = (SiteConfiguration) _cacheUtility.SiteSettings;
 
             // If the SiteConfiguration isn't cached, load it from the XML file and add it into the cache.
             if (siteSettings == null)
@@ -48,7 +57,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
                 siteSettings = new SiteConfiguration();
 
                 // Retrieve the location of the XML configuration file
-                string configFile = HttpContext.Current.Server.MapPath(_configFile);
+                string configFile = _serverUtility.MapPath(_configFile);
 
                 // Set the AutoIncrement property to true for easier adding of rows
                 siteSettings.Tab.TabIdColumn.AutoIncrement = true;
@@ -59,7 +68,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
                 siteSettings.ReadXml(configFile);
 
                 // Store the dataset in the cache
-                HttpContext.Current.Cache.Insert("SiteSettings", siteSettings, new CacheDependency(configFile));
+                _cacheUtility.InsertSiteSettings(siteSettings, configFile);
             }
 
             return siteSettings;
@@ -74,7 +83,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public void SaveSiteSettings()
         {
             // Obtain SiteSettings from the Cache
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
+            var siteSettings = (SiteConfiguration) _cacheUtility.SiteSettings;
 
             // Check the object
             if (siteSettings == null)
@@ -84,7 +93,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
                 // which reloads the cache, the siteSettings object will be Null 
                 siteSettings = (SiteConfiguration) GetSiteSettings();
             }
-            string configFile = HttpContext.Current.Server.MapPath(_configFile);
+            string configFile = _serverUtility.MapPath(_configFile);
 
             // Object is evicted from the Cache here.  
             siteSettings.WriteXml(configFile);

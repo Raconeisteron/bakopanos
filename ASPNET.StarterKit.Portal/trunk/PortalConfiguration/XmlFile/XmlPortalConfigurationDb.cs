@@ -10,10 +10,12 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     public class XmlPortalConfigurationDb : IPortalConfigurationDb
     {
         private readonly IConfigurationDb _configurationDb;
+        private readonly IPortalCacheUtility _cacheUtility;
 
-        public XmlPortalConfigurationDb(IConfigurationDb configurationDb)
+        public XmlPortalConfigurationDb(IConfigurationDb configurationDb,IPortalCacheUtility cacheUtility)
         {
             _configurationDb = configurationDb;
+            _cacheUtility = cacheUtility;
         }
 
         #region IPortalConfigurationDb Members
@@ -36,7 +38,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public void UpdatePortalInfo(int portalId, string portalName, bool alwaysShow)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+            var siteSettings = (SiteConfiguration)_cacheUtility.SiteSettings;
 
             // Get first record of the "Global" element 
             SiteConfiguration.GlobalRow globalRow = siteSettings.Global.FindByPortalId(portalId);

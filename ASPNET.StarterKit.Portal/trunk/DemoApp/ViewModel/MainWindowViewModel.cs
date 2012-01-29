@@ -131,8 +131,10 @@ namespace DemoApp.ViewModel
                 string configFile = ConfigurationManager.AppSettings["ConfigFile"];
 
                 IAnnouncementsDb db = new SqlAnnouncementsDb(connectionString);
-                IConfigurationDb configurationDb = new XmlConfigurationDb(configFile);
-                ITabConfigurationDb tabConfigurationDb = new XmlTabConfigurationDb(configurationDb);
+                XmlConfigurationDb configurationDb = new XmlConfigurationDb(configFile);
+                var cacheUtility = new PortalCacheUtility();
+                configurationDb.Initialize(cacheUtility,new PortalServerUtility());
+                ITabConfigurationDb tabConfigurationDb = new XmlTabConfigurationDb(configurationDb,cacheUtility);
 
                 workspace = new AnnouncementsViewModel(db, tabConfigurationDb);
                 Workspaces.Add(workspace);

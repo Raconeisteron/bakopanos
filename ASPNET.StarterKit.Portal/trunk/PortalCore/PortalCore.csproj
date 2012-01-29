@@ -54,8 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPortalCacheUtility.cs" />
     <Compile Include="IPortalPrincipalUtility.cs" />
     <Compile Include="IPortalServerUtility.cs" />
+    <Compile Include="PortalCacheUtility.cs" />
+    <Compile Include="Web\PortalHttpCacheUtility.cs" />
     <Compile Include="PortalPrincipalUtility.cs" />
     <Compile Include="PortalServerUtility.cs" />
     <Compile Include="Security.Cryptography\Encryption.cs" />
