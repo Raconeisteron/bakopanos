@@ -9,20 +9,27 @@
   <Target Name="CopyDataEmptySite">
 
     <Copy SourceFiles="Setup\Empty\PortalCfg.xml" DestinationFolder="ASPNET.StarterKit.Portal" SkipUnchangedFiles="true"/>
-
+	<Copy SourceFiles="Setup\Empty\PortalCfg.xml" DestinationFolder="DemoApp\Bin\Debug" SkipUnchangedFiles="true"/>
+	
     <MakeDir Directories="ASPNET.StarterKit.Portal\Data" />
+	<MakeDir Directories="DemoApp\Bin\Debug\Data" />
 
     <CreateItem Include="Setup\Empty\Data\**\*.*">
       <Output ItemName="DataFilesToCopy" TaskParameter="Include"/>
     </CreateItem>
-
+	
+	<Copy SourceFiles="@(DataFilesToCopy)" DestinationFolder="ASPNET.StarterKit.Portal\Data\" SkipUnchangedFiles="true"/>
+	<Copy SourceFiles="@(DataFilesToCopy)" DestinationFolder="DemoApp\Bin\Debug\Data" SkipUnchangedFiles="true"/>
+	
 	<MakeDir Directories="ASPNET.StarterKit.Portal\Uploads" />
-		
-	<CreateItem Include="Setup\Sample\Uploads\**\*.*">
-		<Output ItemName="DataFilesToCopy" TaskParameter="Include"/>
+	<MakeDir Directories="DemoApp\Bin\Debug\Uploads" />
+	
+	<CreateItem Include="Setup\Empty\Uploads\**\*.*">
+		<Output ItemName="UploadFilesToCopy" TaskParameter="Include"/>
 	</CreateItem>
 		
-    <Copy SourceFiles="@(DataFilesToCopy)" DestinationFolder="ASPNET.StarterKit.Portal\Data\" SkipUnchangedFiles="true"/>
+    <Copy SourceFiles="@(UploadFilesToCopy)" DestinationFolder="ASPNET.StarterKit.Portal\Uploads\" SkipUnchangedFiles="true"/>
+	<Copy SourceFiles="@(UploadFilesToCopy)" DestinationFolder="DemoApp\Bin\Debug\Uploads" SkipUnchangedFiles="true"/>
 
     <PropertyGroup>
       <CommandClean>-i  Setup\Portal_CleanUp.sql</CommandClean>
@@ -39,30 +46,37 @@
   <Target Name="CopyDataSampleSite">
 
 		<Copy SourceFiles="Setup\Sample\PortalCfg.xml" DestinationFolder="ASPNET.StarterKit.Portal" SkipUnchangedFiles="true"/>
+	<Copy SourceFiles="Setup\Sample\PortalCfg.xml" DestinationFolder="DemoApp\Bin\Debug" SkipUnchangedFiles="true"/>
+	
+    <MakeDir Directories="ASPNET.StarterKit.Portal\Data" />
+	<MakeDir Directories="DemoApp\Bin\Debug\Data" />
 
-		<MakeDir Directories="ASPNET.StarterKit.Portal\Data" />
+    <CreateItem Include="Setup\Sample\Data\**\*.*">
+      <Output ItemName="DataFilesToCopy" TaskParameter="Include"/>
+    </CreateItem>
+	
+	<Copy SourceFiles="@(DataFilesToCopy)" DestinationFolder="ASPNET.StarterKit.Portal\Data\" SkipUnchangedFiles="true"/>
+	<Copy SourceFiles="@(DataFilesToCopy)" DestinationFolder="DemoApp\Bin\Debug\Data" SkipUnchangedFiles="true"/>
+	
+	<MakeDir Directories="ASPNET.StarterKit.Portal\Uploads" />
+		<MakeDir Directories="DemoApp\Bin\Debug\Uploads" />
 		
-		<CreateItem Include="Setup\Sample\Data\**\*.*">
-			<Output ItemName="DataFilesToCopy" TaskParameter="Include"/>
-		</CreateItem>
+	<CreateItem Include="Setup\Sample\Uploads\**\*.*">
+		<Output ItemName="UploadFilesToCopy" TaskParameter="Include"/>
+	</CreateItem>
 		
-		<MakeDir Directories="ASPNET.StarterKit.Portal\Uploads" />
-		
-		<CreateItem Include="Setup\Sample\Uploads\**\*.*">
-			<Output ItemName="DataFilesToCopy" TaskParameter="Include"/>
-		</CreateItem>
-		
-		<Copy SourceFiles="@(DataFilesToCopy)" DestinationFolder="ASPNET.StarterKit.Portal\Data\" SkipUnchangedFiles="true"/>
+    <Copy SourceFiles="@(UploadFilesToCopy)" DestinationFolder="ASPNET.StarterKit.Portal\Uploads\" SkipUnchangedFiles="true"/>
+	<Copy SourceFiles="@(UploadFilesToCopy)" DestinationFolder="DemoApp\Bin\Debug\Uploads" SkipUnchangedFiles="true"/>
 
-		<PropertyGroup>
-			<CommandClean>-i  Setup\Portal_CleanUp.sql</CommandClean>
-		</PropertyGroup>
-		<Exec Command="$(sqlcmd) $(CommandClean)" />
+    <PropertyGroup>
+      <CommandClean>-i  Setup\Portal_CleanUp.sql</CommandClean>
+    </PropertyGroup>
+    <Exec Command="$(sqlcmd) $(CommandClean)" />
 
-		<PropertyGroup>
-			<CommandLoad>-i  Setup\Sample\Portal_LoadData.sql</CommandLoad>
-		</PropertyGroup>
-		<Exec Command="$(sqlcmd) $(CommandLoad)" />
+    <PropertyGroup>
+      <CommandLoad>-i  Setup\Empty\Portal_LoadData.sql</CommandLoad>
+    </PropertyGroup>
+    <Exec Command="$(sqlcmd) $(CommandLoad)" />
 		
 	</Target>
 	
