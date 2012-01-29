@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Data;
-using ASPNET.StarterKit.Portal;
-using ASPNET.StarterKit.Portal.SqlClient;
-using ASPNET.StarterKit.Portal.XmlFile;
 using DemoApp.Properties;
+using Microsoft.Practices.Unity;
 
 namespace DemoApp.ViewModel
 {
@@ -20,18 +17,19 @@ namespace DemoApp.ViewModel
     public class MainWindowViewModel : WorkspaceViewModel
     {
         #region Fields
-                
-        ReadOnlyCollection<CommandViewModel> _commands;
-        ObservableCollection<WorkspaceViewModel> _workspaces;
+
+        private readonly IUnityContainer _container;
+        private ReadOnlyCollection<CommandViewModel> _commands;
+        private ObservableCollection<WorkspaceViewModel> _workspaces;
 
         #endregion // Fields
 
         #region Constructor
 
-        public MainWindowViewModel(string customerDataFile)
+        public MainWindowViewModel(IUnityContainer container)
         {
+            _container = container;
             base.DisplayName = Strings.MainWindowViewModel_DisplayName;
-
         }
 
         #endregion // Constructor
@@ -48,32 +46,29 @@ namespace DemoApp.ViewModel
             {
                 if (_commands == null)
                 {
-                    List<CommandViewModel> cmds = this.CreateCommands();
+                    List<CommandViewModel> cmds = CreateCommands();
                     _commands = new ReadOnlyCollection<CommandViewModel>(cmds);
                 }
                 return _commands;
             }
         }
 
-        List<CommandViewModel> CreateCommands()
+        private List<CommandViewModel> CreateCommands()
         {
             return new List<CommandViewModel>
                        {
                            new CommandViewModel(
                                Strings.MainWindowViewModel_Command_ViewAnnouncements,
-                               new RelayCommand(param => this.ViewAnnouncements())),
-
+                               new RelayCommand(param => ViewAnnouncements())),
                            new CommandViewModel(
                                Strings.MainWindowViewModel_Command_ViewContacts,
-                               new RelayCommand(param => this.ViewContacts())),
-
+                               new RelayCommand(param => ViewContacts())),
                            new CommandViewModel(
                                Strings.MainWindowViewModel_Command_ViewLinks,
-                               new RelayCommand(param => this.ViewLinks())),
-
+                               new RelayCommand(param => ViewLinks())),
                            new CommandViewModel(
                                Strings.MainWindowViewModel_Command_EditAnnouncement,
-                               new RelayCommand(param => this.EditAnnouncement()))
+                               new RelayCommand(param => EditAnnouncement()))
                        };
         }
 
@@ -92,114 +87,85 @@ namespace DemoApp.ViewModel
                 if (_workspaces == null)
                 {
                     _workspaces = new ObservableCollection<WorkspaceViewModel>();
-                    _workspaces.CollectionChanged += this.OnWorkspacesChanged;
+                    _workspaces.CollectionChanged += OnWorkspacesChanged;
                 }
                 return _workspaces;
             }
         }
 
-        void OnWorkspacesChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void OnWorkspacesChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null && e.NewItems.Count != 0)
                 foreach (WorkspaceViewModel workspace in e.NewItems)
-                    workspace.RequestClose += this.OnWorkspaceRequestClose;
+                    workspace.RequestClose += OnWorkspaceRequestClose;
 
             if (e.OldItems != null && e.OldItems.Count != 0)
                 foreach (WorkspaceViewModel workspace in e.OldItems)
-                    workspace.RequestClose -= this.OnWorkspaceRequestClose;
+                    workspace.RequestClose -= OnWorkspaceRequestClose;
         }
 
-        void OnWorkspaceRequestClose(object sender, EventArgs e)
+        private void OnWorkspaceRequestClose(object sender, EventArgs e)
         {
-            WorkspaceViewModel workspace = sender as WorkspaceViewModel;
+            var workspace = sender as WorkspaceViewModel;
             workspace.Dispose();
-            this.Workspaces.Remove(workspace);
+            Workspaces.Remove(workspace);
         }
 
         #endregion // Workspaces
 
         #region Private Helpers
 
-        void EditAnnouncement()
+        private void EditAnnouncement()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            IAnnouncementsDb db = new SqlAnnouncementsDb(connectionString);
-            var workspace = new EditAnnouncementViewModel(db);
+            var workspace = _container.Resolve<EditAnnouncementViewModel>();
             Workspaces.Add(workspace);
             SetActiveWorkspace(workspace);
         }
 
-        void ViewAnnouncements()
+        private void ViewAnnouncements()
         {
             var workspace = Workspaces.FirstOrDefault(vm => vm is AnnouncementsViewModel) as AnnouncementsViewModel;
 
             if (workspace == null)
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-                string configFile = ConfigurationManager.AppSettings["ConfigFile"];
-
-                IAnnouncementsDb db = new SqlAnnouncementsDb(connectionString);
-                XmlConfigurationDb configurationDb = new XmlConfigurationDb(configFile);
-                var cacheUtility = new PortalCacheUtility();
-                configurationDb.Initialize(cacheUtility,new PortalServerUtility());
-                ITabConfigurationDb tabConfigurationDb = new XmlTabConfigurationDb(configurationDb,cacheUtility);
-
-                workspace = new AnnouncementsViewModel(db, tabConfigurationDb);
+                workspace = _container.Resolve<AnnouncementsViewModel>();
                 Workspaces.Add(workspace);
             }
 
-            this.SetActiveWorkspace(workspace);
+            SetActiveWorkspace(workspace);
         }
 
-        void ViewContacts()
+        private void ViewContacts()
         {
             var workspace = Workspaces.FirstOrDefault(vm => vm is ContactsViewModel) as ContactsViewModel;
 
             if (workspace == null)
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-                string configFile = ConfigurationManager.AppSettings["ConfigFile"];
-
-                IContactsDb db = new SqlContactsDb(connectionString);
-                XmlConfigurationDb configurationDb = new XmlConfigurationDb(configFile);
-                var cacheUtility = new PortalCacheUtility();
-                configurationDb.Initialize(cacheUtility, new PortalServerUtility());
-                ITabConfigurationDb tabConfigurationDb = new XmlTabConfigurationDb(configurationDb, cacheUtility);
-
-                workspace = new ContactsViewModel(db, tabConfigurationDb);
+                workspace = _container.Resolve<ContactsViewModel>();
                 Workspaces.Add(workspace);
             }
 
-            this.SetActiveWorkspace(workspace);
+            SetActiveWorkspace(workspace);
         }
 
-        void ViewLinks()
+        private void ViewLinks()
         {
             var workspace = Workspaces.FirstOrDefault(vm => vm is LinksViewModel) as LinksViewModel;
 
             if (workspace == null)
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-                string configFile = ConfigurationManager.AppSettings["ConfigFile"];
-
-                ILinksDb db = new SqlLinksDb(connectionString);
-                XmlConfigurationDb configurationDb = new XmlConfigurationDb(configFile);
-                var cacheUtility = new PortalCacheUtility();
-                configurationDb.Initialize(cacheUtility, new PortalServerUtility());
-                ITabConfigurationDb tabConfigurationDb = new XmlTabConfigurationDb(configurationDb, cacheUtility);
-
-                workspace = new LinksViewModel(db, tabConfigurationDb);
+                workspace = _container.Resolve<LinksViewModel>();
                 Workspaces.Add(workspace);
             }
 
-            this.SetActiveWorkspace(workspace);
+            SetActiveWorkspace(workspace);
         }
 
-        void SetActiveWorkspace(WorkspaceViewModel workspace)
+        private void SetActiveWorkspace(WorkspaceViewModel workspace)
         {
-            Debug.Assert(this.Workspaces.Contains(workspace));
+            Debug.Assert(Workspaces.Contains(workspace));
 
-            ICollectionView collectionView = CollectionViewSource.GetDefaultView(this.Workspaces);
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(Workspaces);
             if (collectionView != null)
                 collectionView.MoveCurrentTo(workspace);
         }

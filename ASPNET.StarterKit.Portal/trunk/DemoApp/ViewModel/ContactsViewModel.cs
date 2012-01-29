@@ -6,10 +6,8 @@ namespace DemoApp.ViewModel
 {
     public class ContactsViewModel : WorkspaceViewModel
     {
-        
         public ContactsViewModel(IContactsDb contactsDb, ITabConfigurationDb tabConfigurationDb)
         {
-           
             base.DisplayName = Strings.ContactsViewModel_DisplayName;
 
             Contacts = new Collection<PortalContact>();
@@ -27,6 +25,5 @@ namespace DemoApp.ViewModel
         }
 
         public Collection<PortalContact> Contacts { get; private set; }
-
     }
 }

@@ -1,8 +1,12 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Configuration;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Markup;
+using ASPNET.StarterKit.Portal;
 using DemoApp.ViewModel;
-using System;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
 
 namespace DemoApp
 {
@@ -21,29 +25,38 @@ namespace DemoApp
             // By default, WPF uses en-US as the culture, regardless of the system settings.
             //
             FrameworkElement.LanguageProperty.OverrideMetadata(
-              typeof(FrameworkElement),
-              new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+                typeof (FrameworkElement),
+                new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            MainWindow window = new MainWindow();
+            IUnityContainer container = new UnityContainer();
+
+            // additional container initialization 
+            container.RegisterInstance<IPortalServerUtility>(new PortalServerUtility());
+            container.RegisterInstance<IPortalPrincipalUtility>(new PortalPrincipalUtility());
+            container.RegisterInstance<IPortalCacheUtility>(new PortalCacheUtility());
+
+            var section = (UnityConfigurationSection) ConfigurationManager.GetSection("unity");
+            section.Configure(container);
+
+            var window = container.Resolve<MainWindow>();
 
             // Create the ViewModel to which 
             // the main window binds.
-            string path = "Data/customers.xml";
-            var viewModel = new MainWindowViewModel(path);
+            var viewModel = container.Resolve<MainWindowViewModel>();
 
             // When the ViewModel asks to be closed, 
             // close the window.
             EventHandler handler = null;
             handler = delegate
-            {
-                viewModel.RequestClose -= handler;
-                window.Close();
-            };
+                          {
+                              viewModel.RequestClose -= handler;
+                              window.Close();
+                          };
             viewModel.RequestClose += handler;
 
             // Allow all controls in the window to 

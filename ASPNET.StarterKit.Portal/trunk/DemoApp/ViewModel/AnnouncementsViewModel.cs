@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using ASPNET.StarterKit.Portal;
 using DemoApp.Properties;
 
@@ -6,13 +6,11 @@ namespace DemoApp.ViewModel
 {
     public class AnnouncementsViewModel : WorkspaceViewModel
     {
-       
         public AnnouncementsViewModel(IAnnouncementsDb announcementsDb, ITabConfigurationDb tabConfigurationDb)
         {
-            
             base.DisplayName = Strings.AnnouncementsViewModel_DisplayName;
 
-            Announcements= new Collection<PortalAnnouncement>();
+            Announcements = new Collection<PortalAnnouncement>();
 
             foreach (TabStripDetails tab in tabConfigurationDb.FindDesktopTabs())
             {
@@ -27,6 +25,5 @@ namespace DemoApp.ViewModel
         }
 
         public Collection<PortalAnnouncement> Announcements { get; private set; }
-
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Input;
 
 namespace DemoApp.ViewModel
@@ -12,15 +12,11 @@ namespace DemoApp.ViewModel
     {
         #region Fields
 
-        RelayCommand _closeCommand;
+        private RelayCommand _closeCommand;
 
         #endregion // Fields
 
         #region Constructor
-
-        protected WorkspaceViewModel()
-        {
-        }
 
         #endregion // Constructor
 
@@ -35,7 +31,7 @@ namespace DemoApp.ViewModel
             get
             {
                 if (_closeCommand == null)
-                    _closeCommand = new RelayCommand(param => this.OnRequestClose());
+                    _closeCommand = new RelayCommand(param => OnRequestClose());
 
                 return _closeCommand;
             }
@@ -50,9 +46,9 @@ namespace DemoApp.ViewModel
         /// </summary>
         public event EventHandler RequestClose;
 
-        void OnRequestClose()
+        private void OnRequestClose()
         {
-            EventHandler handler = this.RequestClose;
+            EventHandler handler = RequestClose;
             if (handler != null)
                 handler(this, EventArgs.Empty);
         }

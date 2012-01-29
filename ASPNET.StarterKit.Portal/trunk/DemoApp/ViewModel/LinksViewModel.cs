@@ -25,6 +25,5 @@ namespace DemoApp.ViewModel
         }
 
         public Collection<PortalLink> Links { get; private set; }
-
     }
 }

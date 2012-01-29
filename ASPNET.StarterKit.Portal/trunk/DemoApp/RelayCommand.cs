@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Windows.Input;
 
@@ -15,8 +15,8 @@ namespace DemoApp
     {
         #region Fields
 
-        readonly Action<object> _execute;
-        readonly Predicate<object> _canExecute;        
+        private readonly Predicate<object> _canExecute;
+        private readonly Action<object> _execute;
 
         #endregion // Fields
 
@@ -42,7 +42,7 @@ namespace DemoApp
                 throw new ArgumentNullException("execute");
 
             _execute = execute;
-            _canExecute = canExecute;           
+            _canExecute = canExecute;
         }
 
         #endregion // Constructors
@@ -66,6 +66,6 @@ namespace DemoApp
             _execute(parameter);
         }
 
-        #endregion // ICommand Members
+        #endregion
     }
 }

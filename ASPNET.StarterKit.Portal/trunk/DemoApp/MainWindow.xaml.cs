@@ -1,6 +1,8 @@
-﻿namespace DemoApp
+using System.Windows;
+
+namespace DemoApp
 {
-    public partial class MainWindow : System.Windows.Window
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {

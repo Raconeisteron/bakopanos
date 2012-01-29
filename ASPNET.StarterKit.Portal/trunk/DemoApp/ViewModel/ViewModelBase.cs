@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 
@@ -12,10 +12,6 @@ namespace DemoApp.ViewModel
     public abstract class ViewModelBase : INotifyPropertyChanged, IDisposable
     {
         #region Constructor
-
-        protected ViewModelBase()
-        {
-        }
 
         #endregion // Constructor
 
@@ -47,7 +43,7 @@ namespace DemoApp.ViewModel
             {
                 string msg = "Invalid property name: " + propertyName;
 
-                if (this.ThrowOnInvalidPropertyName)
+                if (ThrowOnInvalidPropertyName)
                     throw new Exception(msg);
                 else
                     Debug.Fail(msg);
@@ -77,9 +73,9 @@ namespace DemoApp.ViewModel
         /// <param name="propertyName">The property that has a new value.</param>
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            this.VerifyPropertyName(propertyName);
+            VerifyPropertyName(propertyName);
 
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)
             {
                 var e = new PropertyChangedEventArgs(propertyName);
@@ -97,7 +93,7 @@ namespace DemoApp.ViewModel
         /// </summary>
         public void Dispose()
         {
-            this.OnDispose();
+            OnDispose();
         }
 
         /// <summary>
@@ -114,8 +110,8 @@ namespace DemoApp.ViewModel
         /// </summary>
         ~ViewModelBase()
         {
-            string msg = string.Format("{0} ({1}) ({2}) Finalized", this.GetType().Name, this.DisplayName, this.GetHashCode());
-            System.Diagnostics.Debug.WriteLine(msg);
+            string msg = string.Format("{0} ({1}) ({2}) Finalized", GetType().Name, DisplayName, GetHashCode());
+            Debug.WriteLine(msg);
         }
 #endif
 
