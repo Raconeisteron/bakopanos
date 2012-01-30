@@ -3,7 +3,7 @@
 	<Import Project="Master.targets"/>
 	
 	<ItemGroup>
-		<ProjectsToBuild Include="ASPNET.StarterKit.Portal.Sln;DemoApp.Sln">
+		<ProjectsToBuild Include="*.Sln">
 		</ProjectsToBuild>	
 	</ItemGroup>
 	
