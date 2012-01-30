@@ -1,26 +1,10 @@
 <!-- 
 This resource dictionary is used by the MainWindow. 
 -->
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:vm="clr-namespace:DemoApp.ViewModel" xmlns:vw="clr-namespace:DemoApp.View">
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
 
-
-	<DataTemplate DataType="{x:Type vm:AnnouncementsViewModel}">
-		<vw:AnnouncementsView />
-	</DataTemplate>
-
-	<DataTemplate DataType="{x:Type vm:ContactsViewModel}">
-		<vw:ContactsView />
-	</DataTemplate>
-
-	<DataTemplate DataType="{x:Type vm:LinksViewModel}">
-		<vw:LinksView />
-	</DataTemplate>
-
-	<DataTemplate DataType="{x:Type vm:EditAnnouncementViewModel}">
-		<vw:EditAnnouncementsView />
-	</DataTemplate>
-
-	<!-- 
+  <!-- 
   This style configures both of the main content areas in the main window.
   -->
 	<Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
@@ -37,9 +21,9 @@ This resource dictionary is used by the MainWindow.
 		<Setter Property="Template">
 			<Setter.Value>
 				<!-- 
-        This template ensures that content of a HeaderedContentControl 
-        fills the available vertical space. 
-        -->
+		This template ensures that content of a HeaderedContentControl 
+		fills the available vertical space. 
+		-->
 				<ControlTemplate TargetType="{x:Type HeaderedContentControl}">
 					<DockPanel>
 						<ContentPresenter DockPanel.Dock="Top" ContentSource="Header" ContentTemplate="{TemplateBinding HeaderTemplate}" />

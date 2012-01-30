@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Markup;
 using ASPNET.StarterKit.Portal;
+using DemoApp.View;
 using DemoApp.ViewModel;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
@@ -43,7 +44,7 @@ namespace DemoApp
             var section = (UnityConfigurationSection) ConfigurationManager.GetSection("unity");
             section.Configure(container);
 
-            var window = container.Resolve<MainWindow>();
+            var window = container.Resolve<MainWindowView>();
 
             // Create the ViewModel to which 
             // the main window binds.
