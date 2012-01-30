@@ -448,6 +448,10 @@
       <Project>{53ED8DED-F1F8-4826-A76F-1201E3DFEA8E}</Project>
       <Name>PortalConfiguration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PortalCore.Web\PortalCore.Web.csproj">
+      <Project>{42AEB1B8-67F3-4AA9-AB23-656350F19B74}</Project>
+      <Name>PortalCore.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PortalCore\PortalCore.csproj">
       <Project>{36BBB9BC-F3E6-48C5-896A-EE488A10499D}</Project>
       <Name>PortalCore</Name>

@@ -9,7 +9,7 @@
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="MainWindowResources.xaml" />
-				<ResourceDictionary Source="../DataTemplateResources.xaml" />
+				<ResourceDictionary Source="DataTemplateResources.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Window.Resources>

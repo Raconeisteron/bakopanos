@@ -12,6 +12,7 @@
     <AssemblyName>PortalSecurity</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -82,7 +83,6 @@
     <None Include="XmlFile\SecurityDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SecurityDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="XmlFile\SecurityDataSet.xss">
       <DependentUpon>SecurityDataSet.xsd</DependentUpon>
