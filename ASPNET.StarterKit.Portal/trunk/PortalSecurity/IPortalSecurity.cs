@@ -10,12 +10,6 @@ namespace ASPNET.StarterKit.Portal
     {
         /// <summary>
         /// enables developers to easily check the role
-        /// status of the current browser client.
-        /// </summary>
-        bool IsInRole(String role);
-
-        /// <summary>
-        /// enables developers to easily check the role
         /// status of the current browser client against an array of roles
         /// </summary>
         bool IsInRoles(String roles);

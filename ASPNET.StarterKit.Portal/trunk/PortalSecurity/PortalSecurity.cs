@@ -9,24 +9,16 @@ namespace ASPNET.StarterKit.Portal
     public class PortalSecurity : IPortalSecurity
     {
         private readonly IModuleAuthorizationDb _moduleAuthorizationDb;
-        private readonly IPrincipal _user;
+        private IPortalPrincipalUtility _portalPrincipalUtility;
 
         public PortalSecurity(IModuleAuthorizationDb moduleAuthorizationDb,
                               IPortalPrincipalUtility portalPrincipalUtility)
         {
+            _portalPrincipalUtility = portalPrincipalUtility;
             _moduleAuthorizationDb = moduleAuthorizationDb;
-            _user = portalPrincipalUtility.GetUser();
         }
 
         #region IPortalSecurity Members
-
-        /// <summary>
-        /// <see cref="IPortalSecurity.IsInRole"/>
-        /// </summary>
-        public bool IsInRole(String role)
-        {
-            return _user.IsInRole(role);
-        }
 
         /// <summary>
         /// <see cref="IPortalSecurity.IsInRoles"/>
@@ -35,7 +27,7 @@ namespace ASPNET.StarterKit.Portal
         {
             foreach (String role in roles.Split(new[] {';'}))
             {
-                if (!string.IsNullOrEmpty(role) && ((role == "All Users") || (IsInRole(role))))
+                if (!string.IsNullOrEmpty(role) && ((role == "All Users") || (_portalPrincipalUtility.IsInRole(role))))
                 {
                     return true;
                 }

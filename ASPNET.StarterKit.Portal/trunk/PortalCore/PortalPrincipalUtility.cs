@@ -5,7 +5,9 @@ namespace ASPNET.StarterKit.Portal
 {
     public class PortalPrincipalUtility:IPortalPrincipalUtility
     {
-        public IPrincipal GetUser()
+       
+
+        public bool IsInRole(string userName)
         {
             throw new NotImplementedException();
         }

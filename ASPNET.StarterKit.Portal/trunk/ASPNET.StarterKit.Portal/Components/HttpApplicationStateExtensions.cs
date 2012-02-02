@@ -23,7 +23,7 @@ namespace ASPNET.StarterKit.Portal
 
                     // additional container initialization 
                     container.RegisterInstance<IPortalServerUtility>(new PortalHttpServerUtility());
-                    container.RegisterInstance<IPortalPrincipalUtility>(new PortalHttpPrincipalUtility());
+                    container.RegisterType<IPortalPrincipalUtility,PortalHttpPrincipalUtility>();
                     container.RegisterInstance<IPortalCacheUtility>(new PortalHttpCacheUtility());
 
                     var section = (UnityConfigurationSection) ConfigurationManager.GetSection("unity");
