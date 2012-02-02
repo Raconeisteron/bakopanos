@@ -123,6 +123,9 @@
   <data name="ContactsViewModel_DisplayName" xml:space="preserve">
     <value>Contacts</value>
   </data>
+  <data name="EventsViewModel_DisplayName" xml:space="preserve">
+    <value>Events</value>
+  </data>
   <data name="LinksViewModel_DisplayName" xml:space="preserve">
     <value>Links</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="MainWindowViewModel_Command_ViewContacts" xml:space="preserve">
     <value>Contacts</value>
+  </data>
+  <data name="MainWindowViewModel_Command_ViewEvents" xml:space="preserve">
+    <value>Events</value>
   </data>
   <data name="MainWindowViewModel_Command_ViewLinks" xml:space="preserve">
     <value>Links</value>

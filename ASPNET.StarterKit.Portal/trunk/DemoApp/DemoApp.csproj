@@ -106,12 +106,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModel\ContactsViewModel.cs" />
+    <Compile Include="ViewModel\EventsViewModel.cs" />
     <Compile Include="ViewModel\LinksViewModel.cs" />
     <Compile Include="View\AnnouncementsView.xaml.cs">
       <DependentUpon>AnnouncementsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ContactsView.xaml.cs">
       <DependentUpon>ContactsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EventsView.xaml.cs">
+      <DependentUpon>EventsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LinksView.xaml.cs">
       <DependentUpon>LinksView.xaml</DependentUpon>
@@ -142,6 +146,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\EventsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\DataTemplateResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

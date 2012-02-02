@@ -58,6 +58,7 @@
     <Compile Include="PortalDocument.cs" />
     <Compile Include="PortalEvent.cs" />
     <Compile Include="PortalHtmlText.cs" />
+    <Compile Include="PortalItem.cs" />
     <Compile Include="PortalLink.cs" />
     <Compile Include="PortalModulesExtensions.cs" />
     <Compile Include="SqlClient\SqlAnnouncementsDb.cs" />

@@ -21,4 +21,8 @@ This resource dictionary that provides the datatempletes for all viewmodels
 		<vw:EditAnnouncementsView />
 	</DataTemplate>
 
+	<DataTemplate DataType="{x:Type vm:EventsViewModel}">
+		<vw:EventsView />
+	</DataTemplate>
+	
 </ResourceDictionary>

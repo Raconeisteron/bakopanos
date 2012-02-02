@@ -2,12 +2,8 @@ using System;
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class PortalContact
+    public class PortalContact:PortalItem
     {
-        public int ItemId { get; set; }
-        public int ModuleId { get; set; }
-        public string CreatedByUser { get; set; }
-        public DateTime CreatedDate { get; set; }
         public string Name { get; set; }
         public string Role { get; set; }
         public string Email { get; set; }

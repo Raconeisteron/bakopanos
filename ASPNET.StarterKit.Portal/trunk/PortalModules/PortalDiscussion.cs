@@ -2,15 +2,11 @@
 
 namespace ASPNET.StarterKit.Portal
 {
-    public class PortalDiscussion
+    public class PortalDiscussion:PortalItem
     {
-        public int ItemId { get; set; }
-        public int ModuleId { get; set; }
         public string Title { get; set; }
-        public DateTime CreatedDate { get; set; }
         public string Body { get; set; }
         public string DisplayOrder { get; set; }
-        public string CreatedByUser { get; set; }
 
         //custom store procedure variables
         public int? NextMessageId { get; set; } //Portal_GetSingleMessage

@@ -67,6 +67,9 @@ namespace DemoApp.ViewModel
                                Strings.MainWindowViewModel_Command_ViewLinks,
                                new RelayCommand(param => ViewLinks())),
                            new CommandViewModel(
+                               Strings.MainWindowViewModel_Command_ViewEvents,
+                               new RelayCommand(param => ViewEvents())),
+                               new CommandViewModel(
                                Strings.MainWindowViewModel_Command_EditAnnouncement,
                                new RelayCommand(param => EditAnnouncement()))
                        };
@@ -155,6 +158,19 @@ namespace DemoApp.ViewModel
             if (workspace == null)
             {
                 workspace = _container.Resolve<LinksViewModel>();
+                Workspaces.Add(workspace);
+            }
+
+            SetActiveWorkspace(workspace);
+        }
+
+        private void ViewEvents()
+        {
+            var workspace = Workspaces.FirstOrDefault(vm => vm is EventsViewModel) as EventsViewModel;
+
+            if (workspace == null)
+            {
+                workspace = _container.Resolve<EventsViewModel>();
                 Workspaces.Add(workspace);
             }
 

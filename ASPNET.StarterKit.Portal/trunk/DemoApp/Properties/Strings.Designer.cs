@@ -79,6 +79,15 @@ namespace DemoApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Events.
+        /// </summary>
+        public static string EventsViewModel_DisplayName {
+            get {
+                return ResourceManager.GetString("EventsViewModel_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Links.
         /// </summary>
         public static string LinksViewModel_DisplayName {
@@ -111,6 +120,15 @@ namespace DemoApp.Properties {
         public static string MainWindowViewModel_Command_ViewContacts {
             get {
                 return ResourceManager.GetString("MainWindowViewModel_Command_ViewContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Events.
+        /// </summary>
+        public static string MainWindowViewModel_Command_ViewEvents {
+            get {
+                return ResourceManager.GetString("MainWindowViewModel_Command_ViewEvents", resourceCulture);
             }
         }
         

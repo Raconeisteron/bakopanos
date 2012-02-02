@@ -26,4 +26,5 @@ namespace DemoApp.ViewModel
 
         public Collection<PortalAnnouncement> Announcements { get; private set; }
     }
+
 }
