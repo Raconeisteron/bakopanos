@@ -64,12 +64,12 @@ namespace ASPNET.StarterKit.Portal
                     Response.Redirect("~/Admin/EditAccessDenied.aspx");
 
 
-                TitleField.Text = dr.Title;
-                MoreLinkField.Text = dr.MoreLink;
-                MobileMoreField.Text = dr.MobileMoreLink;
-                DescriptionField.Text = dr.Description;
+                TitleField.Text = Server.HtmlDecode(dr.Title);
+                MoreLinkField.Text = Server.HtmlDecode(dr.MoreLink);
+                MobileMoreField.Text = Server.HtmlDecode(dr.MobileMoreLink);
+                DescriptionField.Text = Server.HtmlDecode(dr.Description);
                 ExpireField.Text = dr.ExpireDate.ToShortDateString();
-                CreatedBy.Text = dr.CreatedByUser;
+                CreatedBy.Text = Server.HtmlDecode(dr.CreatedByUser);
                 CreatedDate.Text = dr.CreatedDate.ToShortDateString();
             }
 
@@ -93,16 +93,16 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId == 0)
                 {
                     // Add the announcement within the Announcements table
-                    _announcementsDb.AddAnnouncement(_moduleId, Context.User.Identity.Name, TitleField.Text,
-                                                     DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                                     MoreLinkField.Text, MobileMoreField.Text);
+                    _announcementsDb.AddAnnouncement(_moduleId, Context.User.Identity.Name, Server.HtmlEncode(TitleField.Text),
+                                                     DateTime.Parse(ExpireField.Text), Server.HtmlEncode(DescriptionField.Text),
+                                                     Server.HtmlEncode(MoreLinkField.Text),Server.HtmlEncode( MobileMoreField.Text));
                 }
                 else
                 {
                     // Update the announcement within the Announcements table
-                    _announcementsDb.UpdateAnnouncement(_itemId, Context.User.Identity.Name, TitleField.Text,
-                                                        DateTime.Parse(ExpireField.Text), DescriptionField.Text,
-                                                        MoreLinkField.Text, MobileMoreField.Text);
+                    _announcementsDb.UpdateAnnouncement(_itemId, Context.User.Identity.Name, Server.HtmlEncode(TitleField.Text),
+                                                        DateTime.Parse(ExpireField.Text), Server.HtmlEncode(DescriptionField.Text),
+                                                        Server.HtmlEncode(MoreLinkField.Text), Server.HtmlEncode(MobileMoreField.Text));
                 }
 
                 // Redirect back to the portal home page

@@ -101,8 +101,9 @@ namespace ASPNET.StarterKit.Portal
                     FileUpload.PostedFile.InputStream.Read(content, 0, length);
 
                     // Update the document within the Documents table
-                    _documentsDb.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, NameField.Text,
-                                                PathField.Text, CategoryField.Text, content, length, contentType);
+                    _documentsDb.UpdateDocument(_moduleId, _itemId, Context.User.Identity.Name, Server.HtmlEncode(NameField.Text),
+                                                Server.HtmlEncode(PathField.Text), Server.HtmlEncode(CategoryField.Text), 
+                                                content, length, contentType);
                 }
                 else
                 {

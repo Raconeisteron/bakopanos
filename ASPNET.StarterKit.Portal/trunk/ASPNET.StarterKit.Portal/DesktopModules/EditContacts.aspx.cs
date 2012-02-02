@@ -93,19 +93,26 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId == 0)
                 {
                     // Add the contact within the contacts table
-                    _contactsDb.AddContact(_moduleId, Context.User.Identity.Name, NameField.Text, RoleField.Text,
-                                           EmailField.Text, Contact1Field.Text, Contact2Field.Text);
+                    _contactsDb.AddContact(_moduleId, Context.User.Identity.Name,
+                        Server.HtmlEncode(NameField.Text),
+                        Server.HtmlEncode(RoleField.Text),
+                        Server.HtmlEncode(EmailField.Text),
+                        Server.HtmlEncode(Contact1Field.Text),
+                        Server.HtmlEncode(Contact2Field.Text));
                 }
                 else
                 {
                     // Update the contact within the contacts table
-                    _contactsDb.UpdateContact(_itemId, Context.User.Identity.Name, NameField.Text,
-                                              RoleField.Text,
-                                              EmailField.Text, Contact1Field.Text, Contact2Field.Text);
+                    _contactsDb.UpdateContact(_itemId, Context.User.Identity.Name,
+                        Server.HtmlEncode(NameField.Text),
+                        Server.HtmlEncode(RoleField.Text),
+                        Server.HtmlEncode(EmailField.Text), 
+                        Server.HtmlEncode(Contact1Field.Text), 
+                        Server.HtmlEncode(Contact2Field.Text));
                 }
 
                 // Redirect back to the portal home page
-                Response.Redirect((String) ViewState["UrlReferrer"]);
+                Response.Redirect((String)ViewState["UrlReferrer"]);
             }
         }
 
@@ -128,7 +135,7 @@ namespace ASPNET.StarterKit.Portal
             }
 
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((String)ViewState["UrlReferrer"]);
         }
 
         //****************************************************************
@@ -142,7 +149,7 @@ namespace ASPNET.StarterKit.Portal
         protected void CancelBtn_Click(Object sender, EventArgs e)
         {
             // Redirect back to the portal home page
-            Response.Redirect((String) ViewState["UrlReferrer"]);
+            Response.Redirect((String)ViewState["UrlReferrer"]);
         }
     }
 }

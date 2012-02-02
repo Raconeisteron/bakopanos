@@ -97,14 +97,20 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId == 0)
                 {
                     // Add the event within the Events table
-                    _eventsDb.AddEvent(_moduleId, Context.User.Identity.Name, TitleField.Text,
-                                       DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
+                    _eventsDb.AddEvent(_moduleId, Context.User.Identity.Name, 
+                        Server.HtmlEncode(TitleField.Text),
+                        DateTime.Parse(ExpireField.Text), 
+                        Server.HtmlEncode(DescriptionField.Text), 
+                        Server.HtmlEncode(WhereWhenField.Text));
                 }
                 else
                 {
                     // Update the event within the Events table
-                    _eventsDb.UpdateEvent(_itemId, Context.User.Identity.Name, TitleField.Text,
-                                          DateTime.Parse(ExpireField.Text), DescriptionField.Text, WhereWhenField.Text);
+                    _eventsDb.UpdateEvent(_itemId, Context.User.Identity.Name, 
+                        TitleField.Text,
+                        DateTime.Parse(ExpireField.Text), 
+                        Server.HtmlEncode(DescriptionField.Text), 
+                        Server.HtmlEncode(WhereWhenField.Text));
                 }
 
                 // Redirect back to the portal home page
