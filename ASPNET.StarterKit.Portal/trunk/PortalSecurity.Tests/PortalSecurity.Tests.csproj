@@ -60,6 +60,10 @@
       <Project>{36BBB9BC-F3E6-48C5-896A-EE488A10499D}</Project>
       <Name>PortalCore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PortalSecurity.XmlFile\PortalSecurity.XmlFile.csproj">
+      <Project>{B4107B44-1320-4D6B-A42D-97494A018883}</Project>
+      <Name>PortalSecurity.XmlFile</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PortalSecurity\PortalSecurity.csproj">
       <Project>{96451A30-ED9A-4C81-9800-6E3BFDD8D4BC}</Project>
       <Name>PortalSecurity</Name>

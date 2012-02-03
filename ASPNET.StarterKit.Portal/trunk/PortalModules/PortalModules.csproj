@@ -45,13 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Oracle\OraAnnouncementsDb.cs" />
-    <Compile Include="Oracle\OraContactsDb.cs" />
-    <Compile Include="Oracle\OraDiscussionsDb.cs" />
-    <Compile Include="Oracle\OraDocumentsDb.cs" />
-    <Compile Include="Oracle\OraEventsDb.cs" />
-    <Compile Include="Oracle\OraHtmlTextsDb.cs" />
-    <Compile Include="Oracle\OraLinksDb.cs" />
     <Compile Include="PortalAnnouncement.cs" />
     <Compile Include="PortalContact.cs" />
     <Compile Include="PortalDiscussion.cs" />
@@ -82,6 +75,9 @@
       <Project>{36BBB9BC-F3E6-48C5-896A-EE488A10499D}</Project>
       <Name>PortalCore</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Oracle\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
