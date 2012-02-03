@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web;
 
 namespace ASPNET.StarterKit.Portal.XmlFile
 {
@@ -14,10 +13,10 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     /// </summary>
     public class XmlTabConfigurationDb : ITabConfigurationDb
     {
-        private readonly IConfigurationDb _configurationDb;
         private readonly IPortalCacheUtility _cacheUtility;
+        private readonly IConfigurationDb _configurationDb;
 
-        public XmlTabConfigurationDb(IConfigurationDb configurationDb,IPortalCacheUtility cacheUtility)
+        public XmlTabConfigurationDb(IConfigurationDb configurationDb, IPortalCacheUtility cacheUtility)
         {
             _configurationDb = configurationDb;
             _cacheUtility = cacheUtility;
@@ -152,7 +151,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
                               string mobileTabName, bool showMobile)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_cacheUtility.SiteSettings;
+            var siteSettings = (SiteConfiguration) _cacheUtility.SiteSettings;
 
             // Find the appropriate tab in the Tab table and set the properties
             SiteConfiguration.TabRow tabRow = siteSettings.Tab.FindByTabId(tabId);
@@ -170,7 +169,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public void UpdateTabOrder(int tabId, int tabOrder)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_cacheUtility.SiteSettings;
+            var siteSettings = (SiteConfiguration) _cacheUtility.SiteSettings;
 
             // Find the appropriate tab in the Tab table and set the property
             SiteConfiguration.TabRow tabRow = siteSettings.Tab.FindByTabId(tabId);

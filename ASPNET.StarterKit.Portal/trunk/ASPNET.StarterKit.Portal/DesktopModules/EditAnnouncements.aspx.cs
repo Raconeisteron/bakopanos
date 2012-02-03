@@ -93,16 +93,22 @@ namespace ASPNET.StarterKit.Portal
                 if (_itemId == 0)
                 {
                     // Add the announcement within the Announcements table
-                    _announcementsDb.AddAnnouncement(_moduleId, Context.User.Identity.Name, Server.HtmlEncode(TitleField.Text),
-                                                     DateTime.Parse(ExpireField.Text), Server.HtmlEncode(DescriptionField.Text),
-                                                     Server.HtmlEncode(MoreLinkField.Text),Server.HtmlEncode( MobileMoreField.Text));
+                    _announcementsDb.AddAnnouncement(_moduleId, Context.User.Identity.Name,
+                                                     Server.HtmlEncode(TitleField.Text),
+                                                     DateTime.Parse(ExpireField.Text),
+                                                     Server.HtmlEncode(DescriptionField.Text),
+                                                     Server.HtmlEncode(MoreLinkField.Text),
+                                                     Server.HtmlEncode(MobileMoreField.Text));
                 }
                 else
                 {
                     // Update the announcement within the Announcements table
-                    _announcementsDb.UpdateAnnouncement(_itemId, Context.User.Identity.Name, Server.HtmlEncode(TitleField.Text),
-                                                        DateTime.Parse(ExpireField.Text), Server.HtmlEncode(DescriptionField.Text),
-                                                        Server.HtmlEncode(MoreLinkField.Text), Server.HtmlEncode(MobileMoreField.Text));
+                    _announcementsDb.UpdateAnnouncement(_itemId, Context.User.Identity.Name,
+                                                        Server.HtmlEncode(TitleField.Text),
+                                                        DateTime.Parse(ExpireField.Text),
+                                                        Server.HtmlEncode(DescriptionField.Text),
+                                                        Server.HtmlEncode(MoreLinkField.Text),
+                                                        Server.HtmlEncode(MobileMoreField.Text));
                 }
 
                 // Redirect back to the portal home page

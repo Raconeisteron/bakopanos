@@ -1,8 +1,6 @@
-﻿using System;
-
 namespace ASPNET.StarterKit.Portal
 {
-    public class PortalLink:PortalItem
+    public class PortalLink : PortalItem
     {
         public string Title { get; set; }
         public string Url { get; set; }

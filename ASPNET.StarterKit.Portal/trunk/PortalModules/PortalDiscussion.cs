@@ -1,8 +1,6 @@
-﻿using System;
-
 namespace ASPNET.StarterKit.Portal
 {
-    public class PortalDiscussion:PortalItem
+    public class PortalDiscussion : PortalItem
     {
         public string Title { get; set; }
         public string Body { get; set; }

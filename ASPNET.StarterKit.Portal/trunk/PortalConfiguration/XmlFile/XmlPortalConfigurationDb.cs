@@ -1,5 +1,3 @@
-using System.Web;
-
 namespace ASPNET.StarterKit.Portal.XmlFile
 {
     /// <summary>
@@ -9,10 +7,10 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     /// </summary>
     public class XmlPortalConfigurationDb : IPortalConfigurationDb
     {
-        private readonly IConfigurationDb _configurationDb;
         private readonly IPortalCacheUtility _cacheUtility;
+        private readonly IConfigurationDb _configurationDb;
 
-        public XmlPortalConfigurationDb(IConfigurationDb configurationDb,IPortalCacheUtility cacheUtility)
+        public XmlPortalConfigurationDb(IConfigurationDb configurationDb, IPortalCacheUtility cacheUtility)
         {
             _configurationDb = configurationDb;
             _cacheUtility = cacheUtility;
@@ -38,7 +36,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public void UpdatePortalInfo(int portalId, string portalName, bool alwaysShow)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_cacheUtility.SiteSettings;
+            var siteSettings = (SiteConfiguration) _cacheUtility.SiteSettings;
 
             // Get first record of the "Global" element 
             SiteConfiguration.GlobalRow globalRow = siteSettings.Global.FindByPortalId(portalId);

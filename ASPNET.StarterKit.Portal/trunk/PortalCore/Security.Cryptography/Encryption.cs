@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -12,7 +12,7 @@ namespace ASPNET.StarterKit.Portal.Security.Cryptography
         public static string Encrypt(string cleanString)
         {
             Byte[] clearBytes = new UnicodeEncoding().GetBytes(cleanString);
-            Byte[] hashedBytes = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(clearBytes);
+            Byte[] hashedBytes = ((HashAlgorithm) CryptoConfig.CreateFromName("MD5")).ComputeHash(clearBytes);
 
             return BitConverter.ToString(hashedBytes);
         }

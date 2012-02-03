@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Transactions;
@@ -45,15 +45,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         }
 
         [Test]
-        public void CanUpdateEvent()
-        {
-            _db.UpdateEvent(0, "un", "t", DateTime.Now, "d", "ww");
-        }
-
-        [Test]
         public void CanGetEvents()
         {
-
         }
 
         [Test]
@@ -85,7 +78,10 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             Assert.IsNull(eventObj);
         }
 
-
-
+        [Test]
+        public void CanUpdateEvent()
+        {
+            _db.UpdateEvent(0, "un", "t", DateTime.Now, "d", "ww");
+        }
     }
 }

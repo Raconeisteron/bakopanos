@@ -1,4 +1,4 @@
-﻿using System.Configuration;
+using System.Configuration;
 using System.Transactions;
 using NUnit.Framework;
 
@@ -25,17 +25,16 @@ namespace ASPNET.StarterKit.Portal.SqlClient
 
         private readonly TransactionScope _scope = new TransactionScope();
         private IHtmlTextsDb _db;
-        
+
         [Test]
         public void CanGetHtmlText()
         {
-            
         }
 
         [Test]
         public void CanGetHtmlTextCanReturnNull()
         {
-            PortalHtmlText htmlText= _db.GetHtmlText(9999);
+            PortalHtmlText htmlText = _db.GetHtmlText(9999);
             Assert.IsNull(htmlText);
         }
 
@@ -43,7 +42,7 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         public void CanUpdateHtmlText()
         {
             //moduleId must exist in Database
-            _db.UpdateHtmlText(2,"dh","ms","md");
+            _db.UpdateHtmlText(2, "dh", "ms", "md");
         }
     }
 }

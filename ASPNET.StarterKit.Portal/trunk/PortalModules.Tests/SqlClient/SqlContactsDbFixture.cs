@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Transactions;
 using NUnit.Framework;
@@ -42,15 +42,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         }
 
         [Test]
-        public void CanUpdateContact()
-        {
-            _db.UpdateContact(0, "un", "n", "r", "e", "c1", "c2");
-        }
-
-        [Test]
         public void CanGetContacts()
         {
-
         }
 
         [Test]
@@ -74,7 +67,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             Assert.AreEqual(contact.Email, "e");
             Assert.AreEqual(contact.Contact1, "c1");
             Assert.AreEqual(contact.Contact2, "c2");
-
         }
 
         [Test]
@@ -82,6 +74,12 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
             PortalContact contact = _db.GetSingleContact(9999);
             Assert.IsNull(contact);
+        }
+
+        [Test]
+        public void CanUpdateContact()
+        {
+            _db.UpdateContact(0, "un", "n", "r", "e", "c1", "c2");
         }
     }
 }

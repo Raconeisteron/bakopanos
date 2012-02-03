@@ -28,7 +28,7 @@
                                                                                                Kit</b>. The content for this link is not provided as part of the sample application.
                     <br />
                     <br />
-                    <a href="<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx">Return to Portal
+                    <a href="<%=Global.GetApplicationPath(Request)%>/DesktopDefault.aspx">Return to Portal
                         Home</a>
                 </td>
             </tr>

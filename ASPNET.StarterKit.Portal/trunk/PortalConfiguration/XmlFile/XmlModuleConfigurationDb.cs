@@ -3,7 +3,6 @@ using System.Collections;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web;
 
 namespace ASPNET.StarterKit.Portal.XmlFile
 {
@@ -14,10 +13,10 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     /// </summary>
     public class XmlModuleConfigurationDb : IModuleConfigurationDb
     {
-        private readonly IConfigurationDb _configurationDb;
         private readonly IPortalCacheUtility _cacheUtility;
+        private readonly IConfigurationDb _configurationDb;
 
-        public XmlModuleConfigurationDb(IConfigurationDb configurationDb,IPortalCacheUtility cacheUtility)
+        public XmlModuleConfigurationDb(IConfigurationDb configurationDb, IPortalCacheUtility cacheUtility)
         {
             _configurationDb = configurationDb;
             _cacheUtility = cacheUtility;

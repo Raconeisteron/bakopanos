@@ -1,5 +1,4 @@
 using System;
-using System.Security.Principal;
 
 namespace ASPNET.StarterKit.Portal
 {
@@ -9,7 +8,7 @@ namespace ASPNET.StarterKit.Portal
     public class PortalSecurity : IPortalSecurity
     {
         private readonly IModuleAuthorizationDb _moduleAuthorizationDb;
-        private IPortalPrincipalUtility _portalPrincipalUtility;
+        private readonly IPortalPrincipalUtility _portalPrincipalUtility;
 
         public PortalSecurity(IModuleAuthorizationDb moduleAuthorizationDb,
                               IPortalPrincipalUtility portalPrincipalUtility)

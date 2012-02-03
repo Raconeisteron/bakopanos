@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Transactions;
 using NUnit.Framework;
@@ -46,8 +46,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             Assert.NotNull(message.CreatedDate);
             Assert.AreEqual(message.Body, "b");
             Assert.AreEqual(message.CreatedByUser, "un");
-
-
         }
 
         [Test]
@@ -58,18 +56,17 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         }
 
         [Test]
-        public void CanGetTopLevelMessagesCanReturnEmptyList()
-        {
-            Collection<PortalDiscussion> messages = _db.GetTopLevelMessages(9999);
-            Assert.IsTrue(messages.Count == 0);
-        }
-
-        [Test]
         public void CanGetThreadMessagesCanReturnEmptyList()
         {
             Collection<PortalDiscussion> messages = _db.GetThreadMessages("RandomString12345");
             Assert.IsTrue(messages.Count == 0);
+        }
 
+        [Test]
+        public void CanGetTopLevelMessagesCanReturnEmptyList()
+        {
+            Collection<PortalDiscussion> messages = _db.GetTopLevelMessages(9999);
+            Assert.IsTrue(messages.Count == 0);
         }
     }
 }

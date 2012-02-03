@@ -1,9 +1,7 @@
 <!-- 
 This resource dictionary that provides the datatempletes for all viewmodels
 -->
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-					xmlns:vm="clr-namespace:DemoApp.ViewModel" xmlns:vw="clr-namespace:DemoApp.View">
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:vm="clr-namespace:DemoApp.ViewModel" xmlns:vw="clr-namespace:DemoApp.View">
 
 	<DataTemplate DataType="{x:Type vm:AnnouncementsViewModel}">
 		<vw:AnnouncementsView />
@@ -24,5 +22,5 @@ This resource dictionary that provides the datatempletes for all viewmodels
 	<DataTemplate DataType="{x:Type vm:EventsViewModel}">
 		<vw:EventsView />
 	</DataTemplate>
-	
+
 </ResourceDictionary>

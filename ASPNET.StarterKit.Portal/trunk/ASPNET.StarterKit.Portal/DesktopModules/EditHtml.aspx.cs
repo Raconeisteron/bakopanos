@@ -73,10 +73,10 @@ namespace ASPNET.StarterKit.Portal
         protected void UpdateBtn_Click(Object sender, EventArgs e)
         {
             // Update the text within the HtmlText table
-            _htmlTextsDb.UpdateHtmlText(_moduleId, 
-                Server.HtmlEncode(DesktopText.Text),
-                Server.HtmlEncode(MobileSummary.Text),
-                Server.HtmlEncode(MobileDetails.Text));
+            _htmlTextsDb.UpdateHtmlText(_moduleId,
+                                        Server.HtmlEncode(DesktopText.Text),
+                                        Server.HtmlEncode(MobileSummary.Text),
+                                        Server.HtmlEncode(MobileDetails.Text));
 
             // Redirect back to the portal home page
             Response.Redirect((String) ViewState["UrlReferrer"]);

@@ -1,4 +1,3 @@
-
 using Microsoft.Practices.Unity;
 
 namespace ASPNET.StarterKit.Portal.XmlFile
@@ -17,13 +16,6 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public XmlConfigurationDb(string configFile)
         {
             _configFile = configFile;
-        }
-
-        [InjectionMethod]
-        public void Initialize(IPortalCacheUtility cacheUtility,IPortalServerUtility serverUtility)
-        {
-            _cacheUtility = cacheUtility;
-            _serverUtility = serverUtility;
         }
 
         #region IConfigurationDb Members
@@ -100,5 +92,12 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         }
 
         #endregion
+
+        [InjectionMethod]
+        public void Initialize(IPortalCacheUtility cacheUtility, IPortalServerUtility serverUtility)
+        {
+            _cacheUtility = cacheUtility;
+            _serverUtility = serverUtility;
+        }
     }
 }

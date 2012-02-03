@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -69,7 +69,7 @@ namespace DemoApp.ViewModel
                            new CommandViewModel(
                                Strings.MainWindowViewModel_Command_ViewEvents,
                                new RelayCommand(param => ViewEvents())),
-                               new CommandViewModel(
+                           new CommandViewModel(
                                Strings.MainWindowViewModel_Command_EditAnnouncement,
                                new RelayCommand(param => EditAnnouncement()))
                        };

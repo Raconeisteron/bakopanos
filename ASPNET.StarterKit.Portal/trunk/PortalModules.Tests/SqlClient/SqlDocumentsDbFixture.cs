@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Transactions;
 using NUnit.Framework;
@@ -48,7 +48,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         [Test]
         public void CanGetSingleDocument()
         {
-
         }
 
         [Test]

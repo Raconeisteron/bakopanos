@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Transactions;
 using NUnit.Framework;
@@ -42,15 +42,8 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         }
 
         [Test]
-        public void CanUpdateLink()
-        {
-            _db.UpdateLink(0, "un", "t", "u", "mu", 0, "d");
-        }
-
-        [Test]
         public void CanGetLinks()
         {
-
         }
 
         [Test]
@@ -68,9 +61,9 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             Assert.AreEqual(link.ItemId, id);
             Assert.AreEqual(link.ModuleId, 0);
             Assert.AreEqual(link.Title, "t");
-            Assert.AreEqual(link.Url,"u");
+            Assert.AreEqual(link.Url, "u");
             Assert.AreEqual(link.MobileUrl, "mu");
-            Assert.AreEqual(link.ViewOrder,0);
+            Assert.AreEqual(link.ViewOrder, 0);
             Assert.AreEqual(link.Description, "d");
         }
 
@@ -81,5 +74,10 @@ namespace ASPNET.StarterKit.Portal.SqlClient
             Assert.IsNull(link);
         }
 
+        [Test]
+        public void CanUpdateLink()
+        {
+            _db.UpdateLink(0, "un", "t", "u", "mu", 0, "d");
+        }
     }
 }

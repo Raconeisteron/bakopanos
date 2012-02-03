@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Transactions;
@@ -7,7 +6,7 @@ using NUnit.Framework;
 namespace ASPNET.StarterKit.Portal.SqlClient
 {
     [TestFixture, Explicit]
-    public class SqlRolesDbFixture 
+    public class SqlRolesDbFixture
     {
         #region Setup/Teardown
 

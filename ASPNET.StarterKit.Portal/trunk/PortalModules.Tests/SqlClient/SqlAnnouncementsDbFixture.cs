@@ -43,12 +43,6 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         }
 
         [Test]
-        public void CanUpdateAnnouncement()
-        {
-            _db.UpdateAnnouncement(0, "un", "t", DateTime.Now, "d", "ml", "mml");
-        }
-
-        [Test]
         public void CanGetAnnouncements()
         {
             //string time = DateTime.Now.ToLongDateString();
@@ -88,6 +82,12 @@ namespace ASPNET.StarterKit.Portal.SqlClient
         {
             PortalAnnouncement announcement = _db.GetSingleAnnouncement(9999);
             Assert.IsNull(announcement);
+        }
+
+        [Test]
+        public void CanUpdateAnnouncement()
+        {
+            _db.UpdateAnnouncement(0, "un", "t", DateTime.Now, "d", "ml", "mml");
         }
     }
 }

@@ -1,7 +1,6 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web;
 
 namespace ASPNET.StarterKit.Portal.XmlFile
 {
@@ -12,10 +11,10 @@ namespace ASPNET.StarterKit.Portal.XmlFile
     /// </summary>
     public class XmlModuleDefConfigurationDb : IModuleDefConfigurationDb
     {
-        private readonly IConfigurationDb _configurationDb;
         private readonly IPortalCacheUtility _cacheUtility;
+        private readonly IConfigurationDb _configurationDb;
 
-        public XmlModuleDefConfigurationDb(IConfigurationDb configurationDb,IPortalCacheUtility cacheUtility)
+        public XmlModuleDefConfigurationDb(IConfigurationDb configurationDb, IPortalCacheUtility cacheUtility)
         {
             _configurationDb = configurationDb;
             _cacheUtility = cacheUtility;
@@ -60,7 +59,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public int AddModuleDefinition(int portalId, string name, string desktopSrc, string mobileSrc)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_cacheUtility.SiteSettings;
+            var siteSettings = (SiteConfiguration) _cacheUtility.SiteSettings;
 
             // Create new ModuleDefinitionRow
             SiteConfiguration.ModuleDefinitionRow newModuleDef = siteSettings.ModuleDefinition.NewModuleDefinitionRow();
@@ -159,7 +158,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public void UpdateModuleDefinition(int defId, string name, string desktopSrc, string mobileSrc)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_cacheUtility.SiteSettings;
+            var siteSettings = (SiteConfiguration) _cacheUtility.SiteSettings;
 
             // Find the appropriate Module in the Module table and update the properties
             SiteConfiguration.ModuleDefinitionRow modDefRow = siteSettings.ModuleDefinition.FindByModuleDefId(defId);
@@ -188,7 +187,7 @@ namespace ASPNET.StarterKit.Portal.XmlFile
         public ModuleDefinitionItem GetSingleModuleDefinition(int defId)
         {
             // Obtain SiteSettings from Current Context
-            var siteSettings = (SiteConfiguration)_cacheUtility.SiteSettings;
+            var siteSettings = (SiteConfiguration) _cacheUtility.SiteSettings;
 
             // Find the appropriate Module in the Module table
             return ToModuleDefinitionItem(siteSettings.ModuleDefinition.FindByModuleDefId(defId));

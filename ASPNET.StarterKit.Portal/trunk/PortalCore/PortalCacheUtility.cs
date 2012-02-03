@@ -7,16 +7,18 @@ namespace ASPNET.StarterKit.Portal
     {
         private object _siteSettings;
 
+        #region IPortalCacheUtility Members
+
         public void InsertSiteSettings(object siteSettings, string configFile)
         {
             _siteSettings = siteSettings;
         }
+
         public object SiteSettings
         {
-            get
-            {
-                return _siteSettings;
-            }
+            get { return _siteSettings; }
         }
+
+        #endregion
     }
 }

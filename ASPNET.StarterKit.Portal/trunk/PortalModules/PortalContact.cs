@@ -1,8 +1,6 @@
-using System;
-
 namespace ASPNET.StarterKit.Portal
 {
-    public class PortalContact:PortalItem
+    public class PortalContact : PortalItem
     {
         public string Name { get; set; }
         public string Role { get; set; }
