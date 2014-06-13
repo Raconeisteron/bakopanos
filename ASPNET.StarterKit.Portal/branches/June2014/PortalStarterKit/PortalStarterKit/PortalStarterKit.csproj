@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A3C048A8-80A7-4F8E-837A-4DF8306B4AD6}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ASPNET.StarterKit.Portal</RootNamespace>
+    <AssemblyName>PortalStarterKit</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Uploads\sample.doc" />
+    <Content Include="PortalCfg.xsc">
+      <DependentUpon>PortalCfg.xsd</DependentUpon>
+    </Content>
+    <None Include="PortalCfg.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PortalCfg.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="PortalCfg.xss">
+      <DependentUpon>PortalCfg.xsd</DependentUpon>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\AccessDenied.aspx" />
+    <Content Include="Admin\EditAccessDenied.aspx" />
+    <Content Include="Admin\Logoff.aspx" />
+    <Content Include="Admin\ManageUsers.aspx" />
+    <Content Include="Admin\ModuleDefinitions.aspx" />
+    <Content Include="Admin\ModuleDefs.ascx" />
+    <Content Include="Admin\ModuleSettings.aspx" />
+    <Content Include="Admin\NotImplemented.aspx" />
+    <Content Include="Admin\Register.aspx" />
+    <Content Include="Admin\Roles.ascx" />
+    <Content Include="Admin\SecurityRoles.aspx" />
+    <Content Include="Admin\SiteSettings.ascx" />
+    <Content Include="Admin\TabLayout.aspx" />
+    <Content Include="Admin\Tabs.ascx" />
+    <Content Include="Admin\Users.ascx" />
+    <Content Include="ASPNETPortal.css" />
+    <Content Include="Data\Admin.gif" />
+    <Content Include="Data\config_auth_forms.gif" />
+    <Content Include="Data\config_auth_win.gif" />
+    <Content Include="Data\enigma.gif" />
+    <Content Include="Data\hart.gif" />
+    <Content Include="Data\Layout.gif" />
+    <Content Include="Data\logoneg.gif" />
+    <Content Include="Data\mobilelogo.gif" />
+    <Content Include="Data\moduledefs.gif" />
+    <Content Include="Data\modulesettings.gif" />
+    <Content Include="Data\moduletypedef.gif" />
+    <Content Include="Data\m_ann.gif" />
+    <Content Include="Data\m_con.gif" />
+    <Content Include="Data\m_doc.gif" />
+    <Content Include="Data\m_dsc.gif" />
+    <Content Include="Data\m_evt.gif" />
+    <Content Include="Data\m_htm.gif" />
+    <Content Include="Data\m_img.gif" />
+    <Content Include="Data\m_lnk.gif" />
+    <Content Include="Data\m_ql.gif" />
+    <Content Include="Data\m_xml.gif" />
+    <Content Include="Data\nightvis.gif" />
+    <Content Include="Data\perfmon.gif" />
+    <Content Include="Data\QLT2112.gif" />
+    <Content Include="Data\rolemembership.gif" />
+    <Content Include="Data\Roles.gif" />
+    <Content Include="Data\Roles1.gif" />
+    <Content Include="Data\sales.xml" />
+    <Content Include="Data\sales.xsl" />
+    <Content Include="Data\sample.gif" />
+    <Content Include="Data\sitesettings.gif" />
+    <Content Include="Data\tabbar.gif" />
+    <Content Include="Data\tabs.gif" />
+    <Content Include="Data\vanlew.gif" />
+    <Content Include="Data\whataremodules.gif" />
+    <Content Include="Default.aspx" />
+    <Content Include="DesktopDefault.aspx" />
+    <Content Include="DesktopModules\Announcements.ascx" />
+    <Content Include="DesktopModules\Contacts.ascx" />
+    <Content Include="DesktopModules\DiscussDetails.aspx" />
+    <Content Include="DesktopModules\Discussion.ascx" />
+    <Content Include="DesktopModules\Document.ascx" />
+    <Content Include="DesktopModules\EditAnnouncements.aspx" />
+    <Content Include="DesktopModules\EditContacts.aspx" />
+    <Content Include="DesktopModules\EditDocs.aspx" />
+    <Content Include="DesktopModules\EditEvents.aspx" />
+    <Content Include="DesktopModules\EditHtml.aspx" />
+    <Content Include="DesktopModules\EditImage.aspx" />
+    <Content Include="DesktopModules\EditLinks.aspx" />
+    <Content Include="DesktopModules\EditXml.aspx" />
+    <Content Include="DesktopModules\Events.ascx" />
+    <Content Include="DesktopModules\HtmlModule.ascx" />
+    <Content Include="DesktopModules\ImageModule.ascx" />
+    <Content Include="DesktopModules\Links.ascx" />
+    <Content Include="DesktopModules\QuickLinks.ascx" />
+    <Content Include="DesktopModules\Signin.ascx" />
+    <Content Include="DesktopModules\ViewDocument.aspx" />
+    <Content Include="DesktopModules\XmlModule.ascx" />
+    <Content Include="DesktopModuleTitle.ascx" />
+    <Content Include="DesktopPortalBanner.ascx" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\1x1.gif" />
+    <Content Include="Images\aspnet.gif" />
+    <Content Include="Images\bars.gif" />
+    <Content Include="Images\delete.gif" />
+    <Content Include="Images\dn.gif" />
+    <Content Include="Images\edit.gif" />
+    <Content Include="Images\ffwd.gif" />
+    <Content Include="Images\frew.gif" />
+    <Content Include="Images\fwd.gif" />
+    <Content Include="Images\lt.gif" />
+    <Content Include="Images\minus.gif" />
+    <Content Include="Images\navlink.gif" />
+    <Content Include="Images\node.gif" />
+    <Content Include="Images\plus.gif" />
+    <Content Include="Images\poweredby_simple.gif" />
+    <Content Include="Images\register.gif" />
+    <Content Include="Images\rew.gif" />
+    <Content Include="Images\rt.gif" />
+    <Content Include="Images\signin.gif" />
+    <Content Include="Images\sm_dotnet.gif" />
+    <Content Include="Images\spacer.gif" />
+    <Content Include="Images\up.gif" />
+    <Content Include="PortalCfg.xml" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\AccessDenied.aspx.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditAccessDenied.aspx.cs">
+      <DependentUpon>EditAccessDenied.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Logoff.aspx.cs">
+      <DependentUpon>Logoff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageUsers.aspx.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ModuleDefinitions.aspx.cs">
+      <DependentUpon>ModuleDefinitions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ModuleDefs.ascx.cs">
+      <DependentUpon>ModuleDefs.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ModuleSettings.aspx.cs">
+      <DependentUpon>ModuleSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\NotImplemented.aspx.cs">
+      <DependentUpon>NotImplemented.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Roles.ascx.cs">
+      <DependentUpon>Roles.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SecurityRoles.aspx.cs">
+      <DependentUpon>SecurityRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SiteSettings.ascx.cs">
+      <DependentUpon>SiteSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TabLayout.aspx.cs">
+      <DependentUpon>TabLayout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Tabs.ascx.cs">
+      <DependentUpon>Tabs.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Users.ascx.cs">
+      <DependentUpon>Users.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\AnnouncementsDB.cs" />
+    <Compile Include="Components\Configuration.cs" />
+    <Compile Include="Components\ContactsDB.cs" />
+    <Compile Include="Components\DesktopControls.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\DiscussionDB.cs" />
+    <Compile Include="Components\DocumentDB.cs" />
+    <Compile Include="Components\EventsDB.cs" />
+    <Compile Include="Components\HtmlTextDB.cs" />
+    <Compile Include="Components\LinksDB.cs" />
+    <Compile Include="Components\RolesDB.cs" />
+    <Compile Include="Components\Security.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopDefault.aspx.cs">
+      <DependentUpon>DesktopDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\Announcements.ascx.cs">
+      <DependentUpon>Announcements.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\Contacts.ascx.cs">
+      <DependentUpon>Contacts.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\DiscussDetails.aspx.cs">
+      <DependentUpon>DiscussDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\Discussion.ascx.cs">
+      <DependentUpon>Discussion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\Document.ascx.cs">
+      <DependentUpon>Document.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditAnnouncements.aspx.cs">
+      <DependentUpon>EditAnnouncements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditContacts.aspx.cs">
+      <DependentUpon>EditContacts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditDocs.aspx.cs">
+      <DependentUpon>EditDocs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditEvents.aspx.cs">
+      <DependentUpon>EditEvents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditHtml.aspx.cs">
+      <DependentUpon>EditHtml.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditImage.aspx.cs">
+      <DependentUpon>EditImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditLinks.aspx.cs">
+      <DependentUpon>EditLinks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\EditXml.aspx.cs">
+      <DependentUpon>EditXml.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\Events.ascx.cs">
+      <DependentUpon>Events.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\HtmlModule.ascx.cs">
+      <DependentUpon>HtmlModule.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\ImageModule.ascx.cs">
+      <DependentUpon>ImageModule.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\Links.ascx.cs">
+      <DependentUpon>Links.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\QuickLinks.ascx.cs">
+      <DependentUpon>QuickLinks.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\Signin.ascx.cs">
+      <DependentUpon>Signin.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\ViewDocument.aspx.cs">
+      <DependentUpon>ViewDocument.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModules\XmlModule.ascx.cs">
+      <DependentUpon>XmlModule.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopModuleTitle.ascx.cs">
+      <DependentUpon>DesktopModuleTitle.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesktopPortalBanner.ascx.cs">
+      <DependentUpon>DesktopPortalBanner.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="PortalCfg.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PortalCfg.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Admin\AccessDenied.aspx.resx">
+      <DependentUpon>AccessDenied.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\EditAccessDenied.aspx.resx">
+      <DependentUpon>EditAccessDenied.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Logoff.aspx.resx">
+      <DependentUpon>Logoff.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\ManageUsers.aspx.resx">
+      <DependentUpon>ManageUsers.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\ModuleDefinitions.aspx.resx">
+      <DependentUpon>ModuleDefinitions.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\ModuleDefs.ascx.resx">
+      <DependentUpon>ModuleDefs.ascx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\ModuleSettings.aspx.resx">
+      <DependentUpon>ModuleSettings.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\NotImplemented.aspx.resx">
+      <DependentUpon>NotImplemented.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Roles.ascx.resx">
+      <DependentUpon>Roles.ascx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SecurityRoles.aspx.resx">
+      <DependentUpon>SecurityRoles.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SiteSettings.ascx.resx">
+      <DependentUpon>SiteSettings.ascx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\TabLayout.aspx.resx">
+      <DependentUpon>TabLayout.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Users.ascx.resx">
+      <DependentUpon>Users.ascx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Default.aspx.resx">
+      <DependentUpon>Default.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopDefault.aspx.resx">
+      <DependentUpon>DesktopDefault.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopModules\DiscussDetails.aspx.resx">
+      <DependentUpon>DiscussDetails.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopModules\Discussion.ascx.resx">
+      <DependentUpon>Discussion.ascx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopModules\EditAnnouncements.aspx.resx">
+      <DependentUpon>EditAnnouncements.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopModules\EditContacts.aspx.resx">
+      <DependentUpon>EditContacts.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopModules\EditEvents.aspx.resx">
+      <DependentUpon>EditEvents.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopModules\EditHtml.aspx.resx">
+      <DependentUpon>EditHtml.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopModules\EditImage.aspx.resx">
+      <DependentUpon>EditImage.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopModules\EditLinks.aspx.resx">
+      <DependentUpon>EditLinks.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopModules\EditXml.aspx.resx">
+      <DependentUpon>EditXml.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopModules\Links.ascx.resx">
+      <DependentUpon>Links.ascx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopModules\QuickLinks.ascx.resx">
+      <DependentUpon>QuickLinks.ascx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopModules\Signin.ascx.resx">
+      <DependentUpon>Signin.ascx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopPortalBanner.ascx.resx">
+      <DependentUpon>DesktopPortalBanner.ascx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Global.asax.resx">
+      <DependentUpon>Global.asax.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2043</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2043/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
