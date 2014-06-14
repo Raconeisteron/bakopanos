@@ -187,7 +187,7 @@ namespace ASPNET.StarterKit.Portal
 			//
 
 			// Create Instance of Connection and Command Object
-			SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+			SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
 			SqlCommand myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
 
 			// Mark the Command as a SPROC
@@ -350,7 +350,7 @@ namespace ASPNET.StarterKit.Portal
 			//
 
 			// Create Instance of Connection and Command Object
-			SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+			SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
 			SqlCommand myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
 
 			// Mark the Command as a SPROC
@@ -615,7 +615,7 @@ namespace ASPNET.StarterKit.Portal
 			//
 
 			// Create Instance of Connection and Command Object
-			SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+			SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
 			SqlCommand myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
 
 			// Mark the Command as a SPROC

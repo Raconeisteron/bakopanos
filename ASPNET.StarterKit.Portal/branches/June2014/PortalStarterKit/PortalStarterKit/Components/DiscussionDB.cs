@@ -32,7 +32,7 @@ namespace ASPNET.StarterKit.Portal {
         public SqlDataReader GetTopLevelMessages(int moduleId) {
 
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             SqlCommand myCommand = new SqlCommand("Portal_GetTopLevelMessages", myConnection);
 
             // Mark the Command as a SPROC
@@ -65,7 +65,7 @@ namespace ASPNET.StarterKit.Portal {
         public SqlDataReader GetThreadMessages(String parent) {
 
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             SqlCommand myCommand = new SqlCommand("Portal_GetThreadMessages", myConnection);
 
             // Mark the Command as a SPROC
@@ -99,7 +99,7 @@ namespace ASPNET.StarterKit.Portal {
         public SqlDataReader GetSingleMessage(int itemId) {
 
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             SqlCommand myCommand = new SqlCommand("Portal_GetSingleMessage", myConnection);
 
             // Mark the Command as a SPROC
@@ -137,7 +137,7 @@ namespace ASPNET.StarterKit.Portal {
             }
 
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             SqlCommand myCommand = new SqlCommand("Portal_AddMessage", myConnection);
 
             // Mark the Command as a SPROC

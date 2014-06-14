@@ -33,7 +33,7 @@ namespace ASPNET.StarterKit.Portal {
         public SqlDataReader GetLinks(int moduleId) {
 
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             SqlCommand myCommand = new SqlCommand("Portal_GetLinks", myConnection);
 
             // Mark the Command as a SPROC
@@ -67,7 +67,7 @@ namespace ASPNET.StarterKit.Portal {
         public SqlDataReader GetSingleLink(int itemId) {
 
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             SqlCommand myCommand = new SqlCommand("Portal_GetSingleLink", myConnection);
 
             // Mark the Command as a SPROC
@@ -101,7 +101,7 @@ namespace ASPNET.StarterKit.Portal {
         public void DeleteLink(int itemID) {
 
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             SqlCommand myCommand = new SqlCommand("Portal_DeleteLink", myConnection);
 
             // Mark the Command as a SPROC
@@ -136,7 +136,7 @@ namespace ASPNET.StarterKit.Portal {
             }
 
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             SqlCommand myCommand = new SqlCommand("Portal_AddLink", myConnection);
 
             // Mark the Command as a SPROC
@@ -201,7 +201,7 @@ namespace ASPNET.StarterKit.Portal {
             }
 
             // Create Instance of Connection and Command Object
-            SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+            SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
             SqlCommand myCommand = new SqlCommand("Portal_UpdateLink", myConnection);
 
             // Mark the Command as a SPROC
