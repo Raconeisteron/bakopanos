@@ -14,10 +14,10 @@
 		<td colspan="3" class="SiteLink" background="<%= Global.GetApplicationPath(Request) %>/images/bars.gif" align="right">
 			<asp:label id="WelcomeMessage" forecolor="#eeeeee" runat="server" />
 			<a href="<%= Global.GetApplicationPath(Request) %>/DesktopDefault.aspx" class="SiteLink">Portal Home</a>
-			<span class="Accent">
+			<%--<span class="Accent">
                 |</span>
 			<a href="<%= Global.GetApplicationPath(Request) %>/Docs/Docs.htm" target="_blank" class="SiteLink">
-				Portal Documentation</a>
+				Portal Documentation</a>--%>
 			<%= LogoffLink %>
 			&nbsp;&nbsp;
 		</td>
