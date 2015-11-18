@@ -1,0 +1,1 @@
+<wiki:gadget url="http://google-code-feed-gadget.googlecode.com/svn/trunk/gadget.xml" up\_feeds="http://bakopanos.blogspot.com/atom.xml" width="780"  height="340" border="0" up\_showaddbutton="0"/>
